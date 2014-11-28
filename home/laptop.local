@@ -1,0 +1,100 @@
+#-------------------------------------------------------------
+# Homebrewed Packages
+#-------------------------------------------------------------
+homebrew=(
+  bash                          # Updated version of Bash
+  bash-completion               # Command completions for Bash
+  emacs                         # emacs duh
+  git                           # Updated version of Git
+  git-flow                      # Git Flow for Git flow
+  gh                            # For github-flavored git
+  mongodb                       # document-based NoSQL database
+  tree                          # for viewing directory contents in tree format
+  zsh                           # Updated version of Zshell
+  zsh-completions               # Command completions for Zshell
+  zsh-history-substring-search  # Substring history search
+  zsh-syntax-highlighting       # Syntax highlighting as you type
+)
+
+for package in ${homebrew[*]}; do
+  fancy_echo "Installing or upgrading $package..."
+  brew_install_or_upgrade $package
+done
+
+
+#-------------------------------------------------------------
+# Homebrewed GNU Tools and Vim
+#-------------------------------------------------------------
+brew tap homebrew/dupes
+
+gnu_tools=(
+  "binutils"                      # a collection of binary tools
+  "diffutils"                     # diff, cmp, diff3, sdiff
+  "findutils --default-names"     # find, locate, updatedb, xargs
+  "gawk"                          # awk: Pattern replacement
+  "gnu-indent --default-names"    # indent: For beautifying C code
+  "gnu-sed --default-names"       # sed: Filtering text
+  "gnu-tar --default-names"       # tar: Creating compressed archives
+  "gnu-which --default-names"     # which: Find location of given executable
+  "gnutls --default-names"        # TLS: Secure comms
+  "grep --default-names"          # grep: find stuff
+  "macvim --custom-system-icons"  # MacVim, linked to by gvim
+  "vim --override-system-vi"      # Vim, duh.
+  "watch"                         # watch files/dirs for changes
+  "wdiff --with-gettext"          # word-by-word diffing
+  "wget"                          # easy downloads
+)
+
+for gnu_tool in "${gnu_tools[@]}"; do
+  fancy_echo "brew install $gnu_tool..."
+  brew_install_or_upgrade $gnu_tool
+done
+
+
+#-------------------------------------------------------------
+# Apps managed by Homebrew Cask
+#-------------------------------------------------------------
+brew tap caskroom/cask
+brew install brew-cask      # install homebrew cask to manage GUI applications
+brew tap caskroom/versions  # for alternate versions, like ST3
+
+cask=(
+  appcleaner          # removes apps and related files
+  betterzipql         # Quick Look viewers: Zip files
+  dropbox             # dropbox duh
+  firefox             # web browser
+  google-chrome       # web browser
+  iterm2-beta         # terminal emulator
+  jitouch             # trackpad gestures
+  keyboard-maestro    # system-wide custom keymappings
+  # latexit             # For generating TeX output
+  launchbar           # cmd + <space> ftw
+  name-mangler        # batch file renamer
+  nvalt               # notes
+  onepassword         # password manager
+  papers              # PDF article manager
+  qlcolorcode         # Quick Look viewers: Syntax highlighting
+  qlmarkdown          # Quick Look Preview: Markdown
+  qlprettypatch       # Quick Look Preview: Patch files
+  qlstephen           # Quick Look Preview: Extension-less files
+  quicklook-csv       # Quick Look Preview: CSV files
+  quicklook-json      # Quick Look Preview: JSON files
+  # rstudio             # IDE for R
+  sequel-pro          # MySQL GUI
+  skim                # lightweight PDF reader with good annotation tools
+  sublime-text3       # editors
+  suspicious-package  # Quick Look Preview: Mac OS X Installer Packages
+  # tex-live-utility    # package manager for TeX
+  # textmate            # text editor (mainly for TeX)
+  transmission        # torrent machine
+  virtualbox          # for virtual machines
+  vlc                 # video player
+  webp-quicklook      # Quick Look Preview: webp images
+  xquartz             # for graphical terminal output (R and Octave dependency)
+)
+
+for app in ${cask[*]}; do
+  fancy_echo "Installing $app ..."
+  brew cask install $app
+done
+

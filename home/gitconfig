@@ -1,0 +1,92 @@
+[include]
+    path = ~/Dropbox/Sync/dotfiles/gitconfig.secure
+
+[color]
+    ui            = true
+[commit]
+    template      = ~/.dotfiles/git/gitmessage
+[core]
+    autocrlf      = input
+    editor        = vim
+    excludesfile  = ~/.dotfiles/git/gitignore
+[diff]
+    renames       = true
+    tool          = vimdiff
+[fetch]
+  prune = true
+[filter "media"]
+    clean         = git-media-clean %f
+    smudge        = git-media-smudge %f
+[init]
+  templatedir =   ~/.dotfiles/git_template
+[interactive]
+    singlekey     = true
+[merge]
+    conflictstyle = diff3
+    ff            = only
+    prompt        = false
+    tool          = vimdiff
+[mergetool]
+    keepBackup    = false
+[pretty]
+    brief         = "%Cred%h%Creset %C(bold blue)%aN%Creset %Cgreen%cr%Creset - %s %C(yellow)%d%Creset"
+[push]
+    default       = simple
+
+[alias]
+    a        = add
+    aa       = add --all
+    ap       = add --patch
+    b        = branch
+    bd       = branch -d
+    c        = commit
+    ca       = commit --amend
+    cm       = !sh -c 'git commit -m \"$*\"' -
+    co       = checkout
+    cp       = cherry-pick
+    cours    = checkout --ours
+    ctheirs  = checkout --theirs
+    d        = diff
+    difflog  = log --format=brief --graph -U1 --word-diff --color-words
+    discard  = checkout --
+    dump     = cat-file -p
+    f        = fetch
+    fo       = fetch origin
+    feat     = !sh -c 'git checkout -b feature/$1' -
+    fix      = !sh -c 'git checkout -b $1fix/$2' -
+    h        = log --format=brief --graph --abbrev-commit
+    hbranch  = log --format=brief --graph --abbrev-commit HEAD --not master
+    hfeat    = log --format=brief --graph --abbrev-commit HEAD --not develop
+    hfiles   = log --format=medium --graph --abbrev-commit --stat
+    hsince   = !sh -c 'git h --since=$1' -
+    i        = init
+    m        = merge
+    ma       = merge --abort
+    mc       = merge --continue
+    mt       = mergetool
+    p        = push
+    po       = push origin
+    poa      = push origin --all
+    pr       = !gh pull-request
+    qa       = !sh -c 'git fetch origin $1:$1 && git checkout $1' -
+    r        = rebase
+    ra       = rebase --abort
+    rc       = rebase --continue
+    rel      = !sh -c 'git fetch origin && git checkout -b release/$(date +%Y.%m.%d.%H%m) origin/develop'
+    rem      = remote
+    s        = stash
+    sd       = !sh -c 'git stash drop stash@{$1}' -
+    sl       = stash list
+    sp       = stash pop
+    sqfeat   = rebase -i develop
+    sqbranch = rebase -i master
+    st       = status
+    stat     = log --format=brief --graph --abbrev-commit --stat
+    up       = !git fetch origin && git rebase origin/develop
+    today    = log --since=midnight --author=\"$(git config user.name)\" --oneline
+    type     = cat-file -t
+
+    create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+    ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+    delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
+

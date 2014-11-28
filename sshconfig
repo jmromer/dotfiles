@@ -1,0 +1,11 @@
+Host compilers
+  HostName localhost
+  Port 3022
+  User compilers
+
+Host ec2
+  HostName ec2-54-67-31-105.us-west-1.compute.amazonaws.com
+  Port 22
+  User ubuntu
+  IdentityFile ~/.ssh/jkrmr-aws-usca.pem
+

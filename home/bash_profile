@@ -1,0 +1,9 @@
+# bash_profile
+# symlinked to by ~/.bash_profile
+# loads shell config files in ~/.dotfiles/shell
+
+SHELL_CONFIG=$HOME/.dotfiles/shell
+source $SHELL_CONFIG/common_config.sh
+source $SHELL_CONFIG/prompt-bash.sh
+# ------------------------------------------------------------------------
+
