@@ -1,0 +1,22 @@
+
+
+# 50-character subject line
+#
+# 72-character wrapped longer description. This should answer:
+#
+# - Why was this change necessary?
+# - How does it address the problem?
+# - Are there any side effects?
+#
+# Include a link to the ticket, if any.
+#
+# Rules of thumb:
+#
+# 1. If you find it difficult to summarize your changes,
+#    consider whether they might be better split into separate
+#    commits.
+#
+# 2. When preparing a commit, ask yourself: Does it contain
+#    entirely and only the changes necessary to do what the
+#    commit message says it does?
+

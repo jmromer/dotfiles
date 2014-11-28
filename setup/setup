@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+#-------------------------------------------------------------
+# Preamble
+#-------------------------------------------------------------
+LOCAL_DOTFILES=~/.dotfiles
+
+function getc() {
+  IFS= read -r -n1 -d '' "$@"
+}
+
+function step() {
+  echo && echo $1
+}
+
+function substep() {
+  echo "    $1"
+}
+
+#-------------------------------------------------------------
+# Set up dotfiles
+#-------------------------------------------------------------
+step "Checking for command line tools..."
+
+loc="$(xcode-\select -p 2> /dev/null)"
+if [[ $loc =~ "Xcode.app" ]]; then
+  substep "Command line tools are already installed. Skipping."
+else
+  substep "Installing the Command Line Tools (expect a GUI popup):"
+  xcode-\select --install
+  substep "Press any key when the installation has completed."
+  getc
+fi
+
+
+step "Cloning jkrmr/dotfiles..."
+
+if [ -d $LOCAL_DOTFILES ]; then
+  substep "$LOCAL_DOTFILES already exists. Skipping."
+else
+  git clone git@github.com:jkrmr/dotfiles.git $LOCAL_DOTFILES
+fi
+
+
+step "Linking laptop script customizations..."
+
+ln -s $LOCAL_DOTFILES/home/laptop.local ~/.laptop.local
+
+
+step "Running laptop script. Logging to ~/Desktop/laptop.log..."
+
+laptop_script='https://raw.githubusercontent.com/thoughtbot/laptop/master/mac'
+log_location='$HOME/Desktop/laptop.log'
+bash <(curl -s $laptop_script) 2>&1 | tee $log_location
+
+
+step "Setting homebrewed zsh as the default shell..."
+
+source "$HOME/.zshrc.local"  # reload $PATH
+echo "$(which bash)" | sudo tee -a /etc/shells
+echo "$(which zsh)"  | sudo tee -a /etc/shells
+chsh -s $(which zsh)  # /usr/local/bin/zsh
+
+
+step "Installing rcm..."
+
+if [[ -n "$(which rcup 2> /dev/null)" ]]; then
+  substep "rcm is already installed. Skipping..."
+else
+  brew tap thoughtbot/formulae 2> /dev/null
+  brew install rcm
+fi
+
+
+step "Linking dotfiles into home directory..."
+
+env RCRC=$LOCAL_DOTFILES/rcrc rcup
+
+
+step "Linking remaining miscellaneous dotfiles..."
+
+ln -sf $LOCAL_DOTFILES/sshconfig ~/.ssh/config
+
+
+step "Setting Mac OS X defaults..."
+
+source $LOCAL_DOTFILES/osx/set_defaults.sh
+

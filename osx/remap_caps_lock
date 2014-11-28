@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+# Make the caps lock key act as control
+function remap_caps_lock {
+  echo "\nPlease ensure Terminal has been added to the Accessibility permissions list"
+  echo "under System Preferences > Security & Privacy > Privacy > Accessibility"
+
+  echo -n "\nEnter 'y[es]' when complete: "
+  read dir
+
+  if [[ $dir =~ ^[yY](es)?$ ]]; then
+    echo "\nSwapping caps lock and control keys..."
+    osascript ./capslock-to-control.scpt
+  else
+    remap_caps_lock
+  fi
+}
+
+remap_caps_lock

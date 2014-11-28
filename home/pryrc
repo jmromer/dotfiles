@@ -1,0 +1,65 @@
+# Railscasts theme, vim for editing
+Pry.config.theme  = "railscasts"
+Pry.config.editor = "vim"
+
+# Return only the methods not present on basic objects
+class Object
+  def method_list
+    (self.methods - Object.instance_methods).sort
+  end
+end
+
+# Aliases for common commands
+Pry.commands.alias_command 'q', 'exit'
+Pry.commands.alias_command '!!', 'disable-pry'
+Pry.commands.alias_command 'w', 'whereami'
+Pry.commands.alias_command 'r!', 'reload!' rescue nil
+
+Pry.commands.alias_command 'show', 'show-source'
+Pry.commands.alias_command 'doc', 'show-doc'
+Pry.commands.alias_command 'sh', 'shell-mode'
+
+# Pry Debugger aliases
+if defined?(PryDebugger)
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 'b', 'breakpoint'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+end
+
+# Simple prompt, colored
+Pry.prompt = [
+  proc { |obj, nest_level, _| _prompt = ">> " },
+  proc { |obj, nest_level, _| _prompt = "   " }
+]
+
+# Format stacktraces
+Pry.config.exception_handler = proc do |output, exception, _|
+  output.puts "#{exception.class}: #{exception.message}"
+  exception.backtrace.each do |bt|
+    puts "\tfrom: #{bt}"
+    break if bt =~ /^\(pry\)/
+  end
+end
+
+# Use jazz_hands for awesome_print, hirb, et al.
+begin
+  require 'jazz_hands'
+  JazzHands.enable_syntax_highlighting_as_you_type
+
+  # Use awesome_print's output formatting and Pry's pager
+  require 'awesome_print'
+  AwesomePrint.defaults = { indent: -2 }
+  AwesomePrint.pry!
+
+  # Use Hirb for tabular output
+  require 'hirb'
+  Hirb.enable
+  extend Hirb::Console
+rescue LoadError
+  puts 'jazz_hands is not installed.',
+       "Install by adding gem 'jazz_hands', github: 'jkrmr/jazz_hands' to your Gemfile",
+       "or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`"
+end
+

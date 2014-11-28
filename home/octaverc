@@ -1,0 +1,5 @@
+# set X11 as graphics handler
+setenv('GNUTERM','X11')
+
+# simple prompt
+PS1 ("\n>> ")
