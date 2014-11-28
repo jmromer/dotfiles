@@ -1,0 +1,8 @@
+set vb                        " no audible bell
+set guioptions-=T             " no toolbar
+set guioptions+=c             " use console dialogs
+set transparency=1            " enable transparency
+set guifont=Inconsolata:h15   " fallback font if powerline font n/a
+set guifont=Inconsolata-dz\ for\ Powerline:h14 " powerline font
+set lines=50 columns=110      " size of window
+colorscheme vwilight          " faithful port of twilight for gvim

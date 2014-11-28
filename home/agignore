@@ -1,0 +1,12 @@
+log
+tags
+tmp
+*.jpg
+*.gif
+*.png
+*.ico
+*.sql
+.git/
+*.min.js
+*.min.css
+public/assets/vendor

@@ -1,0 +1,228 @@
+#!/usr/bin/env ruby
+
+# Generates a changelog for the release notes email from your git log,
+# in markdown format, for PRs since the given date (passed as a command-line
+# argument).
+#
+# Example:
+#
+# Changelog
+# Staging release 2014.11.06
+#
+# ## Features
+#
+# **[PR #1][PR #1]: Use Oversee powers for good not evil ([TRAV-33][TRAV-33])**
+#
+# [PR #1]: http://github.com/Oversee/Travel-Farespotter/pull/1
+# [TRAV-33]: http://jira.corp.oversee.net/browse/TRAV-3
+#
+# ## Bugfixes
+#
+# **[PR #196][PR #196]: Fix bug up on Hotel lander. ([TRAV-217][TRAV-217])**
+#
+# [PR #196]: http://github.com/Oversee/Travel-Farespotter/pull/196
+# [TRAV-217]: http://jira.corp.oversee.net/browse/TRAV-217
+#
+# etc.
+
+# Namespace for the script. Changelog generation is triggered by
+# Changelog::from_git_log_since(date), where date is taken from ARGV[1].
+#
+module Changelog
+  class << self
+    TODAY       = Time.now.localtime.strftime('%Y.%m.%d')
+    OUTPUT_FILE = "#{Dir.home}/Desktop/changelog-#{TODAY}.md"
+
+    def from_git_log_since(date)
+      write_to_file(OUTPUT_FILE, sorted_entries_grouped_by_type(date))
+    end
+
+    private
+
+    def git_log_merge_pr_entries(date)
+      Dir.chdir(Dir.pwd) do
+        `git log --format=oneline --since="#{date}"`
+          .split("\n")
+          .delete_if { |text| text !~ /Merge pull request/ }
+      end
+    end
+
+    def sorted_entries_grouped_by_type(date)
+      pull_reqs = git_log_merge_pr_entries(date)
+      entries   = pull_reqs.map { |pr| ChangelogEntry.new(pr) }
+      entries.sort.group_by(&:type)
+    end
+
+    def write_to_file(filename, entries_by_type)
+      File.open(filename, 'w') do |f|
+        f.puts '# Changelog'
+        f.puts "Staging release #{TODAY}\n"
+
+        entries_by_type.each_pair do |type, entries|
+          f.puts "\n## #{type}\n\n"
+          f.puts entries.join("\n")
+        end
+      end
+      puts "Changelog saved to #{OUTPUT_FILE}"
+    end
+  end
+end
+
+# Models a single entry in the release notes listing
+# Expects a merge commit of the form
+#   2dk32kjfee Merge pull request #195 from Oversee/feature/TRAV-324: Fix stuff
+# ChangelogEntry instances are enumerable by PR number (see <=> below)
+class ChangelogEntry
+  include Enumerable
+  MERGE_PR_REGEX = %r{(\w{40}).+#(\d+) from \w*\/?(\w*)\/([\w\-\d]+)}i
+
+  def initialize(log_entry_line)
+    @sha, @pr, @type, @ticket = log_entry_line.scan(MERGE_PR_REGEX).flatten
+    @accnt, @repo = parse_github_details_from_remote
+    @description  = ChangelogEntryDescription.new(@sha)
+    rescue NoMethodError => e
+      puts "#{e}: failed on #{log_entry_line}"
+  end
+
+  def base_url(kind)
+    case kind
+    when :commit  then "http://github.com/#{@accnt}/#{@repo}/commit"
+    when :pr      then "http://github.com/#{@accnt}/#{@repo}/pull"
+    when :ticket  then "http://jira.apps.ops:8080/browse"
+    end
+  end
+
+  def commit(format = :short)
+    case format
+    when :full then @sha
+    when :url  then "#{base_url(:commit)}/#{@sha[0, 5]}"
+    else @sha[0, 5]
+    end
+  end
+
+  def pr(format = :string)
+    case format
+    when :num then @pr.to_i
+    when :url then "#{base_url(:pr)}/#{@pr}"
+    else "PR ##{@pr}"
+    end
+  end
+
+  def ticket(format = :string)
+    case format
+    when :num then @ticket.match(/\-(\w+)/)[1].to_i
+    when :url then "#{base_url(:ticket)}/#{@ticket}"
+    else @ticket
+    end
+  end
+
+  def type
+    case @type
+    when /(?:e|ion|or)$/i then "#{@type.capitalize}s"
+    when /(?:ix)$/i       then "#{@type.capitalize}es"
+    when /y$/i            then "#{@type.capitalize}ies"
+    else @type
+    end
+  end
+
+  private
+
+  def <=>(other)
+    pr(:num) <=> other.pr(:num)
+  end
+
+  def parse_github_details_from_remote
+    origin          = parse_origin_from_remotes_listing
+    accnt, repo_git = origin[/\w+\/[\w\-]+\.git/].split('/')
+    [accnt, repo_git.chomp('.git')]
+  end
+
+  def parse_origin_from_remotes_listing
+    Dir.chdir(Dir.pwd) do
+      `git remote -v`.split("\n").find { |entry| entry =~ /^origin/ }
+    end
+  end
+
+  def to_s
+    [
+      "**[#{pr}][#{pr}]: #{@description} ([#{ticket}][#{ticket}])**\n",
+      "[#{pr}]: #{pr(:url)}",
+      "[#{ticket}]: #{ticket(:url)}\n"
+    ].join("\n")
+  end
+end
+
+# Parses a merge commit's merge commit message for its descriptive content.
+class ChangelogEntryDescription
+  # Regex constants used to parse branch names that follow our pattern of
+  #   category/ticket_label-ticket_category (e.g. bugfix/TRAV-292)
+  # Used in parse_content_from(description)
+  TICKET_NUM      = /\w{2,4}[\s\-]?\d{2,3}\s*:?\s*/i
+  TYPES           = /(Feature|Hotfix|Bugfix|Release|Refactor|Optimization)/i
+  TYPE_AND_TICKET = /#{TYPES.source}\/#{TICKET_NUM.source}/i
+
+  # Parses a given merge commit's details for a description of the changes
+  # introduced by the merge.
+  def initialize(sha_id)
+    @full_description = parse_description_from_commit_message(sha_id)
+    @description      = parse_content_from(@full_description)
+  end
+
+  private
+
+  def begins_with_a_ticket_number?
+    /^(#{TICKET_NUM.source}|#{TYPE_AND_TICKET.source})/
+  end
+
+  # Upcases the first letter of the merge commit's description,
+  # held in @description (which is the merge commit's commit message, minus the
+  # ticket number with which we prefix our pull requests.
+  #
+  # Examples:
+  #   PR title: "TRAV-42: update Deals model tests."
+  #   Merge commit message: "TRAV-42: update Deals model tests."
+  #   @full_description: "TRAV-42: update Deals model tests."
+  #   @description: "Update Deals model tests."
+  #
+  # @return [String] Capitalized description.
+  def description_with_capitalized_first_letter
+    @description.sub(/^(\w)/) { Regexp.last_match[1].upcase }
+  end
+
+  def only_a_ticket_number?
+    /^(#{TICKET_NUM.source}|#{TYPE_AND_TICKET.source})$/
+  end
+
+  # Parses the merge commit's message for its descriptive content
+  # Returns 'No description' when the commit message consists only of a
+  # ticket number.
+  # Defaults to the un-parsed commit message when it doesn't know what to do.
+  # @return [String] descriptive content from merge commit message
+  def parse_content_from(description)
+    case description
+    when only_a_ticket_number?
+      'No description.'
+    when begins_with_a_ticket_number?
+      ticket_number_from = Regexp.last_match[1]
+      strip_leading ticket_number_from, description
+    else
+      description
+    end
+  end
+
+  def parse_description_from_commit_message(sha_id)
+    Dir.chdir(Dir.pwd) do
+      `git show #{sha_id}`.split("\n").last.strip
+    end
+  end
+
+  def strip_leading(ticket_number, description)
+    description.sub(ticket_number, '')
+  end
+
+  def to_s
+    description_with_capitalized_first_letter
+  end
+end
+
+Changelog.from_git_log_since(ARGV.join(' ')) if __FILE__ == $PROGRAM_NAME
