@@ -7,6 +7,16 @@ runtime vimrc.vim
 " set colorcolumn=+0
 " call matchadd('ColorColumn', '\%82v', 100)
 
+" ------------- Theme Development -----------------------
+" Show syntax highlighting groups for word under cursor
+" nmap <C-S-P> :call <SID>SynStack()<CR>
+" function! <SID>SynStack()
+"   if !exists("*synstack")
+"     return
+"   endif
+"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunc
+
 " ------------- Testing ------------------------------
 " Exclude Javascript files in :Rtags via rails.vim due to warnings
 " when parsing
@@ -18,31 +28,12 @@ let g:html_indent_tags = 'li\|p'
 " Set spellfile to location that is guaranteed to exist
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
-" ------------- thoughtbot mappings? -----------
-" rspec: run current spec file
-" nnoremap <Leader>s :call RunCurrentSpecFile()<CR>
-" rspec: run nearest spec file
-" nnoremap <Leader>sn :call RunNearestSpec()<CR>
-" rspec: run the last spec file run
-" nnoremap <Leader>sl :call RunLastSpec()<CR>
-" rspec: run all specs
-" nnoremap <Leader>sa :call RunAllSpecs()<CR>
-
 " EasyMotion jumps using <Leader> w
 " nmap s <Plug>(easymotion-s)
 " nmap sa <Plug>(easymotion-bd-w)
 
 " ------------- Todo -------------------------
 " resize panes with <>-+
-
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 if &diff
   colorscheme xoria256
