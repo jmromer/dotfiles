@@ -70,10 +70,10 @@ Plugin 'vim-ruby/vim-ruby'            " Ruby
 Plugin 'tpope/vim-haml'               " Haml
 
 " Frameworks
-Plugin 'tpope/vim-bundler'   " Bundler
-Plugin 'moll/vim-node'       " Node
-Plugin 'tpope/vim-rails'     " Rails
-Plugin 'skwp/vim-rspec'      " Rspec in a split RBENV_VERSION=system gem install hpricot
+Plugin 'tpope/vim-bundler'    " Bundler
+Plugin 'moll/vim-node'        " Node
+Plugin 'tpope/vim-rails'      " Rails
+Plugin 'thoughtbot/vim-rspec' " Rspec
 
 " Ruby workflows
 Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>tb
