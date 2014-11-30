@@ -5,8 +5,6 @@ home/pry/themes/tomorrow*
 home/pry/themes/github*
 home/pry/themes/monokai*
 home/pry/themes/vim*
-home/vim/bundle/*
 home/vim/.netrwhist
-home/vim/tmp
-home/vim/sessions
-
+home/vim/bundle/*
+yankring_history*
