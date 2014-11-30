@@ -73,15 +73,15 @@ Plugin 'tpope/vim-haml'               " Haml
 Plugin 'tpope/vim-bundler'   " Bundler
 Plugin 'moll/vim-node'       " Node
 Plugin 'tpope/vim-rails'     " Rails
+Plugin 'skwp/vim-rspec'      " Rspec in a split RBENV_VERSION=system gem install hpricot
 
 " Ruby workflows
 Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>tb
 Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 
 "------------------ Probationary -------------------------- "
-" Plugin 'thoughtbot/vim-rspec'         " Rspec
-Plugin 'skwp/vim-rspec' "<---- test -- looks cool.
-Plugin 'skalnik/vim-vroom'
+Plugin 'shime/vim-livedown'
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()
 filetype on
