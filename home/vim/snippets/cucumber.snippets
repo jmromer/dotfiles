@@ -1,0 +1,15 @@
+snippet feat
+	Feature: ${1:Feature name}
+	  In order to ${2}
+	  As a ${$3}
+	  I want to ${4}
+snippet scen
+	Scenario: ${1:Scenario}
+	  Given ${2:what?}
+	  And ${3:what?}
+	  When ${4:what?}
+	  Then ${5:what?}
+snippet give
+	Given /${1:action}/ do |${2:x}|
+	  ${3:code goes here}
+	end
