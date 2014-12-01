@@ -5,5 +5,8 @@
 SHELL_CONFIG=$HOME/.dotfiles/shell
 source $SHELL_CONFIG/common_config.sh
 source $SHELL_CONFIG/prompt-bash.sh
+
+[[ -f $HOME/.bash_profile.local ]] && source $HOME/.bash_profile.local
+
 # ------------------------------------------------------------------------
 
