@@ -103,8 +103,8 @@ let g:easytags_async = 1
 let g:yankring_history_dir = '~/.vim/tmp'
 
 " YankRing: Disable Ctrl+p, Ctrl+n
-let g:yankring_replace_n_pkey = ''
-let g:yankring_replace_p_pkey = ''
+let g:yankring_replace_n_pkey = '<m-p>'
+let g:yankring_replace_n_nkey = '<m-n>'
 
 " YouCompleteMe: use system python
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
