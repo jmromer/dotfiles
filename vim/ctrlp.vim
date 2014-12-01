@@ -34,3 +34,11 @@ let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 " jump when <cr> is pressed, but only to windows in the current tab.
 let g:ctrlp_switch_buffer = 'e'
 
+" Set working path to the nearest ancestor of the current file that is a project
+" root (contains .git, et al), else set to the current file's directory
+
+let g:ctrlp_working_path_mode = 'rc'
+
+" Add spec/ to the set of root markers
+let g:ctrlp_root_markers = ['spec', 'README.md']
+
