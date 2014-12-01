@@ -25,7 +25,6 @@ Plugin 'wesQ3/vim-windowswap'          " move panes around with <Leader>ww
 Plugin 'tpope/vim-eunuch'              " Unix commands in vim
 Plugin 'tpope/vim-repeat'              " repeat last mapped command with `.`
 Plugin 'vim-scripts/YankRing.vim'      " maintain yank/del history
-Plugin 'terryma/vim-multiple-cursors'  " multiple cursors
 
 " Text processing
 Plugin 'godlygeek/tabular'       " align on a given regex (e.g., =)
@@ -49,6 +48,9 @@ Plugin 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
 
 " tmux
 Plugin 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
+
+" documentation
+Plugin 'rizzatti/dash.vim'
 
 " dependency: vim-misc
 Plugin 'xolox/vim-misc'     " vim plugin utility library
@@ -74,6 +76,7 @@ Plugin 'tpope/vim-bundler'    " Bundler
 Plugin 'moll/vim-node'        " Node
 Plugin 'tpope/vim-rails'      " Rails
 Plugin 'thoughtbot/vim-rspec' " Rspec
+Plugin 'tpope/vim-cucumber'   " Cucumber
 
 " Ruby workflows
 Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>tb
@@ -81,7 +84,6 @@ Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 
 "------------------ Probationary -------------------------- "
 Plugin 'shime/vim-livedown'
-Plugin 'rizzatti/dash.vim'
 
 call vundle#end()
 filetype on
