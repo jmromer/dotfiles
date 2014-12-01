@@ -129,16 +129,6 @@ let g:multi_cursor_start_key='<C-m>'
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
 nnoremap <Leader>e :RunInInteractiveShell<space>
-
-" rspec: run nearest spec file
-nmap <Leader>s :call RunNearestSpec()<CR>
-" rspec: run current spec file
-nmap <Leader>sf :call RunCurrentSpecFile()<CR>
-" rspec: run the last spec file run
-nmap <Leader>sl :call RunLastSpec()<CR>
-" rspec: run all specs
-nmap <Leader>sa :call RunAllSpecs()<CR>
-
 " turn off highlighting by pressing enter
 " nnoremap <silent><Leader>/ :nohlsearch<CR>
 nnoremap <silent><CR> :noh<CR><CR>
@@ -158,6 +148,23 @@ nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
 nnoremap <silent><C-e> :Explore<CR>
 " see YankRing contents
 nnoremap <silent><Leader>v :YRShow<CR>
+
+" Test Runners
+" ------------
+" rspec: run nearest spec
+nmap <Leader>s :call RunNearestSpec()<CR>
+" rspec: run the last spec run
+nmap <Leader>sl :call RunLastSpec()<CR>
+" rspec: run current spec file
+nmap <Leader>sf :call RunCurrentSpecFile()<CR>
+" rspec: run all specs
+nmap <Leader>sa :call RunAllSpecs()<CR>
+" cucumber: run current scenario
+map <Leader>c :w<cr>:exe "!cucumber %" . ":" . line(".")<cr>
+" cucumber: run current feature file
+map <Leader>cf :w<cr>:!cucumber %<cr>
+" cucumber: run all feature files
+map <Leader>ca :w<cr>:!cucumber<cr>
 
 " Session Management
 " ------------------
