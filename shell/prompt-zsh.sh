@@ -46,14 +46,22 @@ SAVEHIST=4096
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^Y" accept-and-hold    # issues cmd but keeps it on the CL
-bindkey "^N" insert-last-word
-bindkey "^P" history-search-backward
 bindkey -s "^T" "^[Isudo ^[A"   # T to prepend sudo
+
 bindkey "^R" history-incremental-search-backward
-bindkey "\e[A" history-search-backward
-bindkey "\e[B" history-search-forward
-bindkey "\eOA" history-search-backward
-bindkey "\eOB" history-search-forward
+
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+bindkey -s '\eOA' '\e[A'
+bindkey -s '\eOB' '\e[B'
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
 bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
 bindkey "^[[3~" delete-char  # ensure delete forwards deletes
 setopt complete_in_word # back-i-search begins with current word
