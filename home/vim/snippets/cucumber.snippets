@@ -1,15 +1,77 @@
-snippet feat
-	Feature: ${1:Feature name}
-	  In order to ${2}
-	  As a ${$3}
-	  I want to ${4}
-snippet scen
-	Scenario: ${1:Scenario}
-	  Given ${2:what?}
-	  And ${3:what?}
-	  When ${4:what?}
-	  Then ${5:what?}
-snippet give
-	Given /${1:action}/ do |${2:x}|
-	  ${3:code goes here}
-	end
+snippet s
+	Scenario: ${1}
+	  Given ${2}
+snippet f
+	Feature: ${1}
+snippet feature
+	Feature: ${1}
+		In order to ${2}
+		As a${3}
+		I ${4}
+
+		Scenario: ${5}
+			Given ${6}
+snippet a
+	And   ${1}
+snippet aifo
+	And I follow "${1}"${2}
+snippet af
+	And   I fill in "${1}" with "${2}"${3}
+snippet aif
+	And   I fill in "${1}" with "${2}"${3}
+snippet aifi
+	And   I fill in "${1}" with "${2}"${3}
+snippet afif
+	And   I fill in the following:
+	  | ${1} | ${2} |${3}
+snippet afitf
+	And   I fill in the following:
+	  | ${1} | ${2} |${3}
+snippet aifitf
+	And   I fill in the following:
+	  | ${1} | ${2} |${3}
+snippet ac
+	And   I check "${1}"${2}
+snippet au
+	And   I uncheck "${1}"${2}
+snippet acho
+	And   I choose "${1}"${2}
+snippet as
+	And   I select "${1}" from "${2}"
+snippet ais
+	And   I select "${1}" from "${2}"
+snippet ap
+	And   I press "${1}"${2}
+snippet aip
+	And   I press "${1}"${2}
+snippet aips
+	And   I press "submit"${1}
+snippet g
+	Given ${1}
+snippet w
+	When  ${1}
+snippet wig
+	When  I go to ${1}
+snippet t
+	Then  ${1}
+snippet tsh
+	Then  I should see ${1}"${2}"${3}
+snippet ash
+	And   I should see ${1}"${2}"${3}
+snippet tshn
+	Then  I should not see ${1}"${2}"${3}
+snippet ashn
+	And   I should not see ${1}"${2}"${3}
+snippet b
+	Background:
+	  ${1}
+snippet tsp
+	Then  show me the page
+snippet tsmp
+	Then  show me the page
+snippet tsmtp
+	Then  show me the page
+snippet aiwfg
+	And I wait for the table grids to load
+snippet aiw
+	And I wait ${1}
