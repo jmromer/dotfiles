@@ -83,7 +83,6 @@ Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>tb
 Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 
 "------------------ Probationary -------------------------- "
-Plugin 'shime/vim-livedown'
 
 call vundle#end()
 filetype on
