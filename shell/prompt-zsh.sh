@@ -50,17 +50,18 @@ bindkey -s "^T" "^[Isudo ^[A"   # T to prepend sudo
 
 bindkey "^R" history-incremental-search-backward
 
-bindkey '\e[A' history-beginning-search-backward
-bindkey '\e[B' history-beginning-search-forward
-bindkey -s '\eOA' '\e[A'
-bindkey -s '\eOB' '\e[B'
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
+
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
+bindkey -s '\eOA' '\e[A'
+bindkey -s '\eOB' '\e[B'
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
 
 bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
 bindkey "^[[3~" delete-char  # ensure delete forwards deletes
