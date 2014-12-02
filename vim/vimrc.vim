@@ -10,6 +10,7 @@ runtime windows_and_nav.vim
 runtime line_numbering.vim
 runtime code_folding.vim
 runtime syntax.vim
+runtime autocommands.vim
 runtime ctrlp.vim
 runtime tabularize.vim
 runtime airline.vim
