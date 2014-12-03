@@ -35,3 +35,5 @@ if &diff
   colorscheme xoria256
 endif
 
+set shortmess=a
+set cmdheight=2
