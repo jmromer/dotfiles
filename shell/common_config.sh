@@ -3,9 +3,6 @@
 
 SYNCED_PATH=$HOME/Dropbox/Sync/dotfiles
 
-# tell me something pithy
-fortune -s
-
 # API keys, etc
 source $SYNCED_PATH/env.secure
 
