@@ -4,6 +4,10 @@ set t_Co=256            " 256 color terminal
 set background=dark
 colorscheme Twilight
 
+" if &diff
+"   colorscheme xoria256
+" endif
+
 " --------------- Settings by Context ---------------------
 runtime bundles.vim
 runtime windows_and_nav.vim
@@ -57,6 +61,10 @@ filetype plugin indent on
 " Call out extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
+" Make message bar taller to avoid 'press enter' prompt
+set shortmess=a
+set cmdheight=2
+
 " Window size shifts on focus, current screen stays larger
 set winwidth=84
 set winheight=5
@@ -78,9 +86,9 @@ set diffopt+=vertical
 set timeoutlen=500 ttimeoutlen=10
 
 " ------------------- Plugin Settings ---------------------
-" Session autosave
-let g:session_autosave = 'yes'
-let g:session_autoload = 'yes'
+" vim-session: session autosave
+let g:session_default_overwrite = 1
+let g:session_autosave = 'no'
 
 " netrw: file explorer
 let g:netrw_liststyle=3  " thin (change to 3 for tree)
@@ -89,7 +97,7 @@ let g:netrw_altv=1       " open files on right
 let g:netrw_preview=1    " open previews vertically
 
 " blockle.vim: Toggle ruby blocks with leader-tb
-let g:blockle_mapping = '<Leader>tb'
+let g:blockle_mapping = '<Leader>rtb'
 
 " vim-rspec: run specs in last session of current terminal
 let g:rspec_runner = "os_x_iterm"
@@ -103,7 +111,7 @@ let g:easytags_async = 1
 " YankRing: location of history file
 let g:yankring_history_dir = '~/.vim/tmp'
 
-" YankRing: Disable Ctrl+p, Ctrl+n
+" YankRing: Free up Ctrl+p, Ctrl+n
 let g:yankring_replace_n_pkey = '<m-p>'
 let g:yankring_replace_n_nkey = '<m-n>'
 
@@ -127,6 +135,13 @@ let g:UltiSnipsEditSplit="vertical"   " split window to edit snippet
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_key='<C-m>'
 
+" NERDTree: Show hidden files by default, replace netrw within panes
+let NERDTreeShowHidden=1
+let NERDTreeHijackNetrw=1
+
+" Let Ctrl+P open files in NerdTree's initial buffer
+let g:ctrlp_dont_split = 'NERD'
+
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
 nnoremap <Leader>e :RunInInteractiveShell<space>
@@ -147,6 +162,8 @@ nnoremap <silent><leader>u :GundoToggle<CR>
 nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
+" toggle NERDTree pane
+nnoremap <silent><Leader>n :NERDTreeToggle<CR>
 " see YankRing contents
 nnoremap <silent><Leader>v :YRShow<CR>
 
