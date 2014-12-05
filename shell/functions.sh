@@ -15,24 +15,6 @@ function path() {
   ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
 }
 
-# open Vim with cw directory set to argument
-function open_vim_with_target_cwd(){
-  if [ "$#" -eq 0 ]; then
-    echo "opening vim..."
-    vim
-  elif [[ -d $1 ]]; then
-    echo "opening directory with vim..."
-    vim $1 +":cd %"
-  elif [[ -f $1 ]]; then
-    echo "opening file with vim..."
-    vim $1 +":cd %:h"
-  else
-    echo "opening with vim..."
-    vim $1
-  fi
-}
-alias e=open_vim_with_target_cwd
-
 # remove brew package and all its dependencies
 function brew_remove() {
   brew rm "$1"
