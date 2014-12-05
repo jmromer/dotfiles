@@ -2,7 +2,5 @@ set bell-style none
 
 $if mode=vi
   set keymap vi-insert
-#  "\C-[": vi-movement-mode
-#  "\C-w": backward-kill-word
 $endif
 
