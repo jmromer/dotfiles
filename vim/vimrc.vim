@@ -146,7 +146,6 @@ let g:ctrlp_dont_split = 'NERD'
 " run commands in an interactive shell
 nnoremap <Leader>e :RunInInteractiveShell<space>
 " turn off highlighting by pressing enter
-" nnoremap <silent><Leader>/ :nohlsearch<CR>
 nnoremap <silent><CR> :noh<CR><CR>
 " reload vimrc
 nnoremap <silent><Leader>r :source ~/.vimrc<CR>:echoe "vim reloaded."<CR>
