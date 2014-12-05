@@ -1,5 +1,6 @@
 *.secret
 *.secure
+*.lock
 home/pry/themes/pry*
 home/pry/themes/tomorrow*
 home/pry/themes/github*
