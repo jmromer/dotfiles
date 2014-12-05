@@ -48,6 +48,7 @@ Plugin 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
 
 " tmux
 Plugin 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
+Plugin 'jgdavey/tslime.vim' " send spec run to a designated tmux pane
 
 " documentation
 Plugin 'rizzatti/dash.vim'
@@ -83,6 +84,12 @@ Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>tb
 Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 
 "------------------ Probationary -------------------------- "
+
+Plugin 'scrooloose/nerdtree'
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
+"using spring:
+" let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
 
 call vundle#end()
 filetype on

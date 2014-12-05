@@ -31,9 +31,4 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " ------------- Todo -------------------------
 " resize panes with <>-+
 
-if &diff
-  colorscheme xoria256
-endif
 
-set shortmess=a
-set cmdheight=2
