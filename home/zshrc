@@ -2,7 +2,6 @@
 # symlinked to by ~/.zshrc
 # loads shell config files in ~/.dotfiles/shell
 
-[[ -z $TMUX ]] && tmux
 SHELL_CONFIG=$HOME/.dotfiles/shell
 source $SHELL_CONFIG/common_config.sh
 source $SHELL_CONFIG/aliases_postfix.sh
