@@ -3,9 +3,10 @@
 #-------------------------------------------------------------
 # ALIASES: Editors
 #-------------------------------------------------------------
-alias dot='vim -c "e ~/.dotfiles"'
+alias dot='vim -c "OpenSession dotfiles" -c "cd %:p:h"'
 alias vi='mvim'
 alias vundle='vim +PluginInstall +PluginClean +qall'
+alias e=vim
 
 #-------------------------------------------------------------
 # ALIASES: Editors (note: postfix aliases unsupport in Bash)
