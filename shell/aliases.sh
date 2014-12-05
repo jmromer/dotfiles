@@ -3,7 +3,7 @@
 #-------------------------------------------------------------
 # ALIASES: Editors
 #-------------------------------------------------------------
-alias dot='e ~/.dotfiles'
+alias dot='vim -c "e ~/.dotfiles"'
 alias vi='mvim'
 alias vundle='vim +PluginInstall +PluginClean +qall'
 
