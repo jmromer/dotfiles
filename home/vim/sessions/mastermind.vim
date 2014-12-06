@@ -1,6 +1,6 @@
 " ~/.dotfiles/home/vim/sessions/mastermind.vim:
 " Vim session script.
-" Created by session.vim 2.7 on 05 December 2014 at 00:42:25.
+" Created by session.vim 2.7 on 05 December 2014 at 20:43:36.
 " Open this file in Vim and run :source % to restore your session.
 
 if exists('g:syntax_on') != 1 | syntax on | endif
@@ -22,23 +22,33 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 lib/mastermind.rb
+badd +1 lib/mastermind.rb
 badd +2 lib/mastermind/game.rb
-badd +0 spec/mastermind/game_spec.rb
-badd +0 features/codebreaker_starts_game.feature
+badd +10 spec/mastermind/game_spec.rb
+badd +8 features/codebreaker_starts_game.feature
+badd +0 ~/Developer/mastermind
+badd +0 features/support/env.rb
 argglobal
 silent! argdel *
-argadd .
-edit spec/mastermind/game_spec.rb
+argadd ~/Developer/mastermind
+edit features/codebreaker_starts_game.feature
 set splitbelow splitright
 wincmd _ | wincmd |
 split
-1wincmd k
+wincmd _ | wincmd |
+split
+wincmd _ | wincmd |
+split
+3wincmd k
+wincmd w
+wincmd w
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
 exe '1resize ' . ((&lines * 5 + 18) / 37)
-exe '2resize ' . ((&lines * 27 + 18) / 37)
+exe '2resize ' . ((&lines * 15 + 18) / 37)
+exe '3resize ' . ((&lines * 5 + 18) / 37)
+exe '4resize ' . ((&lines * 5 + 18) / 37)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -48,33 +58,85 @@ setlocal fdl=1
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 10 - ((1 * winheight(0) + 2) / 5)
+let s:l = 9 - ((2 * winheight(0) + 2) / 5)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 015|
+9
+normal! 0
 wincmd w
 argglobal
-edit features/codebreaker_starts_game.feature
-setlocal fdm=syntax
+edit spec/mastermind/game_spec.rb
+setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=1
+setlocal fdl=4
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 8 - ((7 * winheight(0) + 13) / 27)
+5
+silent! normal! zo
+6
+silent! normal! zo
+7
+silent! normal! zo
+let s:l = 8 - ((7 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 8
-normal! 08|
+normal! 0
+wincmd w
+argglobal
+edit lib/mastermind/game.rb
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=1
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+1
+silent! normal! zo
+3
+silent! normal! zo
+4
+silent! normal! zo
+8
+silent! normal! zo
+12
+silent! normal! zo
+let s:l = 10 - ((2 * winheight(0) + 2) / 5)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+10
+normal! 035|
+wincmd w
+argglobal
+edit features/support/env.rb
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=1
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 2) / 5)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 049|
 wincmd w
 2wincmd w
 exe '1resize ' . ((&lines * 5 + 18) / 37)
-exe '2resize ' . ((&lines * 27 + 18) / 37)
+exe '2resize ' . ((&lines * 15 + 18) / 37)
+exe '3resize ' . ((&lines * 5 + 18) / 37)
+exe '4resize ' . ((&lines * 5 + 18) / 37)
 tabnext 1
 if exists('s:wipebuf')
 "   silent exe 'bwipe ' . s:wipebuf
