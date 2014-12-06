@@ -1,4 +1,4 @@
-set foldmethod=syntax " Enable folding based on syntax rules
+set foldmethod=indent " Enable folding based on syntax rules
 set foldlevelstart=1  " Initial fold only 1 level deep
 
 " Set a nicer foldtext function
