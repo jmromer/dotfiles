@@ -4,10 +4,6 @@ set t_Co=256            " 256 color terminal
 set background=dark
 colorscheme Twilight
 
-" if &diff
-"   colorscheme xoria256
-" endif
-
 " --------------- Settings by Context ---------------------
 runtime bundles.vim
 runtime windows_and_nav.vim
