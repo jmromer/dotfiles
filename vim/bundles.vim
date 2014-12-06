@@ -86,6 +86,8 @@ Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 "------------------ Probationary -------------------------- "
 
 Plugin 'scrooloose/nerdtree'
+Plugin 'Konfekt/FastFold'
+
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 "using spring:
