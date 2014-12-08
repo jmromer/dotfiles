@@ -80,18 +80,13 @@ Plugin 'thoughtbot/vim-rspec' " Rspec
 Plugin 'tpope/vim-cucumber'   " Cucumber
 
 " Ruby workflows
-Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>tb
+Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>rtb
 Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 
 "------------------ Probationary -------------------------- "
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'Konfekt/FastFold'
-
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-
-"using spring:
-" let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
 
 call vundle#end()
 filetype on
