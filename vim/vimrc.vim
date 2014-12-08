@@ -138,6 +138,10 @@ let NERDTreeHijackNetrw=1
 " Let Ctrl+P open files in NerdTree's initial buffer
 let g:ctrlp_dont_split = 'NERD'
 
+" vim-rspec + tslime: open in tmux pane
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+"using spring: spring rspec {spec}
+
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
 nnoremap <Leader>e :RunInInteractiveShell<space>
