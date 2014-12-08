@@ -177,11 +177,27 @@ nmap <Leader>sf :call RunCurrentSpecFile()<CR>
 " rspec: run all specs
 nmap <Leader>sa :call RunAllSpecs()<CR>
 " cucumber: run current scenario
-map <Leader>c :w<cr>:exe "!cucumber %" . ":" . line(".")<cr>
+nmap <Leader>c :call RunCucumberFeature()<CR>
+" nmap <Leader>c :w<cr>:exe "!cucumber %" . ":" . line(".")<cr>
 " cucumber: run current feature file
-map <Leader>cf :w<cr>:!cucumber %<cr>
+" nmap <Leader>cf :w<cr>:!cucumber %<cr>
+nmap <Leader>cf :call RunCucumberFile()<CR>
 " cucumber: run all feature files
-map <Leader>ca :w<cr>:!cucumber<cr>
+nmap <Leader>ca :w<cr>:!cucumber<cr>
+
+function! RunCucumberFile()
+  let filename = expand('%:p')
+  let command = "cucumber " . filename . "\n"
+  call Send_to_Tmux(command)
+endfunction
+
+function! RunCucumberFeature()
+  let filename = expand('%:p')
+  let command = "cucumber " . filename . ":" . line(".") . "\n"
+  call Send_to_Tmux(command)
+endfunction
+
+" test: send cucumber to secondary tmux pane
 
 " Session Management
 " ------------------
