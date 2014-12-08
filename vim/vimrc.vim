@@ -197,8 +197,6 @@ function! RunCucumberFeature()
   call Send_to_Tmux(command)
 endfunction
 
-" test: send cucumber to secondary tmux pane
-
 " Session Management
 " ------------------
 nnoremap <Leader>ss :SaveSession<space>
