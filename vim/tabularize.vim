@@ -10,13 +10,13 @@ AddTabularPattern! rbhash /^[^=]*\zs=>
 " Mappings for ruby hash rocket and symbol hashes
 nnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
 vnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
-nnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
-vnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
+nnoremap <silent> <Leader>ahs :Tabularize rbshash<CR>
+vnoremap <silent> <Leader>ahs :Tabularize rbshash<CR>
 nnoremap <silent> <Leader>a=  :Tabularize /=<CR>
 vnoremap <silent> <Leader>a=  :Tabularize /=<CR>
 
-" Nice alignment for | based tables
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+" Nice alignment for | based tables TODO: fix me!
+inoremap <silent> <Bar>   <Bar><Esc>:call align()<CR>
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
