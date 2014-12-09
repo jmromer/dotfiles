@@ -19,10 +19,11 @@ noremap <Down>  :echoe "Use j"<CR>
 set splitbelow
 set splitright
 
-" a sop to Charles
-imap jj <Esc>
-
 " No <shift> to switch to normal mode
 nnoremap ; :
 vnoremap ; :
+
+" Use colon to repeat last f/F/t/T
+nnoremap : ;
+vnoremap : ;
 
