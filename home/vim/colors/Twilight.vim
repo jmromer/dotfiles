@@ -294,9 +294,11 @@ hi StatusLine ctermfg=231 ctermbg=240 cterm=bold guifg=#f8f8f8 guibg=#565656 gui
 hi StatusLineNC ctermfg=231 ctermbg=240 cterm=NONE guifg=#f8f8f8 guibg=#565656 gui=NONE
 hi Pmenu ctermfg=95 ctermbg=black cterm=NONE guifg=#9b703f guibg=NONE gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#3c4043 gui=NONE
+
 " hi Search ctermfg=NONE ctermbg=black cterm=underline guifg=NONE guibg=NONE gui=underline
 hi Search ctermfg=NONE ctermbg=yellow cterm=NONE guifg=#141414 guibg=#6B8E23 gui=NONE
 hi IncSearch ctermfg=NONE ctermbg=yellow cterm=NONE guifg=#141414 guibg=#8f9d6a gui=NONE
+
 " hi Directory ctermfg=167 ctermbg=black cterm=NONE guifg=#cf6a4c guibg=NONE gui=NONE
 hi Folded ctermfg=100 ctermbg=black cterm=NONE guifg=#5f5a60 guibg=#141414 gui=NONE
 hi Normal ctermfg=231 ctermbg=black cterm=NONE guifg=#f8f8f8 guibg=#141414 gui=NONE
@@ -322,7 +324,9 @@ hi Number ctermfg=167 ctermbg=black cterm=NONE guifg=#cf6a4c guibg=NONE gui=NONE
 hi Operator ctermfg=179 ctermbg=black cterm=NONE guifg=#cda869 guibg=NONE gui=NONE
 hi PreProc ctermfg=179 ctermbg=black cterm=NONE guifg=#cda869 guibg=NONE gui=NONE
 hi Special ctermfg=231 ctermbg=black cterm=NONE guifg=#f8f8f8 guibg=NONE gui=NONE
-hi SpecialKey ctermfg=239 ctermbg=235 cterm=NONE guifg=#4f4f4f guibg=#2b2b2b gui=NONE
+
+hi SpecialKey ctermfg=blue ctermbg=black cterm=NONE guifg=#4f4f4f guibg=#2b2b2b gui=NONE
+
 hi Statement ctermfg=179 ctermbg=black cterm=NONE guifg=#cda869 guibg=NONE gui=NONE
 hi StorageClass ctermfg=228 ctermbg=black cterm=NONE guifg=#f9ee98 guibg=NONE gui=NONE
 hi String ctermfg=107 ctermbg=black cterm=NONE guifg=#8f9d6a guibg=NONE gui=NONE
