@@ -165,6 +165,8 @@ nnoremap <silent><C-e> :Explore<CR>
 nnoremap <silent><Leader>n :NERDTreeToggle<CR>
 " see YankRing contents
 nnoremap <silent><Leader>v :YRShow<CR>
+" Open ctag in a vertical split
+map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Test Runners
 " ------------
