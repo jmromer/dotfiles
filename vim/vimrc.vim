@@ -211,11 +211,12 @@ nnoremap <Leader>\ :Ag<SPACE>
 
 " ----------------------- Mappings: Copy/Paste ------------------------
 " Select all text in file
-nmap <Leader>a ggVG
+nnoremap <Leader>a ggVG
 " Copy to system clipboard
-vmap <Leader>c "*y
+vnoremap <Leader>c "*y
 " Cut to system clipboard
-vmap <Leader>x "*d
+vnoremap <Leader>x "*d
 " Paste from system clipboard
-map <silent><Leader>p :set paste<CR>i<ESC>"+p:set nopaste<CR>
+nnoremap <silent><Leader>p :set paste<CR>i<ESC>"*p:set nopaste<CR>
+vnoremap <silent><Leader>p D:set paste<CR>i<ESC>"*p:set nopaste<CR>
 
