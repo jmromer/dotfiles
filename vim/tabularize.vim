@@ -12,8 +12,8 @@ nnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
 vnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
 nnoremap <silent> <Leader>ahs :Tabularize rbshash<CR>
 vnoremap <silent> <Leader>ahs :Tabularize rbshash<CR>
-nnoremap <silent> <Leader>a=  :Tabularize /=<CR>
-vnoremap <silent> <Leader>a=  :Tabularize /=<CR>
+nnoremap <silent> <Leader>==  :Tabularize /=<CR>
+vnoremap <silent> <Leader>==  :Tabularize /=<CR>
 
 " Nice alignment for | based tables TODO: fix me!
 inoremap <silent> <Bar>   <Bar><Esc>:call align()<CR>
