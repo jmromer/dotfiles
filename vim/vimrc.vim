@@ -127,10 +127,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"   " split window to edit snippet
 
-" Multiple Cursors: use ctrl+m to enter multicursor mode
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_key='<C-m>'
-
 " NERDTree: Show hidden files by default, replace netrw within panes
 let NERDTreeShowHidden=1
 let NERDTreeHijackNetrw=1
