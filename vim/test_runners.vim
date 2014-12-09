@@ -1,5 +1,9 @@
 " Test Runners
 " ------------
+" vim-rspec + tslime: open in tmux pane
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+"using spring: spring rspec {spec}
+
 " Rspec
 " nearest spec
 nnoremap <Leader>s :call RunNearestSpec()<CR>
