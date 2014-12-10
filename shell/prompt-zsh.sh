@@ -20,10 +20,10 @@ fpath=(
 )
 
 autoload -U compinit && compinit
+compdef g=git
+
 source $shared/zsh/site-functions/_aws
 source $shared/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-compdef g=git
 
 #-------------------------------------------------------------
 # DIRECTORY STACK  (see http://j.mp/1lOiWio)
