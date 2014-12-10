@@ -20,11 +20,13 @@ Plugin 'sjl/gundo.vim'                 " graphical undo tree
 Plugin 'tpope/vim-fugitive'            " side-by-side git blame with :Gblame
 Plugin 'bling/vim-airline'             " nice, lightweight statusbar (readme)
 Plugin 'majutsushi/tagbar'             " navigate a list of methods / classes
-Plugin 'troydm/easybuffer.vim'         " user-friendly buffer list
+Plugin 'sandeepcr529/Buffet.vim'       " user-friendly buffer list
 Plugin 'wesQ3/vim-windowswap'          " move panes around with <Leader>ww
 Plugin 'tpope/vim-eunuch'              " Unix commands in vim
 Plugin 'tpope/vim-repeat'              " repeat last mapped command with `.`
 Plugin 'vim-scripts/YankRing.vim'      " maintain yank/del history
+Plugin 'tpope/vim-vinegar'             " enhancements to netrw
+Plugin 'Konfekt/FastFold'              " optimized folding for large projects
 
 " Text processing
 Plugin 'godlygeek/tabular'       " align on a given regex (e.g., =)
@@ -84,9 +86,6 @@ Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>rtb
 Plugin 'ecomba/vim-ruby-refactoring'  " keybindings for refactoring
 
 "------------------ Probationary -------------------------- "
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'Konfekt/FastFold'
 
 call vundle#end()
 filetype on
