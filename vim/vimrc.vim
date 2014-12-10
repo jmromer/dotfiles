@@ -128,12 +128,12 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"   " split window to edit snippet
 
-" NERDTree: Show hidden files by default, replace netrw within panes
-let NERDTreeShowHidden=1
-let NERDTreeHijackNetrw=1
+" " NERDTree: Show hidden files by default, replace netrw within panes
+" let NERDTreeShowHidden=1
+" let NERDTreeHijackNetrw=1
 
-" Let Ctrl+P open files in NerdTree's initial buffer
-let g:ctrlp_dont_split = 'NERD'
+" " Let Ctrl+P open files in NerdTree's initial buffer
+" let g:ctrlp_dont_split = 'NERD'
 
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
@@ -146,16 +146,16 @@ nnoremap <silent><Leader>r :source ~/.vimrc<CR>:echoe "vim reloaded."<CR>
 nnoremap <silent><Leader>rr :redraw!<CR>
 " toggle Tagbar
 nnoremap <silent><leader>t :TagbarToggle<CR>
-" toggle EasyBuffer
-nnoremap <silent><leader>b :EasyBuffer<CR>
+" toggle Buffet's buffer list
+nnoremap <silent><leader>b :Bufferlist<CR>
 " toggle Gundo
 nnoremap <silent><leader>u :GundoToggle<CR>
 " kill trailing whitespace
 nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
-" toggle NERDTree pane
-nnoremap <silent><Leader>n :NERDTreeToggle<CR>
+" " toggle NERDTree pane
+" nnoremap <silent><Leader>n :NERDTreeToggle<CR>
 " see YankRing contents
 nnoremap <silent><Leader>v :YRShow<CR>
 " Open ctag in a vertical split
