@@ -23,6 +23,7 @@ autoload -U compinit && compinit
 source $shared/zsh/site-functions/_aws
 source $shared/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+compdef git=hub
 compdef g=git
 
 #-------------------------------------------------------------
