@@ -37,7 +37,7 @@
     a        = add
     aa       = add --all
     ap       = add --patch
-    b        = branch
+    b        = branch -vv
     bd       = branch -d
     c        = commit
     ca       = commit --amend
