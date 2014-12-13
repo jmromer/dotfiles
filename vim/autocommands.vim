@@ -32,6 +32,8 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.jison setfiletype=javascript
   autocmd BufRead,BufNewFile *gitconfig setfiletype=dosini
 
-  " Set folding for semantic-whitespace languages
+  " Set folding for semantic-whitespace and tagged languages
   autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+  autocmd BufNewFile,BufReadPost *.html setl foldmethod=indent
+  autocmd BufNewFile,BufReadPost *.html.erb setl foldmethod=indent
 augroup END
