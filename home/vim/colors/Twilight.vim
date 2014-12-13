@@ -296,8 +296,8 @@ hi Pmenu ctermfg=95 ctermbg=black cterm=NONE guifg=#9b703f guibg=NONE gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#3c4043 gui=NONE
 
 " hi Search ctermfg=NONE ctermbg=black cterm=underline guifg=NONE guibg=NONE gui=underline
-hi Search ctermfg=NONE ctermbg=yellow cterm=NONE guifg=#141414 guibg=#6B8E23 gui=NONE
-hi IncSearch ctermfg=NONE ctermbg=yellow cterm=NONE guifg=#141414 guibg=#8f9d6a gui=NONE
+hi Search ctermfg=black ctermbg=yellow cterm=NONE guifg=#141414 guibg=#6B8E23 gui=NONE
+hi IncSearch ctermfg=black ctermbg=yellow cterm=NONE guifg=#141414 guibg=#8f9d6a gui=NONE
 
 " hi Directory ctermfg=167 ctermbg=black cterm=NONE guifg=#cf6a4c guibg=NONE gui=NONE
 hi Folded ctermfg=100 ctermbg=black cterm=NONE guifg=#5f5a60 guibg=#141414 gui=NONE
@@ -312,8 +312,8 @@ hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold guifg=#f8f8f8 guibg=#427f09 gui=bol
 hi DiffDelete ctermfg=88 ctermbg=black cterm=NONE guifg=#870404 guibg=NONE gui=NONE
 hi DiffChange ctermfg=231 ctermbg=17 cterm=NONE guifg=#f8f8f8 guibg=#1a2f4e gui=NONE
 hi DiffText ctermfg=231 ctermbg=24 cterm=bold guifg=#f8f8f8 guibg=#204a87 gui=bold
-hi ErrorMsg ctermfg=NONE ctermbg=black cterm=NONE guifg=NONE guibg=NONE gui=NONE
-hi WarningMsg ctermfg=NONE ctermbg=black cterm=NONE guifg=NONE guibg=NONE gui=NONE
+" hi ErrorMsg ctermfg=NONE ctermbg=black cterm=NONE guifg=NONE guibg=NONE gui=NONE
+" hi WarningMsg ctermfg=NONE ctermbg=black cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi Float ctermfg=167 ctermbg=black cterm=NONE guifg=#cf6a4c guibg=NONE gui=NONE
 " hi Function ctermfg=95 ctermbg=black cterm=NONE guifg=#9b703f guibg=NONE gui=NONE
 hi Identifier ctermfg=228 ctermbg=black cterm=NONE guifg=#f9ee98 guibg=NONE gui=NONE
