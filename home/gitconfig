@@ -2,38 +2,38 @@
     path = ~/Dropbox/Sync/dotfiles/gitconfig.secure
 
 [color]
-    ui            = true
+    ui = true
 [commit]
-    template      = ~/.dotfiles/git/gitmessage
+    template = ~/.dotfiles/git/gitmessage
 [core]
-    autocrlf      = input
-    editor        = vim
-    excludesfile  = ~/.dotfiles/git/gitignore
+    autocrlf     = input
+    editor       = vim
+    excludesfile = ~/.dotfiles/git/gitignore
 [diff]
-    renames       = true
-    tool          = vimdiff
+    renames = true
+    tool    = vimdiff
 [fetch]
     prune = true
 [filter "media"]
-    clean         = git-media-clean %f
-    smudge        = git-media-smudge %f
+    clean  = git-media-clean %f
+    smudge = git-media-smudge %f
 [init]
-    templatedir =   ~/.dotfiles/git_template
+    templatedir = ~/.dotfiles/git_template
 [interactive]
-    singlekey     = true
+    singlekey = true
 [merge]
     conflictstyle = diff3
     ff            = only
     prompt        = false
     tool          = vimdiff
 [mergetool]
-    keepBackup    = false
+    keepBackup = false
 [pretty]
-    brief         = "%Cred%h%Creset %C(bold blue)%aN%Creset %Cgreen%cr%Creset - %s %C(yellow)%d%Creset"
+    brief = "%Cred%h%Creset %C(bold blue)%aN%Creset %Cgreen%cr%Creset - %s %C(yellow)%d%Creset"
 [push]
-    default       = simple
+    default = simple
 [pull]
-    rebase        = true
+    rebase  = true
 [rerere]
     enabled = true
 
