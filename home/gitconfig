@@ -13,12 +13,12 @@
     renames       = true
     tool          = vimdiff
 [fetch]
-  prune = true
+    prune = true
 [filter "media"]
     clean         = git-media-clean %f
     smudge        = git-media-smudge %f
 [init]
-  templatedir =   ~/.dotfiles/git_template
+    templatedir =   ~/.dotfiles/git_template
 [interactive]
     singlekey     = true
 [merge]
@@ -34,6 +34,8 @@
     default       = simple
 [pull]
     rebase        = true
+[rerere]
+    enabled = true
 
 [alias]
     a        = add
