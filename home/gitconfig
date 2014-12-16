@@ -1,6 +1,8 @@
 [include]
     path = ~/Dropbox/Sync/dotfiles/gitconfig.secure
 
+[branch]
+    autosetuprebase = always
 [color]
     ui = true
 [commit]
