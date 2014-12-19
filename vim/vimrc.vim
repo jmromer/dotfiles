@@ -58,6 +58,9 @@ filetype plugin indent on
 " Call out extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
+" Command mode autocompletion settings
+set wildmode=list:longest,list:full
+
 " Make message bar taller to avoid 'press enter' prompt
 set shortmess=a
 set cmdheight=2
@@ -96,9 +99,6 @@ let g:netrw_preview=1    " open previews vertically
 " blockle.vim: Toggle ruby blocks with leader-tb
 let g:blockle_mapping = '<Leader>rtb'
 
-" vim-rspec: run specs in last session of current terminal
-let g:rspec_runner = "os_x_iterm"
-
 " togglecursor: insert mode uses an underline
 let g:togglecursor_insert = 'underline'
 
@@ -120,20 +120,12 @@ let g:ycm_key_list_select_completion = ['<Down>']
 
 " YouCompleteMe: semantic completion trigger
 let g:ycm_key_invoke_completion = '<C-k>'
-" TODO: should this be invoked automatically? investigate.
 
 " UltiSnips: Trigger configuration. Do not use <tab> if you use YCM
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"   " split window to edit snippet
-
-" " NERDTree: Show hidden files by default, replace netrw within panes
-" let NERDTreeShowHidden=1
-" let NERDTreeHijackNetrw=1
-
-" " Let Ctrl+P open files in NerdTree's initial buffer
-" let g:ctrlp_dont_split = 'NERD'
 
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
@@ -145,7 +137,7 @@ nnoremap <silent><Leader>r :source ~/.vimrc<CR>:echoe "vim reloaded."<CR>
 " redraw screen
 nnoremap <silent><Leader>rr :redraw!<CR>
 " toggle Tagbar
-nnoremap <silent><leader>t :TagbarToggle<CR>
+nnoremap <silent><S-t> :TagbarToggle<CR>
 " toggle Buffet's buffer list
 nnoremap <silent><leader>b :Bufferlist<CR>
 " toggle Gundo
@@ -154,8 +146,6 @@ nnoremap <silent><leader>u :GundoToggle<CR>
 nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
-" " toggle NERDTree pane
-" nnoremap <silent><Leader>n :NERDTreeToggle<CR>
 " see YankRing contents
 nnoremap <silent><Leader>v :YRShow<CR>
 " Open ctag in a vertical split
