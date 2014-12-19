@@ -78,8 +78,7 @@ Plugin 'tpope/vim-haml'               " Haml
 Plugin 'tpope/vim-bundler'    " Bundler
 Plugin 'moll/vim-node'        " Node
 Plugin 'tpope/vim-rails'      " Rails
-Plugin 'thoughtbot/vim-rspec' " Rspec
-Plugin 'tpope/vim-cucumber'   " Cucumber
+Plugin 'janko-m/vim-test'     " Test runner for rspec, cucumber, et al.
 
 " Ruby workflows
 Plugin 'vim-scripts/blockle.vim'      " toggle ruby block styles with <L>rtb
