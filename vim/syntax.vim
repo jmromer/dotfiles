@@ -26,9 +26,7 @@ let g:syntastic_ruby_rubocop_args = ""
 " -------------------- Tab completion ------------------------
 " Insert tab if at beginning of line, else use completion if
 " not at beginning
-
-set wildmode=list:longest,list:full
-
+"
 " function! InsertTabWrapper()
 "   let col = col('.') - 1
 "   if !col || getline('.')[col - 1] !~ '\k'
