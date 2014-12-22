@@ -3,6 +3,7 @@ Pry.config.theme  = "railscasts"
 Pry.config.editor = "vim"
 
 # Return only the methods not present on basic objects
+# alternatively, use `ls #{Class} -m`
 class Object
   def method_list
     (self.methods - Object.instance_methods).sort
@@ -29,10 +30,10 @@ if defined?(PryDebugger)
 end
 
 # Simple prompt, colored
-Pry.prompt = [
-  proc { |obj, nest_level, _| _prompt = ">> " },
-  proc { |obj, nest_level, _| _prompt = "   " }
-]
+# Pry.prompt = [
+#   proc { |obj, nest_level, _| _prompt = ">> " },
+#   proc { |obj, nest_level, _| _prompt = "   " }
+# ]
 
 # Format stacktraces
 Pry.config.exception_handler = proc do |output, exception, _|
@@ -43,23 +44,25 @@ Pry.config.exception_handler = proc do |output, exception, _|
   end
 end
 
+
 # Use jazz_hands for awesome_print, hirb, et al.
-begin
-  require 'jazz_hands'
-  JazzHands.enable_syntax_highlighting_as_you_type
-
-  # Use awesome_print's output formatting and Pry's pager
-  require 'awesome_print'
-  AwesomePrint.defaults = { indent: -2 }
-  AwesomePrint.pry!
-
-  # Use Hirb for tabular output
-  require 'hirb'
-  Hirb.enable
-  extend Hirb::Console
-rescue LoadError
-  puts 'jazz_hands is not installed.',
-       "Install by adding gem 'jazz_hands', github: 'jkrmr/jazz_hands' to your Gemfile",
-       "or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`"
+# Don't `require` in Rails projects
+unless defined?(Rails) && Rails.env
+  begin
+    require 'jazz_hands'
+    require 'awesome_print'   # Use awesome_print's output formatting and Pry's pager
+    require 'hirb'            # Use Hirb for tabular output
+  rescue LoadError
+    puts 'jazz_hands is not installed.',
+        "Install by adding gem 'jazz_hands', github: 'jkrmr/jazz_hands' to your Gemfile",
+        "or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`"
+  end
 end
 
+if defined?(JazzHands) && defined?(AwesomePrint) && defined?(Hirb)
+JazzHands.enable_syntax_highlighting_as_you_type
+  AwesomePrint.defaults = { indent: -2 }
+  AwesomePrint.pry!
+  Hirb.enable
+  extend Hirb::Console
+end
