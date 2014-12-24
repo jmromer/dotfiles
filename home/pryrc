@@ -66,3 +66,4 @@ JazzHands.enable_syntax_highlighting_as_you_type
   Hirb.enable
   extend Hirb::Console
 end
+
