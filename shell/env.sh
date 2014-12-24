@@ -6,6 +6,7 @@ PATH="/usr/local/heroku/bin:"           # heroku-toolbelt binaries
 PATH+="/usr/local/bin:/usr/local/sbin:" # homebrewed binaries
 PATH+="/usr/bin:/bin:/usr/sbin:/sbin:"  # system binaries
 PATH+="/opt/X11/bin:"                   # added by OSX
+PATH+="/usr/texbin"                     # for TeX
 PATH+="$HOME/.bin:"                     # user binaries
 PATH+="."                               # current directory (must come last)
 
