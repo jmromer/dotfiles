@@ -16,7 +16,6 @@ nnoremap <silent> <Leader>==  :Tabularize /=<CR>
 vnoremap <silent> <Leader>==  :Tabularize /=<CR>
 
 " Nice alignment for | based tables TODO: fix me!
-inoremap <silent> <Bar>   <Bar><Esc>:call align()<CR>
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -28,3 +27,5 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+inoremap <silent> <Bar>   <Bar><Esc>:call s:align()<CR>
