@@ -17,7 +17,7 @@ runtime airline.vim
 runtime git.vim
 runtime test_runners.vim
 runtime general.vim
-runtime plugin.vim
+runtime plugins.vim
 
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
