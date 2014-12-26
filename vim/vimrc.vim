@@ -6,18 +6,20 @@ colorscheme Twilight
 
 " --------------- Settings by Context ---------------------
 runtime bundles.vim
+runtime general.vim
+runtime plugins.vim
+
+runtime autocommands.vim
 runtime windows_and_nav.vim
 runtime line_numbering.vim
 runtime code_folding.vim
 runtime syntax.vim
-runtime autocommands.vim
+
 runtime ctrlp.vim
 runtime tabularize.vim
 runtime airline.vim
 runtime git.vim
 runtime test_runners.vim
-runtime general.vim
-runtime plugins.vim
 
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
