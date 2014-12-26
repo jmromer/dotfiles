@@ -18,7 +18,8 @@ Plugin 'Lokaltog/vim-easymotion'       " jump without numbers
 Plugin 'kien/ctrlp.vim'                " Rapid file finding
 Plugin 'sjl/gundo.vim'                 " graphical undo tree
 Plugin 'tpope/vim-fugitive'            " side-by-side git blame with :Gblame
-Plugin 'bling/vim-airline'             " nice, lightweight statusbar (readme)
+" Plugin 'bling/vim-airline'             " nice, lightweight statusbar (readme)
+Plugin 'maciakl/vim-neatstatus'        " lightweight native statusline
 Plugin 'majutsushi/tagbar'             " navigate a list of methods / classes
 Plugin 'sandeepcr529/Buffet.vim'       " user-friendly buffer list
 Plugin 'wesQ3/vim-windowswap'          " move panes around with <Leader>ww
