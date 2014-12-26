@@ -37,7 +37,7 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 
 " UltiSnips: Trigger configuration.
 " Do not use <tab> if you use YCM -- you'll expand snippets prematurely
-let g:UltiSnipsExpandTrigger = "<CR>"
+let g:UltiSnipsExpandTrigger = "<C-l>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsEditSplit = "vertical"   " split window to edit snippet
