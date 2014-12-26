@@ -3,6 +3,11 @@ Host compilers
   Port 3022
   User compilers
 
+Host cs50
+  HostName 192.168.190.128
+  User jharvard
+  IdentityFile ~/.ssh/id_rsa
+
 Host ec2
   HostName ec2-54-67-31-105.us-west-1.compute.amazonaws.com
   Port 22
