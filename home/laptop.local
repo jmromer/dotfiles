@@ -67,7 +67,7 @@ cask=(
   iterm2-beta         # terminal emulator
   jitouch             # trackpad gestures
   keyboard-maestro    # system-wide custom keymappings
-  # latexit             # For generating TeX output
+  latexit             # For generating TeX output
   launchbar           # cmd + <space> ftw
   name-mangler        # batch file renamer
   nvalt               # notes
@@ -79,15 +79,13 @@ cask=(
   qlstephen           # Quick Look Preview: Extension-less files
   quicklook-csv       # Quick Look Preview: CSV files
   quicklook-json      # Quick Look Preview: JSON files
-  # rstudio             # IDE for R
+  rstudio             # IDE for R
   sequel-pro          # MySQL GUI
   skim                # lightweight PDF reader with good annotation tools
   sublime-text3       # editors
   suspicious-package  # Quick Look Preview: Mac OS X Installer Packages
-  # tex-live-utility    # package manager for TeX
-  # textmate            # text editor (mainly for TeX)
+  tex-live-utility    # package manager for TeX
   transmission        # torrent machine
-  virtualbox          # for virtual machines
   vlc                 # video player
   webp-quicklook      # Quick Look Preview: webp images
   xquartz             # for graphical terminal output (R and Octave dependency)
