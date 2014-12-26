@@ -22,21 +22,23 @@ let g:easytags_async = 1
 let g:yankring_history_dir = '~/.vim/tmp'
 
 " YankRing: Free up Ctrl+p, Ctrl+n
-let g:yankring_replace_n_pkey = '<m-p>'
-let g:yankring_replace_n_nkey = '<m-n>'
+let g:yankring_replace_n_pkey = '<M-p>'
+let g:yankring_replace_n_nkey = '<M-n>'
 
 " YouCompleteMe: use system python
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 " YouCompleteMe: move through completion list
-let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
 
 " YouCompleteMe: semantic completion trigger
-let g:ycm_key_invoke_completion = '<C-k>'
+let g:ycm_key_invoke_completion = '<C-Space>'
 
-" UltiSnips: Trigger configuration. Do not use <tab> if you use YCM
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"   " split window to edit snippet
+" UltiSnips: Trigger configuration.
+" Do not use <tab> if you use YCM -- you'll expand snippets prematurely
+let g:UltiSnipsExpandTrigger = "<CR>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:UltiSnipsEditSplit = "vertical"   " split window to edit snippet
 
