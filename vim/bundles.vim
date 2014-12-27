@@ -18,7 +18,6 @@ Plugin 'Lokaltog/vim-easymotion'       " jump without numbers
 Plugin 'kien/ctrlp.vim'                " Rapid file finding
 Plugin 'sjl/gundo.vim'                 " graphical undo tree
 Plugin 'tpope/vim-fugitive'            " side-by-side git blame with :Gblame
-" Plugin 'bling/vim-airline'             " nice, lightweight statusbar (readme)
 Plugin 'maciakl/vim-neatstatus'        " lightweight native statusline
 Plugin 'majutsushi/tagbar'             " navigate a list of methods / classes
 Plugin 'sandeepcr529/Buffet.vim'       " user-friendly buffer list
@@ -51,7 +50,8 @@ Plugin 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
 
 " tmux
 Plugin 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
-Plugin 'jgdavey/tslime.vim' " send spec run to a designated tmux pane
+Plugin 'christoomey/vim-tmux-runner'    " send commands to tmxu pane
+Plugin 'jgdavey/tslime.vim'             " send spec run to a designated tmux pane
 
 " documentation
 Plugin 'rizzatti/dash.vim'
@@ -74,6 +74,7 @@ Plugin 'marijnh/tern_for_vim'         " JavaScript
 Plugin 'Keithbsmiley/swift.vim'       " Swift
 Plugin 'vim-ruby/vim-ruby'            " Ruby
 Plugin 'tpope/vim-haml'               " Haml
+Plugin 'vim-scripts/c.vim'            " C
 
 " Frameworks
 Plugin 'tpope/vim-bundler'    " Bundler
