@@ -19,7 +19,7 @@ runtime ctrlp.vim
 runtime tabularize.vim
 runtime airline.vim
 runtime git.vim
-runtime test_runners.vim
+runtime tmux_runners.vim
 
 " ------------------- Leader key mappings ---------------------
 " run commands in an interactive shell
