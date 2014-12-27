@@ -1,5 +1,5 @@
 [include]
-    path = ~/Dropbox/Sync/dotfiles/gitconfig.secure
+    path = ~/.gitconfig.local
 
 [branch]
     autosetuprebase = always
