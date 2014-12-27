@@ -44,13 +44,15 @@ SAVEHIST=4096
 #-------------------------------------------------------------
 # COMMAND-LINE AND HISTORY NAVIGATION
 #-------------------------------------------------------------
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
-bindkey "^Y" accept-and-hold    # issues cmd but keeps it on the CL
-bindkey -s "^T" "^[Isudo ^[A"   # T to prepend sudo
+bindkey -M viins '^a' beginning-of-line
+bindkey -M viins '^e' end-of-line
+bindkey -M viins '^y' accept-and-hold
 
-bindkey "^R" history-incremental-search-backward
+bindkey -M viins -s '^t' '^[Isudo ^[A'  # ^t to prepend sudo
+bindkey -M vicmd -s '^t' '^[Isudo ^[A'  # ^t to prepend sudo
 
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -61,12 +63,15 @@ bindkey '\e[A' up-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 bindkey -s '\eOA' '\e[A'
 bindkey -s '\eOB' '\e[B'
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
+
+bindkey -M viins '^p' up-line-or-beginning-search
+bindkey -M vicmd '^p' up-line-or-beginning-search
+bindkey -M viins '^n' down-line-or-beginning-search
+bindkey -M vicmd '^n' down-line-or-beginning-search
 
 bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
 bindkey "^[[3~" delete-char  # ensure delete forwards deletes
-setopt complete_in_word # back-i-search begins with current word
+setopt complete_in_word      # back-i-search begins with current word
 
 #-------------------------------------------------------------
 # COLORS
