@@ -7,7 +7,7 @@ augroup vimrcEx
   autocmd BufReadPost *
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
-   \ endif
+    \ endif
 
   " Cucumber navigation commands
   autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
@@ -30,7 +30,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile *.jison setfiletype=javascript
-  autocmd BufRead,BufNewFile *gitconfig setfiletype=dosini
+  autocmd BufRead,BufNewFile *gitconfig* setfiletype=dosini
 
   " Set folding for semantic-whitespace and tagged languages
   autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent

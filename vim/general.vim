@@ -9,7 +9,7 @@ set ruler             " show the cursor position all the time
 set showcmd           " display incomplete commands
 set laststatus=2      " Always display the status line
 set autowrite         " Automatically :write before running commands
-set lazyredraw        " Only redraw for typed actions
+set lazyredraw        " Redraw for typed actions, not when executing macros
 set ttyfast           " This is a fast terminal
 set grepprg=ag        " use ag for grepping
 
