@@ -2,13 +2,14 @@
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="/usr/local/heroku/bin:"           # heroku-toolbelt binaries
-PATH+="/usr/local/bin:/usr/local/sbin:" # homebrewed binaries
-PATH+="/usr/bin:/bin:/usr/sbin:/sbin:"  # system binaries
-PATH+="/opt/X11/bin:"                   # added by OSX
-PATH+="/usr/texbin"                     # for TeX
-PATH+="$HOME/.bin:"                     # user binaries
-PATH+="."                               # current directory (must come last)
+PATH="/usr/local/heroku/bin:" # heroku-toolbelt binaries
+PATH+="/usr/local/bin:"       # homebrewed binaries
+PATH+="/usr/bin:/bin:"        # system binaries
+PATH+="/usr/sbin:/sbin:"      # system binaries requiring root
+PATH+="/opt/X11/bin:"         # added by OSX
+PATH+="/usr/texbin:"          # for TeX
+PATH+="$HOME/.bin:$HOME/bin:" # user binaries
+PATH+="."                     # current directory (must come last)
 
 #-------------------------------------------------------------
 # MAN PAGES
