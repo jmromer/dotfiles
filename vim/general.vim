@@ -36,6 +36,7 @@ set expandtab      " use soft tabs
 set shiftwidth=2   " spaces per tab (when shifting)
 set softtabstop=2  " 2-space soft tabs
 set autoindent     " automatically indent new lines
+set smartindent    " automatically indent after certain characters
 set shiftround     " always indent by multiple of shiftwidth
 
 " Call out extra whitespace
@@ -61,6 +62,9 @@ set matchtime=5    " Bracket blinking.
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+0
+
+" keep context lines you would like to see above and below the cursor
+set scrolloff=10
 
 " Always use vertical diffs
 set diffopt+=vertical
