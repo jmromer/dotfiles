@@ -37,7 +37,6 @@ set shiftwidth=2   " spaces per tab (when shifting)
 set softtabstop=2  " 2-space soft tabs
 set autoindent     " automatically indent new lines
 set shiftround     " always indent by multiple of shiftwidth
-filetype plugin indent on
 
 " Call out extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
