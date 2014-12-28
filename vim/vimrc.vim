@@ -3,6 +3,8 @@ set nocompatible        " use vim, not vi, settings.
 set t_Co=256            " 256 color terminal
 set background=dark
 colorscheme Twilight
+filetype plugin on
+filetype indent on
 
 " --------------- Settings by Context ---------------------
 runtime bundles.vim
