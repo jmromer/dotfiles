@@ -32,6 +32,12 @@ nnoremap <silent><CR> :noh<CR><CR>
 nnoremap <silent><Leader>r :source ~/.vimrc<CR>:echoe "vim reloaded."<CR>
 " redraw screen
 nnoremap <silent><Leader>rr :redraw!<CR>
+" Fast saving
+nnoremap <Leader>w :w<CR>
+" Fast saving for multiple buffers
+nnoremap <Leader>wa :wa<CR>
+" For saving read-only files: to save as root, use :W
+command! W w !sudo tee % > /dev/null
 " toggle Tagbar
 nnoremap <silent><S-t> :TagbarToggle<CR>
 " toggle Buffet's buffer list
