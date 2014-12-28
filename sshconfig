@@ -8,6 +8,11 @@ Host cs50
   User jharvard
   IdentityFile ~/.ssh/id_rsa
 
+Host retro
+  HostName retronet.net
+  User jkrmr
+  IdentityFile ~/.ssh/id_rsa
+
 Host ec2
   HostName ec2-54-67-31-105.us-west-1.compute.amazonaws.com
   Port 22
