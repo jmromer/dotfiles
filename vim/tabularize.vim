@@ -15,7 +15,7 @@ vnoremap <silent> <Leader>ahs :Tabularize rbshash<CR>
 nnoremap <silent> <Leader>==  :Tabularize /=<CR>
 vnoremap <silent> <Leader>==  :Tabularize /=<CR>
 
-" Nice alignment for | based tables TODO: fix me!
+" Nice alignment for | based tables
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -28,4 +28,5 @@ function! s:align()
   endif
 endfunction
 
-inoremap <silent> <Bar>   <Bar><Esc>:call s:align()<CR>
+nnoremap <Leader><Bar> :call s:align()<CR>
+
