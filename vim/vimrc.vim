@@ -31,7 +31,7 @@ nnoremap <silent><CR> :noh<CR><CR>
 " reload vimrc
 nnoremap <silent><Leader>r :source ~/.vimrc<CR>:echoe "vim reloaded."<CR>
 " redraw screen
-nnoremap <silent><Leader>rr :redraw!<CR>
+nnoremap <silent><Leader>R :redraw!<CR>
 " Fast saving
 nnoremap <Leader>w :w<CR>
 " Fast saving for multiple buffers
