@@ -15,6 +15,11 @@ function path() {
   ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
 }
 
+# pretty-print the manual search path
+function pathman() {
+  ruby -e 'puts `echo $MANPATH`.gsub(":", "\n")'
+}
+
 # remove brew package and all its dependencies
 function brew_remove() {
   brew rm "$1"

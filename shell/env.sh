@@ -1,23 +1,5 @@
 # shell/env.sh
 #-------------------------------------------------------------
-# PATH
-#-------------------------------------------------------------
-PATH="/usr/local/heroku/bin:" # heroku-toolbelt binaries
-PATH+="/usr/local/bin:"       # homebrewed binaries
-PATH+="/usr/bin:/bin:"        # system binaries
-PATH+="/usr/sbin:/sbin:"      # system binaries requiring root
-PATH+="/opt/X11/bin:"         # added by OSX
-PATH+="/usr/texbin:"          # for TeX
-PATH+="$HOME/.bin:$HOME/bin:" # user binaries
-PATH+="."                     # current directory (must come last)
-
-#-------------------------------------------------------------
-# MAN PAGES
-#-------------------------------------------------------------
-MANPATH="$(manpath)"
-MANPATH="/usr/local/man:$MANPATH"
-
-#-------------------------------------------------------------
 # GNU TOOLS (prepend to PATH and MANPATH)
 #-------------------------------------------------------------
 gnu_tools=(
@@ -31,20 +13,40 @@ gnu_tools=(
 )
 
 for gnu_tool in "${gnu_tools[@]}"; do
-  PATH="/usr/local/opt/$gnu_tool/libexec/gnubin:$PATH"
-  MANPATH="/usr/local/opt/$gnu_tool/libexec/gnuman:$MANPATH"
+  GNUTOOLS_PATHS+="/usr/local/opt/$gnu_tool/libexec/gnubin:"
+  GNUTOOLS_MANS+="/usr/local/opt/$gnu_tool/libexec/gnuman:"
 done
+
+#-------------------------------------------------------------
+# LOCAL BINARIES (append to PATH)
+#-------------------------------------------------------------
+APPENDED_PATHS=":/usr/local/heroku/bin" # heroku-toolbelt binaries
+APPENDED_PATHS+=":$HOME/.bin:$HOME/bin" # user binaries
+APPENDED_PATHS+=":."                    # current directory
+
+#-------------------------------------------------------------
+# PATH
+#-------------------------------------------------------------
+ORIG_PATH=$PATH
+
+PATH="$GNUTOOLS_PATHS"
+PATH+="$ORIG_PATH"
+PATH+="$APPENDED_PATHS"
+
+export PATH
+
+#-------------------------------------------------------------
+# MAN PAGES
+#-------------------------------------------------------------
+MANPATH+="$GNUTOOLS_MANS"
+MANPATH+="/usr/local/man:"
+MANPATH+="$(manpath)"
+export MANPATH
 
 #-------------------------------------------------------------
 # CD PATH
 #-------------------------------------------------------------
 CDPATH=".:$HOME/Desktop:$HOME/Developer:$HOME"
-
-#-------------------------------------------------------------
-# EXPORT PATH vars
-#-------------------------------------------------------------
-export PATH
-export MANPATH
 export CDPATH
 
 #-------------------------------------------------------------
