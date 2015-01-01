@@ -29,8 +29,8 @@ augroup vimrcEx
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile *.jison setfiletype=javascript
-  autocmd BufRead,BufNewFile *gitconfig* setfiletype=dosini
+  autocmd BufRead,BufNewFile *.jison set filetype=javascript
+  autocmd BufRead,BufNewFile *gitconfig set syntax=dosini
 
   " Set folding for semantic-whitespace and tagged languages
   autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
