@@ -1,12 +1,5 @@
 set runtimepath+=~/.dotfiles/vim
 runtime vimrc.vim
-
-" ------------- Disabled ------------------------------
-" Color column only where text overflows
-" set textwidth=100
-" set colorcolumn=+0
-" call matchadd('ColorColumn', '\%82v', 100)
-
 " ------------- Theme Development -----------------------
 " Show syntax highlighting groups for word under cursor
 " nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -26,8 +19,7 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 let g:html_indent_tags = 'li\|p'
 
 " Set spellfile to location that is guaranteed to exist
-set spellfile=$HOME/.vim-spell-en.utf-8.add
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " ------------- Todo -------------------------
-" resize panes with <>-+
 
