@@ -393,3 +393,4 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88
 highlight Folded gui=italic   guifg=black   guibg=#3467ff
 highlight Folded cterm=italic ctermfg=black ctermbg=110
 
+highlight CursorLine cterm=NONE ctermbg=17 ctermfg=white

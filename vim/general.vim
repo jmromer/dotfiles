@@ -63,6 +63,9 @@ set matchtime=5    " Bracket blinking.
 set textwidth=80
 set colorcolumn=+0
 
+" highlight the current line (may cause sluggishness in large projects)
+set cursorline
+
 " keep context lines you would like to see above and below the cursor
 set scrolloff=10
 
