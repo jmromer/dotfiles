@@ -15,30 +15,6 @@ function clone() {
   cd $dir                 # cds into repo directory
 }
 
-function git_restore_from() {
-  local warn="$(color red) ---- WARNING ---- $(color reset)"
-        warn+=" You are about to fetch from remote"
-        warn+="$(color yellow) $1 $(color reset)"
-        warn+="and overwrite local branch"
-        warn+="$(color yellow) $2$(color reset). "
-        warn+="This cannot be undone. Continue?  "
-  echo -ne $warn
-
-  read dir
-  if [[ $dir == 'yes' ]]; then
-    local mssg="$(color yellow) "
-          mssg+="Restoring branch $(color white)$2$(color yellow) "
-          mssg+="from last commit at remote "
-          mssg+="$(color white)$1$(color yellow).$(color reset)\n"
-    echo -e $mssg
-    # Hard reset to the most recent remote commit
-    git fetch --all
-    git reset --hard $1/$2
-  else
-    echo "Canceling with no changes made."; return 1;
-  fi
-}
-
 # No arguments: `git status`
 # With arguments: acts like `git`
 function g() {
