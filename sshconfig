@@ -8,7 +8,7 @@ Host cs50
   User jharvard
   IdentityFile ~/.ssh/id_rsa
 
-Host retro
+Host tilde
   HostName retronet.net
   User jkrmr
   IdentityFile ~/.ssh/id_rsa
