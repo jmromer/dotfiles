@@ -49,3 +49,8 @@ endfunction
 
 vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
 
+" Resize vim windows with direction keys
+nnoremap <Left> <C-w><
+nnoremap <Right> <C-w>>
+nnoremap <Up> <C-w>+
+nnoremap <Down> <C-w>-
