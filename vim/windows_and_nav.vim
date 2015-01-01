@@ -9,16 +9,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Disable directional keys
-noremap <Left>  :echoe "Use h"<CR>
-noremap <Right> :echoe "Use l"<CR>
-noremap <Up>    :echoe "Use k"<CR>
-noremap <Down>  :echoe "Use j"<CR>
-
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
 
 " vim-tmux-navigator (ensure these match those in tmux.conf)
 let g:tmux_navigator_no_mappings = 1
