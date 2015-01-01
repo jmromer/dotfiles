@@ -27,6 +27,7 @@ Plugin 'tpope/vim-repeat'              " repeat last mapped command with `.`
 Plugin 'vim-scripts/YankRing.vim'      " maintain yank/del history
 Plugin 'tpope/vim-vinegar'             " enhancements to netrw
 Plugin 'Konfekt/FastFold'              " optimized folding for large projects
+Plugin 'gavinbeatty/dragvisuals.vim'   " move visual blocks / lines around
 
 " Text processing
 Plugin 'godlygeek/tabular'       " align on a given regex (e.g., =)
