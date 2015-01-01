@@ -23,19 +23,3 @@ let g:syntastic_javascript_jslint_args = ""
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_ruby_rubocop_args = ""
 
-" -------------------- Tab completion ------------------------
-" Insert tab if at beginning of line, else use completion if
-" not at beginning
-"
-" function! InsertTabWrapper()
-"   let col = col('.') - 1
-"   if !col || getline('.')[col - 1] !~ '\k'
-"     return "\<tab>"
-"   else
-"     return "\<c-p>"
-"   endif
-" endfunction
-"
-" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-" inoremap <S-Tab> <c-n>
-"
