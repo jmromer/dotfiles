@@ -15,10 +15,15 @@ set splitright
 
 " vim-tmux-navigator (ensure these match those in tmux.conf)
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+" Resize vim windows with direction keys
+nnoremap <Left> <C-w><
+nnoremap <Right> <C-w>>
+nnoremap <Up> <C-w>+
+nnoremap <Down> <C-w>-
 

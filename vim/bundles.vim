@@ -6,7 +6,6 @@ filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'              " Let Vundler manage Vundle
 Plugin 'Konfekt/FastFold'               " optimized folding for large projects
 Plugin 'Lokaltog/vim-easymotion'        " jump without numbers
 Plugin 'Raimondi/delimitMate'           " auto insert closing delimiters
@@ -20,6 +19,7 @@ Plugin 'ciaranm/detectindent'           " detect indentation level
 Plugin 'ecomba/vim-ruby-refactoring'    " keybindings for refactoring
 Plugin 'ervandew/supertab'              " context-aware tab-completion
 Plugin 'gavinbeatty/dragvisuals.vim'    " move visual blocks / lines around
+Plugin 'gmarik/Vundle.vim'              " Let Vundler manage Vundle
 Plugin 'godlygeek/tabular'              " align on a given regex (e.g., =)
 Plugin 'honza/vim-snippets'             " textmate-style code snippets
 Plugin 'janko-m/vim-test'               " Test runner for rspec, cucumber, et al.
@@ -56,6 +56,7 @@ Plugin 'vim-scripts/blockle.vim'        " toggle ruby block styles with <L>rtb
 Plugin 'vim-scripts/c.vim'              " C completions
 Plugin 'vim-scripts/matchit.zip'        " goto matching delimiter with %
 Plugin 'vim-scripts/tComment'           " ctr+// and ctrl+/p to comment line / block
+Plugin 'vitorgalvao/autoswap_mac'       " auto-respond to swap file message
 Plugin 'wesQ3/vim-windowswap'           " move panes around with <Leader>ww
 Plugin 'xolox/vim-easytags'             " continuously updated tags
 Plugin 'xolox/vim-misc'                 " vim plugin utility library

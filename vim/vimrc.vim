@@ -78,3 +78,22 @@ vnoremap <Leader>x "*d
 nnoremap <silent><Leader>p :set paste<CR>i<ESC>"*p:set nopaste<CR>
 vnoremap <silent><Leader>p D:set paste<CR>i<ESC>"*p:set nopaste<CR>
 
+" -------------- Search and Replace cursor selection  ----------------
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+function! SearchAndReplace() range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    call CmdLine("%s" . '/'. l:pattern . '//g')
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
+
