@@ -8,4 +8,5 @@ home/pry/themes/monokai*
 home/pry/themes/vim*
 home/vim/.netrwhist
 home/vim/bundle/*
+home/zsh/zsh-syntax-highlighting/*
 yankring_history*
