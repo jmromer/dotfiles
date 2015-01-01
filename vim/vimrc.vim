@@ -29,7 +29,7 @@ nnoremap <Leader>e :RunInInteractiveShell<space>
 " turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 " reload vimrc
-nnoremap <silent><Leader>r :source ~/.vimrc<CR>:echoe "vim reloaded."<CR>
+nnoremap <silent><Leader>r :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
 " redraw screen
 nnoremap <silent><Leader>R :redraw!<CR>
 " Fast saving
