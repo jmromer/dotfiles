@@ -11,13 +11,12 @@ function find_file() {
 }
 
 # pretty-print the command search path
-function path() {
-  ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
-}
-
-# pretty-print the manual search path
-function pathman() {
-  ruby -e 'puts `echo $MANPATH`.gsub(":", "\n")'
+function p () {
+  if [[ $1 == 'path' ]]; then
+    ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
+  elif [[ $1 == 'manpath' ]]; then
+    ruby -e 'puts `echo $MANPATH`.gsub(":", "\n")'
+  fi
 }
 
 # remove brew package and all its dependencies
