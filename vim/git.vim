@@ -13,4 +13,3 @@ highlight GitGutterChange ctermfg=Yellow
 highlight GitGutterDelete ctermfg=Red
 highlight GitGutterChangeDelete ctermfg=Red
 
-" TODO: Add gvim colors, bar too
