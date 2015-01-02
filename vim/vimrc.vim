@@ -1,10 +1,8 @@
 " ----------------- Base Settings ------------------------
 set nocompatible        " use vim, not vi, settings.
 set t_Co=256            " 256 color terminal
-set background=dark
-colorscheme Twilight
-filetype plugin on
-filetype indent on
+filetype plugin indent on
+syntax on
 
 " --------------- Settings by Context ---------------------
 runtime bundles.vim
@@ -15,12 +13,11 @@ runtime autocommands.vim
 runtime windows_and_nav.vim
 runtime line_numbering.vim
 runtime code_folding.vim
-runtime completion_and_snippets.vim
-runtime syntax.vim
 
 runtime ctrlp.vim
 runtime tabularize.vim
-runtime airline.vim
+runtime completion_and_snippets.vim
+runtime syntax_checkers.vim
 runtime tmux_runners.vim
 
 " ------------------- Leader key mappings ---------------------
