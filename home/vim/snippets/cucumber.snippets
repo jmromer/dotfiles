@@ -1,47 +1,31 @@
-snippet s
-	Scenario: ${1}
-	  Given ${2}
-snippet f
+snippet feat
 	Feature: ${1}
-snippet feature
-	Feature: ${1}
-		In order to ${2}
-		As a${3}
-		I ${4}
+		As a${2}
+		I ${3}
+		In order to ${4}
 
+		Scenario: ${5}
+			Given ${6}
+snippet scen
 		Scenario: ${5}
 			Given ${6}
 snippet a
 	And   ${1}
 snippet aifo
 	And I follow "${1}"${2}
-snippet af
-	And   I fill in "${1}" with "${2}"${3}
-snippet aif
-	And   I fill in "${1}" with "${2}"${3}
 snippet aifi
 	And   I fill in "${1}" with "${2}"${3}
-snippet afif
+snippet aiff
 	And   I fill in the following:
 	  | ${1} | ${2} |${3}
-snippet afitf
-	And   I fill in the following:
-	  | ${1} | ${2} |${3}
-snippet aifitf
-	And   I fill in the following:
-	  | ${1} | ${2} |${3}
-snippet ac
+snippet aic
 	And   I check "${1}"${2}
-snippet au
+snippet aiu
 	And   I uncheck "${1}"${2}
-snippet acho
+snippet aich
 	And   I choose "${1}"${2}
-snippet as
-	And   I select "${1}" from "${2}"
 snippet ais
 	And   I select "${1}" from "${2}"
-snippet ap
-	And   I press "${1}"${2}
 snippet aip
 	And   I press "${1}"${2}
 snippet aips
@@ -54,22 +38,18 @@ snippet wig
 	When  I go to ${1}
 snippet t
 	Then  ${1}
-snippet tsh
+snippet tish
 	Then  I should see ${1}"${2}"${3}
-snippet ash
+snippet aish
 	And   I should see ${1}"${2}"${3}
-snippet tshn
+snippet tishn
 	Then  I should not see ${1}"${2}"${3}
-snippet ashn
+snippet aishn
 	And   I should not see ${1}"${2}"${3}
 snippet b
 	Background:
 	  ${1}
 snippet tsp
-	Then  show me the page
-snippet tsmp
-	Then  show me the page
-snippet tsmtp
 	Then  show me the page
 snippet aiwfg
 	And I wait for the table grids to load
