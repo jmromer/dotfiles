@@ -3,9 +3,8 @@
 # ZSH GENERAL
 #-------------------------------------------------------------
 alias reload!="source ~/.zshrc"
-export CLICOLOR=1   # enable colored output from ls, etc
 setopt extendedglob # Enable extended globbing
-unsetopt nomatch    # Allow [ or ] whereever you want
+unsetopt nomatch    # Allow [ or ] wherever you want
 
 #-------------------------------------------------------------
 # COMMAND COMPLETION
