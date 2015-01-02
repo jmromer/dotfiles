@@ -67,10 +67,12 @@
     cours    = checkout --ours
     ctheirs  = checkout --theirs
     d        = diff
+    ds       = diff --staged
     discard  = checkout --
     dump     = cat-file -p
     f        = fetch
     h        = log --format=brief --graph --abbrev-commit
+    hh       = !sh -c 'git h | head'
     hdiff    = log --format=brief --graph -U1 --word-diff --color-words
     hbranch  = log --format=brief --graph --abbrev-commit HEAD --not master
     hfiles   = log --format=medium --graph --abbrev-commit --stat
@@ -84,17 +86,21 @@
     po       = push origin
     pu       = push -u
     pr       = !gh pull-request
+    pom      = push origin master
+    psm      = push staging master
+    ppm      = push production master
     qa       = !sh -c 'git fetch origin $1:$1 && git checkout $1' -
     r        = rebase
     ra       = rebase --abort
     rc       = rebase --continue
     rem      = remote
     s        = stash
+    sa       = !sh -c 'git stash apply stash@{$1}' -
     sd       = !sh -c 'git stash drop stash@{$1}' -
+    su       = stash --include-untracked
     sl       = stash list
     sp       = stash pop
     squash   = rebase -i master
-    st       = status
     stat     = log --format=brief --graph --abbrev-commit --stat
     today    = log --since=midnight --author=\"$(git config user.name)\" --oneline
     type     = cat-file -t
@@ -108,6 +114,7 @@
     sqfeat   = rebase -i develop
     upfeat   = !git fetch origin && git rebase origin/develop
 
+    # thoughtbot
     create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
     ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
     delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
