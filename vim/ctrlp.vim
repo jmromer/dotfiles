@@ -32,5 +32,5 @@ let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_working_path_mode = 'rc'
 
 " Add spec/ to the set of root markers
-let g:ctrlp_root_markers = ['spec', 'README.md']
+let g:ctrlp_root_markers = ['.git', 'app', 'lib', 'spec']
 
