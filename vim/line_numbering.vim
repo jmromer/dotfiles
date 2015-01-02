@@ -12,6 +12,6 @@ function! NumberToggle()
   endif
 endfunction
 
-" Toggle numbering style with ctrl+n
-nnoremap <silent><C-n> :call NumberToggle()<CR>
+" Toggle numbering style with leader+n
+nnoremap <silent><Leader>n :call NumberToggle()<CR>
 
