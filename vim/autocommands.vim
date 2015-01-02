@@ -37,3 +37,4 @@ augroup vimrcEx
   autocmd BufNewFile,BufReadPost *.html setl foldmethod=indent
   autocmd BufNewFile,BufReadPost *.html.erb setl foldmethod=indent
 augroup END
+
