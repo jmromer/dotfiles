@@ -9,6 +9,9 @@ let g:netrw_banner=1     " no banner
 let g:netrw_altv=1       " open files on right
 let g:netrw_preview=1    " open previews vertically
 
+" Fixes clang 'pattern not found' messages
+let g:clang_user_options='|| exit 0'
+
 " blockle.vim: Toggle ruby blocks with leader-tb
 let g:blockle_mapping = '<Leader>rtb'
 
