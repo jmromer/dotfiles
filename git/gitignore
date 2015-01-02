@@ -44,7 +44,7 @@ doc/
 .idea
 
 # Ignore sensitive data stores
-config/secrets.yml
+secrets.yml
 .env
 .secret
 
