@@ -62,7 +62,7 @@ nnoremap <Leader>os :OpenSession<space>
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Grep with given arguments, open results in quickfix pane
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap <Leader>\ :Ag<SPACE>
 
 " ----------------------- Mappings: Copy/Paste ------------------------
