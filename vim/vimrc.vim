@@ -21,7 +21,6 @@ runtime syntax.vim
 runtime ctrlp.vim
 runtime tabularize.vim
 runtime airline.vim
-runtime git.vim
 runtime tmux_runners.vim
 
 " ------------------- Leader key mappings ---------------------
@@ -49,6 +48,8 @@ nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
 nnoremap <silent><C-e> :Explore<CR>
 " Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" Engage Git
+nnoremap <Leader>g :Git<space>
 
 " Session Management
 " ------------------
