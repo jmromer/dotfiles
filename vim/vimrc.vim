@@ -15,6 +15,7 @@ runtime autocommands.vim
 runtime windows_and_nav.vim
 runtime line_numbering.vim
 runtime code_folding.vim
+runtime completion_and_snippets.vim
 runtime syntax.vim
 
 runtime ctrlp.vim
@@ -24,8 +25,6 @@ runtime git.vim
 runtime tmux_runners.vim
 
 " ------------------- Leader key mappings ---------------------
-" run commands in an interactive shell
-nnoremap <Leader>e :RunInInteractiveShell<space>
 " turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 " reload vimrc
@@ -48,8 +47,6 @@ nnoremap <silent><leader>u :GundoToggle<CR>
 nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
-" see YankRing contents
-nnoremap <silent><Leader>v :YRShow<CR>
 " Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -69,14 +66,14 @@ nnoremap <Leader>\ :Ag<SPACE>
 
 " ----------------------- Mappings: Copy/Paste ------------------------
 " Select all text in file
-nnoremap <Leader>a ggVG
+nnoremap <Leader>sa ggVG
 " Copy to system clipboard
 vnoremap <Leader>c "*y
 " Cut to system clipboard
 vnoremap <Leader>x "*d
 " Paste from system clipboard
-nnoremap <silent><Leader>p :set paste<CR>i<ESC>"*p:set nopaste<CR>
-vnoremap <silent><Leader>p D:set paste<CR>i<ESC>"*p:set nopaste<CR>
+nnoremap <silent><Leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
+vnoremap <silent><Leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
 
 " -------------- Search and Replace cursor selection  ----------------
 function! CmdLine(str)
@@ -95,5 +92,6 @@ function! SearchAndReplace() range
     let @" = l:saved_reg
 endfunction
 
+" from visual mode, leader+r populates command line
 vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
 
