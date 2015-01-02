@@ -1,7 +1,3 @@
-" -------------------- Syntax Highlighting ------------------------
-syntax on    " turn syntax highlighting on
-filetype on
-
 " ------------- Syntastic (style checking) ------------------------
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open = 1
