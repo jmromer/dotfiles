@@ -43,3 +43,9 @@ nnoremap <silent><Leader>y :YRShow<CR>
 " GitGutter: always show sign column
 let g:gitgutter_sign_column_always = 1
 
+" Airline: General settings
+let g:airline#extensions#tabline#enabled = 1  " Smarter tab line
+let g:airline_powerline_fonts=1               " Use powerline symbols
+let g:airline#extensions#tmuxline#enabled = 0 " Don't use tmux bar
+let g:airline_theme='simple'
+

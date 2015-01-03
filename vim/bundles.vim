@@ -13,6 +13,7 @@ Plugin 'SirVer/ultisnips'               " snippets engine, integrates with YCM
 Plugin 'Valloric/YouCompleteMe'         " syntax completion
 Plugin 'airblade/vim-gitgutter'         " git diff in the gutter
 Plugin 'bitc/vim-bad-whitespace'        " detect and highlight bad whitespace
+Plugin 'bling/vim-airline'              " lightweight powerline
 Plugin 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
 Plugin 'christoomey/vim-tmux-runner'    " send commands to tmxu pane
 Plugin 'ciaranm/detectindent'           " detect indentation level
@@ -30,7 +31,6 @@ Plugin 'kana/vim-textobj-user'          " custom text objects
 Plugin 'kchmck/vim-coffee-script'       " CoffeeScript syntax defintions
 Plugin 'kien/ctrlp.vim'                 " Rapid file finding
 Plugin 'lervag/vim-latex'               " LaTeX support
-Plugin 'maciakl/vim-neatstatus'         " lightweight native statusline
 Plugin 'majutsushi/tagbar'              " navigate a list of methods / classes
 Plugin 'marijnh/tern_for_vim'           " JS method jumping (like ctags)
 Plugin 'moll/vim-node'                  " Node support
