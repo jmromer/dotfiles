@@ -22,9 +22,9 @@ Plugin 'gavinbeatty/dragvisuals.vim'    " move visual blocks / lines around
 Plugin 'gmarik/Vundle.vim'              " Let Vundler manage Vundle
 Plugin 'godlygeek/tabular'              " align on a given regex (e.g., =)
 Plugin 'honza/vim-snippets'             " textmate-style code snippets
-Plugin 'janko-m/vim-test'               " Test runner for rspec, cucumber, et al.
+Plugin 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
 Plugin 'jelera/vim-javascript-syntax'   " JavaScript Syntax definitions
-Plugin 'jgdavey/tslime.vim'             " send spec run to a designated tmux pane
+Plugin 'jgdavey/tslime.vim'             " send specs to a designated tmux pane
 Plugin 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plugin 'kana/vim-textobj-user'          " custom text objects
 Plugin 'kchmck/vim-coffee-script'       " CoffeeScript syntax defintions
@@ -32,7 +32,7 @@ Plugin 'kien/ctrlp.vim'                 " Rapid file finding
 Plugin 'lervag/vim-latex'               " LaTeX support
 Plugin 'maciakl/vim-neatstatus'         " lightweight native statusline
 Plugin 'majutsushi/tagbar'              " navigate a list of methods / classes
-Plugin 'marijnh/tern_for_vim'           " JavaScript method jumping (like ctags)
+Plugin 'marijnh/tern_for_vim'           " JS method jumping (like ctags)
 Plugin 'moll/vim-node'                  " Node support
 Plugin 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
 Plugin 'pbrisbin/vim-mkdir'             " create subdirectories as needed
@@ -49,14 +49,15 @@ Plugin 'tpope/vim-haml'                 " Haml support
 Plugin 'tpope/vim-rails'                " Rails support
 Plugin 'tpope/vim-repeat'               " repeat last mapped command with `.`
 Plugin 'tpope/vim-surround'             " surround text block with delimiters
-Plugin 'tpope/vim-unimpaired'           " useful complementary pairs of mappings
+Plugin 'tpope/vim-unimpaired'           " useful complementary mappings
 Plugin 'tpope/vim-vinegar'              " enhancements to netrw
 Plugin 'vim-ruby/vim-ruby'              " Ruby support
 Plugin 'vim-scripts/YankRing.vim'       " maintain yank/del history
 Plugin 'vim-scripts/blockle.vim'        " toggle ruby block styles with <L>rtb
 Plugin 'vim-scripts/c.vim'              " C completions
 Plugin 'vim-scripts/matchit.zip'        " goto matching delimiter with %
-Plugin 'vim-scripts/tComment'           " ctr+// and ctrl+/p to comment line / block
+Plugin 'vim-scripts/noerrmsg.vim'       " hide insert mode error messages
+Plugin 'vim-scripts/tComment'           " line: ctrl+//  block: ctrl+/p
 Plugin 'vitorgalvao/autoswap_mac'       " auto-respond to swap file message
 Plugin 'wesQ3/vim-windowswap'           " move panes around with <Leader>ww
 Plugin 'xolox/vim-easytags'             " continuously updated tags
