@@ -58,6 +58,7 @@
     aa       = add --all
     ap       = add --patch
     b        = branch -vv
+    bn       = checkout -b
     bd       = branch -d
     c        = commit
     ca       = commit --amend
