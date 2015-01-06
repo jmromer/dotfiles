@@ -12,7 +12,6 @@ Plugin 'Raimondi/delimitMate'           " auto insert closing delimiters
 Plugin 'SirVer/ultisnips'               " snippets engine, integrates with YCM
 Plugin 'Valloric/YouCompleteMe'         " syntax completion
 Plugin 'airblade/vim-gitgutter'         " git diff in the gutter
-Plugin 'bitc/vim-bad-whitespace'        " detect and highlight bad whitespace
 Plugin 'bling/vim-airline'              " lightweight powerline
 Plugin 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
 Plugin 'christoomey/vim-tmux-runner'    " send commands to tmxu pane
@@ -35,6 +34,7 @@ Plugin 'majutsushi/tagbar'              " navigate a list of methods / classes
 Plugin 'marijnh/tern_for_vim'           " JS method jumping (like ctags)
 Plugin 'moll/vim-node'                  " Node support
 Plugin 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
+Plugin 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plugin 'pbrisbin/vim-mkdir'             " create subdirectories as needed
 Plugin 'rking/ag.vim'                   " Ag conveniences
 Plugin 'sandeepcr529/Buffet.vim'        " user-friendly buffer list
