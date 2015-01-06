@@ -40,7 +40,7 @@ nnoremap <silent><leader>b :Bufferlist<CR>
 " toggle Gundo
 nnoremap <silent><leader>u :GundoToggle<CR>
 " kill trailing whitespace
-nnoremap <silent><Leader>kw :EraseBadWhitespace<CR>
+nnoremap <silent><Leader>kw :StripWhitespace<CR>
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
 " Open ctag in a vertical split
