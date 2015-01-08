@@ -8,9 +8,9 @@ let g:syntastic_stl_format = '[%E{%e errors: %fe}%B{ }%W{%w warnings: %fw}]'
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " jump to first issue detected, but only if it's an error
-let g:syntastic_auto_jump=2
+let g:syntastic_auto_jump=0
 " don't perform checks when :wq :x or :ZZ are issued
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq=0
 
 
 let g:syntastic_javascript_checkers = ['jslint']
