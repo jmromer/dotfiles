@@ -46,7 +46,9 @@ nnoremap <silent><C-e> :Explore<CR>
 " Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Engage Git
-nnoremap <Leader>g :Git<space>
+nnoremap <Leader>gg :Git<space>
+nnoremap <silent><Leader>ga :Git add %<CR>
+nnoremap <silent><Leader>gc :Gcommit<CR>
 
 " Session Management
 " ------------------
