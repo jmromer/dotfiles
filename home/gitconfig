@@ -1,3 +1,10 @@
+[user]
+    name  = "Jake Romer"
+    email = jkrmr@users.noreply.github.com
+
+[github]
+  user = jkrmr
+
 [include]
     path = ~/.gitconfig.local
 
@@ -87,6 +94,7 @@
     po       = push origin
     pu       = push -u
     pr       = !gh pull-request
+    prb      = !sh -c 'git browse pull/$1'
     pom      = push origin master
     psm      = push staging master
     ppm      = push production master
