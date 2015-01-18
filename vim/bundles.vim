@@ -39,7 +39,6 @@ Plugin 'pbrisbin/vim-mkdir'             " create subdirectories as needed
 Plugin 'rking/ag.vim'                   " Ag conveniences
 Plugin 'sandeepcr529/Buffet.vim'        " user-friendly buffer list
 Plugin 'scrooloose/syntastic'           " hook into syntax style checkers
-Plugin 'sickill/vim-pasta'              " context-aware pasting
 Plugin 'sjl/gundo.vim'                  " graphical undo tree
 Plugin 'tpope/vim-bundler'              " Bundler commands
 Plugin 'tpope/vim-endwise'              " add 'end' in ruby et al
