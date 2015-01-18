@@ -16,6 +16,9 @@ let g:syntastic_check_on_wq=0
 let g:syntastic_javascript_checkers = ['jslint']
 let g:syntastic_javascript_jslint_args = ""
 
+let g:syntastic_coffee_checkers = ['coffeelint']
+let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
+
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_ruby_rubocop_args = ""
+let g:syntastic_coffee_coffeelint_args = ""
 
