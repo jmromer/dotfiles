@@ -4,10 +4,9 @@ let g:session_default_overwrite = 1
 let g:session_autosave = 'no'
 
 " netrw: file explorer
-let g:netrw_liststyle=3  " thin (change to 3 for tree)
-let g:netrw_banner=1     " no banner
-let g:netrw_altv=1       " open files on right
-let g:netrw_preview=1    " open previews vertically
+let g:netrw_liststyle = 3   " 1 thin, 3 tree
+let g:netrw_preview   = 1   " open previews in vertical split (p)
+let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
 
 " Fixes clang 'pattern not found' messages
 let g:clang_user_options='|| exit 0'
