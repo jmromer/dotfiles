@@ -1,5 +1,6 @@
+set numberwidth=1
 set relativenumber
-set numberwidth=4
+set number
 
 " Toggle relative and absolute numbering
 function! NumberToggle()
