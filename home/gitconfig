@@ -67,6 +67,8 @@
     b        = branch -vv
     bn       = checkout -b
     bd       = branch -d
+    br       = browse
+    bpr      = !sh -c 'git browse pull/$1'
     c        = commit
     ca       = commit --amend
     cm       = !sh -c 'git commit -m \"$*\"' -
@@ -94,7 +96,6 @@
     po       = push origin
     pu       = push -u
     pr       = !gh pull-request
-    prb      = !sh -c 'git browse pull/$1'
     pom      = push origin master
     psm      = push staging master
     ppm      = push production master
@@ -106,6 +107,7 @@
     s        = stash
     sa       = !sh -c 'git stash apply stash@{$1}' -
     sd       = !sh -c 'git stash drop stash@{$1}' -
+    ss       = !sh -c 'git stash show stash@{$1}' -
     su       = stash --include-untracked
     sl       = stash list
     sp       = stash pop
