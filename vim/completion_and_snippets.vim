@@ -1,5 +1,6 @@
 " YouCompleteMe: use system python
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" YCM and Vim must be built against the same version of python
 
 " YouCompleteMe: fallback path to global ycm conf
 let g:ycm_global_ycm_extra_conf = '~'
