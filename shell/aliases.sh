@@ -5,7 +5,7 @@
 #-------------------------------------------------------------
 alias dot='vim -c "OpenSession dotfiles" -c "cd %:p:h"'
 alias vi='mvim'
-alias vundle='vim +PluginInstall +PluginClean +qall'
+alias vimplug='vim +PlugUpdate +PlugClean! +qall'
 alias e=vim
 alias e.='vim .'
 

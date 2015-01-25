@@ -1,68 +1,59 @@
-if &compatible
-  set nocompatible
-end
+call plug#begin('~/.vim/bundle')
 
-filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+Plug 'Konfekt/FastFold'               " optimized folding for large projects
+Plug 'Lokaltog/vim-easymotion'        " jump without numbers
+Plug 'Raimondi/delimitMate'           " auto insert closing delimiters
+Plug 'SirVer/ultisnips'               " snippets engine, integrates with YCM
+Plug 'Valloric/YouCompleteMe'         " syntax completion
+Plug 'airblade/vim-gitgutter'         " git diff in the gutter
+Plug 'bling/vim-airline'              " lightweight powerline
+Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
+Plug 'christoomey/vim-tmux-runner'    " send commands to tmxu pane
+Plug 'ciaranm/detectindent'           " detect indentation level
+Plug 'ecomba/vim-ruby-refactoring'    " keybindings for refactoring
+Plug 'ervandew/supertab'              " context-aware tab-completion
+Plug 'gavinbeatty/dragvisuals.vim'    " move visual blocks / lines around
+Plug 'godlygeek/tabular'              " align on a given regex (e.g., =)
+Plug 'honza/vim-snippets'             " textmate-style code snippets
+Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
+Plug 'jelera/vim-javascript-syntax'   " JavaScript Syntax definitions
+Plug 'jgdavey/tslime.vim'             " send specs to a designated tmux pane
+Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
+Plug 'kana/vim-textobj-user'          " custom text objects
+Plug 'kchmck/vim-coffee-script'       " CoffeeScript syntax defintions
+Plug 'kien/ctrlp.vim'                 " Rapid file finding
+Plug 'lervag/vim-latex'               " LaTeX support
+Plug 'majutsushi/tagbar'              " navigate a list of methods / classes
+Plug 'marijnh/tern_for_vim'           " JS method jumping (like ctags)
+Plug 'moll/vim-node'                  " Node support
+Plug 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
+Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
+Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
+Plug 'rking/ag.vim'                   " Ag conveniences
+Plug 'sandeepcr529/Buffet.vim'        " user-friendly buffer list
+Plug 'scrooloose/syntastic'           " hook into syntax style checkers
+Plug 'sjl/gundo.vim'                  " graphical undo tree
+Plug 'tpope/vim-bundler'              " Bundler commands
+Plug 'tpope/vim-endwise'              " add 'end' in ruby et al
+Plug 'tpope/vim-eunuch'               " Unix commands in vim
+Plug 'tpope/vim-fugitive'             " side-by-side git blame with :Gblame
+Plug 'tpope/vim-haml'                 " Haml support
+Plug 'tpope/vim-rails'                " Rails support
+Plug 'tpope/vim-repeat'               " repeat last mapped command with `.`
+Plug 'tpope/vim-surround'             " surround text block with delimiters
+Plug 'tpope/vim-unimpaired'           " useful complementary mappings
+Plug 'tpope/vim-vinegar'              " enhancements to netrw
+Plug 'vim-ruby/vim-ruby'              " Ruby support
+Plug 'vim-scripts/YankRing.vim'       " maintain yank/del history
+Plug 'vim-scripts/blockle.vim'        " toggle ruby block styles with <L>rtb
+Plug 'vim-scripts/c.vim'              " C completions
+Plug 'vim-scripts/matchit.zip'        " goto matching delimiter with %
+Plug 'vim-scripts/noerrmsg.vim'       " hide insert mode error messages
+Plug 'vim-scripts/tComment'           " line: ctrl+//  block: ctrl+/p
+Plug 'vitorgalvao/autoswap_mac'       " auto-respond to swap file message
+Plug 'wesQ3/vim-windowswap'           " move panes around with <Leader>ww
+Plug 'xolox/vim-easytags'             " continuously updated tags
+Plug 'xolox/vim-misc'                 " vim plugin utility library
+Plug 'xolox/vim-session'              " session management
 
-Plugin 'Konfekt/FastFold'               " optimized folding for large projects
-Plugin 'Lokaltog/vim-easymotion'        " jump without numbers
-Plugin 'Raimondi/delimitMate'           " auto insert closing delimiters
-Plugin 'SirVer/ultisnips'               " snippets engine, integrates with YCM
-Plugin 'Valloric/YouCompleteMe'         " syntax completion
-Plugin 'airblade/vim-gitgutter'         " git diff in the gutter
-Plugin 'bling/vim-airline'              " lightweight powerline
-Plugin 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
-Plugin 'christoomey/vim-tmux-runner'    " send commands to tmxu pane
-Plugin 'ciaranm/detectindent'           " detect indentation level
-Plugin 'ecomba/vim-ruby-refactoring'    " keybindings for refactoring
-Plugin 'ervandew/supertab'              " context-aware tab-completion
-Plugin 'gavinbeatty/dragvisuals.vim'    " move visual blocks / lines around
-Plugin 'gmarik/Vundle.vim'              " Let Vundler manage Vundle
-Plugin 'godlygeek/tabular'              " align on a given regex (e.g., =)
-Plugin 'honza/vim-snippets'             " textmate-style code snippets
-Plugin 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
-Plugin 'jelera/vim-javascript-syntax'   " JavaScript Syntax definitions
-Plugin 'jgdavey/tslime.vim'             " send specs to a designated tmux pane
-Plugin 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
-Plugin 'kana/vim-textobj-user'          " custom text objects
-Plugin 'kchmck/vim-coffee-script'       " CoffeeScript syntax defintions
-Plugin 'kien/ctrlp.vim'                 " Rapid file finding
-Plugin 'lervag/vim-latex'               " LaTeX support
-Plugin 'majutsushi/tagbar'              " navigate a list of methods / classes
-Plugin 'marijnh/tern_for_vim'           " JS method jumping (like ctags)
-Plugin 'moll/vim-node'                  " Node support
-Plugin 'nelstrom/vim-textobj-rubyblock' " ruby block text objects
-Plugin 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
-Plugin 'pbrisbin/vim-mkdir'             " create subdirectories as needed
-Plugin 'rking/ag.vim'                   " Ag conveniences
-Plugin 'sandeepcr529/Buffet.vim'        " user-friendly buffer list
-Plugin 'scrooloose/syntastic'           " hook into syntax style checkers
-Plugin 'sjl/gundo.vim'                  " graphical undo tree
-Plugin 'tpope/vim-bundler'              " Bundler commands
-Plugin 'tpope/vim-endwise'              " add 'end' in ruby et al
-Plugin 'tpope/vim-eunuch'               " Unix commands in vim
-Plugin 'tpope/vim-fugitive'             " side-by-side git blame with :Gblame
-Plugin 'tpope/vim-haml'                 " Haml support
-Plugin 'tpope/vim-rails'                " Rails support
-Plugin 'tpope/vim-repeat'               " repeat last mapped command with `.`
-Plugin 'tpope/vim-surround'             " surround text block with delimiters
-Plugin 'tpope/vim-unimpaired'           " useful complementary mappings
-Plugin 'tpope/vim-vinegar'              " enhancements to netrw
-Plugin 'vim-ruby/vim-ruby'              " Ruby support
-Plugin 'vim-scripts/YankRing.vim'       " maintain yank/del history
-Plugin 'vim-scripts/blockle.vim'        " toggle ruby block styles with <L>rtb
-Plugin 'vim-scripts/c.vim'              " C completions
-Plugin 'vim-scripts/matchit.zip'        " goto matching delimiter with %
-Plugin 'vim-scripts/noerrmsg.vim'       " hide insert mode error messages
-Plugin 'vim-scripts/tComment'           " line: ctrl+//  block: ctrl+/p
-Plugin 'vitorgalvao/autoswap_mac'       " auto-respond to swap file message
-Plugin 'wesQ3/vim-windowswap'           " move panes around with <Leader>ww
-Plugin 'xolox/vim-easytags'             " continuously updated tags
-Plugin 'xolox/vim-misc'                 " vim plugin utility library
-Plugin 'xolox/vim-session'              " session management
-
-call vundle#end()
-filetype on
-
+call plug#end()
