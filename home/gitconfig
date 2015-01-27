@@ -68,7 +68,7 @@
     bn       = checkout -b
     bd       = branch -d
     br       = browse
-    bpr      = !sh -c 'git browse pull/$1'
+    bpr      = !sh -c 'gh browse pull/$1' -
     c        = commit
     ca       = commit --amend
     cm       = !sh -c 'git commit -m \"$*\"' -
