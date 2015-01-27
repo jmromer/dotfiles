@@ -13,8 +13,9 @@ let g:syntastic_auto_jump=0
 let g:syntastic_check_on_wq=0
 
 
-let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_jslint_args = ""
+let g:syntastic_javascript_jshint_args = ""
 
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
