@@ -1,19 +1,10 @@
+" ----------------- Base Settings ------------------------
+set nocompatible        " use vim, not vi, settings.
+filetype plugin indent on
+
+" -------------- Extended Settings -----------------------
 set runtimepath+=~/.dotfiles/vim
 runtime vimrc.vim
-
-let g:solarized_termcolors=16
-set background=dark
-colorscheme solarized  " Twilight
-
-" ------------- Theme Development -----------------------
-" Show syntax highlighting groups for word under cursor
-" nmap <Leader>p :call <SID>SynStack()<CR>
-" function! <SID>SynStack()
-"   if !exists("*synstack")
-"     return
-"   endif
-"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-" endfunc
 
 " ---------------- Probationary --------------------------
 

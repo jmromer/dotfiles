@@ -1,10 +1,6 @@
-" ----------------- Base Settings ------------------------
-set nocompatible        " use vim, not vi, settings.
-set t_Co=256            " 256 color terminal
-filetype plugin indent on
-syntax on
-
 " --------------- Settings by Context ---------------------
+runtime color_scheme.vim
+
 runtime bundles.vim
 runtime general.vim
 runtime plugins.vim
