@@ -19,8 +19,8 @@ let g:ctrlp_by_filename = 1
 " Search by Regexp as default
 let g:ctrlp_regexp = 0
 
-" Display CtrlP buffer at the top of the screen
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
+" CtrlP display preferences
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 
 " For already-opened files
 " jump when <cr> is pressed, but only to windows in the current tab.
