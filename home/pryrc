@@ -1,6 +1,6 @@
 # Railscasts theme, vim for editing
-Pry.config.theme  = "railscasts"
-Pry.config.editor = "vim"
+Pry.config.theme  = 'solarized'
+Pry.config.editor = 'vim'
 
 # Return only the methods not present on basic objects
 # alternatively, use `ls #{Class} -m`
@@ -54,8 +54,8 @@ unless defined?(Rails) && Rails.env
     require 'hirb'            # Use Hirb for tabular output
   rescue LoadError
     puts 'jazz_hands is not installed.',
-        "Install by adding gem 'jazz_hands', github: 'jkrmr/jazz_hands' to your Gemfile",
-        "or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`"
+        'Install by adding gem "jazz_hands", github: "jkrmr/jazz_hands" to your Gemfile',
+        'or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`'
   end
 end
 
