@@ -1,6 +1,9 @@
 set runtimepath+=~/.dotfiles/vim
 runtime vimrc.vim
-colorscheme Twilight
+
+let g:solarized_termcolors=16
+set background=dark
+colorscheme solarized  " Twilight
 
 " ------------- Theme Development -----------------------
 " Show syntax highlighting groups for word under cursor
