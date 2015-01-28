@@ -9,7 +9,7 @@
 " ---------------------------------------------------------------------
 " ABOUT:
 " ---------------------------------------------------------------------
-" Solarized is a carefully designed selective contrast colorscheme with dual 
+" Solarized is a carefully designed selective contrast colorscheme with dual
 " light and dark modes that runs in both GUI, 256 and 16 color modes.
 "
 " See the homepage above for screenshots and details.
@@ -19,16 +19,16 @@
 " ---------------------------------------------------------------------
 "
 " Two options for installation: manual or pathogen
-" 
+"
 " MANUAL INSTALLATION OPTION:
 " ---------------------------------------------------------------------
-" 
+"
 " 1.  Put the files in the right place!
 " 2.  Move `solarized.vim` to your `.vim/colors` directory.
-" 
+"
 " RECOMMENDED PATHOGEN INSTALLATION OPTION:
 " ---------------------------------------------------------------------
-" 
+"
 " 1.  Download and install Tim Pope's Pathogen from:
 "     https://github.com/tpope/vim-pathogen
 "
@@ -42,25 +42,25 @@
 "
 "     b. **or move manually into the pathogen bundle directory:**
 "         In the parent directory of vim-colors-solarized:
-"         
+"
 "         $ mv vim-colors-solarized ~/.vim/bundle/
-" 
+"
 " MODIFY VIMRC:
-" 
-" After either Option 1 or Option 2 above, put the following two lines in your 
+"
+" After either Option 1 or Option 2 above, put the following two lines in your
 " .vimrc:
-" 
+"
 "     set background=dark
 "     colorscheme solarized
-" 
+"
 " or, for the light background mode of Solarized:
-" 
+"
 "     set background=light
 "     colorscheme solarized
-" 
-" I like to have a different background in GUI and terminal modes, so I can use 
-" the following if-then. However, I find vim's background autodetection to be 
-" pretty good and, at least with MacVim, I can leave this background value 
+"
+" I like to have a different background in GUI and terminal modes, so I can use
+" the following if-then. However, I find vim's background autodetection to be
+" pretty good and, at least with MacVim, I can leave this background value
 " assignment out entirely and get the same results.
 "
 "     if has('gui_running')
@@ -68,35 +68,35 @@
 "     else
 "       set background=dark
 "     endif
-" 
-" See the Solarized homepage at http://ethanschoonover.com/solarized for 
+"
+" See the Solarized homepage at http://ethanschoonover.com/solarized for
 " screenshots which will help you select either the light or dark background.
 "
 " Other options are detailed below.
 "
 " IMPORTANT NOTE FOR TERMINAL USERS:
 "
-" If you are going to use Solarized in Terminal mode (i.e. not in a GUI 
-" version like gvim or macvim), **please please please** consider setting your 
-" terminal emulator's colorscheme to used the Solarized palette. I've included 
-" palettes for some popular terminal emulator as well as Xdefaults in the 
+" If you are going to use Solarized in Terminal mode (i.e. not in a GUI
+" version like gvim or macvim), **please please please** consider setting your
+" terminal emulator's colorscheme to used the Solarized palette. I've included
+" palettes for some popular terminal emulator as well as Xdefaults in the
 " official Solarized download available from:
-" 
+"
 " http://ethanschoonover.com/solarized
-" 
-" If you use Solarized without these colors, Solarized will by default use an 
-" approximate set of 256 colors.  It isn't bad looking and has been extensively 
+"
+" If you use Solarized without these colors, Solarized will by default use an
+" approximate set of 256 colors.  It isn't bad looking and has been extensively
 " tweaked, but it's still not quite the real thing.
-" 
-" If you do use the custom terminal colors, simply add the following line 
+"
+" If you do use the custom terminal colors, simply add the following line
 " *before* the `colorschem solarized` line:
-" 
+"
 "     let g:solarized_termcolors=16
-" 
+"
 " ---------------------------------------------------------------------
 " TOGGLE BACKGROUND FUNCTION
 " ---------------------------------------------------------------------
-" Here's a quick script that toggles the background color, using F5 in this 
+" Here's a quick script that toggles the background color, using F5 in this
 " example. You can drop this into .vimrc:
 "
 " function! ToggleBackground()
@@ -116,7 +116,7 @@
 " ---------------------------------------------------------------------
 " OPTIONS
 " ---------------------------------------------------------------------
-" 
+"
 " Set these in your vimrc file prior to calling the colorscheme.
 "
 " option name               default     optional
@@ -137,33 +137,33 @@
 " g:solarized_termcolors=   256     |   16
 " ------------------------------------------------
 " The most important option if you are using vim in terminal (non gui) mode!
-" This tells Solarized to use the 256 degraded color mode if running in a 256 
-" color capable terminal.  Otherwise, if set to `16` it will use the terminal 
-" emulators colorscheme (best option as long as you've set the emulators colors 
+" This tells Solarized to use the 256 degraded color mode if running in a 256
+" color capable terminal.  Otherwise, if set to `16` it will use the terminal
+" emulators colorscheme (best option as long as you've set the emulators colors
 " to the Solarized palette).
 "
-" If you are going to use Solarized in Terminal mode (i.e. not in a GUI 
-" version like gvim or macvim), **please please please** consider setting your 
-" terminal emulator's colorscheme to used the Solarized palette. I've included 
-" palettes for some popular terminal emulator as well as Xdefaults in the 
-" official Solarized download available from: 
-" http://ethanschoonover.com/solarized . If you use Solarized without these 
-" colors, Solarized will by default use an approximate set of 256 colors.  It 
-" isn't bad looking and has been extensively tweaked, but it's still not quite 
+" If you are going to use Solarized in Terminal mode (i.e. not in a GUI
+" version like gvim or macvim), **please please please** consider setting your
+" terminal emulator's colorscheme to used the Solarized palette. I've included
+" palettes for some popular terminal emulator as well as Xdefaults in the
+" official Solarized download available from:
+" http://ethanschoonover.com/solarized . If you use Solarized without these
+" colors, Solarized will by default use an approximate set of 256 colors.  It
+" isn't bad looking and has been extensively tweaked, but it's still not quite
 " the real thing.
 "
 " ------------------------------------------------
 " g:solarized_termtrans =   0       |   1
 " ------------------------------------------------
-" If you use a terminal emulator with a transparent background and Solarized 
-" isn't displaying the background color transparently, set this to 1 and 
-" Solarized will use the default (transparent) background of the terminal 
+" If you use a terminal emulator with a transparent background and Solarized
+" isn't displaying the background color transparently, set this to 1 and
+" Solarized will use the default (transparent) background of the terminal
 " emulator. *urxvt* required this in my testing; Terminal.app/iTerm2 did not.
 "
 " ------------------------------------------------
 " g:solarized_degrade   =   0       |   1
 " ------------------------------------------------
-" For test purposes only; forces Solarized to use the 256 degraded color mode 
+" For test purposes only; forces Solarized to use the 256 degraded color mode
 " to test the approximate color values for accuracy.
 "
 " ------------------------------------------------
@@ -175,24 +175,24 @@
 " ------------------------------------------------
 " g:solarized_italic    =   1       |   0
 " ------------------------------------------------
-" If you wish to stop Solarized from displaying bold, underlined or 
-" italicized typefaces, simply assign a zero value to the appropriate 
+" If you wish to stop Solarized from displaying bold, underlined or
+" italicized typefaces, simply assign a zero value to the appropriate
 " variable, for example: `let g:solarized_italic=0`
 "
 " ------------------------------------------------
 " g:solarized_style     =   "dark"  |   "light"
 " ------------------------------------------------
-" Simply another way to force Solarized to use a dark or light background.  
-" It's better to use `set background=dark` or `set background=light` in your 
-" .vimrc file. This option is mostly used in scripts (quick background color 
-" change) or for testing. Note that, if set, g:solarized_style overrides the 
+" Simply another way to force Solarized to use a dark or light background.
+" It's better to use `set background=dark` or `set background=light` in your
+" .vimrc file. This option is mostly used in scripts (quick background color
+" change) or for testing. Note that, if set, g:solarized_style overrides the
 " setting for "background".
 "
 " ------------------------------------------------
 " g:solarized_contrast  =   "normal"|   "high" or "low"
 " ------------------------------------------------
-" Stick with normal! It's been carefully tested. Setting this option to high 
-" or low does use the same Solarized palette but simply shifts some values up 
+" Stick with normal! It's been carefully tested. Setting this option to high
+" or low does use the same Solarized palette but simply shifts some values up
 " or down in order to expand or compress the tonal range displayed.
 "
 " ---------------------------------------------------------------------
@@ -246,17 +246,17 @@ endif
 if !exists("g:solarized_degrade")
     let w:solarized_degrade = 0
 else
-    let w:solarized_degrade = g:solarized_degrade 
+    let w:solarized_degrade = g:solarized_degrade
 endif
 if !exists("g:solarized_bold")
     let w:solarized_bold = 1
 else
-    let w:solarized_bold = g:solarized_bold 
+    let w:solarized_bold = g:solarized_bold
 endif
 if !exists("g:solarized_underline")
     let w:solarized_underline = 1
 else
-    let w:solarized_underline = g:solarized_underline 
+    let w:solarized_underline = g:solarized_underline
 endif
 if !exists("g:solarized_italic")
     let w:solarized_italic = 1
@@ -266,18 +266,18 @@ endif
 if !exists("g:solarized_termcolors")
     let w:solarized_termcolors = 256
 else
-    let w:solarized_termcolors = g:solarized_termcolors 
+    let w:solarized_termcolors = g:solarized_termcolors
 endif
 if !exists("w:solarized_style") && !exists("g:solarized_style")
     let w:solarized_style = &background
 elseif exists("g:solarized_style")
-    let w:solarized_style = g:solarized_style 
+    let w:solarized_style = g:solarized_style
 " else we have an existing w:solarized_style
 endif
 if !exists("g:solarized_contrast")
     let w:solarized_contrast = "normal"
 else
-    let w:solarized_contrast = g:solarized_contrast 
+    let w:solarized_contrast = g:solarized_contrast
 endif
 "}}}
 " Colorscheme basic settings"{{{
@@ -330,8 +330,8 @@ if has("gui_running") && w:solarized_degrade == 0
     let s:g_cyan        = "#2aa198"
     let s:g_green       = "#859900"
 else
-    " these colors are for non-gui vim when CSApprox is installed. CSApprox 
-    " degrades the base colors poorly (bright blues instead of muted gray 
+    " these colors are for non-gui vim when CSApprox is installed. CSApprox
+    " degrades the base colors poorly (bright blues instead of muted gray
     " blues) so we set all hex values here to ones which CSApprox will not
     " change and which we approve of. Perhaps I should just can the hex values
     " and use just the color table values, leaving these blank. Not much
@@ -500,7 +500,7 @@ endif
 " Overrides dependent on user specified values"{{{
 " ---------------------------------------------------------------------
 if w:solarized_termtrans == 1
-    let s:c_back        = "NONE"   
+    let s:c_back        = "NONE"
 endif
 
 if w:solarized_bold == 1
@@ -524,62 +524,62 @@ endif
 " Highlighting primitives"{{{
 " ---------------------------------------------------------------------
 
-exe "let s:bg_none      = ' ctermbg=".s:c_none   ." guibg=".s:g_none   ."'" 
-exe "let s:bg_back      = ' ctermbg=".s:c_back   ." guibg=".s:g_back   ."'" 
-exe "let s:bg_base03    = ' ctermbg=".s:c_base03 ." guibg=".s:g_base03 ."'" 
-exe "let s:bg_base02    = ' ctermbg=".s:c_base02 ." guibg=".s:g_base02 ."'" 
-exe "let s:bg_base01    = ' ctermbg=".s:c_base01 ." guibg=".s:g_base01 ."'" 
-exe "let s:bg_base00    = ' ctermbg=".s:c_base00 ." guibg=".s:g_base00 ."'" 
-exe "let s:bg_base0     = ' ctermbg=".s:c_base0  ." guibg=".s:g_base0  ."'" 
-exe "let s:bg_base1     = ' ctermbg=".s:c_base1  ." guibg=".s:g_base1  ."'" 
-exe "let s:bg_base2     = ' ctermbg=".s:c_base2  ." guibg=".s:g_base2  ."'" 
-exe "let s:bg_base3     = ' ctermbg=".s:c_base3  ." guibg=".s:g_base3  ."'" 
-exe "let s:bg_green     = ' ctermbg=".s:c_green  ." guibg=".s:g_green  ."'" 
-exe "let s:bg_yellow    = ' ctermbg=".s:c_yellow ." guibg=".s:g_yellow ."'" 
-exe "let s:bg_orange    = ' ctermbg=".s:c_orange ." guibg=".s:g_orange ."'" 
-exe "let s:bg_red       = ' ctermbg=".s:c_red    ." guibg=".s:g_red    ."'" 
-exe "let s:bg_magenta   = ' ctermbg=".s:c_magenta." guibg=".s:g_magenta."'" 
-exe "let s:bg_violet    = ' ctermbg=".s:c_violet ." guibg=".s:g_violet ."'" 
-exe "let s:bg_blue      = ' ctermbg=".s:c_blue   ." guibg=".s:g_blue   ."'" 
-exe "let s:bg_cyan      = ' ctermbg=".s:c_cyan   ." guibg=".s:g_cyan   ."'" 
+exe "let s:bg_none      = ' ctermbg=".s:c_none   ." guibg=".s:g_none   ."'"
+exe "let s:bg_back      = ' ctermbg=".s:c_back   ." guibg=".s:g_back   ."'"
+exe "let s:bg_base03    = ' ctermbg=".s:c_base03 ." guibg=".s:g_base03 ."'"
+exe "let s:bg_base02    = ' ctermbg=".s:c_base02 ." guibg=".s:g_base02 ."'"
+exe "let s:bg_base01    = ' ctermbg=".s:c_base01 ." guibg=".s:g_base01 ."'"
+exe "let s:bg_base00    = ' ctermbg=".s:c_base00 ." guibg=".s:g_base00 ."'"
+exe "let s:bg_base0     = ' ctermbg=".s:c_base0  ." guibg=".s:g_base0  ."'"
+exe "let s:bg_base1     = ' ctermbg=".s:c_base1  ." guibg=".s:g_base1  ."'"
+exe "let s:bg_base2     = ' ctermbg=".s:c_base2  ." guibg=".s:g_base2  ."'"
+exe "let s:bg_base3     = ' ctermbg=".s:c_base3  ." guibg=".s:g_base3  ."'"
+exe "let s:bg_green     = ' ctermbg=".s:c_green  ." guibg=".s:g_green  ."'"
+exe "let s:bg_yellow    = ' ctermbg=".s:c_yellow ." guibg=".s:g_yellow ."'"
+exe "let s:bg_orange    = ' ctermbg=".s:c_orange ." guibg=".s:g_orange ."'"
+exe "let s:bg_red       = ' ctermbg=".s:c_red    ." guibg=".s:g_red    ."'"
+exe "let s:bg_magenta   = ' ctermbg=".s:c_magenta." guibg=".s:g_magenta."'"
+exe "let s:bg_violet    = ' ctermbg=".s:c_violet ." guibg=".s:g_violet ."'"
+exe "let s:bg_blue      = ' ctermbg=".s:c_blue   ." guibg=".s:g_blue   ."'"
+exe "let s:bg_cyan      = ' ctermbg=".s:c_cyan   ." guibg=".s:g_cyan   ."'"
 
-exe "let s:fg_none      = ' ctermfg=".s:c_none   ." guifg=".s:g_none   ."'" 
-exe "let s:fg_back      = ' ctermfg=".s:c_back   ." guifg=".s:g_back   ."'" 
-exe "let s:fg_base03    = ' ctermfg=".s:c_base03 ." guifg=".s:g_base03 ."'" 
-exe "let s:fg_base02    = ' ctermfg=".s:c_base02 ." guifg=".s:g_base02 ."'" 
-exe "let s:fg_base01    = ' ctermfg=".s:c_base01 ." guifg=".s:g_base01 ."'" 
-exe "let s:fg_base00    = ' ctermfg=".s:c_base00 ." guifg=".s:g_base00 ."'" 
-exe "let s:fg_base0     = ' ctermfg=".s:c_base0  ." guifg=".s:g_base0  ."'" 
-exe "let s:fg_base1     = ' ctermfg=".s:c_base1  ." guifg=".s:g_base1  ."'" 
-exe "let s:fg_base2     = ' ctermfg=".s:c_base2  ." guifg=".s:g_base2  ."'" 
-exe "let s:fg_base3     = ' ctermfg=".s:c_base3  ." guifg=".s:g_base3  ."'" 
-exe "let s:fg_green     = ' ctermfg=".s:c_green  ." guifg=".s:g_green  ."'" 
-exe "let s:fg_yellow    = ' ctermfg=".s:c_yellow ." guifg=".s:g_yellow ."'" 
-exe "let s:fg_orange    = ' ctermfg=".s:c_orange ." guifg=".s:g_orange ."'" 
-exe "let s:fg_red       = ' ctermfg=".s:c_red    ." guifg=".s:g_red    ."'" 
-exe "let s:fg_magenta   = ' ctermfg=".s:c_magenta." guifg=".s:g_magenta."'" 
-exe "let s:fg_violet    = ' ctermfg=".s:c_violet ." guifg=".s:g_violet ."'" 
-exe "let s:fg_blue      = ' ctermfg=".s:c_blue   ." guifg=".s:g_blue   ."'" 
-exe "let s:fg_cyan      = ' ctermfg=".s:c_cyan   ." guifg=".s:g_cyan   ."'" 
+exe "let s:fg_none      = ' ctermfg=".s:c_none   ." guifg=".s:g_none   ."'"
+exe "let s:fg_back      = ' ctermfg=".s:c_back   ." guifg=".s:g_back   ."'"
+exe "let s:fg_base03    = ' ctermfg=".s:c_base03 ." guifg=".s:g_base03 ."'"
+exe "let s:fg_base02    = ' ctermfg=".s:c_base02 ." guifg=".s:g_base02 ."'"
+exe "let s:fg_base01    = ' ctermfg=".s:c_base01 ." guifg=".s:g_base01 ."'"
+exe "let s:fg_base00    = ' ctermfg=".s:c_base00 ." guifg=".s:g_base00 ."'"
+exe "let s:fg_base0     = ' ctermfg=".s:c_base0  ." guifg=".s:g_base0  ."'"
+exe "let s:fg_base1     = ' ctermfg=".s:c_base1  ." guifg=".s:g_base1  ."'"
+exe "let s:fg_base2     = ' ctermfg=".s:c_base2  ." guifg=".s:g_base2  ."'"
+exe "let s:fg_base3     = ' ctermfg=".s:c_base3  ." guifg=".s:g_base3  ."'"
+exe "let s:fg_green     = ' ctermfg=".s:c_green  ." guifg=".s:g_green  ."'"
+exe "let s:fg_yellow    = ' ctermfg=".s:c_yellow ." guifg=".s:g_yellow ."'"
+exe "let s:fg_orange    = ' ctermfg=".s:c_orange ." guifg=".s:g_orange ."'"
+exe "let s:fg_red       = ' ctermfg=".s:c_red    ." guifg=".s:g_red    ."'"
+exe "let s:fg_magenta   = ' ctermfg=".s:c_magenta." guifg=".s:g_magenta."'"
+exe "let s:fg_violet    = ' ctermfg=".s:c_violet ." guifg=".s:g_violet ."'"
+exe "let s:fg_blue      = ' ctermfg=".s:c_blue   ." guifg=".s:g_blue   ."'"
+exe "let s:fg_cyan      = ' ctermfg=".s:c_cyan   ." guifg=".s:g_cyan   ."'"
 
-exe "let s:sp_none      = ' guisp=".s:g_none   ."'" 
-exe "let s:sp_back      = ' guisp=".s:g_back   ."'" 
-exe "let s:sp_base03    = ' guisp=".s:g_base03 ."'" 
-exe "let s:sp_base02    = ' guisp=".s:g_base02 ."'" 
-exe "let s:sp_base01    = ' guisp=".s:g_base01 ."'" 
-exe "let s:sp_base00    = ' guisp=".s:g_base00 ."'" 
-exe "let s:sp_base0     = ' guisp=".s:g_base0  ."'" 
-exe "let s:sp_base1     = ' guisp=".s:g_base1  ."'" 
-exe "let s:sp_base2     = ' guisp=".s:g_base2  ."'" 
-exe "let s:sp_base3     = ' guisp=".s:g_base3  ."'" 
-exe "let s:sp_green     = ' guisp=".s:g_green  ."'" 
-exe "let s:sp_yellow    = ' guisp=".s:g_yellow ."'" 
-exe "let s:sp_orange    = ' guisp=".s:g_orange ."'" 
-exe "let s:sp_red       = ' guisp=".s:g_red    ."'" 
-exe "let s:sp_magenta   = ' guisp=".s:g_magenta."'" 
-exe "let s:sp_violet    = ' guisp=".s:g_violet ."'" 
-exe "let s:sp_blue      = ' guisp=".s:g_blue   ."'" 
-exe "let s:sp_cyan      = ' guisp=".s:g_cyan   ."'" 
+exe "let s:sp_none      = ' guisp=".s:g_none   ."'"
+exe "let s:sp_back      = ' guisp=".s:g_back   ."'"
+exe "let s:sp_base03    = ' guisp=".s:g_base03 ."'"
+exe "let s:sp_base02    = ' guisp=".s:g_base02 ."'"
+exe "let s:sp_base01    = ' guisp=".s:g_base01 ."'"
+exe "let s:sp_base00    = ' guisp=".s:g_base00 ."'"
+exe "let s:sp_base0     = ' guisp=".s:g_base0  ."'"
+exe "let s:sp_base1     = ' guisp=".s:g_base1  ."'"
+exe "let s:sp_base2     = ' guisp=".s:g_base2  ."'"
+exe "let s:sp_base3     = ' guisp=".s:g_base3  ."'"
+exe "let s:sp_green     = ' guisp=".s:g_green  ."'"
+exe "let s:sp_yellow    = ' guisp=".s:g_yellow ."'"
+exe "let s:sp_orange    = ' guisp=".s:g_orange ."'"
+exe "let s:sp_red       = ' guisp=".s:g_red    ."'"
+exe "let s:sp_magenta   = ' guisp=".s:g_magenta."'"
+exe "let s:sp_violet    = ' guisp=".s:g_violet ."'"
+exe "let s:sp_blue      = ' guisp=".s:g_blue   ."'"
+exe "let s:sp_cyan      = ' guisp=".s:g_cyan   ."'"
 
 exe "let s:fmt_none     = ' cterm=NONE".    " gui=NONE".    " term=NONE".    "'"
 exe "let s:fmt_bold     = ' cterm=NONE".s:b." gui=NONE".s:b." term=NONE".s:b."'"
@@ -666,7 +666,7 @@ exe "hi Todo"           . s:fg_magenta.s:bg_none   .s:fmt_bold
 "
 "Highlighting groups for various occasions
 "-----------------------------------------
-exe "hi SpecialKey"     . s:fg_base02 .s:bg_none   .s:fmt_none
+exe "hi SpecialKey"     . s:fg_cyan   .s:bg_none   .s:fmt_none
 exe "hi NonText"        . s:fg_base02 .s:bg_none   .s:fmt_bold
 exe "hi Directory"      . s:fg_blue   .s:bg_none   .s:fmt_none
 exe "hi ErrorMsg"       . s:fg_red    .s:bg_none   .s:fmt_revr
@@ -674,7 +674,7 @@ exe "hi IncSearch"      . s:fg_yellow .s:bg_none   .s:fmt_revr
 exe "hi Search"         . s:fg_yellow .s:bg_none   .s:fmt_stnd
 exe "hi MoreMsg"        . s:fg_blue   .s:bg_none   .s:fmt_none
 exe "hi ModeMsg"        . s:fg_blue   .s:bg_none   .s:fmt_none
-exe "hi LineNr"         . s:fg_base01 .s:bg_base02 .s:fmt_none
+exe "hi LineNr"         . s:fg_base01 .s:bg_none   .s:fmt_none
 exe "hi Question"       . s:fg_cyan   .s:bg_none   .s:fmt_bold
 exe "hi StatusLine"     . s:fg_base0  .s:bg_base02 .s:fmt_none
 exe "hi StatusLineNC"   . s:fg_base1  .s:bg_base02 .s:fmt_none
@@ -684,13 +684,13 @@ exe "hi Visual"         . s:fg_none   .s:bg_base02 .s:fmt_stnd
 exe "hi VisualNOS"      . s:fg_none   .s:bg_base02 .s:fmt_stnd
 exe "hi WarningMsg"     . s:fg_red    .s:bg_none   .s:fmt_bold
 exe "hi WildMenu"       . s:fg_base1  .s:bg_base02 .s:fmt_none
-exe "hi Folded"         . s:fg_base0  .s:bg_base02 .s:fmt_undr   .s:sp_base03
-exe "hi FoldColumn"     . s:fg_base0  .s:bg_base02 .s:fmt_bold
+exe "hi Folded"         . s:fg_cyan   .s:bg_none   .s:sp_base03 .s:fmt_ital
+exe "hi FoldColumn"     . s:fg_base0  .s:bg_none   .s:fmt_bold
 exe "hi DiffAdd"        . s:fg_green  .s:bg_none   .s:fmt_revr
 exe "hi DiffChange"     . s:fg_yellow .s:bg_none   .s:fmt_revr
 exe "hi DiffDelete"     . s:fg_red    .s:bg_none   .s:fmt_revr
 exe "hi DiffText"       . s:fg_blue   .s:bg_none   .s:fmt_revr
-exe "hi SignColumn"     . s:fg_base0  .s:bg_base02 .s:fmt_none
+exe "hi SignColumn"     . s:fg_base0  .s:bg_none   .s:fmt_none
 exe "hi Conceal"        . s:fg_blue   .s:bg_none   .s:fmt_none
 exe "hi SpellBad"       . s:fg_none   .s:bg_none   .s:fmt_curl   .s:sp_red
 exe "hi SpellCap"       . s:fg_none   .s:bg_none   .s:fmt_curl   .s:sp_violet
@@ -777,19 +777,19 @@ exe "hi rubyDefine"     . s:fg_base1  .s:bg_back   .s:fmt_bold
 "hi link rubyArrayDelimiter    Special  " [ , , ]
 "rubyCurlyBlock  { , , }
 
-"hi link rubyClass             Keyword 
-"hi link rubyModule            Keyword 
-"hi link rubyKeyword           Keyword 
+"hi link rubyClass             Keyword
+"hi link rubyModule            Keyword
+"hi link rubyKeyword           Keyword
 "hi link rubyOperator          Operator
 "hi link rubyIdentifier        Identifier
 "hi link rubyInstanceVariable  Identifier
 "hi link rubyGlobalVariable    Identifier
 "hi link rubyClassVariable     Identifier
-"hi link rubyConstant          Type  
+"hi link rubyConstant          Type
 "}}}
 " haskell syntax highlighting"{{{
 " ---------------------------------------------------------------------
-" For use with syntax/haskell.vim : Haskell Syntax File 
+" For use with syntax/haskell.vim : Haskell Syntax File
 " http://www.vim.org/scripts/script.php?script_id=3034
 " See also Steffen Siering's github repository:
 " http://github.com/urso/dotrc/blob/master/vim/syntax/haskell.vim
@@ -942,7 +942,7 @@ exe "hi pandocNonBreakingSpace"         . s:fg_red   .s:bg_none  .s:fmt_revr
 hi link pandocEscapedCharacter          pandocEscapePair
 hi link pandocLineBreak                 pandocEscapePair
 
-" Embedded Code 
+" Embedded Code
 " ---------------------------------------------------------------------
 exe "hi pandocMetadataDelim"            .s:fg_base01 .s:bg_none   .s:fmt_none
 exe "hi pandocMetadata"                 .s:fg_blue   .s:bg_none   .s:fmt_none
@@ -955,17 +955,17 @@ hi link pandocMetadataTitle             pandocMetadata
 " ---------------------------------------------------------------------
 "
 " Copyright (c) 2011 Ethan Schoonover
-" 
+"
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
 " in the Software without restriction, including without limitation the rights
 " to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 " copies of the Software, and to permit persons to whom the Software is
 " furnished to do so, subject to the following conditions:
-" 
+"
 " The above copyright notice and this permission notice shall be included in
 " all copies or substantial portions of the Software.
-" 
+"
 " THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 " IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 " FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -973,5 +973,5 @@ hi link pandocMetadataTitle             pandocMetadata
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
-" 
+"
 "}}}
