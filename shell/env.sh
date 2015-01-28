@@ -40,7 +40,8 @@ export CDPATH=".:$HOME/Desktop:$HOME/Developer:$HOME"
 export CLICOLOR=1  # BSD
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS="di=00;34:ex=00;31:ln=00;32:or=00;35:mi=90;30"  # GNU
-export TERM=xterm-256color  # Set colors to match iTerm2 Terminal Colors
+# export TERM=xterm-256color  # Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color-italic
 
 #-------------------------------------------------------------
 # RUBY OPTIMIZATIONS
@@ -67,6 +68,7 @@ export PAGER="less"
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
 export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
+
 #-------------------------------------------------------------
 # API KEYS
 #-------------------------------------------------------------
