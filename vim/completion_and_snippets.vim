@@ -15,6 +15,13 @@ let g:ycm_key_list_previous_completion = ['<C-p>']
 " YouCompleteMe: semantic completion trigger
 let g:ycm_key_invoke_completion = '<C-Space>'
 
+" YouCompleteMe: Silence spurious error messages
+" Do not display 'Pattern not found' messages during YCM completion
+try
+  set shortmess+=c
+catch /E539: Illegal character/
+endtry
+
 " UltiSnips: Trigger configuration.
 let g:UltiSnipsExpandTrigger       = '<Tab>'
 let g:UltiSnipsListSnippets        = '<C-Tab>'
