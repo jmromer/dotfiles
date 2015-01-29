@@ -15,8 +15,12 @@ let g:ycm_key_list_previous_completion = ['<C-p>']
 " YouCompleteMe: semantic completion trigger
 let g:ycm_key_invoke_completion = '<C-Space>'
 
+" YouCompleteMe: Fixes clang 'pattern not found' messages
+let g:clang_user_options='|| exit 0'
+
+
 " YouCompleteMe: Silence spurious error messages
-" Do not display 'Pattern not found' messages during YCM completion
+" Don't display 'Pattern not found' messages during YCM completion
 try
   set shortmess+=c
 catch /E539: Illegal character/
