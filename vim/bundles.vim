@@ -14,11 +14,11 @@ Plug 'ciaranm/detectindent'             " detect indentation level
 Plug 'ecomba/vim-ruby-refactoring'      " keybindings for refactoring
 Plug 'ervandew/supertab'                " context-aware tab-completion
 Plug 'gavinbeatty/dragvisuals.vim'      " move visual blocks / lines around
-Plug 'godlygeek/tabular'                " align on a given regex (e.g., =)
 Plug 'honza/vim-snippets'               " textmate-style code snippets
 Plug 'janko-m/vim-test'                 " runner for rspec, cucumber, et al.
 Plug 'jelera/vim-javascript-syntax'     " JavaScript Syntax definitions
 Plug 'jgdavey/tslime.vim'               " send specs to a designated tmux pane
+Plug 'junegunn/vim-easy-align'          " text alignment
 Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'kana/vim-textobj-user'            " custom text objects
 Plug 'kchmck/vim-coffee-script'         " CoffeeScript syntax defintions
@@ -50,6 +50,7 @@ Plug 'vim-scripts/blockle.vim'          " toggle ruby block styles with <L>rtb
 Plug 'vim-scripts/c.vim'                " C completions
 Plug 'vim-scripts/matchit.zip'          " goto matching delimiter with %
 Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
+Plug 'vim-scripts/visualrepeat'         " extends dot operator to visual mode
 Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <Leader>ww
 Plug 'xolox/vim-easytags'               " continuously updated tags
