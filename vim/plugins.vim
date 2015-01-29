@@ -20,6 +20,12 @@ vmap <expr> D        DVB_Duplicate()
 " dragvisuals.vim: Remove any trailing whitespace introduced by move
 let g:DVB_TrimWS = 1
 
+" EasyAlign: Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" EasyAlign: Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Easytags: Run asynchronously
 let g:easytags_async = 1
 
