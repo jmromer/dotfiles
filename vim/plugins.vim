@@ -54,6 +54,3 @@ let g:yankring_replace_n_nkey = '<C-n>'
 " YankRing: display yankring contents
 nnoremap <silent><Leader>y :YRShow<CR>
 
-" YouCompleteMe: Fixes clang 'pattern not found' messages
-let g:clang_user_options='|| exit 0'
-
