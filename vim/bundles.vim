@@ -34,7 +34,6 @@ Plug 'rking/ag.vim'                     " Ag conveniences
 Plug 'sandeepcr529/Buffet.vim'          " user-friendly buffer list
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
 Plug 'sjl/gundo.vim'                    " graphical undo tree
-Plug 'pearofducks/vim-quack-lightline'  " lightline theme
 Plug 'tpope/vim-bundler'                " Bundler commands
 Plug 'tpope/vim-endwise'                " add 'end' in ruby et al
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
