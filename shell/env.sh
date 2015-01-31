@@ -61,10 +61,18 @@ export RUBY_GC_MALLOC_LIMIT=60000000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
 #-------------------------------------------------------------
-# MISC ENV VARIABLES
+# EDITOR / PAGER
 #-------------------------------------------------------------
 export EDITOR="vim"
 export PAGER="less"
+
+# brew install [or sudo apt-get install] source-highlight
+export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+
+#-------------------------------------------------------------
+# MISC ENV VARIABLES
+#-------------------------------------------------------------
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
 export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
