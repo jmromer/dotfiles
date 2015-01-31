@@ -7,7 +7,6 @@ Plug 'SirVer/ultisnips'                 " snippets engine, integrates with YCM
 Plug 'Valloric/YouCompleteMe'           " syntax completion
 Plug 'airblade/vim-gitgutter'           " git diff in the gutter
 Plug 'altercation/vim-colors-solarized' " solarized colors
-Plug 'bling/vim-airline'                " lightweight powerline
 Plug 'christoomey/vim-tmux-navigator'   " navigate with awarenes of vim splits
 Plug 'christoomey/vim-tmux-runner'      " send commands to tmxu pane
 Plug 'ciaranm/detectindent'             " detect indentation level
@@ -15,6 +14,7 @@ Plug 'ecomba/vim-ruby-refactoring'      " keybindings for refactoring
 Plug 'ervandew/supertab'                " context-aware tab-completion
 Plug 'gavinbeatty/dragvisuals.vim'      " move visual blocks / lines around
 Plug 'honza/vim-snippets'               " textmate-style code snippets
+Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'janko-m/vim-test'                 " runner for rspec, cucumber, et al.
 Plug 'jelera/vim-javascript-syntax'     " JavaScript Syntax definitions
 Plug 'jgdavey/tslime.vim'               " send specs to a designated tmux pane
@@ -34,6 +34,7 @@ Plug 'rking/ag.vim'                     " Ag conveniences
 Plug 'sandeepcr529/Buffet.vim'          " user-friendly buffer list
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
 Plug 'sjl/gundo.vim'                    " graphical undo tree
+Plug 'pearofducks/vim-quack-lightline'  " lightline theme
 Plug 'tpope/vim-bundler'                " Bundler commands
 Plug 'tpope/vim-endwise'                " add 'end' in ruby et al
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
