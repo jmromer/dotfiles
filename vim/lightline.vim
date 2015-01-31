@@ -50,7 +50,11 @@ function! LLReadonly()
 endfunction
 
 function! LLFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
+  if exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? ' '._ : ''
+  endif
+  return ''
 endfunction
 
 function! LLFilename()
@@ -58,3 +62,4 @@ function! LLFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != LLModified() ? ' ' . LLModified() : '')
 endfunction
+
