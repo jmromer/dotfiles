@@ -7,8 +7,13 @@ set t_ZH=[3m
 set t_ZR=[23m
 
 " Color scheme settings
-set background=dark
-let g:solarized_termcolors=16
+if !has("gui_running")
+  set background=dark
+  let g:solarized_termcolors=16
+else
+  set background=light
+endif
+
 colorscheme solarized  " Twilight
 
 " ------------- Theme Development -----------------------
