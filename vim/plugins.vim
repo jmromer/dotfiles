@@ -1,12 +1,5 @@
 " ------------------- Plugin Settings ---------------------
 
-" Airline: General settings
-let g:airline#extensions#tabline#enabled = 1  " Smarter tab line
-let g:airline_powerline_fonts=1               " Use powerline symbols
-let g:airline#extensions#tmuxline#enabled = 0 " Don't use tmux bar
-let g:airline_theme = 'solarized'             " alt: simple
-let g:airline#extensions#hunks#enabled = 0    " show branch name, not changes
-
 " blockle.vim: Toggle ruby blocks with leader-tb
 let g:blockle_mapping = '<Leader>rtb'
 

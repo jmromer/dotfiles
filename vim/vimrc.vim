@@ -11,6 +11,7 @@ runtime line_numbering.vim
 runtime code_folding.vim
 
 runtime ctrlp.vim
+runtime lightline.vim
 runtime completion_and_snippets.vim
 runtime syntax_checkers.vim
 runtime tmux_runners.vim
