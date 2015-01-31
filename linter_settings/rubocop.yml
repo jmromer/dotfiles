@@ -484,7 +484,7 @@ Style/SymbolProc:
     - respond_to
 
 Style/TrailingBlankLines:
-  EnforcedStyle: final_newline
+  EnforcedStyle: final_blank_line
   SupportedStyles:
     - final_newline
     - final_blank_line
