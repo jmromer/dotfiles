@@ -73,3 +73,7 @@ set diffopt+=vertical
 " set esckeys  " will break any sequences using escape in insert mode
 set timeoutlen=500 ttimeoutlen=10
 
+" Remap increment and decrement
+nnoremap + <C-a>
+nnoremap - <C-x>
+
