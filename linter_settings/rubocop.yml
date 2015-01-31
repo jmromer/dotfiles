@@ -1,9 +1,9 @@
 # This is the default configuration file. Enabling and disabling is configured
 # in separate files. This file adds all other parameters apart from Enabled.
 
-inherit_from:
-  - enabled.yml
-  - disabled.yml
+# inherit_from:
+#   - enabled.yml
+#   - disabled.yml
 
 # Common configuration.
 AllCops:
@@ -32,7 +32,7 @@ AllCops:
   # Cop names are not displayed in offense messages by default. Change behavior
   # by overriding DisplayCopNames, or by giving the -D/--display-cop-names
   # option.
-  DisplayCopNames: true
+  # DisplayCopNames: true
 
 # Indent private/protected/public as deep as method definitions
 Style/AccessModifierIndentation:
