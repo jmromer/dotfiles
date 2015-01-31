@@ -26,8 +26,8 @@ nnoremap <silent><Leader>r :redraw!<CR>
 nnoremap <Leader>w :w<CR>
 " Fast saving for multiple buffers
 nnoremap <Leader>wa :wa<CR>
-" For saving read-only files: to save as root, use :W
-command! W w !sudo tee % > /dev/null
+" To save as root, use :W (uses tpope's vim-eunuch)
+command! W :SudoWrite
 " toggle Tagbar
 nnoremap <silent><S-t> :TagbarToggle<CR>
 " toggle Buffet's buffer list
