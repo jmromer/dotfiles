@@ -2,7 +2,6 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'Konfekt/FastFold'                 " optimized folding for large projects
 Plug 'Lokaltog/vim-easymotion'          " jump without numbers
-Plug 'Raimondi/delimitMate'             " auto insert closing delimiters
 Plug 'SirVer/ultisnips'                 " snippets engine, integrates with YCM
 Plug 'Valloric/YouCompleteMe'           " syntax completion
 Plug 'airblade/vim-gitgutter'           " git diff in the gutter
@@ -14,6 +13,7 @@ Plug 'ecomba/vim-ruby-refactoring'      " keybindings for refactoring
 Plug 'ervandew/supertab'                " context-aware tab-completion
 Plug 'gavinbeatty/dragvisuals.vim'      " move visual blocks / lines around
 Plug 'honza/vim-snippets'               " textmate-style code snippets
+Plug 'jiangmiao/auto-pairs'              " auto insert closing delimiters
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'janko-m/vim-test'                 " runner for rspec, cucumber, et al.
 Plug 'jelera/vim-javascript-syntax'     " JavaScript Syntax definitions
