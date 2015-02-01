@@ -26,6 +26,7 @@ Plug 'kien/ctrlp.vim'                   " Rapid file finding
 Plug 'lervag/vim-latex'                 " LaTeX support
 Plug 'majutsushi/tagbar'                " navigate a list of methods / classes
 Plug 'marijnh/tern_for_vim'             " JS method jumping (like ctags)
+Plug 'mattn/emmet-vim'                  " HTML expansions
 Plug 'moll/vim-node'                    " Node support
 Plug 'nelstrom/vim-textobj-rubyblock'   " ruby block text objects
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
