@@ -1,5 +1,8 @@
 " ------------------- Plugin Settings ---------------------
 
+" auto-pairs: force closed-pair jumping instead of inserting
+let g:AutoPairsFlyMode = 1
+
 " blockle.vim: Toggle ruby blocks with leader-tb
 let g:blockle_mapping = '<Leader>rtb'
 
