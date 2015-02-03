@@ -56,6 +56,7 @@ Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <Leader>ww
 Plug 'xolox/vim-easytags'               " continuously updated tags
 Plug 'xolox/vim-misc'                   " vim plugin utility library
+Plug 'xolox/vim-notes'                  " note-taking for vim
 Plug 'xolox/vim-session'                " session management
 
 call plug#end()
