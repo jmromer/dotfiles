@@ -1,19 +1,20 @@
 " ------------------- Plugin Settings ---------------------
 
-" auto-pairs: force closed-pair jumping instead of inserting
+" AutoPairs: disable closed-pair jumping instead of inserting
 let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<C-b>'
 
-" blockle.vim: Toggle ruby blocks with leader-tb
+" Blockle: Toggle ruby blocks with leader-tb
 let g:blockle_mapping = '<Leader>rtb'
 
-" dragvisuals.vim: keybindings
+" Dragvisuals: keybindings
 vmap <expr> <LEFT>   DVB_Drag('left')
 vmap <expr> <RIGHT>  DVB_Drag('right')
 vmap <expr> <DOWN>   DVB_Drag('down')
 vmap <expr> <UP>     DVB_Drag('up')
 vmap <expr> D        DVB_Duplicate()
 
-" dragvisuals.vim: Remove any trailing whitespace introduced by move
+" Dragvisuals: Remove any trailing whitespace introduced by move
 let g:DVB_TrimWS = 1
 
 " EasyAlign: Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -28,15 +29,15 @@ let g:easytags_async = 1
 " GitGutter: always show sign column
 let g:gitgutter_sign_column_always = 1
 
-" netrw: file explorer
+" Netrw: file explorer
 let g:netrw_liststyle = 3   " 1 thin, 3 tree
 let g:netrw_preview   = 1   " open previews in vertical split (p)
 let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
 
-" togglecursor: insert mode uses an underline
+" Togglecursor: insert mode uses an underline
 let g:togglecursor_insert = 'underline'
 
-" vim-session: session autosave
+" Vim Session: session autosave
 let g:session_default_overwrite = 1
 let g:session_autosave = 'no'
 
