@@ -82,9 +82,9 @@
     dump     = cat-file -p
     f        = fetch
     h        = log --format=brief --graph --abbrev-commit
+    hb       = log --format=brief --graph --abbrev-commit HEAD --not origin/master
     hh       = !sh -c 'git h | head'
     hdiff    = log --format=brief --graph -U1 --word-diff --color-words
-    hbranch  = log --format=brief --graph --abbrev-commit HEAD --not master
     hfiles   = log --format=medium --graph --abbrev-commit --stat
     hsince   = !sh -c 'git h --since=$1' -
     i        = init
@@ -118,7 +118,7 @@
     up       = !git fetch origin && git rebase origin/master
 
     # git flow
-    hfeat    = log --format=brief --graph --abbrev-commit HEAD --not develop
+    hf       = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
     feat     = !sh -c 'git checkout -b feature/$1' -
     fix      = !sh -c 'git checkout -b $1fix/$2' -
     rel      = !sh -c 'git fetch origin && git checkout -b release/$(date +%Y.%m.%d.%H%m) origin/develop'
