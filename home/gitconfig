@@ -3,7 +3,7 @@
     email = jkrmr@users.noreply.github.com
 
 [github]
-  user = jkrmr
+    user = jkrmr
 
 [include]
     path = ~/.gitconfig.local
@@ -47,6 +47,11 @@
 
 [mergetool]
     keepBackup = false
+
+[pager]
+    stash = false
+    diff  = false
+    log   = false
 
 [pretty]
     brief = "%Cred%h%Creset %C(bold blue)%aN%Creset %Cgreen%cr%Creset - %s %C(yellow)%d%Creset"
