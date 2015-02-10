@@ -13,7 +13,7 @@ Plug 'ecomba/vim-ruby-refactoring'      " keybindings for refactoring
 Plug 'ervandew/supertab'                " context-aware tab-completion
 Plug 'gavinbeatty/dragvisuals.vim'      " move visual blocks / lines around
 Plug 'honza/vim-snippets'               " textmate-style code snippets
-Plug 'jiangmiao/auto-pairs'              " auto insert closing delimiters
+Plug 'jiangmiao/auto-pairs'             " auto insert closing delimiters
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'janko-m/vim-test'                 " runner for rspec, cucumber, et al.
 Plug 'jelera/vim-javascript-syntax'     " JavaScript Syntax definitions
