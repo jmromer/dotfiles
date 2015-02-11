@@ -77,3 +77,12 @@ set timeoutlen=500 ttimeoutlen=10
 nnoremap + <C-a>
 nnoremap - <C-x>
 
+" Keep cursor in place when joining lines
+nnoremap J mzJ`z
+
+" Preserve words when breaking lines
+set linebreak
+
+" Make Y consistent with D. Use yy to yank an entire line, like dd
+nnoremap Y y$
+
