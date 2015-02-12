@@ -49,9 +49,9 @@
     keepBackup = false
 
 [pager]
-    stash = false
-    diff  = false
+    diff  = true
     log   = false
+    stash = false
 
 [pretty]
     brief = "%Cred%h%Creset %C(bold blue)%aN%Creset %Cgreen%cr%Creset - %s %C(yellow)%d%Creset"
