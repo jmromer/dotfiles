@@ -45,6 +45,9 @@ map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap <Leader>gg :Git<space>
 nnoremap <silent><Leader>ga :Git add %<CR>
 nnoremap <silent><Leader>gc :Gcommit<CR>
+" Open a Scratch buffer
+nnoremap <C-s> :Scratch<CR>
+
 
 " Session Management
 " ------------------

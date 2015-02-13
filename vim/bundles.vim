@@ -59,5 +59,8 @@ Plug 'xolox/vim-misc'                   " vim plugin utility library
 Plug 'xolox/vim-notes'                  " note-taking for vim
 Plug 'xolox/vim-session'                " session management
 
+
+Plug 'vim-scripts/scratch.vim' " scratch buffer
+
 call plug#end()
 
