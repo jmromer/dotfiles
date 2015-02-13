@@ -30,11 +30,11 @@ nnoremap <Leader>wa :wa<CR>
 " To save as root, use :W (uses tpope's vim-eunuch)
 command! W :SudoWrite
 " toggle Tagbar
-nnoremap <silent><S-t> :TagbarToggle<CR>
+nnoremap <silent><Leader>t :TagbarToggle<CR>
 " toggle Buffet's buffer list
-nnoremap <silent><leader>b :Bufferlist<CR>
+nnoremap <silent><Leader>b :Bufferlist<CR>
 " toggle Gundo
-nnoremap <silent><leader>u :GundoToggle<CR>
+nnoremap <silent><Leader>u :GundoToggle<CR>
 " kill trailing whitespace
 nnoremap <silent><Leader>kw :StripWhitespace<CR>
 " open netrw explore buffer
