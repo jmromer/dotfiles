@@ -1,53 +1,68 @@
-" ------------------- Plugin Settings ---------------------
+call plug#begin('~/.vim/plugins')
 
-" AutoPairs: disable closed-pair jumping instead of inserting
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = '<C-b>'
+Plug 'Konfekt/FastFold'                 " optimized folding for large projects
+Plug 'Lokaltog/vim-easymotion'          " jump without numbers
+Plug 'SirVer/ultisnips'                 " snippets engine, integrates with YCM
+Plug 'Valloric/YouCompleteMe'           " syntax completion
+Plug 'Yggdroot/indentLine'              " display indent levels
+Plug 'airblade/vim-gitgutter'           " git diff in the gutter
+Plug 'altercation/vim-colors-solarized' " solarized colors
+Plug 'christoomey/vim-tmux-navigator'   " navigate with awarenes of vim splits
+Plug 'christoomey/vim-tmux-runner'      " send commands to tmxu pane
+Plug 'ciaranm/detectindent'             " detect indentation level
+Plug 'ecomba/vim-ruby-refactoring'      " keybindings for refactoring
+Plug 'ervandew/supertab'                " context-aware tab-completion
+Plug 'gavinbeatty/dragvisuals.vim'      " move visual blocks / lines around
+Plug 'gregsexton/gitv'                  " gitk port. requires fugitive
+Plug 'honza/vim-snippets'               " textmate-style code snippets
+Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
+Plug 'janko-m/vim-test'                 " runner for rspec, cucumber, et al.
+Plug 'jelera/vim-javascript-syntax'     " JavaScript Syntax definitions
+Plug 'jgdavey/tslime.vim'               " send specs to a designated tmux pane
+Plug 'jiangmiao/auto-pairs'             " auto insert closing delimiters
+Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
+Plug 'junegunn/vim-easy-align'          " text alignment
+Plug 'kana/vim-textobj-user'            " custom text objects
+Plug 'kchmck/vim-coffee-script'         " CoffeeScript syntax defintions
+Plug 'kien/ctrlp.vim'                   " Rapid file finding
+Plug 'lervag/vim-latex'                 " LaTeX support
+Plug 'majutsushi/tagbar'                " navigate a list of methods / classes
+Plug 'marijnh/tern_for_vim'             " JS method jumping (like ctags)
+Plug 'mattn/emmet-vim'                  " HTML expansions
+Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
+Plug 'moll/vim-node'                    " Node support
+Plug 'nelstrom/vim-textobj-rubyblock'   " ruby block text objects
+Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
+Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
+Plug 'rking/ag.vim'                     " Ag conveniences
+Plug 'sandeepcr529/Buffet.vim'          " user-friendly buffer list
+Plug 'scrooloose/syntastic'             " hook into syntax style checkers
+Plug 'sjl/gundo.vim'                    " graphical undo tree
+Plug 'tpope/vim-bundler'                " Bundler commands
+Plug 'tpope/vim-endwise'                " add 'end' in ruby et al
+Plug 'tpope/vim-eunuch'                 " Unix commands in vim
+Plug 'tpope/vim-fugitive'               " side-by-side git blame with :Gblame
+Plug 'tpope/vim-haml'                   " Haml support
+Plug 'tpope/vim-rails'                  " Rails support
+Plug 'tpope/vim-repeat'                 " repeat last mapped command with `.`
+Plug 'tpope/vim-speeddating'            " increment dates, times, and more
+Plug 'tpope/vim-surround'               " surround text block with delimiters
+Plug 'tpope/vim-unimpaired'             " useful complementary mappings
+Plug 'tpope/vim-vinegar'                " enhancements to netrw
+Plug 'vim-ruby/vim-ruby'                " Ruby support
+Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
+Plug 'vim-scripts/blockle.vim'          " toggle ruby block styles with <L>rtb
+Plug 'vim-scripts/c.vim'                " C completions
+Plug 'vim-scripts/matchit.zip'          " goto matching delimiter with %
+Plug 'vim-scripts/scratch.vim'          " scratch buffer
+Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
+Plug 'vim-scripts/visualrepeat'         " extends dot operator to visual mode
+Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
+Plug 'wesQ3/vim-windowswap'             " move panes around with <Leader>ww
+Plug 'xolox/vim-easytags'               " continuously updated tags
+Plug 'xolox/vim-misc'                   " vim plugin utility library
+Plug 'xolox/vim-notes'                  " note-taking for vim
+Plug 'xolox/vim-session'                " session management
 
-" Blockle: Toggle ruby blocks with leader-tb
-let g:blockle_mapping = '<Leader>rtb'
-
-" Dragvisuals: keybindings
-vmap <expr> <LEFT>   DVB_Drag('left')
-vmap <expr> <RIGHT>  DVB_Drag('right')
-vmap <expr> <DOWN>   DVB_Drag('down')
-vmap <expr> <UP>     DVB_Drag('up')
-vmap <expr> D        DVB_Duplicate()
-
-" Dragvisuals: Remove any trailing whitespace introduced by move
-let g:DVB_TrimWS = 1
-
-" EasyAlign: Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-" EasyAlign: Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" Easytags: Run asynchronously
-let g:easytags_async = 1
-
-" GitGutter: always show sign column
-let g:gitgutter_sign_column_always = 1
-
-" Netrw: file explorer
-let g:netrw_liststyle = 3   " 1 thin, 3 tree
-let g:netrw_preview   = 1   " open previews in vertical split (p)
-let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
-
-" Togglecursor: insert mode uses an underline
-let g:togglecursor_insert = 'underline'
-
-" Vim Session: session autosave
-let g:session_default_overwrite = 1
-let g:session_autosave = 'no'
-
-" YankRing: location of history file
-let g:yankring_history_dir = '~/.vim/tmp'
-
-" YankRing: Cycle through the yank register
-let g:yankring_replace_n_pkey = '<C-p>'
-let g:yankring_replace_n_nkey = '<C-n>'
-
-" YankRing: display yankring contents
-nnoremap <silent><Leader>y :YRShow<CR>
+call plug#end()
 
