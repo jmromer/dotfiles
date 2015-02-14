@@ -1,9 +1,9 @@
 " --------------- Settings by Context ---------------------
 runtime color_scheme.vim
 
-runtime bundles.vim
-runtime general.vim
 runtime plugins.vim
+runtime general.vim
+runtime plugin_settings.vim
 
 runtime autocommands.vim
 runtime windows_and_nav.vim
