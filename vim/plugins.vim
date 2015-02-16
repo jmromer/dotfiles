@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugins')
 
+Plug 'FelikZ/ctrlp-py-matcher'          " alternative matcher for CtrlP
 Plug 'Konfekt/FastFold'                 " optimized folding for large projects
 Plug 'Lokaltog/vim-easymotion'          " jump without numbers
 Plug 'SirVer/ultisnips'                 " snippets engine, integrates with YCM
@@ -44,6 +45,7 @@ Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-fugitive'               " side-by-side git blame with :Gblame
 Plug 'tpope/vim-haml'                   " Haml support
 Plug 'tpope/vim-rails'                  " Rails support
+Plug 'tpope/vim-rbenv'                  " Rbenv support
 Plug 'tpope/vim-repeat'                 " repeat last mapped command with `.`
 Plug 'tpope/vim-speeddating'            " increment dates, times, and more
 Plug 'tpope/vim-surround'               " surround text block with delimiters
