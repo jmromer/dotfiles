@@ -1,14 +1,16 @@
 " -------------------- Ctrl-P ------------------------
 if executable('ag')
-  " Prefer ag to grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  " Not for CtrlP: Use Ag to search for files
+  set grepprg=ag\ --nogroup\ --nocolor\ -g
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'ag %s -i -l --nocolor --nogroup -g ""'
+  " Use caching, even though ag is fast
+  let g:ctrlp_use_caching = 1
 endif
+
+" Use PyMatcher as CtrlP's matching function
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " summon CtrlP with <space>+f
 let g:ctrlp_map = '<leader>f'
@@ -33,4 +35,10 @@ let g:ctrlp_working_path_mode = 'rc'
 
 " Add spec/ to the set of root markers
 let g:ctrlp_root_markers = ['.git', 'spec']
+
+" Ignore some folders and files for CtrlP indexing
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ }
 
