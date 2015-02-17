@@ -47,23 +47,23 @@ end
 
 # Use jazz_hands for awesome_print, hirb, et al.
 # Don't `require` in Rails projects
-unless defined?(Rails) && Rails.env
-  begin
-    require 'jazz_hands'
-    require 'awesome_print'   # Use awesome_print's output formatting and Pry's pager
-    require 'hirb'            # Use Hirb for tabular output
-  rescue LoadError
-    puts 'jazz_hands is not installed.',
-        'Install by adding gem "jazz_hands", github: "jkrmr/jazz_hands" to your Gemfile',
-        'or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`'
-  end
-end
-
-if defined?(JazzHands) && defined?(AwesomePrint) && defined?(Hirb)
-JazzHands.enable_syntax_highlighting_as_you_type
-  AwesomePrint.defaults = { indent: -2 }
-  AwesomePrint.pry!
-  Hirb.enable
-  extend Hirb::Console
-end
-
+# unless defined?(Rails) && Rails.env
+#   begin
+#     require 'jazz_hands'
+#     require 'awesome_print'   # Use awesome_print's output formatting and Pry's pager
+#     require 'hirb'            # Use Hirb for tabular output
+#   rescue LoadError
+#     puts 'jazz_hands is not installed.',
+#         'Install by adding gem "jazz_hands", github: "jkrmr/jazz_hands" to your Gemfile',
+#         'or running `gem install specific_install && gem specific_install jkrmr/jazz_hands`'
+#   end
+# end
+#
+# if defined?(JazzHands) && defined?(AwesomePrint) && defined?(Hirb)
+# JazzHands.enable_syntax_highlighting_as_you_type
+#   AwesomePrint.defaults = { indent: -2 }
+#   AwesomePrint.pry!
+#   Hirb.enable
+#   extend Hirb::Console
+# end
+#
