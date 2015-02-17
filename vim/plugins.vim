@@ -29,6 +29,7 @@ Plug 'lervag/vim-latex'                 " LaTeX support
 Plug 'majutsushi/tagbar'                " navigate a list of methods / classes
 Plug 'marijnh/tern_for_vim'             " JS method jumping (like ctags)
 Plug 'mattn/emmet-vim'                  " HTML expansions
+Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'moll/vim-node'                    " Node support
 Plug 'nelstrom/vim-textobj-rubyblock'   " ruby block text objects
@@ -62,7 +63,6 @@ Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <Leader>ww
 Plug 'xolox/vim-easytags'               " continuously updated tags
 Plug 'xolox/vim-misc'                   " vim plugin utility library
-Plug 'xolox/vim-notes'                  " note-taking for vim
 Plug 'xolox/vim-session'                " session management
 
 call plug#end()

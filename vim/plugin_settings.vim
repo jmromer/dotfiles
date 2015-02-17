@@ -29,6 +29,9 @@ let g:easytags_async = 1
 " GitGutter: always show sign column
 let g:gitgutter_sign_column_always = 1
 
+" HugeFile: disable options for large files (>= 1MB)
+let g:hugefile_trigger_size = 1
+
 " Netrw: file explorer
 let g:netrw_liststyle = 3   " 1 thin, 3 tree
 let g:netrw_preview   = 1   " open previews in vertical split (p)
