@@ -5,7 +5,7 @@ let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<C-b>'
 
 " Blockle: Toggle ruby blocks with leader-tb
-let g:blockle_mapping = '<Leader>rtb'
+let g:blockle_mapping = '<leader>rtb'
 
 " Dragvisuals: keybindings
 vmap <expr> <LEFT>   DVB_Drag('left')
@@ -52,5 +52,5 @@ let g:yankring_replace_n_pkey = '<C-p>'
 let g:yankring_replace_n_nkey = '<C-n>'
 
 " YankRing: display yankring contents
-nnoremap <silent><Leader>y :YRShow<CR>
+nnoremap <silent><leader>y :YRShow<CR>
 

@@ -14,5 +14,5 @@ function! NumberToggle()
 endfunction
 
 " Toggle numbering style with leader+n
-nnoremap <silent><Leader>n :call NumberToggle()<CR>
+nnoremap <silent><leader>n :call NumberToggle()<CR>
 
