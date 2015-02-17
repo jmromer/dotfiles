@@ -61,7 +61,7 @@ Plug 'vim-scripts/scratch.vim'          " scratch buffer
 Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
 Plug 'vim-scripts/visualrepeat'         " extends dot operator to visual mode
 Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
-Plug 'wesQ3/vim-windowswap'             " move panes around with <Leader>ww
+Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
 Plug 'xolox/vim-easytags'               " continuously updated tags
 Plug 'xolox/vim-misc'                   " vim plugin utility library
 Plug 'xolox/vim-session'                " session management
