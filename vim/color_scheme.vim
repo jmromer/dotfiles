@@ -18,7 +18,7 @@ colorscheme solarized  " Twilight
 
 " ------------- Theme Development -----------------------
 " Show syntax highlighting groups for word under cursor
-" nmap <Leader>p :call <SID>SynStack()<CR>
+" nmap <leader>p :call <SID>SynStack()<CR>
 " function! <SID>SynStack()
 "   if !exists("*synstack")
 "     return

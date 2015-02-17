@@ -20,31 +20,31 @@ runtime tmux_runners.vim
 " turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 " reload vimrc
-nnoremap <silent><Leader>R :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
+nnoremap <silent><leader>R :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
 " redraw screen
-nnoremap <silent><Leader>r :redraw!<CR>
+nnoremap <silent><leader>r :redraw!<CR>
 " Fast saving
-nnoremap <Leader>w :w<CR>
+nnoremap <leader>w :w<CR>
 " Fast saving for multiple buffers
-nnoremap <Leader>wa :wa<CR>
+nnoremap <leader>wa :wa<CR>
 " To save as root, use :W (uses tpope's vim-eunuch)
 command! W :SudoWrite
 " toggle Tagbar
-nnoremap <silent><Leader>t :TagbarToggle<CR>
+nnoremap <silent><leader>t :TagbarToggle<CR>
 " toggle Buffet's buffer list
-nnoremap <silent><Leader>b :Bufferlist<CR>
+nnoremap <silent><leader>b :Bufferlist<CR>
 " toggle Gundo
-nnoremap <silent><Leader>u :GundoToggle<CR>
+nnoremap <silent><leader>u :GundoToggle<CR>
 " kill trailing whitespace
-nnoremap <silent><Leader>kw :StripWhitespace<CR>
+nnoremap <silent><leader>kw :StripWhitespace<CR>
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
 " Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Engage Git
-nnoremap <Leader>gg :Git<space>
-nnoremap <silent><Leader>ga :Git add %<CR>
-nnoremap <silent><Leader>gc :Gcommit<CR>
+nnoremap <leader>gg :Git<space>
+nnoremap <silent><leader>ga :Git add %<CR>
+nnoremap <silent><leader>gc :Gcommit<CR>
 " Open a Scratch buffer
 nnoremap <C-s> :Scratch<CR>
 
@@ -59,8 +59,8 @@ nnoremap <silent><leader>rr :call ReloadAllBuffers()<CR>
 
 " Session Management
 " ------------------
-nnoremap <Leader>ss :SaveSession<space>
-nnoremap <Leader>os :OpenSession<space>
+nnoremap <leader>ss :SaveSession<space>
+nnoremap <leader>os :OpenSession<space>
 
 " Text search
 " ------------
@@ -69,18 +69,18 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Grep with given arguments, open results in quickfix pane
 " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap <Leader>\ :Ag<SPACE>
+nnoremap <leader>\ :Ag<SPACE>
 
 " ----------------------- Mappings: Copy/Paste ------------------------
 " Select all text in file
-nnoremap <Leader>sa ggVG
+nnoremap <leader>sa ggVG
 " Copy to system clipboard
-vnoremap <Leader>c "*y
+vnoremap <leader>c "*y
 " Cut to system clipboard
-vnoremap <Leader>x "*d
+vnoremap <leader>x "*d
 " Paste from system clipboard
-nnoremap <silent><Leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
-vnoremap <silent><Leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
+nnoremap <silent><leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
+vnoremap <silent><leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
 
 " -------------- Search and Replace cursor selection  ----------------
 function! CmdLine(str)
