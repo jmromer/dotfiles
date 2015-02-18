@@ -19,34 +19,47 @@ runtime tmux_runners.vim
 " ------------------- Leader key mappings ---------------------
 " turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
+
 " reload vimrc
 nnoremap <silent><leader>R :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
+
 " redraw screen
 nnoremap <silent><leader>r :redraw!<CR>
+
 " Fast saving
 nnoremap <leader>w :w<CR>
+
 " Fast saving for multiple buffers
 nnoremap <leader>wa :wa<CR>
+
 " To save as root, use :W (uses tpope's vim-eunuch)
 command! W :SudoWrite
+
 " toggle Tagbar
 nnoremap <silent><leader>t :TagbarToggle<CR>
+
 " toggle Buffet's buffer list
 nnoremap <silent><leader>b :Bufferlist<CR>
+
 " toggle Gundo
 nnoremap <silent><leader>u :GundoToggle<CR>
+
 " kill trailing whitespace
 nnoremap <silent><leader>kw :StripWhitespace<CR>
+
 " open netrw explore buffer
 nnoremap <silent><C-e> :Explore<CR>
+
 " Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 " Engage Git
 nnoremap <leader>gg :Git<space>
 nnoremap <silent><leader>ga :Git add %<CR>
 nnoremap <silent><leader>gc :Gcommit<CR>
+
 " Open a Scratch buffer
-nnoremap <C-s> :Scratch<CR>
+nnoremap <leader>m :Sscratch<CR>
 
 " Reload all open buffers
 function! ReloadAllBuffers ()
