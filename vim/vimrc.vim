@@ -48,6 +48,14 @@ nnoremap <silent><Leader>gc :Gcommit<CR>
 " Open a Scratch buffer
 nnoremap <C-s> :Scratch<CR>
 
+" Reload all open buffers
+function! ReloadAllBuffers ()
+  set autoread
+  checktime
+endfunction
+
+nnoremap <silent><leader>rr :call ReloadAllBuffers()<CR>
+
 
 " Session Management
 " ------------------
