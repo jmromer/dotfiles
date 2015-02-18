@@ -124,6 +124,9 @@
 
     # git flow
     hf       = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
+    cof      = !sh -c 'git checkout feature/TRAV-$1' -
+    cob      = !sh -c 'git checkout bugfix/TRAV-$1' -
+    coh      = !sh -c 'git checkout hotfix/TRAV-$1' -
     feat     = !sh -c 'git checkout -b feature/$1' -
     fix      = !sh -c 'git checkout -b $1fix/$2' -
     rel      = !sh -c 'git fetch origin && git checkout -b release/$(date +%Y.%m.%d.%H%m) origin/develop'

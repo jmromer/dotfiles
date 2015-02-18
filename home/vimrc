@@ -8,3 +8,7 @@ runtime vimrc.vim
 
 " ---------------- Probationary --------------------------
 
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let g:netrw_preview = 1
+inoremap <silent>jj <ESC>
+
