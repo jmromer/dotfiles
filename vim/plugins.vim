@@ -17,6 +17,7 @@ Plug 'gregsexton/gitv'                  " gitk port. requires fugitive
 Plug 'honza/vim-snippets'               " textmate-style code snippets
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'janko-m/vim-test'                 " runner for rspec, cucumber, et al.
+Plug 'jceb/vim-orgmode'                 " org-mode for vim
 Plug 'jelera/vim-javascript-syntax'     " JavaScript Syntax definitions
 Plug 'jgdavey/tslime.vim'               " send specs to a designated tmux pane
 Plug 'jiangmiao/auto-pairs'             " auto insert closing delimiters
