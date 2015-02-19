@@ -36,9 +36,11 @@ let @/ = ""       " clear the search register
 set expandtab      " use soft tabs
 set shiftwidth=2   " spaces per tab (when shifting)
 set softtabstop=2  " 2-space soft tabs
-set autoindent     " automatically indent new lines
-set smartindent    " automatically indent after certain characters
 set shiftround     " always indent by multiple of shiftwidth
+
+" Disabled indent settings (override syntax-based indentation)
+" set autoindent     " automatically indent new lines
+" set smartindent    " automatically indent after certain characters
 
 " Call out extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
