@@ -7,6 +7,11 @@ let g:AutoPairsShortcutBackInsert = '<C-b>'
 " Blockle: Toggle ruby blocks with leader-tb
 let g:blockle_mapping = '<leader>rtb'
 
+" CoffeeScript: coffeescript syntax and helpers (CoffeeWatch, et al.)
+let coffee_compile_vert = 1
+let coffee_watch_vert = 1
+let coffee_run_vert = 1
+
 " Dragvisuals: keybindings
 vmap <expr> <LEFT>   DVB_Drag('left')
 vmap <expr> <RIGHT>  DVB_Drag('right')
