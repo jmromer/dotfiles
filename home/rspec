@@ -1,4 +1,4 @@
 --color
 --order random
 --tty
---format progress
+--format documentation
