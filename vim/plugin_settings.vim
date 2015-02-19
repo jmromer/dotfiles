@@ -33,7 +33,7 @@ let g:gitgutter_sign_column_always = 1
 let g:hugefile_trigger_size = 1
 
 " Netrw: file explorer
-let g:netrw_liststyle = 3   " 1 thin, 3 tree
+let g:netrw_liststyle = 4   " 4 lightweight, 3 tree
 let g:netrw_preview   = 1   " open previews in vertical split (p)
 let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
 
