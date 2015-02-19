@@ -90,7 +90,7 @@ alias rs='rails server'
 alias rc='rails console'
 alias rcs='rails console --sandbox'
 alias rss='rake db:reset db:seed && rails server'
-alias s='rspec'
+alias s='rspec --format progress'
 
 # heroku
 alias hreset='heroku pg:reset DATABASE --confirm'
