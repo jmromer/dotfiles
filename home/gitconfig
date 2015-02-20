@@ -50,7 +50,7 @@
 
 [pager]
     diff  = true
-    log   = false
+    log   = true
     stash = false
 
 [pretty]
