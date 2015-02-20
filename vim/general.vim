@@ -80,7 +80,7 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 
 " Keep cursor in place when joining lines
-nnoremap J mzJ`z
+" nnoremap J mzJ`z
 
 " Preserve words when breaking lines
 set linebreak
