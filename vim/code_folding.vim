@@ -29,7 +29,7 @@ if has("folding")
     if &fdm=='diff'
       let l:foldtext = ' '.(v:foldend-v:foldstart).' lines the same -------'.v:folddashes.'|'
     elseif !exists('b:foldpat') || b:foldpat==0
-      let l:foldtext = ' '.(v:foldend-v:foldstart).' lines folded'.v:folddashes.'|'
+      let l:foldtext = ' '.(v:foldend-v:foldstart).' lines '.v:folddashes.'|'
     endif
 
     let l:endofline = (&textwidth>0 ? &textwidth : 80)
