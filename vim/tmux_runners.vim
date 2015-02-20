@@ -23,11 +23,12 @@ let g:VtrUseVtrMaps = 1
 "  Normal mode:
 "  Mapping      |   Command
 "  -----------------------------
+"  <leader>or   |   VtrOpenRunner<cr>
+"  <leader>sc   |   VtrSendCommandToRunner<cr>
+"  -----------------------------
 "  <leader>rr   |   VtrResizeRunner<cr>
 "  <leader>ror  |   VtrReorientRunner<cr>
-"  <leader>sc   |   VtrSendCommandToRunner<cr>
 "  <leader>sl   |   VtrSendLineToRunner<cr>
-"  <leader>or   |   VtrOpenRunner<cr>
 "  <leader>kr   |   VtrKillRunner<cr>
 "  <leader>fr   |   VtrFocusRunner<cr>
 "  <leader>dr   |   VtrDetachRunner<cr>
