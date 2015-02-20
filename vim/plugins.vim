@@ -33,6 +33,7 @@ Plug 'mattn/emmet-vim'                  " HTML expansions
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'moll/vim-node'                    " Node support
+Plug 'mustache/vim-mustache-handlebars' " syntax for handlebars templates
 Plug 'nelstrom/vim-textobj-rubyblock'   " ruby block text objects
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
