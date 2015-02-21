@@ -1,5 +1,6 @@
 bundler
 rubygems-bundler
+pretty_backtrace
 pry
 pry-theme
 
