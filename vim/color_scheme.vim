@@ -7,14 +7,14 @@ set t_ZH=[3m
 set t_ZR=[23m
 
 " Color scheme settings
-if !has("gui_running")
+if has("gui_running")
+  set background=light
+else
   set background=dark
   let g:solarized_termcolors=16
-else
-  set background=light
 endif
 
-colorscheme solarized  " Twilight
+colorscheme solarized
 
 " ------------- Theme Development -----------------------
 " Show syntax highlighting groups for word under cursor
