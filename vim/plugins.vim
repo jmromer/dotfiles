@@ -36,6 +36,7 @@ Plug 'moll/vim-node'                    " Node support
 Plug 'mustache/vim-mustache-handlebars' " syntax for handlebars templates
 Plug 'nelstrom/vim-textobj-rubyblock'   " ruby block text objects
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
+Plug 'othree/javascript-libraries-syntax.vim' " syntax for popular JS libraries
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
 Plug 'rking/ag.vim'                     " Ag conveniences
 Plug 'sandeepcr529/Buffet.vim'          " user-friendly buffer list
