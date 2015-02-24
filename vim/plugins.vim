@@ -43,16 +43,23 @@ Plug 'sandeepcr529/Buffet.vim'          " user-friendly buffer list
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
 Plug 'sjl/gundo.vim'                    " graphical undo tree
 Plug 'tommcdo/vim-exchange'             " text exchange operator cx, cxx, X, cxc
+Plug 'tpope/vim-cucumber'               " syntax for cucumber
+Plug 'tpope/vim-dispatch'               " async builds and test suites
 Plug 'tpope/vim-bundler'                " Bundler commands
 Plug 'tpope/vim-endwise'                " add 'end' in ruby et al
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
+Plug 'tpope/vim-fireplace'              " Clojure REPL support
 Plug 'tpope/vim-fugitive'               " side-by-side git blame with :Gblame
 Plug 'tpope/vim-haml'                   " Haml support
+Plug 'tpope/vim-leiningen'              " Static Vim support for Leiningen
+Plug 'tpope/vim-obsession'              " continuous session saving :Obsess[!]
 Plug 'tpope/vim-rails'                  " Rails support
 Plug 'tpope/vim-rbenv'                  " Rbenv support
 Plug 'tpope/vim-repeat'                 " repeat last mapped command with `.`
+Plug 'tpope/vim-rhubarb'                " GitHub extension for fugitive.vim
 Plug 'tpope/vim-speeddating'            " increment dates, times, and more
 Plug 'tpope/vim-surround'               " surround text block with delimiters
+Plug 'tpope/vim-tbone'                  " basic tmux support
 Plug 'tpope/vim-unimpaired'             " useful complementary mappings
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vim-ruby/vim-ruby'                " Ruby support
