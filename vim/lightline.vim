@@ -85,7 +85,7 @@ function! LLFugitive()
 endfunction
 
 function! LLFilename()
-  let fname = expand('%:t')
+  let fname = expand('%t')
   return  fname == 'ControlP'   ? g:lightline.ctrlp_item :
         \ fname == '__Tagbar__' ? g:lightline.fname :
         \ fname == '__Scratch__' ? 'Scratch' :
