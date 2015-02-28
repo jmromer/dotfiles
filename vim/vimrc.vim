@@ -61,9 +61,6 @@ nnoremap <silent><leader>gc :Gcommit<CR>
 " Open a Scratch buffer
 nnoremap <leader>m :Sscratch<CR>
 
-" Show path of current file
-map <leader>F :echo expand('%:p')<CR>
-
 " Reload all open buffers
 function! ReloadAllBuffers ()
   set autoread
