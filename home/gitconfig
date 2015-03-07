@@ -108,6 +108,7 @@
     r        = rebase
     ra       = rebase --abort
     rc       = rebase --continue
+    remove   = !sh -c 'git rebase --onto $1^ $1' -
     rem      = remote -v
     s        = stash
     sa       = !sh -c 'git stash apply stash@{$1}' -
