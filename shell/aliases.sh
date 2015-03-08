@@ -3,8 +3,7 @@
 #-------------------------------------------------------------
 # ALIASES: Editors
 #-------------------------------------------------------------
-alias dot='vim -c "OpenSession dotfiles" -c "cd %:p:h"'
-alias vi='mvim'
+alias vi='vim -u ~/.dotfile/vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
 alias e=vim
 alias e.='vim .'
