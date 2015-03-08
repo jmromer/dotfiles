@@ -99,6 +99,7 @@
     mt       = mergetool
     p        = push
     po       = push origin
+    poh      = !sh -c 'git push origin && git push heroku' -
     pu       = push -u
     pr       = !gh pull-request
     pom      = push origin master

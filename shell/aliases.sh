@@ -92,11 +92,14 @@ alias rss='rake db:reset db:seed && rails server'
 alias s='rspec --format progress'
 
 # heroku
-alias hreset='heroku pg:reset DATABASE --confirm'
-alias hrake='heroku run rake'
-function hrefresh { hreset "$1" && hrake db:migrate db:seed; }
-alias gphm='git push heroku master'
+alias hrk='heroku run rake'
 
-# jekyll & octopress
-alias gpss='git push source source'
+function heroku-reset() {
+  hreset "$1"
+  heroku run rake db:migrate db:seed
+}
+
+function heroku-dropdb() {
+  heroku pg:reset DATABASE --confirm "$1"
+}
 
