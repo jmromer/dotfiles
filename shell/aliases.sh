@@ -92,7 +92,9 @@ alias rss='rake db:reset db:seed && rails server'
 alias s='rspec --format progress'
 
 # heroku
+alias hr='heroku run'
 alias hrk='heroku run rake'
+alias hlg='heroku logs --tail'
 
 function heroku-reset() {
   hreset "$1"
