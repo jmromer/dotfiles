@@ -76,6 +76,11 @@ alias npmls='npm ls -depth=0'
 alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
 
 #-------------------------------------------------------------
+# ALIASES: BUSTER
+#-------------------------------------------------------------
+alias bgd='buster generate && buster deploy'
+
+#-------------------------------------------------------------
 # ALIASES: RUBY, RAILS
 #-------------------------------------------------------------
 # bundler
@@ -91,6 +96,9 @@ alias rcs='rails console --sandbox'
 alias rss='rake db:reset db:seed && rails server'
 alias s='rspec --format progress'
 
+#-------------------------------------------------------------
+# ALIASES: HEROKU
+#-------------------------------------------------------------
 # heroku
 alias hr='heroku run'
 alias hrk='heroku run rake'
