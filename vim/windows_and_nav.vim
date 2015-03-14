@@ -27,3 +27,7 @@ nnoremap <Right> <C-w>>
 nnoremap <Up> <C-w>+
 nnoremap <Down> <C-w>-
 
+" zoom a vim pane, <leader>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
