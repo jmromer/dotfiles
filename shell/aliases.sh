@@ -5,8 +5,14 @@
 #-------------------------------------------------------------
 alias vi='vim -u ~/.dotfiles/vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
-alias e=vim
-alias e.='vim .'
+
+function e() {
+  if [ -z "$1" ]; then
+    vim .
+  else
+    vim "$1"
+  fi
+}
 
 #-------------------------------------------------------------
 # ALIASES: Editors (note: postfix aliases unsupport in Bash)
