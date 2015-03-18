@@ -1,5 +1,30 @@
 # shell/functions.sh
 
+# Fuzzy-select a homebrew package to install
+function brewin() {
+  brew install $(brew search | pick)
+}
+
+# Fuzzy-select a homebrew package to uninstall
+function brewun() {
+  brew uninstall $(brew list | pick)
+}
+
+# Fuzzy-select a process to kill
+function killp() {
+  kill $(ps -e | awk '{if(NR!=1) { print $4, $1  }}' | pick -do | tail -n +2)
+}
+
+# Fuzzy-select ruby version using rbenv
+function chr() {
+if [[ $1 =~ '^(shell|local|global)$' ]]; then
+    rbenv "$1" $(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | pick)
+    echo "Using Ruby version $(rbenv $1)"
+  else
+    echo 'Usage: chr (shell|local|global)'
+  fi
+}
+
 # create dir $1 and cd into it, creating subdirectories as necessary
 function mcd() {
   mkdir -p "$1" && cd "$1";
@@ -11,7 +36,7 @@ function find_file() {
 }
 
 # pretty-print the command search path
-function p () {
+function p() {
   if [[ $1 == 'path' ]]; then
     ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
   elif [[ $1 == 'manpath' ]]; then
@@ -20,7 +45,7 @@ function p () {
 }
 
 # remove brew package and all its dependencies
-function brew_remove() {
+function brew_nuke() {
   brew rm "$1"
   brew rm $(join <(brew leaves) <(brew deps "$1"))
 }
