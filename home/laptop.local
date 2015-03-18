@@ -1,19 +1,21 @@
 #-------------------------------------------------------------
 # Homebrewed Packages
 #-------------------------------------------------------------
+brew tap thoughtbot/formulae
+
 homebrew=(
-  bash                          # Updated version of Bash
-  bash-completion               # Command completions for Bash
-  emacs                         # emacs duh
-  git                           # Updated version of Git
-  git-flow                      # Git Flow for Git flow
-  gh                            # For github-flavored git
-  mongodb                       # document-based NoSQL database
-  tree                          # for viewing directory contents in tree format
-  zsh                           # Updated version of Zshell
-  zsh-completions               # Command completions for Zshell
-  zsh-history-substring-search  # Substring history search
-  zsh-syntax-highlighting       # Syntax highlighting as you type
+  bash                    # Updated version of Bash
+  bash-completion         # Command completions for Bash
+  emacs                   # emacs duh
+  git                     # Updated version of Git
+  git-flow                # Git Flow for Git flow
+  gh                      # For github-flavored git
+  mongodb                 # document-based NoSQL database
+  pick                    # for fuzzy-searching stdout
+  tree                    # for viewing directory contents in tree format
+  zsh                     # Updated version of Zshell
+  zsh-completions         # Command completions for Zshell
+  zsh-syntax-highlighting # Syntax highlighting as you type
 )
 
 for package in ${homebrew[*]}; do
