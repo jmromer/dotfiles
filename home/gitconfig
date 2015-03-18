@@ -127,9 +127,6 @@
 
     # git flow
     hf       = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
-    feat     = !sh -c 'git checkout -b feature/$1' -
-    fix      = !sh -c 'git checkout -b $1fix/$2' -
-    rel      = !sh -c 'git fetch origin && git checkout -b release/$(date +%Y.%m.%d.%H%m) origin/develop'
     sqfeat   = rebase -i develop
     upfeat   = !git fetch origin && git rebase origin/develop
 
