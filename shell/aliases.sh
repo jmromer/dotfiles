@@ -60,22 +60,6 @@ alias unhide='setfile -a v'   # unhide a file
 alias octave='octave -q'      # suppress greeting and version message
 
 #-------------------------------------------------------------
-# ALIASES: TODO.TXT
-#-------------------------------------------------------------
-export TODOTXT_DEFAULT_ACTION=ls
-alias todo="todo.sh -d $HOME/.dotfiles/todo.cfg"
-alias t='todo'
-alias tadd='todo add'         # add a todo item
-alias tapp='todo append'      # append text $2 to the task # $1
-alias taddm='todo addm'       # add multiple todo items
-alias tls='todo list'         # list all todos
-alias tll='todo listall'      # list all todos, including completed
-alias tpri='todo pri'         # set priority of $1 [num] to $2 [A-Z]
-alias tdp='todo depri'        # removes priority from $1
-alias tdone='todo do'         # mark item $1 as done
-alias trm='todo rm'           # delete item $1
-
-#-------------------------------------------------------------
 # ALIASES: NODE, NPM, GREP
 #-------------------------------------------------------------
 alias npmls='npm ls -depth=0'
