@@ -1,5 +1,10 @@
 # shell/functions.sh
 
+# Fuzzy-select a tmux session to reattach
+function ts() {
+  tmux attach-session -t $(tmux ls | sed 's/:.*//' | pick)
+}
+
 # Fuzzy-select a homebrew package to install
 function brewin() {
   brew install $(brew search | pick)
