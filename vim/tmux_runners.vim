@@ -49,8 +49,9 @@ vnoremap <silent><leader>ss :VtrSendSelectedToRunner<CR>
 " ------------
 nmap <silent> <leader>s :TestNearest<CR>
 nmap <silent> <leader>S :TestFile<CR>
-" nmap <silent> <leader>A :TestSuite<CR>
+nmap <silent> <leader>A :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 let g:test#strategy = 'tslime'
 
