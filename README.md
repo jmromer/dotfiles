@@ -21,5 +21,5 @@ Features
 * `desktop (show/hide)` to show/hide the Desktop (for Macs)
 * `hidden_files (show/hide)` to show/hide hidden files (Macs)
 * `update_homebrew` to run brew update, upgrade, cleanup, and doctor
-* GitHub-flavored Git, courtesy of `gh`
+* GitHub-flavored Git, courtesy of `hub`
 * Annotated vimrc

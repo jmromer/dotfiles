@@ -9,7 +9,7 @@ homebrew=(
   emacs                   # emacs duh
   git                     # Updated version of Git
   git-flow                # Git Flow for Git flow
-  gh                      # For github-flavored git
+  hub                     # For github-flavored git
   mongodb                 # document-based NoSQL database
   pick                    # for fuzzy-searching stdout
   tree                    # for viewing directory contents in tree format

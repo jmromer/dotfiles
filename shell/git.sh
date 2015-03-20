@@ -2,7 +2,7 @@
 #-------------------------------------------------------------
 # ALIASES
 #-------------------------------------------------------------
-alias git='gh' # use gh for github-flavored git
+alias git='hub' # use hub for github-flavored git
 alias gf='git-flow' # for when using git flow gem
 
 #-------------------------------------------------------------

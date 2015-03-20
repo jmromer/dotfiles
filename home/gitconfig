@@ -74,7 +74,7 @@
     bn       = checkout -b
     bd       = branch -d
     br       = browse
-    bpr      = !sh -c 'gh browse pull/$1' -
+    bpr      = !sh -c 'hub browse pull/$1' -
     c        = commit -v
     ca       = commit -v --amend
     cm       = !sh -c 'git commit -m \"$*\"' -
@@ -102,7 +102,7 @@
     po       = push origin
     poh      = !sh -c 'git push origin && git push heroku' -
     pu       = push -u
-    pr       = !gh pull-request
+    pr       = !hub pull-request
     pom      = push origin master
     psm      = push staging master
     ppm      = push production master
