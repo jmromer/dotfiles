@@ -63,6 +63,17 @@ function update_homebrew() {
   echo brew doctor  && brew doctor
 }
 
+
+# rebase non-master branches of dotfiles onto master and force push
+function update_dotfiles () {
+  for branch in $(git branch | awk -F* '{ print $1  }'); do
+    git rebase master $branch
+  done
+
+  git checkout master
+  git push origin --all --force
+}
+
 # Mac-specific: show and hide the desktop
 function desktop() {
   if [[ $1 != "hide" && $1 != "show" ]]; then
