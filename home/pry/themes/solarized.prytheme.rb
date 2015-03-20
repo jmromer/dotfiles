@@ -13,7 +13,7 @@ t = PryTheme.create :name => 'solarized' do
     inline_delimiter 'titian'
     instance_variable 'azure01'
     integer 'robin_egg_blue01'
-    keyword 'gray03', [:bold]
+    keyword 'gray03'
     method 'azure01'
     predefined_constant 'azure01'
     symbol 'robin_egg_blue01'
