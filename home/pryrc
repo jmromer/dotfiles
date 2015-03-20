@@ -14,19 +14,7 @@ Pry.commands.alias_command 'q', 'exit'
 Pry.commands.alias_command '!!', 'disable-pry'
 Pry.commands.alias_command 'w', 'whereami'
 Pry.commands.alias_command 'r!', 'reload!' rescue nil
-
-Pry.commands.alias_command 'show', 'show-source'
-Pry.commands.alias_command 'doc', 'show-doc'
 Pry.commands.alias_command 'sh', 'shell-mode'
-
-# Pry Debugger aliases
-if defined?(PryDebugger)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 'b', 'breakpoint'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-  Pry.commands.alias_command 'f', 'finish'
-end
 
 # Format stacktraces
 Pry.config.exception_handler = proc do |output, exception, _|
@@ -37,23 +25,29 @@ Pry.config.exception_handler = proc do |output, exception, _|
   end
 end
 
-# Use jazz_fingers for awesome_print, hirb, et al.
-# Don't `require` in Rails projects
 unless defined?(Rails) && Rails.env
   begin
-    require 'jazz_fingers'
+    # gem install pry-coolline pry-doc pry-git pry-byebug hirb awesome_print
     require 'awesome_print' # Use awesome_print's output formatting and Pry's pager
     require 'hirb'          # Use Hirb for tabular output
   rescue LoadError
-    puts 'jazz_fingers is not installed.',
-         'Install by adding gem "jazz_fingers" to your Gemfile',
-         'or running `gem install jazz_fingers`'
+    puts 'Pry enhancements not loaded.'
   end
 end
 
-if defined?(JazzFingers) && defined?(AwesomePrint) && defined?(Hirb)
+if defined?(PryByebug)
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+end
+
+if defined?(AwesomePrint)
   AwesomePrint.defaults = { indent: -2 }
   AwesomePrint.pry!
+end
+
+if defined?(Hirb)
   Hirb.enable
   extend Hirb::Console
 end
