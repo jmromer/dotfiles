@@ -69,10 +69,11 @@
     a        = add
     aa       = add --all
     ap       = add --patch
-    b        = !sh -c 'git checkout $(git branch | cut -c 3- | pick)' -
-    bb       = branch -vv
+    b        = branch -vv
+    bb       = !sh -c 'git checkout $(git branch | cut -c 3- | pick)' -
     bn       = checkout -b
     bd       = branch -d
+    bdel     = branch -D
     br       = browse
     bpr      = !sh -c 'hub browse pull/$1' -
     c        = commit -v
