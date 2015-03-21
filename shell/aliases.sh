@@ -76,15 +76,17 @@ alias bgd='buster generate && buster deploy'
 # bundler
 alias bi='bundle install' # -j3 should be set in ~/.bundle/config
 alias bu='bundle update'
-alias rk='rake'
 alias be='bundle exec'
 
 # rails
-alias rs='rails server'
-alias rc='rails console'
-alias rcs='rails console --sandbox'
-alias rss='rake db:reset db:seed && rails server'
-alias s='rspec --format progress'
+alias rs='bin/rails server'
+alias rc='bin/rails console'
+alias rcs='bin/rails console --sandbox'
+alias rss='bundle exec bin/rake db:reset db:seed && rails server'
+
+alias rk='bundle exec bin/rake'
+alias s='bundle exec bin/rspec --format progress .'
+alias ss='bundle exec bin/rspec --format documentation .'
 
 #-------------------------------------------------------------
 # ALIASES: HEROKU
