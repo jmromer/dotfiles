@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Delete local and remote branch `name`:
+#
+# $ git delete-branch integration
+
 # Assert there is at least one branch provided
 test -z $1 && echo "branch required." 1>&2 && exit 1
 

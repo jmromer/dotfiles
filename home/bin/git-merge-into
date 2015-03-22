@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Merge src branch into dest, and keep yourself on current branch.
+# If src branch not given, it will merge current one to dest:
+#
+# $ git merge-into [src] dest
+
 current_branch() {
     git rev-parse --abbrev-ref HEAD
 }

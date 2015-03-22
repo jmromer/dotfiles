@@ -1,11 +1,15 @@
 #!/usr/bin/ruby
+
+# Show churn for whole repo:
+#   $ git churn
 #
-# Put this on your $PATH (~/bin is recommended).
+# Show churn for specific directories:
+#   $ git churn app lib
 #
-# Show churn for the files changed in the branch:
+# Show churn for a time range:
+#   $ git churn --since='1 month ago'
 #
-#   $ git-churn
-#
+# (These are all standard arguments to `git log`.)
 
 class GitChurn
   attr_accessor :all_files_with_churn_count, :changed_files, :result

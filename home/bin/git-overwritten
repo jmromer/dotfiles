@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Usage: git overwritten [--[no-]color] [<head=HEAD>] [<base=origin>]
 #
 # Aggregates git blame information about original owners of lines changed or
