@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# GIT read-eval-print-loop:
+#
+# $ git repl
+#
+
+
 git version
 echo "type 'ls' to ls files below current directory, '!command' to execute any command or just 'subcommand' to execute any git subcommand"
 
@@ -31,7 +37,7 @@ while true; do
   esac
 
   if [[ $cmd == !*  ]]; then
-    eval ${cmd:1} 
+    eval ${cmd:1}
   elif [[ $cmd == git* ]]; then
     eval $cmd
   else
