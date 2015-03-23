@@ -27,3 +27,5 @@ let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_coffee_coffeelint_args = ""
 
+" don't show html/tidy errors for handlebars/mustache templates
+let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
