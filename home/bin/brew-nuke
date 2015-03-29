@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# remove brew package and all its orphaned dependencies
+
+echo "Removing $1 and all its orphaned dependencies..."
+
+dependencies=$(join <(brew leaves) <(brew deps "$1"))
+
+brew rm "$1"
+
+if [[ $dependencies =~ [[:alpha:]]+ ]]; then
+  echo "Removing $dependencies ... "
+  brew rm $dependencies
+fi
+

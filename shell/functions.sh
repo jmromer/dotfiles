@@ -5,16 +5,6 @@ function ts() {
   tmux attach-session -t $(tmux ls | sed 's/:.*//' | pick)
 }
 
-# Fuzzy-select a homebrew package to install
-function brewin() {
-  brew install $(brew search | pick)
-}
-
-# Fuzzy-select a homebrew package to uninstall
-function brewun() {
-  brew uninstall $(brew list | pick)
-}
-
 # Fuzzy-select a process to kill
 function killp() {
   kill $(ps -e | awk '{if(NR!=1) { print $4, $1  }}' | pick -do | tail -n +2)
@@ -22,7 +12,7 @@ function killp() {
 
 # Fuzzy-select ruby version using rbenv
 function chr() {
-if [[ $1 =~ '^(shell|local|global)$' ]]; then
+  if [[ $1 =~ '^(shell|local|global)$' ]]; then
     rbenv "$1" $(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | pick)
     echo "Using Ruby version $(rbenv $1)"
   else
@@ -47,12 +37,6 @@ function p() {
   elif [[ $1 == 'manpath' ]]; then
     ruby -e 'puts `echo $MANPATH`.gsub(":", "\n")'
   fi
-}
-
-# remove brew package and all its dependencies
-function brew_nuke() {
-  brew rm "$1"
-  brew rm $(join <(brew leaves) <(brew deps "$1"))
 }
 
 # update homebrew, upgrade packages, cleanup

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Fuzzy-select a homebrew package to uninstall
+
+brew uninstall $(brew list | pick)
