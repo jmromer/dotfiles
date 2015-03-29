@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Fuzzy-select a homebrew package to install
+
+brew install $(brew search | pick)
+
