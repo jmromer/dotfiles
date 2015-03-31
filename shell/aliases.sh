@@ -82,11 +82,6 @@ alias be='bundle exec'
 alias rs='bin/rails server'
 alias rc='bin/rails console'
 alias rcs='bin/rails console --sandbox'
-alias rss='bundle exec bin/rake db:reset db:seed && rails server'
-
-alias rk='bundle exec bin/rake'
-alias s='bundle exec bin/rspec --format progress .'
-alias ss='bundle exec bin/rspec --format documentation .'
 
 #-------------------------------------------------------------
 # ALIASES: HEROKU
