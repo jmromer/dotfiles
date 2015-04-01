@@ -101,3 +101,14 @@ function delete() {
   fi
 }
 
+# generate a playground project to test out a feature, library, etc.
+# usage: play FRAMEWORK PROJECT-NAME
+function play () {
+  if [[ $1 =~ ^rails$ ]]; then
+    rplay -n $2 --skip-bundle
+  elif [[ $1 =~ ^(express|play|flask|jade|om|spark)$ ]]; then
+    echo "$1 playgrounds haven't been set up yet"
+  else
+    echo 'Usage example: play rails test_project'
+  fi
+}
