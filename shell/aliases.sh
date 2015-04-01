@@ -68,7 +68,17 @@ alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
 #-------------------------------------------------------------
 # ALIASES: BUSTER
 #-------------------------------------------------------------
-alias bgd='buster generate && buster deploy'
+function buster_generate() {
+  if [ -d static ]; then
+    rm -rf ./static/
+    buster generate
+    cp ./source/* ./static/
+  else
+    echo 'Wrong directory: Must be in ghost project root'
+  fi
+}
+
+alias bgd='buster_generate && buster deploy'
 
 #-------------------------------------------------------------
 # ALIASES: RUBY, RAILS
