@@ -5,6 +5,7 @@ Plug 'Konfekt/FastFold'                 " optimized folding for large projects
 Plug 'Lokaltog/vim-easymotion'          " jump without numbers
 Plug 'SirVer/ultisnips'                 " snippets engine, integrates with YCM
 Plug 'Valloric/YouCompleteMe'           " syntax completion
+Plug '0x0dea/vim-molasses'              " don't allow inefficient keystrokes
 Plug 'airblade/vim-gitgutter'           " git diff in the gutter
 Plug 'altercation/vim-colors-solarized' " solarized colors
 Plug 'christoomey/vim-tmux-navigator'   " navigate with awarenes of vim splits
