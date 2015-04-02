@@ -85,6 +85,13 @@ endif
 " GitGutter: always show sign column
 let g:gitgutter_sign_column_always = 1
 
+" Molasses: prohibit inefficient repeated keystrokes
+" the set of keys to monitor and punish against. default: 'hjkl'
+let g:molasses_keys = 'hjkldu'
+
+" the duration between acceptable presses of the same key. default: 200
+let g:molasses_wait = 300
+
 " HugeFile: disable options for large files (>= 1MB)
 let g:hugefile_trigger_size = 1
 
