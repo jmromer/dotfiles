@@ -112,3 +112,19 @@ function play () {
     echo 'Usage example: play rails test_project'
   fi
 }
+
+# generate static ghost blog from currently running local instance
+# wraps `buster generate` in order to copy files from `source` to the
+# deploy directory
+function buster_generate() {
+  if [ -d static ]; then
+    rm -rf ./static/*
+    buster generate
+    cp ./source/* ./static/
+  else
+    echo 'Wrong directory: Must be in ghost project root'
+  fi
+}
+
+alias bgd='buster_generate && buster deploy'
+
