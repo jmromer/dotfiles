@@ -128,3 +128,22 @@ function buster_generate() {
 
 alias bgd='buster_generate && buster deploy'
 
+# run specs
+function bundle_or_bin() {
+  if [ -d bin ]; then
+    echo bin/$@
+    bin/$@
+  elif [ -f Gemfile ]; then
+    echo bundle exec $@
+    bundle exec $@
+  else
+    echo $@
+    $@
+  fi
+}
+
+alias s='bundle_or_bin rspec --format=progress .'
+alias ss='bundle_or_bin rspec --format=documentation .'
+alias rk='bundle_or_bin rake'
+alias rss='rk db:reset db:seed && rails server'
+
