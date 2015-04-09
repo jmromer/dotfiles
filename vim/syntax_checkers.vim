@@ -20,6 +20,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 let g:syntastic_javascript_jslint_args = ""
 let g:syntastic_javascript_jshint_args = ""
+let g:syntastic_javascript_jscsrc = "-c ~/.jscsrc"
 
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
