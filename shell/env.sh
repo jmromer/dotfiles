@@ -41,7 +41,7 @@ export CLICOLOR=1  # BSD
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS="di=00;34:ex=00;31:ln=00;32:or=00;35:mi=90;30"  # GNU
 # export TERM=xterm-256color  # Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color-italic
+export TERM=xterm-256color
 
 #-------------------------------------------------------------
 # RUBY OPTIMIZATIONS

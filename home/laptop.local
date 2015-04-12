@@ -6,7 +6,9 @@ brew tap thoughtbot/formulae
 homebrew=(
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
+  cmake                   # For YCM installation
   emacs                   # emacs duh
+  fzf                     # fuzzy finder
   git                     # Updated version of Git
   git-flow                # Git Flow for Git flow
   hub                     # For github-flavored git
@@ -30,21 +32,22 @@ done
 brew tap homebrew/dupes
 
 gnu_tools=(
-  "binutils"                      # a collection of binary tools
-  "diffutils"                     # diff, cmp, diff3, sdiff
-  "findutils --default-names"     # find, locate, updatedb, xargs
-  "gawk"                          # awk: Pattern replacement
-  "gnu-indent --default-names"    # indent: For beautifying C code
-  "gnu-sed --default-names"       # sed: Filtering text
-  "gnu-tar --default-names"       # tar: Creating compressed archives
-  "gnu-which --default-names"     # which: Find location of given executable
-  "gnutls --default-names"        # TLS: Secure comms
-  "grep --default-names"          # grep: find stuff
-  "macvim --custom-system-icons"  # MacVim, linked to by gvim
-  "vim --override-system-vi"      # Vim, duh.
-  "watch"                         # watch files/dirs for changes
-  "wdiff --with-gettext"          # word-by-word diffing
-  "wget"                          # easy downloads
+  "binutils"                        # a collection of binary tools
+  "coreutils"                       # core unix tools like ls, etc
+  "diffutils"                       # diff, cmp, diff3, sdiff
+  "findutils --with-default-names"  # find, locate, updatedb, xargs
+  "gawk"                            # awk: Pattern replacement
+  "gnu-indent --with-default-names" # indent: For beautifying C code
+  "gnu-sed --with-default-names"    # sed: Filtering text
+  "gnu-tar --with-default-names"    # tar: Creating compressed archives
+  "gnu-which --with-default-names"  # which: Find location of given executable
+  "gnutls --with-default-names"     # TLS: Secure comms
+  "grep --with-default-names"       # grep: find stuff
+  "macvim --custom-system-icons"    # MacVim, linked to by gvim
+  "vim --override-system-vi"        # Vim, duh.
+  "watch"                           # watch files/dirs for changes
+  "wdiff --with-gettext"            # word-by-word diffing
+  "wget"                            # easy downloads
 )
 
 for gnu_tool in "${gnu_tools[@]}"; do
@@ -61,36 +64,37 @@ brew install brew-cask      # install homebrew cask to manage GUI applications
 brew tap caskroom/versions  # for alternate versions, like ST3
 
 cask=(
-  appcleaner          # removes apps and related files
-  betterzipql         # Quick Look viewers: Zip files
-  dropbox             # dropbox duh
-  firefox             # web browser
-  google-chrome       # web browser
-  iterm2-beta         # terminal emulator
-  jitouch             # trackpad gestures
-  keyboard-maestro    # system-wide custom keymappings
-  latexit             # For generating TeX output
-  launchbar           # cmd + <space> ftw
-  name-mangler        # batch file renamer
-  nvalt               # notes
-  onepassword         # password manager
-  papers              # PDF article manager
-  qlcolorcode         # Quick Look viewers: Syntax highlighting
-  qlmarkdown          # Quick Look Preview: Markdown
-  qlprettypatch       # Quick Look Preview: Patch files
-  qlstephen           # Quick Look Preview: Extension-less files
-  quicklook-csv       # Quick Look Preview: CSV files
-  quicklook-json      # Quick Look Preview: JSON files
-  rstudio             # IDE for R
-  sequel-pro          # MySQL GUI
-  skim                # lightweight PDF reader with good annotation tools
-  sublime-text3       # editors
-  suspicious-package  # Quick Look Preview: Mac OS X Installer Packages
-  tex-live-utility    # package manager for TeX
-  transmission        # torrent machine
-  vlc                 # video player
-  webp-quicklook      # Quick Look Preview: webp images
-  xquartz             # for graphical terminal output (R and Octave dependency)
+  1password            # password manager (NB: don't use the app store version)
+  appcleaner           # removes apps and related files
+  betterzipql          # Quick Look viewers: Zip files
+  dropbox              # dropbox duh
+  firefox              # web browser
+  google-chrome        # web browser
+  google-chrome-canary # web browser
+  iterm2-beta          # terminal emulator
+  jitouch              # trackpad gestures
+  karabiner            # remaps esc to cmd
+  keyboard-maestro     # system-wide custom keymappings
+  latexit              # For generating TeX output
+  launchbar            # cmd + <space> ftw
+  name-mangler         # batch file renamer
+  nvalt                # notes
+  papers               # PDF article manager
+  qlcolorcode          # Quick Look viewers: Syntax highlighting
+  qlmarkdown           # Quick Look Preview: Markdown
+  qlprettypatch        # Quick Look Preview: Patch files
+  qlstephen            # Quick Look Preview: Extension-less files
+  quicklook-csv        # Quick Look Preview: CSV files
+  quicklook-json       # Quick Look Preview: JSON files
+  rstudio              # IDE for R
+  sequel-pro           # MySQL GUI
+  skim                 # lightweight PDF reader with good annotation tools
+  suspicious-package   # Quick Look Preview: Mac OS X Installer Packages
+  tex-live-utility     # package manager for TeX
+  transmission         # torrent machine
+  vlc                  # video player
+  webpquicklook        # Quick Look Preview: webp images
+  xquartz              # for graphical terminal output (R and Octave dependency)
 )
 
 for app in ${cask[*]}; do
