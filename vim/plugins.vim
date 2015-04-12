@@ -65,6 +65,8 @@ Plug 'tpope/vim-tbone'                  " basic tmux support
 Plug 'tpope/vim-unimpaired'             " useful complementary mappings
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vim-ruby/vim-ruby'                " Ruby support
+Plug 'vim-scripts/ReplaceWithSameIndentRegister'
+Plug 'vim-scripts/ReplaceWithRegister'  " Replace with contents of a register
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 Plug 'vim-scripts/blockle.vim'          " toggle ruby block styles with <L>rtb
 Plug 'vim-scripts/c.vim'                " C completions
