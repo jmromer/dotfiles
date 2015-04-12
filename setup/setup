@@ -37,7 +37,7 @@ step "Cloning jkrmr/dotfiles..."
 if [ -d $LOCAL_DOTFILES ]; then
   substep "$LOCAL_DOTFILES already exists. Skipping."
 else
-  git clone git@github.com:jkrmr/dotfiles.git $LOCAL_DOTFILES
+  git clone https://github.com/jkrmr/dotfiles.git $LOCAL_DOTFILES
 fi
 
 
@@ -50,12 +50,14 @@ step "Running laptop script. Logging to ~/Desktop/laptop.log..."
 
 laptop_script='https://raw.githubusercontent.com/thoughtbot/laptop/master/mac'
 log_location='$HOME/Desktop/laptop.log'
+touch log_location
+
 bash <(curl -s $laptop_script) 2>&1 | tee $log_location
 
 
 step "Setting homebrewed zsh as the default shell..."
 
-source "$HOME/.zshrc.local"  # reload $PATH
+source "$HOME/.zshrc"  # reload $PATH
 echo "$(which bash)" | sudo tee -a /etc/shells
 echo "$(which zsh)"  | sudo tee -a /etc/shells
 chsh -s $(which zsh)  # /usr/local/bin/zsh

@@ -1,8 +1,9 @@
 #-------------------------------------------------------------
 # Mac Settings
 #-------------------------------------------------------------
-# set key repeat to fastest setting
-defaults write NSGlobalDomain KeyRepeat -int 0
+# Set key repeat / delay until repeat (Use Karabiner if this doesn't work)
+defaults write NSGlobalDomain InitialKeyRepeat -int 200
+defaults write NSGlobalDomain KeyRepeat -int 40
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -38,7 +39,6 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Enable snap-to-grid for icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Use list view in all Finder windows by default
@@ -144,9 +144,6 @@ sudo chflags uchg /Private/var/vm/sleepimage
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
-
-# Remap caps lock to ctrl and vice versa
-./remap_caps_lock
 
 # Restart affected services
 killall Dock
