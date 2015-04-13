@@ -70,7 +70,6 @@
     aa       = add --all
     ap       = add --patch
     b        = branch -vv
-    bb       = !sh -c 'git checkout $(git branch | cut -c 3- | pick)' -
     bn       = checkout -b
     bd       = branch -d
     bdel     = branch -D
@@ -78,6 +77,7 @@
     bpr      = !sh -c 'hub browse pull/$1' -
     c        = commit -v
     ca       = commit -v --amend
+    cb       = !sh -c 'git checkout $(git branch | cut -c 3- | pick)' -
     cm       = !sh -c 'git commit -m \"$*\"' -
     co       = checkout
     cp       = cherry-pick
