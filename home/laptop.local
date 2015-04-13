@@ -102,3 +102,17 @@ for app in ${cask[*]}; do
   brew cask install $app
 done
 
+#-------------------------------------------------------------
+# Packages by language / framework
+#-------------------------------------------------------------
+# Scala
+brew install scala sbt
+brew cask install scala-ide
+
+# Clojure
+brew install leiningen
+brew install clojurescript
+
+# Haskell
+brew cask install haskell-platform
+
