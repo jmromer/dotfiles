@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Fuzzy-select a homebrew cask package to install
+
+brew cask install $(brew cask search | sed "1 d" | pick)
+
