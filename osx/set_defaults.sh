@@ -2,8 +2,8 @@
 # Mac Settings
 #-------------------------------------------------------------
 # Set key repeat / delay until repeat (Use Karabiner if this doesn't work)
-defaults write NSGlobalDomain InitialKeyRepeat -int 200
-defaults write NSGlobalDomain KeyRepeat -int 40
+defaults write NSGlobalDomain InitialKeyRepeat -int 150
+defaults write NSGlobalDomain KeyRepeat -int 30
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -63,7 +63,7 @@ defaults write com.apple.dock persistent-apps -array ""
 defaults write com.apple.dock launchanim -bool false
 
 # Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.15
+defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
