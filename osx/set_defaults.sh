@@ -63,7 +63,7 @@ defaults write com.apple.dock persistent-apps -array ""
 defaults write com.apple.dock launchanim -bool false
 
 # Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.1
+defaults write com.apple.dock expose-animation-duration -float 0.15
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
