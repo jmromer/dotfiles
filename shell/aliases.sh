@@ -7,10 +7,14 @@ alias vi='vim -u ~/.dotfiles/vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
 
 function e() {
+  local editor="$(ruby -e 'print %w(emacs vim).at(rand(2))')"
+
   if [ -z "$1" ]; then
-    vim .
+    echo $editor .
+    $editor .
   else
-    vim "$1"
+    echo $editor "$1"
+    $editor "$1"
   fi
 }
 
