@@ -58,6 +58,7 @@ alias diff='colordiff'        # compare files, colorize output
 alias hide='setfile -a V'     # hide a file
 alias unhide='setfile -a v'   # unhide a file
 alias octave='octave -q'      # suppress greeting and version message
+alias tmux='env TERM=screen-256color tmux' # Hackish. Enables italics.
 
 #-------------------------------------------------------------
 # ALIASES: NODE, NPM, GREP
