@@ -117,3 +117,6 @@ brew install clojurescript
 # Haskell
 brew cask install haskell-platform
 
+# Vagrant
+brew cask install virtualbox vagrant
+
