@@ -69,6 +69,7 @@ cask=(
   betterzipql          # Quick Look viewers: Zip files
   dropbox              # dropbox duh
   firefox              # web browser
+  flux                 # controls screen brightness
   google-chrome        # web browser
   google-chrome-canary # web browser
   iterm2-beta          # terminal emulator
