@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Fuzzy-select a ruby to install using rbenv
+
+rbenv install $(rbenv install -ls | sed "1 d" | pick)
+
