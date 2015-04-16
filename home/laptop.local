@@ -11,6 +11,7 @@ homebrew=(
   fzf                     # fuzzy finder
   git                     # Updated version of Git
   git-flow                # Git Flow for Git flow
+  gtypist                 # Touch-type training
   hub                     # For github-flavored git
   mongodb                 # document-based NoSQL database
   pick                    # for fuzzy-searching stdout
