@@ -7,6 +7,7 @@ home/pry/themes/github*
 home/pry/themes/monokai*
 home/pry/themes/vim*
 home/emacs.d/elpa
+home/lein/repl-history
 home/vim/.netrwhist
 home/vim/plugins/*
 home/zsh/zsh-syntax-highlighting/*
