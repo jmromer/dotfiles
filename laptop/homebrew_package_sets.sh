@@ -19,3 +19,7 @@ brew install python
 pip install --upgrade pip setuptools buster
 brew unlink python
 
+# Exercism
+brew tap homebrew/binary
+brew install exercism
+
