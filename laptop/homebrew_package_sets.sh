@@ -23,3 +23,8 @@ brew unlink python
 brew tap homebrew/binary
 brew install exercism
 
+# Go
+brew install go
+mkdir $HOME/.go
+mkdir -p $HOME/.go/src/github.com/user
+
