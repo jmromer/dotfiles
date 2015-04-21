@@ -11,7 +11,13 @@ if [[ -z $GNUTOOLS_PATHS || -z $GNUTOOLS_MANS ]]; then
   done
 fi
 
-export MANPATH="$GNUTOOLS_MANS$(manpath)"
+#-------------------------------------------------------------
+# MANPATH
+#-------------------------------------------------------------
+MANPATH="$GNUTOOLS_MANS"
+MANPATH+="/usr/local/opt/erlang/lib/erlang/man:"
+MANPATH+="$(manpath)"
+export MANPATH
 
 #-------------------------------------------------------------
 # PATH
