@@ -2,7 +2,8 @@
 #-------------------------------------------------------------
 # Preamble
 #-------------------------------------------------------------
-LOCAL_DOTFILES=~/.dotfiles
+LOCAL_DOTFILES="$HOME/.dotfiles"
+SYNCED="$HOME/Dropbox/Sync"
 
 function getc() {
   IFS= read -r -n1 -d '' "$@"
@@ -20,9 +21,8 @@ function substep() {
 # Set up dotfiles
 #-------------------------------------------------------------
 step "Checking for command line tools..."
-
 loc="$(xcode-\select -p 2> /dev/null)"
-if [[ $loc =~ "Xcode.app" ]]; then
+if [[ $loc =~ "CommandLineTools" ]]; then
   substep "Command line tools are already installed. Skipping."
 else
   substep "Installing the Command Line Tools (expect a GUI popup):"
@@ -33,7 +33,6 @@ fi
 
 
 step "Cloning jkrmr/dotfiles..."
-
 if [ -d $LOCAL_DOTFILES ]; then
   substep "$LOCAL_DOTFILES already exists. Skipping."
 else
@@ -42,21 +41,18 @@ fi
 
 
 step "Linking laptop script customizations..."
-
 ln -s $LOCAL_DOTFILES/home/laptop.local ~/.laptop.local
 
 
 step "Running laptop script. Logging to ~/Desktop/laptop.log..."
-
 laptop_script='https://raw.githubusercontent.com/thoughtbot/laptop/master/mac'
-log_location='$HOME/Desktop/laptop.log'
-touch log_location
-
-bash <(curl -s $laptop_script) 2>&1 | tee $log_location
+log_location="$HOME/Desktop/laptop.log"
+touch $log_location
+curl --remote-name $laptop_script
+sh mac 2>&1 | tee $log_location
 
 
 step "Setting homebrewed zsh as the default shell..."
-
 source "$HOME/.zshrc"  # reload $PATH
 echo "$(which bash)" | sudo tee -a /etc/shells
 echo "$(which zsh)"  | sudo tee -a /etc/shells
@@ -64,7 +60,6 @@ chsh -s $(which zsh)  # /usr/local/bin/zsh
 
 
 step "Installing rcm..."
-
 if [[ -n "$(which rcup 2> /dev/null)" ]]; then
   substep "rcm is already installed. Skipping..."
 else
@@ -74,16 +69,46 @@ fi
 
 
 step "Linking dotfiles into home directory..."
-
 env RCRC=$LOCAL_DOTFILES/rcrc rcup
 
 
 step "Linking remaining miscellaneous dotfiles..."
+ln -sf $LOCAL_DOTFILES/home/bin     $HOME/.bin
+ln -sf $LOCAL_DOTFILES/home/emacs.d $HOME/.emacs.d
+ln -sf $LOCAL_DOTFILES/home/lein    $HOME/.lein
+ln -sf $LOCAL_DOTFILES/home/pry     $HOME/.pry
+ln -sf $LOCAL_DOTFILES/home/vim     $HOME/.vim
+ln -sf $LOCAL_DOTFILES/home/zsh     $HOME/.zsh
+ln -sf $LOCAL_DOTFILES/default-gems $HOME/.rbenv/
 
-ln -sf $LOCAL_DOTFILES/sshconfig ~/.ssh/config
+
+step "Linking to synced preference files..."
+ln -sf $HOME/dotfiles/aws           $HOME/.aws
+ln -sf $HOME/dotfiles/env.secure    $HOME/.env.secure
+ln -sf $HOME/dotfiles/exercism.json $HOME/.exercism.json
+ln -sf $HOME/Preferences/Firefox    $HOME/Library/Application\ Support
+ln -sf $HOME/Preferences/StickiesDatabase          $HOME/Library
+ln -sf $HOME/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
+
+
+step "Setting up SSH directory"
+mkdir $HOME/.ssh
+ln -sf $LOCAL_DOTFILES/sshconfig        $HOME/.ssh/config
+
+for file in id_rsa id_rsa.pub jkrmr-aws-usca.pem; do
+  cp $SYNCED/dotfiles/$file  $HOME/.ssh
+  chmod 700 $HOME/.ssh/$file
+done
+
+
+step "Installing Solarized Dark them for Xcode..."
+mkdir $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
+ln -s $LOCAL_DOTFILES/theming/color_schemes/Solarized\ Dark.dvtcolortheme $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/
 
 
 step "Setting Mac OS X defaults..."
-
 source $LOCAL_DOTFILES/osx/set_defaults.sh
+
+
+step "Setup script is complete."
 

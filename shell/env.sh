@@ -1,19 +1,17 @@
 # shell/env.sh
 #-------------------------------------------------------------
-# GNU TOOLS (prepend to PATH and MANPATH)
+# GNU TOOLS (prepend to PATH)
 #-------------------------------------------------------------
 if [[ -z $GNUTOOLS_PATHS || -z $GNUTOOLS_MANS ]]; then
   gnu_tools=( coreutils gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls )
 
   for gnu_tool in "${gnu_tools[@]}"; do
     GNUTOOLS_PATHS+=":/usr/local/opt/$gnu_tool/libexec/gnubin"
-    GNUTOOLS_MANS+=":/usr/local/opt/$gnu_tool/libexec/gnuman"
+    GNUTOOLS_MANS+="/usr/local/opt/$gnu_tool/libexec/gnuman:"
   done
-
-  export GNUTOOLS_PATHS
-  export GNUTOOLS_MANS
-  export MANPATH="$GNUTOOLS_MANS:/usr/local/man:$(manpath)"
 fi
+
+export MANPATH="$GNUTOOLS_MANS$(manpath)"
 
 #-------------------------------------------------------------
 # PATH
