@@ -10,5 +10,5 @@ home/emacs.d/elpa
 home/lein/repl-history
 home/vim/.netrwhist
 home/vim/plugins/*
+home/vim/tmp/yankring_history_v2.txt
 home/zsh/zsh-syntax-highlighting/*
-yankring_history*
