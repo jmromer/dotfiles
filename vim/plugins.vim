@@ -13,6 +13,7 @@ Plug 'christoomey/vim-tmux-runner'      " send commands to tmxu pane
 Plug 'ciaranm/detectindent'             " detect indentation level
 Plug 'ecomba/vim-ruby-refactoring'      " keybindings for refactoring
 Plug 'ervandew/supertab'                " context-aware tab-completion
+Plug 'elixir-lang/vim-elixir'           " Elixir syntax
 Plug 'gavinbeatty/dragvisuals.vim'      " move visual blocks / lines around
 Plug 'gregsexton/gitv'                  " gitk port. requires fugitive
 Plug 'honza/vim-snippets'               " textmate-style code snippets
