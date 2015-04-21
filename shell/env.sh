@@ -1,4 +1,11 @@
 # shell/env.sh
+
+#-------------------------------------------------------------
+# GO
+#-------------------------------------------------------------
+export GOPATH=$HOME/.go
+export GOROOT=/usr/local/opt/go/libexec
+
 #-------------------------------------------------------------
 # GNU TOOLS (prepend to PATH)
 #-------------------------------------------------------------
@@ -22,15 +29,16 @@ export MANPATH
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="$HOME/.bin:$HOME/bin"    # user binaries
-PATH+=$GNUTOOLS_PATHS          # GNU command-line tools
-PATH+=":/usr/local/heroku/bin" # heroku-toolbelt binaries
-PATH+=":/usr/local/bin"        # homebrewed binaries
-PATH+=":/usr/bin:/bin"         # system binaries
-PATH+=":/usr/sbin:/sbin"       # system binaries requiring root
-PATH+=":/opt/X11/bin"          # added by OSX
-PATH+=":/usr/texbin"           # for TeX
-PATH+=":."                     # current directory (must come last)
+PATH="$HOME/.bin:$HOME/bin"      # user binaries
+PATH+=$GNUTOOLS_PATHS            # GNU command-line tools
+PATH+=":$GOPATH/bin:$GOROOT/bin" # Go binaries
+PATH+=":/usr/local/heroku/bin"   # heroku-toolbelt binaries
+PATH+=":/usr/local/bin"          # homebrewed binaries
+PATH+=":/usr/bin:/bin"           # system binaries
+PATH+=":/usr/sbin:/sbin"         # system binaries requiring root
+PATH+=":/opt/X11/bin"            # added by OSX
+PATH+=":/usr/texbin"             # for TeX
+PATH+=":."                       # current directory (must come last)
 export PATH
 
 #-------------------------------------------------------------
