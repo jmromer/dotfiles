@@ -26,7 +26,6 @@ Plug 'jiangmiao/auto-pairs'             " auto insert closing delimiters
 Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'junegunn/vim-easy-align'          " text alignment
 Plug 'kana/vim-textobj-user'            " custom text objects
-Plug 'kbairak/ColumnTags.vim'           " follow tags into a new v-split
 Plug 'kchmck/vim-coffee-script'         " CoffeeScript syntax defintions
 Plug 'kien/ctrlp.vim'                   " Rapid file finding
 Plug 'lervag/vim-latex'                 " LaTeX support
