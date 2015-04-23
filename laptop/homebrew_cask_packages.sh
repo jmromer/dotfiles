@@ -32,6 +32,7 @@ cask=(
   rstudio              # IDE for R
   skim                 # lightweight PDF reader with good annotation tools
   skype                # Skype, duh.
+  spectacle            # window resizing
   suspicious-package   # Quick Look Preview: Mac OS X Installer Packages
   tex-live-utility     # package manager for TeX
   transmission         # torrent machine
