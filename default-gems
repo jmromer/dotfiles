@@ -3,6 +3,7 @@ rubygems-bundler
 pretty_backtrace
 pry
 pry-theme
+pry-byebug
 awesome_print
 hirb
 benchmark-ips
