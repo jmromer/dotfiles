@@ -32,3 +32,7 @@ mkdir -p $HOME/.go/src/github.com/user
 brew tap homebrew/science
 brew install r
 brew cask install rstudio
+
+# Julia
+brew tap staticfloat/julia
+brew install julia
