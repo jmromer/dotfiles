@@ -1,2 +1,2 @@
-EXCLUDES="README.md LICENSE Brewfile"
-DOTFILES_DIRS="$HOME/.dotfiles/home"
+EXCLUDES="README.md"
+DOTFILES_DIRS="$HOME/.dotfiles/home $HOME/.dotfiles/linter_conf"
