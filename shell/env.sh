@@ -93,8 +93,6 @@ export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 # API KEYS
 #-------------------------------------------------------------
 export HOMEBREW_GITHUB_API_TOKEN
-export AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY
 
 #-------------------------------------------------------------
 # RUBY MANAGER
