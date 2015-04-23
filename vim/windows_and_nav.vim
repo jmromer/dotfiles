@@ -24,8 +24,8 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " Resize vim windows with direction keys
 nnoremap <Left> <C-w><
 nnoremap <Right> <C-w>>
-nnoremap <Up> <C-w>+
-nnoremap <Down> <C-w>-
+nnoremap <Down> <C-w>+
+nnoremap <Up> <C-w>-
 
 " zoom a vim pane, <leader>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
