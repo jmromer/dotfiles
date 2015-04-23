@@ -28,3 +28,7 @@ brew install go
 mkdir $HOME/.go
 mkdir -p $HOME/.go/src/github.com/user
 
+# R
+brew tap homebrew/science
+brew install r
+brew cask install rstudio
