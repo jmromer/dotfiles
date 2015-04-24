@@ -1,5 +1,10 @@
 # shell/functions.sh
 
+# Display any processes listening on the given port
+function listening_on_port() {
+  lsof -wni tcp:$1
+}
+
 # Open the editor as appropriate
 function e() {
   # local editor="$(ruby -e 'print %w(emacs vim).at(rand(2))')"
