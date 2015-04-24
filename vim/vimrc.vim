@@ -106,3 +106,11 @@ endfunction
 " from visual mode, leader+r populates command line
 vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
 
+
+" Text search
+" ------------
+" Grep for the word under the cursor, open results in quickfix pane
+nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Quick Ag
+nnoremap <leader>\ :Ag<SPACE>
