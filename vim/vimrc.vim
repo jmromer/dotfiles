@@ -61,6 +61,9 @@ nnoremap <silent><leader>gc :Gcommit<CR>
 " Open a Scratch buffer
 nnoremap <leader>m :Sscratch<CR>
 
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
 " Reload all open buffers
 function! ReloadAllBuffers ()
   set autoread
