@@ -6,18 +6,6 @@
 alias vi='vim -u ~/.dotfiles/vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
 
-function e() {
-  local editor="$(ruby -e 'print %w(emacs vim).at(rand(2))')"
-
-  if [ -z "$1" ]; then
-    echo $editor .
-    $editor .
-  else
-    echo $editor "$1"
-    $editor "$1"
-  fi
-}
-
 #-------------------------------------------------------------
 # ALIASES: Editors (note: postfix aliases unsupport in Bash)
 #-------------------------------------------------------------
