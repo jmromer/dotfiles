@@ -75,15 +75,6 @@ nnoremap <silent><leader>rr :call ReloadAllBuffers()<CR>
 nnoremap <leader>ss :SaveSession<space>
 nnoremap <leader>os :OpenSession<space>
 
-" Text search
-" ------------
-" Grep for the word under the cursor, open results in quickfix pane
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Grep with given arguments, open results in quickfix pane
-" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>\ :Ag<SPACE>
-
 " ----------------------- Mappings: Copy/Paste ------------------------
 " Select all text in file
 nnoremap <leader>sa ggVG
