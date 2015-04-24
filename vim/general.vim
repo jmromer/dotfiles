@@ -11,7 +11,6 @@ set laststatus=2      " Always display the status line
 set autowrite         " Automatically :write before running commands
 set lazyredraw        " Redraw for typed actions, not when executing macros
 set ttyfast           " This is a fast terminal
-set grepprg=ag        " use ag for grepping
 set noshowmode        " don't show the current mode in the message bar
 
 " Backup policy
