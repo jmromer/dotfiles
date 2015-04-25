@@ -105,3 +105,8 @@ let g:yankring_replace_n_nkey = '<C-n>'
 " YankRing: display yankring contents
 nnoremap <silent><leader>y :YRShow<CR>
 
+let g:easy_align_delimiters = {}
+let g:easy_align_delimiters['"'] = {
+\ 'pattern': '\(\s\+"\)',
+\ 'left_margin': 0, 'right_margin': 1
+\ }
