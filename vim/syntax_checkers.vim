@@ -16,11 +16,11 @@ let g:syntastic_auto_jump = 0
 " don't perform checks when :wq :x or :ZZ are issued
 let g:syntastic_check_on_wq = 0
 
-" don't show html/tidy errors for handlebars/mustache templates
+" lint handlebars templaates with handlebars
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 
-" manually call :SyntasticCheck for html files
-let syntastic_mode_map = { 'passive_filetypes': ['html']  }
+" don't bother linting html
+let g:syntastic_html_checkers = []
 
 
 " JavaScript
@@ -36,4 +36,3 @@ let g:syntastic_coffee_coffeelint_args = '-f ~/.coffeelint.json'
 " Ruby
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_ruby_rubocop_args = ''
-
