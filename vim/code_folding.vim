@@ -38,4 +38,3 @@ if has("folding")
     return printf('%s%*s', l:linetext, l:align, l:foldtext)
   endfunction
 endif
-

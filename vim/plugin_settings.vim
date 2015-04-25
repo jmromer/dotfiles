@@ -34,18 +34,6 @@ let g:easytags_async = 1
 " Easytags: use exuberant ctags
 let g:easytags_cmd = '/usr/local/bin/ctags'
 
-" " Easytags: Use keyword highlighting
-" let g:easytags_syntax_keyword = 'always'
-"
-" " Easytags: automatically update tags when pausing for a few seconds
-" let g:easytags_on_cursorhold = 0
-"
-" " Easytags: automatically highlight tagged methods
-" let g:easytags_auto_highlight = 1
-"
-" " Easytags: update tags after save
-" let g:easytags_events = ['BufWritePost']
-
 " Easytags: look for a project specific tags file
 let g:easytags_dynamic_files = 1
 
