@@ -8,7 +8,7 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_always_populate_loc_list = 1
 
 " display errors and warnings
-let g:syntastic_stl_format = '[%E{%e E%fe}%B{ }%W{%w W%fw}]'
+let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
 
 " don't jump to first error or warning
 let g:syntastic_auto_jump = 0
