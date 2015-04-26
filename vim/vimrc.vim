@@ -64,6 +64,9 @@ nnoremap <leader>m :Sscratch<CR>
 " Switch between the previous two files
 nnoremap <C-\> <c-^>
 
+" Open a new tab
+nnoremap <silent> <C-W>t :tabnew<CR>
+
 " Reload all open buffers
 function! ReloadAllBuffers ()
   set autoread
