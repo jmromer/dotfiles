@@ -15,7 +15,7 @@ gnu_tools=(
   "gnu-which --with-default-names"  # which: Find location of given executable
   "gnutls --with-default-names"     # TLS: Secure comms
   "grep --with-default-names"       # grep: find stuff
-  "vim --override-system-vi"        # Vim, duh.
+  "macvim --with-client-server --override-system-vim"
   "watch"                           # watch files/dirs for changes
   "wdiff --with-gettext"            # word-by-word diffing
   "wget"                            # easy downloads
@@ -25,5 +25,3 @@ for gnu_tool in "${gnu_tools[@]}"; do
   fancy_echo "brew install $gnu_tool..."
   brew_install_or_upgrade $gnu_tool
 done
-
-
