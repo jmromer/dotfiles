@@ -60,7 +60,6 @@ Plug 'othree/javascript-libraries-syntax.vim' " syntax for popular JS libraries
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
 Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
 Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
-Plug 'jgdavey/tslime.vim'             " send specs to a designated tmux pane
 Plug 'tpope/vim-tbone'                " basic tmux support
 
 " Misc languages
