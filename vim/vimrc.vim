@@ -21,10 +21,10 @@ runtime tmux_runners.vim
 nnoremap <silent><CR> :noh<CR><CR>
 
 " reload vimrc
-nnoremap <silent><leader>R :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
+nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
 
 " redraw screen
-nnoremap <silent><leader>r :redraw!<CR>
+nnoremap <silent><leader>R :redraw!<CR>
 
 " Fast saving
 nnoremap <leader>w :w<CR>

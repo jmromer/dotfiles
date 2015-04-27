@@ -1,3 +1,9 @@
+" Dispatch
+nnoremap <leader>d :Dispatch<CR>
+nnoremap <leader>D :Focus<SPACE>
+nnoremap <leader>p :Start pry<CR>
+nnoremap <leader>r :Start<SPACE>
+
 " Vim Tmux Runner
 " -----------
 " h for vertical split to the right
