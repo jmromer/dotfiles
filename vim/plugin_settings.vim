@@ -4,9 +4,6 @@
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<C-b>'
 
-" Blockle: Toggle ruby blocks with leader-tb
-let g:blockle_mapping = '<leader>rtb'
-
 " CoffeeScript: coffeescript syntax and helpers (CoffeeWatch, et al.)
 let coffee_compile_vert = 1
 let coffee_watch_vert = 1
