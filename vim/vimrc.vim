@@ -32,9 +32,6 @@ nnoremap <leader>w :w<CR>
 " Fast saving for multiple buffers
 nnoremap <leader>wa :wa<CR>
 
-" To save as root, use :W (uses tpope's vim-eunuch)
-command! W :SudoWrite
-
 " toggle Tagbar
 nnoremap <silent><leader>t :TagbarToggle<CR>
 
@@ -48,7 +45,13 @@ nnoremap <silent><leader>u :GundoToggle<CR>
 nnoremap <silent><leader>kw :StripWhitespace<CR>
 
 " open netrw explore buffer
-nnoremap <silent><C-e> :Explore<CR>
+nnoremap <silent><leader>e :Explore<CR>
+
+" Scroll window up by 5 lines
+nnoremap <C-e> 5<C-e>
+
+" Scroll window down by 5 lines
+nnoremap <C-y> 5<C-y>
 
 " Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -120,3 +123,7 @@ nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Quick Ag
 nnoremap <leader>\ :Ag<SPACE>
+
+" Use Ag for grepping
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
