@@ -21,16 +21,23 @@ runtime tmux_runners.vim
 nnoremap <silent><CR> :noh<CR><CR>
 
 " reload vimrc
-nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>:echo "vim reloaded."<CR>
+nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>
 
-" redraw screen
+" redraw the screen
 nnoremap <silent><leader>R :redraw!<CR>
 
-" Fast saving
-nnoremap <leader>w :w<CR>
+" Fast saving for all buffers
+nnoremap <leader>w :wa<CR>
+inoremap <leader>w <ESC>:wa<CR>i
 
-" Fast saving for multiple buffers
-nnoremap <leader>wa :wa<CR>
+" Reload all open buffers
+function! ReloadAllBuffers ()
+  set autoread
+  checktime
+  echo "Buffers reloaded"
+endfunction
+
+nnoremap <silent><leader><S-r> :call ReloadAllBuffers()<CR>
 
 " toggle Tagbar
 nnoremap <silent><leader>t :TagbarToggle<CR>
@@ -69,14 +76,6 @@ nnoremap <C-\> <c-^>
 
 " Open a new tab
 nnoremap <silent> <C-W>t :tabnew<CR>
-
-" Reload all open buffers
-function! ReloadAllBuffers ()
-  set autoread
-  checktime
-endfunction
-
-nnoremap <silent><leader>rr :call ReloadAllBuffers()<CR>
 
 
 " Session Management
