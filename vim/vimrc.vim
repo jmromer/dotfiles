@@ -21,14 +21,14 @@ runtime tmux_runners.vim
 nnoremap <silent><CR> :noh<CR><CR>
 
 " reload vimrc
-nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>
+nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>:echo 'reloaded'<CR>
 
 " redraw the screen
 nnoremap <silent><leader>R :redraw!<CR>
 
 " Fast saving for all buffers
-nnoremap <leader>w :wa<CR>
-inoremap <leader>w <ESC>:wa<CR>i
+nnoremap <silent><leader>w :wa<CR>
+inoremap <silent><leader>w <ESC>:wa<CR>i
 
 " Reload all open buffers
 function! ReloadAllBuffers ()
