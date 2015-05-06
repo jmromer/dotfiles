@@ -28,7 +28,6 @@ nnoremap <silent><leader>R :redraw!<CR>
 
 " Fast saving for all buffers
 nnoremap <silent><leader>w :wa<CR>
-inoremap <silent><leader>w <ESC>:wa<CR>i
 
 " Reload all open buffers
 function! ReloadAllBuffers ()
