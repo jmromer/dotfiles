@@ -23,6 +23,7 @@ Plug 'tpope/vim-dispatch'               " async builds and test suites
 Plug 'tpope/vim-bundler'                " Bundler commands
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-obsession'              " continuous session saving :Obsess[!]
+Plug 'tpope/vim-rake'                   " Rake wrapper
 Plug 'tpope/vim-rhubarb'                " GitHub extension for fugitive.vim
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
@@ -83,8 +84,7 @@ Plug 'tpope/vim-surround'          " surround text block with delimiters
 Plug 'tpope/vim-unimpaired'        " useful complementary mappings
 Plug 'vim-scripts/ReplaceWithSameIndentRegister'
 Plug 'vim-scripts/ReplaceWithRegister' " Replace with contents of a register
-Plug 'vim-scripts/matchit.zip'     " goto matching delimiter with %
-Plug 'vim-scripts/visualrepeat'    " extends dot operator to visual mode
+Plug 'vim-scripts/visualrepeat'        " extends dot operator to visual mode
 
 " Code snippets
 Plug 'SirVer/ultisnips'   " snippets engine, integrates with YCM
