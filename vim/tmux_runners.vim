@@ -1,3 +1,15 @@
+function! SwapTestRunner()
+  if g:test#strategy == 'vtr'
+    let g:test#strategy = 'dispatch'
+    echo "using Dispatch"
+  else
+    let g:test#strategy = 'vtr'
+    echo "using Vim-Tmux-Runner"
+  endif
+endfunction
+
+nnoremap <leader>sr :call SwapTestRunner()<CR>
+
 " Async Test Runner: Dispatch
 " ----------------------------
 nnoremap <leader>d :Dispatch<CR>
@@ -13,7 +25,7 @@ nmap <silent> <leader>A :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-let g:test#strategy = 'vtr'
+let g:test#strategy = 'dispatch'
 
 " Vim Tmux Runner
 " ----------------
