@@ -27,14 +27,17 @@ function ts() {
 
 # Fuzzy-select a process to kill
 function killp() {
-  kill $(ps -e | awk '{if(NR!=1) { print $4, $1  }}' | pick -do | tail -n +2)
+  local process=$(ps -e | awk '{if(NR!=1) { print $4, $1  }}' | pick -do | tail -n +2)
+  echo "kill pid $process"
+  kill $process
 }
 
 # Fuzzy-select ruby version using rbenv
 function chr() {
   if [[ $1 =~ '^(shell|local|global)$' ]]; then
-    rbenv "$1" $(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | pick)
-    echo "Using Ruby version $(rbenv $1)"
+    local version=$(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | pick)
+    echo "rbenv $1 $version"
+    rbenv $1 $version
   else
     echo 'Usage: chr (shell|local|global)'
   fi

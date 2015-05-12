@@ -2,5 +2,9 @@
 
 # Fuzzy-select a ruby to install using rbenv
 
-rbenv install $(rbenv install -ls | sed "1 d" | pick)
+ruby_version=$(rbenv install -ls | sed "1 d" | pick)
+
+echo "rbenv install $ruby_version"
+
+rbenv install $ruby_version
 
