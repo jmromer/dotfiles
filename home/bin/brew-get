@@ -2,5 +2,12 @@
 
 # Fuzzy-select a homebrew package to install
 
-brew install $(brew search | pick)
-
+if [[ "$1" == "cask" ]]; then
+  package=$(brew cask search | sed "1 d" | pick)
+  echo "brew cask install $package"
+  brew cask install $package
+elif [[ -z "$1" ]]; then
+  package=$(brew search | pick)
+  echo "brew install $package"
+  brew install $package
+fi

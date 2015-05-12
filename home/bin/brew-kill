@@ -2,4 +2,12 @@
 
 # Fuzzy-select a homebrew package to uninstall
 
-brew uninstall $(brew list | pick)
+if [[ "$1" == "cask" ]]; then
+  package=$(brew cask list | sed "1 d" | pick)
+  echo "brew cask uninstall $package"
+  brew cask uninstall $package
+elif [[ -z "$1" ]]; then
+  package=$(brew list | pick)
+  echo "brew uninstall $package"
+  brew uninstall $package
+fi
