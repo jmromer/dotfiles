@@ -1,6 +1,7 @@
 source "$HOME/laptop/helper_functions.sh"
 source "$HOME/laptop/gnu_tools.sh"
 source "$HOME/laptop/homebrew_packages.sh"
+source "$HOME/laptop/libraries.sh"
 source "$HOME/laptop/homebrew_cask_packages.sh"
 source "$HOME/laptop/homebrew_package_sets.sh"
 
