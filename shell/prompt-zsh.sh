@@ -45,11 +45,28 @@ SAVEHIST=4096
 #-------------------------------------------------------------
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
+bindkey -M viins '^k' kill-line
+
+# issue the command, but keep it at the prompt
 bindkey -M viins '^y' accept-and-hold
 
-bindkey -M viins -s '^t' '^[Isudo ^[A'  # ^t to prepend sudo
-bindkey -M vicmd -s '^t' '^[Isudo ^[A'  # ^t to prepend sudo
+# ^f ('force') to prepend sudo
+bindkey -M viins -s '^f' '^[Isudo ^[A'
 
+bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
+bindkey "^[[3~" delete-char  # ensure delete forwards deletes
+
+# Position cursor after ARG[0] (for argument/flag entry)
+function after-first-word() {
+  zle beginning-of-line
+  zle forward-word
+}
+zle -N after-first-word
+bindkey '^x' after-first-word
+
+#-------------------------------------------------------------
+# COMMAND-LINE HISTORY SEARCHING AND NAVIGATION
+#-------------------------------------------------------------
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
@@ -68,9 +85,8 @@ bindkey -M vicmd '^p' up-line-or-beginning-search
 bindkey -M viins '^n' down-line-or-beginning-search
 bindkey -M vicmd '^n' down-line-or-beginning-search
 
-bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
-bindkey "^[[3~" delete-char  # ensure delete forwards deletes
-setopt complete_in_word      # back-i-search begins with current word
+# back-i-search begins with current word
+setopt complete_in_word
 
 #-------------------------------------------------------------
 # COLORS
@@ -124,16 +140,6 @@ zle -N zle-line-finish
 
 RPROMPT='$(color yellow)${vim_mode}$(color reset)'
 RPROMPT2='$(color yellow)${vim_mode}$(color reset)'
-
-#-------------------------------------------------------------
-# Move to where the arguments belong.
-#-------------------------------------------------------------
-function after-first-word() {
-  zle beginning-of-line
-  zle forward-word
-}
-zle -N after-first-word
-bindkey "^X" after-first-word
 
 #-------------------------------------------------------------
 # UNDO (DISABLE ZSH DEFAULTS)
