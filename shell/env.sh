@@ -49,11 +49,12 @@ export CDPATH=".:$HOME/Desktop:$HOME/Developer:$HOME"
 #-------------------------------------------------------------
 # SYNTAX HIGHLIGHTING
 #-------------------------------------------------------------
-export CLICOLOR=1  # BSD
+# BSD
+export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
-export LS_COLORS="di=00;34:ex=00;31:ln=00;32:or=00;35:mi=90;30"  # GNU
-# export TERM=xterm-256color  # Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
+
+# GNU
+export LS_COLORS="di=00;34:ex=00;31:ln=00;32:or=00;35:mi=90;30"
 
 #-------------------------------------------------------------
 # RUBY OPTIMIZATIONS
