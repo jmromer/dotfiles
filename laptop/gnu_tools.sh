@@ -15,7 +15,6 @@ gnu_tools=(
   "gnu-which --with-default-names"  # which: Find location of given executable
   "gnutls --with-default-names"     # TLS: Secure comms
   "grep --with-default-names"       # grep: find stuff
-  "macvim --with-client-server --override-system-vim"
   "watch"                           # watch files/dirs for changes
   "wdiff --with-gettext"            # word-by-word diffing
   "wget"                            # easy downloads
