@@ -1,11 +1,12 @@
 " ------------- Syntastic (style checking) ------------------------
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open = 1
+" check only on save
+let g:syntastic_check_on_open = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_enable_signs = 1
 
 " automatically load errors into the location list
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 
 " display errors and warnings
 let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
