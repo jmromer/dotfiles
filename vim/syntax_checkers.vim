@@ -8,6 +8,21 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 
+" Better :sign interface symbols
+let g:syntastic_warning_symbol       = '!!'
+let g:syntastic_style_warning_symbol = '!!'
+
+let g:syntastic_error_symbol       = '✗✗'
+let g:syntastic_style_error_symbol = '✗✗'
+
+" Use yellow for warnings, red for errors
+highlight SyntasticErrorSign      ctermfg=160
+highlight SyntasticStyleErrorSign ctermfg=160
+
+highlight SyntasticWarningSign      ctermfg=187
+highlight SyntasticStyleWarningSign ctermfg=187
+
+
 " display errors and warnings
 let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
 
