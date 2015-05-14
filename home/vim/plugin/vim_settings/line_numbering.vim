@@ -12,7 +12,3 @@ function! NumberToggle()
     set number
   endif
 endfunction
-
-" Toggle numbering style with leader+n
-nnoremap <silent><leader>n :call NumberToggle()<CR>
-

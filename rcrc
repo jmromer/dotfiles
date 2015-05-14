@@ -1,2 +1,2 @@
 EXCLUDES="README.md"
-DOTFILES_DIRS="$HOME/.dotfiles/home $HOME/.dotfiles/linter_conf"
+DOTFILES_DIRS="$HOME/.dotfiles/home $HOME/.dotfiles/linters"

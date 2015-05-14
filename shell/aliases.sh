@@ -3,7 +3,7 @@
 #-------------------------------------------------------------
 # ALIASES: Editors
 #-------------------------------------------------------------
-alias vi='vim -u ~/.dotfiles/vim/minimal.vim'
+alias vi='vim -u ~/.vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
 
 #-------------------------------------------------------------

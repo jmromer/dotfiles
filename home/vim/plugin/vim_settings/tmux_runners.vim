@@ -41,7 +41,7 @@ nnoremap <silent><leader>dr :VtrDetachRunner<CR>
 nnoremap <silent><leader>rar :VtrReattachRunner<CR>
 nnoremap <silent><leader>cr :VtrClearRunner<CR>
 nnoremap <silent><leader>fc :VtrFlushCommand<CR>
-vnoremap <silent><leader>ss :VtrSendSelectedToRunner<CR>
+vnoremap <silent><leader>sv :VtrSendSelectedToRunner<CR>
 
 " h for vertical split to the right
 let g:VtrOrientation = "h"
@@ -51,25 +51,3 @@ let g:VtrPercentage  = 50
 let g:VtrStripLeadingWhitespace = 0
 let g:VtrClearEmptyLines = 0
 let g:VtrAppendNewline = 1
-
-"  Normal mode:
-"  Mapping      |   Command
-"  -----------------------------
-"  <leader>or   |   VtrOpenRunner<cr>
-"  <leader>sc   |   VtrSendCommandToRunner<cr>
-
-"  <leader>fr   |   VtrFocusRunner<cr>
-"  -----------------------------
-"  <leader>rr   |   VtrResizeRunner<cr>
-"  <leader>ror  |   VtrReorientRunner<cr>
-"  <leader>sl   |   VtrSendLineToRunner<cr>
-"  <leader>kr   |   VtrKillRunner<cr>
-"  <leader>dr   |   VtrDetachRunner<cr>
-"  <leader>ar   |   VtrReattachRunner<cr>
-"  <leader>cr   |   VtrClearRunner<cr>
-"  <leader>fc   |   VtrFlushCommand<cr>
-"
-"  Visual mode:
-"  Mapping      |   Command
-"  -----------------------------
-"  <leader>sv   |   VtrSendSelectedToRunner<cr>

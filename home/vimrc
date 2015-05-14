@@ -1,10 +1,15 @@
 " ----------------- Base Settings ------------------------
-set nocompatible        " use vim, not vi, settings.
+set nocompatible
 filetype plugin indent on
 
-" -------------- Extended Settings -----------------------
-set runtimepath+=~/.dotfiles/vim
-runtime vimrc.vim
+" for fzf in Vim
+set runtimepath+=~/.fzf
+
+" ----------------- Load Plugins ------------------------
+
+call plug#begin('~/.vim/plugged')
+source ~/.vim/plugged_manifest.vim
+call plug#end()
 
 " ---------------- Probationary --------------------------
 
