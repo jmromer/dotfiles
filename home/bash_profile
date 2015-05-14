@@ -8,8 +8,6 @@ source $SHELL_CONFIG/prompt-bash.sh
 
 [[ -f $HOME/.bash_profile.local ]] && source $HOME/.bash_profile.local
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # ------------------------------------------------------------------------
 
 
