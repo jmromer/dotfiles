@@ -28,3 +28,16 @@ for package in ${homebrew[*]}; do
   brew_install_or_upgrade $package
 done
 
+#-------------------------------------------------------------
+# MacVim Installation
+#-------------------------------------------------------------
+# Use the MacVim binary as CLI vim
+options=' --override-system-vim '
+
+# Enable client-server (allows opening gui vim from cli vim with :gui)
+options+=' --with-client-server '
+
+# Lua and cscope for Neocomplete
+options+=' --with-cscope --with-lua --HEAD '
+
+brew_install_or_upgrade macvim $options
