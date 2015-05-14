@@ -1,5 +1,8 @@
-set foldmethod=syntax " Enable folding based on syntax rules
-set foldlevelstart=1  " Initial fold only 1 level deep
+" Enable folding based on syntax rules
+set foldmethod=indent
+
+" Initial fold only 1 level deep
+set foldlevelstart=1
 
 " Custom folding function
 if has("folding")
