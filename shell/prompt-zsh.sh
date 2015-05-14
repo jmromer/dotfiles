@@ -45,6 +45,9 @@ SAVEHIST=4096
 #-------------------------------------------------------------
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
+bindkey -M viins '^b' backward-char
+bindkey -M viins '^f' forward-char
+
 bindkey -M viins '^k' kill-line
 
 # issue the command, but keep it at the prompt
