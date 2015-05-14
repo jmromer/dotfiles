@@ -31,6 +31,10 @@ set smartcase     " overrides ignorecase if pattern contains upcased chars
 let @/ = ""       " clear the search register
 :nohlsearch       " clear any previously highlighted search matches
 
+" Use Ag for grepping
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
+
 " Indentation with soft tabs, 2 spaces
 set expandtab      " use soft tabs
 set shiftwidth=2   " spaces per tab (when shifting)
@@ -82,4 +86,3 @@ set linebreak
 
 " Make Y consistent with D. Use yy to yank an entire line, like dd
 nnoremap Y y$
-

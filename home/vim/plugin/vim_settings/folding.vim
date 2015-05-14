@@ -1,11 +1,11 @@
-" Enable folding based on syntax rules
+" Enable folding based on indentation (faster than syntax)
 set foldmethod=indent
 
 " Initial fold only 1 level deep
 set foldlevelstart=1
 
 " Custom folding function
-if has("folding")
+if has('folding')
   set foldtext=MyFoldText()
 
   function! MyFoldText()
@@ -17,7 +17,7 @@ if has("folding")
     let &l:fillchars = substitute(&l:fillchars,',\?fold:.','','gi')
     let l:numwidth = (v:version < 701 ? 8 : &numberwidth)
 
-    if b:foldpat==1
+    if b:foldpat == 1
       let l:align = winwidth(0)-&foldcolumn-(&nu ? Max(strlen(line('$'))+1, l:numwidth) : 0)
       let l:foldtext = ' '.v:folddashes
       let l:linetext = substitute(getline(v:foldstart),'\s\+$','','')
@@ -29,7 +29,7 @@ if has("folding")
       return printf('%s%*s', l:linetext, l:align, l:foldtext)
     endif
 
-    if &fdm=='diff'
+    if &fdm == 'diff'
       let l:foldtext = ' '.(v:foldend-v:foldstart).' lines the same -------'.v:folddashes.'|'
     elseif !exists('b:foldpat') || b:foldpat==0
       let l:foldtext = ' '.(v:foldend-v:foldstart).' lines '.v:folddashes.'|'

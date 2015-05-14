@@ -9,7 +9,6 @@ homebrew=(
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
   emacs                   # emacs duh
-  fzf                     # fuzzy finder
   git                     # Updated version of Git
   gtypist                 # Touch-type training
   hub                     # For github-flavored git
@@ -36,8 +35,5 @@ options=' --override-system-vim '
 
 # Enable client-server (allows opening gui vim from cli vim with :gui)
 options+=' --with-client-server '
-
-# Lua and cscope for Neocomplete
-options+=' --with-cscope --with-lua --HEAD '
 
 brew_install_or_upgrade macvim $options
