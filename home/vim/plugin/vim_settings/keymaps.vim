@@ -31,10 +31,13 @@ nnoremap <silent><leader><S-r> :call ReloadAllBuffers()<CR>
 " ------------------- Leader key mappings ---------------------
 
 " -: zoom the current pane
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
 
 " =: re-balance pane sizes
-nnoremap <leader>= :wincmd =<cr>
+nnoremap <leader>= :wincmd =<CR>
+
+" bp: insert a binding.pry
+nmap <leader>bp orequire 'pry'; binding.pry<ESC>
 
 " c: copy visual selection to system clipboard
 vnoremap <leader>c "*y
