@@ -9,7 +9,8 @@ augroup vimrcEx
     \   exe "normal g`\"" |
     \ endif
 
-  " automatically rebalance windows on vim resize
+  " automatically re-balance the visible splits as tmux panes are created,
+  " destroyed, or resized or window resized
   autocmd VimResized * :wincmd =
 
   " Cucumber navigation commands
