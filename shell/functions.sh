@@ -22,20 +22,15 @@ function e() {
 
 # Fuzzy-select a tmux session to reattach
 function ts() {
-  tmux attach-session -t $(tmux ls | sed 's/:.*//' | pick)
+  tmux attach-session -t $(tmux ls | sed 's/:.*//' | fzf)
 }
 
-# Fuzzy-select a process to kill
-function killp() {
-  local process=$(ps -e | awk '{if(NR!=1) { print $4, $1  }}' | pick -do | tail -n +2)
-  echo "kill pid $process"
-  kill $process
 }
 
 # Fuzzy-select ruby version using rbenv
 function chr() {
   if [[ $1 =~ '^(shell|local|global)$' ]]; then
-    local version=$(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | pick)
+    local version=$(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | fzf)
     echo "rbenv $1 $version"
     rbenv $1 $version
   else
@@ -48,13 +43,8 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
-# search PWD and subdirectories for $1
-function find_file() {
-  ls **/*$1*
-}
-
 # pretty-print the command search path
-function p() {
+function pp() {
   if [[ $1 == 'path' ]]; then
     ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
   elif [[ $1 == 'manpath' ]]; then
@@ -72,7 +62,7 @@ function update_homebrew() {
 
 
 # rebase non-master branches of dotfiles onto master and force push
-function update_dotfiles () {
+function update_dotfiles() {
   for branch in $(git branch | awk -F* '{ print $1  }'); do
     git rebase master $branch
   done
@@ -110,7 +100,7 @@ function hidden_files() {
 }
 
 # wrap rm -rf with a guard prompt
-function delete() {
+function del() {
   echo "rm -rf $@"
   echo -n "rm: Permanently delete the selected files/directories? "
   echo -n "This cannot be undone. "
@@ -126,7 +116,7 @@ function delete() {
 
 # generate a playground project to test out a feature, library, etc.
 # usage: play FRAMEWORK PROJECT-NAME
-function play () {
+function play() {
   if [[ $1 =~ ^rails$ ]]; then
     rplay -n $2 --skip-bundle
   elif [[ $1 =~ ^(express|play|flask|jade|om|spark)$ ]]; then

@@ -2,9 +2,13 @@
 
 # Fuzzy-select a ruby to install using rbenv
 
-ruby_version=$(rbenv install -ls | sed "1 d" | pick)
+ruby_version=$(rbenv install -ls | sed "1 d" | fzf)
+
+if [[ -z $ruby_version ]]; then
+  echo 'No ruby version selected.'
+  exit 1
+fi
 
 echo "rbenv install $ruby_version"
-
 rbenv install $ruby_version
 

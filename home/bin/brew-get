@@ -3,11 +3,17 @@
 # Fuzzy-select a homebrew package to install
 
 if [[ "$1" == "cask" ]]; then
-  package=$(brew cask search | sed "1 d" | pick)
-  echo "brew cask install $package"
-  brew cask install $package
+  package=$(brew cask search | sed '1 d' | fzf)
+  subcommand='cask'
 elif [[ -z "$1" ]]; then
-  package=$(brew search | pick)
-  echo "brew install $package"
-  brew install $package
+  package=$(brew search | fzf)
+  subcommand=''
 fi
+
+if [[ -z $package ]]; then
+  echo 'No package selected.'
+  exit 1
+fi
+
+echo "brew $subcommand install $package"
+brew $subcommand install $package
