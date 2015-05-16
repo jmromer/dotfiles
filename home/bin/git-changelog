@@ -29,7 +29,9 @@
 # Changelog::from_git_log_since(date), where date is taken from ARGV[1].
 #
 module Changelog
+
   class << self
+
     TODAY       = Time.now.localtime.strftime('%Y.%m.%d')
     OUTPUT_FILE = "#{Dir.home}/Desktop/changelog-#{TODAY}.md"
 
@@ -65,7 +67,9 @@ module Changelog
       end
       puts "Changelog saved to #{OUTPUT_FILE}"
     end
+
   end
+
 end
 
 # Models a single entry in the release notes listing
@@ -73,6 +77,7 @@ end
 #   2dk32kjfee Merge pull request #195 from Oversee/feature/TRAV-324: Fix stuff
 # ChangelogEntry instances are enumerable by PR number (see <=> below)
 class ChangelogEntry
+
   include Enumerable
   MERGE_PR_REGEX = %r{(\w{40}).+#(\d+) from \w*\/?(\w*)\/([\w\-\d]+)}i
 
@@ -92,7 +97,7 @@ class ChangelogEntry
     end
   end
 
-  def commit(format = :short)
+  def commit(format=:short)
     case format
     when :full then @sha
     when :url  then "#{base_url(:commit)}/#{@sha[0, 5]}"
@@ -100,7 +105,7 @@ class ChangelogEntry
     end
   end
 
-  def pr(format = :string)
+  def pr(format=:string)
     case format
     when :num then @pr.to_i
     when :url then "#{base_url(:pr)}/#{@pr}"
@@ -108,7 +113,7 @@ class ChangelogEntry
     end
   end
 
-  def ticket(format = :string)
+  def ticket(format=:string)
     case format
     when :num then @ticket.match(/\-(\w+)/)[1].to_i
     when :url then "#{base_url(:ticket)}/#{@ticket}"
@@ -131,9 +136,11 @@ class ChangelogEntry
     pr(:num) <=> other.pr(:num)
   end
 
+  REMOTE_URL = %r{\w+\/[\w\-]+\.git}
+
   def parse_github_details_from_remote
     origin          = parse_origin_from_remotes_listing
-    accnt, repo_git = origin[/\w+\/[\w\-]+\.git/].split('/')
+    accnt, repo_git = origin[REMOTE_URL].split('/')
     [accnt, repo_git.chomp('.git')]
   end
 
@@ -150,16 +157,18 @@ class ChangelogEntry
       "[#{ticket}]: #{ticket(:url)}\n"
     ].join("\n")
   end
+
 end
 
 # Parses a merge commit's merge commit message for its descriptive content.
 class ChangelogEntryDescription
+
   # Regex constants used to parse branch names that follow our pattern of
   #   category/ticket_label-ticket_category (e.g. bugfix/TRAV-292)
   # Used in parse_content_from(description)
   TICKET_NUM      = /\w{2,4}[\s\-]?\d{2,3}\s*:?\s*/i
   TYPES           = /(Feature|Hotfix|Bugfix|Release|Refactor|Optimization)/i
-  TYPE_AND_TICKET = /#{TYPES.source}\/#{TICKET_NUM.source}/i
+  TYPE_AND_TICKET = %r{#{TYPES.source}\/#{TICKET_NUM.source}}i
 
   # Parses a given merge commit's details for a description of the changes
   # introduced by the merge.
@@ -223,7 +232,10 @@ class ChangelogEntryDescription
   def to_s
     description_with_capitalized_first_letter
   end
+
 end
 
-Changelog.from_git_log_since(ARGV.join(' ')) if __FILE__ == $PROGRAM_NAME
-
+if __FILE__ == $PROGRAM_NAME
+  date = ARGV.join(' ')
+  Changelog.from_git_log_since(date)
+end
