@@ -42,8 +42,7 @@ augroup vimrcEx
   autocmd BufNewFile,BufReadPost *.html.erb setl foldmethod=indent
 
   " for TeX
-  autocmd BufRead,BufNewFile *.xtx set syntax=tex
-  autocmd BufRead,BufNewFile *.cls set syntax=tex
+  autocmd BufRead,BufNewFile *.xtx,*.cls set syntax=tex filetype=tex
   autocmd BufWritePost *.xtx !xelatex %
 augroup END
 
