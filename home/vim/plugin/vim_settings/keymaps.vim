@@ -25,15 +25,15 @@ nnoremap <silent> <C-w>t :tabnew<CR>
 " ------------- Leader key mappings (shift) -----------------
 
 " S-r: Reload all open buffers
-nnoremap <silent><leader><S-r> :call ReloadAllBuffers()<CR>
+nnoremap <silent><leader>ra :call ReloadAllBuffers()<CR>
 
 
 " ------------------- Leader key mappings ---------------------
 
-" -: zoom the current pane
+" -: zoom the current vim pane
 nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
 
-" =: re-balance pane sizes
+" =: re-balance vim pane sizes
 nnoremap <leader>= :wincmd =<CR>
 
 " bp: insert a binding.pry
@@ -67,7 +67,10 @@ nnoremap <silent><leader>n :call NumberToggle()<CR>
 vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
 
 " R: redraw the screen
-nnoremap <silent><leader>R :redraw!<CR>
+nnoremap <leader>R :redraw!<CR>
+
+" os: Open Session
+nnoremap <leader>os :OpenSession<space>
 
 " sa: visual select all text in file
 nnoremap <leader>sa ggVG
@@ -75,15 +78,12 @@ nnoremap <leader>sa ggVG
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<space>
 
-" os: Open Session
-nnoremap <leader>os :OpenSession<space>
-
-" v: paste from system clipboard
-nnoremap <silent><leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
-vnoremap <silent><leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
-
 " w: Fast saving for all buffers
-nnoremap <silent><leader>w :wa<CR>
+nnoremap <leader>w :wa<CR>
 
 " x: cut visual selection to system clipboard
 vnoremap <leader>x "*d
+
+" v: paste from system clipboard
+nnoremap <leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
+vnoremap <leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
