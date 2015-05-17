@@ -25,7 +25,7 @@
 " -----------------------------------------------------------
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --gocode-completer' }
 
 Plug 'altercation/vim-colors-solarized' " solarized colors
 Plug 'ciaranm/detectindent'             " detect indentation level
