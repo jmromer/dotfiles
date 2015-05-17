@@ -1,0 +1,11 @@
+# ~/.tmuxinator/postapp.yml
+
+name: postapp
+root: ~/Developer/postapp
+tmux_command: env TERM=xterm-256color tmux
+
+windows:
+  - editor: e .
+  - console: rc
+  - server: rs
+  - logs: tail -f log/development.log
