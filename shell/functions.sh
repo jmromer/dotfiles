@@ -22,7 +22,12 @@ function e() {
 
 # Fuzzy-select a tmux session to reattach
 function ts() {
-  tmux attach-session -t $(tmux ls | sed 's/:.*//' | fzf)
+  local session=$(tmux ls | sed 's/:.*//' | fzf)
+
+  if [[ ! -z $session ]]; then
+    echo "tmux attach-session -t $session"
+    tmux attach-session -t $session
+  fi
 }
 
 }
