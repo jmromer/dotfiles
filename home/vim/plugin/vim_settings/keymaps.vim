@@ -78,8 +78,11 @@ nnoremap <leader>sa ggVG
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<space>
 
-" w: Fast saving for all buffers
-nnoremap <leader>w :wa<CR>
+" w: Save the current buffer
+nnoremap <leader>w :w<CR>
+
+" W: Save all buffers
+nnoremap <leader>W :wa<CR>
 
 " x: cut visual selection to system clipboard
 vnoremap <leader>x "*d
