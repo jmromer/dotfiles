@@ -80,6 +80,7 @@ ln -sf $LOCAL_DOTFILES/home/pry     $HOME/.pry
 ln -sf $LOCAL_DOTFILES/home/vim     $HOME/.vim
 ln -sf $LOCAL_DOTFILES/home/zsh     $HOME/.zsh
 ln -sf $LOCAL_DOTFILES/default-gems $HOME/.rbenv/
+ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
 
 
 step "Linking to synced preference files..."

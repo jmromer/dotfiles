@@ -1,0 +1,13 @@
+# ~/.tmuxinator/blog.yml
+
+name: blog
+root: ~/Developer/blog
+tmux_command: env TERM=screen-256color tmux
+
+windows:
+  - editor:
+      layout: ae4f,178x51,0,0{93x51,0,0,3,84x51,94,0[84x33,94,0,5,84x17,94,34,6]}
+      panes:
+        - vim .
+        - npm start
+        - # empty
