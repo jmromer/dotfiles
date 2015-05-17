@@ -65,11 +65,6 @@ alias bi='bundle install' # -j3 should be set in ~/.bundle/config
 alias bu='bundle update'
 alias be='bundle exec'
 
-# rails
-alias rs='bin/rails server'
-alias rc='bin/rails console'
-alias rcs='bin/rails console --sandbox'
-
 #-------------------------------------------------------------
 # ALIASES: HEROKU
 #-------------------------------------------------------------
