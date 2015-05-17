@@ -157,7 +157,7 @@ alias bgd='buster_generate && buster deploy'
 
 # run specs
 function bundle_or_bin() {
-  if [ -d bin/$1 ]; then
+  if [ -e bin/$1 ]; then
     echo bin/$@
     bin/$@
   elif [ -f Gemfile ]; then
