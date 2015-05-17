@@ -172,5 +172,10 @@ function bundle_or_bin() {
 alias s='bundle_or_bin rspec --format=progress .'
 alias ss='bundle_or_bin rspec --format=documentation .'
 alias rk='bundle_or_bin rake'
-alias rss='rk db:reset db:seed && rails server'
+
+alias rs='bundle_or_bin rails server'
+alias rc='bundle_or_bin rails console'
+alias rcs='bundle_or_bin rails console --sandbox'
+
+alias rss='rk db:reset db:seed && rs'
 
