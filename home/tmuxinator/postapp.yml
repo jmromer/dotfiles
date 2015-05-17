@@ -6,6 +6,7 @@ tmux_command: env TERM=screen-256color tmux
 
 windows:
   - editor: e .
+  - shell: # command line
   - console: rc
   - server: rs
   - logs: tail -f log/development.log
