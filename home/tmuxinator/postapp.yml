@@ -2,7 +2,7 @@
 
 name: postapp
 root: ~/Developer/postapp
-tmux_command: env TERM=xterm-256color tmux
+tmux_command: env TERM=screen-256color tmux
 
 windows:
   - editor: e .
