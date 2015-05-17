@@ -1,5 +1,17 @@
 # shell/functions.sh
 
+# curl for JSON
+# usage: json METHOD PATH [params]
+function json() {
+  local format='accept:application/json'
+  local method=$(echo $1 | awk '{print toupper($0)}')
+  local url=http://localhost:3000/$2
+  [[ ! -z $3 ]] && local params=${${3//: /=}//, /&}
+
+  echo "curl -X $method -H $format $url $params"
+  curl -X $method -H $format $url $params
+}
+
 # Display any processes listening on the given port
 function listening_on_port() {
   lsof -wni tcp:$1
@@ -178,4 +190,3 @@ alias rc='bundle_or_bin rails console'
 alias rcs='bundle_or_bin rails console --sandbox'
 
 alias rss='rk db:reset db:seed && rs'
-
