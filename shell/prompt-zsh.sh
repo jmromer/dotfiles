@@ -47,14 +47,19 @@ bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
 bindkey -M viins '^b' backward-char
 bindkey -M viins '^f' forward-char
+bindkey -M viins '^d' delete-char
 
 bindkey -M viins '^k' kill-line
 
 # issue the command, but keep it at the prompt
 bindkey -M viins '^y' accept-and-hold
 
-# ^f ('force') to prepend sudo
-bindkey -M viins -s '^f' '^[Isudo ^[A'
+# ^t ('toughguy') to prepend sudo (disabled because FZF)
+# Also, see sudo !! if already issued
+# bindkey -M viins -s '^t' '^[Isudo ^[A'
+
+# ^f ('find') Invoke FZF
+bindkey '^f' fzf-file-widget
 
 bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
 bindkey "^[[3~" delete-char  # ensure delete forwards deletes
