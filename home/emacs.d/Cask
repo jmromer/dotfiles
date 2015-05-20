@@ -1,0 +1,6 @@
+(source melpa)
+(source "gnu" "http://elpa.gnu.org/packages/")
+
+(depends-on "pallet")
+(depends-on "evil")
+(depends-on "evil-leader")
