@@ -39,7 +39,6 @@ tmp/**/*
 
 # Ignore other unneeded files.
 doc/
-*.sw[nop]
 .project
 .idea
 
@@ -52,4 +51,3 @@ node_modules
 
 # swap files
 *.sw[nop]
-
