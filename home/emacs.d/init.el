@@ -4,6 +4,7 @@
 (require 'pallet)
 (pallet-mode t)
 
+; evil mode
 (require 'evil)
 (setq evil-shift-width 2)
 
@@ -19,14 +20,25 @@
 
 (evil-mode 1)
 
-;(require 'package)
-;
-; (setq package-archives
-;       '(("gnu"    . "http://elpa.gnu.org/packages/")
-;         ("melpa"  . "http://melpa.milkbox.net/packages/")))
-;
-;(package-initialize)
-;
-; (when (not (package-installed-p 'evil))
-;   (package-refresh-contents)
-;   (package-install 'evil))
+; rcodetools
+(setq rcodetools-dir
+      (expand-file-name
+        "../../.."
+        (replace-regexp-in-string
+          "\n$" ""
+          (shell-command-to-string
+            "gem which rcodetools/xmpfilter"))))
+
+(add-to-list 'load-path rcodetools-dir)
+
+(setq xmpfilter-command-name
+      "ruby -S xmpfilter --no-warnings --dev --fork --detect-rbtest")
+
+(require 'ruby-mode)
+(require 'rcodetools)
+
+(define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
+
+(ruby-mode)
+
+(add-to-list 'load-path "~/.emacs.d/custom")

@@ -127,3 +127,4 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 " Plug 'venantius/vim-eastwood' " clojure linter
 " :dependencies [[jonase/eastwood "0.2.1" :exclusions [org.clojure/clojure]]]
 
+Plug 't9md/vim-ruby-xmpfilter'
