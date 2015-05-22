@@ -76,6 +76,9 @@ nnoremap <silent><leader>kw :StripWhitespace<CR>
 " n: toggle relative numbering
 nnoremap <silent><leader>n :call NumberToggle()<CR>
 
+" nw: disable text wrapping
+nnoremap <silent><leader>nw :set nowrap<CR>
+
 " r: From visual mode, leader+r populates command line for search and replace
 vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
 
