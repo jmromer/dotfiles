@@ -13,22 +13,8 @@ augroup vimrcEx
   " destroyed, or resized or window resized
   autocmd VimResized * :wincmd =
 
-  " Cucumber navigation commands
-  autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
-  autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
-
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
-
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-
-  " Automatically wrap at 72 characters and spell check git commit messages
-  autocmd FileType gitcommit setlocal textwidth=72
-  autocmd FileType gitcommit setlocal spell
-
-  " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
@@ -44,4 +30,7 @@ augroup vimrcEx
   " for TeX
   autocmd BufRead,BufNewFile *.xtx,*.cls set syntax=tex filetype=tex
   autocmd BufWritePost *.xtx !xelatex %
+
+  " Allow stylesheets to autocomplete hyphenated words
+  autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
