@@ -77,6 +77,7 @@ Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
 Plug 'tpope/vim-tbone'                " basic tmux support
 Plug 'tpope/vim-dispatch'             " async builds and test suites
 Plug 'tpope/vim-rake'                 " Rake wrapper
+Plug 'tpope/vim-projectionist'        " granular project configs
 
 " Misc languages
 Plug 'elixir-lang/vim-elixir'           " Elixir syntax
