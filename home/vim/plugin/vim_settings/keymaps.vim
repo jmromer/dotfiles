@@ -43,6 +43,12 @@ nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
 " =: re-balance vim pane sizes
 nnoremap <leader>= :wincmd =<CR>
 
+" as: go to alternative file in a split (Rails.vim, Rake.vim)
+nmap <leader>as :AS<CR>
+
+" av: go to alternative file in a vertical split (Rails.vim, Rake.vim)
+nmap <leader>av :AV<CR>
+
 " bp: insert a binding.pry
 nmap <leader>bp orequire 'pry'; binding.pry<ESC>
 
