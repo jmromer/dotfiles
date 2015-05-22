@@ -45,4 +45,3 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.xtx,*.cls set syntax=tex filetype=tex
   autocmd BufWritePost *.xtx !xelatex %
 augroup END
-
