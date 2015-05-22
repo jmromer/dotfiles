@@ -19,22 +19,22 @@ endfunction
 nnoremap <leader>sr :call SwapTestRunner()<CR>
 nnoremap <leader>p :call OpenPry()<CR>
 
+" vim-test
+" -------------------------------------
+nnoremap <silent><leader>s :TestNearest<CR>
+nnoremap <silent><leader>S :TestFile<CR>
+nnoremap <silent><leader>A :TestSuite<CR>
+nnoremap <silent><leader>l :TestLast<CR>
+nnoremap <silent><leader>g :TestVisit<CR>
+
 " default test strategy is dispatch
 let g:test#strategy = 'dispatch'
 
-" Async Test Runner: Dispatch
+" Dispatch: Async test runner
 " ----------------------------
 nnoremap <leader>d :Dispatch<CR>
 nnoremap <leader>D :Focus<SPACE>
 nnoremap <leader>r :Start<SPACE>
-
-" Tmux Test Runners: vim-test with VTR
-" -------------------------------------
-nmap <silent> <leader>s :TestNearest<CR>
-nmap <silent> <leader>S :TestFile<CR>
-nmap <silent> <leader>A :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
 
 " Vim Tmux Runner
 " ----------------
