@@ -61,6 +61,7 @@ Plug 'tpope/vim-endwise'              " add 'end' in ruby et al
 Plug 'tpope/vim-rails'                " Rails support
 Plug 'tpope/vim-rbenv'                " Rbenv support
 Plug 'vim-ruby/vim-ruby'              " Ruby support
+Plug 't9md/vim-ruby-xmpfilter'        " inline-evaluation for ruby
 
 " JavaScript, CoffeeScript
 Plug 'jelera/vim-javascript-syntax'           " JavaScript Syntax definitions
@@ -127,4 +128,3 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 " Plug 'venantius/vim-eastwood' " clojure linter
 " :dependencies [[jonase/eastwood "0.2.1" :exclusions [org.clojure/clojure]]]
 
-Plug 't9md/vim-ruby-xmpfilter'

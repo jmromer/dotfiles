@@ -12,6 +12,7 @@ vnoremap K y:grep! "<C-R>0"<CR>:cw<CR>
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
+inoremap <C-d> <Del>
 
 " -------------- Leader key mappings (ctrl) -----------------
 
