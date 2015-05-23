@@ -58,7 +58,7 @@ alias npmls='npm ls -depth=0'
 alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
 
 #-------------------------------------------------------------
-# ALIASES: RUBY, RAILS
+# ALIASES: BUNDLER
 #-------------------------------------------------------------
 # bundler
 alias bi='bundle install' # -j3 should be set in ~/.bundle/config
