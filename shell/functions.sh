@@ -184,6 +184,7 @@ function bundle_or_bin() {
 alias s='bundle_or_bin rspec --format=progress .'
 alias ss='bundle_or_bin rspec --format=documentation .'
 alias rk='bundle_or_bin rake'
+alias rg='bundle_or_bin rails generate'
 
 alias rs='bundle_or_bin rails server'
 alias rc='bundle_or_bin rails console'
