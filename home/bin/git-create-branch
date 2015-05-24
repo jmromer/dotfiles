@@ -4,7 +4,8 @@
 #
 # $ git create-branch development
 
-branch=$1
+branch=$(echo $@ | sed 's/\W/_/g')
+
 test -z $branch && echo "branch required." 1>&2 && exit 1
 
 git push origin HEAD:refs/heads/$branch
