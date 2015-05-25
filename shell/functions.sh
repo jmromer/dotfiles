@@ -80,10 +80,10 @@ function pp() {
 
 # update homebrew, upgrade packages, cleanup
 function update_homebrew() {
-  echo brew update  && brew update
-  echo brew upgrade && brew upgrade
-  echo brew cleanup && brew cleanup
-  echo brew doctor  && brew doctor
+  echo brew update        && brew update
+  echo brew upgrade --all && brew upgrade --all
+  echo brew cleanup       && brew cleanup
+  echo brew doctor        && brew doctor
 }
 
 
