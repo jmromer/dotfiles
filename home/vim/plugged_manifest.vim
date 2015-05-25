@@ -62,6 +62,7 @@ Plug 'tpope/vim-rails'                " Rails support
 Plug 'tpope/vim-rbenv'                " Rbenv support
 Plug 'vim-ruby/vim-ruby'              " Ruby support
 Plug 't9md/vim-ruby-xmpfilter'        " inline-evaluation for ruby
+Plug 'ck3g/vim-change-hash-syntax'    " convert hash syntax
 
 " JavaScript, CoffeeScript
 Plug 'jelera/vim-javascript-syntax'           " JavaScript Syntax definitions
