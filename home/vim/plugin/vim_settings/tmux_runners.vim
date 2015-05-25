@@ -40,7 +40,7 @@ nnoremap <leader>r :Start<SPACE>
 " ----------------
 " Keybindings
 nnoremap <silent><leader>or :VtrOpenRunner<CR>
-nnoremap <silent><leader>rc :VtrSendCommandToRunner!<CR>
+nnoremap <silent><leader>sc :VtrSendCommandToRunner!<CR>
 nnoremap <silent><leader>fr :VtrFocusRunner<CR>
 nnoremap <silent><leader>rl :VtrSendLineToRunner!<CR>
 nnoremap <silent><leader>kr :VtrKillRunner<CR>
