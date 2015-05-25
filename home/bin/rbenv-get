@@ -12,3 +12,4 @@ fi
 echo "rbenv install $ruby_version"
 rbenv install $ruby_version
 
+gem ctags
