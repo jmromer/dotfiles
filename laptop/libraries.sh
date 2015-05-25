@@ -2,6 +2,7 @@
 # Ruby gems
 #-------------------------------------------------------------
 ruby_gems=(
+  gem-ctags
   pry
   pry-byebug
   rake
@@ -30,3 +31,15 @@ for package in ${node_packages[*]}; do
   fancy_echo "Installing node package: $package..."
   npm install -g $package
 done
+
+#-------------------------------------------------------------
+# Generate tags for ruby stdlib
+#-------------------------------------------------------------
+mkdir -p ~/.rbenv/plugins
+git clone git://github.com/tpope/rbenv-ctags.git  ~/.rbenv/plugins/rbenv-ctags
+rbenv ctags
+
+#-------------------------------------------------------------
+# Generate tags for gems
+#-------------------------------------------------------------
+gem ctags

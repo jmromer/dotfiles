@@ -2,6 +2,9 @@ awesome_print
 hirb
 pretty_backtrace
 
+gem-ctags    # gem ctags
+rbenv-ctags  # rbenv ctags
+
 pry
 pry-byebug
 pry-theme
