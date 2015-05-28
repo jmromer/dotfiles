@@ -36,6 +36,7 @@ Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
+Plug 'skwp/greplace.vim'                " global search-and-replace
 Plug 'tpope/vim-bundler'                " Bundler commands
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
@@ -117,7 +118,6 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 " Plug 'majutsushi/tagbar'               " navigate a list of methods / classes
 " Plug 'sandeepcr529/Buffet.vim'         " user-friendly buffer list
 " Plug 'sjl/gundo.vim'                   " graphical undo tree
-" Plug 'skwp/greplace.vim'               " global search-and-replace
 " Plug 'vim-scripts/scratch.vim'         " scratch buffer
 " Plug 'vim-scripts/c.vim'                " C syntax and shortcuts
 " Plug 'vim-scripts/ReplaceWithRegister' " Replace with contents of a register
