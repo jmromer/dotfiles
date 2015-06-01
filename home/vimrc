@@ -11,5 +11,10 @@ call plug#begin('~/.vim/plugged')
 source ~/.vim/plugged_manifest.vim
 call plug#end()
 
-" ---------------- Probationary --------------------------
+" ---------------- Overrides  --------------------------
 
+" Y: Make Y consistent with D. Use yy to yank an entire line, like dd
+nnoremap Y y$
+
+
+" ---------------- Probationary --------------------------
