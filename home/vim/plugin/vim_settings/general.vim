@@ -78,14 +78,8 @@ set timeoutlen=500 ttimeoutlen=10
 nnoremap + <C-a>
 nnoremap - <C-x>
 
-" Keep cursor in place when joining lines
-" nnoremap J mzJ`z
-
 " Preserve words when breaking lines
 set linebreak
-
-" Make Y consistent with D. Use yy to yank an entire line, like dd
-nnoremap Y y$
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
