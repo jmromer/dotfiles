@@ -46,14 +46,14 @@ Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
 
 " Configure
-Plug 'Konfekt/FastFold'                " optimized folding for large projects
-Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
-Plug 'rking/ag.vim'                     " Ag conveniences
-Plug 'tpope/vim-obsession'              " continuous session saving :Obsess[!]
-Plug 'tpope/vim-rhubarb'                " GitHub extension for fugitive.vim
-Plug 'xolox/vim-easytags'              " continuously updated tags
-Plug 'xolox/vim-misc'                  " vim plugin utility library
-Plug 'xolox/vim-session'               " session management
+Plug 'Konfekt/FastFold'               " optimized folding for large projects
+Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
+Plug 'rking/ag.vim'                   " Ag conveniences
+Plug 'tpope/vim-obsession'            " continuous session saving :Obsess[!]
+Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
+Plug 'xolox/vim-easytags'             " continuously updated tags
+Plug 'xolox/vim-misc'                 " vim plugin utility library
+Plug 'xolox/vim-session'              " session management
 
 " Ruby, Rails
 Plug 'ecomba/vim-ruby-refactoring'    " keybindings for refactoring
