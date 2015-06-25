@@ -2,8 +2,8 @@ awesome_print
 hirb
 pretty_backtrace
 
-gem-ctags    # gem ctags
-rbenv-ctags  # rbenv ctags
+gem-ctags
+rbenv-ctags
 
 pry
 pry-byebug
@@ -15,6 +15,7 @@ bundler
 rubygems-bundler
 
 rubocop
+tmuxinator
 
 rcodetools
 fastri
