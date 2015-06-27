@@ -1,5 +1,11 @@
 # shell/functions.sh
 
+# restart homebrewed postgres
+function restart-postgres() {
+  launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+}
+
 # curl for JSON
 # usage: json METHOD PATH [params]
 function json() {
