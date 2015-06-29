@@ -113,15 +113,11 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 " -------- Probationary -----------
 
 " Probationary / Async candidates
-" Plug 'Lokaltog/vim-easymotion'         " jump without numbers
 " Plug 'gregsexton/gitv'                 " gitk port. requires fugitive
 " Plug 'majutsushi/tagbar'               " navigate a list of methods / classes
 " Plug 'sandeepcr529/Buffet.vim'         " user-friendly buffer list
 " Plug 'sjl/gundo.vim'                   " graphical undo tree
-" Plug 'vim-scripts/scratch.vim'         " scratch buffer
 " Plug 'vim-scripts/c.vim'                " C syntax and shortcuts
-" Plug 'vim-scripts/ReplaceWithRegister' " Replace with contents of a register
-" Plug 'vim-scripts/ReplaceWithSameIndentRegister'
 
 " Clojure
 " Plug 'tpope/vim-fireplace'    " clojure REPL support
