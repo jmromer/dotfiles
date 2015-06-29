@@ -14,8 +14,6 @@ call plug#end()
 
 " ---------------- Overrides  --------------------------
 
-" Y: Make Y consistent with D. Use yy to yank an entire line, like dd
-nnoremap Y y$
 
 
 " ---------------- Probationary --------------------------
