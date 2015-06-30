@@ -4,6 +4,7 @@ filetype plugin indent on
 
 " for fzf in Vim
 set runtimepath+=~/.fzf
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 " ----------------- Load Plugins ------------------------
 

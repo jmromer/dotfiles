@@ -96,6 +96,11 @@ export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 export HOMEBREW_GITHUB_API_TOKEN
 
 #-------------------------------------------------------------
+# Use Ag for FZF instead of find
+#-------------------------------------------------------------
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+
+#-------------------------------------------------------------
 # RUBY MANAGER
 #-------------------------------------------------------------
 if which rbenv > /dev/null; then
