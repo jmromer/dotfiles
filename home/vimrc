@@ -6,6 +6,10 @@ filetype plugin indent on
 set runtimepath+=~/.fzf
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
+" for Greplace
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
+
 " ----------------- Load Plugins ------------------------
 
 call plug#begin('~/.vim/plugged')
