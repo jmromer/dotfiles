@@ -71,6 +71,7 @@ Plug 'kchmck/vim-coffee-script'               " CoffeeScript syntax defintions
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' } " JavaScript ctags
 Plug 'moll/vim-node'                          " Node support
 Plug 'othree/javascript-libraries-syntax.vim' " syntax for popular JS libraries
+Plug 'mxw/vim-jsx'    " JSX syntax
 
 " Tmux / runners
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
