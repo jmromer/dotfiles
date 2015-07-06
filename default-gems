@@ -3,7 +3,6 @@ hirb
 pretty_backtrace
 
 gem-ctags
-rbenv-ctags
 
 pry
 pry-byebug
