@@ -3,6 +3,7 @@ hirb
 pretty_backtrace
 
 gem-ctags
+fastri
 
 pry
 pry-byebug
