@@ -104,8 +104,7 @@ export FZF_DEFAULT_COMMAND='ag -l -g ""'
 # RUBY MANAGER
 #-------------------------------------------------------------
 if which rbenv > /dev/null; then
-  export RBENV_ROOT=/usr/local/var/rbenv # use homebrewed directory
-  eval "$(rbenv init - --no-rehash)"   # execute rbenv loading script
+  eval "$(rbenv init -)"   # execute rbenv loading script
 elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   . "$HOME/.rvm/scripts/rvm"         # load RVM as a function
   export PATH="$HOME/.rvm/bin:$PATH" # prepend RVM to PATH for scripting
