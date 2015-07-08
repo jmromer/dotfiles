@@ -112,6 +112,10 @@ Plug 'honza/vim-snippets' " textmate-style code snippets
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
 Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 
+" Scala
+Plug 'derekwyatt/vim-scala'
+Plug 'ktvoelker/sbt-vim'
+
 
 " -------- Probationary -----------
 
