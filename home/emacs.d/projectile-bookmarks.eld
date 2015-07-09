@@ -1,1 +1,1 @@
-("~/.dotfiles/")
+("~/Desktop/clojure-noob/" "~/.dotfiles/")
