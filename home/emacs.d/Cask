@@ -58,6 +58,3 @@
 
 ;; everything for javascript
 (depends-on "js2-mode")
-
-;; web browser
-(depends-on "w3m")
