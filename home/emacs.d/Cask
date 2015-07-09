@@ -1,6 +1,63 @@
+(source gnu)
 (source melpa)
-(source "gnu" "http://elpa.gnu.org/packages/")
 
-(depends-on "pallet")
+;; Vim keybindings for Emacs
 (depends-on "evil")
+
+;; Vim-like leader key
 (depends-on "evil-leader")
+
+;; package manager
+(depends-on "pallet")
+
+;; makes handling lisp expressions much, much easier
+;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+(depends-on "paredit")
+
+;; key bindings and code colorization for Clojure
+;; https://github.com/clojure-emacs/clojure-mode
+(depends-on "clojure-mode")
+
+;; extra syntax highlighting for clojure
+(depends-on "clojure-mode-extra-font-locking")
+
+;; integration with a Clojure REPL
+;; https://github.com/clojure-emacs/cider
+(depends-on "cider")
+
+;; allow ido usage in as many contexts as possible. see
+;; customizations/navigation.el line 23 for a description
+;; of ido
+(depends-on "ido-ubiquitous")
+
+;; Enhances M-x to allow easier execution of commands. Provides
+;; a filterable list of possible commands in the minibuffer
+;; http://www.emacswiki.org/emacs/Smex
+(depends-on "smex")
+
+;; project navigation
+(depends-on "projectile")
+
+;; colorful parenthesis matching
+(depends-on "rainbow-delimiters")
+
+;; edit html tags like sexps
+(depends-on "tagedit")
+
+;; git integration
+(depends-on "magit")
+
+;; vcs gutter
+(depends-on "git-gutter")
+
+;; code completion
+(depends-on "company")
+
+;; org mode for literate programming and much more
+(depends-on "org")
+
+;; everything for javascript
+(depends-on "js2-mode")
+
+;; web browser
+(depends-on "w3m")
