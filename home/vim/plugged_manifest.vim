@@ -39,6 +39,7 @@ Plug 'scrooloose/syntastic'             " hook into syntax style checkers
 Plug 'skwp/greplace.vim'                " global search-and-replace
 Plug 'tpope/vim-bundler'                " Bundler commands
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
+Plug 'tpope/vim-projectionist'          " granular project configs
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
@@ -64,6 +65,7 @@ Plug 'tpope/vim-rbenv'                " Rbenv support
 Plug 'vim-ruby/vim-ruby'              " Ruby support
 Plug 't9md/vim-ruby-xmpfilter'        " inline-evaluation for ruby
 Plug 'ck3g/vim-change-hash-syntax'    " convert hash syntax
+Plug 'tpope/vim-rake'                 " Rake wrapper
 
 " JavaScript, CoffeeScript
 Plug 'jelera/vim-javascript-syntax'           " JavaScript Syntax definitions
@@ -75,14 +77,12 @@ Plug 'pangloss/vim-javascript' " dep of vim-jsx
 Plug 'mxw/vim-jsx'             " JSX syntax
 
 
-" Tmux / runners
+" Tmux, Tmux runners
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
 Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
 Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
-Plug 'tpope/vim-tbone'                " basic tmux support
 Plug 'tpope/vim-dispatch'             " async builds and test suites
-Plug 'tpope/vim-rake'                 " Rake wrapper
-Plug 'tpope/vim-projectionist'        " granular project configs
+Plug 'tpope/vim-tbone'                " basic tmux support
 
 " Misc languages
 Plug 'elixir-lang/vim-elixir'           " Elixir syntax
@@ -116,20 +116,11 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 Plug 'derekwyatt/vim-scala'
 Plug 'ktvoelker/sbt-vim'
 
-
 " -------- Probationary -----------
-
-" Probationary / Async candidates
 " Plug 'gregsexton/gitv'                 " gitk port. requires fugitive
 " Plug 'majutsushi/tagbar'               " navigate a list of methods / classes
-" Plug 'sandeepcr529/Buffet.vim'         " user-friendly buffer list
 " Plug 'sjl/gundo.vim'                   " graphical undo tree
 " Plug 'vim-scripts/c.vim'                " C syntax and shortcuts
 
 " Clojure
-" Plug 'tpope/vim-fireplace'    " clojure REPL support
-" Plug 'tpope/vim-leiningen'    " vim support for Leiningen
-" Plug 'venantius/vim-cljfmt'   " clojure auto-formatter
-" Plug 'venantius/vim-eastwood' " clojure linter
-" :dependencies [[jonase/eastwood "0.2.1" :exclusions [org.clojure/clojure]]]
-
+" (just use emacs)
