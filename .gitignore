@@ -7,10 +7,13 @@ home/pry/themes/tomorrow*
 home/pry/themes/github*
 home/pry/themes/monokai*
 home/pry/themes/vim*
-home/emacs.d/elpa/*
-home/emacs.d/.cask/*
 home/lein/repl-history
 home/vim/plugins/*
 home/vim/plugged/*
 home/vim/tmp/yankring_history_v2.txt
 home/zsh/zsh-syntax-highlighting/*
+home/emacs.d/elpa/*
+home/emacs.d/.cask/*
+home/emacs.d/.*
+home/emacs.d/*.dat
+home/emacs.d/places
