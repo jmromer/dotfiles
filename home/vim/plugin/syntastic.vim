@@ -40,9 +40,8 @@ let g:syntastic_html_checkers = []
 
 
 " JavaScript
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
-let g:syntastic_javascript_jslint_args = ''
-let g:syntastic_javascript_jshint_args = ''
+let g:syntastic_javascript_checkers = ['eslint', 'jscs']
+let g:syntastic_javascript_eslint_args = ''
 let g:syntastic_javascript_jscsrc = '-c ~/.jscsrc'
 
 " CoffeeScript
