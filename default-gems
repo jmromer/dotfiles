@@ -1,9 +1,12 @@
+gem-ctags
+fastri
+
+bundler
+rubygems-bundler
+
 awesome_print
 hirb
 pretty_backtrace
-
-gem-ctags
-fastri
 
 pry
 pry-byebug
@@ -11,11 +14,7 @@ pry-theme
 
 benchmark-ips
 
-bundler
-rubygems-bundler
-
 rubocop
 tmuxinator
 
 rcodetools
-fastri
