@@ -23,8 +23,11 @@ node_packages=(
   ghost   # blogging platform
   n       # manage node versions
   jscs    # javascript style checker
-  jshint  # js linter
+  eslint  # js linter
   jsctags # ctags for js
+  grunt
+  grunt-cli
+  yo
 )
 
 for package in ${node_packages[*]}; do
