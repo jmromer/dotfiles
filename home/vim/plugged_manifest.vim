@@ -43,25 +43,23 @@ Plug 'vim-scripts/visualrepeat'    " extends dot operator to visual mode
 " Git
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
 Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
-Plug 'gregsexton/gitv'        " gitk port. requires fugitive
+Plug 'gregsexton/gitv', { 'on': 'Gitv' } " gitk port. requires fugitive
 
 " Code snippets
 Plug 'SirVer/ultisnips'   " snippets engine, integrates with YCM
 Plug 'honza/vim-snippets' " textmate-style code snippets
-Plug 'jordwalke/VimJSDocSnippets'
-Plug 'noprompt/vim-yardoc'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'justinj/vim-react-snippets'
-Plug 'bentayloruk/vim-react-es6-snippets'
 
 " -------- Language-Specific -----------
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-Plug 'lervag/vim-latex', { 'for': 'latex' }
-Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'elixir-lang/vim-elixir',   { 'for': 'elixir' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'lervag/vim-latex',         { 'for': 'latex' }
+Plug 'tpope/vim-haml',           { 'for': 'haml' }
 
 " Scala
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'ktvoelker/sbt-vim', { 'for': 'scala' }
+Plug 'ktvoelker/sbt-vim',    { 'for': 'scala' }
 
 " Ruby
 Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
@@ -76,8 +74,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 
 " JavaScript
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
