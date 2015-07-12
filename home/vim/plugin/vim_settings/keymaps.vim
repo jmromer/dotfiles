@@ -9,7 +9,7 @@ nnoremap K :grep! "\b<C-R><C-A>\b"<CR>:cw<CR>
 vnoremap K y:grep! "<C-R>0"<CR>:cw<CR>
 
 " \: (backward slash) to grep-with-ag-to-quickfix shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
 " C-d: Forward delete like emacs in insert mode
