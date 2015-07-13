@@ -18,3 +18,4 @@ home/emacs.d/.*
 home/emacs.d/*.dat
 home/emacs.d/places
 home/emacs.d/projectile-bookmarks.eld
+home/emacs.d/ido.last
