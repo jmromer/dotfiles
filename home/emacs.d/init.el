@@ -1,8 +1,24 @@
-(require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
-(cask-initialize)
+(require 'package)
 
-(require 'pallet)
-(pallet-mode t)
+(push '("marmalade" . "http://marmalade-repo.org/packages/")
+      package-archives )
+(push '("melpa" . "http://melpa.milkbox.net/packages/")
+      package-archives)
+
+; packages
+(setq package-list '(cider clj-refactor clojure-mode clojure-mode-extra-font-locking company dash epl evil evil-leader f git-commit git-gutter goto-chg ido-completing-read+ ido-ubiquitous javap-mode js2-mode magit magit-popup package-build paredit pkg-info projectile queue rainbow-delimiters s shut-up smex tagedit undo-tree w3m with-editor))
+
+; activate all the packages (in particular autoloads)
+(package-initialize)
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ; evil mode
 (require 'evil)
