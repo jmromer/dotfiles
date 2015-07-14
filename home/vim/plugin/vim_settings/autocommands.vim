@@ -29,7 +29,8 @@ augroup vimrcEx
 
   " for TeX
   autocmd BufRead,BufNewFile *.xtx,*.cls set syntax=tex filetype=tex
-  autocmd BufWritePost *.xtx !xelatex %
+  " autocmd BufWritePost *.xtx !xelatex %
+  autocmd BufWritePost *.xtx :exe "silent! !xelatex % > /dev/null 2>&1" | redraw!
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
