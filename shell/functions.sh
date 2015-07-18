@@ -84,15 +84,6 @@ function pp() {
   fi
 }
 
-# update homebrew, upgrade packages, cleanup
-function update_homebrew() {
-  echo brew update        && brew update
-  echo brew upgrade --all && brew upgrade --all
-  echo brew cleanup       && brew cleanup
-  echo brew doctor        && brew doctor
-}
-
-
 # rebase non-master branches of dotfiles onto master and force push
 function update_dotfiles() {
   for branch in $(git branch | awk -F* '{ print $1  }'); do
