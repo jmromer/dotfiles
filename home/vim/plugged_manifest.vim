@@ -11,7 +11,7 @@ Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
-Plug 'skwp/greplace.vim'                " global search-and-replace
+Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-projectionist'          " granular project configs
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
