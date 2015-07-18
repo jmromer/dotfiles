@@ -4,9 +4,8 @@
 #
 # $ git repl
 #
-
-
 git version
+
 echo "type 'ls' to ls files below current directory, '!command' to execute any command or just 'subcommand' to execute any git subcommand"
 
 while true; do

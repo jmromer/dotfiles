@@ -29,11 +29,21 @@ done
 
 #-------------------------------------------------------------
 # MacVim Installation
+# - Take advantage of MacVim's faster rendering engine
 #-------------------------------------------------------------
 # Use the MacVim binary as CLI vim
 options=' --override-system-vim '
 
 # Enable client-server (allows opening gui vim from cli vim with :gui)
 options+=' --with-client-server '
+
+# with cscope, for tags database
+options+=' --with-cscope '
+
+# with lua (improves performance for plugins leveraging it)
+options+=' --with-lua '
+
+# use HEAD
+options+=' --HEAD '
 
 brew_install_or_upgrade macvim $options

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# update homebrew
+echo brew update
+brew update
+
+# upgrade packages
+echo brew upgrade --all
+brew upgrade --all
+
+# cleanup
+echo brew cleanup
+brew cleanup
+
+# diagnostics
+echo brew doctor
+brew doctor
