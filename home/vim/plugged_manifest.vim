@@ -92,3 +92,5 @@ Plug 'xolox/vim-misc'                 " vim plugin utility library
 Plug 'xolox/vim-session'              " session management
 
 " -------- Probationary -----------
+
+Plug 'junegunn/vim-peekaboo'
