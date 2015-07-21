@@ -58,8 +58,8 @@ Plug 'lervag/vim-latex',         { 'for': 'latex' }
 Plug 'tpope/vim-haml',           { 'for': 'haml' }
 
 " Scala
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'ktvoelker/sbt-vim',    { 'for': 'scala' }
+Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
+Plug 'ktvoelker/sbt-vim',    { 'for': ['scala', 'sbt.scala'] }
 
 " Ruby
 Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
