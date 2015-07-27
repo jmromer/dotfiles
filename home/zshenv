@@ -2,4 +2,3 @@
 # Defined in zshenv so it works in both login and non-login shells
 # In particular, for the latter case, by tmuxinator
 alias tmux='env TERM=screen-256color tmux'
-

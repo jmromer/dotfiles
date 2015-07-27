@@ -23,7 +23,8 @@ homebrew=(
 )
 
 for package in ${homebrew[*]}; do
-  fancy_echo "Installing or upgrading $package..."
+  echo "Installing or upgrading $package..."
+  echo
   brew_install_or_upgrade $package
 done
 

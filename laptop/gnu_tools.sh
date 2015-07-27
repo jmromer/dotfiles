@@ -21,6 +21,7 @@ gnu_tools=(
 )
 
 for gnu_tool in "${gnu_tools[@]}"; do
-  fancy_echo "brew install $gnu_tool..."
+  echo "brew install $gnu_tool..."
+  echo
   brew_install_or_upgrade $gnu_tool
 done

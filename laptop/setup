@@ -84,12 +84,12 @@ ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
 
 
 step "Linking to synced preference files..."
-ln -sf $HOME/dotfiles/aws           $HOME/.aws
-ln -sf $HOME/dotfiles/env.secure    $HOME/.env.secure
-ln -sf $HOME/dotfiles/exercism.json $HOME/.exercism.json
-ln -sf $HOME/Preferences/Firefox    $HOME/Library/Application\ Support
-ln -sf $HOME/Preferences/StickiesDatabase          $HOME/Library
-ln -sf $HOME/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
+ln -sf $SYNCED/dotfiles/aws           $HOME/.aws
+ln -sf $SYNCED/dotfiles/env.secure    $HOME/.env.secure
+ln -sf $SYNCED/dotfiles/exercism.json $HOME/.exercism.json
+ln -sf $SYNCED/Preferences/Firefox    $HOME/Library/Application\ Support
+ln -sf $SYNCED/Preferences/StickiesDatabase          $HOME/Library
+ln -sf $SYNCED/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
 
 
 step "Setting up SSH directory"

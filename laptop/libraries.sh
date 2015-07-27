@@ -12,8 +12,9 @@ ruby_gems=(
 )
 
 for gem in ${ruby_gems[*]}; do
-  fancy_echo "Installing ruby gem: $gem"
-  npm install -g $gem
+  echo "Installing ruby gem: $gem"
+  echo
+  gem install $gem
 done
 
 #-------------------------------------------------------------
@@ -31,7 +32,8 @@ node_packages=(
 )
 
 for package in ${node_packages[*]}; do
-  fancy_echo "Installing node package: $package..."
+  echo "Installing node package: $package..."
+  echo
   npm install -g $package
 done
 
