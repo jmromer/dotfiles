@@ -73,14 +73,29 @@ env RCRC=$LOCAL_DOTFILES/rcrc rcup
 
 
 step "Linking remaining miscellaneous dotfiles..."
-ln -sf $LOCAL_DOTFILES/home/bin     $HOME/.bin
-ln -sf $LOCAL_DOTFILES/home/emacs.d $HOME/.emacs.d
-ln -sf $LOCAL_DOTFILES/home/lein    $HOME/.lein
-ln -sf $LOCAL_DOTFILES/home/pry     $HOME/.pry
-ln -sf $LOCAL_DOTFILES/home/vim     $HOME/.vim
-ln -sf $LOCAL_DOTFILES/home/zsh     $HOME/.zsh
-ln -sf $LOCAL_DOTFILES/default-gems $HOME/.rbenv/
+rm -rf $HOME/.bin
+ln -sf $LOCAL_DOTFILES/home/bin        $HOME/.bin
+
+rm -rf $HOME/.emacs.d
+ln -sf $LOCAL_DOTFILES/home/emacs.d    $HOME/.emacs.d
+
+rm -rf $HOME/.lein
+ln -sf $LOCAL_DOTFILES/home/lein       $HOME/.lein
+
+rm -rf $HOME/.pry
+ln -sf $LOCAL_DOTFILES/home/pry        $HOME/.pry
+
+rm -rf $HOME/.zsh
+ln -sf $LOCAL_DOTFILES/home/zsh        $HOME/.zsh
+
+rm -rf $HOME/.rbenv/
+ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/
+
+rm -rf $HOME/.tmuxinator
 ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
+
+rm -rf $HOME/.vim
+ln -sf $LOCAL_DOTFILES/home/vim        $HOME/.vim
 
 
 step "Linking to synced preference files..."
@@ -96,20 +111,34 @@ step "Setting up SSH directory"
 mkdir $HOME/.ssh
 ln -sf $LOCAL_DOTFILES/sshconfig        $HOME/.ssh/config
 
+step "Setting up Dropbox"
+substep "Installing Dropbox"
+brew cask install dropbox
+substep "Opening Dropbox..."
+open $HOME/Applications/Dropbox.app
+substep "Press any key when the Dropbox sync has completed."
+getc
+
 for file in id_rsa id_rsa.pub jkrmr-aws-usca.pem; do
   cp $SYNCED/dotfiles/$file  $HOME/.ssh
   chmod 700 $HOME/.ssh/$file
 done
 
+step "Installing Xcode"
+substep "Install Xcode."
+substep "Press any key when the Xcode Installation has completed."
+getc
 
-step "Installing Solarized Dark them for Xcode..."
-mkdir $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
+step "Installing Solarized Dark theme for Xcode..."
+mkdir -p $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
 ln -s $LOCAL_DOTFILES/theming/color_schemes/Solarized\ Dark.dvtcolortheme $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/
 
 
 step "Setting Mac OS X defaults..."
 source $LOCAL_DOTFILES/osx/set_defaults.sh
 
+step "Installing Vim packages"
+source ~/.zshrc
+vimplug
 
 step "Setup script is complete."
-
