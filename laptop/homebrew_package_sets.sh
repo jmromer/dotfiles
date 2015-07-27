@@ -2,8 +2,11 @@
 # Packages by language / framework
 #-------------------------------------------------------------
 # Scala
-brew install scala sbt
+brew cask install java
+brew install scala
+brew install sbt
 brew cask install scala-ide
+brew cask install intellij-idea-ce
 
 # Clojure
 brew install leiningen clojurescript

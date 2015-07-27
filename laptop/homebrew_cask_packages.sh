@@ -9,7 +9,6 @@ cask=(
   1password            # password manager (NB: don't use the app store version)
   appcleaner           # removes apps and related files
   betterzipql          # Quick Look viewers: Zip files
-  dropbox              # dropbox duh
   firefox              # web browser
   flux                 # controls screen brightness
   google-chrome        # web browser
