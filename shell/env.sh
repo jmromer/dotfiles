@@ -1,5 +1,4 @@
 # shell/env.sh
-
 #-------------------------------------------------------------
 # GO
 #-------------------------------------------------------------
@@ -109,4 +108,3 @@ elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   . "$HOME/.rvm/scripts/rvm"         # load RVM as a function
   export PATH="$HOME/.rvm/bin:$PATH" # prepend RVM to PATH for scripting
 fi
-

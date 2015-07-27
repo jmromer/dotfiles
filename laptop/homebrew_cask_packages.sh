@@ -41,6 +41,7 @@ cask=(
 )
 
 for app in ${cask[*]}; do
-  fancy_echo "Installing $app ..."
+  echo "Installing $app ..."
+  echo
   brew cask install $app
 done
