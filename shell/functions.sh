@@ -180,6 +180,8 @@ function bundle_or_bin() {
 
 alias s='bundle_or_bin rspec --format=progress .'
 alias ss='bundle_or_bin rspec --format=documentation .'
+alias ck='bundle_or_bin cucumber --format=progress'
+alias ckk='bundle_or_bin cucumber'
 alias rk='bundle_or_bin rake'
 alias rg='bundle_or_bin rails generate'
 
