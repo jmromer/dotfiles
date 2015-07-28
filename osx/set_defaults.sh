@@ -2,8 +2,8 @@
 # Mac Settings
 #-------------------------------------------------------------
 # Set key repeat / delay until repeat (Use Karabiner if this doesn't work)
-defaults write NSGlobalDomain InitialKeyRepeat -int 150
-defaults write NSGlobalDomain KeyRepeat -int 30
+# defaults write NSGlobalDomain InitialKeyRepeat -int 150
+# defaults write NSGlobalDomain KeyRepeat -int 30
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
