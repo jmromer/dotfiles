@@ -5,9 +5,11 @@
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   (setq-default
+
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.dotfiles/emacs/")
+
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -24,19 +26,24 @@
      markdown
      org
      clojure
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; syntax-checking
+     clojure_brave_and_true
+
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     syntax-checking
      version-control
      )
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '()
+
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
+
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -68,9 +75,9 @@ before layers configuration."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(solarized-dark
+                         spacemacs-dark
                          solarized-light
                          spacemacs-light
-                         spacemacs-dark
                          leuven
                          monokai
                          zenburn)
@@ -78,7 +85,7 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Monaco"
                                :size 13
                                :weight normal
                                :width normal
