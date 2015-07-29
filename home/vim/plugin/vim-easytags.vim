@@ -5,6 +5,7 @@ let g:easytags_async = 1
 let g:easytags_cmd = '/usr/local/bin/ctags'
 
 " Easytags: look for a project specific tags file
+set tags=./tags;
 let g:easytags_dynamic_files = 1
 
 
