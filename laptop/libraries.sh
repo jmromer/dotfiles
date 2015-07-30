@@ -2,6 +2,7 @@
 # Ruby gems
 #-------------------------------------------------------------
 ruby_gems=(
+  rubygems-update
   gem-ctags
   pry
   pry-byebug
@@ -45,6 +46,7 @@ git clone git://github.com/tpope/rbenv-ctags.git  ~/.rbenv/plugins/rbenv-ctags
 rbenv ctags
 
 #-------------------------------------------------------------
-# Generate tags for gems
+# Update RubyGems and generate tags for gems
 #-------------------------------------------------------------
+gem update --system
 gem ctags

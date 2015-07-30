@@ -89,7 +89,7 @@ rm -rf $HOME/.zsh
 ln -sf $LOCAL_DOTFILES/home/zsh        $HOME/.zsh
 
 rm -rf $HOME/.rbenv/
-ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/
+ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/default-gems
 
 rm -rf $HOME/.tmuxinator
 ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
