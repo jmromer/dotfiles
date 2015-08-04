@@ -72,7 +72,8 @@ function chr() {
 
 # create dir $1 and cd into it, creating subdirectories as necessary
 function mcd() {
-  mkdir -p "$1" && cd "$1";
+  local directory_name=$(echo $@ | sed -e "s/\s/_/g")
+  mkdir -p "$directory_name" && cd "$directory_name";
 }
 
 # pretty-print the command search path
