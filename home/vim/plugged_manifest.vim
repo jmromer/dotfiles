@@ -81,6 +81,9 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Swift
+Plug 'kballard/vim-swift'
+
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
 Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
