@@ -27,9 +27,15 @@
      org
      clojure
      clojure_brave_and_true
+     ruby
+     rails
+     shell
+     slime
+     javascript
+     haml
 
      (shell :variables
-            shell-default-height 30
+            shell-default-height 40
             shell-default-position 'bottom)
      syntax-checking
      version-control
