@@ -1,3 +1,5 @@
+gem-ctags
+
 bundler
 rubygems-bundler
 
@@ -16,5 +18,3 @@ tmuxinator
 
 fastri
 rcodetools
-
-gem-ctags
