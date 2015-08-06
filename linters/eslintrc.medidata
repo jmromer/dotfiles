@@ -1,0 +1,13 @@
+{
+    "rules": {
+      "semi": 2,
+      "quotes": [2, "single", "avoid-escape"]
+    },
+    "env": {
+      "browser": true,
+      "jquery": true
+    },
+    "globals": {
+      "t": true
+    }
+}
