@@ -57,10 +57,6 @@ set winheight=5
 set winminheight=5
 set winheight=999
 
-" Delimiter matching
-set showmatch      " Show matching brackets.
-set matchtime=5    " Bracket blinking.
-
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+0
