@@ -1,0 +1,87 @@
+# Common configuration.
+AllCops:
+  # By default, the rails cops are not run. Override in project or home
+  # directory .rubocop.yml files, or by giving the -R/--rails option.
+  RunRailsCops: false
+
+Style/AlignParameters:
+  # Alignment of parameters in multi-line method calls.
+  #
+  # The `with_first_parameter` style aligns the following lines along the same
+  # column as the first parameter.
+  #
+  #     method_call(a,
+  #                 b)
+  #
+  # The `with_fixed_indentation` style aligns the following lines with one
+  # level of indentation relative to the start of the line with the method call.
+  #
+  #     method_call(a,
+  #       b)
+  EnforcedStyle: with_fixed_indentation
+  SupportedStyles:
+    - with_first_parameter
+    - with_fixed_indentation
+
+# Use ` or %x around command literals.
+Style/CommandLiteral:
+  EnforcedStyle: mixed
+  # backticks: Always use backticks.
+  # percent_x: Always use %x.
+  # mixed: Use backticks on single-line commands, and %x on multi-line commands.
+  SupportedStyles:
+    - backticks
+    - percent_x
+    - mixed
+  # If false, the cop will always recommend using %x if one or more backticks
+  # are found in the command string.
+  AllowInnerBackticks: false
+
+# Use / or %r around regular expressions.
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  # slashes: Always use slashes.
+  # percent_r: Always use %r.
+  # mixed: Use slashes on single-line regexes, and %r on multi-line regexes.
+  SupportedStyles:
+    - slashes
+    - percent_r
+    - mixed
+  # If false, the cop will always recommend using %r if one or more slashes
+  # are found in the regexp string.
+  AllowInnerSlashes: false
+
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+  SupportedStyles:
+    - space
+    - no_space
+
+Style/TrailingBlankLines:
+  EnforcedStyle: final_newline
+  SupportedStyles:
+    - final_newline
+    - final_blank_line
+
+# Empty lines around class / module can make a file look excessively
+# sparse, but they make it easier to navigate efficiently with Vim
+Style/EmptyLinesAroundBlockBody:
+  EnforcedStyle: no_empty_lines
+  SupportedStyles:
+    - empty_lines
+    - no_empty_lines
+
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+  SupportedStyles:
+    - empty_lines
+    - no_empty_lines
+
+Style/EmptyLinesAroundModuleBody:
+  EnforcedStyle: no_empty_lines
+  SupportedStyles:
+    - empty_lines
+    - no_empty_lines
+
+Documentation:
+      Enabled: false
