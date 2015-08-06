@@ -1,4 +1,22 @@
 {
   "preset": "airbnb",
-  "validateQuoteMarks": "'"
+  "validateQuoteMarks": "'",
+  "disallowTrailingComma": true,
+  "requireTrailingComma": null,
+  "disallowTrailingWhitespace": true,
+  "jsDoc": {
+      "checkAnnotations": "closurecompiler",
+      "checkTypes": "strictNativeCase",
+      "checkParamNames": true,
+      "requireParamTypes": true,
+      "requireReturnTypes": true,
+      "checkRedundantParams": true,
+      "checkReturnTypes": true,
+      "checkRedundantReturns": true,
+      "enforceExistence": "exceptExports",
+      "checkRedundantAccess": true,
+      "requireHyphenBeforeDescription": true,
+      "requireNewlineAfterDescription": true,
+      "requireDescriptionCompleteSentence": true
+  }
 }
