@@ -53,7 +53,7 @@ Plug 'justinj/vim-react-snippets'
 
 " -------- Language-Specific -----------
 Plug 'elixir-lang/vim-elixir',   { 'for': 'elixir' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'lervag/vim-latex',         { 'for': 'latex' }
 Plug 'tpope/vim-haml',           { 'for': 'haml' }
 

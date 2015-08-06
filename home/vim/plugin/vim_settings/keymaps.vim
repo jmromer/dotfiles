@@ -25,7 +25,7 @@ nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>:echo 'reloaded'<C
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " C-\: Switch between the previous two files
-nnoremap <C-\> <c-^>
+nnoremap <leader><C-\> <C-^>
 
 " <C-w> t: Open a new tab
 nnoremap <silent> <C-w>t :tabnew<CR>
