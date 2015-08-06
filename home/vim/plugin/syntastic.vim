@@ -9,19 +9,19 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 
 " Better :sign interface symbols
-let g:syntastic_warning_symbol       = '!!'
-let g:syntastic_style_warning_symbol = '!!'
+let g:syntastic_warning_symbol = '✘'
+let g:syntastic_error_symbol   = '✘'
+let g:syntastic_style_warning_symbol = '•'
+let g:syntastic_style_error_symbol = '•'
 
-let g:syntastic_error_symbol       = '✗✗'
-let g:syntastic_style_error_symbol = '✗✗'
-
-" Use yellow for warnings, red for errors
-highlight SyntasticErrorSign      ctermfg=160
-highlight SyntasticStyleErrorSign ctermfg=160
-
-highlight SyntasticWarningSign      ctermfg=187
-highlight SyntasticStyleWarningSign ctermfg=187
-
+" " Syntastic Highlighting defined in theme file. Kept here for documentation.
+" " Use yellow for warnings, red for errors
+" highlight! SyntasticWarningSign      ctermfg=136 ctermbg=none
+" highlight! SyntasticStyleWarningSign ctermfg=136 ctermbg=none
+" highlight! SyntasticErrorSign        ctermfg=160 ctermbg=none
+" highlight! SyntasticStyleErrorSign   ctermfg=160 ctermbg=none
+" highlight! link SyntasticError SpellBad
+" highlight! link SyntasticWarning SpellCap
 
 " display errors and warnings
 let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
