@@ -26,6 +26,8 @@ rbenv install $ruby_version
 
 echo && echo "Generating ctags for default gems..." && echo
 
-echo RBENV_VERSION=$ruby_version gem install gem-ctags
-RBENV_VERSION=$ruby_version gem install gem-ctags --no-ri --no-rdoc
+echo && echo RBENV_VERSION=$ruby_version gem install gem-ctags
+RBENV_VERSION=$ruby_version gem install gem-ctags
+
+echo && echo RBENV_VERSION=$ruby_version gem ctags
 RBENV_VERSION=$ruby_version gem ctags
