@@ -18,6 +18,8 @@ call plug#end()
 
 " ---------------- Overrides  --------------------------
 
-
+if filereadable('~/.vimrc.local')
+  source $HOME/.vimrc.local
+endif
 
 " ---------------- Probationary --------------------------
