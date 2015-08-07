@@ -52,10 +52,11 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'justinj/vim-react-snippets'
 
 " -------- Language-Specific -----------
-Plug 'elixir-lang/vim-elixir',   { 'for': 'elixir' }
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'lervag/vim-latex',         { 'for': 'latex' }
-Plug 'tpope/vim-haml',           { 'for': 'haml' }
+Plug 'lervag/vim-latex', { 'for': 'latex' }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'kballard/vim-swift', { 'for': 'swift' }
 
 " Scala
 Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
@@ -81,9 +82,6 @@ Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-
-" Swift
-Plug 'kballard/vim-swift'
 
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
