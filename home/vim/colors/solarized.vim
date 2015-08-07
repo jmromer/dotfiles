@@ -975,3 +975,12 @@ hi link pandocMetadataTitle             pandocMetadata
 " THE SOFTWARE.
 "
 "}}}
+
+highlight! SyntasticWarningSign      ctermfg=160 ctermbg=none
+highlight! SyntasticErrorSign        ctermfg=160 ctermbg=none
+
+highlight! SyntasticStyleWarningSign ctermfg=172 ctermbg=none
+highlight! SyntasticStyleErrorSign   ctermfg=172 ctermbg=none
+
+highlight! link SyntasticError SpellBad
+highlight! link SyntasticWarning SpellCap
