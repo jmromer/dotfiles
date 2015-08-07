@@ -16,8 +16,8 @@ let g:syntastic_style_error_symbol = '•'
 
 " " Syntastic Highlighting defined in theme file. Kept here for documentation.
 " " Use yellow for warnings, red for errors
-" highlight! SyntasticWarningSign      ctermfg=136 ctermbg=none
-" highlight! SyntasticStyleWarningSign ctermfg=136 ctermbg=none
+" highlight! SyntasticWarningSign      ctermfg=172 ctermbg=none
+" highlight! SyntasticStyleWarningSign ctermfg=172 ctermbg=none
 " highlight! SyntasticErrorSign        ctermfg=160 ctermbg=none
 " highlight! SyntasticStyleErrorSign   ctermfg=160 ctermbg=none
 " highlight! link SyntasticError SpellBad
