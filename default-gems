@@ -2,6 +2,7 @@ gem-ctags
 
 bundler
 rubygems-bundler
+rubygems-update
 
 awesome_print
 hirb
