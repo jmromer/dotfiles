@@ -13,6 +13,7 @@ homebrew=(
   gtypist                 # Touch-type training
   hub                     # For github-flavored git
   mongodb                 # document-based NoSQL database
+  n                       # Node environment manager
   pick                    # for fuzzy-searching stdout
   rbenv-default-gems      # default gems to be installed
   source-highlight        # syntax highlighting for less
