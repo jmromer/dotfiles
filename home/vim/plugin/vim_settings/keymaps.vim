@@ -51,11 +51,11 @@ nmap <leader>as :AS<CR>
 " av: go to alternative file in a vertical split (Rails.vim, Rake.vim)
 nmap <leader>av :AV<CR>
 
-" bp: insert a binding.pry
-nmap <leader>bp orequire 'pry'; binding.pry<ESC>
-
 " c: copy visual selection to system clipboard
 vnoremap <leader>c "*y
+
+" db: [debug] insert a binding.pry
+nmap <leader>db orequire 'pry'; binding.pry<ESC>
 
 " e: open netrw explore buffer
 nnoremap <silent><leader>e :Explore<CR>
