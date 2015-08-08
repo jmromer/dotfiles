@@ -23,7 +23,6 @@ done
 #-------------------------------------------------------------
 node_packages=(
   ghost   # blogging platform
-  n       # manage node versions
   jscs    # javascript style checker
   eslint  # js linter
   jsctags # ctags for js
