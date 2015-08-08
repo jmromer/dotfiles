@@ -69,8 +69,8 @@ nnoremap <silent><leader>ga :Git add %<CR>
 " gc: Git commit
 nnoremap <silent><leader>gc :Gcommit<CR>
 
-" gg: Git
-nnoremap <leader>gg :Git<space>
+" G: Git
+nnoremap <leader>G :Git<space>
 
 " kw: kill trailing whitespace
 nnoremap <silent><leader>kw :StripWhitespace<CR>
