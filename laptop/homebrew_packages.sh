@@ -1,8 +1,6 @@
 #-------------------------------------------------------------
 # Homebrewed Packages
 #-------------------------------------------------------------
-brew tap thoughtbot/formulae
-
 homebrew=(
   awscli                  # AWS command line interface
   bash                    # Updated version of Bash
@@ -15,7 +13,6 @@ homebrew=(
   mycli                   # MySQL CLI
   n                       # Node environment manager
   pgcli                   # Postgres CLI
-  pick                    # Fuzzy-select from standard out
   rbenv-default-gems      # default gems to be installed
   source-highlight        # syntax highlighting for less
   tree                    # for viewing directory contents in tree format
@@ -27,8 +24,25 @@ homebrew=(
 for package in ${homebrew[*]}; do
   echo "Installing or upgrading $package..."
   echo
-  brew_install_or_upgrade $package
+  brew install $package
 done
+
+#-------------------------------------------------------------
+# Thoughbot
+#-------------------------------------------------------------
+brew tap thoughtbot/formulae
+
+# brew install rcm (already installed)
+brew install pick   # Fuzzy-select from standard out
+brew install liftof # CLI for creating/configuring new Xcode projects
+brew install parity # commands for keeping heroku envs in sync
+
+#-------------------------------------------------------------
+# Universal Ctags
+#-------------------------------------------------------------
+brew tap universal-ctags/universal-ctags
+
+brew install --HEAD universal-ctags
 
 #-------------------------------------------------------------
 # MacVim Installation
@@ -49,4 +63,4 @@ options+=' --with-lua '
 # use HEAD
 options+=' --HEAD '
 
-brew_install_or_upgrade macvim $options
+brew install macvim $options
