@@ -12,9 +12,10 @@ homebrew=(
   git                     # Updated version of Git
   gtypist                 # Touch-type training
   hub                     # For github-flavored git
-  mongodb                 # document-based NoSQL database
+  mycli                   # MySQL CLI
   n                       # Node environment manager
-  pick                    # for fuzzy-searching stdout
+  pgcli                   # Postgres CLI
+  pick                    # Fuzzy-select from standard out
   rbenv-default-gems      # default gems to be installed
   source-highlight        # syntax highlighting for less
   tree                    # for viewing directory contents in tree format
