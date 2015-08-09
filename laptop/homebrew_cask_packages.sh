@@ -8,6 +8,7 @@ brew tap caskroom/versions  # for alternate versions, like ST3
 cask=(
   1password            # password manager (NB: don't use the app store version)
   appcleaner           # removes apps and related files
+  atom                 # GUI editor, mainly for previewing markdown
   betterzipql          # Quick Look viewers: Zip files
   firefox              # web browser
   flux                 # controls screen brightness
@@ -44,3 +45,8 @@ for app in ${cask[*]}; do
   echo
   brew cask install $app
 done
+
+#-------------------------------------------------------------
+# Emacs Installation
+#-------------------------------------------------------------
+brew cask install emacs-mac --with-spacemacs-icon

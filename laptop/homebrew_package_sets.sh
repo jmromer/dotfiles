@@ -12,10 +12,13 @@ brew cask install intellij-idea-ce
 brew install leiningen clojurescript
 
 # Haskell
-brew cask install ghc cabal-install
+brew cask install haskell-platform
 
 # Vagrant
 brew cask install virtualbox vagrant
+
+# Docker
+brew cask install docker-compose
 
 # Python, Pip, Buster
 brew install python
