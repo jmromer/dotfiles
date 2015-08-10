@@ -19,26 +19,43 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; base
      auto-completion
      better-defaults
-     emacs-lisp
-     git
-     markdown
+     colors
+     company-mode
+     dash
+     editorconfig
      org
+     osx
+     perspectives
+     slime
+     syntax-checking
+     themes-megapack
+
+     ;; version control
+     git
+     github
+     version-control
+
+     ;; languages
      clojure
      clojure_brave_and_true
-     ruby
-     rails
-     shell
-     slime
-     javascript
+     elixir
+     erlang
+     emacs-lisp
      haml
+     html
+     javascript
+     latex
+     markdown
+     rails
+     ruby
+     shell
 
      (shell :variables
-            shell-default-height 40
+            shell-default-height 70
             shell-default-position 'bottom)
-     syntax-checking
-     version-control
      )
 
    ;; List of additional packages that will be installed without being
@@ -174,6 +191,7 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (add-hook 'alchemist-mode-hook 'company-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
