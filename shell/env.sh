@@ -108,3 +108,14 @@ elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   . "$HOME/.rvm/scripts/rvm"         # load RVM as a function
   export PATH="$HOME/.rvm/bin:$PATH" # prepend RVM to PATH for scripting
 fi
+
+#-------------------------------------------------------------
+# Pyenv
+#-------------------------------------------------------------
+if which pyenv > /dev/null; then
+  eval "$(pyenv init -)";
+fi
+
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
+fi
