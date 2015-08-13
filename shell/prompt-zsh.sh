@@ -11,7 +11,7 @@ unsetopt nomatch    # Allow [ or ] wherever you want
 #-------------------------------------------------------------
 shared='/usr/local/share'
 fpath=(
-  ~/.zsh/completion
+  $HOME/.zsh/completion
   $shared/zsh-completions
   $shared/zsh/site-functions
   $SHELL_CONFIG/completions
@@ -36,7 +36,7 @@ DIRSTACKSIZE=10
 # HISTORY SETTINGS
 #-------------------------------------------------------------
 setopt hist_ignore_all_dups inc_append_history
-HISTFILE=~/.zhistory
+HISTFILE=$HOME/.zhistory
 HISTSIZE=4096
 SAVEHIST=4096
 
