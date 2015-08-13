@@ -9,7 +9,6 @@ nnoremap <Right> <C-w>>
 nnoremap <Down>  <C-w>+
 nnoremap <Up>    <C-w>-
 
-
 " --- buffer navigation ---
 " C-e: Scroll window up by 5 lines
 nnoremap <C-e> 5<C-e>
