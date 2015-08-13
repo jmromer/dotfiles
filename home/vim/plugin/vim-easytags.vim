@@ -1,11 +1,11 @@
 " Easytags: Run asynchronously
 let g:easytags_async = 1
 
-" Easytags: use exuberant ctags
+" Easytags: use exuberant / universal ctags
 let g:easytags_cmd = '/usr/local/bin/ctags'
 
 " Easytags: look for a project specific tags file
-set tags=./tags;
+set tags=./.git/tags;
 let g:easytags_dynamic_files = 1
 
 
@@ -20,7 +20,6 @@ let g:easytags_languages = {
 \   }
 \}
 
-
 " Golang
 let g:easytags_languages = {
 \   'go': {
@@ -31,7 +30,6 @@ let g:easytags_languages = {
 \     'recurse_flag': '-R'
 \   }
 \}
-
 
 " Haskell
 if executable('hasktags')
