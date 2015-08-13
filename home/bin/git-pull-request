@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Submit a pull request against the given base branch
-
+#
+# Usage:
 # $ git pull-request -m "Implemented feature X" -b defunkt:master -h mislav:feature
 
 if [[ -z $1 ]]; then
