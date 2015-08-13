@@ -13,7 +13,7 @@ let g:grep_cmd_opts = '--line-numbers --noheading'
 " ----------------- Load Plugins ------------------------
 
 call plug#begin('~/.vim/plugged')
-source ~/.vim/plugged_manifest.vim
+  source ~/.vim/plugged_manifest.vim
 call plug#end()
 
 " ---------------- Overrides  --------------------------
