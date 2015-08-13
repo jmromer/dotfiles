@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Removes a commit from your git repo's history
+
+git rebase --onto $1^ $1

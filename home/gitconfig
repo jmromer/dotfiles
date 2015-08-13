@@ -71,16 +71,14 @@
     ap       = add --patch
     b        = branch -vv
     bn       = checkout -b
-    bd       = branch -d
     bdel     = branch -D
     br       = browse
-    bpr      = !sh -c 'hub browse pull/$1' -
     c        = commit -v
-    ca       = commit -v --amend
+    ca       = commit-amend
     cb       = create-branch
     cm       = !sh -c 'git commit -m \"$*\"' -
     co       = checkout
-    cob      = !sh -c 'git checkout $(git branch | cut -c 3- | fzf)' -
+    cob      = checkout-branch
     cp       = cherry-pick
     cours    = checkout --ours
     ctheirs  = checkout --theirs
@@ -95,6 +93,7 @@
     hdiff    = log --format=brief --graph -U1 --word-diff --color-words
     hfiles   = log --format=medium --graph --abbrev-commit --stat
     hsince   = !sh -c 'git h --since=$1' -
+    hstat    = log --format=brief --graph --abbrev-commit --stat
     i        = init
     m        = merge
     ma       = merge --abort
@@ -108,12 +107,11 @@
     psm      = push staging master
     ppm      = push production master
     pr       = pull-request
-    qa       = !sh -c 'git fetch origin $1:$1 && git checkout $1' -
     r        = rebase
     ra       = rebase --abort
     rc       = rebase --continue
-    remove   = !sh -c 'git rebase --onto $1^ $1' -
     rem      = remote -v
+    rmc      = remove-commit
     s        = stash
     sa       = !sh -c 'git stash apply stash@{$1}' -
     sd       = !sh -c 'git stash drop stash@{$1}' -
@@ -122,8 +120,6 @@
     sl       = stash list
     sp       = stash pop
     squash   = rebase -i master
-    stat     = log --format=brief --graph --abbrev-commit --stat
-    today    = log --since=midnight --author=\"$(git config user.name)\" --oneline
     type     = cat-file -t
     up       = !git fetch origin && git rebase origin/master
 
@@ -131,7 +127,3 @@
     hf       = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
     sqfeat   = rebase -i develop
     upfeat   = !git fetch origin && git rebase origin/develop
-
-    # hooks
-    ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
-
