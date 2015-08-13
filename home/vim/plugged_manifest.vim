@@ -29,7 +29,6 @@ Plug 'tpope/vim-tbone'                " basic tmux support
 
 " Speedy text editing
 Plug 'AndrewRadev/splitjoin.vim'   " toggle between single- and multi-line code
-Plug 'gavinbeatty/dragvisuals.vim' " move visual blocks / lines around
 Plug 'jiangmiao/auto-pairs'        " auto insert closing delimiters
 Plug 'junegunn/vim-easy-align'     " text alignment
 Plug 'kana/vim-textobj-user'       " custom text objects
@@ -39,6 +38,7 @@ Plug 'tpope/vim-speeddating'       " increment dates, times, and more
 Plug 'tpope/vim-surround'          " surround text block with delimiters
 Plug 'tpope/vim-unimpaired'        " useful complementary mappings
 Plug 'vim-scripts/visualrepeat'    " extends dot operator to visual mode
+Plug 'zirrostig/vim-schlepp'       " move visual blocks / lines around
 
 " Git
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
