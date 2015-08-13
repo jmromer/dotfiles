@@ -33,6 +33,11 @@ setopt pushd_to_home cdable_vars pushd_ignore_dups
 DIRSTACKSIZE=10
 
 #-------------------------------------------------------------
+# K directory listing
+#-------------------------------------------------------------
+source $SHELL_CONFIG/k/k.sh
+
+#-------------------------------------------------------------
 # HISTORY SETTINGS
 #-------------------------------------------------------------
 setopt hist_ignore_all_dups inc_append_history
