@@ -3,7 +3,6 @@
 # ALIASES
 #-------------------------------------------------------------
 alias git='hub' # use hub for github-flavored git
-alias gf='git-flow' # for when using git flow gem
 
 #-------------------------------------------------------------
 # FUNCTIONS
