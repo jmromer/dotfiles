@@ -1,10 +1,18 @@
 #!/bin/sh
 
-set -e
+# Generate or update ctags and save to .git directory
 
-PATH="/usr/local/bin:$PATH"
-dir="`git rev-parse --git-dir`"
-trap 'rm -f "$dir/$$.tags"' EXIT
-git ls-files | \
-  "${CTAGS:-ctags}" --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql
-mv "$dir/$$.tags" "$dir/tags"
+# Dependencies:
+# Ctags -- Exuberant or Universal (preferred)
+#
+# Universal Ctags
+# https://github.com/universal-ctags/ctags
+#
+# To install:
+#   brew tap universal-ctags/universal-ctags
+#   brew install --HEAD universal-ctags
+
+dot_git_directory_location="$(git rev-parse --git-dir)"
+project_root="$(git rev-parse --show-toplevel)"
+
+ctags -f "$dot_git_directory_location/tags" -R "$project_root" &
