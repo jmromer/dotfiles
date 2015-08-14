@@ -1,7 +1,6 @@
 " ------------- Syntastic (style checking) ------------------------
-" check only on save
-" let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_open = 1
+" check only on save. checking on open slows navigation too much.
+let g:syntastic_check_on_open = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_enable_signs = 1
 
