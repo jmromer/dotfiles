@@ -4,6 +4,3 @@
 [submodule "home/emacs.d"]
 	path = home/emacs.d
 	url = https://github.com/syl20bnr/spacemacs
-[submodule "shell/k"]
-	path = shell/k
-	url = https://github.com/rimraf/k.git
