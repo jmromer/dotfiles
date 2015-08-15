@@ -65,6 +65,9 @@
 [rerere]
     enabled = true
 
+[rebase]
+    autosquash = true
+
 [alias]
     a        = add
     aa       = add --all
@@ -77,6 +80,8 @@
     ca       = commit-amend
     cb       = create-branch
     cm       = !sh -c 'git commit -m \"$*\"' -
+    cmf      = !sh -c 'git commit --fixup :/\"$*\"' -
+    cms      = !sh -c 'git commit --squash :/\"$*\"' -
     co       = checkout
     cob      = checkout-branch
     cp       = cherry-pick
