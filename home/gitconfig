@@ -54,7 +54,7 @@
     stash = false
 
 [pretty]
-    brief = "%Cred%h%Creset %C(bold blue)%aN%Creset %Cgreen%cr%Creset - %s %C(yellow)%d%Creset"
+    brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(12)%cr%Creset %C(yellow)%+D%Creset"
 
 [push]
     default = simple
