@@ -80,8 +80,8 @@
     ca       = commit-amend
     cb       = create-branch
     cm       = !sh -c 'git commit -m \"$*\"' -
-    cmf      = !sh -c 'git commit --fixup :/\"$*\"' -
-    cms      = !sh -c 'git commit --squash :/\"$*\"' -
+    cmf      = commit-fixup
+    cms      = commit-squash
     co       = checkout
     cob      = checkout-branch
     cp       = cherry-pick

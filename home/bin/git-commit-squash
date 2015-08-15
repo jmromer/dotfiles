@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Commit staged changes, marking them to be squashed to a commit fuzzy-selected
+#
+# Usage:
+#   git commit-squash
+
+# fuzzy-select the commit to be squashed into
+target_commit="$(git log --oneline --decorate -20 | fzf)"
+
+# slice out the SHA
+commit_sha="${target_commit:0:7}"
+
+git commit --squash $commit_sha
