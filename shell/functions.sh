@@ -6,18 +6,6 @@ function restart-postgres() {
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 }
 
-# curl for JSON
-# usage: json METHOD PATH [params]
-function json() {
-  local format='accept:application/json'
-  local method=$(echo $1 | awk '{print toupper($0)}')
-  local url=http://localhost:3000/$2
-  [[ ! -z $3 ]] && local params=${${3//: /=}//, /&}
-
-  echo "curl -X $method -H $format $url $params"
-  curl -X $method -H $format $url $params
-}
-
 # Display any processes listening on the given port
 function listening_on_port() {
   lsof -wni tcp:$1
@@ -40,7 +28,7 @@ function e() {
 
 # Fuzzy-select a tmux session to reattach
 function ts() {
-  local session=$(tmux ls | sed 's/:.*//' | fzf)
+  local session="$(tmux ls | sed 's/:.*//' | fzf)"
 
   if [[ ! -z $session ]]; then
     echo "tmux attach-session -t $session"
@@ -50,8 +38,8 @@ function ts() {
 
 # Fuzzy-select a tmuxinator-managed tmux session
 function mx() {
-  local session=$(tmuxinator list | sed -n '1!p' | sed 's/\s\+/\n/g' | fzf)
-  local subcommand=${1:='start'}
+  local session="$(tmuxinator list | sed -n '1!p' | sed 's/\s\+/\n/g' | fzf)"
+  local subcommand="${1:='start'}"
 
   if [[ ! -z $session ]]; then
     echo "tmuxinator $subcommand $session"
@@ -61,38 +49,33 @@ function mx() {
 
 # Fuzzy-select ruby version using rbenv
 function chr() {
-  if [[ $1 =~ '^(shell|local|global)$' ]]; then
-    local version=$(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' | fzf)
-    echo "rbenv $1 $version"
-    rbenv $1 $version
-  else
-    echo 'Usage: chr (shell|local|global)'
+  if [[ ! "$1" =~ '^(shell|local|global)$' ]]; then
+    echo 'Usage: chr (shell|local|global)' && return
   fi
+
+  local versions="$(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p')"
+  local selected="$(echo $versions | fzf)"
+
+  echo "rbenv $1 $selected"
+  rbenv "$1" "$selected"
 }
 
 # create dir $1 and cd into it, creating subdirectories as necessary
-function mcd() {
+function md() {
   local directory_name=$(echo $@ | sed -e "s/\s/_/g")
+
   mkdir -p "$directory_name" && cd "$directory_name";
 }
 
 # pretty-print the command search path
 function pp() {
-  if [[ $1 == 'path' ]]; then
+  if [[ "$1" == 'path' ]]; then
     ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
-  elif [[ $1 == 'manpath' ]]; then
+  elif [[ "$1" == 'manpath' ]]; then
     ruby -e 'puts `echo $MANPATH`.gsub(":", "\n")'
+  elif [[ "$1" == 'cdpath' ]]; then
+    ruby -e 'puts `echo $CDPATH`.gsub(":", "\n")'
   fi
-}
-
-# rebase non-master branches of dotfiles onto master and force push
-function update_dotfiles() {
-  for branch in $(git branch | awk -F* '{ print $1  }'); do
-    git rebase master $branch
-  done
-
-  git checkout master
-  git push origin --all --force
 }
 
 # Mac-specific: show and hide the desktop
@@ -135,18 +118,6 @@ function del() {
     rm -rf "$@"
   else
     echo "Canceling with no changes made."
-  fi
-}
-
-# generate a playground project to test out a feature, library, etc.
-# usage: play FRAMEWORK PROJECT-NAME
-function play() {
-  if [[ $1 =~ ^rails$ ]]; then
-    rplay -n $2 --skip-bundle
-  elif [[ $1 =~ ^(express|play|flask|jade|om|spark)$ ]]; then
-    echo "$1 playgrounds haven't been set up yet"
-  else
-    echo 'Usage example: play rails test_project'
   fi
 }
 
