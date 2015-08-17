@@ -1,6 +1,6 @@
 " ---------------- Plugins --------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'brew unlink python && ./install.sh --clang-completer --gocode-completer && brew link python' }
 
 Plug 'altercation/vim-colors-solarized' " solarized colors
 Plug 'ciaranm/detectindent'             " detect indentation level
