@@ -13,6 +13,7 @@ homebrew=(
   mycli                   # MySQL CLI
   n                       # Node environment manager
   pgcli                   # Postgres CLI
+  python                  # Python 2.7 + Pip
   rbenv-default-gems      # default gems to be installed
   source-highlight        # syntax highlighting for less
   tree                    # for viewing directory contents in tree format
