@@ -83,5 +83,8 @@ Style/EmptyLinesAroundModuleBody:
     - empty_lines
     - no_empty_lines
 
+Style/AsciiComments:
+  Enabled: false
+
 Documentation:
       Enabled: false
