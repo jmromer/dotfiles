@@ -46,9 +46,10 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 Plug 'gregsexton/gitv', { 'on': 'Gitv' } " gitk port. requires fugitive
 
 " Code snippets
-Plug 'SirVer/ultisnips'   " snippets engine, integrates with YCM
-Plug 'honza/vim-snippets' " textmate-style code snippets
-Plug 'heavenshell/vim-jsdoc'
+Plug 'SirVer/ultisnips'        " snippets engine, integrates with YCM
+Plug 'Trevoke/ultisnips-rspec' " rspec
+Plug 'heavenshell/vim-jsdoc'   " jsdoc
+Plug 'honza/vim-snippets'      " textmate-style code snippets
 Plug 'justinj/vim-react-snippets'
 
 " -------- Language-Specific -----------
