@@ -4,7 +4,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': 'brew unlink python && ./install.sh --cla
 
 Plug 'altercation/vim-colors-solarized' " solarized colors
 Plug 'ciaranm/detectindent'             " detect indentation level
-Plug 'ervandew/supertab'                " context-aware tab-completion
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
@@ -28,7 +27,6 @@ Plug 'tpope/vim-tbone'                " basic tmux support
 
 " Speedy text editing
 Plug 'AndrewRadev/splitjoin.vim'   " toggle between single- and multi-line code
-Plug 'jiangmiao/auto-pairs'        " auto insert closing delimiters
 Plug 'junegunn/vim-easy-align'     " text alignment
 Plug 'kana/vim-textobj-user'       " custom text objects
 Plug 'tommcdo/vim-exchange'        " text exchange operator cx, cxx, X, cxc
@@ -95,5 +93,3 @@ Plug 'xolox/vim-misc'                 " vim plugin utility library
 Plug 'xolox/vim-session'              " session management
 
 " -------- Probationary -----------
-
-Plug 'junegunn/vim-peekaboo'

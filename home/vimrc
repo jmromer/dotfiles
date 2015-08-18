@@ -20,5 +20,3 @@ call plug#end()
 if filereadable('~/.vimrc.local')
   source $HOME/.vimrc.local
 endif
-
-" ---------------- Probationary --------------------------
