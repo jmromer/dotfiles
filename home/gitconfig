@@ -115,6 +115,7 @@
     ppm      = push production master
     pr       = pull-request
     r        = rebase
+    ri       = rebase-interactive
     ra       = rebase --abort
     rc       = rebase --continue
     rem      = remote -v
