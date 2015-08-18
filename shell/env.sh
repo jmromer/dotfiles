@@ -101,11 +101,8 @@ export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #-------------------------------------------------------------
-# RUBY MANAGER
+# RBENV
 #-------------------------------------------------------------
 if which rbenv > /dev/null; then
-  eval "$(rbenv init -)"   # execute rbenv loading script
-elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  . "$HOME/.rvm/scripts/rvm"         # load RVM as a function
-  export PATH="$HOME/.rvm/bin:$PATH" # prepend RVM to PATH for scripting
+  eval "$(rbenv init - --no-rehash)"
 fi
