@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Fuzzy selector for git commit hash ("sha")
+# pipes it through `fzf` with color,
+# slices out the selected hash and pipes it to pbcopy
+#
+# Usage:
+#   git commit-shalector
+
+# fuzzy-select the commit to be fixed up
+target_commit="$(git log --format=brief | fzf --ansi)"
+
+# slice out the SHA
+commit_sha="${target_commit:0:7}"
+
+if [[ $commit_sha =~ ^[0-9a-z]{7}$ ]]; then
+  # echo the SHA and copy it to the pasteboard
+  echo $commit_sha | pbcopy
+  echo $commit_sha
+fi
