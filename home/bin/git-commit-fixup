@@ -6,9 +6,12 @@
 #   git commit-fixup
 
 # fuzzy-select the commit to be fixed up
-target_commit="$(git log --oneline --decorate -20 | fzf)"
+target_commit="$(git log --format=brief -20 | fzf --ansi)"
 
 # slice out the SHA
 commit_sha="${target_commit:0:7}"
 
-git commit --fixup $commit_sha
+if [[ $commit_sha =~ ^[0-9a-z]{7}$ ]]; then
+  # create a fixup-commit if target commit selected
+  git commit --fixup $commit_sha
+fi
