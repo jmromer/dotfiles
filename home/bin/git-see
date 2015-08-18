@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# `git show` a fuzzy-selected commit
+#
+# Usage:
+#   git see
+
+# fuzzy-select a SHA
+commit_sha="$(git-shalector)"
+
+if [[ ! -z $commit_sha ]]; then
+  git show $commit_sha
+fi
