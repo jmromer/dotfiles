@@ -97,6 +97,9 @@ ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
 rm -rf $HOME/.vim
 ln -sf $LOCAL_DOTFILES/home/vim        $HOME/.vim
 
+rm -rf $HOME/.bundle
+ln -sf $LOCAL_DOTFILES/home/bundle     $HOME/.bundle
+
 
 step "Linking to synced preference files..."
 ln -sf $SYNCED/dotfiles/aws           $HOME/.aws
