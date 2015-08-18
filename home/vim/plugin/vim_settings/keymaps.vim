@@ -96,6 +96,12 @@ nnoremap <leader>sa ggVG
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<space>
 
+" ti: Translation interpolate (in Rails projects)
+vnoremap <leader>ti :call I18nTranslateString()<CR>
+
+" td: Translation display (in Rails projects)
+vnoremap <leader>td :call I18nDisplayTranslation()<CR>
+
 " w: Save the current buffer
 nnoremap <leader>w :w<CR>
 
