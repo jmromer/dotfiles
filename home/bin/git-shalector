@@ -7,14 +7,14 @@
 # Usage:
 #   git commit-shalector
 
-# fuzzy-select the commit to be fixed up
-target_commit="$(git log --format=select --color=always --graph --all | \
+# fuzzy-select a commit
+target_commit="$(git log --format=select --color=always --all --graph | \
   fzf --ansi --no-sort --reverse --tiebreak=index)"
 
 # slice out the SHA
-commit_sha="${target_commit:0:7}"
+commit_sha="$(echo $target_commit | sed -E 's/.*([a-f0-9]{7}).*/\1/')"
 
-if [[ $commit_sha =~ ^[0-9a-z]{7}$ ]]; then
+if [[ ! -z $commit_sha ]]; then
   # echo the SHA and copy it to the pasteboard
   echo $commit_sha | pbcopy
   echo $commit_sha

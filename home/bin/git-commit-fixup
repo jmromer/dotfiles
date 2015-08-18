@@ -5,14 +5,10 @@
 # Usage:
 #   git commit-fixup
 
-# fuzzy-select the commit to be fixed up
-target_commit="$(git log -20 --format=select --color=always --graph --all | \
-  fzf --ansi --no-sort --reverse --tiebreak=index)"
+# fuzzy-select a SHA
+commit_sha="$(git-shalector)"
 
-# slice out the SHA
-commit_sha="${target_commit:0:7}"
-
-if [[ $commit_sha =~ ^[0-9a-z]{7}$ ]]; then
+if [[ ! -z $commit_sha ]]; then
   # create a fixup-commit if target commit selected
   git commit --fixup $commit_sha
 fi
