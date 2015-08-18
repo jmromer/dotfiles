@@ -99,7 +99,7 @@ export HOMEBREW_GITHUB_API_TOKEN
 #-------------------------------------------------------------
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--multi'
+export FZF_DEFAULT_OPTS='--multi --ansi'
 
 #-------------------------------------------------------------
 # RBENV
