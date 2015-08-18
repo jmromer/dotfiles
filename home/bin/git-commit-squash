@@ -5,15 +5,9 @@
 # Usage:
 #   git commit-squash
 
-# fuzzy-select the commit to be squashed into
-target_commit="$(git log -20 --format=select --color=always --graph --all | \
-  fzf --ansi --no-sort --reverse --tiebreak=index)"
+# fuzzy-select a SHA
+commit_sha="$(git-shalector)"
 
-# slice out the SHA
-commit_sha="${target_commit:0:7}"
-
-
-if [[ $commit_sha =~ ^[0-9a-z]{7}$ ]]; then
-  # create a squash-commit if target commit selected
+if [[ ! -z $commit_sha ]]; then
   git commit --squash $commit_sha
 fi
