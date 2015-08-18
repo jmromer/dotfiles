@@ -6,9 +6,13 @@
 #   git commit-squash
 
 # fuzzy-select the commit to be squashed into
-target_commit="$(git log --oneline --decorate -20 | fzf)"
+target_commit="$(git log --format=brief -20 | fzf --ansi)"
 
 # slice out the SHA
 commit_sha="${target_commit:0:7}"
 
-git commit --squash $commit_sha
+
+if [[ $commit_sha =~ ^[0-9a-z]{7}$ ]]; then
+  # create a squash-commit if target commit selected
+  git commit --squash $commit_sha
+fi
