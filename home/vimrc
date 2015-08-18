@@ -2,11 +2,10 @@
 set nocompatible
 filetype plugin indent on
 
-" for fzf in Vim
+" add fzf to rtp
 set runtimepath+=~/.fzf
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
-" for Greplace
+" use Ag for vim grep
 set grepprg=ag
 let g:grep_cmd_opts = '--line-numbers --noheading'
 
