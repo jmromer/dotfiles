@@ -39,6 +39,9 @@
 [interactive]
     singlekey = true
 
+[log]
+  date = short
+
 [merge]
     conflictstyle = diff3
     ff            = only
@@ -54,7 +57,7 @@
     stash = false
 
 [pretty]
-    brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(12)%cr%Creset %C(yellow)%+D%Creset"
+    brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
 
 [push]
     default = simple
