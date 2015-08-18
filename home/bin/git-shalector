@@ -8,7 +8,8 @@
 #   git commit-shalector
 
 # fuzzy-select the commit to be fixed up
-target_commit="$(git log --format=brief | fzf --ansi)"
+target_commit="$(git log --format=select --color=always --graph --all | \
+  fzf --ansi --no-sort --reverse --tiebreak=index)"
 
 # slice out the SHA
 commit_sha="${target_commit:0:7}"
