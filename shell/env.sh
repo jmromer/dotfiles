@@ -98,6 +98,7 @@ export HOMEBREW_GITHUB_API_TOKEN
 # Use Ag for FZF instead of find
 #-------------------------------------------------------------
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #-------------------------------------------------------------
 # RUBY MANAGER
