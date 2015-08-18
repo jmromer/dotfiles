@@ -79,8 +79,8 @@ export EDITOR="vim"
 export PAGER="less"
 
 # brew install [or sudo apt-get install] source-highlight
+export LESS=' -r '
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
 
 #-------------------------------------------------------------
 # MISC ENV VARIABLES
