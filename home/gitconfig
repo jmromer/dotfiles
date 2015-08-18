@@ -79,10 +79,8 @@
     bn       = checkout -b
     bdel     = branch -D
     br       = browse
-    c        = commit -v
     ca       = commit-amend
     cb       = create-branch
-    cm       = !sh -c 'git commit -m \"$*\"' -
     cmf      = commit-fixup
     cms      = commit-squash
     co       = checkout
