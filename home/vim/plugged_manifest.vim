@@ -13,7 +13,6 @@ Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
 Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
-Plug 'tpope/vim-projectionist'          " granular project configs
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
@@ -74,7 +73,7 @@ Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
+Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 
 " JavaScript
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
