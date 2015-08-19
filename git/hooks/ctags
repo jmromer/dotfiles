@@ -1,6 +1,9 @@
 #!/bin/sh
 
 # Generate or update ctags and save to .git directory
+#
+# Source: tpope
+# http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 
 # Dependencies:
 # Ctags -- Exuberant or Universal (preferred)
@@ -12,7 +15,13 @@
 #   brew tap universal-ctags/universal-ctags
 #   brew install --HEAD universal-ctags
 
-dot_git_directory_location="$(git rev-parse --git-dir)"
-project_root="$(git rev-parse --show-toplevel)"
+git_dir="$(git rev-parse --git-dir)"
 
-ctags -f "$dot_git_directory_location/tags" -R "$project_root" &
+trap 'rm -f "$git_dir/$$.tags"' EXIT
+
+git ls-files | \
+  ctags --tag-relative \
+  -L - \
+  -f "$git_dir/$$.tags"
+
+mv "$git_dir/$$.tags" "$git_dir/tags"
