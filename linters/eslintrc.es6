@@ -1,5 +1,10 @@
 {
-    "parser": "esprima-fb",
+    "env": {
+      "browser": true,
+      "es6": true,
+      "meteor": true
+      "node": true,
+    },
     "ecmaFeatures": {
       "arrowFunctions": true,
       "binaryLiterals": true,
@@ -26,6 +31,7 @@
       "jsx": true
     },
     "rules": {
-      "semi": 2
+      "semi": 2,
+      "quotes": [1, "single"]
     }
 }

@@ -1,5 +1,9 @@
 {
   "preset": "airbnb",
-  "esnext": true,
-  "esprima": "esprima-fb"
+    "esnext": true,
+    "disallowTrailingComma": true,
+    "requireTrailingComma": {
+      "ignoreSingleLine": true,
+      "ignoreSingleValue": true
+    }
 }
