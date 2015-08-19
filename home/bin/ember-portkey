@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+git_dir="$(git rev-parse --git-dir)"
+project_root="$(git rev-parse --show-toplevel)"
+
+echo 'portkeys.json' >> $git_dir/info/exclude
+
+cat <<JSON > $project_root/portkeys.json
+{
+  "portkeys": ["ember"]
+}
+JSON
