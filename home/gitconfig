@@ -77,11 +77,11 @@
     aa       = add --all
     ap       = add --patch
     b        = branch -vv
-    bn       = checkout -b
+    bc       = create-branch-with-remote
+    bn       = create-branch
     bdel     = branch -D
     br       = browse
     ca       = commit-amend
-    cb       = create-branch
     cmf      = commit-fixup
     cms      = commit-squash
     co       = checkout

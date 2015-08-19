@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Create a new branch with an upstream
+#
+# $ git create-branch-with-remote feature1
+
+branch=$(echo $@ | sed -e "s/\s/_/g")
+
+if [[ -z "$branch" ]]; then
+  echo "branch name required." 1>&2
+  exit 1
+fi
+
+git push origin HEAD:refs/heads/"$branch"
+git fetch origin
+git checkout --track -b "$branch" origin/"$branch"
