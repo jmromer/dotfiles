@@ -43,7 +43,8 @@ export PATH
 #-------------------------------------------------------------
 # CD PATH
 #-------------------------------------------------------------
-export CDPATH="$HOME"
+# Keep . in CDPATH: removing it breaks script that use `cd`
+export CDPATH=".:$HOME"
 
 #-------------------------------------------------------------
 # SYNTAX HIGHLIGHTING
