@@ -2,29 +2,30 @@
 
 # Fuzzy-select a ruby to install using rbenv
 
-ruby_version=$(rbenv install -ls | sed "1 d" | sed -e "s/^[ \t ]*//" | fzf)
+ruby_version=$(rbenv install -ls |\
+  sed "1 d" |\
+  sed -e "s/^[ \t ]*//" |\
+  fzf-tmux -l 25 --no-sort --reverse --tac --cycle --tiebreak=index)
 
 if [[ -z $ruby_version ]]; then
-  echo && echo 'No ruby version selected.' && echo
+  echo && echo 'No ruby version selected.'
   exit 1
 fi
 
 if [[ -z "$(brew list | grep rbenv-default-gems)" ]]; then
-  echo && echo "rbenv-default-gems is not installed. Installing..." && echo
-
+  echo && echo "rbenv-default-gems is not installed. Installing..."
   echo "brew install rbenv-default-gems"
   brew install rbenv-default-gems
   ln -s $HOME/.dotfiles/default-gems $HOME/.rbenv/default-gems
 fi
 
-
-echo && echo "Installing Ruby version $ruby_version" && echo
-
+echo && echo "Installing Ruby version: $ruby_version..."
 echo "rbenv install $ruby_version"
 rbenv install $ruby_version
 
-
-echo && echo "Generating ctags for default gems..." && echo
-
-echo && echo RBENV_VERSION=$ruby_version gem ctags
+echo && echo "Generating ctags for default gems..."
+echo "RBENV_VERSION=$ruby_version gem ctags"
 RBENV_VERSION=$ruby_version gem ctags
+
+echo && echo "Using Ruby $ruby_version in this shell session"
+echo rbenv shell $ruby_version

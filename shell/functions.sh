@@ -49,15 +49,15 @@ function mx() {
 
 # Fuzzy-select ruby version using rbenv
 function chr() {
-  if [[ ! "$1" =~ '^(shell|local|global)$' ]]; then
-    echo 'Usage: chr (shell|local|global)' && return
-  fi
+  local scope="$(echo "shell\nlocal\nglobal" |\
+    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
 
-  local versions="$(rbenv versions | sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p')"
-  local selected="$(echo $versions | fzf)"
+  local selected="$(rbenv versions |\
+    sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' |\
+    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
 
-  echo "rbenv $1 $selected"
-  rbenv "$1" "$selected"
+  echo "rbenv $scope $selected"
+  rbenv $scope $selected
 }
 
 # create dir $1 and cd into it, creating subdirectories as necessary
