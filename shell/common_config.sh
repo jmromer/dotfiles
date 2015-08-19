@@ -2,7 +2,7 @@
 # configuration scripts common to both zsh and bash
 
 # API keys, etc
-source ~/.env.secure
+source $HOME/.env.secure.sh
 
 # environment variables, ruby manager
 source $SHELL_CONFIG/env.sh

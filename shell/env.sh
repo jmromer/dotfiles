@@ -91,11 +91,6 @@ export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
 export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 
 #-------------------------------------------------------------
-# API KEYS
-#-------------------------------------------------------------
-export HOMEBREW_GITHUB_API_TOKEN
-
-#-------------------------------------------------------------
 # Use Ag for FZF instead of find
 #-------------------------------------------------------------
 export FZF_DEFAULT_COMMAND='ag -l -g ""'

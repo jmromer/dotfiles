@@ -103,7 +103,7 @@ ln -sf $LOCAL_DOTFILES/home/bundle     $HOME/.bundle
 
 step "Linking to synced preference files..."
 ln -sf $SYNCED/dotfiles/aws           $HOME/.aws
-ln -sf $SYNCED/dotfiles/env.secure    $HOME/.env.secure
+ln -sf $SYNCED/dotfiles/env.secure.sh $HOME/.env.secure.sh
 ln -sf $SYNCED/dotfiles/exercism.json $HOME/.exercism.json
 ln -sf $SYNCED/Preferences/Firefox    $HOME/Library/Application\ Support
 ln -sf $SYNCED/Preferences/StickiesDatabase          $HOME/Library
