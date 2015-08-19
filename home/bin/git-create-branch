@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-# Create local and remote branch `name`:
+# Create a new local branch
 #
-# $ git create-branch development
+# $ git create-branch feature1
 
 branch=$(echo $@ | sed -e "s/\s/_/g")
 
-test -z "$branch" && echo "branch required." 1>&2 && exit 1
+if [[ -z "$branch" ]]; then
+  echo "branch name required." 1>&2
+  exit 1
+fi
 
-git push origin HEAD:refs/heads/"$branch"
-git fetch origin
-git checkout --track -b "$branch" origin/"$branch"
+git checkout -b "$branch"
