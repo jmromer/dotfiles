@@ -88,3 +88,7 @@ Style/AsciiComments:
 
 Documentation:
       Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+  # single_quotes, double_quotes
