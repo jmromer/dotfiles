@@ -81,6 +81,7 @@ Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
