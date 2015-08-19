@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Fuzzy-select a homebrew package
+#
+# Usage:
+#   brew select (list|search) [cask]
+
+if [[ ! $1 =~ ^(list|search)$ || ! $2 =~ ^(cask)*$ ]]; then
+  echo "Usage: brew select (list|search) [cask]"
+  exit 1
+fi
+
+# fuzzy-select a package
+selection="$(brew $2 $1 | sed '1 d' | fzf)"
+
+# trim any extra characters, if present
+package="$(echo $selection | sed -E 's/([:graph:]+)\s.*/\1/')"
+
+echo "$package"
