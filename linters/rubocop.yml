@@ -52,7 +52,7 @@ Style/RegexpLiteral:
   AllowInnerSlashes: false
 
 Style/SpaceAroundEqualsInParameterDefault:
-  EnforcedStyle: no_space
+  EnforcedStyle: space
   SupportedStyles:
     - space
     - no_space
