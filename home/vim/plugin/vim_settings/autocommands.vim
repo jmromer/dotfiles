@@ -12,26 +12,4 @@ augroup vimrcEx
   " automatically re-balance the visible splits as tmux panes are created,
   " destroyed, or resized or window resized
   autocmd VimResized * :wincmd =
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile *.jison set filetype=javascript
-  autocmd BufRead,BufNewFile *gitconfig set syntax=dosini
-
-  " Set folding for semantic-whitespace and tagged languages
-  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
-  autocmd BufNewFile,BufReadPost *.html setl foldmethod=indent
-  autocmd BufNewFile,BufReadPost *.html.erb setl foldmethod=indent
-
-  " for TeX
-  autocmd BufRead,BufNewFile *.xtx,*.cls set syntax=tex filetype=tex
-  " autocmd BufWritePost *.xtx !xelatex %
-  autocmd BufWritePost *.xtx :exe "silent! !xelatex % > /dev/null 2>&1" | redraw!
-
-  " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
