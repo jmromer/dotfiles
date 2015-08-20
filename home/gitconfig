@@ -123,9 +123,10 @@
     rmc      = remove-commit
     sha      = shalector
     s        = stash
+    sc       = stash clear
     sa       = !sh -c 'git stash apply stash@{$1}' -
     sd       = !sh -c 'git stash drop stash@{$1}' -
-    ss       = !sh -c 'git stash show stash@{$1}' -
+    ss       = !sh -c 'git show stash@{$1}' -
     su       = stash --include-untracked
     sl       = stash list
     sp       = stash pop
