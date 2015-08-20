@@ -83,6 +83,10 @@ export PAGER="less"
 export LESS=' -r '
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 
+# pager search matches coloring
+export LESS_TERMCAP_so=$'\E[30;43m' # black on yellow
+export LESS_TERMCAP_se=$'\E[00;00m' # reset
+
 #-------------------------------------------------------------
 # MISC ENV VARIABLES
 #-------------------------------------------------------------
