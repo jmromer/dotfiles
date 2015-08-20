@@ -110,13 +110,12 @@ function! LLFileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
 endfunction
 
-augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost * call s:syntastic()
-augroup END
-
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
+" augroup AutoSyntastic
+"     autocmd!
+"     autocmd BufWritePost * call s:syntastic()
+" augroup END
+"
+" function! s:syntastic()
+"   SyntasticCheck
+"   call lightline#update()
+" endfunction
