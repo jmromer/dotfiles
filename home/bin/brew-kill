@@ -2,6 +2,8 @@
 
 # Fuzzy-select a homebrew package to uninstall
 
+set -e
+
 if [[ ! $1 =~ ^(cask)*$ ]]; then
   echo "Usage: brew kill [cask]"
   exit 1

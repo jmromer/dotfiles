@@ -6,6 +6,8 @@
 #   brew get [cask]
 #
 
+set -e
+
 if [[ ! $1 =~ ^(cask)*$ ]]; then
   echo "Usage: brew get [cask]"
   exit 1

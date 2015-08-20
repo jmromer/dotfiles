@@ -5,6 +5,8 @@
 # Usage:
 #   brew select (list|search) [cask]
 
+set -e
+
 if [[ ! $1 =~ ^(list|search)$ || ! $2 =~ ^(cask)*$ ]]; then
   echo "Usage: brew select (list|search) [cask]"
   exit 1
