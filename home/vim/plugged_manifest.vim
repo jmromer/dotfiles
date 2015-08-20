@@ -88,7 +88,6 @@ Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
 Plug 'tpope/vim-obsession'            " continuous session saving :Obsess[!]
 Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
-Plug 'xolox/vim-easytags'             " continuously updated tags
 Plug 'xolox/vim-misc'                 " vim plugin utility library
 Plug 'xolox/vim-session'              " session management
 
