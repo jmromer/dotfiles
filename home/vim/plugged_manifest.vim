@@ -1,16 +1,17 @@
 " ---------------- Plugins --------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'Valloric/YouCompleteMe', { 'do': 'brew unlink python && ./install.sh --clang-completer --gocode-completer && brew link python' }
+Plug 'Shougo/vimproc.vim', { 'do': 'make' } " async shell command execution
 
 Plug 'altercation/vim-colors-solarized' " solarized colors
 Plug 'ciaranm/detectindent'             " detect indentation level
+Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
 Plug 'scrooloose/syntastic'             " hook into syntax style checkers
-Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
