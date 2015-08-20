@@ -58,6 +58,7 @@ function chr() {
 
   echo "rbenv $scope $selected"
   rbenv $scope $selected
+  rbenv version
 }
 
 # create dir $1 and cd into it, creating subdirectories as necessary
