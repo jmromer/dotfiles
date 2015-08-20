@@ -7,7 +7,7 @@ set runtimepath+=~/.fzf
 
 " use Ag for vim grep
 set grepprg=ag
-let g:grep_cmd_opts = '--line-numbers --noheading'
+let g:grep_cmd_opts = '--line-numbers --nogroup --nocolor --noheading'
 
 " ----------------- Load Plugins ------------------------
 

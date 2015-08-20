@@ -3,9 +3,9 @@
 " CR: turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 
-" K: Grep for the word under the cursor, open results in quickfix pane
-set grepprg=ag\ --nogroup\ --nocolor
-nnoremap K :grep! "\b<C-R><C-A>\b"<CR>:cw<CR>
+" K: Grep for the word under the cursor or visual selection,
+"    open results in quickfix pane
+nnoremap K yiw:grep! "<C-R>0"<CR>:cw<CR>
 vnoremap K y:grep! "<C-R>0"<CR>:cw<CR>
 
 " \: (backward slash) to grep-with-ag-to-quickfix shortcut
