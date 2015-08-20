@@ -44,7 +44,6 @@ Plug 'gregsexton/gitv', { 'on': 'Gitv' } " gitk port. requires fugitive
 
 " Code snippets
 Plug 'SirVer/ultisnips'        " snippets engine, integrates with YCM
-Plug 'Trevoke/ultisnips-rspec' " rspec
 Plug 'heavenshell/vim-jsdoc'   " jsdoc
 Plug 'honza/vim-snippets'      " textmate-style code snippets
 Plug 'justinj/vim-react-snippets'
