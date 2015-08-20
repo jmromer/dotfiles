@@ -13,7 +13,7 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
 " C-d: Forward delete like emacs in insert mode
-inoremap <C-d> <Del>
+inoremap <C-d> <DEL>
 
 
 " -------------- Leader key mappings (ctrl) -----------------
@@ -70,7 +70,7 @@ nnoremap <silent><leader>ga :Git add %<CR>
 nnoremap <silent><leader>gc :Gcommit<CR>
 
 " G: Git
-nnoremap <leader>G :Git<space>
+nnoremap <leader>G :Git<SPACE>
 
 " kw: kill trailing whitespace
 nnoremap <silent><leader>kw :StripWhitespace<CR>
@@ -88,13 +88,13 @@ vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
 nnoremap <leader>R :redraw!<CR>
 
 " os: Open Session
-nnoremap <leader>os :OpenSession<space>
+nnoremap <leader>os :OpenSession<SPACE>
 
 " sa: visual select all text in file
 nnoremap <leader>sa ggVG
 
 " ss: Save Session
-nnoremap <leader>ss :SaveSession<space>
+nnoremap <leader>ss :SaveSession<SPACE>
 
 " ti: Translation interpolate (in Rails projects)
 vnoremap <leader>ti :call I18nTranslateString()<CR>
