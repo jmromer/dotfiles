@@ -7,6 +7,8 @@
 # Usage:
 #   git commit-shalector
 
+set -e
+
 # fuzzy-select a commit
 target_commit="$(git log --format=select --color=always --all --graph | \
   fzf --ansi --no-sort --reverse --tiebreak=index)"
