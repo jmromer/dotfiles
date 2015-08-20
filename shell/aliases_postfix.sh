@@ -1,9 +1,17 @@
+# search for the given term
+alias -g G='| grep --line-number --context=1'
 
-alias -g C="| pbcopy"           # copy to clipboard
-alias -g G='| ag'               # search for the given term
-alias -g H='| head'             # see head of piped-in output
-alias -g T='| tail'             # see the tail of piped-in output
-alias -g L='| wc -l'            # number of files
-alias -g DN="> /dev/null 2>&1"  # discard output
-alias -g P='| $PAGER'           # send to pager
-alias -g S='| sort'             # sort lines
+# copy to clipboard
+alias -g C="| pbcopy"
+
+# see head of piped-in output
+alias -g H='| head'
+
+# see the tail of piped-in output
+alias -g T='| tail'
+
+# watch tail of piped-in output
+alias -g W='| tail -f'
+
+# send to less
+alias -g L='| less'
