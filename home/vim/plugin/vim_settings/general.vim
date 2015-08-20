@@ -33,7 +33,7 @@ let @/ = ""       " clear the search register
 
 " Use Ag for grepping
 set grepprg=ag
-let g:grep_cmd_opts = '--line-numbers --noheading'
+let g:grep_cmd_opts = '--line-numbers --nogroup --nocolor --noheading'
 
 " Indentation with soft tabs, 2 spaces
 set expandtab      " use soft tabs
