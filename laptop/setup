@@ -110,9 +110,8 @@ ln -sf $SYNCED/Preferences/StickiesDatabase          $HOME/Library
 ln -sf $SYNCED/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
 
 
-step "Setting up SSH directory"
+step "Creating ~/.ssh"
 mkdir $HOME/.ssh
-ln -sf $LOCAL_DOTFILES/sshconfig        $HOME/.ssh/config
 
 step "Setting up Dropbox"
 substep "Installing Dropbox"
