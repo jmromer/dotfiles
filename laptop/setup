@@ -133,7 +133,7 @@ getc
 
 step "Installing Solarized Dark theme for Xcode..."
 mkdir -p $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
-ln -s $LOCAL_DOTFILES/theming/color_schemes/Solarized\ Dark.dvtcolortheme $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/
+ln -s $SYNCED/Preferences/theming/color_schemes/Solarized\ Dark.dvtcolortheme $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/
 
 
 step "Setting Mac OS X defaults..."
