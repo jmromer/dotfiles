@@ -17,10 +17,3 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 
 " Fixes clang 'pattern not found' messages
 let g:clang_user_options='|| exit 0'
-
-" Silence spurious error messages
-" Don't display 'Pattern not found' messages during YCM completion
-try
-  set shortmess+=c
-catch /E539: Illegal character/
-endtry

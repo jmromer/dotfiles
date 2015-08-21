@@ -48,8 +48,13 @@ set list listchars=tab:»·,trail:·,nbsp:·
 set wildmode=list:longest,list:full
 
 " Make message bar taller to avoid 'press enter' prompt
-set shortmess=a
 set cmdheight=2
+
+" Use all abbreviations in shortmessage
+set shortmess+=a
+
+" don't give the intro message when starting Vim
+set shortmess+=I
 
 " Window size shifts on focus, current screen stays larger
 set winwidth=84
