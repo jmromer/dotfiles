@@ -2,6 +2,9 @@
 set nocompatible
 filetype plugin indent on
 
+" Don't display 'Pattern not found' messages
+set shortmess+=c
+
 " add fzf to rtp
 set runtimepath+=~/.fzf
 
