@@ -1,37 +1,82 @@
-snippet "\b(de)?f" "def <name>..." r
+priority -1
+
+# Special Methods
+# ===============
+
+snippet req "require statement"
+require "${1:${2:rails}_helper}"
+endsnippet
+
+snippet am "alias :<new_name> :<old_name>"
+alias_method :${1:new_name} :${2:old_name}
+endsnippet
+
+
+# Method, Class, Module Definitions
+# =================================
+
+snippet "def" "def <name>..." r
 def ${1:function_name}${2:(${3:*args})}
-	$0
-end
+	${4}
+end${0}
 endsnippet
 
 snippet defi "def initialize ..."
 def initialize${1:(${2:*args})}
+	${3}
+end${0}
+endsnippet
+
+snippet mod "module"
+module ${1:ModuleName}
+	${0}
+end
+endsnippet
+
+snippet c "class"
+class ${1:ClassName}
+	${0}
+end
+endsnippet
+
+snippet C "class <class_name> def initialize ... end end" b
+class ${1:ClassName}
+	def initialize(${2:*args})
+		${3}
+	end
+
+	${0}
+end
+endsnippet
+
+
+# Blocks, Lambdas, and Etc.
+# =========================
+
+snippet do "do |<key>| ... end" i
+do |${1:args}|
 	$0
 end
 endsnippet
 
-snippet module "module"
-module ${1:module_name}
+snippet Do "do ... end" i
+do
 	$0
 end
 endsnippet
+
+snippet -> "stabby lambda"
+->($1) { $2 }$0
+endsnippet
+
+
+# Control Structures
+# ==================
 
 snippet "\b(case|sw(itch)?)" "case <variable> when <expression> ... end" r
 case ${1:variable}
 when ${2:expression}
 $0
-end
-endsnippet
-
-snippet alias "alias :<new_name> :<old_name>"
-alias :${1:new_name} :${2:old_name}
-endsnippet
-
-snippet class "class <class_name> def initialize ... end end"
-class ${1:class_name}
-	def initialize(${2:*args})
-		$0
-	end
 end
 endsnippet
 
@@ -58,16 +103,3 @@ begin
 	$0
 end until ${1:expression}
 endsnippet
-
-snippet do "do |<key>| ... end" i
-do |${1:args}|
-	$0
-end
-endsnippet
-
-snippet Do "do ... end" i
-do
-	$0
-end
-endsnippet
-

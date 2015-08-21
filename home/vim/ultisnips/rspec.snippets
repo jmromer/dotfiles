@@ -1,17 +1,54 @@
-snippet s
-scenario "${1}" do
-	${0}
-end
+# Rspec syntax
+# ============
+
+snippet cont "context"
+context "${1:given valid credentials}" do
+	${2:${VISUAL}}
+end${0}
 endsnippet
 
-snippet f
-feature "${1}" do
-	${0}
-end
+
+# Feature specs
+# =============
+
+snippet f "feature"
+feature "${1:Authentication}" do
+	${2}
+end${0}
 endsnippet
 
-snippet cont
-context "${1}" do
-	${0:${VISUAL}}
-end
+snippet s "scenario"
+scenario "${1:User signs in}" do
+	${2}
+end${0}
+endsnippet
+
+
+# Unit (et al.) specs
+# ===================
+
+snippet d "describe"
+describe "${1:#method_name}" do
+	${2}
+end${0}
+endsnippet
+
+snippet it "it" m
+it "${1:expected behavior, in four-phase test format}" do
+	${2:#setup}
+
+	${3:${4:result} = ${5:#exercise}}
+
+	expect(${6:$4}).to ${7:#verify}
+end${0}
+endsnippet
+
+snippet i "it (multi-line)"
+it "${1:expected behavior}" do
+	${2}
+end${0}
+endsnippet
+
+snippet I "it (single-line)"
+it { should ${1} }${0}
 endsnippet
