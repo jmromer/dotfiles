@@ -12,9 +12,6 @@ vnoremap K y:grep! "<C-R>0"<CR>:cw<CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag ''<LEFT>
 
-" C-d: Forward delete like emacs in insert mode
-inoremap <C-d> <DEL>
-
 
 " -------------- Leader key mappings (ctrl) -----------------
 
