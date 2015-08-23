@@ -3,7 +3,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'Valloric/YouCompleteMe', { 'do': 'brew unlink python && ./install.sh --clang-completer --gocode-completer && brew link python' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make > /dev/null' } " async shell command execution
 
-Plug 'altercation/vim-colors-solarized' " solarized colors
 Plug 'ciaranm/detectindent'             " detect indentation level
 Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
