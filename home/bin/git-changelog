@@ -35,7 +35,7 @@ module Changelog
   end
 
   class ChangelogWriter
-    TODAY = Time.now.localtime.strftime('%Y.%m.%d')
+    TODAY = Time.now.localtime.strftime("%Y.%m.%d")
 
     attr_accessor :date_flag, :entries, :account_name, :repo_name
 
@@ -84,7 +84,7 @@ module Changelog
     end
 
     def write_to_file
-      File.open(output_file, 'w') { |file| write_markdown_to(file, entries) }
+      File.open(output_file, "w") { |file| write_markdown_to(file, entries) }
     end
 
     def output_file
@@ -120,9 +120,12 @@ module Changelog
 
     def initialize(entry:, accnt:, repo:)
       matches = entry.match(MERGE_PR_REGEX)
-      @sha, @pr, @branch = matches[:sha], matches[:pr_num], matches[:branch]
-      @accnt, @repo = accnt, repo
-      @description  = ChangelogEntryDescription.new(@sha)
+      @sha = matches[:sha]
+      @pr = matches[:pr_num]
+      @branch = matches[:branch]
+      @accnt = accnt
+      @repo = repo
+      @description = ChangelogEntryDescription.new(@sha)
     rescue NoMethodError => e
       puts "#{e}: failed on #{log_entry_line}"
     end
@@ -134,7 +137,7 @@ module Changelog
       end
     end
 
-    def commit(format=:short)
+    def commit(format = :short)
       case format
       when :full then @sha
       when :url  then "#{base_url(:commit)}/#{@sha}"
@@ -142,7 +145,7 @@ module Changelog
       end
     end
 
-    def pr(format=:string)
+    def pr(format = :string)
       case format
       when :num then @pr.to_i
       when :url then "#{base_url(:pr)}/#{@pr}"
@@ -165,14 +168,12 @@ module Changelog
       pr(:num) <=> other.pr(:num)
     end
 
-
     def to_s
       [
         "**[#{pr}][#{pr}]: #{@description}**",
         "[#{pr}]: #{pr(:url)}\n"
       ].join("\n")
     end
-
   end
 
   # Parses a merge commit's merge commit message for its descriptive content.
@@ -224,7 +225,7 @@ module Changelog
     def parse_content_from(description)
       case description
       when only_a_ticket_number?
-        'No description.'
+        "No description."
       when begins_with_a_ticket_number?
         ticket_number_from = Regexp.last_match[1]
         strip_leading ticket_number_from, description
@@ -240,7 +241,7 @@ module Changelog
     end
 
     def strip_leading(ticket_number, description)
-      description.sub(ticket_number, '')
+      description.sub(ticket_number, "")
     end
 
     def to_s
@@ -250,7 +251,7 @@ module Changelog
 end
 
 if __FILE__ == $PROGRAM_NAME
-  date = ARGV.join(' ')
+  date = ARGV.join(" ")
   date_flag = "--since='#{date}'" unless date.empty?
   Changelog.from_git_log_since(date_flag)
 end
