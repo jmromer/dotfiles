@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# `git add` with fuzzy-selection
+#
+# Usage:
+#   git stage-files
+
+# fuzzy-select files
+files="$(git status -s |\
+  grep -E '^(\?\?|.\w)\s(.+)$' |\
+  awk '{ print $2 }' |\
+  fzf-tmux -d 15 --ansi --no-sort --reverse --tiebreak=index)"
+
+if [[ ! -z $files ]]; then
+  echo "git add $files"
+  git add $files
+  git status -sb
+fi
