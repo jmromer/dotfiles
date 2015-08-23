@@ -78,11 +78,8 @@ nnoremap <silent><leader>n :call NumberToggle()<CR>
 " nw: disable text wrapping
 nnoremap <silent><leader>nw :set nowrap<CR>
 
-" r: From visual mode, leader+r populates command line for search and replace
-vnoremap <silent> <leader>r :call SearchAndReplace()<CR>
-
-" R: redraw the screen
-nnoremap <leader>R :redraw!<CR>
+" R: From visual mode, leader+R populates command line for search and replace
+vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
 
 " os: Open Session
 nnoremap <leader>os :OpenSession<SPACE>
