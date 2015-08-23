@@ -72,6 +72,9 @@ nnoremap <leader>G :Git<SPACE>
 " kw: kill trailing whitespace
 nnoremap <silent><leader>kw :StripWhitespace<CR>
 
+" m: (make) run rubocop
+nnoremap <leader>m :RuboCop<CR>
+
 " n: toggle relative numbering
 nnoremap <silent><leader>n :call NumberToggle()<CR>
 
