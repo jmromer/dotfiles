@@ -73,7 +73,7 @@
     autosquash = true
 
 [alias]
-    a        = add
+    a        = stage-files
     aa       = add --all
     ap       = add --patch
     b        = branch -vv
