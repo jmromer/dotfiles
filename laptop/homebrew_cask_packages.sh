@@ -15,6 +15,7 @@ cask=(
   google-chrome        # web browser
   google-chrome-canary # web browser
   iterm2-beta          # terminal emulator
+  java                 # Java SDK
   jitouch              # trackpad gestures
   karabiner            # remaps esc to cmd
   keyboard-maestro     # system-wide custom keymappings
@@ -41,8 +42,7 @@ cask=(
 )
 
 for app in ${cask[*]}; do
-  echo "Installing $app ..."
-  echo
+  echo "Installing $app ..." && echo
   brew cask install $app
 done
 

@@ -13,8 +13,7 @@ ruby_gems=(
 )
 
 for gem in ${ruby_gems[*]}; do
-  echo "Installing ruby gem: $gem"
-  echo
+  echo "Installing ruby gem: $gem" && echo
   gem install $gem
 done
 
@@ -22,18 +21,37 @@ done
 # Node Packages
 #-------------------------------------------------------------
 node_packages=(
-  ghost   # blogging platform
-  jscs    # javascript style checker
-  eslint  # js linter
-  jsctags # ctags for js
+  babel
+  babel-core
+  babel-eslint
+  babel-jscs
+  bower
+  chai
+  coffeelint
+  ember-cli
+  eslint
+  eslint-plugin-react
+  express
+  express-react-views
+  generator-react-webpack
+  ghost
+  gifify
+  google-closure-compiler
   grunt
   grunt-cli
-  yo
+  jscs
+  jscs-jsdoc
+  jsctags
+  jsdoc
+  learnyoureact
+  mocha
+  node-jsx
+  npm
+  react
 )
 
 for package in ${node_packages[*]}; do
-  echo "Installing node package: $package..."
-  echo
+  echo "Installing node package: $package..." && echo
   npm install -g $package
 done
 
