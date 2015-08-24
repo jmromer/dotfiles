@@ -23,8 +23,7 @@ homebrew=(
 )
 
 for package in ${homebrew[*]}; do
-  echo "Installing or upgrading $package..."
-  echo
+  echo "Installing or upgrading $package..." && echo
   brew install $package
 done
 
@@ -51,16 +50,12 @@ brew install --HEAD universal-ctags
 #-------------------------------------------------------------
 # Use the MacVim binary as CLI vim
 options=' --override-system-vim '
-
 # Enable client-server (allows opening gui vim from cli vim with :gui)
 options+=' --with-client-server '
-
 # with cscope, for tags database
 options+=' --with-cscope '
-
 # with lua (improves performance for plugins leveraging it)
 options+=' --with-lua '
-
 # use HEAD
 options+=' --HEAD '
 

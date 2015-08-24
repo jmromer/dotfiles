@@ -2,7 +2,6 @@
 # Packages by language / framework
 #-------------------------------------------------------------
 # Scala
-brew cask install java
 brew install scala
 brew install sbt
 brew cask install scala-ide
