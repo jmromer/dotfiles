@@ -18,6 +18,7 @@ Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
 Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
+Plug 'xolox/vim-session'                " session management
 
 " Tmux, Tmux runners
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
@@ -89,6 +90,5 @@ Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
 Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
 Plug 'xolox/vim-misc'                 " vim plugin utility library
-Plug 'xolox/vim-session'              " session management
 
 " -------- Probationary -----------
