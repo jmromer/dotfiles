@@ -1,0 +1,20 @@
+# ~/.tmuxinator/vive.yml
+
+name: vive
+root: ~/Vive/vive-web
+tmux_command: env TERM=screen-256color tmux
+windows:
+  - editor: vim +OpenSession
+  - shell:
+      layout: main-vertical
+      panes:
+        -
+        -
+  - console: bin/rails console
+  - logs: tail -f log/development.log
+  - foreman: foreman start -f Procfile.dev.jkrmr
+  - redis: redis-server
+  - dotfiles:
+      root: ~/.dotfiles
+      panes:
+        -
