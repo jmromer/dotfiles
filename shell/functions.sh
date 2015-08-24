@@ -25,28 +25,6 @@ function e() {
   fi
 }
 
-
-# Fuzzy-select a tmux session to reattach
-function ts() {
-  local session="$(tmux ls | sed 's/:.*//' | fzf)"
-
-  if [[ ! -z $session ]]; then
-    echo "tmux attach-session -t $session"
-    tmux attach-session -t $session
-  fi
-}
-
-# Fuzzy-select a tmuxinator-managed tmux session
-function mx() {
-  local session="$(tmuxinator list | sed -n '1!p' | sed 's/\s\+/\n/g' | fzf)"
-  local subcommand="${1:=start}"
-
-  if [[ ! -z $session ]]; then
-    echo "tmuxinator $subcommand $session"
-    tmuxinator $subcommand $session
-  fi
-}
-
 # Fuzzy-select ruby version using rbenv
 function chr() {
   local scope="$(echo "shell\nlocal\nglobal" |\
