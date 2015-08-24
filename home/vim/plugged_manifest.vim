@@ -87,7 +87,6 @@ Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
 Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
-Plug 'tpope/vim-obsession'            " continuous session saving :Obsess[!]
 Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
 Plug 'xolox/vim-misc'                 " vim plugin utility library
 Plug 'xolox/vim-session'              " session management
