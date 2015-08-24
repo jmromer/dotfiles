@@ -11,6 +11,11 @@ if [[ -z "$branch" ]]; then
   exit 1
 fi
 
+echo git push origin HEAD:refs/heads/"$branch"
 git push origin HEAD:refs/heads/"$branch"
+
+echo git fetch origin
 git fetch origin
+
+echo git checkout --track -b "$branch" origin/"$branch"
 git checkout --track -b "$branch" origin/"$branch"
