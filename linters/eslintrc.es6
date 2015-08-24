@@ -1,10 +1,18 @@
 {
+    "parser": "babel-eslint",
     "env": {
       "browser": true,
       "es6": true,
-      "meteor": true
+      "meteor": true,
       "node": true,
     },
+    "settings": {
+      "ecmascript": 6,
+      "jax": true
+    }
+    "plugins": [
+      "react"
+    ]
     "ecmaFeatures": {
       "arrowFunctions": true,
       "binaryLiterals": true,
@@ -31,7 +39,8 @@
       "jsx": true
     },
     "rules": {
-      "semi": 2,
-      "quotes": [1, "single"]
+      "quotes": [1, "double"]
+      "semi": [2, "always"],
+      "strict": 0,
     }
 }
