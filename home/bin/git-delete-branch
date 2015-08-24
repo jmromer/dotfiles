@@ -16,10 +16,11 @@ test -z $ref && ref="refs/heads/$branch"
 # delete local branch
 git branch -D $branch
 
-# delete local remote-tracking reference
-git branch -d -r $remote/$branch
-
 # delete remote branch if `rem` passed
 if [[ $1 == "rem" ]]; then
+  # delete local remote-tracking reference
+  git branch -d -r $remote/$branch
+
+  # delete the remote branch
   git push $remote :$ref
 fi
