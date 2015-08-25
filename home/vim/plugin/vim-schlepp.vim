@@ -1,7 +1,7 @@
-vmap <unique> <C-k> <Plug>SchleppUp
-vmap <unique> <C-j> <Plug>SchleppDown
-vmap <unique> <C-h> <Plug>SchleppLeft
-vmap <unique> <C-l> <Plug>SchleppRight
+vmap <unique> <C-S-k> <Plug>SchleppUp
+vmap <unique> <C-S-j> <Plug>SchleppDown
+vmap <unique> <C-S-h> <Plug>SchleppLeft
+vmap <unique> <C-S-l> <Plug>SchleppRight
 
 " Allow moving left even if text is there (Default is false)
 let g:Schlepp#allowSquishingLines = 0
