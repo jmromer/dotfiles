@@ -92,3 +92,5 @@ Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
 Plug 'xolox/vim-misc'                 " vim plugin utility library
 
 " -------- Probationary -----------
+Plug 'jiangmiao/auto-pairs'
+Plug 'xolox/vim-easytags'
