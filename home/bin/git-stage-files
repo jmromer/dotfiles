@@ -4,6 +4,13 @@
 #
 # Usage:
 #   git stage-files
+#   git stage-files file1 file2
+
+if [[ ! -z "$1" ]]; then
+  echo git add "$*"
+  git add "$*"
+  exit 0
+fi
 
 # fuzzy-select files
 files="$(git status -s |\
