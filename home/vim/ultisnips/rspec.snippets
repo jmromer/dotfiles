@@ -2,8 +2,8 @@
 # ============
 
 snippet cont "context" m
-context "${1:given valid credentials}" do
-	${2:${VISUAL}}
+context ${1:"${2:given valid credentials}"} do
+	${3:${VISUAL}}
 end${0}
 endsnippet
 
@@ -16,14 +16,14 @@ endsnippet
 # =============
 
 snippet f "feature"
-feature "${1:Authentication}" do
-	${2}
+feature ${1:"${2:Authentication}"} do
+	${3}
 end${0}
 endsnippet
 
 snippet s "scenario"
-scenario "${1:User signs in}" do
-	${2}
+scenario ${1:"${2:User signs in}"} do
+	${3}
 end${0}
 endsnippet
 
@@ -32,24 +32,24 @@ endsnippet
 # ===================
 
 snippet d "describe"
-describe "${1:#method_name}" do
-	${2}
+describe ${1:"${2:#method_name}"} do
+	${3}
 end${0}
 endsnippet
 
 snippet it "it" m
-it "${1:expected behavior, in four-phase test format}" do
-	${2:#setup}
+it ${1:"${2:expected behavior, in four-phase test format}"} do
+	${3:#setup}
 
-	${3:${4:result} = ${5:#exercise}}
+	${4:${5:result} = ${6:#exercise}}
 
-	expect(${6:$4}).to ${7:#verify}
+	expect(${7:$4}).to ${8:#verify}
 end${0}
 endsnippet
 
 snippet i "it (multi-line)"
-it "${1:expected behavior}" do
-	${2}
+it ${1:"${2:expected behavior}"} do
+	${3}
 end${0}
 endsnippet
 

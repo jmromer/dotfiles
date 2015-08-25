@@ -4,7 +4,7 @@ priority -1
 # ===============
 
 snippet req "require statement"
-require "${1:${2:rails}_helper}"
+require ${1:"${2:${3:rails}_helper}"}
 endsnippet
 
 snippet am "alias :<new_name> :<old_name>"
