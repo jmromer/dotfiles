@@ -57,7 +57,7 @@ if [[ "$subcommand" == "sat"  ]]; then
   [[ -z "$available_sessions" ]] && echo "No sessions running." && exit 0
 
   selection="$(echo "$available_sessions" | $fzf_command)"
-  session="$(echo "$selection" | sed -E 's/^(\w+):.+/\1/')"
+  session="$(echo "$selection" | sed -E 's/:.+//g')"
 
   # exit quietly if no session selected
   [[ -z "$session" ]] && exit 0
