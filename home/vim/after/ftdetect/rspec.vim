@@ -1,1 +1,1 @@
-autocmd! BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec syntax=ruby
+autocmd! BufRead,BufNewFile *_spec.rb,*_steps.rb setlocal filetype=ruby.rspec syntax=ruby
