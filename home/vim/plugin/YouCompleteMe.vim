@@ -1,6 +1,6 @@
-" Use system Python
-" (YCM and Vim must be built against the same version of python)
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" Don't use system Python
+" (YCM, Vim, NeoVim must be built against the same version of python)
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 
 " Fall back path to global ycm conf
 let g:ycm_global_ycm_extra_conf = '~'

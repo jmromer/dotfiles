@@ -48,6 +48,7 @@ brew install --HEAD universal-ctags
 # MacVim Installation
 # - Take advantage of MacVim's faster rendering engine
 #-------------------------------------------------------------
+# Note: Ensure MacVim and YouCompleteMe are compiled against non-system Python
 # Use the MacVim binary as CLI vim
 options=' --override-system-vim '
 # Enable client-server (allows opening gui vim from cli vim with :gui)
