@@ -19,10 +19,10 @@ brew cask install virtualbox vagrant
 # Docker
 brew cask install docker-compose
 
-# Python, Pip, Buster
-brew install python
-pip install --upgrade pip setuptools buster
-brew unlink python
+# Python, Pip, Buster, NeoVim Python Client
+pip install --upgrade pip setuptools
+pip install --upgrade buster
+pip install --upgrade neovim
 
 # Exercism
 brew tap homebrew/binary
