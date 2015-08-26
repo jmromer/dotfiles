@@ -4,3 +4,6 @@
 [submodule "home/emacs.d"]
 	path = home/emacs.d
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "home/vim/vim-plug"]
+	path = home/vim/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
