@@ -10,6 +10,7 @@ Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
+Plug 'tpope/vim-git'                    " git commit filetype settings, et al
 Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
