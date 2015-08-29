@@ -121,7 +121,8 @@
     rc       = rebase --continue
     rem      = remote -v
     rmc      = remove-commit
-    sha      = shalector
+    sha      = select-sha
+    sf       = select-files
     s        = stash
     sc       = stash clear
     sa       = !sh -c 'git stash apply stash@{$1}' -

@@ -6,7 +6,7 @@
 #   git see
 
 # fuzzy-select a SHA
-commit_sha="$(git-shalector)"
+commit_sha="$(git-select-sha)"
 
 if [[ ! -z $commit_sha ]]; then
   git show $commit_sha
