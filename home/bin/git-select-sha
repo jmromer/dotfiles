@@ -5,7 +5,7 @@
 # slices out the selected hash and pipes it to pbcopy
 #
 # Usage:
-#   git commit-shalector
+#   git select-sha
 
 set -e
 
