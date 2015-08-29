@@ -28,12 +28,6 @@ nnoremap <leader><C-\> <C-^>
 nnoremap <silent> <C-w>t :tabnew<CR>
 
 
-" ------------- Leader key mappings (shift) -----------------
-
-" S-r: Reload all open buffers
-nnoremap <silent><leader>ra :call ReloadAllBuffers()<CR>
-
-
 " ------------------- Leader key mappings ---------------------
 
 " -: zoom the current vim pane
@@ -83,6 +77,9 @@ nnoremap <silent><leader>nw :set nowrap<CR>
 
 " R: From visual mode, leader+R populates command line for search and replace
 vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
+
+" ra: Reload all open buffers
+nnoremap <silent><leader>ra :call ReloadAllBuffers()<CR>
 
 " os: Open Session
 nnoremap <leader>os :OpenSession<SPACE>
