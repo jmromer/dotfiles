@@ -21,9 +21,12 @@ def ${1:function_name}${2:(${3:*args})}
 end${0}
 endsnippet
 
-snippet defi "def initialize ..."
+snippet defi "def initialize(...)"
 def initialize${1:(${2:*args})}
-	${3}
+	`!p from re import findall
+params = findall('\w+', t[2])
+lines = ["@{0} = {0}".format(p) for p in params]
+snip.rv = "\n    ".join(lines)`
 end${0}
 endsnippet
 
