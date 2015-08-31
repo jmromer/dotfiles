@@ -1,9 +1,7 @@
 " ---------------- Plugins --------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
-Plug 'Shougo/vimproc.vim', { 'do': 'make > /dev/null' } " async shell command execution
 
-Plug 'ciaranm/detectindent'             " detect indentation level
 Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'jiangmiao/auto-pairs'             " automatic delimiter closing
@@ -11,24 +9,19 @@ Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'junegunn/vim-peekaboo'            " register preview
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
+Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
+Plug 'tpope/vim-commentary'             " adding: setlocal commentstring=#\ %s
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-git'                    " git commit filetype settings, et al
 Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
+Plug 'tpope/vim-sleuth'                 " detect indentation level
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
-Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
-Plug 'vim-scripts/tComment'             " line: ctrl+//  block: ctrl+/p
 Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
 Plug 'xolox/vim-easytags'               " automatically updated ctags
-Plug 'xolox/vim-session'                " session management
-
-" Tmux, Tmux runners
-Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
-Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
-Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
-Plug 'tpope/vim-dispatch'             " async builds and test suites
-Plug 'tpope/vim-tbone'                " basic tmux support
+Plug 'xolox/vim-reload'                 " reload vimrc files automatically
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-session' " session management
 
 " Speedy text editing
 Plug 'AndrewRadev/splitjoin.vim'   " toggle between single- and multi-line code
@@ -42,15 +35,18 @@ Plug 'tpope/vim-unimpaired'        " useful complementary mappings
 Plug 'vim-scripts/visualrepeat'    " extends dot operator to visual mode
 Plug 'zirrostig/vim-schlepp'       " move visual blocks / lines around
 
+" Tmux, Tmux runners
+Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
+Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
+Plug 'tpope/vim-dispatch'             " async builds and test suites
+Plug 'tpope/vim-tbone'                " basic tmux support
+
 " Git
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
 Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
-Plug 'gregsexton/gitv', { 'on': 'Gitv' } " gitk port. requires fugitive
 
 " Code snippets
 Plug 'SirVer/ultisnips'        " snippets engine, integrates with YCM
-Plug 'heavenshell/vim-jsdoc'   " jsdoc
-Plug 'justinj/vim-react-snippets'
 
 " -------- Language-Specific -----------
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
@@ -90,9 +86,9 @@ Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
-Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
 Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
-Plug 'xolox/vim-misc'                 " vim plugin utility library
+Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 
 " -------- Probationary -----------
+" Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane

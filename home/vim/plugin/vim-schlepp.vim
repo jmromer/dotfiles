@@ -1,14 +1,14 @@
-vmap <unique> <C-S-k> <Plug>SchleppUp
-vmap <unique> <C-S-j> <Plug>SchleppDown
-vmap <unique> <C-S-h> <Plug>SchleppLeft
-vmap <unique> <C-S-l> <Plug>SchleppRight
+vmap <C-k> <Plug>SchleppUp
+vmap <C-j> <Plug>SchleppDown
+vmap <C-h> <Plug>SchleppLeft
+vmap <C-l> <Plug>SchleppRight
 
 " Allow moving left even if text is there (Default is false)
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlocks = 0
 
 " Remove trailing whitespace on block move
-let g:Schlepp#trimWS = 0
+let g:Schlepp#trimWS = 1
 
 " Schlepp can also reindent code as it moves. Any of these work
 "

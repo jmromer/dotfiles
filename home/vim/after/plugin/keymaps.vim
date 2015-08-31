@@ -1,6 +1,5 @@
 " ---------------------- Overrides ------------------------
-
-" CR: turn off highlighting by pressing enter
+" <CR>: turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 
 " K: Grep for the word under the cursor or visual selection,
@@ -8,28 +7,24 @@ nnoremap <silent><CR> :noh<CR><CR>
 nnoremap K yiw:grep! "<C-R>0"<CR>:cw<CR>
 vnoremap K y:grep! "<C-R>0"<CR>:cw<CR>
 
+" KW: kill trailing whitespace
+" nnoremap <silent><leader>kw :StripWhitespace<CR>
+nnoremap KW :StripWhitespace<CR>
+
 " \: (backward slash) to grep-with-ag-to-quickfix shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag ''<LEFT>
 
+" <C-m><C-m> comment-out
+noremap <C-m><C-m> :Commentary<CR>
+
 
 " -------------- Leader key mappings (ctrl) -----------------
-
-" C-r: reload vimrc
-nnoremap <silent><leader><C-r> :source ~/.vimrc<CR>:redraw<CR>:echo 'reloaded'<CR>
-
 " C-]: Open ctag in a vertical split
 map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-" C-\: Switch between the previous two files
-nnoremap <leader><C-\> <C-^>
-
-" <C-w> t: Open a new tab
-nnoremap <silent> <C-w>t :tabnew<CR>
-
 
 " ------------------- Leader key mappings ---------------------
-
 " -: zoom the current vim pane
 nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
 
@@ -45,10 +40,7 @@ nmap <leader>av :AV<CR>
 " c: copy visual selection to system clipboard
 vnoremap <leader>c "*y
 
-" db: [debug] insert a binding.pry
-nmap <leader>db orequire 'pry'; binding.pry<ESC>
-
-" e: open netrw explore buffer
+" e: open netrw explorer
 nnoremap <silent><leader>e :Explore<CR>
 
 " f: Invoke fzf
@@ -63,17 +55,8 @@ nnoremap <silent><leader>gc :Gcommit<CR>
 " G: Git
 nnoremap <leader>G :Git<SPACE>
 
-" kw: kill trailing whitespace
-nnoremap <silent><leader>kw :StripWhitespace<CR>
-
 " m: (make) run rubocop
 nnoremap <leader>m :RuboCop<CR>
-
-" n: toggle relative numbering
-nnoremap <silent><leader>n :call NumberToggle()<CR>
-
-" nw: disable text wrapping
-nnoremap <silent><leader>nw :set nowrap<CR>
 
 " R: From visual mode, leader+R populates command line for search and replace
 vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
@@ -96,11 +79,8 @@ vnoremap <leader>ti :call I18nTranslateString()<CR>
 " td: Translation display (in Rails projects)
 vnoremap <leader>td :call I18nDisplayTranslation()<CR>
 
-" w: Save the current buffer
-nnoremap <leader>w :w<CR>
-
-" W: Save all buffers
-nnoremap <leader>W :wa<CR>
+" w: save buffer
+nnoremap <silent><leader>w :w<CR>
 
 " x: cut visual selection to system clipboard
 vnoremap <leader>x "*d
