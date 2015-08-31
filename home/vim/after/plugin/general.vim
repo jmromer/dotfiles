@@ -32,7 +32,7 @@ let @/ = ""       " clear the search register
 :nohlsearch       " clear any previously highlighted search matches
 
 " Use Ag for grepping
-set grepprg=ag\ --line-numbers\ --column\ --nogroup\ --nocolor\ --noheading
+set grepprg=ag\ --numbers\ --column\ --nocolor\ --noheading\ --nogroup\ --nobreak\ --case
 set grepformat=%f:%l:%c:%m
 
 " Indentation with soft tabs, 2 spaces
