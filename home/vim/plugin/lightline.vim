@@ -3,8 +3,7 @@ let g:lightline = {
       \   'active': {
       \     'left': [
       \       [ 'mode', 'paste' ],
-      \       [ 'fugitive', 'filename' ],
-      \       [ 'ctrlpmark']
+      \       [ 'fugitive', 'filename' ]
       \     ],
       \     'right': [
       \       [ 'syntastic', 'lineinfo' ],
@@ -16,7 +15,6 @@ let g:lightline = {
       \     'mode':         'LLMode',
       \     'fugitive':     'LLFugitive',
       \     'filename':     'LLFilename',
-      \     'ctrlpmark':    'CtrlPMark',
       \     'readonly':     'LLReadonly',
       \     'modified':     'LLModified',
       \     'fileformat':   'LLFileFormat',
@@ -34,16 +32,9 @@ let g:lightline = {
       \   }
       \ }
 
-" let g:syntastic_mode_map = {
-"       \   'mode': 'passive',
-"       \   'active_filetypes': ['rb']
-"       \ }
-
 function! LLMode()
   let fname = expand('%:t')
-  return  fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP'   ? 'CtrlP'  :
-        \ fname == '__Gundo__'  ? 'Gundo'  :
+  return  fname == '__Gundo__'  ? 'Gundo'  :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
         \ winwidth(0) < 60 ? '' :
         \ lightline#mode() == 'NORMAL'  ? 'N'  :
@@ -55,39 +46,25 @@ function! LLMode()
 endfunction
 
 function! LLModified()
-  if &filetype == 'help'
-    return ''
-  elseif &modified
-    return '+'
-  elseif &modifiable
-    return ''
-  else
-    return ''
-  endif
+  return &modified ? '+' : ''
 endfunction
 
 function! LLReadonly()
-  if &filetype == 'help'
-    return ''
-  elseif &readonly
-    return ''
-  else
-    return ''
-  endif
+  return &readonly ? '' : ''
 endfunction
 
 function! LLFugitive()
-  if exists('*fugitive#head')
-    let _ = fugitive#head()
-    return strlen(_) ? ' ' ._ : ''
+  if !exists('*fugitive#head')
+    return ''
   endif
-  return ''
+
+  let head = fugitive#head()
+  return strlen(head) ? ' ' .head : ''
 endfunction
 
 function! LLFilename()
   let fname = expand('%:t')
-  return  fname == 'ControlP'   ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
+  return  fname == '__Tagbar__' ? g:lightline.fname :
         \ fname == '__Scratch__' ? 'Scratch' :
         \ fname =~ '__Gundo\|NERD_tree' ? '' :
         \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
@@ -107,15 +84,5 @@ function! LLFileFormat()
 endfunction
 
 function! LLFileType()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'file') : ''
 endfunction
-
-" augroup AutoSyntastic
-"     autocmd!
-"     autocmd BufWritePost * call s:syntastic()
-" augroup END
-"
-" function! s:syntastic()
-"   SyntasticCheck
-"   call lightline#update()
-" endfunction

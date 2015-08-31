@@ -76,6 +76,7 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 #-------------------------------------------------------------
 # EDITOR / PAGER
 #-------------------------------------------------------------
+export TERM="xterm-256color"
 export EDITOR="vim"
 export PAGER="less"
 

@@ -11,7 +11,7 @@ set runtimepath+=~/.fzf
 " ----------------- Load Plugins ------------------------
 
 call plug#begin('~/.vim/plugged')
-  source ~/.vim/plugged_manifest.vim
+  source ~/.vim/manifest.vim
 call plug#end()
 
 " ---------------- Overrides  --------------------------

@@ -984,3 +984,5 @@ highlight! SyntasticStyleErrorSign   ctermfg=172 ctermbg=none
 
 highlight! link SyntasticError SpellBad
 highlight! link SyntasticWarning SpellCap
+
+highlight ExtraWhitespace ctermbg=88
