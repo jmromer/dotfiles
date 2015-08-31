@@ -2,7 +2,6 @@
 
 name: vive
 root: ~/Vive/vive-web
-tmux_command: env TERM=screen-256color tmux
 windows:
   - editor: vim +OpenSession
   - shell:
