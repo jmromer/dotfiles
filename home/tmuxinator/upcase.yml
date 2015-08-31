@@ -3,7 +3,6 @@
 name: upcase
 root: ~/Exercises/upcase/ruby_challenges
 pre: open https://exercises.upcase.com/exercises/ranking-poker-hands
-tmux_command: env TERM=screen-256color tmux
 windows:
   - editor:
       layout: main-vertical

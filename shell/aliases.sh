@@ -42,6 +42,7 @@ alias unhide='setfile -a v'   # unhide a file
 alias v='vagrant'
 alias npmls='npm ls -depth=0'
 alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
+alias ssh='TERM=xterm-256color ssh'
 
 #-------------------------------------------------------------
 # ALIASES: BUNDLER
