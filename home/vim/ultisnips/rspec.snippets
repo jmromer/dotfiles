@@ -32,18 +32,18 @@ endsnippet
 # ===================
 
 snippet d "describe"
-describe ${1:"${2:#method_name}"} do
-	${3}
+describe ${1:"${2:#${4:method_name}}"} do
+	${5}
 end${0}
 endsnippet
 
 snippet it "it" m
-it ${1:"${2:expected behavior, in four-phase test format}"} do
+it ${1:"${2:expected behavior}"} do
 	${3:#setup}
 
 	${4:${5:result} = ${6:#exercise}}
 
-	expect(${7:$4}).to ${8:#verify}
+	expect(${7:$5}).to ${8:#verify}
 end${0}
 endsnippet
 
