@@ -113,6 +113,9 @@ ln -sf $SYNCED/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
 step "Creating ~/.ssh"
 mkdir $HOME/.ssh
 
+step "Installing Cask"
+brew install caskroom/cask/brew-cask
+
 step "Setting up Dropbox"
 substep "Installing Dropbox"
 brew cask install dropbox

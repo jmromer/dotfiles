@@ -1,9 +1,7 @@
 #-------------------------------------------------------------
 # Apps managed by Homebrew Cask
 #-------------------------------------------------------------
-brew tap caskroom/cask
-brew install brew-cask      # install homebrew cask to manage GUI applications
-brew tap caskroom/versions  # for alternate versions, like ST3
+brew tap caskroom/versions  # for alternate versions
 
 cask=(
   1password            # password manager (NB: don't use the app store version)
