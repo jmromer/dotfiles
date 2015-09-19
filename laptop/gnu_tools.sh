@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #-------------------------------------------------------------
 # Homebrewed GNU Tools and Vim
 #-------------------------------------------------------------
@@ -23,5 +25,5 @@ gnu_tools=(
 for gnu_tool in "${gnu_tools[@]}"; do
   echo "brew install $gnu_tool..."
   echo
-  brew_install_or_upgrade $gnu_tool
+  brew install $gnu_tool
 done

@@ -37,11 +37,15 @@ if [ -d $LOCAL_DOTFILES ]; then
   substep "$LOCAL_DOTFILES already exists. Skipping."
 else
   git clone https://github.com/jkrmr/dotfiles.git $LOCAL_DOTFILES
+  cd $LOCAL_DOTFILES
+  git submodule init
+  git submodule update
+  cd
 fi
 
 
 step "Linking laptop script customizations..."
-ln -s $LOCAL_DOTFILES/home/laptop.local ~/.laptop.local
+ln -s $LOCAL_DOTFILES/home/laptop.local $HOME/.laptop.local
 
 
 step "Running laptop script. Logging to ~/Desktop/laptop.log..."
@@ -50,6 +54,10 @@ log_location="$HOME/Desktop/laptop.log"
 touch $log_location
 curl --remote-name $laptop_script
 sh mac 2>&1 | tee $log_location
+
+
+step "Running laptop script customizations"
+sh $HOME/.laptop.local
 
 
 step "Setting homebrewed zsh as the default shell..."
@@ -142,8 +150,11 @@ ln -s $SYNCED/Preferences/theming/color_schemes/Solarized\ Dark.dvtcolortheme $H
 step "Setting Mac OS X defaults..."
 source $LOCAL_DOTFILES/osx/set_defaults.sh
 
+step "Enabling italics-compatible terminal profile..."
+tic $LOCAL_DOTFILES/terminal/xterm-256color-italic.terminfo
+tic $LOCAL_DOTFILES/terminal/screen-256color-italic.terminfo
+
 step "Installing Vim packages"
-source ~/.zshrc
-vimplug
+vim +PlugUpdate +PlugClean! +qall
 
 step "Setup script is complete."
