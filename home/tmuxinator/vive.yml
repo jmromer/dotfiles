@@ -1,7 +1,7 @@
 # ~/.tmuxinator/vive.yml
 
 name: vive
-root: ~/Vive/vive-web
+root: ~/Developer/Vive/vive-web
 windows:
   - editor: vim +OpenSession
   - shell:
@@ -10,9 +10,9 @@ windows:
         -
         -
   - console: bin/rails console
+  - server: bin/rails server
+  - foreman: foreman start -f Procfile.dev
   - logs: tail -f log/development.log
-  - foreman: foreman start -f Procfile.dev.jkrmr
-  - redis: redis-server
   - dotfiles:
       root: ~/.dotfiles
       panes:
