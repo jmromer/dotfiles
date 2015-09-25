@@ -15,9 +15,6 @@ nnoremap KW :StripWhitespace<CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag ''<LEFT>
 
-" <C-m><C-m> comment-out
-noremap <C-m><C-m> :Commentary<CR>
-
 
 " -------------- Leader key mappings (ctrl) -----------------
 " C-]: Open ctag in a vertical split
