@@ -18,4 +18,4 @@ cat $(find "$project_root"/spec/**/* -name '*_steps.rb') |\
  sed -E "s/.*step\s+[\'\"](.+)[\'\"]\sdo.*/\1/" |\
  uniq |\
  sort |\
- fzf-tmux -d 50
+ fzf-tmux -d 50 --extended-exact
