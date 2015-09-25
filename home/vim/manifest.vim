@@ -11,6 +11,7 @@ Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
+Plug 'scrooloose/syntastic'             " syntax checking (set keybinding)
 Plug 'tomtom/tcomment_vim'              " commenting facilities
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-git'                    " git commit filetype settings, et al
@@ -66,7 +67,6 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
-Plug 'ngmy/vim-rubocop', { 'for': ['ruby', 'ruby.rspec', 'eruby'] }
 Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'stefanoverna/vim-i18n', { 'for': ['ruby', 'haml', 'slim', 'eruby'] }
 Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }

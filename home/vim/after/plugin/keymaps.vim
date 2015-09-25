@@ -52,8 +52,8 @@ nnoremap <silent><leader>gc :Gcommit<CR>
 " G: Git
 nnoremap <leader>G :Git<SPACE>
 
-" m: (make) run rubocop
-nnoremap <leader>m :RuboCop<CR>
+" m: (make) run syntastic. Use [l and ]l to cycle through loc list
+nnoremap <leader>m :SyntasticCheck<CR>
 
 " R: From visual mode, leader+R populates command line for search and replace
 vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
