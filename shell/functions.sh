@@ -28,11 +28,11 @@ function e() {
 # Fuzzy-select ruby version using rbenv
 function chr() {
   local scope="$(echo "shell\nlocal\nglobal" |\
-    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
+    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index --extended-exact)"
 
   local selected="$(rbenv versions |\
     sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' |\
-    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
+    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index --extended-exact)"
 
   echo "rbenv $scope $selected"
   rbenv $scope $selected

@@ -2,7 +2,7 @@
 
 # defaults to 'start' if none given
 subcommand="${1:-start}"
-fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index"
+fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index --extended-exact"
 
 function display_help() {
   echo "  Usage: mx [SUBCOMMAND]
