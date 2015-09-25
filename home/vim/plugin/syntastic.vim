@@ -1,22 +1,21 @@
 " ------------- Syntastic (style checking) ------------------------
-" check only on save. checking on open slows navigation too much.
-" let g:syntastic_check_on_open = 0
+" checking on open slows navigation too much.
+let g:syntastic_check_on_open = 0
+
+" check only on demand
+let g:syntastic_mode_map = {
+    \ "mode": "passive",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": [] }
 
 " don't perform checks when :wq :x or :ZZ are issued
 let g:syntastic_check_on_wq = 0
-
-" Check passively by default
-" let g:syntastic_mode_map = {
-"     \ "mode": "passive",
-"     \ "active_filetypes": [],
-"     \ "passive_filetypes": [] }
 
 " let g:syntastic_aggregate_errors = 1
 let g:syntastic_enable_signs = 1
 
 " automatically load errors into the location list
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
 
 " Better :sign interface symbols
 let g:syntastic_warning_symbol = '•'
@@ -39,8 +38,8 @@ let g:syntastic_style_error_symbol = '✘'
 " display errors and warnings
 let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
 
-" don't jump to first error or warning
-" let g:syntastic_auto_jump = 0
+" jump to first error or warning
+let g:syntastic_auto_jump = 1
 
 " lint handlebars templaates with handlebars
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
