@@ -1,5 +1,6 @@
 " Enable folding based on indentation (faster than syntax)
-set foldmethod=indent
+" set foldmethod=indent
+set foldmethod=syntax
 
 " Initial fold only 1 level deep
 set foldlevelstart=1
