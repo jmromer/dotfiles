@@ -4,9 +4,10 @@ name: blog
 root: ~/Developer/blog
 
 windows:
-  - editor:
-      layout: ae4f,178x51,0,0{93x51,0,0,3,84x51,94,0[84x33,94,0,5,84x17,94,34,6]}
+  - blog:
+      layout: split
       panes:
-        - vim .
-        - npm start
-        - # empty
+        - ghost:
+          - n 0.10.38 && npm start
+        - buster:
+          - which python && python --version && pip install --upgrade buster
