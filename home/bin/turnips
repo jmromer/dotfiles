@@ -7,13 +7,13 @@
 
 project_root="$(git rev-parse --show-toplevel)"
 
-# Exit quietly if steps directory doesn't exist
+# Exit quietly if steps main directory doesn't exist
 if [[ ! -d "$project_root/spec/steps" ]]; then
   exit 0
 fi
 
 # Find files, parse them, fzf them
-cat $(find "$project_root/spec/steps" -name '*_steps.rb') |\
+cat $(find "$project_root"/spec/**/* -name '*_steps.rb') |\
  grep "step \('\|\"\)\(.\+\)\('\|\"\) do" |\
  sed -E "s/.*step\s+[\'\"](.+)[\'\"]\sdo.*/\1/" |\
  uniq |\
