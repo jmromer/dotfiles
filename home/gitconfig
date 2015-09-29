@@ -78,8 +78,9 @@
     ap       = add --patch
     b        = branch -vv
     bc       = create-branch-with-remote
-    bn       = create-branch
-    bdel     = branch -D
+    bcl      = create-branch
+    bd       = delete-branch
+    bdf      = branch -D
     br       = browse
     ca       = commit-amend
     cmf      = commit-fixup
@@ -91,7 +92,6 @@
     cours    = checkout --ours
     ctheirs  = checkout --theirs
     d        = diff
-    db       = delete-branch
     ds       = diff --staged
     dump     = cat-file -p
     f        = fetch
