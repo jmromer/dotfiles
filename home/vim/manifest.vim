@@ -91,4 +91,4 @@ Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 
 " -------- Probationary -----------
-" Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
+Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
