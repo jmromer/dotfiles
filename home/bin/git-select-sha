@@ -10,7 +10,7 @@
 set -e
 
 # fuzzy-select a commit
-target_commit="$(git log --format=select --color=always --all --graph | \
+target_commit="$(git log --format=select --color=always --graph | \
   fzf --ansi --no-sort --reverse --tiebreak=index)"
 
 # slice out the SHA
