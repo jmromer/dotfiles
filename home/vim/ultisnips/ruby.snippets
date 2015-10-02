@@ -1,5 +1,18 @@
 priority -1
 
+# Load path setup
+# ===============
+
+snippet load "prepend ../lib to load path"
+$LOAD_PATH.unshift "#{Dir.getwd}/lib"
+endsnippet
+
+snippet specload "load spec support files"
+Dir["#{Dir.getwd}/spec/support/**/*.rb"].each { |f| require f }
+
+require ${1:"${2:main_lib_script}"}
+endsnippet
+
 # Special Methods
 # ===============
 
