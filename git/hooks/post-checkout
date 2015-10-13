@@ -1,6 +1,6 @@
 #!/bin/sh
 
-local_hook="$HOME/.dotfiles/git/hooks/post-checkout.local"
+local_hook="$HOME"/.git_template.local/hooks/post-checkout
 
 [ -f "$local_hook" ] && . "$local_hook"
 

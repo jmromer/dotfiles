@@ -1,6 +1,6 @@
 #!/bin/sh
 
-local_hook="$HOME/.dotfiles/git/hooks/pre-commit.local"
+local_hook="$HOME"/.git_template.local/hooks/pre-commit
 
 if [ -f "$local_hook" ]; then
   . "$local_hook"
