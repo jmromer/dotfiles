@@ -1,7 +1,8 @@
-# ~/.tmuxinator/vive.yml
+# ~/.tmuxinator/vive-web.yml
 
-name: vive
+name: vive-web
 root: ~/Developer/Vive/vive-web
+tmux_command: env TERM=screen-256color-italic tmux
 windows:
   - editor: vim +OpenSession
   - shell:
@@ -11,7 +12,12 @@ windows:
         -
   - console: bin/rails console
   - server: bin/rails server
-  - foreman: foreman start -f Procfile.dev
+  - foreman: foreman start -f Procfile.jkrmr
+  - redis:
+      pre: killall 'redis-server 127.0.0.1:6379'
+      panes:
+        - redis-server /usr/local/etc/redis.conf
+  - sidekiq: bundle exec sidekiq
   - logs: tail -f log/development.log
   - dotfiles:
       root: ~/.dotfiles
