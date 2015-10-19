@@ -108,6 +108,7 @@
     mc       = merge --continue
     mt       = mergetool
     p        = push
+    pf       = push --force-with-lease
     po       = push origin
     poh      = !sh -c 'git push origin && git push heroku' -
     pu       = push -u
