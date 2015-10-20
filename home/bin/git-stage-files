@@ -8,7 +8,7 @@
 
 if [[ ! -z "$1" ]]; then
   echo git add "$*"
-  git add "$*"
+  git add $*
   exit 0
 fi
 
