@@ -37,7 +37,6 @@ PATH+=":/usr/bin:/bin"           # system binaries
 PATH+=":/usr/sbin:/sbin"         # system binaries requiring root
 PATH+=":/opt/X11/bin"            # added by OSX
 PATH+=":/usr/texbin"             # for TeX
-PATH+=":."                       # current directory (must come last)
 export PATH
 
 #-------------------------------------------------------------
