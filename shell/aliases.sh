@@ -4,6 +4,7 @@
 #-------------------------------------------------------------
 alias vi='vim -u ~/.vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
+alias tmux='TERM=screen-256color-italic tmux'
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
