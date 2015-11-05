@@ -1,5 +1,6 @@
 Pry.config.theme  = 'solarized'
-Pry.config.editor = 'vim'
+
+Pry.config.editor = 'vim -u ~/.vim/pryvimrc.vim'
 
 # Return only the methods not present on basic objects
 # alternatively, use `ls <object> -m`
