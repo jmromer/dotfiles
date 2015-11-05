@@ -13,3 +13,5 @@ source $SHELL_CONFIG/prompt-zsh.sh
 
 # ------------------------------------------------------------------------
 
+# OPAM configuration
+. /Users/jkrmr/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
