@@ -51,7 +51,6 @@ if [[ "$subcommand" == "ls" ]]; then
   exit 0
 fi
 
-
 if [[ "$subcommand" == "sat"  ]]; then
   available_sessions="$(tmux ls 2> /dev/null | grep -v 'failed to connect')"
   [[ -z "$available_sessions" ]] && echo "No sessions running." && exit 0
@@ -63,7 +62,7 @@ if [[ "$subcommand" == "sat"  ]]; then
   [[ -z "$session" ]] && exit 0
 
   echo "tmux attach-session -t $session"
-  tmux attach-session -t $session
+  TERM=screen-256color-italic tmux attach-session -t $session
 
   exit 0
 fi
@@ -80,7 +79,6 @@ if [[ "$subcommand" =~ ^start|debug|delete|new|edit$ ]]; then
 
   exit 0
 fi
-
 
 echo "  Error: Unrecognized subcommand" && echo
 display_help

@@ -1,10 +1,10 @@
 # shell/aliases.sh
 #-------------------------------------------------------------
-# ALIASES: Editors
+# ALIASES: Editors, Tmux
 #-------------------------------------------------------------
 alias vi='vim -u ~/.vim/minimal.vim'
 alias vimplug='vim +PlugUpdate +PlugClean! +qall'
-alias tmux='TERM=screen-256color-italic tmux'
+alias tmux='env TERM=screen-256color-italic tmux'
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
