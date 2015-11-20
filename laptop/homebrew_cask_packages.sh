@@ -23,6 +23,7 @@ cask=(
   nvalt                # notes
   papers               # PDF article manager
   qlcolorcode          # Quick Look viewers: Syntax highlighting
+  qlimagesize          # Quick Look viewers: Display image size and res
   qlmarkdown           # Quick Look Preview: Markdown
   qlprettypatch        # Quick Look Preview: Patch files
   qlstephen            # Quick Look Preview: Extension-less files
