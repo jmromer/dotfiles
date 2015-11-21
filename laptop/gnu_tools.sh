@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #-------------------------------------------------------------
-# Homebrewed GNU Tools and Vim
+# Homebrewed GNU Tools
 #-------------------------------------------------------------
 brew tap homebrew/dupes
 

@@ -1,8 +1,0 @@
-echo "Running laptop.local customizations"
-
-source "$HOME/.dotfiles/laptop/helper_functions.sh"
-source "$HOME/.dotfiles/laptop/gnu_tools.sh"
-source "$HOME/.dotfiles/laptop/homebrew_packages.sh"
-source "$HOME/.dotfiles/laptop/libraries.sh"
-source "$HOME/.dotfiles/laptop/homebrew_cask_packages.sh"
-source "$HOME/.dotfiles/laptop/homebrew_package_sets.sh"
