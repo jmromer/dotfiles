@@ -1,4 +1,9 @@
 #-------------------------------------------------------------
+# Universal Ctags
+#-------------------------------------------------------------
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+#-------------------------------------------------------------
 # Homebrewed Packages
 #-------------------------------------------------------------
 homebrew=(
@@ -9,14 +14,26 @@ homebrew=(
   emacs                   # emacs duh
   git                     # Updated version of Git
   gtypist                 # Touch-type training
+  heroku-toolbelt
   hub                     # For github-flavored git
-  mycli                   # MySQL CLI
+  imagemagick
   n                       # Node environment manager
+  node
+  openssl
   pgcli                   # Postgres CLI
+  postgres
   python                  # Python 2.7 + Pip
+  qt
+  rbenv
   rbenv-default-gems      # default gems to be installed
+  reattach-to-user-namespace
+  redis
+  ruby-build
   source-highlight        # syntax highlighting for less
+  the_silver_searcher
+  tmux
   tree                    # for viewing directory contents in tree format
+  vim
   zsh                     # Updated version of Zshell
   zsh-completions         # Command completions for Zshell
   zsh-syntax-highlighting # Syntax highlighting as you type
@@ -24,39 +41,34 @@ homebrew=(
 
 for package in ${homebrew[*]}; do
   echo "Installing or upgrading $package..." && echo
-  brew install $package
+  brew install --force $package
 done
 
 #-------------------------------------------------------------
 # Thoughbot
 #-------------------------------------------------------------
-brew tap thoughtbot/formulae
-
-# brew install rcm (already installed)
-brew install pick   # Fuzzy-select from standard out
-brew install liftof # CLI for creating/configuring new Xcode projects
-brew install parity # commands for keeping heroku envs in sync
-
-#-------------------------------------------------------------
-# Universal Ctags
-#-------------------------------------------------------------
-brew tap universal-ctags/universal-ctags
-
-brew install --HEAD universal-ctags
+for formula in rcm liftoff parity; do
+  brew install --force thoughtbot/formulae/"$formula"
+done
 
 #-------------------------------------------------------------
 # MacVim Installation
 # - Take advantage of MacVim's faster rendering engine
 #-------------------------------------------------------------
 # Note: Ensure MacVim and YouCompleteMe are compiled against non-system Python
+
 # Use the MacVim binary as CLI vim
 options=' --with-override-system-vim '
+
 # Enable client-server (allows opening gui vim from cli vim with :gui)
 options+=' --with-client-server '
+
 # with cscope, for tags database
 options+=' --with-cscope '
+
 # with lua (improves performance for plugins leveraging it)
 options+=' --with-lua '
+
 # use HEAD
 options+=' --HEAD '
 

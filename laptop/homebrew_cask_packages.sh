@@ -29,6 +29,7 @@ cask=(
   qlstephen            # Quick Look Preview: Extension-less files
   quicklook-csv        # Quick Look Preview: CSV files
   quicklook-json       # Quick Look Preview: JSON files
+  slack                # Slack, duh.
   skim                 # lightweight PDF reader with good annotation tools
   skype                # Skype, duh.
   spectacle            # window resizing

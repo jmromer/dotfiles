@@ -10,151 +10,211 @@ function getc() {
 }
 
 function step() {
-  echo && echo $1
-}
-
-function substep() {
-  echo "    $1"
+  echo && echo "$1 ..."
 }
 
 #-------------------------------------------------------------
-# Set up dotfiles
+# Set up logging
 #-------------------------------------------------------------
-step "Checking for command line tools..."
-loc="$(xcode-\select -p 2> /dev/null)"
-if [[ $loc =~ "CommandLineTools" ]]; then
-  substep "Command line tools are already installed. Skipping."
-else
-  substep "Installing the Command Line Tools (expect a GUI popup):"
-  xcode-\select --install
-  substep "Press any key when the installation has completed."
-  getc
-fi
-
-
-step "Cloning jkrmr/dotfiles..."
-if [ -d $LOCAL_DOTFILES ]; then
-  substep "$LOCAL_DOTFILES already exists. Skipping."
-else
-  git clone https://github.com/jkrmr/dotfiles.git $LOCAL_DOTFILES
-  cd $LOCAL_DOTFILES
-  git submodule init
-  git submodule update
-  cd
-fi
-
-
-step "Linking laptop script customizations..."
-ln -s $LOCAL_DOTFILES/home/laptop.local $HOME/.laptop.local
-
-
-step "Running laptop script. Logging to ~/Desktop/laptop.log..."
-laptop_script='https://raw.githubusercontent.com/thoughtbot/laptop/master/mac'
 log_location="$HOME/Desktop/laptop.log"
 touch $log_location
-curl --remote-name $laptop_script
-sh mac 2>&1 | tee $log_location
 
+# pipe this whole script to tee
+(
+  step "Installing CLI tools, dotfiles, and Homebrew"
 
-step "Running laptop script customizations"
-sh $HOME/.laptop.local
+  # ===================================================
 
+  step "Installing Xcode command line tools"
 
-step "Setting homebrewed zsh as the default shell..."
-source "$HOME/.zshrc"  # reload $PATH
-echo "$(which bash)" | sudo tee -a /etc/shells
-echo "$(which zsh)"  | sudo tee -a /etc/shells
-chsh -s $(which zsh)  # /usr/local/bin/zsh
+  loc="$(xcode-\select -p 2> /dev/null)"
+  if [[ ! $loc =~ "CommandLineTools" ]]; then
+    xcode-\select --install
+    getc
+  fi
 
+  # ===================================================
 
-step "Installing rcm..."
-if [[ -n "$(which rcup 2> /dev/null)" ]]; then
-  substep "rcm is already installed. Skipping..."
-else
-  brew tap thoughtbot/formulae 2> /dev/null
-  brew install rcm
-fi
+  step "Cloning jkrmr/dotfiles"
 
+  if [ ! -d $LOCAL_DOTFILES ]; then
+    git clone --recursive https://github.com/jkrmr/dotfiles.git \
+      $LOCAL_DOTFILES 1> /dev/null
+  fi
 
-step "Linking dotfiles into home directory..."
-env RCRC=$LOCAL_DOTFILES/rcrc rcup
+  # ===================================================
 
+  step "Installing or updating Homebrew"
 
-step "Linking remaining miscellaneous dotfiles..."
-rm -rf $HOME/.bin
-ln -sf $LOCAL_DOTFILES/home/bin        $HOME/.bin
+  brew_installed="$(command -v brew >/dev/null)"
+  if [[ -z "$brew_installed" ]]; then
+    curl -fsS \
+      'https://raw.githubusercontent.com/Homebrew/install/master/install' |\
+      ruby
+  else
+    brew update
+  fi
 
-rm -rf $HOME/.emacs.d
-ln -sf $LOCAL_DOTFILES/home/emacs.d    $HOME/.emacs.d
+  # ===================================================
 
-rm -rf $HOME/.lein
-ln -sf $LOCAL_DOTFILES/home/lein       $HOME/.lein
+  step "Installing Homebrew Cask"
 
-rm -rf $HOME/.pry
-ln -sf $LOCAL_DOTFILES/home/pry        $HOME/.pry
+  brew install caskroom/cask/brew-cask
 
-rm -rf $HOME/.zsh
-ln -sf $LOCAL_DOTFILES/home/zsh        $HOME/.zsh
+  # ===================================================
 
-rm -rf $HOME/.rbenv/
-ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/default-gems
+  step "Installing Homebrew formulas"
 
-rm -rf $HOME/.tmuxinator
-ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
+  source "$HOME/.dotfiles/laptop/homebrew_packages.sh"
 
-rm -rf $HOME/.vim
-ln -sf $LOCAL_DOTFILES/home/vim        $HOME/.vim
+  # ===================================================
 
-rm -rf $HOME/.bundle
-ln -sf $LOCAL_DOTFILES/home/bundle     $HOME/.bundle
+  step "Setting up Dropbox (press any key when complete)"
 
+  brew cask install dropbox
+  open $HOME/Applications/Dropbox.app
+  getc
 
-step "Linking to synced preference files..."
-ln -sf $SYNCED/dotfiles/aws           $HOME/.aws
-ln -sf $SYNCED/dotfiles/env.secure.sh $HOME/.env.secure.sh
-ln -sf $SYNCED/dotfiles/exercism.json $HOME/.exercism.json
-ln -sf $SYNCED/Preferences/Firefox    $HOME/Library/Application\ Support
-ln -sf $SYNCED/Preferences/StickiesDatabase          $HOME/Library
-ln -sf $SYNCED/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
+  # ===================================================
 
+  step "Installing Rbenv, latest Ruby, RubyGems"
 
-step "Creating ~/.ssh"
-mkdir $HOME/.ssh
+  eval "$(rbenv init - zsh)"
 
-step "Installing Cask"
-brew install caskroom/cask/brew-cask
+  ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+  if ! rbenv versions | grep -Fq "$ruby_version"; then
+    step "Installing Ruby $ruby_version"
+    rbenv install -s "$ruby_version"
+  fi
 
-step "Setting up Dropbox"
-substep "Installing Dropbox"
-brew cask install dropbox
-substep "Opening Dropbox..."
-open $HOME/Applications/Dropbox.app
-substep "Press any key when the Dropbox sync has completed."
-getc
+  rbenv global "$ruby_version"
+  rbenv shell "$ruby_version"
 
-for file in id_rsa id_rsa.pub jkrmr-aws-usca.pem; do
-  cp $SYNCED/dotfiles/$file  $HOME/.ssh
-  chmod 700 $HOME/.ssh/$file
-done
+  gem update --system
 
-step "Installing Xcode"
-substep "Install Xcode."
-substep "Press any key when the Xcode Installation has completed."
-getc
+  # ===================================================
 
-step "Installing Solarized Dark theme for Xcode..."
-mkdir -p $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
-ln -s $SYNCED/Preferences/theming/color_schemes/Solarized\ Dark.dvtcolortheme $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes/
+  step "Installing Bundler"
 
+  gem install bundler
+  gem update bundler
 
-step "Setting Mac OS X defaults..."
-source $LOCAL_DOTFILES/osx/set_defaults.sh
+  # ===================================================
 
-step "Enabling italics-compatible terminal profile..."
-tic $LOCAL_DOTFILES/terminal/xterm-256color-italic.terminfo
-tic $LOCAL_DOTFILES/terminal/screen-256color-italic.terminfo
+  step "Configuring Bundler"
 
-step "Installing Vim packages"
-vim +PlugUpdate +PlugClean! +qall
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle config --global jobs $((number_of_cores - 1))
 
-step "Setup script is complete."
+  # ===================================================
+
+  step "Linking OpenSSL, Installing libyaml"
+
+  brew unlink openssl && brew link openssl --force
+  brew install --force libyaml
+
+  # ===================================================
+
+  step "Accepting the Xcode CLI tools license"
+  sudo xcodebuild -license
+
+  step "Installing GNU tools"
+  source "$HOME/.dotfiles/laptop/gnu_tools.sh"
+
+  step "Installing Ruby, JS libraries"
+  source "$HOME/.dotfiles/laptop/libraries.sh"
+
+  step "Installing GUI apps with Homebrew Cask"
+  source "$HOME/.dotfiles/laptop/homebrew_cask_packages.sh"
+
+  step "Installing Package Packages"
+  source "$HOME/.dotfiles/laptop/homebrew_package_sets.sh"
+
+  # ==================================================
+
+  step "Setting up LaunchAgents"
+
+  mkdir -p ~/Library/LaunchAgents
+  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+  ln -sfv /usr/local/opt/emacs/*.plist ~/Library/LaunchAgents
+
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.emacs.plist
+
+  # ======================================================
+
+  step "Setting homebrewed zsh as the default shell"
+
+  source "$HOME/.zshrc"  # reload $PATH
+  echo "$(which bash)" | sudo tee -a /etc/shells
+  echo "$(which zsh)"  | sudo tee -a /etc/shells
+  chsh -s $(which zsh)  # /usr/local/bin/zsh
+
+  # ======================================================
+
+  step "Linking dotfiles into home directory"
+
+  env RCRC=$LOCAL_DOTFILES/rcrc rcup
+
+  # ======================================================
+
+  step "Linking remaining miscellaneous dotfiles"
+
+  ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/default-gems
+  ln -sf $LOCAL_DOTFILES/home/bin        $HOME/.bin
+  ln -sf $LOCAL_DOTFILES/home/emacs.d    $HOME/.emacs.d
+  ln -sf $LOCAL_DOTFILES/home/lein       $HOME/.lein
+  ln -sf $LOCAL_DOTFILES/home/pry        $HOME/.pry
+  ln -sf $LOCAL_DOTFILES/home/zsh        $HOME/.zsh
+  ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
+  ln -sf $LOCAL_DOTFILES/home/vim        $HOME/.vim
+  ln -sf $LOCAL_DOTFILES/home/bundle     $HOME/.bundle
+
+  # ======================================================
+
+  step "Linking to synced preference files"
+
+  ln -sf $SYNCED/dotfiles/aws           $HOME/.aws
+  ln -sf $SYNCED/dotfiles/env.secure.sh $HOME/.env.secure.sh
+  ln -sf $SYNCED/dotfiles/exercism.json $HOME/.exercism.json
+  ln -sf $SYNCED/Preferences/Firefox    $HOME/Library/Application\ Support
+  ln -sf $SYNCED/Preferences/StickiesDatabase          $HOME/Library
+  ln -sf $SYNCED/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
+
+  # ======================================================
+
+  step "Creating and linking into ~/.ssh"
+
+  mkdir $HOME/.ssh
+
+  for file in id_rsa id_rsa.pub jkrmr-aws-usca.pem; do
+    cp $SYNCED/dotfiles/$file  $HOME/.ssh
+    chmod 700 $HOME/.ssh/$file
+  done
+
+  # ======================================================
+
+  step "Setting Mac OS X defaults"
+
+  source $LOCAL_DOTFILES/osx/set_defaults.sh
+
+  # ======================================================
+
+  step "Enabling italics-compatible terminal profile"
+
+  tic $LOCAL_DOTFILES/terminal/xterm-256color-italic.terminfo
+  tic $LOCAL_DOTFILES/terminal/screen-256color-italic.terminfo
+
+  # ======================================================
+
+  step "Installing Vim packages"
+
+  vim +PlugUpdate +PlugClean! +qall
+
+  # ======================================================
+
+  step "Setup script is complete. Go install Xcode."
+
+) | tee $log_location

@@ -15,3 +15,7 @@ source $SHELL_CONFIG/prompt-zsh.sh
 
 # OPAM configuration
 . /Users/jkrmr/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+if [[ -f $HOME/.iterm2_shell_integration.zsh ]]; then
+  source $HOME/.iterm2_shell_integration.zsh
+fi
