@@ -49,4 +49,4 @@ done
 #-------------------------------------------------------------
 # Emacs Installation
 #-------------------------------------------------------------
-brew cask install emacs-mac --with-spacemacs-icon
+brew cask install railwaycat/emacsmacport/emacs-mac --with-spacemacs-icon
