@@ -12,6 +12,10 @@ pry
 pry-byebug
 pry-theme
 
+rails
+suspenders
+rails_apps_composer
+
 benchmark-ips
 
 rubocop
