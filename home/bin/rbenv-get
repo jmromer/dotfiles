@@ -21,7 +21,7 @@ fi
 
 echo && echo "Installing Ruby version: $ruby_version..."
 echo "rbenv install $ruby_version"
-rbenv install $ruby_version
+rbenv install --verbose $ruby_version
 
 echo && echo "Generating ctags for default gems..."
 echo "RBENV_VERSION=$ruby_version gem ctags"
