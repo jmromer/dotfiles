@@ -5,7 +5,7 @@
 ruby_version=$(rbenv install -ls |\
   sed "1 d" |\
   sed -e "s/^[ \t ]*//" |\
-  fzf-tmux -l 25 --no-sort --reverse --tac --cycle --tiebreak=index --extended-exact)
+  fzf-tmux -l 25 --no-sort --reverse --tac --cycle --tiebreak=index)
 
 if [[ -z $ruby_version ]]; then
   echo && echo 'No ruby version selected.'
