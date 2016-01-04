@@ -49,8 +49,8 @@
      javascript
      latex
      markdown
-     rails
      ruby
+     ruby-on-rails
      shell
 
      (shell :variables
