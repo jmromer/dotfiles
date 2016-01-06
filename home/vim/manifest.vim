@@ -38,9 +38,9 @@ Plug 'zirrostig/vim-schlepp'       " move visual blocks / lines around
 
 " Tmux, Tmux runners
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
-Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
-Plug 'tpope/vim-dispatch'             " async builds and test suites
-Plug 'tpope/vim-tbone'                " basic tmux support
+Plug 'tpope/vim-tbone'  " basic tmux support
+Plug 'benmills/vimux'   " interact with tmux from vim
+Plug 'janko-m/vim-test' " runner for rspec, cucumber, et al.
 
 " Git
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
@@ -91,4 +91,3 @@ Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
 
 " -------- Probationary -----------
-Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
