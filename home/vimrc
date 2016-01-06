@@ -16,6 +16,6 @@ call plug#end()
 
 " ---------------- Overrides  --------------------------
 
-if filereadable('~/.vimrc.local')
+if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local
 endif
