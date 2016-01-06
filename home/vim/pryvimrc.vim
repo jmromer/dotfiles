@@ -59,9 +59,6 @@ Plug 'slim-template/vim-slim'
 
 " -------- Configure -----------
 Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
-
-" -------- Probationary -----------
-Plug 'christoomey/vim-tmux-runner'    " send commands to tmux pane
 call plug#end()
 
 " ---------------- Overrides  --------------------------
