@@ -55,6 +55,7 @@ Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'lervag/vim-latex', { 'for': 'latex' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'kballard/vim-swift', { 'for': 'swift' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Scala
 Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
