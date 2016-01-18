@@ -74,7 +74,7 @@ Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
-Plug 'slim-template/vim-slim'
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
 
 " JavaScript
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
