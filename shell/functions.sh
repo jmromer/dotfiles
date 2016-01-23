@@ -6,6 +6,15 @@ function restart-postgres() {
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 }
 
+
+function skim () {
+  [ -z "$1" ]   && return 1 # arg not passed
+  [ ! -e "$1" ] && return 1 # file doesn't exist
+  [ -d "$1" ]   && return 1 # file a dir
+
+  ~/Applications/Skim.app/Contents/MacOS/Skim "$1" &
+}
+
 # Display any processes listening on the given port
 function listening_on_port() {
   lsof -wni tcp:$1
