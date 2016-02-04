@@ -81,6 +81,7 @@
     bcl      = create-branch
     bd       = delete-branch
     bdf      = branch -D
+    bdo      = clear-deleted-branches
     br       = browse
     ca       = commit-amend
     cmf      = commit-fixup

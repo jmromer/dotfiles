@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Deletes all local branches that are gone on the given remote (default: origin)
+#
+# Examples:
+#   git clear-deleted-branches [REMOTE]
+
+remote=${1:-'origin'}
+local_branches="$(git branch --no-verbose --no-color | sed -E 's/^\**\s*//')"
+remote_refs="$(git "ls-remote" "$remote" refs/heads/* | awk '{ print $2 }')"
+
+for local_branch in $local_branches; do
+  if [[ ! "$remote_refs" =~ "$local_branch" ]]; then
+    git branch --delete $local_branch
+  fi
+done
