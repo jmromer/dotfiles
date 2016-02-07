@@ -1,0 +1,15 @@
+# ~/.tmuxinator/base.yml
+
+name: base
+root: ~/Developer
+tmux_command: env TERM=screen-256color-italic tmux
+
+windows:
+  - editor: vim .
+  - shell:
+  - repl:
+  - server:
+  - dotfiles:
+      root: ~/.dotfiles
+      panes:
+        -
