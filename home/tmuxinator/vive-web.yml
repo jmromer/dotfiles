@@ -5,21 +5,13 @@ root: ~/Developer/Vive/vive-web
 tmux_command: env TERM=screen-256color-italic tmux
 windows:
   - editor: vim +OpenSession
-
   - shell:
-
-  - console:
-      layout: even-horizontal
-      panes:
-        - bin/rails console
-        - bin/rails console
-
+  - repl: bin/rails console
   - server:
       layout: even-horizontal
       panes:
         - bin/rails server
         - tail -f log/development.log
-
   - queueing:
       layout: even-horizontal
       panes:
@@ -28,9 +20,8 @@ windows:
             - redis-server /usr/local/etc/redis.conf
         - sidekiq:
             - bundle exec sidekiq
-
   - foreman: foreman start -f Procfile.jkrmr
-
+  - ngrok: ngrok http 3000
   - dotfiles:
       root: ~/.dotfiles
       panes:
