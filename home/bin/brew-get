@@ -21,5 +21,6 @@ if [[ -z "$package" ]]; then
   exit 1
 fi
 
-echo "brew $1 install $package"
-brew $1 install $package
+cmd="brew $1 install $package"
+echo $cmd && echo $cmd | pbcopy
+$cmd
