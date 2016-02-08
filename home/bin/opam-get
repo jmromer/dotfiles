@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Fuzzy-select an opam package to install
+#
+# Usage:
+#   opam get
+#
+
+set -e
+
+fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index --extended-exact"
+
+function name_from_package_listing() {
+  echo "$1" |\
+    awk '{ print $1 }'
+}
+
+package_list="$(opam list --all)"
+selection="$(echo "$package_list" | sed -n '1!p' | $fzf_command)"
+
+if [[ -z "$selection" ]]; then
+  echo "No package selected."
+  exit 0
+fi
+
+package_name="$(name_from_package_listing "$selection")"
+
+cmd="opam install $package_name"
+echo $cmd && echo $cmd | pbcopy
+$cmd
