@@ -4,7 +4,7 @@ let g:syntastic_check_on_open = 0
 
 " check only on demand
 let g:syntastic_mode_map = {
-    \ "mode": "passive",
+    \ "mode": "active",
     \ "active_filetypes": [],
     \ "passive_filetypes": [] }
 
@@ -38,8 +38,8 @@ let g:syntastic_style_error_symbol = '✘'
 " display errors and warnings
 let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
 
-" jump to first error or warning
-let g:syntastic_auto_jump = 1
+" do not jump to first error or warning
+let g:syntastic_auto_jump = 0
 
 " lint handlebars templaates with handlebars
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
@@ -56,6 +56,9 @@ let g:syntastic_coffee_coffeelint_args = '-f ~/.coffeelint.json'
 " Ruby
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_ruby_rubocop_args = ''
+
+" OCaml
+let g:syntastic_ocaml_checkers = ['merlin', 'camlp4o']
 
 " Ignore spurious warnings
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
