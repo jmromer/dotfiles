@@ -1,12 +1,18 @@
 " ----------------- Base Settings ------------------------
 set nocompatible
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 
 " Don't display 'Pattern not found' messages
 set shortmess+=c
 
 " add fzf to rtp
 set runtimepath+=~/.fzf
+
+" opam, merlin to rtp
+set runtimepath^=~/.opam/system/share/ocp-indent/vim
+set runtimepath+=~/.opam/system/share/merlin/vim
+helptags ~/.opam/system/share/merlin/vim/doc
 
 " ----------------- Load Plugins ------------------------
 

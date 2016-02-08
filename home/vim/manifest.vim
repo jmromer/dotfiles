@@ -85,6 +85,10 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 
+" -------- OCaml -----------
+Plug 'the-lambda-church/merlin'
+Plug 'OCamlPro/ocp-indent'
+
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
