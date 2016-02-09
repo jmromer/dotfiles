@@ -1,0 +1,17 @@
+# ~/.tmuxinator/exercism.yml
+
+name: exercism
+root: ~/Exercises/exercism
+tmux_command: env TERM=screen-256color-italic tmux
+
+windows:
+  - code:
+      layout: even-horizontal
+      panes:
+        - vim .
+        -
+  - shell:
+  - dotfiles:
+      root: ~/.dotfiles
+      panes:
+        -
