@@ -1,7 +1,7 @@
 " ----------------- Base Settings ------------------------
 set nocompatible
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete " need this for clojure
 
 " Don't display 'Pattern not found' messages
 set shortmess+=c
