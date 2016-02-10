@@ -2,15 +2,6 @@
 " <CR>: turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 
-" K: Grep for the word under the cursor or visual selection,
-"    open results in quickfix pane
-nnoremap K yiw:grep! "<C-R>0"<CR>:cw<CR>
-vnoremap K y:grep! "<C-R>0"<CR>:cw<CR>
-
-" KW: kill trailing whitespace
-" nnoremap <silent><leader>kw :StripWhitespace<CR>
-nnoremap KW :StripWhitespace<CR>
-
 " \: (backward slash) to grep-with-ag-to-quickfix shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag ''<LEFT>
@@ -51,6 +42,14 @@ nnoremap <silent><leader>gc :Gcommit<CR>
 
 " G: Git
 nnoremap <leader>G :Git<SPACE>
+
+" k: Grep for the word under the cursor or visual selection,
+"    open results in quickfix pane
+nnoremap <silent><leader>* yiw:grep! "<C-R>0"<CR>:cw<CR>
+vnoremap <silent><leader>* y:grep! "<C-R>0"<CR>:cw<CR>
+
+" kw: kill trailing whitespace
+nnoremap <silent><leader>kw :StripWhitespace<CR>
 
 " m: (make) run syntastic. Use [l and ]l to cycle through loc list
 nnoremap <leader>m :SyntasticCheck<CR>
