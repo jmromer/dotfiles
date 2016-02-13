@@ -4,9 +4,10 @@ let g:syntastic_check_on_open = 0
 
 " check only on demand
 let g:syntastic_mode_map = {
-    \ "mode": "active",
+    \ "mode": "passive",
     \ "active_filetypes": [],
-    \ "passive_filetypes": ['ruby'] }
+    \ "passive_filetypes": []
+    \ }
 
 " don't perform checks when :wq :x or :ZZ are issued
 let g:syntastic_check_on_wq = 0
