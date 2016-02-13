@@ -35,3 +35,6 @@ let g:session_autosave_periodic = 5 " save every 5 minutes
 " disabled by adding the following line to your |vimrc| script:
 
 let g:session_persist_colors = 0
+
+" Do not autoload last session by default
+let g:session_autoload = 'no'
