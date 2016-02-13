@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+[[ -z "$1" ]] && exit 1
+
+DOWNLOAD_DIR="$HOME/Downloads"
+CONFIG_DIR="$HOME/.dotfiles/kll_config"
+
+function flash_ergodox() {
+  [[ -z "$1" ]] && exit 1
+
+  if [[ ! -z "$(ls $DOWNLOAD_DIR/MDErgo1-Default-*.zip 2> /dev/null)" ]]; then
+    rm -rf $CONFIG_DIR
+    mkdir $CONFIG_DIR
+
+    echo "Unzipping KLL configuration to $CONFIG_DIR ..."
+    unzip $DOWNLOAD_DIR/MDErgo1-Default-*.zip -d $CONFIG_DIR
+    echo
+  fi
+
+  echo "Flashing Ergodox..."
+  echo dfu-util -D "$CONFIG_DIR"/"$1"_kiibohd.dfu.bin
+  dfu-util -D "$CONFIG_DIR"/"$1"_kiibohd.dfu.bin
+  echo
+
+
+  echo "Removing KLL configuration zip file..."
+  rm -i $DOWNLOAD_DIR/MDErgo1-Default-*.zip
+  echo
+}
+
+function copy_json_to_pasteboard() {
+  [[ ! -e "$CONFIG_DIR/MDErgo1-Default.json" ]] && exit 1
+
+  echo cat $CONFIG_DIR/MDErgo1-Default.json | pbcopy
+  cat $CONFIG_DIR/MDErgo1-Default.json | pbcopy
+}
+
+
+if [[ "$1" == "flash" ]]; then
+  flash_ergodox "$2"
+elif [[ "$1" == "copy" ]]; then
+  copy_json_to_pasteboard
+else
+  exit 1
+fi
