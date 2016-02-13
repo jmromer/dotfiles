@@ -16,6 +16,7 @@ homebrew=(
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
+  dfu-util                # KLL configuration loader
   emacs                   # emacs duh
   gtypist                 # Touch-type training
   heroku-toolbelt
