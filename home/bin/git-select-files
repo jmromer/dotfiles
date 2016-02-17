@@ -3,12 +3,12 @@
 # fuzzy-select files listed via `git status`
 #
 # Usage:
-#   git select-files
+#   git select-files [FZF_OPTS]
 
 # fuzzy-select files
 files="$(git status -s |\
   awk '{ print $2 }' |\
-  fzf-tmux -d 15 --ansi --no-sort --reverse --tiebreak=index --extended-exact)"
+  fzf-tmux -d 15 --ansi --no-sort --reverse --tiebreak=index --extended-exact $1)"
 
 if [[ ! -z $files ]]; then
   echo $files
