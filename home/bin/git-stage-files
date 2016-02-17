@@ -13,10 +13,7 @@ if [[ ! -z "$1" ]]; then
 fi
 
 # fuzzy-select files
-files="$(git status -s |\
-  grep -E '^(\?\?|.\w)\s(.+)$' |\
-  awk '{ print $2 }' |\
-  fzf-tmux -d 15 --ansi --no-sort --reverse --tiebreak=index --extended-exact)"
+files="$(git select-files)"
 
 if [[ ! -z $files ]]; then
   echo "git add $files"
