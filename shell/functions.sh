@@ -22,7 +22,6 @@ function listening_on_port() {
 
 # Open the editor as appropriate
 function e() {
-  # local editor="$(ruby -e 'print %w(emacs vim).at(rand(2))')"
   local editor=vim
 
   if [ -z "$1" ]; then
