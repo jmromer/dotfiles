@@ -34,6 +34,15 @@ function e() {
   fi
 }
 
+# Fuzzy-select a file from git status to open in editor
+function eg() {
+  local file="$(git select-files --no-multi)"
+
+  if [[ ! -z "$file" ]]; then
+    e $file
+  fi
+}
+
 # Fuzzy-select ruby version using rbenv
 function chr() {
   local scope="$(echo "shell\nlocal\nglobal" |\
