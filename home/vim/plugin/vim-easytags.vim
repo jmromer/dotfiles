@@ -17,29 +17,19 @@ let g:easytags_languages = {
 \       'cmd': 'jsctags',
 \       'args': [],
 \       'fileoutput_opt': '-f'
-\   }
-\}
-
-" Golang
-let g:easytags_languages = {
+\   },
 \   'go': {
 \     'cmd': 'gotags',
 \     'args': ['-sort=true'],
 \     'fileoutput_opt': '-f=',
 \     'stdout_opt': '-f=-',
 \     'recurse_flag': '-R'
+\   },
+\   'haskell': {
+\       'cmd': 'hasktags',
+\       'args': ['-x', '--ctags'],
+\       'fileoutput_opt': '-o',
+\       'stdout_opt': '-o-',
+\       'recurse_flag': '.'
 \   }
 \}
-
-" Haskell
-if executable('hasktags')
-  let g:easytags_languages = {
-  \   'haskell': {
-  \       'cmd': 'hasktags',
-  \       'args': ['-x', '--ctags'],
-  \       'fileoutput_opt': '-o',
-  \       'stdout_opt': '-o-',
-  \       'recurse_flag': '.'
-  \   }
-  \}
-endif

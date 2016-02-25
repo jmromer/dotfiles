@@ -24,6 +24,13 @@ dir="`git rev-parse --git-dir`"
 trap 'rm -f "$dir/$$.tags"' EXIT
 
 git ls-files |\
-  "${CTAGS:-ctags}" --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql
+  "${CTAGS:-ctags}" \
+    --tag-relative  \
+    --languages=-javascript,sql \
+    --fields=+l \
+    --c-kinds=+p \
+    --c++-kinds=+p \
+    -L - \
+    -f"$dir/$$.tags" \
 
 mv "$dir/$$.tags" "$dir/tags"
