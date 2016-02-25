@@ -89,6 +89,10 @@ Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 Plug 'the-lambda-church/merlin'
 Plug 'OCamlPro/ocp-indent'
 
+" Clojure
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure'}
+Plug 'tpope/vim-fireplace', { 'for': 'clojure'}
+
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
