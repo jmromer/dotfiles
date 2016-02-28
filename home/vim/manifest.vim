@@ -88,6 +88,7 @@ Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 " -------- OCaml -----------
 Plug 'the-lambda-church/merlin'
 Plug 'OCamlPro/ocp-indent'
+Plug 'def-lkb/ocp-indent-vim'
 
 " Clojure
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure'}
