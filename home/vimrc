@@ -9,10 +9,11 @@ set shortmess+=c
 " add fzf to rtp
 set runtimepath+=~/.fzf
 
-" opam, merlin to rtp
-set runtimepath^=~/.opam/system/share/ocp-indent/vim
-set runtimepath+=~/.opam/system/share/merlin/vim
-helptags ~/.opam/system/share/merlin/vim/doc
+" add ocp-indent, merlin to rtp
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+execute "helptags " . g:opamshare . "/merlin/vim/doc"
 
 " ----------------- Load Plugins ------------------------
 
