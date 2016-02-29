@@ -18,6 +18,7 @@ Plug 'tpope/vim-git'                    " git commit filetype settings, et al
 Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
 Plug 'tpope/vim-sleuth'                 " detect indentation level
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
+Plug 'vim-scripts/netrw.vim'            " older (bug-free) version of netrw
 Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
 Plug 'xolox/vim-easytags'               " automatically updated ctags
