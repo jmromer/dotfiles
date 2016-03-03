@@ -6,6 +6,10 @@ nnoremap <silent><CR> :noh<CR><CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag ''<LEFT>
 
+" k: Grep for the word under the cursor or visual selection,
+"    open results in quickfix pane
+nnoremap <silent><S-k> yiw:grep! "<C-R>0"<CR>:cw<CR>
+vnoremap <silent><S-k> y:grep! "<C-R>0"<CR>:cw<CR>
 
 " -------------- Leader key mappings (ctrl) -----------------
 " C-]: Open ctag in a vertical split
@@ -42,11 +46,6 @@ nnoremap <silent><leader>gc :Gcommit<CR>
 
 " G: Git
 nnoremap <leader>G :Git<SPACE>
-
-" k: Grep for the word under the cursor or visual selection,
-"    open results in quickfix pane
-nnoremap <silent><leader>* yiw:grep! "<C-R>0"<CR>:cw<CR>
-vnoremap <silent><leader>* y:grep! "<C-R>0"<CR>:cw<CR>
 
 " kw: kill trailing whitespace
 nnoremap <silent><leader>kw :StripWhitespace<CR>
