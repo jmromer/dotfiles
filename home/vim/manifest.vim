@@ -9,10 +9,8 @@ Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'junegunn/vim-peekaboo'            " register preview
 Plug 'kien/rainbow_parentheses.vim'     " delimiter highlighting
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
-Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
-Plug 'tomtom/tcomment_vim'              " commenting facilities
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-git'                    " git commit filetype settings, et al
 Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
@@ -26,29 +24,40 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-session' " session management
 Plug 'xolox/vim-reload'                 " reload vimrc files automatically
 
 " Speedy text editing
-Plug 'AndrewRadev/splitjoin.vim'   " toggle between single- and multi-line code
-Plug 'junegunn/vim-easy-align'     " text alignment
-Plug 'kana/vim-textobj-user'       " custom text objects
-Plug 'tommcdo/vim-exchange'        " text exchange operator cx, cxx, X, cxc
-Plug 'tpope/vim-repeat'            " repeat last mapped command with `.`
-Plug 'tpope/vim-speeddating'       " increment dates, times, and more
-Plug 'tpope/vim-surround'          " surround text block with delimiters
-Plug 'tpope/vim-unimpaired'        " useful complementary mappings
-Plug 'vim-scripts/visualrepeat'    " extends dot operator to visual mode
-Plug 'zirrostig/vim-schlepp'       " move visual blocks / lines around
+Plug 'AndrewRadev/splitjoin.vim' " toggle between single- and multi-line code
+Plug 'junegunn/vim-easy-align'   " text alignment
+Plug 'tpope/vim-repeat'          " repeat last mapped command with `.`
+Plug 'tpope/vim-speeddating'     " increment dates, times, and more
+Plug 'tpope/vim-unimpaired'      " useful complementary mappings
+Plug 'vim-scripts/visualrepeat'  " extends dot operator to visual mode
+Plug 'zirrostig/vim-schlepp'     " move visual blocks / lines around
+
+" Text objects
+Plug 'kana/vim-textobj-entire' " Adds ae/ie
+Plug 'kana/vim-textobj-indent' " Adds i
+Plug 'kana/vim-textobj-user'   " custom text objects
+Plug 'kana/vim-textobj-line'   " Adds l
+
+" Motions
+Plug 'christoomey/vim-sort-motion'     " gs[ai][p({]
+Plug 'christoomey/vim-system-copy'     " cp
+Plug 'tommcdo/vim-exchange'            " text exchange operator cx, cxx, X, cxc
+Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
+Plug 'tpope/vim-surround'              " surround text block with delimiters
+Plug 'vim-scripts/ReplaceWithRegister' " griw
 
 " Tmux, Tmux runners
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
-Plug 'tpope/vim-tbone'  " basic tmux support
-Plug 'benmills/vimux'   " interact with tmux from vim
-Plug 'janko-m/vim-test' " runner for rspec, cucumber, et al.
+Plug 'tpope/vim-tbone'                " basic tmux support
+Plug 'benmills/vimux'                 " interact with tmux from vim
+Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
 
 " Git
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
 Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 
 " Code snippets
-Plug 'SirVer/ultisnips'        " snippets engine, integrates with YCM
+Plug 'SirVer/ultisnips' " snippets engine, integrates with YCM
 
 " -------- Language-Specific -----------
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
