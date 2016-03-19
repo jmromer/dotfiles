@@ -13,8 +13,10 @@ vnoremap <silent><S-k> y:grep! "<C-R>0"<CR>:cw<CR>
 
 " -------------- Leader key mappings (ctrl) -----------------
 " C-]: Open ctag in a vertical split
-map <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map <silent><leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" ]: Open ctag in a horizontal split
+map <silent><leader>] :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " ------------------- Leader key mappings ---------------------
 " -: zoom the current vim pane
@@ -28,9 +30,6 @@ nmap <leader>as :AS<CR>
 
 " av: go to alternative file in a vertical split (Rails.vim, Rake.vim)
 nmap <leader>av :AV<CR>
-
-" c: copy visual selection to system clipboard
-vnoremap <leader>c "*y
 
 " e: open netrw explorer
 nnoremap <silent><leader>e :Explore<CR>
@@ -61,9 +60,6 @@ nnoremap <silent><leader>ra :call ReloadAllBuffers()<CR>
 
 " os: Open Session
 nnoremap <leader>os :OpenSession<SPACE>
-
-" sa: visual select all text in file
-nnoremap <leader>sa ggVG
 
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<SPACE>
