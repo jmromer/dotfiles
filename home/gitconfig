@@ -12,7 +12,7 @@
     autosetuprebase = always
 
 [color]
-    ui = true
+    ui = always
 
 [commit]
     template = ~/.dotfiles/git/gitmessage
@@ -21,6 +21,21 @@
     autocrlf     = input
     editor       = vim
     excludesfile = ~/.dotfiles/git/gitignore
+    pager        = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+
+[color "diff"]
+    commit     = green
+    meta       = yellow
+    frag       = cyan
+    old        = red
+    new        = green
+    whitespace = red reverse
+
+[color "diff-highlight"]
+    oldNormal    = red
+    oldHighlight = red 52
+    newNormal    = green
+    newHighlight = green 22
 
 [diff]
     renames = true
