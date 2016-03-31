@@ -4,6 +4,11 @@
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 #-------------------------------------------------------------
+# Git
+#-------------------------------------------------------------
+brew install git --with-brewed-curl --with-brewed-openssl
+
+#-------------------------------------------------------------
 # Homebrewed Packages
 #-------------------------------------------------------------
 homebrew=(
@@ -12,7 +17,6 @@ homebrew=(
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
   emacs                   # emacs duh
-  git                     # Updated version of Git
   gtypist                 # Touch-type training
   heroku-toolbelt
   hub                     # For github-flavored git
