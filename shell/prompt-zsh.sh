@@ -153,9 +153,3 @@ RPROMPT2='$(color yellow)${vim_mode}$(color reset)'
 # UNDO (DISABLE ZSH DEFAULTS)
 #-------------------------------------------------------------
 disable r       # disable zsh's r
-
-#-------------------------------------------------------------
-# GNU LS (use -G for BSD)
-#-------------------------------------------------------------
-alias ls="ls --color"
-
