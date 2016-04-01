@@ -5,9 +5,17 @@
 # Examples:
 #   git clear-deleted-branches [REMOTE]
 
+function remote_refs () {
+  local target_remote="$1"
+
+  git branch --no-color --no-verbose --all |\
+    sed -E 's/\**\s*//g' |\
+    grep "remotes/$target_remote"
+}
+
 remote=${1:-'origin'}
 local_branches="$(git branch --no-verbose --no-color | sed -E 's/^\**\s*//')"
-remote_refs="$(git "ls-remote" "$remote" refs/heads/* | awk '{ print $2 }')"
+remote_refs="$(remote_refs)"
 
 for local_branch in $local_branches; do
   if [[ ! "$remote_refs" =~ "$local_branch" ]]; then
