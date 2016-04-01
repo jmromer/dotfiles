@@ -28,7 +28,7 @@ export MANPATH
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="$HOME/.bin:$HOME/bin"      # user binaries
+PATH="./bin:$HOME/.bin"          # user binaries
 PATH+=$GNUTOOLS_PATHS            # GNU command-line tools
 PATH+=":$GOPATH/bin:$GOROOT/bin" # Go binaries
 PATH+=":/usr/local/heroku/bin"   # heroku-toolbelt binaries
@@ -42,8 +42,8 @@ export PATH
 #-------------------------------------------------------------
 # CD PATH
 #-------------------------------------------------------------
-# Keep . in CDPATH: removing it breaks script that use `cd`
-export CDPATH=".:$HOME"
+# Ensure CDPATH remains unset
+unset CDPATH
 
 #-------------------------------------------------------------
 # SYNTAX HIGHLIGHTING
