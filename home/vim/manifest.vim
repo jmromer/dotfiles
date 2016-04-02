@@ -95,10 +95,13 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'dsawardekar/portkey' | Plug 'dsawardekar/ember.vim'
 
-" -------- OCaml -----------
+" OCaml
 Plug 'the-lambda-church/merlin'
 Plug 'OCamlPro/ocp-indent'
 Plug 'def-lkb/ocp-indent-vim'
+
+" Elm
+Plug 'ElmCast/elm-vim'
 
 " Clojure
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure'}

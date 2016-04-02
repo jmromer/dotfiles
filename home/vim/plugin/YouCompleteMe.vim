@@ -17,3 +17,8 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 
 " Fixes clang 'pattern not found' messages
 let g:clang_user_options='|| exit 0'
+
+" Set custom semantic triggers
+let g:ycm_semantic_triggers = {
+\ 'elm' : ['.'],
+\}
