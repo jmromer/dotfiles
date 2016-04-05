@@ -10,19 +10,18 @@ alias brew='TERM=screen-256color brew'
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
 #-------------------------------------------------------------
-alias ..='\cd ..;ls'        # go to parent dir and list contents
-alias ...='\cd ../..;ls'    # go to grandparent dir and list contents
+alias ..='\cd ..; l'         # go to parent dir and list contents
+alias ...='\cd ../..; l'     # go to grandparent dir and list contents
 alias mkdir='mkdir -p'      # create subdirectories as necessary
 alias h='history'           # show history
-alias ls='ls --color'       # nb: --color flag only works with GNU ls
-alias l='ls'                # list files
-alias la='ls -A'            # list all files
-alias ll='ls -loh'          # show extended listing (but not all files)
-alias llg='ls -lh'          # show extended listing with group
-alias lla='ls -Aloh'        # all files, info, hide group, short sizes
-alias llag='ls -Al'         # all files, info, show group, short sizes
-alias l.='ls -d .*'         # show only files beginning with a dot
-alias ll.='ls -dloh .*'     # extended listing of files beginning with a dot
+alias l='gls --color'       # use GNU ls
+alias la='l -A'             # list all files
+alias ll='l -loh'           # show extended listing (but not all files)
+alias llg='l -lh'           # show extended listing with group
+alias lla='l -Aloh'         # all files, info, hide group, short sizes
+alias llag='l -Al'          # all files, info, show group, short sizes
+alias l.='l -d .*'          # show only files beginning with a dot
+alias ll.='l -dloh .*'      # extended listing of files beginning with a dot
 alias lt='tree'             # show directory as tree
 alias d='dirs -v'           # show directory stack
 alias c='clear'             # clear shell output

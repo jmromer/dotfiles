@@ -7,9 +7,10 @@ export GOROOT=/usr/local/opt/go/libexec
 
 #-------------------------------------------------------------
 # GNU TOOLS (prepend to PATH)
+#   omit coreutils for now, because github/enterprise
 #-------------------------------------------------------------
 if [[ -z $GNUTOOLS_PATHS || -z $GNUTOOLS_MANS ]]; then
-  gnu_tools=( coreutils gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls )
+  gnu_tools=(gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls)
 
   for gnu_tool in "${gnu_tools[@]}"; do
     GNUTOOLS_PATHS+=":/usr/local/opt/$gnu_tool/libexec/gnubin"
@@ -22,6 +23,7 @@ fi
 #-------------------------------------------------------------
 MANPATH="$GNUTOOLS_MANS"
 MANPATH+="/usr/local/opt/erlang/lib/erlang/man:"
+MANPATH+="/usr/local/opt/coreutils/libexec/gnuman:" # because GNU ls
 MANPATH+="$(manpath)"
 export MANPATH
 
