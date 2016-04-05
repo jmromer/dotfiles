@@ -11,6 +11,7 @@ Plug 'kien/rainbow_parentheses.vim'     " delimiter highlighting
 Plug 'mhinz/vim-hugefile'               " disable options for huge files
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
+Plug 'rizzatti/dash.vim'                " search Dash documentation
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-git'                    " git commit filetype settings, et al
 Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
