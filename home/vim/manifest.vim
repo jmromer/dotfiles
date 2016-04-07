@@ -52,6 +52,7 @@ Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
 Plug 'tpope/vim-tbone'                " basic tmux support
 Plug 'benmills/vimux'                 " interact with tmux from vim
 Plug 'janko-m/vim-test'               " runner for rspec, cucumber, et al.
+Plug 'bswinnerton/vim-test-github'    " vim-test extension for github
 
 " Git
 Plug 'airblade/vim-gitgutter' " git diff in the gutter
