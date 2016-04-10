@@ -1,5 +1,5 @@
 scriptencoding utf-8
-set encoding=utf-8
+set fileencodings=utf-8
 
 " --------------- General Settings ---------------------
 let mapleader = ' '   " use space as leader key
