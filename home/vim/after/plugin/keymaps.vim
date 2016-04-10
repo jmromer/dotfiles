@@ -64,12 +64,6 @@ nnoremap <leader>os :OpenSession<SPACE>
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<SPACE>
 
-" ti: Translation interpolate (in Rails projects)
-vnoremap <leader>ti :call I18nTranslateString()<CR>
-
-" td: Translation display (in Rails projects)
-vnoremap <leader>td :call I18nDisplayTranslation()<CR>
-
 " w: save buffer
 nnoremap <silent><leader>w :w<CR>
 
