@@ -2,6 +2,7 @@
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 
+Plug 'benekastah/neomake'               " async linting, et al. best with nvim
 Plug 'dkprice/vim-easygrep'             " global search-and-replace
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'jiangmiao/auto-pairs'             " automatic delimiter closing

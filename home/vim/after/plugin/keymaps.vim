@@ -49,8 +49,8 @@ nnoremap <leader>G :Git<SPACE>
 " kw: kill trailing whitespace
 nnoremap <silent><leader>kw :StripWhitespace<CR>
 
-" m: (make) run syntastic. Use [l and ]l to cycle through loc list
-nnoremap <leader>m :SyntasticCheck<CR>
+" m: (make) run Neomake. Use [l and ]l to cycle through loc list
+nnoremap <leader>m :Neomake<CR>
 
 " R: From visual mode, leader+R populates command line for search and replace
 vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
