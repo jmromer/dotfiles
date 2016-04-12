@@ -1,0 +1,15 @@
+# ~/.tmuxinator/enterprise-manage.yml
+
+name: enterprise-manage
+root: ~/github/enterprise2/enterprise-manage
+tmux_command: env TERM=screen-256color-italic tmux
+
+windows:
+  - editor: vim +OpenSession
+  - repl:
+  - shell:
+  - server: script/server
+  - dotfiles:
+      root: ~/.dotfiles
+      panes:
+        -
