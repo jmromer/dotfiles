@@ -132,7 +132,7 @@ function buster_generate() {
 
 alias bgd='buster_generate && buster deploy'
 
-# run specs
+# use binstub if available, else Bundler if bundled project, else whatever man
 function bundle_or_bin() {
   if [ -e bin/$1 ]; then
     echo bin/$@
@@ -146,10 +146,23 @@ function bundle_or_bin() {
   fi
 }
 
-alias s='bundle_or_bin rspec --format=progress'
-alias ss='bundle_or_bin rspec --format=documentation'
+# run specs
+function run_spec() {
+  if [ -e bin/testrb ]; then
+    shift && shift
+    echo bin/testrb $@
+    bin/testrb $@
+  else
+    bundle_or_bin $@
+  fi
+}
+
+alias s='run_spec rspec --format=progress'
+alias ss='run_spec rspec --format=documentation'
+
 alias ck='bundle_or_bin cucumber --format=progress'
 alias ckk='bundle_or_bin cucumber'
+
 alias rk='bundle_or_bin rake'
 alias rg='bundle_or_bin rails generate'
 
