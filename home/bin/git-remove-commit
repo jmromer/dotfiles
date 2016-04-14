@@ -2,4 +2,11 @@
 
 # Removes a commit from your git repo's history
 
-git rebase --onto $1^ $1
+if [[ -z "$1" ]]; then
+  sha="$(git select-sha)"
+else
+  sha="$1"
+fi
+
+echo git rebase --onto $sha^ $sha
+git rebase --onto $sha^ $sha
