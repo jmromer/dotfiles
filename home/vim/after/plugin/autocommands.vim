@@ -12,9 +12,4 @@ augroup vimrcEx
   " automatically re-balance the visible splits as tmux panes are created,
   " destroyed, or resized or window resized
   autocmd VimResized * :wincmd =
-
-  autocmd VimEnter * RainbowParenthesesToggle
-  autocmd Syntax * RainbowParenthesesLoadRound
-  autocmd Syntax * RainbowParenthesesLoadSquare
-  autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
