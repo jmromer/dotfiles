@@ -13,6 +13,7 @@ Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'jiangmiao/auto-pairs'             " automatic delimiter closing
 Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
 Plug 'junegunn/vim-peekaboo'            " register preview
+Plug 'kien/rainbow_parentheses.vim'     " delimiter highlighting
 Plug 'michaeljsmith/vim-indent-object'  " indent-defined textobj
 Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
@@ -24,18 +25,29 @@ Plug 'tpope/vim-sleuth'                 " detect indentation level
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
 Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
 Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
-"
-" " Speedy text editing
-Plug 'AndrewRadev/splitjoin.vim'   " toggle between single- and multi-line code
-Plug 'junegunn/vim-easy-align'     " text alignment
-Plug 'kana/vim-textobj-user'       " custom text objects
-Plug 'tommcdo/vim-exchange'        " text exchange operator cx, cxx, X, cxc
-Plug 'tpope/vim-repeat'            " repeat last mapped command with `.`
-Plug 'tpope/vim-speeddating'       " increment dates, times, and more
-Plug 'tpope/vim-surround'          " surround text block with delimiters
-Plug 'tpope/vim-unimpaired'        " useful complementary mappings
-Plug 'vim-scripts/visualrepeat'    " extends dot operator to visual mode
-Plug 'zirrostig/vim-schlepp'       " move visual blocks / lines around
+
+" Speedy text editing
+Plug 'AndrewRadev/splitjoin.vim' " toggle between single- and multi-line code
+Plug 'junegunn/vim-easy-align'   " text alignment
+Plug 'tpope/vim-repeat'          " repeat last mapped command with `.`
+Plug 'tpope/vim-speeddating'     " increment dates, times, and more
+Plug 'tpope/vim-unimpaired'      " useful complementary mappings
+Plug 'vim-scripts/visualrepeat'  " extends dot operator to visual mode
+Plug 'zirrostig/vim-schlepp'     " move visual blocks / lines around
+
+" Text objects
+Plug 'kana/vim-textobj-entire' " Adds ae/ie
+Plug 'kana/vim-textobj-indent' " Adds i
+Plug 'kana/vim-textobj-user'   " custom text objects
+Plug 'kana/vim-textobj-line'   " Adds l
+
+" Motions
+Plug 'christoomey/vim-sort-motion'     " gs[ai][p({]
+Plug 'christoomey/vim-system-copy'     " cp
+Plug 'tommcdo/vim-exchange'            " text exchange operator cx, cxx, X, cxc
+Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
+Plug 'tpope/vim-surround'              " surround text block with delimiters
+Plug 'vim-scripts/ReplaceWithRegister' " griw
 
 " Tmux, Tmux runners
 Plug 'christoomey/vim-tmux-navigator' " navigate with awarenes of vim splits
