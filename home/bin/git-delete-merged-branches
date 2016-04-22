@@ -7,4 +7,8 @@
 # Deleted feature/live_preview (was a81b002).
 # Deleted feature/dashboard (was 923befa).
 
-git branch --no-color --merged | grep -v "\*" | grep -v master | grep -v svn | xargs -n 1 git branch -d
+git branch --no-color --merged |\
+  grep -v "\*" |\
+  grep -v master |\
+  grep -v svn |\
+  xargs -n 1 git branch -d

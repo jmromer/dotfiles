@@ -29,13 +29,13 @@ function display_help() {
 }
 
 function running_tmux_sessions() {
-  echo "$(tmux ls 2> /dev/null)" |\
+  tmux ls 2> /dev/null |\
     grep -v 'failed to connect' |\
     sed 's/:.\+$//'
 }
 
 function available_tmuxinator_sessions() {
-  echo "$(tmuxinator list)" |\
+  tmuxinator list |\
     sed -n '1!p' |\
     sed 's/\s\+/\n/g'
 }
@@ -76,9 +76,9 @@ if [[ -z "$subcommand" ]]; then
   tmuxinator_ls="$(available_tmuxinator_sessions)"
   selection="$(sorted_uniq "$tmux_ls" "$tmuxinator_ls" | $fzf_command)"
 
-  if [[ "$tmux_ls" =~ "$selection" ]]; then
+  if [[ "$tmux_ls" =~ $selection ]]; then
     open_or_switch_to_session "$selection"
-  elif [[ "$tmuxinator_ls" =~ "$selection" ]]; then
+  elif [[ "$tmuxinator_ls" =~ $selection ]]; then
     open_with_tmuxinator "$selection"
   fi
 

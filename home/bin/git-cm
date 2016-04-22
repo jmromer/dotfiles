@@ -5,7 +5,7 @@
 # Usage:
 #   git cm [A brief commit message]
 
-if [[ $# > 0 ]]; then
+if [[ $# -gt 0 ]]; then
   git commit -m "$*"
 else
   git commit -v

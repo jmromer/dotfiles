@@ -9,5 +9,5 @@
 commit_sha="$(git-select-sha)"
 
 if [[ ! -z $commit_sha ]]; then
-  git commit --squash $commit_sha
+  git commit --squash "$commit_sha"
 fi

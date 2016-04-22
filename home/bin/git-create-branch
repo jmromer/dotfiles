@@ -4,7 +4,8 @@
 #
 # $ git create-branch feature1
 
-branch=$(echo $@ | sed -e "s/\s/_/g")
+name="$*"
+branch="${name// /_}"
 
 if [[ -z "$branch" ]]; then
   echo "branch name required." 1>&2

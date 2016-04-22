@@ -13,12 +13,11 @@ function remote_refs () {
     grep "remotes/$target_remote"
 }
 
-remote=${1:-'origin'}
 local_branches="$(git branch --no-verbose --no-color | sed -E 's/^\**\s*//')"
-remote_refs="$(remote_refs)"
+remote_refs="$(remote_refs "$@")"
 
 for local_branch in $local_branches; do
-  if [[ ! "$remote_refs" =~ "$local_branch" ]]; then
-    git branch --delete $local_branch
+  if [[ ! "$remote_refs" =~ $local_branch ]]; then
+    git branch --delete "$local_branch"
   fi
 done

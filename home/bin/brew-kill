@@ -10,7 +10,7 @@ if [[ ! $1 =~ ^(cask)*$ ]]; then
 fi
 
 # select from packages available to uninstall
-package="$(brew select list "$1")"
+package="$(brew select list $1)"
 
 if [[ -z "$package" ]]; then
   echo "No package selected."
@@ -18,4 +18,4 @@ if [[ -z "$package" ]]; then
 fi
 
 echo "brew $1 uninstall $package --force"
-brew "$1" uninstall "$package" --force
+brew $1 uninstall $package --force

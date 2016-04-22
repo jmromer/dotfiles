@@ -8,5 +8,5 @@ else
   sha="$1"
 fi
 
-echo git rebase --onto $sha^ $sha
-git rebase --onto $sha^ $sha
+echo "git rebase --onto $sha^ $sha"
+git rebase --onto "$sha"^ "$sha"
