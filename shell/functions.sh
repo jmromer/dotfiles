@@ -22,7 +22,7 @@ function listening_on_port() {
 
 # Open the editor as appropriate
 function e() {
-  local editor=vim
+  local editor=nvim
 
   if [ -z "$1" ]; then
     echo $editor .
