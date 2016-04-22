@@ -150,8 +150,12 @@ function bundle_or_bin() {
 function run_spec() {
   if [ -e bin/testrb ]; then
     shift && shift
-    echo bin/testrb $@
-    bin/testrb $@
+    echo "bin/testrb $@ 2> /dev/null"
+    bin/testrb $@ 2> /dev/null
+  elif [ -e script/test ]; then
+    shift && shift
+    echo "script/test $@ 2> /dev/null"
+    script/test $@ 2> /dev/null
   else
     bundle_or_bin $@
   fi
