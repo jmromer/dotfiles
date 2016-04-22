@@ -55,6 +55,9 @@ nnoremap <leader>m :Neomake<CR>
 " R: From visual mode, leader+R populates command line for search and replace
 vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
 
+" R: From normal mode, redraws
+nnoremap <leader>R :redraw!<CR>
+
 " ra: Reload all open buffers
 nnoremap <silent><leader>ra :call ReloadAllBuffers()<CR>
 
