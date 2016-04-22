@@ -5,9 +5,9 @@ root: ~/github/github
 tmux_command: env TERM=screen-256color-italic tmux
 
 windows:
-  - editor: vim +OpenSession
-  - repl:
+  - editor: e +OpenSession
   - shell:
+  - repl: script/console --pry
   - server: script/server
   - dotfiles:
       root: ~/.dotfiles

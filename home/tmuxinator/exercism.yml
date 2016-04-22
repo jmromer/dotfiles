@@ -8,7 +8,7 @@ windows:
   - code:
       layout: even-horizontal
       panes:
-        - vim .
+        - e .
         -
   - shell:
   - dotfiles:

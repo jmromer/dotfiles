@@ -5,7 +5,7 @@ root: ~/Developer
 tmux_command: env TERM=screen-256color-italic tmux
 
 windows:
-  - editor: vim .
+  - editor: e
   - repl:
   - shell:
   - server:
