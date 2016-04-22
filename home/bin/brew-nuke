@@ -10,6 +10,6 @@ brew rm "$1"
 
 if [[ $dependencies =~ [[:alpha:]]+ ]]; then
   echo "Removing $dependencies ... "
-  brew rm $dependencies
+  brew rm "$dependencies"
 fi
 

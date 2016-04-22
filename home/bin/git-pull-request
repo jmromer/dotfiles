@@ -8,6 +8,6 @@
 if [[ -z $1 ]]; then
   hub pull-request
 else
-  hub pull-request -b $1
+  hub pull-request -b "$1"
 fi
 

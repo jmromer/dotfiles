@@ -5,7 +5,7 @@
 # $ git delete-tag 0.0.1
 
 # Assert there is at least one tag provided
-test -z $1 && echo "tag required." 1>&2 && exit 1
+test -z "$1" && echo "tag required." 1>&2 && exit 1
 
 # Concatenate all the tag references
 local_tags=""
@@ -17,5 +17,5 @@ do
 done
 
 # Delete all the tags
-git tag -d $local_tags
-git push origin $origin_refs
+git tag -d "$local_tags"
+git push origin "$origin_refs"

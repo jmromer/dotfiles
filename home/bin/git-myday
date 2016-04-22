@@ -2,6 +2,6 @@
 
 # Displays all commits made today by the current git user
 
-username=$(git config user.name)
+username="$(git config user.name)"
 
 git log --since=midnight --oneline --author="$username"

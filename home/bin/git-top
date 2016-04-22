@@ -24,4 +24,4 @@ git log --all --name-only --format='format:' "$@" |\
   grep -v '^$'|\
   sort | uniq -c | sort -rg |\
   sed -E 's/^\s+[[:digit:]]+\s//' |\
-  head $lines
+  head "$lines"

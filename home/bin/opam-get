@@ -26,5 +26,8 @@ fi
 package_name="$(name_from_package_listing "$selection")"
 
 cmd="opam install $package_name"
-echo $cmd && echo $cmd | pbcopy
-$cmd
+
+echo "$cmd" | pbcopy
+
+echo "$cmd"
+"$cmd"

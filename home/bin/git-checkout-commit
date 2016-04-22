@@ -8,6 +8,6 @@
 # fuzzy-select a SHA
 commit_sha="$(git-select-sha)"
 
-if [[ ! -z $commit_sha ]]; then
-  git checkout $commit_sha
+if [[ ! -z "$commit_sha" ]]; then
+  git checkout "$commit_sha"
 fi
