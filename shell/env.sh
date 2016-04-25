@@ -77,7 +77,7 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 #-------------------------------------------------------------
 # EDITOR / PAGER
 #-------------------------------------------------------------
-export EDITOR="vim"
+export EDITOR="nvim"
 export PAGER="less"
 
 # brew install [or sudo apt-get install] source-highlight
