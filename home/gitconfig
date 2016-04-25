@@ -114,13 +114,15 @@
     ds       = diff --staged
     dump     = cat-file -p
     f        = fetch
-    h        = log --format=brief --graph --abbrev-commit
-    hbranch  = log --format=brief --graph --abbrev-commit HEAD --not origin/master
+    h        = log --format=brief --abbrev-commit
+    hbranch  = h HEAD --not origin/master
+    hnm      = h --no-merges
+    hg       = h --graph
     hh       = !sh -c 'git h | head $1' -
-    hdiff    = log --format=brief --graph -U1 --word-diff --color-words
-    hfiles   = log --format=medium --graph --abbrev-commit --stat
+    hdiff    = h -U1
+    hfiles   = h --format=medium --stat
     hsince   = !sh -c 'git h --since=$1' -
-    hstat    = log --format=brief --graph --abbrev-commit --stat
+    hstat    = h --stat
     i        = init
     m        = merge
     ma       = merge --abort
