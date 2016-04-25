@@ -2,7 +2,7 @@
 #-------------------------------------------------------------
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
-alias vi='vim -u ~/.vim/minimal.vim'
+alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugUpdate +PlugClean! +qall'
 alias brew='TERM=screen-256color brew'
 

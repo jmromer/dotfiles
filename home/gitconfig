@@ -22,7 +22,7 @@
 
 [core]
     autocrlf     = input
-    editor       = vim
+    editor       = nvim
     excludesfile = ~/.dotfiles/git/gitignore
     pager        = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 
@@ -42,7 +42,7 @@
 
 [diff]
     renames = true
-    tool    = vimdiff
+    tool    = nvim -d
 
 [fetch]
     prune = true
