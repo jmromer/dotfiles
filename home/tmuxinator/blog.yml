@@ -2,7 +2,6 @@
 
 name: blog
 root: ~/Developer/blog
-tmux_command: env TERM=screen-256color-italic tmux
 
 windows:
   - blog:
