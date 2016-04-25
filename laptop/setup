@@ -202,10 +202,10 @@ touch $log_location
 
   # ======================================================
 
-  step "Enabling italics-compatible terminal profile"
-
-  tic $LOCAL_DOTFILES/terminal/xterm-256color-italic.terminfo
-  tic $LOCAL_DOTFILES/terminal/screen-256color-italic.terminfo
+  # step "Enabling italics-compatible terminal profile"
+  #
+  # tic $LOCAL_DOTFILES/terminal/xterm-256color-italic.terminfo
+  # tic $LOCAL_DOTFILES/terminal/screen-256color-italic.terminfo
 
   # ======================================================
 

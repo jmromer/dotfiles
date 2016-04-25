@@ -49,7 +49,7 @@ function sorted_uniq() {
 
 function open_with_tmux() {
   echo tmux attach-session -t "$1"
-  TERM=screen-256color-italic tmux attach-session -t "$1"
+  tmux attach-session -t "$1"
 }
 
 function open_with_tmuxinator() {
@@ -59,7 +59,7 @@ function open_with_tmuxinator() {
 
 function switch_to_session() {
   echo tmux switch-client -t "$1"
-  TERM=screen-256color-italic tmux switch-client -t "$1"
+  tmux switch-client -t "$1"
 }
 
 function open_or_switch_to_session() {

@@ -2,7 +2,6 @@
 
 name: exercism
 root: ~/Exercises/exercism
-tmux_command: env TERM=screen-256color-italic tmux
 
 windows:
   - code:

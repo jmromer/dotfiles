@@ -2,7 +2,6 @@
 
 name: enterprise-manage
 root: ~/github/enterprise2/enterprise-manage
-tmux_command: env TERM=screen-256color-italic tmux
 
 windows:
   - editor: e +OpenSession
