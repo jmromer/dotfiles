@@ -44,6 +44,7 @@ alias v='vagrant'
 alias npmls='npm ls -depth=0'
 alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
 alias ssh='TERM=xterm-256color ssh'
+alias ft='find-tests'
 
 #-------------------------------------------------------------
 # ALIASES: BUNDLER
