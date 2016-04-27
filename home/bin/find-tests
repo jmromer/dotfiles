@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Searches for test files to fuzzy-select, then runs whichever files are
+# selected.
+#
+# Usage:
+#   find-tests
+
+project_root="$(git rev-parse --show-toplevel 2> /dev/null)"
+[ -z "$project_root" ] && project_root="."
+
+
+# kludge for now
+if [[ -d "$project_root/enterprise-manage" ]]; then
+  project_root+="/enterprise-manage"
+fi
+# TODO: display shorter path in FZF
+
+
+if [[ -d "$project_root/spec" ]]; then
+  specs="$(find "$project_root"/spec/** -iregex '^.+/spec_.+')\n"
+  specs+="$(find "$project_root"/spec/** -iregex '^.+/spec_.+')\n"
+fi
+
+if [[ -d "$project_root/test" ]]; then
+  tests="$(find "$project_root"/test/** -iregex '^.+/test_.+')\n"
+  tests+="$(find "$project_root"/test/** -iregex '^.+/\w+test\.\w+$')\n"
+fi
+
+if [[ -d "$project_root/feature" ]]; then
+  features="$(find "$project_root"/feature/** -iregex '.+.feature$')\n"
+fi
+
+all_tests="$specs$tests$features"
+
+if [[ -z "$all_tests" ]]; then
+  echo "no tests found."
+  exit 0
+fi
+
+selection="$(echo -e "$all_tests" |\
+  grep --invert-match node_modules |\
+  sort |\
+  uniq |\
+  sed '/^\s*$/d' |\
+  fzf-tmux -d 20 --tiebreak=index)"
+
+if [[ -z "$selection" ]]; then
+  exit 0
+fi
+
+if [ -e "$project_root/bin/testrb" ]; then
+  echo "bin/testrb $selection 2> /dev/null"
+  $project_root/bin/testrb "$selection" 2> /dev/null
+elif [ -e "./script/test" ]; then
+  echo "script/test $selection 2> /dev/null"
+  script/test "$selection" 2> /dev/null
+else
+  bundle_or_bin "$selection"
+fi
