@@ -146,24 +146,8 @@ function bundle_or_bin() {
   fi
 }
 
-# run specs
-function run_spec() {
-  if [ -e bin/testrb ]; then
-    shift && shift
-    echo "bin/testrb $@ 2> /dev/null"
-    bin/testrb $@ 2> /dev/null
-  elif [ -e script/test ]; then
-    shift && shift
-    echo "script/test $@ 2> /dev/null"
-    script/test $@ 2> /dev/null
-  else
-    bundle_or_bin $@
-  fi
-}
-
-alias s='run_spec rspec --format=progress'
-alias ss='run_spec rspec --format=documentation'
-
+alias s='bundle_or_bin rspec --format=progress'
+alias ss='bundle_or_bin rspec --format=documentation'
 alias ck='bundle_or_bin cucumber --format=progress'
 alias ckk='bundle_or_bin cucumber'
 
