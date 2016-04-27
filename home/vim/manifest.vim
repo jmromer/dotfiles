@@ -15,6 +15,7 @@ Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
 Plug 'rizzatti/dash.vim'                " search Dash documentation
 Plug 'tpope/vim-eunuch'                 " Unix commands in vim
 Plug 'tpope/vim-git'                    " git commit filetype settings, et al
+Plug 'tpope/vim-rhubarb'                " GitHub extension for fugitive.vim
 Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
 Plug 'tpope/vim-sleuth'                 " detect indentation level
 Plug 'tpope/vim-vinegar'                " enhancements to netrw
@@ -112,7 +113,6 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure'}
 " -------- Configure -----------
 Plug 'Konfekt/FastFold'               " optimized folding for large projects
 Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
-Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
-Plug 'vim-scripts/YankRing.vim'         " maintain yank/del history
+Plug 'vim-scripts/YankRing.vim'       " maintain yank/del history
 
 " -------- Probationary -----------
