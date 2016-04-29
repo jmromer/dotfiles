@@ -18,6 +18,6 @@ remote_refs="$(remote_refs "$@")"
 
 for local_branch in $local_branches; do
   if [[ ! "$remote_refs" =~ $local_branch ]]; then
-    git branch --delete "$local_branch"
+    git branch --delete "$local_branch" 2> /dev/null
   fi
 done
