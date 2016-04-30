@@ -114,7 +114,7 @@
     ds       = diff --staged
     dump     = cat-file -p
     f        = fetch
-    h        = log --format=brief --abbrev-commit
+    h        = log --format=brief --abbrev-commit --show-linear-break
     hbranch  = h HEAD --not origin/master
     hnm      = h --no-merges
     hg       = h --graph
