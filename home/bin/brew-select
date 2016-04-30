@@ -16,6 +16,6 @@ fi
 selection="$(brew $2 $1 | sed '1 d' | fzf)"
 
 # trim any extra characters, if present
-package="$(echo "$selection" | sed -E 's/([:graph:]+)\s.*/\1/')"
+package="$(echo "$selection" | tr "\n" " ")"
 
 echo "$package"
