@@ -10,10 +10,11 @@ set shortmess+=c
 set runtimepath+=~/.fzf
 
 " add ocp-indent, merlin to rtp
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-execute "helptags " . g:opamshare . "/merlin/vim/doc"
+let g:opamshare = substitute(system('opam config var share 2> /dev/null'),'\n$','','''')
+execute 'set rtp+=' . g:opamshare . '/ocp-indent/vim'
+execute 'set rtp+=' . g:opamshare . '/merlin/vim'
+execute 'helptags ' . g:opamshare . '/merlin/vim/doc'
+
 " Disable italics
 let g:solarized_italic = 0
 

@@ -8,14 +8,14 @@
 
 set -e
 
-fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index --extended-exact"
+fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse"
 
 function name_from_package_listing() {
   echo "$1" |\
     awk '{ print $1 }'
 }
 
-package_list="$(opam list --all)"
+package_list="$(opam list --all || true)"
 selection="$(echo "$package_list" | sed -n '1!p' | $fzf_command)"
 
 if [[ -z "$selection" ]]; then
@@ -27,7 +27,5 @@ package_name="$(name_from_package_listing "$selection")"
 
 cmd="opam install $package_name"
 
-echo "$cmd" | pbcopy
-
 echo "$cmd"
-"$cmd"
+$cmd
