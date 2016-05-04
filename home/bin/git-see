@@ -9,5 +9,5 @@
 commit_sha="$(git-select-sha)"
 
 if [[ ! -z $commit_sha ]]; then
-  git show $commit_sha
+  git show "$commit_sha"
 fi
