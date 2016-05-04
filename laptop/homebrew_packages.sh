@@ -59,6 +59,16 @@ for formula in rcm liftoff parity; do
   brew install --force thoughtbot/formulae/"$formula"
 done
 
+
+#-------------------------------------------------------------
+# Neovim
+#-------------------------------------------------------------
+# Python, Pip, Buster
+pip install --upgrade pip setuptools
+pip install --upgrade buster
+brew install neovim/neovim/neovim
+pip install vim-vint neovim
+
 #-------------------------------------------------------------
 # MacVim Installation
 # - Take advantage of MacVim's faster rendering engine

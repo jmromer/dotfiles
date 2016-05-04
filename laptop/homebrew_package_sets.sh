@@ -15,10 +15,6 @@
 # # Vagrant
 # brew cask install virtualbox vagrant
 #
-# # Python, Pip, Buster
-# pip install --upgrade pip setuptools
-# pip install --upgrade buster
-#
 # # Exercism
 # brew tap homebrew/binary
 # brew install exercism
