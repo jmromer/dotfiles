@@ -108,3 +108,8 @@ export FZF_DEFAULT_OPTS='--multi --ansi'
 if which rbenv > /dev/null; then
   eval "$(rbenv init - --no-rehash)"
 fi
+
+#-------------------------------------------------------------
+# GPG
+#-------------------------------------------------------------
+eval "$(gpg-agent --daemon)"

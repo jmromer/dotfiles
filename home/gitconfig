@@ -1,6 +1,8 @@
 [user]
   name  = "Jake Romer"
   email = jkrmr@users.noreply.github.com
+  signingkey = public
+  signingkey = 67BFF83E
 
 [github]
   user = jkrmr
@@ -19,6 +21,7 @@
 
 [commit]
   template = ~/.dotfiles/git/gitmessage
+  gpgsign = true
 
 [core]
   autocrlf     = input
