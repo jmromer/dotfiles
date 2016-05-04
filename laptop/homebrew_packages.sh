@@ -18,6 +18,9 @@ homebrew=(
   cmake                   # For YCM installation
   dfu-util                # KLL configuration loader
   emacs                   # emacs duh
+  gpg                     # for PGP commit signing
+  gpg-agent
+  pinentry-mac
   gtypist                 # Touch-type training
   heroku-toolbelt
   hub                     # For github-flavored git
