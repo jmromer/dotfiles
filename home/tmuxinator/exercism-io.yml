@@ -1,0 +1,14 @@
+# ~/.tmuxinator/exercism-io.yml
+
+name: exercism-io
+root: ~/Developer/exercism.io
+
+windows:
+  - editor: e
+  - shell:
+  - repl: bin/console
+  - server: bundle exec foreman s -p 4567
+  - dotfiles:
+      root: ~/.dotfiles
+      panes:
+        -
