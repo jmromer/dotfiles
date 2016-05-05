@@ -45,11 +45,11 @@ function eg() {
 # Fuzzy-select ruby version using rbenv
 function chr() {
   local scope="$(echo "shell\nlocal\nglobal" |\
-    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index --extended-exact)"
+    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
 
   local selected="$(rbenv versions |\
     sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' |\
-    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index --extended-exact)"
+    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
 
   echo "rbenv $scope $selected"
   rbenv $scope $selected
