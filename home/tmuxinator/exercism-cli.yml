@@ -1,0 +1,14 @@
+# ~/.tmuxinator/exercism-cli.yml
+
+name: exercism-cli
+root: ~/.go/src/github.com/exercism/cli
+
+windows:
+  - editor: e
+  - repl:
+  - shell:
+  - server:
+  - dotfiles:
+      root: ~/.dotfiles
+      panes:
+        -
