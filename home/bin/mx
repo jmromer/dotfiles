@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 subcommand="$1"
-fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index --extended-exact"
+fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index"
 
 function display_help() {
   echo "  Usage: mx [SUBCOMMAND]

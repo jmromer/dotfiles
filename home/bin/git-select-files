@@ -8,7 +8,7 @@
 # fuzzy-select files
 files="$(git status -s |\
   awk '{ print $2 }' |\
-  fzf-tmux -d 15 --ansi --no-sort --reverse --tiebreak=index --extended-exact $1)"
+  fzf-tmux -d 15 --ansi --no-sort --reverse --tiebreak=index $1)"
 
 if [[ ! -z $files ]]; then
   echo $files
