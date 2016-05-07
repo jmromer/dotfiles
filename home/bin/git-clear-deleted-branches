@@ -5,19 +5,15 @@
 # Examples:
 #   git clear-deleted-branches [REMOTE]
 
-function remote_refs () {
-  local target_remote="$1"
-
-  git branch --no-color --no-verbose --all |\
-    sed -E 's/\**\s*//g' |\
-    grep "remotes/$target_remote"
+function git_branches() {
+  [[ "$1" == "all" ]] && local all="--all"
+  git branch --no-verbose --no-color $all | sed -E 's/^\**\s*//'
 }
 
-local_branches="$(git branch --no-verbose --no-color | sed -E 's/^\**\s*//')"
-remote_refs="$(remote_refs "$@")"
+remote="${1:-origin}"
 
-for local_branch in $local_branches; do
-  if [[ ! "$remote_refs" =~ $local_branch ]]; then
-    git branch --delete "$local_branch" 2> /dev/null
+for local_branch in $(git_branches); do
+  if ! git_branches "all" | grep -q "^remotes/$remote/$local_branch$"; then
+    git branch -D "$local_branch"
   fi
 done
