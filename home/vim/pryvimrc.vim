@@ -5,6 +5,9 @@ filetype plugin indent on
 " Don't display 'Pattern not found' messages
 set shortmess+=c
 
+" Disable italics
+let g:solarized_italic = 0
+
 " ----------------- Load Plugins ------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
