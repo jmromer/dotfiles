@@ -63,6 +63,9 @@ Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
 " Code snippets
 Plug 'SirVer/ultisnips' " snippets engine, integrates with YCM
 
+" Display conveniences
+Plug 'Yggdroot/indentLine' " display indentation guides with :IndentLineToggle
+
 " -------- Language-Specific -----------
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
