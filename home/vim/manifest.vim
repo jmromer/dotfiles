@@ -73,6 +73,7 @@ Plug 'lervag/vim-latex', { 'for': 'latex' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'kballard/vim-swift', { 'for': 'swift' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
 
 " Scala
 Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
