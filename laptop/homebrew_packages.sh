@@ -18,6 +18,8 @@ homebrew=(
   cmake                   # For YCM installation
   dfu-util                # KLL configuration loader
   emacs                   # emacs duh
+  exenv                   # elixir version management
+  elixir-build            # elixir version installer
   gpg                     # for PGP commit signing
   gpg-agent
   pinentry-mac
