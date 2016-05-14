@@ -5,6 +5,7 @@
 alias reload!="source ~/.zshrc"
 setopt extendedglob # Enable extended globbing
 unsetopt nomatch    # Allow [ or ] wherever you want
+autoload -U zmv     # rename files like zmv '(*).txt' '$1.html'
 
 #-------------------------------------------------------------
 # COMMAND COMPLETION
