@@ -45,8 +45,3 @@ for app in ${cask[*]}; do
   echo "Installing $app ..." && echo
   brew cask install $app
 done
-
-#-------------------------------------------------------------
-# Emacs Installation
-#-------------------------------------------------------------
-brew cask install railwaycat/emacsmacport/emacs-mac --with-spacemacs-icon

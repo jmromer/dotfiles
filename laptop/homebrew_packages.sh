@@ -17,7 +17,6 @@ homebrew=(
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
   dfu-util                # KLL configuration loader
-  emacs                   # emacs duh
   exenv                   # elixir version management
   elixir-build            # elixir version installer
   gpg                     # for PGP commit signing
@@ -70,6 +69,12 @@ pip install --upgrade pip setuptools
 pip install --upgrade buster
 brew install neovim/neovim/neovim
 pip install vim-vint neovim
+
+
+#-------------------------------------------------------------
+# Emacs Installation
+#-------------------------------------------------------------
+brew install emacs-mac --with-modern-icon
 
 #-------------------------------------------------------------
 # MacVim Installation
