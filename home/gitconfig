@@ -27,7 +27,7 @@
   autocrlf     = input
   editor       = nvim
   excludesfile = ~/.dotfiles/git/gitignore
-  pager        = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+  pager        = less -RFX
 
 [color "diff"]
   commit     = green
