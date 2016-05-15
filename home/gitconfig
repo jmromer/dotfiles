@@ -125,6 +125,7 @@
   f        = fetch
   h        = log --format=brief --abbrev-commit --show-linear-break
   hbranch  = h HEAD --not origin/master
+  hm       = h --merge
   hnm      = h --no-merges
   hg       = h --graph
   hh       = !sh -c 'git h | head $1' -
