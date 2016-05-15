@@ -132,24 +132,27 @@ export KEYTIMEOUT=1      # no lag after pressing ESC to enter normal mode
 setopt transient_rprompt # so modes for previous lines aren't displayed
 
 # ------------ Right-side prompt -----------------------------
-vim_ins_mode='[insert]'
-vim_cmd_mode='[normal]'
-vim_mode=$vim_ins_mode
 
-function zle-keymap-select {
-  vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-  zle reset-prompt
-}
-
-function zle-line-finish {
+if [[ $TERM != 'eterm-color' ]]; then
+  vim_ins_mode='[insert]'
+  vim_cmd_mode='[normal]'
   vim_mode=$vim_ins_mode
-}
 
-zle -N zle-keymap-select
-zle -N zle-line-finish
+  function zle-keymap-select {
+    vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
+    zle reset-prompt
+  }
 
-RPROMPT='$(color yellow)${vim_mode}$(color reset)'
-RPROMPT2='$(color yellow)${vim_mode}$(color reset)'
+  function zle-line-finish {
+    vim_mode=$vim_ins_mode
+  }
+
+  zle -N zle-keymap-select
+  zle -N zle-line-finish
+
+  RPROMPT='$(color yellow)${vim_mode}$(color reset)'
+  RPROMPT2='$(color yellow)${vim_mode}$(color reset)'
+fi
 
 #-------------------------------------------------------------
 # UNDO (DISABLE ZSH DEFAULTS)
