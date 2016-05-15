@@ -123,10 +123,10 @@
   dh       = diff --histogram
   dump     = cat-file -p
   f        = fetch
-  h        = log --format=brief --abbrev-commit --show-linear-break
+  h        = log --format=brief --abbrev-commit
   hbranch  = h HEAD --not origin/master
   hm       = h --merge
-  hnm      = h --no-merges
+  hnm      = h --no-merges --show-linear-break
   hg       = h --graph
   hh       = !sh -c 'git h | head $1' -
   hdiff    = h -U1
