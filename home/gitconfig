@@ -108,6 +108,7 @@
   bd       = delete-branch
   bdf      = branch -D
   bdo      = clear-deleted-branches
+  bi       = bisect-helper
   br       = browse
   ca       = commit-amend
   cmf      = commit-fixup
