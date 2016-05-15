@@ -120,6 +120,7 @@
   ctheirs  = checkout --theirs
   d        = diff
   ds       = diff --staged
+  dh       = diff --histogram
   dump     = cat-file -p
   f        = fetch
   h        = log --format=brief --abbrev-commit --show-linear-break
