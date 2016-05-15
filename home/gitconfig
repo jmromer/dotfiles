@@ -134,6 +134,8 @@
   hsince   = !sh -c 'git h --since=$1' -
   hstat    = h --stat
   i        = init
+  lg       = h --grep
+  lgr      = h --walk-reflogs --grep
   m        = merge
   ma       = merge --abort
   mc       = merge --continue
