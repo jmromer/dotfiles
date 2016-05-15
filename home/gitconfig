@@ -84,7 +84,7 @@
 
 [pretty]
   brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
-  select = "%Cred%h%Creset %C(bold)%<(40,trunc)%s%Creset %Cgreen%>>(30)%D%Creset"
+  select = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset %Cgreen%>>(20)%D%Creset"
 
 [push]
   default = simple
