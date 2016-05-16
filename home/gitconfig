@@ -17,7 +17,7 @@
   autosetuprebase = always
 
 [color]
-  ui = always
+  ui = true
 
 [commit]
   template = ~/.dotfiles/git/gitmessage
