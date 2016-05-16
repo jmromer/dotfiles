@@ -31,8 +31,8 @@ function confirm {
 
 messageFilePath=$1
 message=$(cat $messageFilePath)
-firstLine=$(printf "$message" | sed -n 1p)
-firstLineLength=$(printf ${#firstLine})
+firstLine=$(echo "$message" | sed -n 1p)
+firstLineLength=$(echo ${#firstLine})
 
 test $firstLineLength -lt 51 || {
     printWarning "Warning: A commit message's subject line should be 50 characters or less. Yours was $firstLineLength."
