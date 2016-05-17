@@ -168,7 +168,7 @@
   su       = stash --include-untracked
   sl       = stash list
   sp       = stash pop
-  squash   = rebase -i master
+  squash   = rebase -i origin/master
   type     = cat-file -t
   up       = !git fetch origin && git rebase origin/master
 
