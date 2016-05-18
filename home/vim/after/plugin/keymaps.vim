@@ -11,6 +11,9 @@ nnoremap \ :Ag ''<LEFT>
 nnoremap <silent><S-k> yiw:grep! "<C-R>0"<CR>:cw<CR>
 vnoremap <silent><S-k> y:grep! "<C-R>0"<CR>:cw<CR>
 
+" C-Space to exit insert mode
+inoremap <C-Space> <ESC>
+
 " -------------- Leader key mappings (ctrl) -----------------
 " C-]: Open ctag in a vertical split
 map <silent><leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
