@@ -1,21 +1,4 @@
-#-------------------------------------------------------------
-# Ruby gems
-#-------------------------------------------------------------
-ruby_gems=(
-  rubygems-update
-  gem-ctags
-  pry
-  pry-byebug
-  rake
-  rspec
-  rubocop
-  tmuxinator
-)
-
-for gem in ${ruby_gems[*]}; do
-  echo "Installing ruby gem: $gem" && echo
-  gem install $gem
-done
+#!/usr/bin/env bash
 
 #-------------------------------------------------------------
 # Node Packages
@@ -52,7 +35,7 @@ node_packages=(
 
 for package in ${node_packages[*]}; do
   echo "Installing node package: $package..." && echo
-  npm install -g $package
+  npm install -g "$package"
 done
 
 #-------------------------------------------------------------
@@ -65,5 +48,4 @@ rbenv ctags
 #-------------------------------------------------------------
 # Update RubyGems and generate tags for gems
 #-------------------------------------------------------------
-gem update --system
 gem ctags
