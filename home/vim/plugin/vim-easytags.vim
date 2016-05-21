@@ -1,3 +1,6 @@
+" Disable ctags version warning (since universal-ctags)
+let g:easytags_suppress_ctags_warning = 1
+
 " Easytags: Run asynchronously
 let g:easytags_async = 1
 
