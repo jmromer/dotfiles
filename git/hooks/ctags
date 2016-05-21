@@ -26,7 +26,7 @@ trap 'rm -f "$dir/$$.tags"' EXIT
 git ls-files |\
   "${CTAGS:-ctags}" \
     --tag-relative  \
-    --languages=-javascript,sql \
+    --languages=-sql \
     --fields=+l \
     --c-kinds=+p \
     --c++-kinds=+p \
