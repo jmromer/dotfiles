@@ -2,29 +2,31 @@
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 
-Plug 'benekastah/neomake'               " async linting, et al. best with nvim
-Plug 'dkprice/vim-easygrep'             " global search-and-replace
-Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
-Plug 'jiangmiao/auto-pairs'             " automatic delimiter closing
-Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
-Plug 'junegunn/vim-peekaboo'            " register preview
-Plug 'kien/rainbow_parentheses.vim'     " delimiter highlighting
-Plug 'mhinz/vim-hugefile'               " disable options for huge files
-Plug 'ntpeters/vim-better-whitespace'   " detect and highlight bad whitespace
-Plug 'pbrisbin/vim-mkdir'               " create subdirectories as needed
-Plug 'rizzatti/dash.vim'                " search Dash documentation
-Plug 'tpope/vim-eunuch'                 " Unix commands in vim
-Plug 'tpope/vim-git'                    " git commit filetype settings, et al
-Plug 'tpope/vim-rhubarb'                " GitHub extension for fugitive.vim
-Plug 'tpope/vim-rsi'                    " smart readline bindings in cmode et al
-Plug 'tpope/vim-sleuth'                 " detect indentation level
-Plug 'tpope/vim-vinegar'                " enhancements to netrw
-Plug 'vim-scripts/netrw.vim'            " older (bug-free) version of netrw
-Plug 'vitorgalvao/autoswap_mac'         " auto-respond to swap file message
-Plug 'wesQ3/vim-windowswap'             " move panes around with <leader>ww
-Plug 'xolox/vim-easytags'               " automatically updated ctags
+
+Plug 'benekastah/neomake'             " async linting, et al. best with nvim
+Plug 'chiel92/vim-autoformat'         " auto-format with supported formatters
+Plug 'dkprice/vim-easygrep'           " global search-and-replace
+Plug 'itchyny/lightline.vim'          " lightweight, configurable status line
+Plug 'jiangmiao/auto-pairs'           " automatic delimiter closing
+Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
+Plug 'junegunn/vim-peekaboo'          " register preview
+Plug 'kien/rainbow_parentheses.vim'   " delimiter highlighting
+Plug 'mhinz/vim-hugefile'             " disable options for huge files
+Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
+Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
+Plug 'rizzatti/dash.vim'              " search Dash documentation
+Plug 'tpope/vim-eunuch'               " Unix commands in vim
+Plug 'tpope/vim-git'                  " git commit filetype settings, et al
+Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
+Plug 'tpope/vim-rsi'                  " smart readline bindings in cmode et al
+Plug 'tpope/vim-sleuth'               " detect indentation level
+Plug 'tpope/vim-vinegar'              " enhancements to netrw
+Plug 'vim-scripts/netrw.vim'          " older (bug-free) version of netrw
+Plug 'vitorgalvao/autoswap_mac'       " auto-respond to swap file message
+Plug 'wesQ3/vim-windowswap'           " move panes around with <leader>ww
+Plug 'xolox/vim-easytags'             " automatically updated ctags
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-session' " session management
-Plug 'xolox/vim-reload'                 " reload vimrc files automatically
+Plug 'xolox/vim-reload'               " reload vimrc files automatically
 
 " Speedy text editing
 Plug 'AndrewRadev/splitjoin.vim' " toggle between single- and multi-line code
