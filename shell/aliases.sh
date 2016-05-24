@@ -4,7 +4,6 @@
 #-------------------------------------------------------------
 alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugUpdate +PlugClean! +qall'
-alias brew='TERM=screen-256color brew'
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
@@ -13,6 +12,7 @@ alias ..='\cd ..; l'         # go to parent dir and list contents
 alias ...='\cd ../..; l'     # go to grandparent dir and list contents
 alias mkdir='mkdir -p'      # create subdirectories as necessary
 alias h='history'           # show history
+alias ls='gls'              # use GNU ls (emacs needs this)
 alias l='gls --color'       # use GNU ls
 alias la='l -A'             # list all files
 alias ll='l -loh'           # show extended listing (but not all files)
@@ -41,6 +41,7 @@ alias diff='colordiff'        # compare files, colorize output
 alias hide='setfile -a V'     # hide a file
 alias unhide='setfile -a v'   # unhide a file
 alias v='vagrant'
+alias dc='docker-compose'
 alias npmls='npm ls -depth=0'
 alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
 alias ssh='TERM=xterm-256color ssh'
