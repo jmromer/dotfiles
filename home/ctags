@@ -1,19 +1,23 @@
---exclude=.git
---exclude=log
---exclude=node_modules
---exclude=home/vim/plugged
 -R
 --tag-relative=yes
+--exclude=.git
+--exclude=home/vim/plugged
+
 --exclude=*.min.js
---exclude=jquery.*.js
+--exclude=bower_components
 --exclude=jquery-*.js
+--exclude=jquery.*.js
+--exclude=log
+--exclude=node_modules
 --exclude=vendor
---languages=-html,-sql
+
+--languages=-html,-sql,-javascript
 --extra=+q+f
 --fields=+i+a+S+n
 
 --regex-ruby=/(^|;)[ \t]*(class|module)[ \t]+([A-Z][[:alnum:]_]+(::[A-Z][[:alnum:]_]+)+)/\3/c,class,constant/
 --regex-ruby=/(^|[:;])[ \t]*([A-Z][[:alnum:]_]+) *=/\2/c,class,constant/
+--regex-ruby=/^[ \t]*attr_(reader|writer|accessor) (:[a-z0-9_]+, )*:([a-z0-9_]+)/\3/A,attr/
 --regex-ruby=/(^|;)[ \t]*(has_many|belongs_to|has_one|has_and_belongs_to_many)\(? *:([[:alnum:]_]+)/\3/f,function,association/
 --regex-ruby=/(^|;)[ \t]*(named_)?scope\(? *:([[:alnum:]_]+)/\3/f,function,named_scope/
 --regex-ruby=/(^|;)[ \t]*expose\(? *:([[:alnum:]_]+)/\2/f,function,exposure/
@@ -23,7 +27,8 @@
 
 --langdef=js
 --langmap=js:.js
---regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*=[ \t]*[0-9"'\[\{]/\1/n,constant/
+--langmap=js:+.jsx
+--regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constant/
 --regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\{/\1/o,object/
 --regex-js=/['"]*([A-Za-z0-9_$]+)['"]*[ \t]*:[ \t]*\{/\1/o,object/
 --regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*\{/\1\.\2/o,object/
