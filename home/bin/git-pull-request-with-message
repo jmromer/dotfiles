@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# Submit a pull request with some suggested pings
+# Submit a pull request with a template message
 #
 # Usage:
 #
-# $ git pull-request-with-pings
+# $ git pull-request-with-message
 
 # areas_of_responsibility :enterprise_tools, :dotcom
 
 set -e
 
-echo "
+template_message="$*
 
 **issue**:
 
@@ -21,4 +21,7 @@ echo "
 **refs**:
 
 **cc**:
-$(git pings)" | hub pull-request -F -
+$(git pings)"
+
+
+hub pull-request -m \""$template_message"\"
