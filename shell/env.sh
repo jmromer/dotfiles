@@ -91,7 +91,6 @@ export LESS_TERMCAP_se=$'\E[00;00m' # reset
 #-------------------------------------------------------------
 # MISC ENV VARIABLES
 #-------------------------------------------------------------
-export JAVA_HOME="$(/usr/libexec/java_home)"
 export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
 export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 
@@ -101,6 +100,16 @@ export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--multi --ansi'
+
+#-------------------------------------------------------------
+# Java
+#-------------------------------------------------------------
+java_path=/usr/libexec/java_home
+
+if [[ -z "$JAVA_HOME" && -f "$java_path" ]]; then
+  JAVA_HOME=$($java_path)
+  export JAVA_HOME
+fi
 
 #-------------------------------------------------------------
 # RBENV
