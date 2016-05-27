@@ -142,8 +142,8 @@ if [[ "$subcommand" =~ ^start|debug|delete|new|edit$ ]]; then
   selection="$(available_tmuxinator_sessions | $fzf_command)"
   [[ -z "$selection" ]] && exit 0
 
-  echo "tmuxinator $subcommand $selection"
-  tmuxinator "$subcommand" "$selection"
+  echo tmuxinator "$subcommand" $selection
+  tmuxinator "$subcommand" $selection
 
   exit 0
 fi
