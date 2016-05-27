@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Submit a pull request with some suggested pings
+#
+# Usage:
+#
+# $ git pull-request-with-pings
+
+# areas_of_responsibility :enterprise_tools, :dotcom
+
+set -e
+
+echo "
+
+**issue**:
+
+**changes made**
+
+**testing notes**:
+
+**refs**:
+
+**cc**:
+$(git pings)" # | hub pull-request -F -
