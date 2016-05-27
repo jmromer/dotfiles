@@ -30,15 +30,16 @@ export MANPATH
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="./bin:$HOME/.bin"          # user binaries
-PATH+=$GNUTOOLS_PATHS            # GNU command-line tools
-PATH+=":$GOPATH/bin:$GOROOT/bin" # Go binaries
-PATH+=":/usr/local/heroku/bin"   # heroku-toolbelt binaries
-PATH+=":/usr/local/bin"          # homebrewed binaries
-PATH+=":/usr/bin:/bin"           # system binaries
-PATH+=":/usr/sbin:/sbin"         # system binaries requiring root
-PATH+=":/opt/X11/bin"            # added by OSX
-PATH+=":/Library/TeX/texbin"     # for TeX
+PATH="./bin:$HOME/.bin"            # user binaries
+PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
+PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
+PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
+PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
+PATH+=":/usr/local/bin"            # homebrewed binaries
+PATH+=":/usr/bin:/bin"             # system binaries
+PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
+PATH+=":/opt/X11/bin"              # added by OSX
+PATH+=":/Library/TeX/texbin"       # for TeX
 export PATH
 
 #-------------------------------------------------------------
