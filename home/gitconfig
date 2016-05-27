@@ -152,6 +152,7 @@
   psm      = push staging master
   ppm      = push production master
   pr       = pull-request
+  prm      = pull-request-with-message
   r        = rebase
   ri       = rebase-interactive
   ra       = rebase --abort
