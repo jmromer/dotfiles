@@ -21,4 +21,4 @@ echo "
 **refs**:
 
 **cc**:
-$(git pings)" # | hub pull-request -F -
+$(git pings)" | hub pull-request -F -
