@@ -1,8 +1,10 @@
 [user]
   name  = "Jake Romer"
   email = jkrmr@users.noreply.github.com
-  signingkey = public
   signingkey = 67BFF83E
+
+[gpg]
+  program = gpg2
 
 [github]
   user = jkrmr
