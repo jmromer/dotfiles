@@ -19,20 +19,19 @@ homebrew=(
   dfu-util                # KLL configuration loader
   exenv                   # elixir version management
   elixir-build            # elixir version installer
-  gpg                     # for PGP commit signing
+  gpg2                    # for PGP commit signing
   gpg-agent
   pinentry-mac
-  gtypist                 # Touch-type training
   heroku-toolbelt
   hub                     # For github-flavored git
   imagemagick
-  n                       # Node environment manager
   node
   openssl
   pgcli                   # Postgres CLI
   postgres
   python                  # Python 2.7 + Pip
   qt
+  shellcheck
   rbenv
   rbenv-default-gems      # default gems to be installed
   reattach-to-user-namespace
@@ -56,8 +55,8 @@ done
 #-------------------------------------------------------------
 # Thoughbot
 #-------------------------------------------------------------
-for formula in rcm liftoff parity; do
-  brew install --force thoughtbot/formulae/"$formula"
+for formula in rcm parity; do
+  brew install thoughtbot/formulae/"$formula"
 done
 
 

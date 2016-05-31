@@ -15,10 +15,6 @@
 # # Vagrant
 # brew cask install virtualbox vagrant
 #
-# # Exercism
-# brew tap homebrew/binary
-# brew install exercism
-#
 # # Go
 # brew install go
 # mkdir $HOME/.go
