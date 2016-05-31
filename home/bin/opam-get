@@ -8,7 +8,7 @@
 
 set -e
 
-fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse"
+fzf_command="fzf-tmux -d 20 --ansi --reverse"
 
 function name_from_package_listing() {
   echo "$1" |\
