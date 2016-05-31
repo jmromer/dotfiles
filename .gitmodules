@@ -1,9 +1,8 @@
 [submodule "home/zsh/zsh-syntax-highlighting"]
 	path = home/zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "home/emacs.d"]
-	path = home/emacs.d
-	url = https://github.com/syl20bnr/spacemacs
+	branch = master
 [submodule "home/vim/vim-plug"]
 	path = home/vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+	branch = master
