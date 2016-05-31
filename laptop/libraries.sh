@@ -1,34 +1,12 @@
 #!/usr/bin/env bash
 
+echo "Installing n and node..."
+curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
+
 #-------------------------------------------------------------
 # Node Packages
 #-------------------------------------------------------------
 node_packages=(
-  babel
-  babel-core
-  babel-eslint
-  babel-jscs
-  bower
-  chai
-  coffeelint
-  ember-cli
-  eslint
-  eslint-plugin-react
-  express
-  express-react-views
-  generator-react-webpack
-  ghost
-  gifify
-  google-closure-compiler
-  grunt
-  grunt-cli
-  jscs
-  jscs-jsdoc
-  jsctags
-  jsdoc
-  learnyoureact
-  mocha
-  node-jsx
   npm
   react
 )

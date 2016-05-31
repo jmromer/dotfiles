@@ -1,10 +1,6 @@
 #-------------------------------------------------------------
 # Mac Settings
 #-------------------------------------------------------------
-# Set key repeat / delay until repeat (Use Karabiner if this doesn't work)
-defaults write NSGlobalDomain InitialKeyRepeat -int 200
-defaults write NSGlobalDomain KeyRepeat -int 25
-
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
@@ -12,7 +8,7 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 defaults write org.n8gray.QLColorCode textEncoding UTF-16
 defaults write org.n8gray.QLColorCode webkitTextEncoding UTF-16
 defaults write org.n8gray.QLColorCode font Monaco
-defaults write org.n8gray.QLColorCode hlTheme ide-xcode
+defaults write org.n8gray.QLColorCode hlTheme solarized-light
 defaults write org.n8gray.QLColorCode extraHLFlags '--wrap --replace-tabs=2'
 
 # Finder: allow text selection in Quick Look
@@ -23,8 +19,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Save screenshots to the desktop in PNG format (other options: BMP, GIF, PNG, PDF, TIFF)
-defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+# Save screenshots to ~/Downloads in as JPGs (other options: BMP, GIF, PNG, PDF, TIFF)
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 defaults write com.apple.screencapture type -string "jpg"
 
 # Finder: show status bar and path bar

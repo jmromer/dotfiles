@@ -147,41 +147,22 @@ touch $log_location
 
   step "Setting homebrewed zsh as the default shell"
 
-  source "$HOME/.zshrc"  # reload $PATH
-  echo "$(which bash)" | sudo tee -a /etc/shells
-  echo "$(which zsh)"  | sudo tee -a /etc/shells
-  chsh -s $(which zsh)  # /usr/local/bin/zsh
+  echo /usr/local/bin/bash | sudo tee -a /etc/shells
+  echo /usr/local/bin/zsh | sudo tee -a /etc/shells
+  chsh -s /usr/local/bin/zsh
 
   # ======================================================
 
   step "Linking dotfiles into home directory"
 
-  env RCRC=$LOCAL_DOTFILES/rcrc rcup
+  ln -s $HOME/.dotfiles/rcrc $HOME/.rcrc
+  rcup
 
   # ======================================================
 
-  step "Linking remaining miscellaneous dotfiles"
+  step "Linking remaining miscellaneous dotfiles and preferences"
 
   ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/default-gems
-  ln -sf $LOCAL_DOTFILES/home/bin        $HOME/.bin
-  ln -sf $LOCAL_DOTFILES/home/emacs.d    $HOME/.emacs.d
-  ln -sf $LOCAL_DOTFILES/home/lein       $HOME/.lein
-  ln -sf $LOCAL_DOTFILES/home/pry        $HOME/.pry
-  ln -sf $LOCAL_DOTFILES/home/zsh        $HOME/.zsh
-  ln -sf $LOCAL_DOTFILES/home/tmuxinator $HOME/.tmuxinator
-  ln -sf $LOCAL_DOTFILES/home/vim        $HOME/.vim
-  ln -sf $LOCAL_DOTFILES/home/bundle     $HOME/.bundle
-
-  # ======================================================
-
-  step "Linking to synced preference files"
-
-  ln -sf $SYNCED/dotfiles/aws           $HOME/.aws
-  ln -sf $SYNCED/dotfiles/env.secure.sh $HOME/.env.secure.sh
-  ln -sf $SYNCED/dotfiles/exercism.json $HOME/.exercism.json
-  ln -sf $SYNCED/Preferences/Firefox    $HOME/Library/Application\ Support
-  ln -sf $SYNCED/Preferences/StickiesDatabase          $HOME/Library
-  ln -sf $SYNCED/Preferences/com.jitouch.Jitouch.plist $HOME/Library/Preferences
 
   # ======================================================
 
@@ -199,13 +180,6 @@ touch $log_location
   step "Setting Mac OS X defaults"
 
   source $LOCAL_DOTFILES/osx/set_defaults.sh
-
-  # ======================================================
-
-  # step "Enabling italics-compatible terminal profile"
-  #
-  # tic $LOCAL_DOTFILES/terminal/xterm-256color-italic.terminfo
-  # tic $LOCAL_DOTFILES/terminal/screen-256color-italic.terminfo
 
   # ======================================================
 
