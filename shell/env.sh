@@ -34,6 +34,7 @@ PATH="./bin:$HOME/.bin"            # user binaries
 PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
+PATH+=":$N_PREFIX/bin"             # n version binaries
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
 PATH+=":/usr/bin:/bin"             # system binaries
@@ -74,6 +75,11 @@ export CXX="clang++"
 # Run garbage collection less frequently than default
 export RUBY_GC_MALLOC_LIMIT=60000000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
+
+#-------------------------------------------------------------
+# N / NODE
+#-------------------------------------------------------------
+export N_PREFIX="$HOME/.node"
 
 #-------------------------------------------------------------
 # EDITOR / PAGER

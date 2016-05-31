@@ -59,7 +59,7 @@ touch $log_location
 
   step "Installing Homebrew Cask"
 
-  brew install caskroom/cask/brew-cask
+  brew tap caskroom/cask
 
   # ===================================================
 
@@ -89,15 +89,13 @@ touch $log_location
 
   rbenv global "$ruby_version"
   rbenv shell "$ruby_version"
-
-  gem update --system
+  rbenv rehash
 
   # ===================================================
 
   step "Installing Bundler"
 
   gem install bundler
-  gem update bundler
 
   # ===================================================
 
@@ -170,10 +168,13 @@ touch $log_location
 
   mkdir $HOME/.ssh
 
-  for file in id_rsa id_rsa.pub jkrmr-aws-usca.pem; do
-    cp $SYNCED/dotfiles/$file  $HOME/.ssh
-    chmod 700 $HOME/.ssh/$file
+  for file in $SYNCED/ssh; do
+    cp $file $HOME/.ssh/
   done
+
+  chmod 700 $HOME/.ssh/*
+  chomd 644 $HOME/.ssh/config
+  chomd 644 $HOME/.ssh/known_hosts
 
   # ======================================================
 

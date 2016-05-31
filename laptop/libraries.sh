@@ -26,4 +26,6 @@ rbenv ctags
 #-------------------------------------------------------------
 # Update RubyGems and generate tags for gems
 #-------------------------------------------------------------
+gem install gem-ctags
+rbenv rehash
 gem ctags
