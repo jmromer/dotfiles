@@ -73,6 +73,7 @@ pip install vim-vint neovim
 #-------------------------------------------------------------
 # Emacs Installation
 #-------------------------------------------------------------
+brew tap railwaycat/emacsmacport
 brew install emacs-mac --with-modern-icon
 
 #-------------------------------------------------------------
@@ -82,18 +83,14 @@ brew install emacs-mac --with-modern-icon
 # Note: Ensure MacVim and YouCompleteMe are compiled against non-system Python
 
 # Use the MacVim binary as CLI vim
-options=' --with-override-system-vim '
-
-# Enable client-server (allows opening gui vim from cli vim with :gui)
-options+=' --with-client-server '
-
+# Enable client-server (allows opening gui vim from cli vim with :guie
 # with cscope, for tags database
-options+=' --with-cscope '
-
 # with lua (improves performance for plugins leveraging it)
-options+=' --with-lua '
-
 # use HEAD
-options+=' --HEAD '
 
-brew install macvim $options
+brew install macvim \
+  --with-override-system-vim  \
+  --with-client-server  \
+  --with-cscope  \
+  --with-lua  \
+  --HEAD
