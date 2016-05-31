@@ -1,2 +1,3 @@
 EXCLUDES="README.md"
-DOTFILES_DIRS="$HOME/.dotfiles/home $HOME/.dotfiles/linters"
+DOTFILES_DIRS="$HOME/.dotfiles/home $HOME/Dropbox/Sync/dotfiles"
+SYMLINK_DIRS="bin bundle lein pry tmuxinator vim zsh aws"
