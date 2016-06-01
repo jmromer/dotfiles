@@ -172,9 +172,7 @@ touch $log_location
     cp $file $HOME/.ssh/
   done
 
-  chmod 700 $HOME/.ssh/*
-  chomd 644 $HOME/.ssh/config
-  chomd 644 $HOME/.ssh/known_hosts
+  chmod 600 $HOME/.ssh/*
 
   # ======================================================
 
