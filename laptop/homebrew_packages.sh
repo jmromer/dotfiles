@@ -76,6 +76,8 @@ pip install vim-vint neovim
 brew tap railwaycat/emacsmacport
 brew install emacs-mac --with-modern-icon
 
+tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
+
 #-------------------------------------------------------------
 # MacVim Installation
 # - Take advantage of MacVim's faster rendering engine
