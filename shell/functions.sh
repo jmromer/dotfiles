@@ -27,6 +27,8 @@ function e() {
   if [ -z "$1" ]; then
     echo $editor .
     $editor .
+  elif [ "$#" -gt 1 ]; then
+    $editor -p $@
   else
     echo $editor "$1"
     $editor "$1"
