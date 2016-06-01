@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # shell/env.sh
 #-------------------------------------------------------------
 # GO
@@ -9,10 +11,10 @@ export GOROOT=/usr/local/opt/go/libexec
 # GNU TOOLS (prepend to PATH)
 #   omit coreutils for now, because github/enterprise
 #-------------------------------------------------------------
-if [[ -z $GNUTOOLS_PATHS || -z $GNUTOOLS_MANS ]]; then
-  gnu_tools=(gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls)
+if [ -z "$GNUTOOLS_PATHS" ] || [ -z "$GNUTOOLS_MANS" ]; then
+  gnu_tools='gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls'
 
-  for gnu_tool in "${gnu_tools[@]}"; do
+  for gnu_tool in $(echo $gnu_tools); do
     GNUTOOLS_PATHS+=":/usr/local/opt/$gnu_tool/libexec/gnubin"
     GNUTOOLS_MANS+="/usr/local/opt/$gnu_tool/libexec/gnuman:"
   done
