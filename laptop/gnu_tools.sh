@@ -5,25 +5,44 @@
 #-------------------------------------------------------------
 brew tap homebrew/dupes
 
-gnu_tools=(
-  "binutils"                        # a collection of binary tools
-  "coreutils"                       # core unix tools like ls, etc
-  "diffutils"                       # diff, cmp, diff3, sdiff
-  "findutils --with-default-names"  # find, locate, updatedb, xargs
-  "gawk"                            # awk: Pattern replacement
-  "gnu-indent --with-default-names" # indent: For beautifying C code
-  "gnu-sed --with-default-names"    # sed: Filtering text
-  "gnu-tar --with-default-names"    # tar: Creating compressed archives
-  "gnu-which --with-default-names"  # which: Find location of given executable
-  "gnutls --with-default-names"     # TLS: Secure comms
-  "grep --with-default-names"       # grep: find stuff
-  "watch"                           # watch files/dirs for changes
-  "wdiff --with-gettext"            # word-by-word diffing
-  "wget"                            # easy downloads
-)
+# a collection of binary tools
+brew install --force binutils
 
-for gnu_tool in "${gnu_tools[@]}"; do
-  echo "brew install $gnu_tool..."
-  echo
-  brew install $gnu_tool
-done
+# core unix tools like ls, etc
+brew install --force coreutils
+
+# diff, cmp, diff3, sdiff
+brew install --force diffutils
+
+# find, locate, updatedb, xargs
+brew install --force findutils --with-default-names
+
+# awk: Pattern replacement
+brew install --force gawk
+
+# indent: For beautifying C code
+brew install --force gnu-indent --with-default-names
+
+# sed: Filtering text
+brew install --force gnu-sed --with-default-names
+
+# tar: Creating compressed archives
+brew install --force gnu-tar --with-default-names
+
+# which: Find location of given executable
+brew install --force gnu-which --with-default-names
+
+# TLS: Secure comms
+brew install --force gnutls --with-default-names
+
+# grep: find stuff
+brew install --force grep --with-default-names
+
+# watch files/dirs for changes
+brew install --force watch
+
+# word-by-word diffing
+brew install --force wdiff --with-gettext
+
+# easy downloads
+brew install --force wget
