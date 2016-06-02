@@ -99,6 +99,12 @@
 [rebase]
   autosquash = true
 
+[http]
+  postbuffer = 524288000
+
+[ssh]
+  postbuffer = 524288000
+
 [alias]
   a        = stage-files
   aa       = add --all
