@@ -1,1 +1,1 @@
-/Users/jkrmr/.dotfiles/home/vim/vim-plug/plug.vim
+../vim-plug/plug.vim

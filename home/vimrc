@@ -21,7 +21,7 @@ let g:solarized_italic = 0
 " ----------------- Load Plugins ------------------------
 
 call plug#begin('~/.vim/plugged')
-  source ~/.vim/manifest.vim
+  source $HOME/.vim/manifest.vim
 call plug#end()
 
 " ---------------- Overrides  --------------------------
