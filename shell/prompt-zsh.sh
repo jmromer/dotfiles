@@ -54,7 +54,7 @@ bindkey -M viins '^k' kill-line
 
 # issue the command, but keep it at the prompt
 bindkey -M viins '^y' accept-and-hold
-bindkey -M viins '^u' push-line-or-edit
+bindkey -M viins '^o' push-line-or-edit
 
 # ^t ('toughguy') to prepend sudo (disabled because FZF)
 # Also, see sudo !! if already issued
