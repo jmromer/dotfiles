@@ -56,12 +56,8 @@ bindkey -M viins '^k' kill-line
 bindkey -M viins '^y' accept-and-hold
 bindkey -M viins '^o' push-line-or-edit
 
-# ^t ('toughguy') to prepend sudo (disabled because FZF)
-# Also, see sudo !! if already issued
-# bindkey -M viins -s '^t' '^[Isudo ^[A'
-
-# ^f ('find') Invoke FZF
-bindkey '^f' fzf-file-widget
+# ^t Invoke FZF file finder
+bindkey '^t' fzf-file-widget
 
 bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
 bindkey "^[[3~" delete-char  # ensure delete forwards deletes
