@@ -172,41 +172,41 @@ if [[ -f $HOME/.iterm2_shell_integration.zsh ]]; then
   source $HOME/.iterm2_shell_integration.zsh
 fi
 
-#-------------------------------------------------------------
-# ZSH CONFIG
-#-------------------------------------------------------------
-# The following lines were added by compinstall
-
-zstyle ':completion:*' auto-description 'specify: %d '
-zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
-zstyle ':completion:*' completions 1
-zstyle ':completion:*' expand suffix
-zstyle ':completion:*' file-sort name
-zstyle ':completion:*' format 'Completing %d:'
-zstyle ':completion:*' glob 1
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-suffixes true
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+r:|[._-]=** r:|=**' '+l:|=* r:|=*'
-zstyle ':completion:*' max-errors 1 numeric
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' original true
-zstyle ':completion:*' prompt '"Corrections: "'
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' squeeze-slashes true
-zstyle ':completion:*' substitute 1
-zstyle ':completion:*' verbose true
-zstyle :compinstall filename '/Volumes/jkrmr/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory autocd extendedglob notify
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
+# #-------------------------------------------------------------
+# # ZSH CONFIG
+# #-------------------------------------------------------------
+# # The following lines were added by compinstall
+#
+# zstyle ':completion:*' auto-description 'specify: %d '
+# zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
+# zstyle ':completion:*' completions 1
+# zstyle ':completion:*' expand suffix
+# zstyle ':completion:*' file-sort name
+# zstyle ':completion:*' format 'Completing %d:'
+# zstyle ':completion:*' glob 1
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' insert-unambiguous true
+# zstyle ':completion:*' list-colors ''
+# zstyle ':completion:*' list-suffixes true
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+r:|[._-]=** r:|=**' '+l:|=* r:|=*'
+# zstyle ':completion:*' max-errors 1 numeric
+# zstyle ':completion:*' menu select=long
+# zstyle ':completion:*' original true
+# zstyle ':completion:*' prompt '"Corrections: "'
+# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+# zstyle ':completion:*' squeeze-slashes true
+# zstyle ':completion:*' substitute 1
+# zstyle ':completion:*' verbose true
+# zstyle :compinstall filename '/Volumes/jkrmr/.zshrc'
+#
+# autoload -Uz compinit
+# compinit
+# # End of lines added by compinstall
+# # Lines configured by zsh-newuser-install
+# HISTFILE=~/.histfile
+# HISTSIZE=10000
+# SAVEHIST=10000
+# setopt appendhistory autocd extendedglob notify
+# unsetopt beep
+# bindkey -v
+# # End of lines configured by zsh-newuser-install
