@@ -2,12 +2,17 @@
 
 # Deletes all local branches that are gone on the given remote (default: origin)
 #
+# Excludes `master` and any branch beginning with a `!`.
+#
 # Examples:
 #   git clear-deleted-branches [REMOTE]
 
 function git_branches() {
   [[ "$1" == "all" ]] && local all="--all"
-  git branch --no-verbose --no-color $all | sed -E 's/^\**\s*//'
+
+  git branch --no-verbose --no-color $all |\
+    sed -E 's/^\**\s*//' |\
+    grep -E --invert-match 'master|^!'
 }
 
 remote="${1:-origin}"
