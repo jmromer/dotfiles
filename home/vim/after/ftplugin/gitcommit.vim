@@ -1,5 +1,3 @@
-" Automatically wrap at 72 characters and spell check git commit messages
-  " autocmd FileType gitcommit setlocal textwidth=72
-  " autocmd FileType gitcommit setlocal spell
-setlocal textwidth=72
+" Automatically wrap at 71 characters and spell check git commit messages
+setlocal textwidth=71
 setlocal spell
