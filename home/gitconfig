@@ -143,6 +143,9 @@
   hstat    = h --stat
   i        = init
   lg       = h --grep
+  lp       = h --patch
+  lps      = h --patch -S
+  lpr      = h --patch -G
   lgr      = h --walk-reflogs --grep
   m        = merge
   ma       = merge --abort
