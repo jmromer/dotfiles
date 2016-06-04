@@ -1,46 +1,112 @@
+#!/usr/bin/env bash
+
 #-------------------------------------------------------------
 # Apps managed by Homebrew Cask
 #-------------------------------------------------------------
-brew tap caskroom/versions  # for alternate versions
+# for alternate versions (e.g. iterm2-beta)
+brew tap caskroom/versions
 
-cask=(
-  1password            # password manager (NB: don't use the app store version)
-  appcleaner           # removes apps and related files
-  betterzipql          # Quick Look viewers: Zip files
-  blue-jeans-launcher  # video conferencing
-  firefox              # web browser
-  flux                 # controls screen brightness
-  google-chrome        # web browser
-  google-chrome-canary # web browser
-  iterm2-beta          # terminal emulator
-  java                 # Java SDK
-  jitouch              # trackpad gestures
-  karabiner            # remaps esc to cmd
-  keyboard-maestro     # system-wide custom keymappings
-  latexit              # For generating TeX output
-  launchbar            # cmd + <space> ftw
-  name-mangler         # batch file renamer
-  papers               # PDF article manager
-  qlcolorcode          # Quick Look viewers: Syntax highlighting
-  qlimagesize          # Quick Look viewers: Display image size and res
-  qlmarkdown           # Quick Look Preview: Markdown
-  qlprettypatch        # Quick Look Preview: Patch files
-  qlstephen            # Quick Look Preview: Extension-less files
-  quicklook-csv        # Quick Look Preview: CSV files
-  quicklook-json       # Quick Look Preview: JSON files
-  slack                # Slack, duh.
-  screenhero           # remote pairing
-  skim                 # lightweight PDF reader with auto-update
-  skype                # Skype, duh.
-  suspicious-package   # Quick Look Preview: Mac OS X Installer Packages
-  tex-live-utility     # package manager for TeX
-  transmission         # torrent machine
-  vlc                  # video player
-  webpquicklook        # Quick Look Preview: webp images
-  xquartz              # for graphical terminal output (R and Octave dependency)
-)
+# password manager (NB: don't use the app store version)
+brew cask install 1password
 
-for app in ${cask[*]}; do
-  echo "Installing $app ..." && echo
-  brew cask install $app
-done
+# removes apps and related files
+brew cask install appcleaner
+
+# Quick Look viewers: Zip files
+brew cask install betterzipql
+
+# video conferencing
+brew cask install blue-jeans-launcher
+
+# vpn
+brew cask install cloak
+
+# web browser
+brew cask install firefox
+
+# controls screen brightness
+brew cask install flux
+
+# web browser
+brew cask install google-chrome
+
+# web browser
+brew cask install google-chrome-canary
+
+# terminal emulator
+brew cask install iterm2-beta
+
+# Java SDK
+brew cask install java
+
+# trackpad gestures
+brew cask install jitouch
+
+# remaps esc to cmd
+brew cask install karabiner
+
+# system-wide custom keymappings
+brew cask install keyboard-maestro
+
+# For generating TeX output
+brew cask install latexit
+
+# cmd + <space> ftw
+brew cask install launchbar
+
+# batch file renamer
+brew cask install name-mangler
+
+# PDF article manager
+brew cask install papers
+
+# Quick Look viewers: Syntax highlighting
+brew cask install qlcolorcode
+
+# Quick Look viewers: Display image size and res
+brew cask install qlimagesize
+
+# Quick Look Preview: Markdown
+brew cask install qlmarkdown
+
+# Quick Look Preview: Patch files
+brew cask install qlprettypatch
+
+# Quick Look Preview: Extension-less files
+brew cask install qlstephen
+
+# Quick Look Preview: CSV files
+brew cask install quicklook-csv
+
+# Quick Look Preview: JSON files
+brew cask install quicklook-json
+
+# Slack, duh.
+brew cask install slack
+
+# remote pairing
+brew cask install screenhero
+
+# lightweight PDF reader with auto-update
+brew cask install skim
+
+# Skype, duh.
+brew cask install skype
+
+# Quick Look Preview: Mac OS X Installer Packages
+brew cask install suspicious-package
+
+# package manager for TeX
+brew cask install tex-live-utility
+
+# torrent machine
+brew cask install transmission
+
+# video player
+brew cask install vlc
+
+# Quick Look Preview: webp images
+brew cask install webpquicklook
+
+# for graphical terminal output (R and Octave dependency)
+brew cask install xquartz
