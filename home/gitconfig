@@ -142,11 +142,11 @@
   hsince   = !sh -c 'git h --since=$1' -
   hstat    = h --stat
   i        = init
-  lg       = h --grep
-  lp       = h --patch
-  lps      = h --patch -S
-  lpr      = h --patch -G
-  lgr      = h --walk-reflogs --grep
+  lg       = log --grep
+  lgr      = log --walk-reflogs --grep
+  lp       = log --patch
+  lpr      = log --patch -G
+  lps      = log --patch -S
   m        = merge
   ma       = merge --abort
   mc       = merge --continue
