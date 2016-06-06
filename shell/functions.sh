@@ -44,6 +44,16 @@ function eg() {
   fi
 }
 
+# Fuzzy-select a file from all those modified on the current git branch (up to
+# origin/master) to open in editor
+function egg() {
+  local file="$(git branch-modified-files | fzf-tmux --reverse -d 20)"
+
+  if [[ ! -z "$file" ]]; then
+    e $(echo "$file")
+  fi
+}
+
 # Fuzzy-select ruby version using rbenv
 function chr() {
   local scope="$(echo "shell\nlocal\nglobal" |\
