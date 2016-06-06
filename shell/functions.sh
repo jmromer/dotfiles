@@ -37,10 +37,10 @@ function e() {
 
 # Fuzzy-select a file from git status to open in editor
 function eg() {
-  local file="$(git select-files --no-multi)"
+  local file="$(git select-files)"
 
   if [[ ! -z "$file" ]]; then
-    e $file
+    e $(echo "$file")
   fi
 }
 
