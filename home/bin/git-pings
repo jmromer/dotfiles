@@ -27,17 +27,16 @@ fetch() {
 }
 
 search_all_modified_files() {
-  git diff --name-only "$branching_commit" head |\
+  git branch-modified-files |\
     xargs grep 'areas_of_responsibility' -s
 }
 
 search_deleted_files() {
-  git diff --diff-filter=D "$branching_commit" head |\
+  git branch-deleted-files |\
     grep 'areas_of_responsibility'
 }
 
 areas_of_responsibilty() {
-  branching_commit="$(git merge-base head origin/master)"
   (search_all_modified_files & search_deleted_files) | cat
 }
 
