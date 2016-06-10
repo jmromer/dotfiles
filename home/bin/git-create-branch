@@ -4,6 +4,8 @@
 #
 # $ git create-branch feature1
 
+set -e
+
 name="$*"
 branch="${name// /_}"
 

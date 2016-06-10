@@ -4,6 +4,8 @@
 #
 # $ git create-branch-with-remote feature1
 
+set -e
+
 name="$*"
 branch="${name// /_}"
 
