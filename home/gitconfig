@@ -135,7 +135,7 @@
   file-mod = branch-modified-files
   file-del = branch-deleted-files
   h        = log --format=brief --abbrev-commit
-  hbranch  = h HEAD --not origin/master
+  hb       = h HEAD --not origin/master
   hm       = h --merge
   hnm      = h --no-merges --show-linear-break
   hg       = h --graph
