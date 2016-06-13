@@ -7,7 +7,7 @@ windows:
   - editor: e +OpenSession
   - shell:
   - repl: script/console --pry
-  - server: script/server
+  - server: export PATH="${PATH/\/usr\/local\/opt\/coreutils\/libexec\/gnubin://}" && script/server
   - dotfiles:
       root: ~/.dotfiles
       panes:
