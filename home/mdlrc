@@ -1,1 +1,1 @@
-style "/Users/jkrmr/.dotfiles/linters/mdl_style.rb"
+style "#{ENV['HOME']}/.dotfiles/linters/mdl_style.rb"
