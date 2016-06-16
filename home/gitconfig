@@ -60,6 +60,17 @@
   clean  = git-media-clean %f
   smudge = git-media-smudge %f
 
+[gitsh]
+  noGreeting = true
+  defaultCommand = status --short --branch && :echo
+  gitCommand = /usr/local/bin/hub
+  prompt = "%D %c%b%w %#"
+
+[gitsh "color"]
+  default = green
+  untracked = yellow
+  modified = red
+
 [init]
   templatedir = ~/.dotfiles/git
 
