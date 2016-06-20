@@ -1,6 +1,8 @@
 " ---------------- Plugins --------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', {
+\ 'do': './install.py --clang-completer --tern-completer & ./third_party/ycmd/build.py --all'
+\ }
 
 
 Plug 'benekastah/neomake'             " async linting, et al. best with nvim
