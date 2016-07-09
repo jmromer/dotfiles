@@ -1,6 +1,5 @@
 [user]
   name  = "Jake Romer"
-  email = jkrmr@users.noreply.github.com
 
 [gpg]
   program = gpg2
