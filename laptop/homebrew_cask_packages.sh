@@ -81,8 +81,8 @@ brew cask install quicklook-csv
 # Quick Look Preview: JSON files
 brew cask install quicklook-json
 
-# Slack, duh.
-brew cask install slack
+# Slack and Gitter
+brew cask install slack gitter
 
 # remote pairing
 brew cask install screenhero
