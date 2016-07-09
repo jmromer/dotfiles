@@ -1,9 +1,10 @@
 " ---------------- Plugins --------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'Valloric/YouCompleteMe', {
-\ 'do': './install.py --clang-completer --tern-completer & ./third_party/ycmd/build.py --all'
-\ }
 
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 Plug 'benekastah/neomake'             " async linting, et al. best with nvim
 Plug 'chiel92/vim-autoformat'         " auto-format with supported formatters
