@@ -29,7 +29,7 @@ homebrew=(
   openssl
   pgcli                   # Postgres CLI
   postgres
-  python                  # Python 2.7 + Pip
+  python3                 # Python 3 + Pip
   qt
   shellcheck
   rbenv
@@ -63,11 +63,9 @@ done
 #-------------------------------------------------------------
 # Neovim
 #-------------------------------------------------------------
-# Python, Pip, Buster
-pip install --upgrade pip setuptools
-pip install --upgrade buster
+# Python, Pip
+pip3 install --upgrade pip setuptools neovim vim-vint
 brew install neovim/neovim/neovim
-pip install vim-vint neovim
 
 
 #-------------------------------------------------------------
@@ -94,5 +92,6 @@ brew install macvim \
   --with-override-system-vim  \
   --with-client-server  \
   --with-cscope  \
+  --with-python3 \
   --with-lua  \
   --HEAD
