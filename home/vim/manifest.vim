@@ -38,6 +38,7 @@ Plug 'tpope/vim-speeddating'     " increment dates, times, and more
 Plug 'tpope/vim-unimpaired'      " useful complementary mappings
 Plug 'vim-scripts/visualrepeat'  " extends dot operator to visual mode
 Plug 'zirrostig/vim-schlepp'     " move visual blocks / lines around
+Plug 'unblevable/quick-scope'    " highlight chars for jumping
 
 " Text objects
 Plug 'kana/vim-textobj-entire' " Adds ae/ie
