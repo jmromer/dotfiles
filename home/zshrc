@@ -12,3 +12,7 @@ source $SHELL_CONFIG/prompt-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ------------------------------------------------------------------------
+
+if [ "$TERM" == "dumb" ]; then
+  unset zle_bracketed_paste
+fi

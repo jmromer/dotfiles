@@ -147,3 +147,10 @@ export GPG_AGENT_INFO
 
 GPG_TTY=$(tty)
 export GPG_TTY
+
+#-------------------------------------------------------------
+# Emacs
+#-------------------------------------------------------------
+if [ -n "$INSIDE_EMACS" ]; then
+  export EDITOR=emacsclient
+fi
