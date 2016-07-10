@@ -24,6 +24,12 @@ function listening_on_port() {
 function e() {
   local editor=nvim
 
+  if [ -n "$INSIDE_EMACS" ]; then
+    echo emacsclient -n ${1:='.'}
+    emacsclient -n ${1:='.'}
+    return 0
+  fi
+
   if [ -z "$1" ]; then
     echo $editor .
     $editor .
