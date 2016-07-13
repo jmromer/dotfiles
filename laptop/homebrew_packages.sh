@@ -89,8 +89,19 @@ brew install neovim/neovim/neovim
 #-------------------------------------------------------------
 # Emacs Installation
 #-------------------------------------------------------------
-brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-modern-icon
+brew tap d12frosted/emacs-plus
+
+brew install emacs-plus \
+     --with-cocoa \
+     --with-gnutls \
+     --with-librsvg \
+     --with-imagemagick \
+     --with-spacemacs-icon
+
+brew linkapps emacs-plus
+
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+git clone --recursive https://github.com/jkrmr/dot_spacemacs ~/.spacemacs.d
 
 tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
 
