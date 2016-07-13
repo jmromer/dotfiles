@@ -29,14 +29,16 @@ function g() {
 #-------------------------------------------------------------
 function git_color() {
   local clean='working (directory|tree) clean'
+  local ahead_of_remote="Your branch is ahead of"
+  local applying_patch="Unmerged"
 
   if [[ $git_status =~ $clean ]]; then
-    if [[ $git_status =~ "Your branch is ahead of" ]]; then
+    if [[ $git_status =~ $ahead_of_remote ]]; then
       echo -ne $(color yellow)
     else
       echo -ne $(color green)
     fi
-  elif [[ $git_status =~ "Unmerged" ]]; then
+  elif [[ $git_status =~ $applying_patch ]]; then
     echo -ne $(color violet)
   else
     echo -ne $(color red)
