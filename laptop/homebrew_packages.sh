@@ -25,7 +25,6 @@ homebrew=(
   heroku-toolbelt
   hub                     # For github-flavored git
   imagemagick
-  node
   openssl
   pgcli                   # Postgres CLI
   postgres
@@ -51,6 +50,25 @@ for package in ${homebrew[*]}; do
   echo "Installing or upgrading $package..." && echo
   brew install --force $package
 done
+
+#-------------------------------------------------------------
+# Node
+#-------------------------------------------------------------
+curl -L https://git.io/n-install | bash
+
+n stable
+
+npm install -g \
+    babel-eslint \
+    coffeelint \
+    eslint \
+    eslint-plugin-react \
+    js-beautify \
+    npm \
+    react \
+    react-native \
+    react-native-cli \
+    tern \
 
 #-------------------------------------------------------------
 # Thoughbot
