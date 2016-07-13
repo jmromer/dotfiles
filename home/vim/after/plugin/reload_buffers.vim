@@ -4,3 +4,5 @@ function! ReloadAllBuffers ()
   checktime
   echo "Buffers reloaded"
 endfunction
+
+command! RA :call ReloadAllBuffers()
