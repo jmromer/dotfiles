@@ -28,7 +28,9 @@ function g() {
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
 function git_color() {
-  if [[ $git_status =~ "working directory clean" ]]; then
+  local clean='working (directory|tree) clean'
+
+  if [[ $git_status =~ $clean ]]; then
     if [[ $git_status =~ "Your branch is ahead of" ]]; then
       echo -ne $(color yellow)
     else
