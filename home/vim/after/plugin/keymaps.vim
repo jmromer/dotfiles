@@ -4,7 +4,7 @@ nnoremap <silent><CR> :noh<CR><CR>
 
 " \: (backward slash) to grep-with-ag-to-quickfix shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag ''<LEFT>
+nnoremap <leader>/ :Ag ''<LEFT>
 
 " K: Grep for the word under the cursor or visual selection,
 "    open results in quickfix pane
@@ -28,20 +28,11 @@ nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
 " =: re-balance vim pane sizes
 nnoremap <leader>= :wincmd =<CR>
 
-" f: Invoke fzf
-nnoremap <silent><leader>f :FZF<CR>
+" fs: save buffer
+nnoremap <silent><leader>fs :StripWhitespace<CR>:w<CR>
 
-" ga: Git add current buffer
-nnoremap <silent><leader>ga :Git add %<CR>
-
-" gc: Git commit
-nnoremap <silent><leader>gc :Gcommit<CR>
-
-" G: Git
-nnoremap <leader>G :Git<SPACE>
-
-" kw: kill trailing whitespace
-nnoremap <silent><leader>kw :StripWhitespace<CR>
+" g: Git
+nnoremap <leader>g :Git<SPACE>
 
 if has('nvim')
   " m: (make) run Neomake. Use [l and ]l to cycle through loc list
@@ -54,17 +45,14 @@ vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
 " R: From normal mode, redraws
 nnoremap <leader>R :redraw!<CR>
 
-" ra: Reload all open buffers
-nnoremap <silent><leader>ra :call ReloadAllBuffers()<CR>
-
 " os: Open Session
 nnoremap <leader>os :OpenSession<SPACE>
 
+" pf: Invoke fzf
+nnoremap <silent><leader>pf :FZF<CR>
+
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<SPACE>
-
-" w: save buffer
-nnoremap <silent><leader>w :w<CR>
 
 " x: cut visual selection to system clipboard
 vnoremap <leader>x "*d

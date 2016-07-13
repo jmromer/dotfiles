@@ -22,16 +22,3 @@ nnoremap <S-h> gT
 
 " S-l: next tab
 nnoremap <S-l> gt
-
-" "  --- pane navigation ---
-" " C-j: move to the pane on below
-" nnoremap <C-j> <C-w>j
-"
-" " C-k: move to the pane above
-" nnoremap <C-k> <C-w>k
-"
-" " C-h: move to the pane on the left
-" nnoremap <C-h> <C-w>h
-"
-" " C-l: move to the pane on the right
-" nnoremap <C-l> <C-w>l
