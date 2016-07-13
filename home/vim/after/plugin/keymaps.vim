@@ -28,6 +28,9 @@ nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
 " =: re-balance vim pane sizes
 nnoremap <leader>= :wincmd =<CR>
 
+" ff: Invoke fzf
+nnoremap <silent><leader>ff :FZF<CR>
+
 " fs: save buffer
 nnoremap <silent><leader>fs :StripWhitespace<CR>:w<CR>
 
@@ -47,9 +50,6 @@ nnoremap <leader>R :redraw!<CR>
 
 " os: Open Session
 nnoremap <leader>os :OpenSession<SPACE>
-
-" pf: Invoke fzf
-nnoremap <silent><leader>pf :FZF<CR>
 
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<SPACE>
