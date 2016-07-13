@@ -109,10 +109,10 @@ tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
 # MacVim Installation
 # - Take advantage of MacVim's faster rendering engine
 #-------------------------------------------------------------
-# Note: Ensure MacVim and YouCompleteMe are compiled against non-system Python
+# Note: Ensure everything is compiled against non-system Python
 
 # Use the MacVim binary as CLI vim
-# Enable client-server (allows opening gui vim from cli vim with :guie
+# Enable client-server (allows opening gui vim from cli vim with :gui)
 # with cscope, for tags database
 # with lua (improves performance for plugins leveraging it)
 # use HEAD
