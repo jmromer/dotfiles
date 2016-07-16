@@ -40,6 +40,7 @@ function e() {
     $editor "$1"
   fi
 }
+alias ee="emacs -nw"
 
 # Fuzzy-select a file from git status to open in editor
 function eg() {
