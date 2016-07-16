@@ -110,3 +110,6 @@ brew cask install webpquicklook
 
 # for graphical terminal output (R and Octave dependency)
 brew cask install xquartz
+
+# for mockups
+brew cask install sketch
