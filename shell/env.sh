@@ -38,6 +38,7 @@ PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
 PATH+=":$N_PREFIX/bin"             # n version binaries
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
+PATH+=":/usr/local/sbin"           # homebrewed binaries
 PATH+=":/usr/bin:/bin"             # system binaries
 PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
 PATH+=":/opt/X11/bin"              # added by OSX
