@@ -2,7 +2,7 @@ scriptencoding utf-8
 set fileencodings=utf-8
 
 " --------------- General Settings ---------------------
-let mapleader = ' '   " use space as leader key
+let g:mapleader = ' ' " use space as leader key
 
 set history=50        " 50 items in command history
 set ruler             " show the cursor position all the time
@@ -12,6 +12,7 @@ set autowrite         " Automatically :write before running commands
 set lazyredraw        " Redraw for typed actions, not when executing macros
 set ttyfast           " This is a fast terminal
 set noshowmode        " don't show the current mode in the message bar
+set autowrite         " Automatically :write before running commands
 
 " Backup policy
 set backup                   " keep backup files
@@ -28,7 +29,7 @@ set incsearch     " do incremental searching
 set hlsearch      " highlight search matches by default
 set ignorecase    " case insensitive pattern matching
 set smartcase     " overrides ignorecase if pattern contains upcased chars
-let @/ = ""       " clear the search register
+let @/ = ''       " clear the search register
 :nohlsearch       " clear any previously highlighted search matches
 
 " Use Ag for grepping
@@ -79,6 +80,6 @@ set timeoutlen=500 ttimeoutlen=10
 set linebreak
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
   runtime! macros/matchit.vim
 endif
