@@ -4,10 +4,10 @@ name: github
 root: ~/github/github
 
 windows:
-  - editor: e +OpenSession
-  - shell:
-  - repl: script/console --pry
-  - server: script/server
+  - editor: emacsclient -nw
+  - repl: bin/console --pry
+  - server: bin/server
+  - zeus: bin/zeus start
   - dotfiles:
       root: ~/.dotfiles
       panes:
