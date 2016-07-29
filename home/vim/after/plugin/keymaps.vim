@@ -51,6 +51,27 @@ nnoremap <leader>R :redraw!<CR>
 " os: Open Session
 nnoremap <leader>os :OpenSession<SPACE>
 
+" wv: open vertical split
+nnoremap <leader>wv <C-w>v
+
+" ws: open split
+nnoremap <leader>ws <C-w>s
+
+" wh: navigate pane left
+nnoremap <leader>wh <C-w>h
+
+" wj: navigate pane down
+nnoremap <leader>wj <C-w>j
+
+" wk: navigate pane up
+nnoremap <leader>wk <C-w>k
+
+" wl: navigate pane right
+nnoremap <leader>wl <C-w>l
+
+" wq: close window
+nnoremap <leader>wq :quit<CR>
+
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<SPACE>
 
