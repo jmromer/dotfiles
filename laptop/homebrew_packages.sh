@@ -73,8 +73,10 @@ npm install -g \
 #-------------------------------------------------------------
 # Thoughbot
 #-------------------------------------------------------------
-for formula in rcm parity; do
-  brew install thoughtbot/formulae/"$formula"
+brew tap thoughtbot/formulae
+
+for formula in rcm parity gitsh; do
+  brew install "$formula"
 done
 
 
