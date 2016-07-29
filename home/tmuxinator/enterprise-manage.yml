@@ -4,7 +4,7 @@ name: enterprise-manage
 root: ~/github/enterprise2/enterprise-manage
 
 windows:
-  - editor: e +OpenSession
+  - editor: emacsclient -nw
   - shell:
   - repl: script/console --pry
   - server: export PATH="${PATH/\/usr\/local\/opt\/coreutils\/libexec\/gnubin://}" && script/server
