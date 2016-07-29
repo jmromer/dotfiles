@@ -81,3 +81,24 @@ vnoremap <leader>x "*d
 " v: paste from system clipboard
 nnoremap <leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
 vnoremap <leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
+
+" ---------------------- FZF ------------------------
+" buffer-select utility commands
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+" fuzzy-select from buffer list
+nnoremap <silent> <leader>bb :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
