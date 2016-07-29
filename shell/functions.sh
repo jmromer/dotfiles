@@ -6,7 +6,6 @@ function restart-postgres() {
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 }
 
-
 function skim () {
   [ -z "$1" ]   && return 1 # arg not passed
   [ ! -e "$1" ] && return 1 # file doesn't exist
@@ -169,6 +168,7 @@ alias s='bundle_or_bin rspec --format=progress'
 alias ss='bundle_or_bin rspec --format=documentation'
 alias ck='bundle_or_bin cucumber --format=progress'
 alias ckk='bundle_or_bin cucumber'
+alias t='bin/testrb_or_zt'
 
 alias rk='bundle_or_bin rake'
 alias rg='bundle_or_bin rails generate'
