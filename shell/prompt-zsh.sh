@@ -139,12 +139,13 @@ if [[ $TERM != 'eterm-color' ]]; then
     zle reset-prompt
   }
 
-  function zle-line-finish {
+  function zle-line-init {
     vim_mode=$vim_ins_mode
+    zle reset-prompt
   }
 
   zle -N zle-keymap-select
-  zle -N zle-line-finish
+  zle -N zle-line-init
 
   RPROMPT='$(color yellow)${vim_mode}$(color reset)'
   RPROMPT2='$(color yellow)${vim_mode}$(color reset)'
