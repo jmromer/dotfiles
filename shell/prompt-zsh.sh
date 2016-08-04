@@ -123,13 +123,22 @@ export PS1
 #-------------------------------------------------------------
 # Use Vim mode in Zsh
 #-------------------------------------------------------------
-bindkey -v
-export KEYTIMEOUT=1      # no lag after pressing ESC to enter normal mode
-setopt transient_rprompt # so modes for previous lines aren't displayed
 
-# ------------ Right-side prompt -----------------------------
+if [ -n "$INSIDE_EMACS" ]; then
+  # set emacs keybindings
+  bindkey -e
+else
+  # set vi keybindings
+  bindkey -v
 
-if [[ $TERM != 'eterm-color' ]]; then
+  # no lag after pressing ESC to enter normal mode
+  export KEYTIMEOUT=1
+
+  # RHS prompt
+  # ----------
+  # Don't display RHS prompts from previous lines
+  setopt transient_rprompt
+
   vim_ins_mode='[insert]'
   vim_cmd_mode='[normal]'
   vim_mode=$vim_ins_mode
