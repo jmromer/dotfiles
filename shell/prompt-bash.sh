@@ -42,6 +42,10 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 #-------------------------------------------------------------
-# Use Vim mode in Bash
+# Use Vi emulation unless in Emacs
 #-------------------------------------------------------------
-set -o vi
+if [ -n "$INSIDE_EMACS" ]; then
+  set -o emacs
+else
+  set -o vi
+fi
