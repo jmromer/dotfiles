@@ -2,7 +2,7 @@
 
 name: github
 root: ~/github/github
-pre: export GITHUB_TESTS_REAL_BROWSER=phantomjs && export BUILD_GITHUB_TAKE_SCREENSHOTS=1
+pre: export GITHUB_TESTS_REAL_BROWSER=phantomjs && export BUILD_GITHUB_TAKE_SCREENSHOTS=1 && export ENABLE_EMAIL_PREVIEWS=1
 
 windows:
   - editor: emacsclient -nw
