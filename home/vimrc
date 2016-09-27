@@ -29,3 +29,8 @@ call plug#end()
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local
 endif
+
+"-------------------------------------------------------------
+" Fix for YankRing bug
+"-------------------------------------------------------------
+let g:yankring_clipboard_monitor=0
