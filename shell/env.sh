@@ -27,6 +27,7 @@ export MANPATH
 #-------------------------------------------------------------
 PATH="$HOME/.bin"                  # user binaries
 PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
+PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
 PATH+=":$N_PREFIX/bin"             # n version binaries
@@ -114,13 +115,6 @@ fi
 #-------------------------------------------------------------
 if which rbenv > /dev/null; then
   eval "$(rbenv init - --no-rehash)"
-fi
-
-#-------------------------------------------------------------
-# EXENV
-#-------------------------------------------------------------
-if which exenv > /dev/null; then
-  eval "$(exenv init -)";
 fi
 
 #-------------------------------------------------------------
