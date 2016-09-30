@@ -25,7 +25,7 @@ export MANPATH
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="./bin:$HOME/.bin"            # user binaries
+PATH="$HOME/.bin"                  # user binaries
 PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
