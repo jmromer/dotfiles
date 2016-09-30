@@ -83,10 +83,11 @@
   conflictstyle = diff3
   ff            = no
   prompt        = false
-  tool          = vimdiff
+  tool          = vimdiff3
 
 [mergetool]
   keepBackup = false
+  path = nvim
 
 [pager]
   diff  = true
