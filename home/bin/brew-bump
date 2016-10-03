@@ -5,8 +5,8 @@ echo brew update
 brew update
 
 # upgrade packages
-echo brew upgrade --all
-brew upgrade --all
+echo brew upgrade
+brew upgrade
 
 # cleanup
 echo brew cleanup
