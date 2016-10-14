@@ -143,3 +143,9 @@ export GPG_TTY
 if [ -n "$INSIDE_EMACS" ]; then
   export EDITOR=emacsclient
 fi
+
+#-------------------------------------------------------------
+# Gtags + Pygments
+#-------------------------------------------------------------
+export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+export GTAGSLABEL=pygments
