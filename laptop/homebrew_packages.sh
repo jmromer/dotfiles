@@ -46,7 +46,6 @@ homebrew=(
   the_silver_searcher
   tmux
   tree                    # for viewing directory contents in tree format
-  vim
   zsh                     # Updated version of Zshell
   zsh-completions         # Command completions for Zshell
   zsh-syntax-highlighting # Syntax highlighting as you type
@@ -120,15 +119,11 @@ tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
 # Note: Ensure everything is compiled against non-system Python
 
 # Use the MacVim binary as CLI vim
-# Enable client-server (allows opening gui vim from cli vim with :gui)
-# with cscope, for tags database
 # with lua (improves performance for plugins leveraging it)
 # use HEAD
 
 brew install macvim \
   --with-override-system-vim  \
-  --with-client-server  \
-  --with-cscope  \
   --with-python3 \
   --with-lua  \
   --HEAD
