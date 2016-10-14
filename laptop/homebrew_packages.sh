@@ -1,13 +1,13 @@
 #-------------------------------------------------------------
 # Universal Ctags
 #-------------------------------------------------------------
-# brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 #-------------------------------------------------------------
 # Exuberant Ctags + Global
 #-------------------------------------------------------------
-brew install ctags --HEAD
-brew install global --with-ctags --with-pygments
+# brew install ctags --HEAD
+# brew install global --with-ctags --with-pygments
 
 #-------------------------------------------------------------
 # Git
