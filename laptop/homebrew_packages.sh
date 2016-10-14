@@ -1,7 +1,13 @@
 #-------------------------------------------------------------
 # Universal Ctags
 #-------------------------------------------------------------
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+# brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+#-------------------------------------------------------------
+# Exuberant Ctags + Global
+#-------------------------------------------------------------
+brew install ctags --HEAD
+brew install global --with-ctags --with-pygments
 
 #-------------------------------------------------------------
 # Git
@@ -84,7 +90,7 @@ done
 # Neovim
 #-------------------------------------------------------------
 # Python, Pip
-pip3 install --upgrade pip setuptools neovim vim-vint
+pip3 install --upgrade pip setuptools neovim vim-vint pygments
 brew install neovim/neovim/neovim
 
 
