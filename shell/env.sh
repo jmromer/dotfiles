@@ -23,24 +23,6 @@ MANPATH+="$(manpath)"
 export MANPATH
 
 #-------------------------------------------------------------
-# PATH
-#-------------------------------------------------------------
-PATH="$HOME/.bin"                  # user binaries
-PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
-PATH+=":$HOME/.exenv/bin"          # Exenv binary path
-PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
-PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
-PATH+=":$N_PREFIX/bin"             # n version binaries
-PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
-PATH+=":/usr/local/bin"            # homebrewed binaries
-PATH+=":/usr/local/sbin"           # homebrewed binaries
-PATH+=":/usr/bin:/bin"             # system binaries
-PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
-PATH+=":/opt/X11/bin"              # added by OSX
-PATH+=":/Library/TeX/texbin"       # for TeX
-export PATH
-
-#-------------------------------------------------------------
 # CD PATH
 #-------------------------------------------------------------
 # Ensure CDPATH remains unset
@@ -111,41 +93,7 @@ if [[ -z "$JAVA_HOME" && -f "$java_path" ]]; then
 fi
 
 #-------------------------------------------------------------
-# RBENV
-#-------------------------------------------------------------
-if which rbenv > /dev/null; then
-  eval "$(rbenv init - --no-rehash)"
-fi
-
-#-------------------------------------------------------------
 # Go, Elm, N / Node, et al
 #-------------------------------------------------------------
-source $HOME/.zshenv
-
-#-------------------------------------------------------------
-# GPG
-#-------------------------------------------------------------
-if [ ! -f "${HOME}/.gpg-agent-info" ]; then
-  gpg-agent \
-    --daemon \
-    --write-env-file "${HOME}/.gpg-agent-info" >/dev/null
-fi
-
-source "${HOME}/.gpg-agent-info"
-export GPG_AGENT_INFO
-
-GPG_TTY=$(tty)
-export GPG_TTY
-
-#-------------------------------------------------------------
-# Emacs
-#-------------------------------------------------------------
-if [ -n "$INSIDE_EMACS" ]; then
-  export EDITOR=emacsclient
-fi
-
-#-------------------------------------------------------------
-# Gtags + Pygments
-#-------------------------------------------------------------
-export GTAGSCONF=/usr/local/share/gtags/gtags.conf
-export GTAGSLABEL=pygments
+# shellcheck source=/dev/null
+source ~/.zshenv
