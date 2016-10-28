@@ -59,7 +59,7 @@ bindkey -M viins '^o' push-line-or-edit
 # ^t Invoke FZF file finder
 bindkey '^t' fzf-file-widget
 
-bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
+# bindkey "^[[3"  prefix-2     # ensure delete backwards deletes
 bindkey "^[[3~" delete-char  # ensure delete forwards deletes
 
 # Position cursor after ARG[0] (for argument/flag entry)
