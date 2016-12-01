@@ -12,9 +12,17 @@ opam config setup -a
 brew install go
 mkdir $HOME/.go
 mkdir -p $HOME/.go/src/github.com/user
+go get -u -v github.com/nsf/gocode
+go get -u -v github.com/rogpeppe/godef
+go get -u -v golang.org/x/tools/cmd/guru
+go get -u -v golang.org/x/tools/cmd/gorename
+go get -u -v golang.org/x/tools/cmd/goimports
 
 # Clojure
 brew install leiningen clojurescript
+
+# Python
+pip3 install --upgrade flake8
 
 # # Scala
 # brew install scala
