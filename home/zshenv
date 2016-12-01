@@ -9,6 +9,7 @@ PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
 PATH+=":$N_PREFIX/bin"             # n version binaries
+PATH+=":$HOME/.fzf/bin"            # FZF fuzzy-finder
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
 PATH+=":/usr/local/sbin"           # homebrewed binaries
