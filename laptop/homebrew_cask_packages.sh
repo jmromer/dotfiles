@@ -107,3 +107,6 @@ brew cask install sketch
 
 # window organization
 brew cask install amethyst
+
+# documentation browser
+brew cask install dash
