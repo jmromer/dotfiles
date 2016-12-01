@@ -4,7 +4,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+endif
 
 Plug 'benekastah/neomake'             " async linting, et al. best with nvim
 Plug 'chiel92/vim-autoformat'         " auto-format with supported formatters
