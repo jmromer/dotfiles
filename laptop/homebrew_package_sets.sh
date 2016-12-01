@@ -4,7 +4,9 @@
 
 # OCaml
 brew install opam
-opam install merlin
+opam install merlin utop ocp-indent
+opam init
+opam config setup -a
 
 # Go
 brew install go
