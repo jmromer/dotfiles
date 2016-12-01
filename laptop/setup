@@ -44,6 +44,18 @@ touch $log_location
 
   # ===================================================
 
+  step "Cloning spacemacs config repos"
+
+  if [ ! -d $HOME/.emacs.d ]; then
+    git clone https://github.com/syl20bnr/spacemacs $HOME/.emacs.d
+  fi
+
+  if [ ! -d $HOME/.spacemacs.d ]; then
+    git clone --recursive https://github.com/jkrmr/dot_spacemacs $HOME/.spacemacs.d
+  fi
+
+  # ===================================================
+
   step "Installing or updating Homebrew"
 
   brew_installed="$(command -v brew >/dev/null)"
@@ -78,6 +90,9 @@ touch $log_location
   # ===================================================
 
   step "Installing Rbenv, latest Ruby, RubyGems"
+
+  mkdir "$HOME/.rbenv"
+  ln -sf $LOCAL_DOTFILES/default-gems $HOME/.rbenv/default-gems
 
   eval "$(rbenv init - zsh)"
 
@@ -125,7 +140,7 @@ touch $log_location
   step "Installing GUI apps with Homebrew Cask"
   source "$HOME/.dotfiles/laptop/homebrew_cask_packages.sh"
 
-  step "Installing Package Packages"
+  step "Installing Homebrew Packages"
   source "$HOME/.dotfiles/laptop/homebrew_package_sets.sh"
 
   # ==================================================
@@ -158,21 +173,27 @@ touch $log_location
 
   # ======================================================
 
-  step "Linking remaining miscellaneous dotfiles and preferences"
+  step "Creating and linking into ~/.ssh"
 
-  ln -sf $LOCAL_DOTFILES/default-gems    $HOME/.rbenv/default-gems
+  echo mkdir $HOME/.ssh
+  mkdir $HOME/.ssh
+
+  for file in $SYNCED/ssh; do
+    echo cp $file $HOME/.ssh/
+    cp $file $HOME/.ssh/
+  done
+
+  for file in $HOME/ssh; do
+    echo chmod 600 $file
+    chmod 600 $file
+  done
 
   # ======================================================
 
   step "Creating and linking into ~/.ssh"
 
-  mkdir $HOME/.ssh
-
-  for file in $SYNCED/ssh; do
-    cp $file $HOME/.ssh/
-  done
-
-  chmod 600 $HOME/.ssh/*
+  echo ln -s ~/Dropbox/Sync/gnupg ~/.gnupg
+  ln -s ~/Dropbox/Sync/gnupg ~/.gnupg
 
   # ======================================================
 

@@ -31,6 +31,7 @@ homebrew=(
   heroku-toolbelt
   hub                     # For github-flavored git
   imagemagick
+  ispell
   openssl
   pgcli                   # Postgres CLI
   postgres
@@ -53,13 +54,14 @@ homebrew=(
 
 for package in ${homebrew[*]}; do
   echo "Installing or upgrading $package..." && echo
-  brew install --force $package
+  brew install $package
 done
 
 #-------------------------------------------------------------
 # Node
 #-------------------------------------------------------------
-curl -L https://git.io/n-install | bash
+echo "Installing n and node..."
+curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
 
 n stable
 
@@ -89,26 +91,20 @@ done
 # Neovim
 #-------------------------------------------------------------
 # Python, Pip
-pip3 install --upgrade pip setuptools neovim vim-vint pygments
 brew install neovim/neovim/neovim
+mkdir "$HOME/.config"
+ln -s "$HOME/.vim" "$HOME/.config/nvim"
+pip3 install --upgrade pip setuptools neovim vim-vint pygments
+gem install neovim
 
 
 #-------------------------------------------------------------
 # Emacs Installation
 #-------------------------------------------------------------
 brew tap d12frosted/emacs-plus
-
-brew install emacs-plus \
-     --with-cocoa \
-     --with-gnutls \
-     --with-librsvg \
-     --with-imagemagick \
-     --with-spacemacs-icon
-
+brew install emacs-plus
 brew linkapps emacs-plus
-
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-git clone --recursive https://github.com/jkrmr/dot_spacemacs ~/.spacemacs.d
+brew services start d12frosted/emacs-plus/emacs-plus
 
 tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
 

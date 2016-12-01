@@ -33,23 +33,17 @@ brew cask install google-chrome
 # web browser
 brew cask install google-chrome-canary
 
-# terminal emulator
-brew cask install iterm2-beta
-
 # Java SDK
 brew cask install java
 
 # trackpad gestures
-brew cask install jitouch
+brew cask install bettertouchtool
 
-# remaps esc to cmd
-brew cask install karabiner
+# remap cmd to esc, caps lock to ctrl
+brew cask install karabiner-elements
 
 # system-wide custom keymappings
 brew cask install keyboard-maestro
-
-# For generating TeX output
-brew cask install latexit
 
 # cmd + <space> ftw
 brew cask install launchbar
@@ -81,8 +75,8 @@ brew cask install quicklook-csv
 # Quick Look Preview: JSON files
 brew cask install quicklook-json
 
-# Slack and Gitter
-brew cask install slack gitter
+# Gitter
+brew cask install gitter
 
 # remote pairing
 brew cask install screenhero
@@ -95,9 +89,6 @@ brew cask install skype
 
 # Quick Look Preview: Mac OS X Installer Packages
 brew cask install suspicious-package
-
-# package manager for TeX
-brew cask install tex-live-utility
 
 # torrent machine
 brew cask install transmission
@@ -113,3 +104,6 @@ brew cask install xquartz
 
 # for mockups
 brew cask install sketch
+
+# window organization
+brew cask install amethyst

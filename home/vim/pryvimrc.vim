@@ -10,8 +10,16 @@ let g:solarized_italic = 0
 
 " ----------------- Load Plugins ------------------------
 call plug#begin('~/.vim/plugged')
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+endif
+
+Plug 'benekastah/neomake'             " async linting, et al. best with nvim
 Plug 'itchyny/lightline.vim'            " lightweight, configurable status line
 Plug 'jiangmiao/auto-pairs'             " automatic delimiter closing
 Plug 'jszakmeister/vim-togglecursor'    " toggle cursor between modes
