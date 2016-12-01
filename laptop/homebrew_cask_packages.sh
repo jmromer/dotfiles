@@ -6,6 +6,9 @@
 # for alternate versions (e.g. iterm2-beta)
 brew tap caskroom/versions
 
+# terminal emulator
+brew cask install iterm2-beta
+
 # password manager (NB: don't use the app store version)
 brew cask install 1password
 
