@@ -114,13 +114,6 @@ touch $log_location
 
   # ===================================================
 
-  step "Configuring Bundler"
-
-  number_of_cores=$(sysctl -n hw.ncpu)
-  bundle config --global jobs $((number_of_cores - 1))
-
-  # ===================================================
-
   step "Linking OpenSSL, Installing libyaml"
 
   brew unlink openssl && brew link openssl --force
@@ -194,6 +187,13 @@ touch $log_location
 
   echo ln -s ~/Dropbox/Sync/gnupg ~/.gnupg
   ln -s ~/Dropbox/Sync/gnupg ~/.gnupg
+
+  # ===================================================
+
+  step "Configuring Bundler"
+
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle config --global jobs "$((number_of_cores - 1))"
 
   # ======================================================
 
