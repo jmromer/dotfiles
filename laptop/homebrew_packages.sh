@@ -23,8 +23,6 @@ homebrew=(
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
   dfu-util                # KLL configuration loader
-  exenv                   # elixir version management
-  elixir-build            # elixir version installer
   gpg2                    # for PGP commit signing
   gpg-agent
   pinentry-mac
@@ -35,7 +33,7 @@ homebrew=(
   openssl
   pgcli                   # Postgres CLI
   postgres
-  python3                 # Python 3 + Pip
+  python3                 # Python 3 + Pip3
   qt
   shellcheck
   rbenv
