@@ -209,6 +209,13 @@ touch $log_location
 
   # ======================================================
 
+  step "Downloading miscellaneous installers"
+
+  echo wget -O ~/Desktop/delivery-status.zip https://junecloud.com/get/delivery-status-widget
+  wget -O ~/Desktop/delivery-status.zip https://junecloud.com/get/delivery-status-widget
+
+  # ======================================================
+
   step "Setup script is complete. Go install Xcode."
 
 ) | tee $log_location
