@@ -28,6 +28,13 @@ pip3 install --upgrade flake8
 brew install exenv elixir-build erlang
 exenv install 1.3.4
 
+# React / React Native
+brew install watchman
+npm install -g create-react-app react-native-cli webpack
+
+# Google Closure
+brew install closure-compiler closure-linter
+
 # # Scala
 # brew install scala
 # brew install sbt
