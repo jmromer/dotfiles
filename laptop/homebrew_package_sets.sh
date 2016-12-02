@@ -35,12 +35,14 @@ npm install -g create-react-app react-native-cli webpack
 # Google Closure
 brew install closure-compiler closure-linter
 
+# Haskell
+brew cask install haskell-platform
+cabal install apply-refact hlint stylish-haskell hasktags hoogle ghc-mod intero
+
 # # Scala
 # brew install scala
 # brew install sbt
 #
-# # Haskell
-# brew cask install haskell-platform
 #
 # # Vagrant
 # brew cask install virtualbox vagrant
