@@ -70,9 +70,6 @@ npm install -g \
     eslint-plugin-react \
     js-beautify \
     npm \
-    react \
-    react-native \
-    react-native-cli \
     tern \
 
 #-------------------------------------------------------------
