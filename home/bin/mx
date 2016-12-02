@@ -104,7 +104,7 @@ fi
 if [[ "$subcommand" == "create" ]]; then
   directory_name="$(basename "$PWD" | sed 's/^\.//g')"
 
-  tmuxinator copy base "$directory_name"
+  tmuxinator new "$directory_name"
 
   exit 0
 fi
