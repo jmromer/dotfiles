@@ -24,6 +24,10 @@ brew install leiningen clojurescript
 # Python
 pip3 install --upgrade flake8
 
+# Elixir
+brew install exenv elixir-build erlang
+exenv install 1.3.4
+
 # # Scala
 # brew install scala
 # brew install sbt
