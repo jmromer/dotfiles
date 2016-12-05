@@ -177,3 +177,8 @@ disable r       # disable zsh's r
 if [[ -f $HOME/.iterm2_shell_integration.zsh ]]; then
   source $HOME/.iterm2_shell_integration.zsh
 fi
+
+#-------------------------------------------------------------
+# OCaml
+#-------------------------------------------------------------
+eval `opam config env`
