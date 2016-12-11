@@ -12,7 +12,9 @@ brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 #-------------------------------------------------------------
 # Git
 #-------------------------------------------------------------
-brew install git --with-brewed-curl --with-brewed-openssl
+brew install openssl
+brew install --with-openssl curl
+brew install --with-brewed-curl --with-brewed-openssl git
 
 #-------------------------------------------------------------
 # Homebrewed Packages
@@ -30,7 +32,6 @@ homebrew=(
   hub                     # For github-flavored git
   imagemagick
   ispell
-  openssl
   pgcli                   # Postgres CLI
   postgres
   python3                 # Python 3 + Pip3
