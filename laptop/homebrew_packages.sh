@@ -24,6 +24,7 @@ homebrew=(
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
+  colordiff
   dfu-util                # KLL configuration loader
   gpg2                    # for PGP commit signing
   gpg-agent
