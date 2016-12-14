@@ -18,9 +18,6 @@ brew cask install appcleaner
 # Quick Look viewers: Zip files
 brew cask install betterzipql
 
-# video conferencing
-brew cask install blue-jeans-launcher
-
 # vpn
 brew cask install cloak
 
