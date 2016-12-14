@@ -99,7 +99,7 @@ gem install neovim
 # Emacs Installation
 #-------------------------------------------------------------
 brew tap d12frosted/emacs-plus
-brew install --HEAD emacs-plus
+brew install emacs-plus
 brew linkapps emacs-plus
 brew services start d12frosted/emacs-plus/emacs-plus
 
