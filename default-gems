@@ -5,6 +5,7 @@ fastri
 gem-ctags
 hirb
 jazz_fingers
+neovim
 pretty_backtrace
 pry
 pry-byebug
