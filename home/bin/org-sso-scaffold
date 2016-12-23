@@ -1,0 +1,211 @@
+#!/usr/bin/env ruby
+
+require "active_support/inflector"
+
+def delete_skip_before_filter(file_name)
+  if !File.exists?(file_name)
+    raise ArgumentError, "Could not find '#{file_name}'"
+  end
+
+  buffer = []
+  skip_before_filter_removed = false
+  previous_line_empty = false
+
+  File.read(file_name).each_line do |line|
+    if line =~ /skip_before_filter \:require_active_external_identity_session/
+      skip_before_filter_removed = true
+      previous_line_empty = true if buffer.last =~ /^\n$/
+    elsif line =~ /^\n$/ && skip_before_filter_removed && previous_line_empty
+      skip_before_filter_removed = false
+      previous_line_empty = false
+    else
+      skip_before_filter_removed = false
+      previous_line_empty = false
+      buffer << line
+    end
+  end
+
+  File.open(file_name, "w") do |f|
+    buffer.each { |line| f.puts line }
+  end
+end
+
+WHITELIST_FILE = "test/fixtures/require_active_external_identity_session_whitelist.txt".freeze
+
+def remove_from_whitelist(file_name)
+  unless File.exist?(WHITELIST_FILE)
+    raise ArgumentError, "Could not find whitelist file '#{WHITELIST_FILE}'"
+  end
+
+  unless File.exist?(file_name)
+    raise ArgumentError, "Could not find file '#{file_name}'"
+  end
+
+  buffer = []
+  skip_before_filter_removed = false
+  previous_line_empty = false
+
+  File.read(WHITELIST_FILE).each_line do |line|
+    if line =~ /#{file_name}/
+      skip_before_filter_removed = true
+      previous_line_empty = true if buffer.last =~ /^\n$/
+    elsif line =~ /^\n$/ && skip_before_filter_removed && previous_line_empty
+      skip_before_filter_removed = false
+      previous_line_empty = false
+    else
+      skip_before_filter_removed = false
+      previous_line_empty = false
+      buffer << line
+    end
+  end
+
+  File.open(WHITELIST_FILE, "w") do |f|
+    buffer.each { |line| f.puts line }
+  end
+end
+
+def generate_test_stubs(file_name)
+  unless File.exist?(WHITELIST_FILE)
+    raise ArgumentError, "Could not find whitelist file '#{WHITELIST_FILE}'"
+  end
+
+  controller_name = File.basename(file_name, ".rb").chomp("_test").camelize
+
+  fixtures = []
+  number_of_whitespaces = 0
+  adding_to_buffer = false
+
+  File.read(file_name).each_line do |line|
+    if line =~ /fixtures do/
+      adding_to_buffer = true
+      number_of_whitespaces = line.split("fixtures do").first.length
+      next
+    end
+
+    if line =~ /^\s{#{number_of_whitespaces}}end/
+      adding_to_buffer = false
+      next
+    end
+
+    next unless adding_to_buffer
+
+    correct_indentation = 6
+    current_indentation = number_of_whitespaces + 2
+
+    add_subtract_spaces = correct_indentation - current_indentation
+
+    if line =~ /^\n$/
+      fixtures << line
+    elsif add_subtract_spaces > 0
+      spaces = ""
+      add_subtract_spaces.times { spaces << " " }
+      fixtures << line.prepend(spaces)
+    elsif add_subtract_spaces < 0
+      fixtures << line[(add_subtract_spaces - 1)..-1]
+    else
+      fixtures << line
+    end
+  end
+
+  context_name = nil
+  verbs = "create|show|index|destroy|update|edit"
+  context_regex = /context\s"\#*(#{verbs})"\sdo/i
+  test_regex = /test \"\w+.*$/
+  test_buffer = []
+  adding_to_buffer = false
+  number_of_test_whitespaces = 0
+  adding_to_test_buffer = false
+
+  File.read(file_name).each_line do |line|
+    if md = context_regex.match(line)
+      context_name = md[1]
+      adding_to_buffer = true
+      next
+    end
+
+    if adding_to_buffer && test_regex.match(line)
+      adding_to_test_buffer = true
+      number_of_test_whitespaces = line.split(test_regex).first.length
+      next
+    end
+
+    if /^\s{#{number_of_test_whitespaces}}end/.match(line)
+      adding_to_test_buffer = false
+      break
+    end
+
+    if adding_to_test_buffer && /^(assert|refute)/.match(line).nil?
+      test_buffer << line
+
+      correct_indentation = 8
+      current_indentation = number_of_test_whitespaces + 2
+
+      add_subtract_spaces = correct_indentation - current_indentation
+
+      if add_subtract_spaces > 0
+        spaces = ''
+        add_subtract_spaces.times { spaces << ' ' }
+        fixtures << line.prepend(spaces)
+      elsif add_subtract_spaces < 0
+        fixtures << line[(add_subtract_spaces - 1)..-1]
+      else
+        fixtures << line
+      end
+    end
+  end
+
+  saml_test = <<-SAMLTEST
+
+if GitHub.external_identity_session_enforcement_enabled?
+  http_context "#{controller_name} active external identity session enforcement" do
+    include AuthenticationHelpers::SAML
+
+    fixtures do
+
+#{fixtures.join}
+
+      @saml_identity = Organization::ExternalIdentity.make
+      @saml_user = @saml_identity.user
+      @saml_org = @saml_identity.organization
+      @saml_repo = Repository.make(owner: @saml_org)
+    end
+
+    context "##{context_name}" do
+      focus
+      test "without a valid session, requires a SAML SSO" do
+        as @saml_user
+#{test_buffer.join}
+        assert_saml_sso_required
+      end
+
+      focus
+      test "with a valid session, does not require a SAML SSO" do
+        as @saml_user, external_identities: @saml_identity
+#{test_buffer.join}
+        refute_saml_sso_required
+      end
+
+      focus
+      test "with an anonymous user, responds with 404" do
+#{test_buffer.join}
+        refute_saml_sso_required(expected_status: :not_found)
+      end
+    end
+  end
+end
+  SAMLTEST
+
+  File.open(file_name, "a") { |f| f.puts(saml_test) }
+end
+
+def enforce_sso(controller)
+  controller_name = ActiveSupport::Inflector.underscore(controller)
+  implementation_file = "app/controllers/#{controller_name}.rb"
+  test_file = "test/controllers/#{controller_name}_test.rb"
+
+  delete_skip_before_filter(implementation_file)
+  remove_from_whitelist(implementation_file)
+  generate_test_stubs(test_file)
+end
+
+enforce_sso(ARGV.first)
