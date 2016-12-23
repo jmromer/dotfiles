@@ -20,8 +20,8 @@ defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Save screenshots to ~/Downloads in as JPGs (other options: BMP, GIF, PNG, PDF, TIFF)
-defaults write com.apple.screencapture location -string "${HOME}/Downloads"
-defaults write com.apple.screencapture type -string "jpg"
+# defaults write com.apple.screencapture location -string "${HOME}/Downloads"
+# defaults write com.apple.screencapture type -string "jpg"
 
 # Finder: show status bar and path bar
 defaults write com.apple.finder ShowStatusBar -bool true
