@@ -161,33 +161,27 @@ if GitHub.external_identity_session_enforcement_enabled?
     include AuthenticationHelpers::SAML
 
     fixtures do
-
-#{fixtures.join}
-
       @saml_identity = Organization::ExternalIdentity.make
       @saml_user = @saml_identity.user
       @saml_org = @saml_identity.organization
       @saml_repo = Repository.make(owner: @saml_org)
     end
 
-    context "##{context_name}" do
+    context "GET #action" do
       focus
       test "without a valid session, requires a SAML SSO" do
         as @saml_user
-#{test_buffer.join}
         assert_saml_sso_required
       end
 
       focus
       test "with a valid session, does not require a SAML SSO" do
         as @saml_user, external_identities: @saml_identity
-#{test_buffer.join}
         refute_saml_sso_required
       end
 
       focus
       test "with an anonymous user, responds with 404" do
-#{test_buffer.join}
         refute_saml_sso_required(expected_status: :not_found)
       end
     end
