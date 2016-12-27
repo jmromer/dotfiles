@@ -11,7 +11,7 @@ git bc "org-idm/$controller_name"
 org-sso-scaffold "$controller_name"
 
 git add --all
-git commit --no-verify -m "WIP: Enforce SAML SSO on $controller_name [ci skip]"
+git commit --no-verify -m "Enforce SAML SSO on $controller_name [ci skip]"
 git push
 
 org-sso-generate-pr "$controller_name"
