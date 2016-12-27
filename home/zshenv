@@ -26,6 +26,7 @@ PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
 PATH+=":$N_PREFIX/bin"             # n version binaries
 PATH+=":$HOME/.fzf/bin"            # FZF fuzzy-finder
+PATH+=":$HOME/anaconda3/bin"       # Anaconda binaries
 PATH+=":$HOME/.gem/ruby/2.3.0/bin" # user-install system Ruby gems
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
