@@ -25,7 +25,7 @@ parsed_lines = File.readlines(ROUTES_FILE)
 max_lengths = parsed_lines.transpose.map { |col| col.max_by(&:length).length }
 
 formatted_lines = parsed_lines.map do |line|
-  line.zip(max_lengths).map { |col, len| col.ljust(len) }.join("\s" * 4)
+  line.zip(max_lengths).map { |col, len| col.ljust(len) }.join("\s" * 2)
 end
 
 markdown = <<-MD
