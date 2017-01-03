@@ -33,6 +33,9 @@ touch $log_location
     getc
   fi
 
+  step "Accepting the Xcode CLI tools license"
+  sudo xcodebuild -license
+
   # ===================================================
 
   step "Cloning jkrmr/dotfiles"
@@ -121,9 +124,6 @@ touch $log_location
 
   # ===================================================
 
-  step "Accepting the Xcode CLI tools license"
-  sudo xcodebuild -license
-
   step "Installing GNU tools"
   source "$HOME/.dotfiles/laptop/gnu_tools.sh"
 
@@ -166,27 +166,26 @@ touch $log_location
 
   # ======================================================
 
-  step "Creating and linking into ~/.ssh"
+  step "Creating ~/.ssh"
 
   echo mkdir $HOME/.ssh
   mkdir $HOME/.ssh
 
-  for file in $SYNCED/ssh; do
-    echo cp $file $HOME/.ssh/
-    cp $file $HOME/.ssh/
-  done
+  echo cp $SYNCED/ssh/* $HOME/.ssh
+  cp $SYNCED/ssh/* $HOME/.ssh
 
-  for file in $HOME/ssh; do
-    echo chmod 600 $file
-    chmod 600 $file
-  done
+  echo chmod 600 $HOME/ssh/*
+  chmod 600 $HOME/ssh/*
 
   # ======================================================
 
-  step "Creating and linking into ~/.ssh"
+  step "Creating ~/.gnupg"
 
-  echo ln -s ~/Dropbox/Sync/gnupg ~/.gnupg
-  ln -s ~/Dropbox/Sync/gnupg ~/.gnupg
+  echo mkdir $HOME/.gnupg
+  mkdir $HOME/.gnupg
+
+  echo cp -r $SYNCED/gnupg/* $HOME/.gnupg
+  cp -r $SYNCED/gnupg/* $HOME/.gnupg
 
   # ===================================================
 

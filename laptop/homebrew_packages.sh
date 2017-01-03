@@ -60,9 +60,11 @@ done
 #-------------------------------------------------------------
 # Node
 #-------------------------------------------------------------
+
 echo "Installing n and node..."
 curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
 
+# TODO: reload before running this
 n stable
 
 npm install -g \
@@ -79,10 +81,7 @@ npm install -g \
 #-------------------------------------------------------------
 brew tap thoughtbot/formulae
 
-for formula in rcm parity gitsh; do
-  brew install "$formula"
-done
-
+brew install rcm parity gitsh
 
 #-------------------------------------------------------------
 # Neovim
