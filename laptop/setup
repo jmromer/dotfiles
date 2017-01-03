@@ -200,11 +200,10 @@ touch $log_location
 
   source $LOCAL_DOTFILES/osx/set_defaults.sh
 
-  # ======================================================
-
-  step "Installing Vim packages"
-
-  vim +PlugUpdate +PlugClean! +qall
+  #-------------------------------------------------------------
+  # terminfo entries
+  #-------------------------------------------------------------
+  tic $HOME/.dotfiles/terminfo/*
 
   # ======================================================
 
@@ -218,3 +217,31 @@ touch $log_location
   step "Setup script is complete. Go install Xcode."
 
 ) | tee $log_location
+
+# ======================================================
+
+#-------------------------------------------------------------
+# Node
+#-------------------------------------------------------------
+echo "Installing n and node..."
+curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
+
+source "$HOME/.zshrc"
+
+n stable
+
+npm install -g \
+    babel-eslint \
+    coffeelint \
+    eslint \
+    eslint-plugin-react \
+    js-beautify \
+    npm \
+    tern \
+
+
+#-------------------------------------------------------------
+# Vim bootstrap
+#-------------------------------------------------------------
+step "Installing Vim packages"
+source "$HOME/.zshrc"
