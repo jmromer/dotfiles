@@ -34,6 +34,7 @@ touch $log_location
   fi
 
   step "Accepting the Xcode CLI tools license"
+  echo sudo xcodebuild -license
   sudo xcodebuild -license
 
   # ===================================================
@@ -87,7 +88,7 @@ touch $log_location
   step "Setting up Dropbox (press any key when complete)"
 
   brew cask install dropbox
-  open $HOME/Applications/Dropbox.app
+  open /Applications/Dropbox.app
   getc
 
   # ===================================================
