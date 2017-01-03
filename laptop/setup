@@ -203,7 +203,13 @@ touch $log_location
   #-------------------------------------------------------------
   # terminfo entries
   #-------------------------------------------------------------
-  tic $HOME/.dotfiles/terminfo/*
+
+  step "Creating terminfo entries"
+
+  for file in $HOME/.dotfiles/terminfo/*; do
+    echo tic $file
+    tic $file
+  done
 
   # ======================================================
 
