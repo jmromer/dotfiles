@@ -34,6 +34,7 @@ PATH+=":/usr/local/sbin"           # homebrewed binaries
 PATH+=":/usr/bin:/bin"             # system binaries
 PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
 PATH+=":/opt/X11/bin"              # added by OSX
+PATH+=":/Library/TeX/texbin"
 PATH+=":$HOME/Library/texlive/2016/bin/x86_64-darwin/"
 export PATH
 
