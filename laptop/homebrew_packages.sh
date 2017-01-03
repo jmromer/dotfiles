@@ -35,6 +35,7 @@ homebrew=(
   ispell
   pgcli                   # Postgres CLI
   postgres
+  python
   python3                 # Python 3 + Pip3
   qt
   shellcheck
@@ -58,25 +59,6 @@ for package in ${homebrew[*]}; do
 done
 
 #-------------------------------------------------------------
-# Node
-#-------------------------------------------------------------
-
-echo "Installing n and node..."
-curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
-
-# TODO: reload before running this
-n stable
-
-npm install -g \
-    babel-eslint \
-    coffeelint \
-    eslint \
-    eslint-plugin-react \
-    js-beautify \
-    npm \
-    tern \
-
-#-------------------------------------------------------------
 # Thoughbot
 #-------------------------------------------------------------
 brew tap thoughtbot/formulae
@@ -90,6 +72,7 @@ brew install rcm parity gitsh
 brew install neovim/neovim/neovim
 mkdir "$HOME/.config"
 ln -s "$HOME/.vim" "$HOME/.config/nvim"
+pip install --upgrade pip setuptools neovim vim-vint pygments
 pip3 install --upgrade pip setuptools neovim vim-vint pygments
 gem install neovim
 
