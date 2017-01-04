@@ -93,6 +93,12 @@ touch $log_location
 
   # ===================================================
 
+  step "Installing user gems for system ruby"
+  echo gem install --user neovim vim-vint gem-ctags tmuxinator
+  gem install --user neovim vim-vint gem-ctags tmuxinator
+
+  # ===================================================
+
   step "Installing Rbenv, latest Ruby, RubyGems"
 
   mkdir "$HOME/.rbenv"
