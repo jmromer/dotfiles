@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "active_support/inflector"
+
+puts ActiveSupport::Inflector.underscore(ARGV.first)
