@@ -41,8 +41,9 @@ Enforcement Guide Audit
 - [x] verify `organization_for_external_identity_session` resolves to an `Organization`
 - [x] identify actions that shouldn't be filtered and `skip_before_filter :only` them
 - [x] update whitelist (remove the controller from the whitelist, if possible)
-- [x] test critical behavior/endpoints
-- [ ] `cc @github/orgs-saml-project for awareness/review`
+- [ ] if controller has xhr request add to todo list
+- [ ] test critical behavior/endpoints
+- [ ] cc github/orgs-saml-project for awareness/review
 
 Endpoints affected
 ---------------
