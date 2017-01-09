@@ -21,6 +21,25 @@
 "                          auto-completion-enable-help-tooltip t)
 "    ```
 "    </details>
+"
+function! s:CommentedLine(line)
+  echo &filetype
+  if &filetype =~# 'html\|eruby'
+    return '<!-- ' . a:line . ' -->'
+  elseif &filetype =~# 'lisp\|clojure'
+    return ';; ' . a:line
+  elseif &filetype =~# 'tex'
+    return '% ' . a:line
+  elseif &filetype =~# 'python\|ruby\|sh\|desktop\|fstab\|conf\|profile\|bash\|yaml'
+    return '# ' . a:line
+  elseif &filetype =~# 'lua'
+    return '-- ' . a:line
+  elseif &filetype =~# 'vim'
+    return '" ' . a:line
+  else
+    return '// ' . a:line
+  endif
+endfunction
 
 function! s:CurrentVCSCommit(target_dir, sha)
   if a:sha =~# 'fatal'
@@ -86,9 +105,11 @@ function! s:YankAsMarkdown(line1, line2)
   let l:remote = s:CurrentVCSRemote(l:target_directory, l:sha, l:short_path, l:filename, a:line1, a:line2)
   let l:remote_link = s:RemoteMarkdownLink(l:remote)
 
+  let l:source_comment = l:short_path . ' ' . l:line_numbers . l:commit
+  let l:comment_leader = s:CommentedLine(l:source_comment)
+
   let l:lines = getline(a:line1, a:line2)
-  let l:markdown = ['```' . &filetype,
-        \ '# ' . l:short_path . ' ' . l:line_numbers . l:commit . "\n" ]
+  let l:markdown = [ '```' . &filetype, l:comment_leader . "\n" ]
         \ + l:lines
         \ + ['```', l:remote_link]
 
