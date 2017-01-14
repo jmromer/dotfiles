@@ -69,6 +69,11 @@ def generate_test_stubs(file_name)
     raise ArgumentError, "Could not find whitelist file '#{WHITELIST_FILE}'"
   end
 
+  if !File.exists?(file_name)
+    puts "Could not find '#{file_name}'. Creating."
+    File.open(file_name, "w") { |f| f.puts("# frozen_string_literal: true") }
+  end
+
   controller_name = File.basename(file_name, ".rb").chomp("_test").camelize
 
   fixtures = []
