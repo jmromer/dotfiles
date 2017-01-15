@@ -35,8 +35,7 @@ homebrew=(
   ispell
   pgcli                   # Postgres CLI
   postgres
-  python
-  python3                 # Python 3 + Pip3
+  pyenv
   qt
   shellcheck
   rbenv
@@ -72,8 +71,6 @@ brew install rcm parity gitsh
 brew install neovim/neovim/neovim
 mkdir "$HOME/.config"
 ln -s "$HOME/.vim" "$HOME/.config/nvim"
-pip install --upgrade pip setuptools neovim vim-vint pygments
-pip3 install --upgrade pip setuptools neovim vim-vint pygments
 gem install neovim
 
 
