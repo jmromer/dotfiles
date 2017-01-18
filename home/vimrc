@@ -22,6 +22,12 @@ if filereadable(expand('~/.vimrc.local'))
 endif
 
 "-------------------------------------------------------------
+" Python interpreters
+"-------------------------------------------------------------
+let g:python_host_prog = '/Users/jkrmr/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/jkrmr/.pyenv/versions/neovim3/bin/python'
+
+"-------------------------------------------------------------
 " Fix for YankRing bug
 "-------------------------------------------------------------
 let g:yankring_clipboard_monitor=0
