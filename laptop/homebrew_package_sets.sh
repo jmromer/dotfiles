@@ -22,7 +22,10 @@ go get -u -v golang.org/x/tools/cmd/goimports
 brew install leiningen clojurescript
 
 # Python
-brew install pyenv
+# Install Pyenv
+curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+
+# Install Python 2.7
 pyenv install 2.7.13
 pyenv shell 2.7.13
 pip install --upgrade \
@@ -38,9 +41,9 @@ pip install --upgrade \
   setuptools \
   vim-vint \
 
+# Install Python3
 pyenv install 3.6.0
 pyenv global 3.6.0
-
 pip install --upgrade \
   "jedi>=0.9.0" \
   "json-rpc>=1.8.1" \

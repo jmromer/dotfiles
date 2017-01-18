@@ -35,7 +35,6 @@ homebrew=(
   ispell
   pgcli                   # Postgres CLI
   postgres
-  pyenv
   qt
   shellcheck
   rbenv
