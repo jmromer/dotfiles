@@ -33,7 +33,7 @@ markdown = <<-MD
 
 Enforces external identity session requirement on `#{CONTROLLER_CONSTANT}`.
 
-Tracking https://github.com/github/github/issues/64284
+Tracking https://github.com/github/github/issues/64286
 
 Enforcement Guide Audit
 -------------------------
