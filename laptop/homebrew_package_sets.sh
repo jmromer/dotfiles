@@ -35,7 +35,6 @@ pip install --upgrade \
   autoflake \
   flake8 \
   hy \
-  neovim \
   pip \
   pygments \
   setuptools \
@@ -51,11 +50,18 @@ pip install --upgrade \
   autoflake \
   flake8 \
   hy \
-  neovim \
   pip \
   pygments \
   setuptools \
   vim-vint \
+
+# Set up neovim virtualenvs
+pyenv virtualenv 2.7.13 neovim2
+pyenv virtualenv 3.6.0 neovim3
+pyenv activate neovim2
+pip install neovim flake8
+pyenv activate neovim3
+pip install neovim flake8
 
 # Elixir
 brew install exenv elixir-build erlang
