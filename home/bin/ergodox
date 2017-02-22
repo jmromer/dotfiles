@@ -13,12 +13,12 @@ CONFIG_DIR="$HOME/.dotfiles/kll_config"
 function flash_ergodox() {
   [[ -z "$1" ]] && echo "missing 'left' or 'right' argument" && exit 1
 
-  if [[ ! -z "$(ls "$DOWNLOAD_DIR"/MDErgo1-Default-*.zip 2> /dev/null)" ]]; then
+  if [[ ! -z "$(ls "$DOWNLOAD_DIR"/MDErgo1-*.zip 2> /dev/null)" ]]; then
     rm -rf "$CONFIG_DIR"
     mkdir "$CONFIG_DIR"
 
     echo "Unzipping KLL configuration to $CONFIG_DIR ..."
-    unzip "$DOWNLOAD_DIR"/MDErgo1-Default-*.zip -d "$CONFIG_DIR"
+    unzip "$DOWNLOAD_DIR"/MDErgo1-*.zip -d "$CONFIG_DIR"
     echo
   fi
 
@@ -29,15 +29,15 @@ function flash_ergodox() {
 
 
   echo "Removing KLL configuration zip file..."
-  rm -i "$DOWNLOAD_DIR"/MDErgo1-Default-*.zip
+  rm -i "$DOWNLOAD_DIR"/MDErgo1-*.zip
   echo
 }
 
 function copy_json_to_pasteboard() {
-  [[ ! -e "$CONFIG_DIR/MDErgo1-Default.json" ]] && exit 1
+  [[ ! -e "$CONFIG_DIR/MDErgo1-Blank.json" ]] && exit 1
 
-  echo "pbcopy < $CONFIG_DIR/MDErgo1-Default.json"
-  pbcopy < "$CONFIG_DIR"/MDErgo1-Default.json
+  echo "pbcopy < $CONFIG_DIR/MDErgo1-Blank.json"
+  pbcopy < "$CONFIG_DIR"/MDErgo1-Blank.json
 }
 
 
