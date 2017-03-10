@@ -136,10 +136,7 @@
             "w": 4,
             "h": 6,
             "layers": {
-                "0": {
-                    "key": "LCK1",
-                    "label": "LOCK-1"
-                }
+
             }
         },
         {
@@ -331,10 +328,7 @@
             "w": 4,
             "h": 6,
             "layers": {
-                "0": {
-                    "key": "LCK2",
-                    "label": "LOCK-2"
-                }
+
             }
         },
         {
@@ -423,8 +417,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "LCTRL",
-                    "label": "LCTRL"
+                    "key": "FUN2",
+                    "label": "\u01922"
                 }
             }
         },
@@ -436,8 +430,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "LGUI",
-                    "label": "LGUI"
+                    "key": "FUN1",
+                    "label": "\u01921"
                 }
             }
         },
@@ -513,10 +507,7 @@
             "w": 4,
             "h": 4,
             "layers": {
-                "0": {
-                    "key": "FUN2",
-                    "label": "\u01922"
-                }
+
             }
         },
         {
@@ -526,10 +517,7 @@
             "w": 4,
             "h": 4,
             "layers": {
-                "0": {
-                    "key": "FUN1",
-                    "label": "\u01921"
-                }
+
             }
         },
         {
@@ -675,10 +663,7 @@
             "w": 4,
             "h": 6,
             "layers": {
-                "0": {
-                    "key": "LAT1",
-                    "label": "LATCH-1"
-                }
+
             }
         },
         {
@@ -922,10 +907,7 @@
             "w": 4,
             "h": 6,
             "layers": {
-                "0": {
-                    "key": "LAT2",
-                    "label": "LATCH-2"
-                }
+
             }
         },
         {
@@ -1030,8 +1012,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "RCTRL",
-                    "label": "RCTRL"
+                    "key": "FUN2",
+                    "label": "\u01922"
                 }
             }
         },
@@ -1043,8 +1025,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "RGUI",
-                    "label": "RGUI"
+                    "key": "FUN1",
+                    "label": "\u01921"
                 }
             }
         },
@@ -1082,12 +1064,12 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "ESCAPE",
-                    "label": "ESC"
+                    "key": "ENTER",
+                    "label": "\u21b5"
                 },
                 "2": {
-                    "key": "P=",
-                    "label": "P="
+                    "key": "P0",
+                    "label": "P0"
                 }
             }
         },
@@ -1099,12 +1081,12 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "RALT",
-                    "label": "RALT"
+                    "key": "ESCAPE",
+                    "label": "ESC"
                 },
                 "2": {
-                    "key": "P0",
-                    "label": "P0"
+                    "key": "P.",
+                    "label": "P."
                 }
             }
         },
@@ -1120,8 +1102,8 @@
                     "label": "["
                 },
                 "2": {
-                    "key": "P.",
-                    "label": "P."
+                    "key": "P=",
+                    "label": "P="
                 }
             }
         },
@@ -1133,8 +1115,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "ENTER",
-                    "label": "\u21b5"
+                    "key": "RBRACE",
+                    "label": "]"
                 },
                 "2": {
                     "key": "P*",
@@ -1149,10 +1131,7 @@
             "w": 4,
             "h": 4,
             "layers": {
-                "0": {
-                    "key": "RBRACE",
-                    "label": "]"
-                }
+
             }
         }
     ]

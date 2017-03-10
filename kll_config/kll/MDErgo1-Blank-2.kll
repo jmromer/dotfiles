@@ -31,8 +31,8 @@ U"M" : U"P1";
 U"COMMA" : U"P2";
 U"PERIOD" : U"P3";
 U"SLASH" : U"P/";
-U"LEFT" : U"P=";
-U"DOWN" : U"P0";
-U"UP" : U"P.";
+U"LEFT" : U"P0";
+U"DOWN" : U"P.";
+U"UP" : U"P=";
 U"RIGHT" : U"P*";
 
