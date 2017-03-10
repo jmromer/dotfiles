@@ -26,7 +26,8 @@ export MANPATH
 # CD PATH
 #-------------------------------------------------------------
 # Ensure CDPATH remains unset
-unset CDPATH
+# unset CDPATH
+export CDPATH="$HOME:$HOME/projects:$HOME/Documents"
 
 #-------------------------------------------------------------
 # SYNTAX HIGHLIGHTING
