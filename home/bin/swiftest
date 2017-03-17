@@ -10,6 +10,7 @@ set -e
 # fuzzy-select a test
 selection="$(xcrun swift test -l |\
              grep --invert-match -E 'Compile|Linking' |\
+             grep "/" |\
              sed -E 's/\w+\.\w+\/(\w+)/\1/' |\
              fzf)"
 
