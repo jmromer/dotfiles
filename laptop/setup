@@ -171,6 +171,10 @@ touch $log_location
   ln -s $HOME/.dotfiles/rcrc $HOME/.rcrc
   rcup
 
+  mkdir $HOME/.config
+  ln -s $SYNCED/hub $HOME/.config/hub
+  ln -s $SYNCED/karabiner $HOME/.config/karabiner
+
   # ======================================================
 
   step "Creating ~/.ssh"
