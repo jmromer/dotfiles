@@ -1,7 +1,7 @@
 # shell/functions.sh
 
 # restart homebrewed postgres
-function restart-postgres() {
+function restart_postgres() {
   launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 }

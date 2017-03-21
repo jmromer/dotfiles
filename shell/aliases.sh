@@ -63,11 +63,11 @@ alias hr='heroku run'
 alias hrk='heroku run rake'
 alias hlg='heroku logs --tail'
 
-function heroku-reset() {
+function heroku_reset() {
   hreset "$1"
   heroku run rake db:migrate db:seed
 }
 
-function heroku-dropdb() {
+function heroku_dropdb() {
   heroku pg:reset DATABASE --confirm "$1"
 }
