@@ -145,16 +145,16 @@
   f        = fetch
   file-mod = branch-modified-files
   file-del = branch-deleted-files
-  h        = log --format=brief --abbrev-commit
-  hb       = h HEAD --not origin/master
-  hm       = h --merge
-  hnm      = h --no-merges --show-linear-break
-  hg       = h --graph
-  hh       = !sh -c 'git h | head $1' -
-  hdiff    = h -U1
-  hfiles   = h --format=medium --stat
-  hsince   = !sh -c 'git h --since=$1' -
-  hstat    = h --stat
+  h        = log --format=brief --abbrev-commit --graph
+  hg       = log --format=brief --abbrev-commit
+  hb       = hg HEAD --not origin/master
+  hm       = hg --merge
+  hnm      = hg --no-merges --show-linear-break
+  hh       = !sh -c 'git hg | head $1' -
+  hdiff    = hg -U1
+  hfiles   = hg --format=medium --stat
+  hsince   = !sh -c 'git hg --since=$1' -
+  hstat    = hg --stat
   i        = init
   lg       = log --grep
   lgr      = log --walk-reflogs --grep
