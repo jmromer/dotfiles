@@ -88,7 +88,6 @@ values."
      )
    dotspacemacs-excluded-packages
    '(
-     ox-gfm ;; use local version for now
      )
    dotspacemacs-delete-orphan-packages t))
 
@@ -183,7 +182,9 @@ values."
  '(magit-diff-use-overlays nil)
  '(magit-repository-directories (quote (("~/github" . 1) ("~/projects" . 1))))
  '(org-confirm-babel-evaluate nil)
- '(paradox-automatically-star t)
+ '(package-selected-packages
+   (quote
+    (hyde yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vimrc-mode vimish-fold vi-tilde-fringe uuidgen utop use-package tuareg toc-org tagedit swift-mode sql-indent spacemacs-theme spaceline smeargle slim-mode sicp shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ocp-indent ob-http ob-elixir noflet neotree mwim multi-term move-text mmm-mode minitest merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hunks helm-gitignore helm-fuzzier helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-rails evil-quickscope evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elm-mode elisp-slime-nav dumb-jump diff-hl deft dash-at-point dactyl-mode cython-mode company-web company-tern company-statistics company-quickhelp company-go company-auctex company-anaconda command-log-mode column-enforce-mode coffee-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(projectile-git-command "git ls-files -zco --exclude-standard")
@@ -206,11 +207,7 @@ values."
            (quote exec-path)
            (concat
             (projectile-project-root)
-            "bin"))
-     (minitest-default-command . "bin/testrb_or_zt")
-     (minitest-default-command "bin/testrb_or_zt" "-v")
-     (minitest-default-command "bin/testrb_or_zt")
-     (minitest-use-bundler))))
+            "bin")))))
  '(spacemacs-theme-comment-bg nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -261,15 +258,10 @@ values."
   (config/evil-cleverparens)
   (config/highlight-sexp)
   (config/highlight-lines-at-length 80)
-  (config/minitest-github)
   (config/evil-rails)
 
   (load "exercism-emacs/exercism.el")
   (require 'exercism)
-
-  ;; configure org-babel for elixir
-  (load "ob-elixir/ob-elixir.el")
-  (require 'ob-elixir)
 
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((emacs-lisp . t)
@@ -476,8 +468,6 @@ values."
   ;; org-related config (must go in here to avoid conflicts between elpa and
   ;; builtin org modes)
 
-  ;; Load custom ox-gfm with bugfixes
-  ;; (load "ox-gfm/ox-gfm.el")
   ;; (setq-default org-md-headline-style 'setext)
   (with-eval-after-load 'org
     '(progn
@@ -678,17 +668,6 @@ Includes a filename comment annotation."
   "Configure evil-rails.
 https://github.com/antono/evil-rails."
   (use-package "evil-rails"))
-
-(defun config/minitest-github ()
-  "Configure minitest-github.el.
-https://github.com/jkrmr/minitest-github.el."
-  (load "minitest-github.el/minitest-github.el")
-  (require 'minitest-github)
-  (spacemacs/declare-prefix-for-mode 'ruby-mode "m" "minitest-github")
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "mm" 'minitest-verify-single)
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "mf" 'minitest-verify)
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "ma" 'minitest-verify-all)
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "mr" 'minitest-rerun))
 
 (defun config/highlight-sexp ()
   "Configure highlight-sexp.
