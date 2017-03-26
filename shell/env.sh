@@ -105,6 +105,11 @@ export TEXDIR="$HOME/Library/texlive/2016"
 export TEXMFHOME="$HOME/Library/texmf"
 
 #-------------------------------------------------------------
+# Python / Pyenv
+#-------------------------------------------------------------
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
+#-------------------------------------------------------------
 # Go, Elm, N / Node, et al
 #-------------------------------------------------------------
 # shellcheck source=/dev/null
