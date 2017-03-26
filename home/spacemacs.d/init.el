@@ -253,7 +253,7 @@ values."
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
   ;; Add local packages directory to load path
-  (add-to-list 'load-path "~/.spacemacs.d/local")
+  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
   (config/evil-cleverparens)
   (config/highlight-sexp)
