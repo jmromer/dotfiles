@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Benchmark.bmbm(...) do ... end
+# group: general
+# key: bm
+# --
+Benchmark.bmbm(${1:10}) do |x|
+  $0
+end
