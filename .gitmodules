@@ -9,3 +9,6 @@
 [submodule "home/spacemacs.d/local/jekyll"]
 	path = home/spacemacs.d/local/jekyll
 	url = https://github.com/jkrmr/spacemacs-jekyll.git
+[submodule "home/spacemacs.d/local/highlight-sexp"]
+	path = home/spacemacs.d/local/highlight-sexp
+	url = https://github.com/daimrod/highlight-sexp.git
