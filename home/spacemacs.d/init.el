@@ -43,7 +43,7 @@ values."
      (latex :variables
             latex-enable-auto-fill t
             latex-enable-folding t)
-     markdown
+     (markdown :variables markdown-live-preview-engine 'vmd-mode)
      ocaml
      (org :variables
           org-enable-github-support t)
