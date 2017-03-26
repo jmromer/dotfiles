@@ -12,3 +12,6 @@
 [submodule "home/spacemacs.d/local/highlight-sexp"]
 	path = home/spacemacs.d/local/highlight-sexp
 	url = https://github.com/daimrod/highlight-sexp.git
+[submodule "home/spacemacs.d/local/exercism-emacs"]
+	path = home/spacemacs.d/local/exercism-emacs
+	url = https://github.com/canweriotnow/exercism-emacs.git
