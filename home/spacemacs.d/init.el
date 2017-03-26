@@ -309,8 +309,8 @@ values."
   ;; In evil ex buffer, backward char like emacs
   (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
 
-  ;; By default, soft-wrap lines longer than line length
-  ;; (set-default 'truncate-lines nil)
+  ;; By default, don't soft-wrap lines longer than line length
+  (set-default 'truncate-lines nil)
 
   ;; enable evil-quickscope-mode
   (global-evil-quickscope-mode 1)
