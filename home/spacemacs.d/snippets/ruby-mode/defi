@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: def initialize ... end
+# key: defi
+# --
+def initialize${1:(${2:args})}
+    ${2:$(yas/to-ruby-ivars-list yas/text)}
+end
