@@ -260,8 +260,9 @@ values."
   (config/highlight-lines-at-length 80)
   (config/evil-rails)
 
+  (setq-default exercism-dir (format "%s/code/exercism" (getenv "HOME")))
+  (setq-default exercism-auto-enable nil)
   (load "exercism-emacs/exercism.el")
-  (setq-default exercism-dir (format "%s/exercism" (getenv "HOME")))
   (require 'exercism)
 
   (org-babel-do-load-languages 'org-babel-load-languages
