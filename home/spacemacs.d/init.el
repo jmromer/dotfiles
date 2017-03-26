@@ -260,6 +260,7 @@ values."
   (config/evil-rails)
 
   (load "exercism-emacs/exercism.el")
+  (setq-default exercism-dir (format "%s/exercism" (getenv "HOME")))
   (require 'exercism)
 
   (org-babel-do-load-languages 'org-babel-load-languages
