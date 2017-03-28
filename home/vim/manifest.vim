@@ -7,6 +7,8 @@ endfunction
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+else
+  Plug 'Valloric/YouCompleteMe', { 'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
 endif
 
 Plug 'benekastah/neomake'             " async linting, et al. best with nvim
