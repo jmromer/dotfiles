@@ -3,7 +3,7 @@
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
 alias vi='nvim -u ~/.vim/minimal.vim'
-alias vimplug='nvim +PlugUpdate +PlugClean! +qall'
+alias vimplug='nvim +PlugUpdate +qall'
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
