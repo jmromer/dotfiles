@@ -15,3 +15,6 @@
 [submodule "home/spacemacs.d/local/exercism-emacs"]
 	path = home/spacemacs.d/local/exercism-emacs
 	url = https://github.com/canweriotnow/exercism-emacs.git
+[submodule "jekyll"]
+	path = home/spacemacs.d/layers/jekyll
+	url = https://github.com/0x414A/spacemacs-jekyll
