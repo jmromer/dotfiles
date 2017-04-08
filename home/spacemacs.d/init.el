@@ -255,6 +255,9 @@ values."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
+  ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
+  (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
+
   (config/evil-cleverparens)
   (config/highlight-sexp)
   (config/highlight-lines-at-length 80)
