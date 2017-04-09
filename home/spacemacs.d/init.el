@@ -397,8 +397,8 @@ values."
   (define-key evil-normal-state-map (kbd "zfa") #'vimish-fold-toggle)
 
   ;; magit switches
-  (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
   (with-eval-after-load 'magit
+    (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
     '(magit-define-popup-switch 'magit-log-popup
        ?m "Omit merge commits" "--no-merges"))
   (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
