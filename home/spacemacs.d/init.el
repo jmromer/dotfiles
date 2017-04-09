@@ -269,6 +269,9 @@ values."
   (load "exercism-emacs/exercism.el")
   (require 'exercism)
 
+  ;; Org mode
+  ;; ==========
+
   (load "ob-elixir/ob-elixir.el")
   (require 'ob-elixir)
 
@@ -282,6 +285,38 @@ values."
                                  (python . t)
                                  (ruby . t)
                                  (sh . t)))
+
+  (with-eval-after-load 'org
+    (setq org-babel-default-header-args:python
+          (cons '(:results . "value pp")
+                (assq-delete-all :results org-babel-default-header-args:python)))
+
+    (setq org-babel-default-header-args:elixir
+          (cons '(:results . "value")
+                (assq-delete-all :results org-babel-default-header-args:elixir)))
+
+    (setq org-babel-default-header-args:elixir
+          (cons '(:preamble . "Code.compiler_options(ignore_module_conflict: true)")
+                (assq-delete-all :preamble org-babel-default-header-args:elixir)))
+
+    ;; add <p for python expansion
+    (add-to-list 'org-structure-template-alist
+                 '("p"
+                   "#+BEGIN_SRC python\n?\n#+END_SRC"
+                   "<src lang=\"python\">\n?\n</src>"))
+
+    ;; add <x for elixir expansion
+    (add-to-list 'org-structure-template-alist
+                 '("x"
+                   "#+BEGIN_SRC elixir\n?\n#+END_SRC"
+                   "<src lang=\"elixir\">\n?\n</src>"))
+
+    ;; add <el for emacs-lisp expansion
+    (add-to-list 'org-structure-template-alist
+                 '("el"
+                   "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
+                   "<src lang=\"emacs-lisp\">\n?\n</src>"))
+)
 
   ;; ===========================================================================
   ;; Hyde settings
