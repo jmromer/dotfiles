@@ -18,3 +18,6 @@
 [submodule "jekyll"]
 	path = home/spacemacs.d/layers/jekyll
 	url = https://github.com/0x414A/spacemacs-jekyll
+[submodule "ob-elixir"]
+	path = home/spacemacs.d/local/ob-elixir
+	url = https://github.com/jkrmr/ob-elixir.git
