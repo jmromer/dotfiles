@@ -11,16 +11,24 @@ else
   Plug 'Valloric/YouCompleteMe', { 'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
 endif
 
-" Plug 'benekastah/neomake'             " async linting, et al. best with nvim
+Plug 'benekastah/neomake'              " async linting, et al. best with nvim
+Plug 'kien/rainbow_parentheses.vim'    " delimiter highlighting
+Plug 'ntpeters/vim-better-whitespace'  " detect and highlight bad whitespace
+Plug 'tpope/vim-surround'              " surround text block with delimiters
+Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
+Plug 'christoomey/vim-system-copy'     " cp
+Plug 'christoomey/vim-sort-motion'     " gs[ai][p({]
+Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
+Plug 'SirVer/ultisnips'                " snippets engine, integrates with YCM
+Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
+
+" Plug 'unblevable/quick-scope'          " highlight chars for jumping
 " Plug 'chiel92/vim-autoformat'         " auto-format with supported formatters
 " Plug 'dkprice/vim-easygrep'           " global search-and-replace
-" Plug 'itchyny/lightline.vim'          " lightweight, configurable status line
 " Plug 'jiangmiao/auto-pairs'           " automatic delimiter closing
 " Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 " Plug 'junegunn/vim-peekaboo'          " register preview
-" Plug 'kien/rainbow_parentheses.vim'   " delimiter highlighting
 " Plug 'mhinz/vim-hugefile'             " disable options for huge files
-" Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 " Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
 " Plug 'rizzatti/dash.vim'              " search Dash documentation
 " Plug 'tpope/vim-eunuch'               " Unix commands in vim
@@ -44,7 +52,6 @@ endif
 " Plug 'tpope/vim-unimpaired'      " useful complementary mappings
 " Plug 'vim-scripts/visualrepeat'  " extends dot operator to visual mode
 " Plug 'zirrostig/vim-schlepp'     " move visual blocks / lines around
-" Plug 'unblevable/quick-scope'    " highlight chars for jumping
 "
 " " Text objects
 " Plug 'kana/vim-textobj-entire' " Adds ae/ie
@@ -52,26 +59,11 @@ endif
 " Plug 'kana/vim-textobj-user'   " custom text objects
 " Plug 'kana/vim-textobj-line'   " Adds l
 "
-" " Motions
-" Plug 'christoomey/vim-sort-motion'     " gs[ai][p({]
-" Plug 'christoomey/vim-system-copy'     " cp
-" Plug 'tommcdo/vim-exchange'            " text exchange operator cx, cxx, X, cxc
-" Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
-" Plug 'tpope/vim-surround'              " surround text block with delimiters
-" Plug 'vim-scripts/ReplaceWithRegister' " griw
-"
 " " Tmux, Tmux runners
 " Plug 'tpope/vim-tbone'             " basic tmux support
 " Plug 'benmills/vimux'              " interact with tmux from vim
 " Plug 'janko-m/vim-test'            " runner for rspec, cucumber, et al.
 " Plug 'bswinnerton/vim-test-github' " vim-test extension for github
-"
-" " Git
-" Plug 'airblade/vim-gitgutter' " git diff in the gutter
-" Plug 'tpope/vim-fugitive'     " side-by-side git blame with :Gblame
-"
-" " Code snippets
-" Plug 'SirVer/ultisnips' " snippets engine, integrates with YCM
 "
 " " Display conveniences
 " Plug 'Yggdroot/indentLine' " display indentation guides with :IndentLineToggle
@@ -125,8 +117,5 @@ endif
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure'}
 "
 " " -------- Configure -----------
-" Plug 'Konfekt/FastFold'               " optimized folding for large projects
-" Plug 'rking/ag.vim', { 'on': 'Ag' }   " Ag conveniences
-" Plug 'vim-scripts/YankRing.vim'       " maintain yank/del history
 
 " -------- Probationary -----------
