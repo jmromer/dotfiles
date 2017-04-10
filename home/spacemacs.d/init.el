@@ -38,7 +38,8 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
-     javascript
+     (javascript :variables
+                 tern-command '("node" "~/.node/bin/tern"))
      jekyll
      (latex :variables
             latex-enable-auto-fill t
