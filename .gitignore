@@ -22,3 +22,4 @@ home/emacs.d/ido.last
 home/bundle/cache
 home/lein/repl-port
 home/spacemacs.d/local/sensitive
+default.vim
