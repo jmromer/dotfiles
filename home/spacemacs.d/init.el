@@ -319,7 +319,7 @@ values."
                  '("el"
                    "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
                    "<src lang=\"emacs-lisp\">\n?\n</src>"))
-)
+    )
 
   ;; ===========================================================================
   ;; Hyde settings
