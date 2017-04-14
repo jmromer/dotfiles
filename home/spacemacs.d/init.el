@@ -323,7 +323,7 @@ values."
 
   ;; ===========================================================================
   ;; Hyde settings
-  (setq-default hyde-home "~/projects/jakeromer/")
+  (setq-default hyde-home "~/code/jakeromer/")
 
   ;; prevent visual selection from overriding system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
