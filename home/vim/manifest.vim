@@ -21,6 +21,10 @@ Plug 'christoomey/vim-sort-motion'     " gs[ai][p({]
 Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
 Plug 'SirVer/ultisnips'                " snippets engine, integrates with YCM
 Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
+Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': ['ruby']  }
+Plug 'tpope/vim-vinegar'              " enhancements to netrw
+Plug 'tpope/vim-git'                  " git commit filetype settings, et al
 
 " Plug 'unblevable/quick-scope'          " highlight chars for jumping
 " Plug 'chiel92/vim-autoformat'         " auto-format with supported formatters
@@ -32,38 +36,23 @@ Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
 " Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
 " Plug 'rizzatti/dash.vim'              " search Dash documentation
 " Plug 'tpope/vim-eunuch'               " Unix commands in vim
-" Plug 'tpope/vim-git'                  " git commit filetype settings, et al
 " Plug 'tpope/vim-rhubarb'              " GitHub extension for fugitive.vim
 " Plug 'tpope/vim-rsi'                  " smart readline bindings in cmode et al
 " Plug 'tpope/vim-sleuth'               " detect indentation level
-" Plug 'tpope/vim-vinegar'              " enhancements to netrw
 " Plug 'vim-scripts/netrw.vim'          " older (bug-free) version of netrw
 " Plug 'vitorgalvao/autoswap_mac'       " auto-respond to swap file message
 " Plug 'wesQ3/vim-windowswap'           " move panes around with <leader>ww
 " Plug 'xolox/vim-easytags'             " automatically updated ctags
 " Plug 'xolox/vim-misc' | Plug 'xolox/vim-session' " session management
-" Plug 'xolox/vim-reload'               " reload vimrc files automatically
-"
-" " Speedy text editing
-" Plug 'AndrewRadev/splitjoin.vim' " toggle between single- and multi-line code
+
+" Speedy text editing
 " Plug 'junegunn/vim-easy-align'   " text alignment
-" Plug 'tpope/vim-repeat'          " repeat last mapped command with `.`
-" Plug 'tpope/vim-speeddating'     " increment dates, times, and more
 " Plug 'tpope/vim-unimpaired'      " useful complementary mappings
-" Plug 'vim-scripts/visualrepeat'  " extends dot operator to visual mode
-" Plug 'zirrostig/vim-schlepp'     " move visual blocks / lines around
-"
-" " Text objects
-" Plug 'kana/vim-textobj-entire' " Adds ae/ie
-" Plug 'kana/vim-textobj-indent' " Adds i
-" Plug 'kana/vim-textobj-user'   " custom text objects
-" Plug 'kana/vim-textobj-line'   " Adds l
-"
+
 " " Tmux, Tmux runners
 " Plug 'tpope/vim-tbone'             " basic tmux support
 " Plug 'benmills/vimux'              " interact with tmux from vim
 " Plug 'janko-m/vim-test'            " runner for rspec, cucumber, et al.
-" Plug 'bswinnerton/vim-test-github' " vim-test extension for github
 "
 " " Display conveniences
 " Plug 'Yggdroot/indentLine' " display indentation guides with :IndentLineToggle
@@ -85,13 +74,11 @@ Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
 " Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
 " Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 " Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-" Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
 " Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 " Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
 " Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 " Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
 " Plug 'tpope/vim-bundler'
-" Plug 'tpope/vim-rails'
 " Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 " Plug 'slim-template/vim-slim', { 'for': 'slim' }
 "
