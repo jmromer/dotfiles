@@ -1,8 +1,10 @@
 " ----------------- Base Settings ------------------------
 set nocompatible
 filetype plugin indent on
+scriptencoding utf-8
+set fileencodings=utf-8
 
-" Don't display 'Pattern not found' messages
+" Suppress 'Pattern not found' messages
 set shortmess+=c
 
 " add fzf to rtp
@@ -16,11 +18,6 @@ call plug#begin('~/.vim/plugged')
   source $HOME/.vim/manifest.vim
 call plug#end()
 
-" ---------------- Overrides  --------------------------
-if filereadable(expand('~/.vimrc.local'))
-  source $HOME/.vimrc.local
-endif
-
 "-------------------------------------------------------------
 " Python interpreters
 "-------------------------------------------------------------
@@ -32,49 +29,35 @@ let g:python3_host_prog = '/Users/jkrmr/.pyenv/versions/neovim3/bin/python'
 "-------------------------------------------------------------
 let g:yankring_clipboard_monitor=0
 
+"--------------------------------------------------------------
+" netrw
+"--------------------------------------------------------------
+let g:netrw_liststyle = 4   " 4 lightweight, 3 tree
+let g:netrw_preview   = 1   " open previews in vertical split (p)
+let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
+let g:netrw_banner    = 0
+
+"--------------------------------------------------------------
+" Vim Session: session autosave
+"--------------------------------------------------------------
+let g:session_default_overwrite = 1
+let g:session_autosave = 'no'
+
+"--------------------------------------------------------------
+" Rainbow parentheses
+"--------------------------------------------------------------
+augroup rainbow_parentheses
+  autocmd!
+
+  autocmd VimEnter * RainbowParenthesesToggle
+  autocmd Syntax * RainbowParenthesesLoadRound
+  autocmd Syntax * RainbowParenthesesLoadSquare
+  autocmd Syntax * RainbowParenthesesLoadBraces
+augroup END
+
 "-------------------------------------------------------------
-" OCaml setup
+" Restore position
 "-------------------------------------------------------------
-" add ocp-indent, merlin to rtp
-let g:opamshare = substitute(system('opam config var share 2> /dev/null'),'\n$','','''')
-execute 'set rtp+=' . g:opamshare . '/ocp-indent/vim'
-execute 'set rtp+=' . g:opamshare . '/merlin/vim'
-execute 'helptags ' . g:opamshare . '/merlin/vim/doc'
-
-" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
-let s:opam_share_dir = system("opam config var share")
-let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
-
-let s:opam_configuration = {}
-
-function! OpamConfOcpIndent()
-  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
-endfunction
-let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
-
-function! OpamConfOcpIndex()
-  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
-endfunction
-let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
-
-function! OpamConfMerlin()
-  let l:dir = s:opam_share_dir . "/merlin/vim"
-  execute "set rtp+=" . l:dir
-endfunction
-let s:opam_configuration['merlin'] = function('OpamConfMerlin')
-
-let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
-let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
-let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
-for tool in s:opam_packages
-  " Respect package order (merlin should be after ocp-index)
-  if count(s:opam_available_tools, tool) > 0
-    call s:opam_configuration[tool]()
-  endif
-endfor
-" ## end of OPAM user-setup addition for vim / base ## keep this line
-
-" autocommands
 augroup vimrcEx
   autocmd!
 
@@ -91,7 +74,9 @@ augroup vimrcEx
   autocmd VimResized * :wincmd =
 augroup END
 
+"-------------------------------------------------------------
 " Colors
+"-------------------------------------------------------------
 " Base vim settings
 set t_Co=256  " 256 color terminal
 
@@ -107,9 +92,28 @@ endif
 set background=dark
 colorscheme solarized
 
+"--------------------------------------------------------------
+" Line numbering
+"--------------------------------------------------------------
+set numberwidth=1
+set relativenumber
+set number
+
+" Toggle relative and absolute numbering
+function! NumberToggle()
+  if &relativenumber == 1
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+    set number
+  endif
+endfunction
+
+"--------------------------------------------------------------
 " Folding
+"--------------------------------------------------------------
 " Enable folding based on indentation (faster than syntax)
-" set foldmethod=indent
 set foldmethod=syntax
 
 " Initial fold only 1 level deep
@@ -153,22 +157,47 @@ if has('folding')
   endfunction
 endif
 
-" general
-scriptencoding utf-8
-set fileencodings=utf-8
+"--------------------------------------------------------------
+" Navigation / Window Management
+"--------------------------------------------------------------
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
 
-" --------------- General Settings ---------------------
+" --- window resizing ---
+nnoremap <Left>  <C-w><
+nnoremap <Right> <C-w>>
+nnoremap <Down>  <C-w>+
+nnoremap <Up>    <C-w>-
+
+" --- buffer navigation ---
+" C-e: Scroll window up by 5 lines
+nnoremap <C-e> 5<C-e>
+
+" C-y: Scroll window down by 5 lines
+nnoremap <C-y> 5<C-y>
+
+" --- tab navigation ---
+" S-h: previous tab
+nnoremap <S-h> gT
+
+" S-l: next tab
+nnoremap <S-l> gt
+
+"--------------------------------------------------------------
+" General Settings
+"--------------------------------------------------------------
 let g:mapleader = ' ' " use space as leader key
 
-set history=50        " 50 items in command history
-set ruler             " show the cursor position all the time
-set showcmd           " display incomplete commands
-set laststatus=2      " Always display the status line
-set autowrite         " Automatically :write before running commands
-set lazyredraw        " Redraw for typed actions, not when executing macros
-set ttyfast           " This is a fast terminal
-set noshowmode        " don't show the current mode in the message bar
-set autowrite         " Automatically :write before running commands
+set history=50    " 50 items in command history
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set laststatus=2  " Always display the status line
+set autowrite     " Automatically :write before running commands
+set lazyredraw    " Redraw for typed actions, not when executing macros
+set ttyfast       " This is a fast terminal
+set noshowmode    " don't show the current mode in the message bar
+set autowrite     " Automatically :write before running commands
 
 " Backup policy
 set backup                   " keep backup files
@@ -240,8 +269,9 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) =
   runtime! macros/matchit.vim
 endif
 
-" keymaps
-" ---------------------- Overrides ------------------------
+"--------------------------------------------------------------
+" Convenience Bindings
+"--------------------------------------------------------------
 " <CR>: turn off highlighting by pressing enter
 nnoremap <silent><CR> :noh<CR><CR>
 
@@ -253,9 +283,6 @@ nnoremap <leader>/ :Ag ''<LEFT>
 "    open results in quickfix pane
 nnoremap <silent><S-k> yiw:grep! "<C-R>0"<CR>:cw<CR>
 vnoremap <silent><S-k> y:grep! "<C-R>0"<CR>:cw<CR>
-
-" C-Space to exit insert mode
-inoremap <C-Space> <ESC>
 
 " -------------- Leader key mappings (ctrl) -----------------
 " C-]: Open ctag in a vertical split
@@ -325,8 +352,9 @@ vnoremap <leader>x "*d
 nnoremap <leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
 vnoremap <leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
 
-" ---------------------- FZF ------------------------
-" buffer-select utility commands
+"--------------------------------------------------------------
+" Buffer-select utility commands
+"--------------------------------------------------------------
 function! s:buflist()
   redir => ls
   silent ls
@@ -346,40 +374,9 @@ nnoremap <silent> <leader>bb :call fzf#run({
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
 
-" Line numbering
-set numberwidth=1
-set relativenumber
-set number
-
-" Toggle relative and absolute numbering
-function! NumberToggle()
-  if &relativenumber == 1
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-    set number
-  endif
-endfunction
-
-" netrw
-" Netrw: file explorer
-let g:netrw_liststyle = 4   " 4 lightweight, 3 tree
-let g:netrw_preview   = 1   " open previews in vertical split (p)
-let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
-let g:netrw_banner    = 0
-
-" rainbow parentheses
-augroup rainbow_parentheses
-  autocmd!
-
-  autocmd VimEnter * RainbowParenthesesToggle
-  autocmd Syntax * RainbowParenthesesLoadRound
-  autocmd Syntax * RainbowParenthesesLoadSquare
-  autocmd Syntax * RainbowParenthesesLoadBraces
-augroup END
-
+"--------------------------------------------------------------
 " Reload all open buffers
+"--------------------------------------------------------------
 function! ReloadAllBuffers ()
   set autoread
   checktime
@@ -388,12 +385,9 @@ endfunction
 
 command! RA :call ReloadAllBuffers()
 
-" Vim Session: session autosave
-let g:session_default_overwrite = 1
-let g:session_autosave = 'no'
-
-
+"--------------------------------------------------------------
 " vim-test
+"--------------------------------------------------------------
 " (loaded /after because it doesn't work in the normal place,
 " because reasons)
 " ----------------------------------------------------------------------------
@@ -406,40 +400,17 @@ nnoremap <leader>g :w<CR>:TestVisit<CR>
 " default test strategy is vimux
 let g:test#strategy = 'vimux'
 
+"--------------------------------------------------------------
 " Vimux
-" -----
+"--------------------------------------------------------------
 " zoom the tmux runner page
 nnoremap <silent><leader>fr :VimuxZoomRunner<CR>
 nnoremap <silent><leader>rc :VimuxRunCommand<SPACE>
 nnoremap <silent><leader>r :VimuxRunLastCommand<CR>
 
-" -------------- Navigation / Window Management ------------------------ "
-" Open new split panes to right and bottom
-set splitbelow
-set splitright
-
-" --- window resizing ---
-nnoremap <Left>  <C-w><
-nnoremap <Right> <C-w>>
-nnoremap <Down>  <C-w>+
-nnoremap <Up>    <C-w>-
-
-" --- buffer navigation ---
-" C-e: Scroll window up by 5 lines
-nnoremap <C-e> 5<C-e>
-
-" C-y: Scroll window down by 5 lines
-nnoremap <C-y> 5<C-y>
-
-" --- tab navigation ---
-" S-h: previous tab
-nnoremap <S-h> gT
-
-" S-l: next tab
-nnoremap <S-l> gt
-
+"--------------------------------------------------------------
 " yank-as-code-block
-"
+"--------------------------------------------------------------
 " TODO
 " - Consolidate variables
 " - Consolidate git invocations (if git [gh/glab/bb], elsif hg [bb], else)
@@ -566,10 +537,9 @@ command! -range=% YankAsMarkdown call <SID>YankAsMarkdown(<line1>, <line2>)
 vnoremap <silent> gym :YankAsMarkdown<CR>
 " vnoremap <silent> gyf :YankAsFoldedMarkdown<CR>
 
-"=====================================================
+"--------------------------------------------------------------
 " Plugins
-"=====================================================
-
+"--------------------------------------------------------------
 " Completion trigger configuration.
 let g:UltiSnipsExpandTrigger       = '<Tab>'
 let g:UltiSnipsListSnippets        = '<C-Tab>'
@@ -591,11 +561,9 @@ let g:yankring_replace_n_nkey = '<C-n>'
 " YankRing: display yankring contents
 nnoremap <silent><leader>y :YRShow<CR>
 
-
 " AutoPairs: disable closed-pair jumping instead of inserting
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<C-b>'
-
 
 function! IsEmptyPair(str)
   for pair in split(&matchpairs, ',') + [ "''", '""', '``' ]
@@ -630,9 +598,7 @@ inoremap <expr> ' SkipDelim("'")
 inoremap <expr> " SkipDelim('"')
 inoremap <expr> ` SkipDelim('`')
 
-
 let g:deoplete#enable_at_startup = 1
-
 
 " Dependencies
 "   npm install -g elm elm-test elm-oracle
@@ -649,7 +615,6 @@ let g:deoplete#enable_at_startup = 1
 let g:elm_format_autosave = 1
 
 
-
 " Disable by default
 let g:user_emmet_install_global = 0
 
@@ -661,18 +626,13 @@ augroup END
 
 " let g:user_emmet_leader_key='<C-y>'
 
-
-scriptencoding utf8
-
 " Use bars for indents
 let g:indentLine_char = '│'
 
 " Disable indent guides by default
 let g:indentLine_enabled = 0
 
-
 let g:used_javascript_libs = 'jquery,underscore,react,flux,requirejs'
-
 
 let g:lightline = {
       \   'colorscheme': 'solarized',
@@ -796,84 +756,12 @@ let g:qs_first_occurrence_highlight_color = '#afff5f'
 let g:qs_first_occurrence_highlight_color = 155
 " let g:qs_second_occurrence_highlight_color = 81
 
-
-" ------------- Syntastic (style checking) ------------------------
-" checking on open slows navigation too much.
-let g:syntastic_check_on_open = 0
-
-" check only on demand
-let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": []
-    \ }
-
-" don't perform checks when :wq :x or :ZZ are issued
-let g:syntastic_check_on_wq = 0
-
-" let g:syntastic_aggregate_errors = 1
-let g:syntastic_enable_signs = 1
-
-" automatically load errors into the location list
-let g:syntastic_always_populate_loc_list = 1
-
-" Better :sign interface symbols
-let g:syntastic_warning_symbol = '•'
-let g:syntastic_style_warning_symbol = '•'
-
-let g:syntastic_error_symbol   = '✘'
-let g:syntastic_style_error_symbol = '✘'
-
-" " Syntastic Highlighting defined in theme file. Kept here for documentation.
-" " Use yellow for style checks, red for syntax
-" highlight! SyntasticWarningSign      ctermfg=160 ctermbg=none
-" highlight! SyntasticErrorSign        ctermfg=160 ctermbg=none
-"
-" highlight! SyntasticStyleWarningSign ctermfg=172 ctermbg=none
-" highlight! SyntasticStyleErrorSign   ctermfg=172 ctermbg=none
-"
-" highlight! link SyntasticError SpellBad
-" highlight! link SyntasticWarning SpellCap
-
-" display errors and warnings
-let g:syntastic_stl_format = '[%E{%eE%fe}%B{ }%W{%wW%fw}]'
-
-" do not jump to first error or warning
-let g:syntastic_auto_jump = 0
-
-" lint handlebars templaates with handlebars
-let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
-
-" JavaScript
-let g:syntastic_javascript_checkers = ['eslint', 'jscs']
-let g:syntastic_javascript_eslint_args = ''
-let g:syntastic_javascript_jscsrc = ''
-
-" CoffeeScript
-let g:syntastic_coffee_checkers = ['coffeelint']
-let g:syntastic_coffee_coffeelint_args = '-f ~/.coffeelint.json'
-
-" Ruby
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_ruby_rubocop_args = ''
-
-" OCaml
-let g:syntastic_ocaml_checkers = ['merlin', 'camlp4o']
-
-" Ignore spurious warnings
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
-
-
 let g:better_whitespace_filetypes_blacklist=['qf']
-
 
 " CoffeeScript: coffeescript syntax and helpers (CoffeeWatch, et al.)
 let coffee_compile_vert = 1
 let coffee_watch_vert = 1
 let coffee_run_vert = 1
-
 
 " EasyAlign: Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -887,7 +775,6 @@ let g:easy_align_delimiters['"'] = {
 \ 'pattern': '\(\s\+"\)',
 \ 'left_margin': 0, 'right_margin': 1
 \ }
-
 
 " Disable ctags version warning (since universal-ctags)
 let g:easytags_suppress_ctags_warning = 1
@@ -928,14 +815,11 @@ let g:easytags_languages = {
 \   }
 \}
 
-
 " GitGutter: always show sign column
 let g:gitgutter_sign_column_always = 1
 
-
 " HugeFile: disable options for large files (>= 1MB)
 let g:hugefile_trigger_size = 1
-
 
 " Allow prompt for interactive input.
 let g:jsdoc_allow_input_prompt = 1
@@ -976,16 +860,13 @@ let g:jsdoc_param_description_separator = ' : '
 " Override default type and description. See help more detail.
 let g:jsdoc_custom_args_hook = {}
 
-
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0
-
 
 let g:scala_sort_across_groups = 1
 
 " Set up for Play
 let g:scala_first_party_namespaces='\(controllers\|views\|models\|util\|de.\)'
-
 
 vmap <C-k> <Plug>SchleppUp
 vmap <C-j> <Plug>SchleppDown
@@ -995,63 +876,20 @@ vmap <C-l> <Plug>SchleppRight
 " Allow moving left even if text is there (Default is false)
 let g:Schlepp#allowSquishingLines = 0
 let g:Schlepp#allowSquishingBlocks = 0
-
-" Remove trailing whitespace on block move
 let g:Schlepp#trimWS = 1
 
-" Schlepp can also reindent code as it moves. Any of these work
-"
-" SchleppUp with reindentation is SchleppIndentUp
-" SchleppDown with reindentation is SchleppIndentDown
-" let g:Schlepp#reindent = 1
-" map to the toggle function (below) - This is how I like to use it
-" vmap <unique> i <Plug>SchleppToggleReindent
-
-
-" The *g:session_directory* option
-"
-" This option controls the location of your session scripts. Its default value is
-" '~/.vim/sessions' (on UNIX) or '~\vimfiles\sessions' (on Windows). If you don't
-" mind the default you don't have to do anything; the directory will be created
-" for you. Note that a leading '~' is expanded to your current home directory
-" ('$HOME' on UNIX, '%USERPROFILE%' on Windows).
 let g:session_directory = '.'
-
-" The *g:session_autoload* option
-"
-" By default this option is set to "'prompt'". This means that when you start Vim
-" without opening any files and the default session script exists, the session
-" plug-in will ask whether you want to restore your default session. When you set
-" this option to "'yes'" and you start Vim without opening any files the default
-" session will be restored without a prompt. To completely disable automatic
-" loading you can set this option to "'no'".
-let g:session_autoprompt = 'yes'
-
-" -------------------------------------------------------------------------------
-" The *g:session_autosave* option
-"
-" By default this option is set to "'prompt'". When you've opened a session and
-" you quit Vim, the session plug-in will ask whether you want to save the changes
-" to your session. Set this option to "'yes'" to always automatically save open
-" sessions when you quit Vim. To completely disable automatic saving you can set
-" this option to "'no'".
 let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 5 " save every 5 minutes
-
-" The *g:session_persist_colors* option
-"
-" By default the plug-in will save the color scheme and the |'background'| option
-" with the session to be reused the next time that session is loaded, this can be
-" disabled by adding the following line to your |vimrc| script:
-
 let g:session_persist_colors = 0
 
 " Do not autoload last session by default
 let g:session_autoload = 'no'
 
-
-let test#runners = {'Ruby': ['GitHub']}
-
-
 " Togglecursor: insert mode uses an underline
 let g:togglecursor_insert = 'underline'
+
+" ---------------- Overrides  --------------------------
+if filereadable(expand('~/.vimrc.local'))
+  source $HOME/.vimrc.local
+endif
