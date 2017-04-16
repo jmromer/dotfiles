@@ -41,6 +41,7 @@ homebrew=(
   rbenv-default-gems      # default gems to be installed
   reattach-to-user-namespace
   redis
+  ripgrep
   ruby-build
   source-highlight        # syntax highlighting for less
   the_silver_searcher
