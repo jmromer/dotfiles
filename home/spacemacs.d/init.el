@@ -38,6 +38,7 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
+     ivy
      (javascript :variables
                  tern-command '("node" "~/.node/bin/tern"))
      jekyll
@@ -82,10 +83,12 @@ values."
    '(
      evil-rails
      evil-quickscope
-     vimish-fold
-     sicp
+     flx
+     company-flx
      ob-swift
      seeing-is-believing
+     sicp
+     vimish-fold
      )
    dotspacemacs-excluded-packages
    '(
@@ -182,7 +185,7 @@ values."
  '(org-confirm-babel-evaluate nil)
  '(package-selected-packages
    (quote
-    (seeing-is-believing ob-swift auctex-latexmk clojure-mode paredit projectile f winum unfill restclient-helm ob-restclient fuzzy flycheck-credo company-restclient know-your-http-well smartparens log4e anaconda-mode company vmd-mode cider scala-mode projectile-rails evil flycheck helm helm-core yasnippet avy magit hydra js2-mode ox-gfm hyde yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vimrc-mode vimish-fold vi-tilde-fringe uuidgen utop use-package tuareg toc-org tagedit swift-mode sql-indent spacemacs-theme spaceline smeargle slim-mode sicp shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ocp-indent ob-http noflet neotree mwim multi-term move-text mmm-mode minitest merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hunks helm-gitignore helm-fuzzier helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-rails evil-quickscope evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elm-mode elisp-slime-nav dumb-jump diff-hl deft dash-at-point dactyl-mode cython-mode company-web company-tern company-statistics company-quickhelp company-go company-auctex company-anaconda command-log-mode column-enforce-mode coffee-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (company-flx wgrep ivy-hydra flyspell-correct-ivy counsel-projectile counsel-dash counsel swiper ivy yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vimish-fold vi-tilde-fringe uuidgen utop use-package unfill tuareg toc-org tagedit swift-mode sql-indent spaceline smeargle slim-mode sicp shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pbcopy paradox ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file ocp-indent ob-swift ob-restclient ob-http noflet neotree mwim multi-term move-text mmm-mode minitest merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide hyde hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ graphviz-dot-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-rails evil-quickscope evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elm-mode elisp-slime-nav dumb-jump diff-hl deft dash-at-point dactyl-mode cython-mode company-web company-tern company-statistics company-restclient company-quickhelp company-go company-auctex company-anaconda command-log-mode column-enforce-mode coffee-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ac-ispell)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(projectile-git-command "git ls-files -zco --exclude-standard")
@@ -252,6 +255,27 @@ values."
   "Load configuration after layer initialization."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
+
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+
+  ;; Configure Ivy
+  (setq projectile-completion-system 'ivy)
+  (setq counsel-rg-base-command "rg --column --no-heading")
+
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-re-builders-alist
+        '((ivy-switch-buffer . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
+
+  ;; ido
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (setq ido-use-filename-at-point 'guess)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-file-extensions-order '(".org" ".py" ".el"))
+  (setq ido-ignore-extensions t)
+  (ido-mode 1)
 
   ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
   (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
@@ -518,6 +542,8 @@ values."
 
   ;; enable company globally
   (global-company-mode)
+  (with-eval-after-load 'company
+    (company-flx-mode +1))
 
   ;; enable flycheck globally
   (setq flycheck-disabled-checkers '(javascript-jshint))
