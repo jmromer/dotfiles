@@ -88,6 +88,7 @@ values."
      vimish-fold
      sicp
      ob-swift
+     seeing-is-believing
      )
    dotspacemacs-excluded-packages
    '(
@@ -414,6 +415,19 @@ values."
   (spacemacs/set-leader-keys "wS" 'split-window-below)
   (spacemacs/set-leader-keys "wv" 'split-window-right-and-focus)
   (spacemacs/set-leader-keys "wV" 'split-window-right)
+
+  ;; ruby mode: seeing-is-believing
+  (require 'seeing-is-believing)
+  (add-hook 'ruby-mode-hook 'seeing-is-believing)
+
+  (defun xmpfilter-eval-current-line ()
+     (interactive)
+     (seeing-is-believing-mark-current-line-for-xmpfilter)
+     (seeing-is-believing-run-as-xmpfilter))
+
+  (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
+  (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
+  (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run)
 
   ;; vimish-fold settings
   (add-to-list 'evil-fold-list '((vimish-fold-mode)
