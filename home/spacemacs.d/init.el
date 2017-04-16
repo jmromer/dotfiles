@@ -336,6 +336,11 @@ values."
   (spacemacs/declare-prefix-for-mode 'markdown-mode "e" "markdown/evaluate")
   (spacemacs/set-leader-keys-for-major-mode 'markdown-mode "ee" #'alchemist-iex-send-current-code-block)
 
+
+  ;; Objective-C
+  (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
+
   ;; xelatex
   (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode))
   (defun XeLaTeX-compile ()
