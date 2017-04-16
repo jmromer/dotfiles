@@ -82,9 +82,6 @@ values."
    '(
      evil-rails
      evil-quickscope
-     helm-flx
-     helm-fuzzier
-     helm-hunks
      vimish-fold
      sicp
      ob-swift
@@ -134,9 +131,6 @@ values."
    dotspacemacs-auto-save-file-location 'cache
    dotspacemacs-max-rollback-slots 5
    dotspacemacs-use-ido nil
-   dotspacemacs-helm-resize nil
-   dotspacemacs-helm-no-header nil
-   dotspacemacs-helm-position 'bottom
    dotspacemacs-enable-paste-micro-state nil
    dotspacemacs-which-key-delay 0.3
    dotspacemacs-which-key-position 'bottom
@@ -486,27 +480,6 @@ values."
 
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'jkrmr/display-file-path)
-
-  ;; helm
-  ;; enable fuzzy matching for all sources
-  (setq-default helm-M-x-fuzzy-match t
-                helm-bookmark-show-location t
-                helm-buffers-fuzzy-matching t
-                helm-completion-in-region-fuzzy-match t
-                helm-file-cache-fuzzy-match t
-                helm-imenu-fuzzy-match t
-                helm-mode-fuzzy-match t
-                helm-locate-fuzzy-match t
-                helm-quick-update t
-                helm-recentf-fuzzy-match t
-                helm-semantic-fuzzy-match t)
-
-  ;; enable flx fuzzy finding
-  (helm-flx-mode +1)
-
-  ;; enhanced fuzzy-finding (depends on helm-flx)
-  (require 'helm-fuzzier)
-  (helm-fuzzier-mode +1)
 
   ;; dired keybindings
   (add-hook 'dired-mode-hook
