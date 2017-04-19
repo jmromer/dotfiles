@@ -686,12 +686,13 @@ Includes a filename comment annotation."
   "Create a foldable GFM code block with LANGUAGE block containing CODE, PATH, and URL."
   (goto-char (point-min))
   (insert "<details>\n")
-  (if url
-      (insert (format "<summary><a href=\"%s\">%s</a></summary>\n\n" url path))
-    (insert (format "<summary>%s</summary>\n\n" path)))
+  (insert "<summary> </summary>\n\n")
   (insert "```" language "\n")
   (goto-char (point-max))
   (insert "\n\n" code "```\n")
+  (if url
+      (insert (format "<sup><a href=\"%s\">%s</a></sup>\n" url path))
+    (insert (format "<sup>%s</sup>\n" path)))
   (insert "</details>"))
 
 (defun yacb/org-code-fence (language code url)
