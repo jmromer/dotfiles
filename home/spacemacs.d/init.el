@@ -94,7 +94,9 @@ values."
    '(
      ob-elixir
      )
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages t
+   dotspacemacs-enable-lazy-installation nil
+   ))
 
 (defun dotspacemacs/init ()
   "Initialization function.
