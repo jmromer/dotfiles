@@ -634,9 +634,9 @@ Includes a filename comment annotation."
     (comment-or-uncomment-region (line-beginning-position) (line-end-position))
 
     (cond ((equal format 'gfm)
-           (yacb/gfm-code-fence language-extension selected-lines snippet-url))
+           (yacb/gfm-code-fence language-mode selected-lines snippet-path snippet-url))
           ((equal format 'gfm-folded)
-           (yacb/gfm-code-fence-folded language-extension selected-lines snippet-path snippet-url))
+           (yacb/gfm-code-fence-folded language-mode selected-lines snippet-path snippet-url))
           ((equal format 'org)
            (yacb/org-code-fence language-mode selected-lines snippet-url)))
     (clipboard-kill-ring-save (point-min) (point-max))))
