@@ -40,34 +40,6 @@ alias ln='ln -iv'           # display error if link exists; link verbosely
 alias diff='colordiff'        # compare files, colorize output
 alias hide='setfile -a V'     # hide a file
 alias unhide='setfile -a v'   # unhide a file
-alias v='vagrant'
-alias dc='docker-compose'
 alias npmls='npm ls -depth=0'
 alias grep='GREP_COLOR="33;40" LANG=C grep --color=auto'
 alias ssh='TERM=xterm-256color ssh'
-alias ft='find-tests'
-
-#-------------------------------------------------------------
-# ALIASES: BUNDLER
-#-------------------------------------------------------------
-# bundler
-alias bi='bundle install' # -j3 should be set in ~/.bundle/config
-alias bu='bundle update'
-alias be='bundle exec'
-
-#-------------------------------------------------------------
-# ALIASES: HEROKU
-#-------------------------------------------------------------
-# heroku
-alias hr='heroku run'
-alias hrk='heroku run rake'
-alias hlg='heroku logs --tail'
-
-function heroku_reset() {
-  hreset "$1"
-  heroku run rake db:migrate db:seed
-}
-
-function heroku_dropdb() {
-  heroku pg:reset DATABASE --confirm "$1"
-}
