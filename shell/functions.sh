@@ -6,14 +6,6 @@ function restart_postgres() {
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 }
 
-function skim () {
-  [ -z "$1" ]   && return 1 # arg not passed
-  [ ! -e "$1" ] && return 1 # file doesn't exist
-  [ -d "$1" ]   && return 1 # file a dir
-
-  ~/Applications/Skim.app/Contents/MacOS/Skim "$1" &
-}
-
 # Display any processes listening on the given port
 function listening_on_port() {
   lsof -wni tcp:$1
@@ -60,24 +52,9 @@ function egg() {
   fi
 }
 
-# Fuzzy-select ruby version using rbenv
-function chr() {
-  local scope="$(echo "shell\nlocal\nglobal" |\
-    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
-
-  local selected="$(rbenv versions |\
-    sed -rn 's/[\* ]? ([[:alnum:]\.\-]+).*/\1/p' |\
-    fzf-tmux -l 25 --no-sort --reverse --tiebreak=index)"
-
-  echo "rbenv $scope $selected"
-  rbenv $scope $selected
-  rbenv version
-}
-
 # create dir $1 and cd into it, creating subdirectories as necessary
 function md() {
   local directory_name=$(echo $@ | sed -e "s/\s/_/g")
-
   mkdir -p "$directory_name" && cd "$directory_name";
 }
 
@@ -90,20 +67,6 @@ function pp() {
   elif [[ "$1" == 'cdpath' ]]; then
     ruby -e 'puts `echo $CDPATH`.gsub(":", "\n")'
   fi
-}
-
-# Mac-specific: show and hide the desktop
-function desktop() {
-  if [[ $1 != "hide" && $1 != "show" ]]; then
-    echo "Usage: desktop [show|hide]"; return 1;
-  fi
-  if [[ $1 == "hide" ]]; then
-    local view=false;
-  elif [[ $1 == "show" ]]; then
-    local view=true;
-  fi
-  defaults write com.apple.finder CreateDesktop -bool $view;
-  killall Finder;
 }
 
 # Mac-specific: show and hide hidden files
@@ -134,47 +97,3 @@ function del() {
     echo "Canceling with no changes made."
   fi
 }
-
-# generate static ghost blog from currently running local instance
-# wraps `buster generate` in order to copy files from `source` to the
-# deploy directory
-function buster_generate() {
-  if [ -d static ]; then
-    rm -rf ./static/*
-    buster generate
-    cp ./source/* ./static/
-  else
-    echo 'Wrong directory: Must be in ghost project root'
-  fi
-}
-
-alias bgd='buster_generate && buster deploy'
-
-# use binstub if available, else Bundler if bundled project, else whatever man
-function bundle_or_bin() {
-  if [ -e bin/$1 ]; then
-    echo bin/$@
-    bin/$@
-  elif [ -f Gemfile ]; then
-    echo bundle exec $@
-    bundle exec $@
-  else
-    echo $@
-    $@
-  fi
-}
-
-alias s='bundle_or_bin rspec --format=progress'
-alias ss='bundle_or_bin rspec --format=documentation'
-alias ck='bundle_or_bin cucumber --format=progress'
-alias ckk='bundle_or_bin cucumber'
-alias t='bin/testrb_or_zt'
-
-alias rk='bundle_or_bin rake'
-alias rg='bundle_or_bin rails generate'
-
-alias rs='bundle_or_bin rails server'
-alias rc='bundle_or_bin rails console'
-alias rcs='bundle_or_bin rails console --sandbox'
-
-alias rss='rk db:reset db:seed && rs'
