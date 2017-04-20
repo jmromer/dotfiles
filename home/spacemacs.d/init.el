@@ -676,13 +676,15 @@ Includes a filename comment annotation."
   (interactive "r")
   (yacb/yank-as-code-block 'org start end))
 
-(defun yacb/gfm-code-fence (language code url)
-  "Create a GFM code block with LANGUAGE block containing CODE and URL."
+(defun yacb/gfm-code-fence (language code path url)
+  "Create a GFM code block with LANGUAGE block containing CODE, PATH, and URL."
   (goto-char (point-min))
   (insert "```" language "\n")
   (goto-char (point-max))
   (insert "\n\n" code "```\n")
-  (and url (insert (format "<sup>[[source](%s)]</sup>" url))))
+  (if url
+      (insert (format "<sup><a href=\"%s\">%s</a></sup>\n" url path))
+    (insert (format "<sup>%s</sup>\n" path))))
 
 (defun yacb/gfm-code-fence-folded (language code path url)
   "Create a foldable GFM code block with LANGUAGE block containing CODE, PATH, and URL."
