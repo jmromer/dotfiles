@@ -270,10 +270,16 @@ values."
   ;; Configure Ivy
   (setq-default projectile-completion-system 'ivy)
 
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-re-builders-alist
-        '((ivy-switch-buffer . ivy--regex-plus)
-          (t . ivy--regex-fuzzy)))
+  ;; not working
+  (setq-default counsel-rg-base-command "rg --column --no-heading")
+
+  (setq-default ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-fuzzy)
+                                        (mx . ivy--regex-fuzzy)
+                                        (swiper . ivy--regex-plus)
+                                        (counsel-git-grep . ivy--regex-fuzzy)
+                                        (t . ivy--regex-fuzzy))
+                ivy-initial-inputs-alist nil
+                ivy-wrap t)
 
   ;; ido
   (setq ido-enable-flex-matching t)
