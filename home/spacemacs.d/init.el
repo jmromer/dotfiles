@@ -485,6 +485,7 @@ values."
 
   ;; magit switches
   (with-eval-after-load 'magit
+    (setq magit-completing-read-function 'ivy-completing-read)
     (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
     '(magit-define-popup-switch 'magit-log-popup
        ?m "Omit merge commits" "--no-merges"))
