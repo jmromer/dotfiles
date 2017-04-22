@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+dot "$1" |\
+  gvpr -c -f ~/.bin/binary_tree.gv |\
+  neato -n -Tpng -o ~/Desktop/"${1/\.gv/}".png
