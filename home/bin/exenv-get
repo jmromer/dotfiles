@@ -12,7 +12,7 @@ if [[ -z $elixir_version ]]; then
   exit 1
 fi
 
-echo && echo "Installing Ruby version: $elixir_version..."
+echo && echo "Installing Elixir version: $elixir_version..."
 echo "exenv install $elixir_version"
 exenv install --verbose "$elixir_version"
 
