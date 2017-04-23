@@ -258,6 +258,11 @@ values."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
+  (condition-case err
+      (if (jkrmr/is-in-terminal-p)
+          (spacemacs/load-theme 'spacemacs-dark))
+    (error "spacemacs/load-theme: %s" (error-message-string err)))
+
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
 
