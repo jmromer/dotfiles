@@ -266,14 +266,13 @@ values."
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
 
-  ;; Enable caching in projectile
-  (setq-default projectile-enable-caching t)
+  ;; Projectile settings
+  (setq-default projectile-completion-system 'ivy
+                projectile-enable-caching t
+                projectile-globally-ignored-directories '("node_modules"))
 
   ;; Use sh. Faster.
   (setq-default shell-file-name "/bin/sh")
-
-  ;; Configure Ivy
-  (setq-default projectile-completion-system 'ivy)
 
   ;; not working
   (setq-default counsel-rg-base-command "rg --column --no-heading")
