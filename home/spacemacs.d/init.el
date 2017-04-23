@@ -820,17 +820,6 @@ https://github.com/daimrod/highlight-sexp."
   "Return true if in terminal Emacs, else false."
   (not (display-graphic-p)))
 
-(defun jkrmr/set-theme (&rest args)
-  "Set the theme for the current Emacs session.
-Can distinguish between GUI and terminal sessions and set the theme conditional
-each environment.
-Accepts a plist ARGS with :term and :gui entries (each a symbol of a theme name)."
-  (let ((term (plist-get args :term))
-        (gui (plist-get args :gui)))
-    (if (jkrmr/is-in-terminal-p)
-        (spacemacs/load-theme term)
-        (spacemacs/load-theme gui))))
-
 (defun dired-open-in-pwd ()
   "Open dired in the PWD."
   (interactive)
