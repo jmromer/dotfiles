@@ -116,10 +116,10 @@ values."
    dotspacemacs-startup-lists '(recents projects bookmarks)
    dotspacemacs-startup-recent-list-size 5
    dotspacemacs-scratch-mode 'markdown-mode
-   dotspacemacs-themes '(spacemacs-dark solarized-dark monokai leuven)
+   dotspacemacs-themes '(solarized-dark spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
