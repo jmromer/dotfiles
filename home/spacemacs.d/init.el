@@ -286,15 +286,6 @@ values."
                 ivy-initial-inputs-alist nil
                 ivy-wrap t)
 
-  ;; ido
-  ;; (setq-default ido-enable-flex-matching t)
-  ;; (setq-default ido-everywhere t)
-  ;; (setq-default ido-use-filename-at-point 'guess)
-  ;; (setq-default ido-create-new-buffer 'always)
-  ;; (setq-default ido-file-extensions-order '(".org" ".py" ".el"))
-  ;; (setq-default ido-ignore-extensions t)
-  ;; (ido-mode 1)
-
   ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
   (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
 
