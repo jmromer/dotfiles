@@ -269,8 +269,8 @@ values."
           (spacemacs/load-theme 'spacemacs-dark))
     (error "spacemacs/load-theme: %s" (error-message-string err)))
 
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
+  ;; Copy exec-path from shell PATH
+  (exec-path-from-shell-initialize)
 
   ;; Projectile settings
   (setq-default projectile-completion-system 'ivy
