@@ -304,6 +304,9 @@ values."
   (load "exercism-emacs/exercism.el")
   (require 'exercism)
 
+  ;; Haskell
+  (add-hook 'haskell-mode-hook 'intero-mode)
+
   ;; Org mode
   ;; ==========
   (load "ob-elixir/ob-elixir.el")
