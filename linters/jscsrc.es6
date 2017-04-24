@@ -1,9 +1,11 @@
 {
   "preset": "airbnb",
-    "esnext": true,
-    "disallowTrailingComma": true,
-    "requireTrailingComma": {
-      "ignoreSingleLine": true,
-      "ignoreSingleValue": true
-    }
+  "requireSemicolons": false,
+  "disallowTrailingComma": true,
+  "validateQuoteMarks": {
+    "mark": "\"",
+    "escape": true,
+    "ignoreJSX": true
+  },
+  "requireTrailingComma": false
 }
