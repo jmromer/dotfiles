@@ -495,6 +495,7 @@ values."
                 web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
                 web-mode-code-indent-offset 2)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
   ;; Tell js2 mode to shut the hell up about semicolons
   (setq js2-strict-missing-semi-warning nil)
