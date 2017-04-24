@@ -39,6 +39,7 @@
     "jsx": true
   },
   "rules": {
+    "comma-dangle": ["error", "never"],
     "quotes": [
       1,
       "double"
