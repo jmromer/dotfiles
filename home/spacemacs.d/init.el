@@ -62,6 +62,7 @@ values."
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
      ruby-on-rails
+     search-engine
      scala
      (shell :variables
             shell-default-shell 'multi-term
