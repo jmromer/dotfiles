@@ -299,6 +299,10 @@ values."
   (config/highlight-lines-at-length 80)
   (config/evil-rails)
 
+  ;; Go mode
+  (add-hook 'go-mode-hook '(lambda ()
+                             (whitespace-toggle-options 'tabs)))
+
   (setq-default exercism-dir (format "%s/code/exercism" (getenv "HOME")))
   (setq-default exercism-auto-enable nil)
   (load "exercism-emacs/exercism.el")
