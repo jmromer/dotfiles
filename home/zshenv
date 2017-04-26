@@ -58,7 +58,7 @@ export N_PREFIX="$HOME/.node"
 # GO
 #-------------------------------------------------------------
 export GOPATH="$HOME/.go"
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT="/usr/local/go"
 
 #-------------------------------------------------------------
 # ELM
