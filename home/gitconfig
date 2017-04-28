@@ -156,6 +156,7 @@
   hsince   = !sh -c 'git hg --since=$1' -
   hstat    = hg --stat
   i        = init
+  ig       = ignore
   lg       = log --grep
   lgr      = log --walk-reflogs --grep
   lp       = log --patch
