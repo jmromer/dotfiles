@@ -25,6 +25,7 @@ Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': ['ruby']  }
 Plug 'tpope/vim-vinegar'              " enhancements to netrw
 Plug 'tpope/vim-git'                  " git commit filetype settings, et al
+Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
 
 " Plug 'unblevable/quick-scope'          " highlight chars for jumping
 " Plug 'chiel92/vim-autoformat'         " auto-format with supported formatters
@@ -64,8 +65,7 @@ Plug 'tpope/vim-git'                  " git commit filetype settings, et al
 " Plug 'tpope/vim-haml', { 'for': 'haml' }
 " Plug 'kballard/vim-swift', { 'for': 'swift' }
 " Plug 'fatih/vim-go', { 'for': 'go' }
-" Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
-"
+
 " " Scala
 " Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
 " Plug 'ktvoelker/sbt-vim',    { 'for': ['scala', 'sbt.scala'] }
