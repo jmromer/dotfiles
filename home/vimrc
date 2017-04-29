@@ -533,10 +533,7 @@ function! s:YankAsMarkdown(line1, line2)
 endfunction
 
 command! -range=% YankAsMarkdown call <SID>YankAsMarkdown(<line1>, <line2>)
-" command! -range=% YankAsFoldedMarkdown call <SID>YankAsFoldedMarkdown(<line1>, <line2>)
-
 vnoremap <silent> gym :YankAsMarkdown<CR>
-" vnoremap <silent> gyf :YankAsFoldedMarkdown<CR>
 
 "--------------------------------------------------------------
 " Plugins
@@ -556,11 +553,9 @@ let g:UltiSnipsEditSplit='vertical'
 let g:yankring_history_dir = '~/.vim/tmp'
 
 " YankRing: Cycle through the yank register
-let g:yankring_replace_n_pkey = '<C-p>'
-let g:yankring_replace_n_nkey = '<C-n>'
-
-" YankRing: display yankring contents
-nnoremap <silent><leader>y :YRShow<CR>
+let g:yankring_replace_n_pkey = '<C-k>'
+let g:yankring_replace_n_nkey = '<C-j>'
+nnoremap <silent><leader>p :YRShow<CR>
 
 " AutoPairs: disable closed-pair jumping instead of inserting
 let g:AutoPairsFlyMode = 0
@@ -745,79 +740,7 @@ let g:neomake_vim_enabled_makers        = ['vint']
 let g:neomake_yaml_enabled_makers       = ['yamllint']
 let g:neomake_haml_enabled_makers       = ['hamllint']
 
-
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" GUI vim
-let g:qs_first_occurrence_highlight_color = '#afff5f'
-" let g:qs_second_occurrence_highlight_color = '#5fffff'
-
-" terminal vim
-let g:qs_first_occurrence_highlight_color = 155
-" let g:qs_second_occurrence_highlight_color = 81
-
 let g:better_whitespace_filetypes_blacklist=['qf']
-
-" CoffeeScript: coffeescript syntax and helpers (CoffeeWatch, et al.)
-let coffee_compile_vert = 1
-let coffee_watch_vert = 1
-let coffee_run_vert = 1
-
-" EasyAlign: Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-" EasyAlign: Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" Add " delimiter for VimL
-let g:easy_align_delimiters = {}
-let g:easy_align_delimiters['"'] = {
-\ 'pattern': '\(\s\+"\)',
-\ 'left_margin': 0, 'right_margin': 1
-\ }
-
-" Disable ctags version warning (since universal-ctags)
-let g:easytags_suppress_ctags_warning = 1
-
-" Easytags: Run asynchronously
-let g:easytags_async = 1
-
-" Easytags: use exuberant / universal ctags
-let g:easytags_cmd = '/usr/local/bin/ctags'
-
-" Easytags: look for a project specific tags file
-set tags=./.git/tags;
-let g:easytags_dynamic_files = 1
-
-
-" ----- Easytags: language-specific settings ------
-
-" JavaScript
-let g:easytags_languages = {
-\   'javascript': {
-\       'cmd': 'jsctags',
-\       'args': [],
-\       'fileoutput_opt': '-f'
-\   },
-\   'go': {
-\     'cmd': 'gotags',
-\     'args': ['-sort=true'],
-\     'fileoutput_opt': '-f=',
-\     'stdout_opt': '-f=-',
-\     'recurse_flag': '-R'
-\   },
-\   'haskell': {
-\       'cmd': 'hasktags',
-\       'args': ['-x', '--ctags'],
-\       'fileoutput_opt': '-o',
-\       'stdout_opt': '-o-',
-\       'recurse_flag': '.'
-\   }
-\}
-
-" GitGutter: always show sign column
-let g:gitgutter_sign_column_always = 1
 
 " HugeFile: disable options for large files (>= 1MB)
 let g:hugefile_trigger_size = 1
@@ -864,31 +787,15 @@ let g:jsdoc_custom_args_hook = {}
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0
 
-let g:scala_sort_across_groups = 1
-
-" Set up for Play
-let g:scala_first_party_namespaces='\(controllers\|views\|models\|util\|de.\)'
-
-vmap <C-k> <Plug>SchleppUp
-vmap <C-j> <Plug>SchleppDown
-vmap <C-h> <Plug>SchleppLeft
-vmap <C-l> <Plug>SchleppRight
-
-" Allow moving left even if text is there (Default is false)
-let g:Schlepp#allowSquishingLines = 0
-let g:Schlepp#allowSquishingBlocks = 0
-let g:Schlepp#trimWS = 1
-
-let g:session_directory = '.'
-let g:session_autosave = 'yes'
-let g:session_autosave_periodic = 5 " save every 5 minutes
-let g:session_persist_colors = 0
-
-" Do not autoload last session by default
-let g:session_autoload = 'no'
-
 " Togglecursor: insert mode uses an underline
 let g:togglecursor_insert = 'underline'
+
+" YouCompleteMe: keybindings
+set runtimepath+=~/.vim/plugged/YouCompleteMe
+let g:ycm_key_list_select_completion = ['<C-j>']
+let g:ycm_key_list_previous_completion = ['<C-k>']
+let g:ycm_key_invoke_completion = ''
+let g:ycm_min_num_of_chars_for_completion = 0
 
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
