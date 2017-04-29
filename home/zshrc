@@ -443,6 +443,8 @@ disable r # disable zsh's r
 
 #-------------------------------------------------------------
 
+source ~/.dotfiles/path.sh
+
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
