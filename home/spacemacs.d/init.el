@@ -303,7 +303,11 @@ values."
   (add-hook 'go-mode-hook '(lambda ()
                              (whitespace-toggle-options 'tabs)))
 
-  (setq-default exercism-dir (format "%s/code/exercism" (getenv "HOME")))
+  ;; Hyde settings
+  (setq-default hyde-home "~/Projects/jakeromer/")
+
+  ;; Exercism
+  (setq-default exercism-dir "~/Projects/exercism")
   (setq-default exercism-auto-enable nil)
   (load "exercism-emacs/exercism.el")
   (require 'exercism)
@@ -361,9 +365,6 @@ values."
     )
 
   ;; ===========================================================================
-  ;; Hyde settings
-  (setq-default hyde-home "~/code/jakeromer/")
-
   ;; prevent visual selection from overriding system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
 
