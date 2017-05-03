@@ -675,7 +675,7 @@ Currently only supports Git."
   (if (equal 'Git (vc-backend (buffer-file-name)))
       (let ((remote-url (replace-regexp-in-string
                          "\n$" ""
-                         (shell-command-to-string "git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#http://#' -e 's@com:@com/@' -e 's/\.git$//'"))))
+                         (shell-command-to-string "git remote-origin-url"))))
         (and (string-match-p "http" remote-url) remote-url))
     nil))
 
