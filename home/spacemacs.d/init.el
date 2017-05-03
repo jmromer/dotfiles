@@ -304,7 +304,7 @@ values."
                              (whitespace-toggle-options 'tabs)))
 
   ;; Hyde settings
-  (setq-default hyde-home "~/Projects/jakeromer/")
+  (setq-default hyde-home "~/Projects/jakeromer")
 
   ;; Exercism
   (setq-default exercism-dir "~/Projects/exercism")
