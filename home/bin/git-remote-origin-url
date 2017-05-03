@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Print the url for the remote named `origin`
+#
+# Usage:
+#   git remote-origin-url
+
+set -e
+
+git remote -v |\
+  grep origin |\
+  awk '/fetch/{print $2}' |\
+  sed -Ee 's#(git@|git://)#http://#' -e 's@com:@com/@' -e 's/\.git$//'
