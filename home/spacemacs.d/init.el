@@ -450,6 +450,8 @@ values."
             '(lambda () (diminish 'tern-mode "₸")))
   (add-hook 'rubocop-mode-hook
             '(lambda () (diminish 'rubocop-mode "℞")))
+  (add-hook 'seeing-is-believing-hook
+            '(lambda () (diminish 'seeing-is-believing "S")))
 
   ;; don't warn about large files
   (setq-default large-file-warning-threshold nil)
