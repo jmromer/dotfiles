@@ -648,7 +648,10 @@ Includes a filename comment annotation."
   (setq snippet-path (yacb/code-snippet-path commit-ref file-name selection-range))
 
   (defvar snippet-url nil "A URL for the selected code, if a remote version exists.")
-  (setq snippet-url (yacb/code-snippet-url (yacb/current-commit-remote) commit-ref file-name selection-range))
+  (setq snippet-url (yacb/code-snippet-url (yacb/current-commit-remote)
+                                           commit-ref
+                                           file-name
+                                           selection-range))
 
   (with-temp-buffer
     (funcall mode-atom)
@@ -705,21 +708,19 @@ Includes a filename comment annotation."
   (insert "```" language "\n")
   (goto-char (point-max))
   (insert "\n\n" code "```\n")
-  (if url
-      (insert (format "<sup><a href=\"%s\">%s</a></sup>\n" url path))
-    (insert (format "<sup>%s</sup>\n" path))))
+  (and url (insert (format "<sup>\n  <a href=\"%s\">\n    %s\n  </a>\n</sup>\n" url path))))
 
 (defun yacb/gfm-code-fence-folded (language code path url)
   "Create a foldable GFM code block with LANGUAGE block containing CODE, PATH, and URL."
   (goto-char (point-min))
   (insert "<details>\n")
-  (insert "<summary> </summary>\n\n")
+  (insert "<summary>" )
+  (insert (read-string "Summary: "))
+  (insert "</summary>\n\n")
   (insert "```" language "\n")
   (goto-char (point-max))
   (insert "\n\n" code "```\n")
-  (if url
-      (insert (format "<sup><a href=\"%s\">%s</a></sup>\n" url path))
-    (insert (format "<sup>%s</sup>\n" path)))
+  (and url (insert (format "<sup>\n  <a href=%s\">\n    %s\n  </a>\n</sup>\n" url path)))
   (insert "</details>"))
 
 (defun yacb/org-code-fence (language code url)
