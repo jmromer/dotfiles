@@ -121,7 +121,7 @@ values."
    dotspacemacs-themes '(solarized-dark spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
