@@ -1,204 +1,201 @@
 [user]
-  name  = "Jake Romer"
+	name = "Jake Romer"
 
 [gpg]
-  program = gpg2
-
-[github]
-  user = jkrmr
+	program = gpg2
 
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 
 [include]
-  path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 
 [branch]
-  autosetuprebase = always
+	autosetuprebase = always
 
 [color]
-  ui = true
+	ui = true
 
 [commit]
-  template = ~/.dotfiles/git/gitmessage
-  gpgsign = true
+	template = ~/.dotfiles/git/gitmessage
+	gpgsign = true
 
 [core]
-  autocrlf     = input
-  editor       = nvim
-  excludesfile = ~/.dotfiles/git/gitignore
-  pager        = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+	autocrlf     = input
+	editor       = nvim
+	excludesfile = ~/.dotfiles/git/gitignore
+	pager        = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 
 [color "diff"]
-  commit     = green
-  meta       = yellow
-  frag       = cyan
-  old        = red
-  new        = green
-  whitespace = red reverse
+	commit     = green
+	meta       = yellow
+	frag       = cyan
+	old        = red
+	new        = green
+	whitespace = red reverse
 
 [color "diff-highlight"]
-  oldNormal    = red
-  oldHighlight = red 52
-  newNormal    = green
-  newHighlight = green 22
+	oldNormal    = red
+	oldHighlight = red 52
+	newNormal    = green
+	newHighlight = green 22
 
 [diff]
-  renames = true
-  tool    = nvim -d
+	renames = true
+	tool    = nvim -d
 
 [fetch]
-  prune = true
+	prune = true
 
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
 
 [filter "media"]
-  clean  = git-media-clean %f
-  smudge = git-media-smudge %f
+	clean  = git-media-clean %f
+	smudge = git-media-smudge %f
 
 [gitsh]
-  noGreeting = true
-  defaultCommand = status --short --branch && :echo
-  gitCommand = /usr/local/bin/hub
-  prompt = "%D %c%b%w %#"
+	noGreeting = true
+	defaultCommand = status --short --branch && :echo
+	gitCommand = /usr/local/bin/hub
+	prompt = "%D %c%b%w %#"
 
 [gitsh "color"]
-  default = green
-  untracked = yellow
-  modified = red
+	default = green
+	untracked = yellow
+	modified = red
 
 [init]
-  templatedir = ~/.dotfiles/git
+	templatedir = ~/.dotfiles/git
 
 [interactive]
-  singlekey = true
+	singlekey = true
 
 [log]
-  date = short
+	date = short
 
 [merge]
-  conflictstyle = diff3
-  ff            = no
-  prompt        = false
-  tool          = vimdiff3
+	conflictstyle = diff3
+	ff            = no
+	prompt        = false
+	tool          = vimdiff3
 
 [mergetool]
-  keepBackup = false
-  path = nvim
+	keepBackup = false
+	path = nvim
 
 [pager]
-  diff  = true
-  log   = true
-  stash = false
+	diff  = true
+	log   = true
+	stash = false
 
 [pretty]
-  brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
-  select = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset %Cgreen%>>(20)%D%Creset"
+	brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
+	select = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset %Cgreen%>>(20)%D%Creset"
 
 [push]
-  default = simple
+	default = simple
 
 [pull]
-  rebase  = true
+	rebase  = true
 
 [rerere]
-  enabled = true
+	enabled = true
 
 [rebase]
-  autosquash = true
+	autosquash = true
 
 [http]
-  postbuffer = 524288000
+	postbuffer = 524288000
 
 [ssh]
-  postbuffer = 524288000
+	postbuffer = 524288000
 
 [alias]
-  a        = stage-files
-  aa       = add --all
-  ap       = add --patch
-  b        = branch -vv
-  bc       = create-branch-with-remote
-  bcl      = create-branch
-  bd       = delete-branch
-  bdf      = branch -D
-  bdo      = clear-deleted-branches
-  bi       = bisect-helper
-  br       = browse
-  ca       = commit-amend
-  cmf      = commit-fixup
-  cms      = commit-squash
-  co       = checkout
-  cc       = checkout-commit
-  cob      = checkout-branch
-  comp     = !git checkout master && git pull
-  cp       = cherry-pick
-  cours    = checkout --ours
-  ctheirs  = checkout --theirs
-  d        = diff
-  ds       = diff --staged
-  dh       = diff --histogram
-  dump     = cat-file -p
-  f        = fetch
-  file-mod = branch-modified-files
-  file-del = branch-deleted-files
-  h        = log --format=brief --abbrev-commit --graph
-  hg       = log --format=brief --abbrev-commit
-  hb       = hg HEAD --not origin/master
-  hm       = hg --merge
-  hnm      = hg --no-merges --show-linear-break
-  hh       = !sh -c 'git hg | head $1' -
-  hdiff    = hg -U1
-  hfiles   = hg --format=medium --stat
-  hsince   = !sh -c 'git hg --since=$1' -
-  hstat    = hg --stat
-  i        = init
-  ig       = ignore
-  lg       = log --grep
-  lgr      = log --walk-reflogs --grep
-  lp       = log --patch
-  lpr      = log --patch -G
-  lps      = log --patch -S
-  m        = merge
-  ma       = merge --abort
-  mc       = merge --continue
-  mt       = mergetool
-  p        = push
-  pf       = push --force-with-lease
-  pl       = pull
-  plm      = pull origin master
-  po       = push origin
-  poh      = !sh -c 'git push origin && git push heroku' -
-  pu       = push -u
-  pom      = push origin master
-  psm      = push staging master
-  ppm      = push production master
-  pr       = pull-request
-  prm      = pull-request-with-message
-  r        = rebase
-  ri       = rebase-interactive
-  ra       = rebase --abort
-  rc       = rebase --continue
-  rem      = remote -v
-  rmc      = remove-commit
-  sha      = select-sha
-  sf       = select-files
-  s        = stash
-  sc       = stash clear
-  sa       = !sh -c 'git stash apply stash@{$1}' -
-  sd       = !sh -c 'git stash drop stash@{$1}' -
-  ss       = !sh -c 'git show stash@{$1}' -
-  su       = stash --include-untracked
-  sl       = stash list
-  sp       = stash pop
-  squash   = rebase -i origin/master
-  type     = cat-file -t
-  up       = !git fetch origin && git rebase origin/master
+	a        = stage-files
+	aa       = add --all
+	ap       = add --patch
+	b        = branch -vv
+	bc       = create-branch-with-remote
+	bcl      = create-branch
+	bd       = delete-branch
+	bdf      = branch -D
+	bdo      = clear-deleted-branches
+	bi       = bisect-helper
+	br       = browse
+	ca       = commit-amend
+	cmf      = commit-fixup
+	cms      = commit-squash
+	co       = checkout
+	cc       = checkout-commit
+	cob      = checkout-branch
+	comp     = !git checkout master && git pull
+	cp       = cherry-pick
+	cours    = checkout --ours
+	ctheirs  = checkout --theirs
+	d        = diff
+	ds       = diff --staged
+	dh       = diff --histogram
+	dump     = cat-file -p
+	f        = fetch
+	file-mod = branch-modified-files
+	file-del = branch-deleted-files
+	h        = log --format=brief --abbrev-commit --graph
+	hg       = log --format=brief --abbrev-commit
+	hb       = hg HEAD --not origin/master
+	hm       = hg --merge
+	hnm      = hg --no-merges --show-linear-break
+	hh       = !sh -c 'git hg | head $1' -
+	hdiff    = hg -U1
+	hfiles   = hg --format=medium --stat
+	hsince   = !sh -c 'git hg --since=$1' -
+	hstat    = hg --stat
+	i        = init
+	ig       = ignore
+	lg       = log --grep
+	lgr      = log --walk-reflogs --grep
+	lp       = log --patch
+	lpr      = log --patch -G
+	lps      = log --patch -S
+	m        = merge
+	ma       = merge --abort
+	mc       = merge --continue
+	mt       = mergetool
+	p        = push
+	pf       = push --force-with-lease
+	pl       = pull
+	plm      = pull origin master
+	po       = push origin
+	poh      = !sh -c 'git push origin && git push heroku' -
+	pu       = push -u
+	pom      = push origin master
+	psm      = push staging master
+	ppm      = push production master
+	pr       = pull-request
+	prm      = pull-request-with-message
+	r        = rebase
+	ri       = rebase-interactive
+	ra       = rebase --abort
+	rc       = rebase --continue
+	rem      = remote -v
+	rmc      = remove-commit
+	sha      = select-sha
+	sf       = select-files
+	s        = stash
+	sc       = stash clear
+	sa       = !sh -c 'git stash apply stash@{$1}' -
+	sd       = !sh -c 'git stash drop stash@{$1}' -
+	ss       = !sh -c 'git show stash@{$1}' -
+	su       = stash --include-untracked
+	sl       = stash list
+	sp       = stash pop
+	squash   = rebase -i origin/master
+	type     = cat-file -t
+	up       = !git fetch origin && git rebase origin/master
 
-  # git flow
-  hfeat    = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
-  sqfeat   = rebase -i develop
-  upfeat   = !git fetch origin && git rebase origin/develop
+	# git flow
+	hfeat    = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
+	sqfeat   = rebase -i develop
+	upfeat   = !git fetch origin && git rebase origin/develop
