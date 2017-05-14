@@ -303,9 +303,6 @@ values."
   (add-hook 'go-mode-hook '(lambda ()
                              (whitespace-toggle-options 'tabs)))
 
-  ;; Hyde settings
-  (setq-default hyde-home "~/Projects/jakeromer")
-
   ;; Exercism
   (setq-default exercism-dir "~/Projects/exercism")
   (setq-default exercism-auto-enable nil)
@@ -386,12 +383,6 @@ values."
     (interactive)
     (async-shell-command (format "xelatex %s" (buffer-file-name))))
 
-  (defun XeLaTeX-compile-resume ()
-    (interactive)
-    (let ((proj-root (projectile-project-root)))
-      (cd proj-root)
-      (async-shell-command (format "xelatex resume.xtx"))))
-
   (spacemacs/declare-prefix-for-mode 'latex-mode "SPC" "compile")
   (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC SPC" 'XeLaTeX-compile)
   (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC r" 'XeLaTeX-compile-resume)
@@ -399,7 +390,7 @@ values."
   ;; ruby-tools minor mode
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
 
-  "Configure miscellaneous settings (temporary)."
+  ;; Configure miscellaneous settings (temporary).
   ;; In normal mode, `-` opens dired in the PWD
   (define-key evil-normal-state-map (kbd "-") #'dired-open-in-pwd)
 
