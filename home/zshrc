@@ -4,6 +4,7 @@
 #-------------------------------------------------------------
 alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='vim +PlugInstall +qall'
+alias git=hub
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
