@@ -21,3 +21,6 @@
 [submodule "ob-elixir"]
 	path = home/spacemacs.d/local/ob-elixir
 	url = https://github.com/jkrmr/ob-elixir.git
+[submodule "yankee"]
+	path = home/spacemacs.d/local/yankee
+	url = https://github.com/jkrmr/yankee.git
