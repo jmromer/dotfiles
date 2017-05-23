@@ -442,3 +442,5 @@ source ~/.dotfiles/path.sh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+eval `opam config env`
