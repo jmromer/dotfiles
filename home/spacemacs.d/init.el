@@ -312,6 +312,14 @@ values."
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
 
+  ;; yank selection with line numbers
+  (load "yankee/yankee.el")
+  (require 'yankee)
+  (define-key evil-visual-state-map (kbd "gy") nil)
+  (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
+  (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
+  (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
+
   ;; Org mode
   ;; ==========
   (load "ob-elixir/ob-elixir.el")
@@ -535,12 +543,6 @@ values."
   (setq-default git-gutter-fr+-side 'left-fringe)
   (setq-default git-gutter-fr:side 'left-fringe)
 
-  ;; yank selection with line numbers
-  (define-key evil-visual-state-map (kbd "gy") nil)
-  (define-key evil-visual-state-map (kbd "gym") #'yacb/yank-as-gfm-code-block)
-  (define-key evil-visual-state-map (kbd "gyf") #'yacb/yank-as-gfm-code-block-folded)
-  (define-key evil-visual-state-map (kbd "gyo") #'yacb/yank-as-org-code-block)
-
   ;; org-related config (must go in here to avoid conflicts between elpa and
   ;; builtin org modes)
 
@@ -567,178 +569,6 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
-
-(defun yacb/selected-lines (start end)
-  "Return the selected line numbers bounded by START and END as a string.
-Formats the returned line number or range of lines (e.g., 'L5', 'L5-L10')."
-  (interactive "r")
-  (defvar start-line nil "The line number at the start position, as an integer.")
-  (setq start-line (line-number-at-pos start))
-
-  (defvar end-line nil "The line number at the end position, as an integer.")
-  (setq end-line (line-number-at-pos (- end 1)))
-
-  (defvar start-line-string nil "The start line as a string. Example: 'L5'.")
-  (setq start-line-string (concat "L" (number-to-string start-line)))
-
-  (defvar end-line-string nil "The end line as a string. Example: 'L10'.")
-  (setq end-line-string (concat "L" (number-to-string end-line)))
-
-  (if (= 0 (- end-line start-line))
-      start-line-string
-    (concat start-line-string "-" end-line-string)))
-
-(defun yacb/projectile-path-relative-to-project-root ()
-  "The current file's path relative to the project root."
-  (interactive)
-  (replace-regexp-in-string (projectile-project-root) ""
-                            (expand-file-name (or (buffer-file-name) ""))))
-
-(defun yacb/abbreviated-project-or-home-path-to-file ()
-  "The path to the current buffer's file.
-If in a project, the path is relative to the project root.
-If not in a project, the path is an abbreviated absolute path."
-  (interactive)
-  (if (projectile-project-p)
-      (yacb/projectile-path-relative-to-project-root)
-    (abbreviate-file-name (or (buffer-file-name) ""))))
-
-(defun yacb/yank-as-code-block (format start end)
-  "In a FORMAT code fence, yank the visual selection bounded by START and END.
-Includes a filename comment annotation."
-  (interactive "r")
-  (defvar file-name nil "The current buffer's file name.")
-  (setq file-name (yacb/abbreviated-project-or-home-path-to-file))
-
-  (defvar commit-ref nil "The current commit reference, if under version control.")
-  (setq commit-ref (yacb/current-commit-ref))
-
-  (defvar selection-range nil "The selected line or line numbers ('L-prefixed).")
-  (setq selection-range (yacb/selected-lines start end))
-
-  (defvar selected-lines nil "The content of the selected line(s).")
-  (setq selected-lines (buffer-substring start end))
-
-  (defvar mode-name nil "The current buffer's major mode.")
-  (setq mode-name (buffer-local-value 'major-mode (current-buffer)))
-
-  (defvar mode-string "" "The current buffer's major mode as a string.")
-  (setq mode-string (format "%s" (or mode-name "")))
-
-  (defvar mode-atom nil "The current buffer's major mode as an atom.")
-  (setq mode-atom (intern mode-string))
-
-  (defvar language-mode "" "The language, as derived from the major mode.")
-  (setq language-mode (replace-regexp-in-string "-mode$" "" mode-string))
-
-  (defvar language-extension "" "The language, taken from the file extension.")
-  (setq language-extension (or (file-name-extension (or (buffer-file-name) ""))
-                               "text"))
-
-  (defvar snippet-path nil "A path for the selected code, including line numbers and SHA.")
-  (setq snippet-path (yacb/code-snippet-path commit-ref file-name selection-range))
-
-  (defvar snippet-url nil "A URL for the selected code, if a remote version exists.")
-  (setq snippet-url (yacb/code-snippet-url (yacb/current-commit-remote)
-                                           commit-ref
-                                           file-name
-                                           selection-range))
-
-  (with-temp-buffer
-    (funcall mode-atom)
-    (insert file-name " " selection-range
-            (if commit-ref (format " (%s)" commit-ref) ""))
-    (comment-or-uncomment-region (line-beginning-position) (line-end-position))
-
-    (cond ((equal format 'gfm)
-           (yacb/gfm-code-fence language-mode selected-lines snippet-path snippet-url))
-          ((equal format 'gfm-folded)
-           (yacb/gfm-code-fence-folded language-mode selected-lines snippet-path snippet-url))
-          ((equal format 'org)
-           (yacb/org-code-fence language-mode selected-lines snippet-url)))
-    (clipboard-kill-ring-save (point-min) (point-max))))
-
-(defun yacb/current-commit-ref ()
-  "The current commit's SHA, if under version control.
-Currently only supports Git."
-  (if (equal 'Git (vc-backend (buffer-file-name)))
-      (substring (shell-command-to-string "git rev-parse HEAD") 0 8)
-    nil))
-
-(defun yacb/current-commit-remote ()
-  "The current commit's remote URL, if under version control with a remote set.
-Currently only supports Git."
-  (if (equal 'Git (vc-backend (buffer-file-name)))
-      (let ((remote-url (replace-regexp-in-string
-                         "\n$" ""
-                         (shell-command-to-string "git remote-origin-url"))))
-        (and (string-match-p "http" remote-url) remote-url))
-    nil))
-
-(defun yacb/yank-as-gfm-code-block (start end)
-  "In a GFM code fence, yank the selection bounded by START and END.
-Includes a filename comment annotation."
-  (interactive "r")
-  (yacb/yank-as-code-block 'gfm start end))
-
-(defun yacb/yank-as-gfm-code-block-folded (start end)
-  "In a foldable GFM code fence, yank the selection bounded by START and END.
-Includes a filename comment annotation."
-  (interactive "r")
-  (yacb/yank-as-code-block 'gfm-folded start end))
-
-(defun yacb/yank-as-org-code-block (start end)
-  "In an Org mode code fence, yank the selection bounded by START and END.
-Includes a filename comment annotation."
-  (interactive "r")
-  (yacb/yank-as-code-block 'org start end))
-
-(defun yacb/gfm-code-fence (language code path url)
-  "Create a GFM code block with LANGUAGE block containing CODE, PATH, and URL."
-  (goto-char (point-min))
-  (insert "```" language "\n")
-  (goto-char (point-max))
-  (insert "\n\n" code "```\n")
-  (and url (insert (format "<sup>\n  <a href=\"%s\">\n    %s\n  </a>\n</sup>\n" url path))))
-
-(defun yacb/gfm-code-fence-folded (language code path url)
-  "Create a foldable GFM code block with LANGUAGE block containing CODE, PATH, and URL."
-  (goto-char (point-min))
-  (insert "<details>\n")
-  (insert "<summary>" )
-  (insert (read-string "Summary: "))
-  (insert "</summary>\n\n")
-  (insert "```" language "\n")
-  (goto-char (point-max))
-  (insert "\n\n" code "```\n")
-  (and url (insert (format "<sup>\n  <a href=%s\">\n    %s\n  </a>\n</sup>\n" url path)))
-  (insert "</details>"))
-
-(defun yacb/org-code-fence (language code url)
-  "Create an Org code block with LANGUAGE annotation containing CODE and URL."
-  (goto-char (point-min))
-  (insert "#+BEGIN_SRC" " " language "\n")
-  (goto-char (point-max))
-  (insert "\n\n" code "#+END_SRC\n")
-  (and url (insert (format "[[%s][source]]" url))))
-
-(defun yacb/code-snippet-url (commit-remote commit-ref file-name selection-range)
-  "Generate the snippet url from COMMIT-REMOTE, COMMIT-REF, FILE-NAME, and the SELECTION-RANGE."
-  (and commit-remote
-       commit-ref
-       file-name
-       selection-range
-       (format "%s/blob/%s/%s#%s"
-               commit-remote
-               commit-ref
-               file-name
-               selection-range)))
-
-(defun yacb/code-snippet-path (commit-ref file-name selection-range)
-  "Generate the snippet path from COMMIT-REF, FILE-NAME, and the SELECTION-RANGE."
-  (if commit-ref
-      (format "%s#%s (%s)" file-name selection-range commit-ref)
-    (format "%s#%s" file-name selection-range)))
 
 (defun config/highlight-lines-at-length (chars)
   "Configure and enable whitespace mode to color text after CHARS chars."
