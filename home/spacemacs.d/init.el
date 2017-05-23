@@ -264,6 +264,9 @@ values."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
+  (with-eval-after-load 'linum
+    (linum-relative-on))
+
   (condition-case err
       (if (jkrmr/is-in-terminal-p)
           (spacemacs/load-theme 'spacemacs-dark))
