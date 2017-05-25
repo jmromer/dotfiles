@@ -316,7 +316,7 @@ values."
   (add-hook 'haskell-mode-hook 'intero-mode)
 
   ;; yank selection with line numbers
-  (load "yankee/yankee.el")
+  (load "yankee.el/yankee.el")
   (require 'yankee)
   (define-key evil-visual-state-map (kbd "gy") nil)
   (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
