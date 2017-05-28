@@ -27,6 +27,7 @@ PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
 PATH+=":$HOME/.local/bin"          # haskell binaries
 PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$HOME/.pyenv/bin"          # Pyenv binary path
+PATH+=":$HOME/.cargo/bin"          # Rust binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
 PATH+=":$N_PREFIX/bin"             # n version binaries
