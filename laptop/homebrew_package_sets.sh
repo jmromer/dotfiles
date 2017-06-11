@@ -4,8 +4,11 @@
 
 # OCaml
 brew install opam
-opam install merlin utop ocp-indent
 opam init
+opam install \
+   core async yojson core_extended core_bench \
+   cohttp async_graphics cryptokit menhir \
+   merlin utop ocp-indent
 opam config setup -a
 
 # Go
