@@ -290,12 +290,14 @@ values."
   ;; not working
   (setq-default counsel-rg-base-command "rg --column --no-heading")
 
+  ;; ivy
   (setq-default ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-fuzzy)
                                         (mx . ivy--regex-fuzzy)
                                         (swiper . ivy--regex-plus)
                                         (counsel-git-grep . ivy--regex-fuzzy)
                                         (t . ivy--regex-fuzzy))
                 ivy-initial-inputs-alist nil
+                ivy-use-virtual-buffers nil
                 ivy-wrap t)
 
   ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
