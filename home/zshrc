@@ -431,9 +431,8 @@ disable r # disable zsh's r
 #-------------------------------------------------------------
 # OPAM, OCaml config
 #-------------------------------------------------------------
-# OPAM configuration
-# . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-# eval `opam config env`
+. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+eval `opam config env`
 
 #-------------------------------------------------------------
 
@@ -442,5 +441,3 @@ source ~/.dotfiles/path.sh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
-
-eval `opam config env`
