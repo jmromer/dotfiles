@@ -67,3 +67,10 @@ if command -v pyenv > /dev/null; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
+
+#-------------------------------------------------------------
+# OCaml env config
+#-------------------------------------------------------------
+. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+eval $(opam config env)

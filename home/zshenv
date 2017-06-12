@@ -67,4 +67,3 @@ export ELM_HOME="$HOME/.elm"
 
 source "$HOME/.env.secure.sh"
 source "$HOME/.dotfiles/path.sh"
-
