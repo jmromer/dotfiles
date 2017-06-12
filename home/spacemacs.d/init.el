@@ -190,6 +190,7 @@ values."
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#20240E" . 100))))
+ '(ivy-use-virtual-buffers nil)
  '(magit-diff-use-overlays nil)
  '(org-confirm-babel-evaluate nil)
  '(package-selected-packages
@@ -298,7 +299,6 @@ values."
                                         (counsel-git-grep . ivy--regex-fuzzy)
                                         (t . ivy--regex-fuzzy))
                 ivy-initial-inputs-alist nil
-                ivy-use-virtual-buffers nil
                 ivy-wrap t)
 
   ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
