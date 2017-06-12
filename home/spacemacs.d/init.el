@@ -90,6 +90,7 @@ values."
      evil-rails
      evil-quickscope
      flx
+     flycheck-ocaml
      company-flx
      ob-swift
      seeing-is-believing
@@ -320,6 +321,39 @@ values."
 
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
+
+  ;; OCaml
+  (with-eval-after-load 'merlin
+    ;; Disable Merlin's own error checking
+    (setq merlin-error-after-save nil)
+    ;; Enable Flycheck checker
+    (flycheck-ocaml-setup))
+
+  (add-hook 'tuareg-mode-hook #'merlin-mode)
+
+  ;; -- Tweaks for OS X -------------------------------------
+  ;; Tweak for problem on OS X where Emacs.app doesn't run the right
+  ;; init scripts when invoking a sub-shell
+  (cond
+   ((eq window-system 'ns) ; macosx
+    ;; Invoke login shells, so that .profile or .bash_profile is read
+    (setq shell-command-switch "-lc")))
+
+  ;; -- opam and utop setup --------------------------------
+  ;; Setup environment variables using opam
+  (dolist
+      (var (car (read-from-string
+                 (shell-command-to-string "opam config env --sexp"))))
+    (setenv (car var) (cadr var)))
+  ;; Update the emacs path
+  (setq exec-path (split-string (getenv "PATH") path-separator))
+  ;; Update the emacs load path
+  (push (concat (getenv "OCAML_TOPLEVEL_PATH")
+                "/../../share/emacs/site-lisp") load-path)
+  ;; Automatically load utop.el
+  (autoload 'utop "utop" "Toplevel for OCaml" t)
+  (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+  (add-hook 'tuareg-mode-hook 'utop-minor-mode)
 
   ;; yank selection with line numbers
   (load "yankee.el/yankee.el")
