@@ -301,35 +301,26 @@ values."
                 ivy-initial-inputs-alist nil
                 ivy-wrap t)
 
-  ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
-  (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
-
-  (config/evil-cleverparens)
-  (config/highlight-sexp)
-  (config/highlight-lines-at-length 80)
-  (config/evil-rails)
-
-  ;; Go mode
-  (add-hook 'go-mode-hook '(lambda ()
-                             (whitespace-toggle-options 'tabs)))
-
-  ;; Exercism
-  (setq-default exercism-dir "~/Projects/exercism")
-  (setq-default exercism-auto-enable nil)
-  (load "exercism-emacs/exercism.el")
-  (require 'exercism)
-
-  ;; Haskell
-  (add-hook 'haskell-mode-hook 'intero-mode)
-
   ;; OCaml
+  ;; --------------------------------------------------------
+  (require 'opam-user-setup "~/.spacemacs.d/opam-user-setup.el")
+
+  (let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+    (when (and opam-share (file-directory-p opam-share))
+      ;; Register Merlin
+      (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+      (autoload 'merlin-mode "merlin" "Merlin" t nil)
+      ;; Automatically start it in OCaml buffers
+      (add-hook 'tuareg-mode-hook 'merlin-mode t)
+      (add-hook 'caml-mode-hook 'merlin-mode t)
+      ;; Use opam switch to lookup ocamlmerlin binary
+      (setq merlin-command 'opam)))
+
   (with-eval-after-load 'merlin
     ;; Disable Merlin's own error checking
     (setq merlin-error-after-save nil)
     ;; Enable Flycheck checker
     (flycheck-ocaml-setup))
-
-  (add-hook 'tuareg-mode-hook #'merlin-mode)
 
   ;; -- Tweaks for OS X -------------------------------------
   ;; Tweak for problem on OS X where Emacs.app doesn't run the right
@@ -354,6 +345,29 @@ values."
   (autoload 'utop "utop" "Toplevel for OCaml" t)
   (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
   (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+  ;; --------------------------------------------------------
+  ;; end OCaml setup
+
+  ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
+  (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
+
+  (config/evil-cleverparens)
+  (config/highlight-sexp)
+  (config/highlight-lines-at-length 80)
+  (config/evil-rails)
+
+  ;; Go mode
+  (add-hook 'go-mode-hook '(lambda ()
+                             (whitespace-toggle-options 'tabs)))
+
+  ;; Exercism
+  (setq-default exercism-dir "~/Projects/exercism")
+  (setq-default exercism-auto-enable nil)
+  (load "exercism-emacs/exercism.el")
+  (require 'exercism)
+
+  ;; Haskell
+  (add-hook 'haskell-mode-hook 'intero-mode)
 
   ;; yank selection with line numbers
   (load "yankee.el/yankee.el")
