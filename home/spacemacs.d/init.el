@@ -190,7 +190,6 @@ values."
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#20240E" . 100))))
- '(ivy-use-virtual-buffers nil)
  '(magit-diff-use-overlays nil)
  '(org-confirm-babel-evaluate nil)
  '(package-selected-packages
@@ -223,7 +222,7 @@ values."
            (concat
             (projectile-project-root)
             "bin")))))
- '(spacemacs-theme-comment-bg nil t)
+ '(spacemacs-theme-comment-bg nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
