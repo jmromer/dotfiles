@@ -41,6 +41,7 @@ PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
 PATH+=":/opt/X11/bin"              # added by OSX
 PATH+=":/usr/local/opt/qt@5.5/bin" # QT 5.5, for capybara-webkit
 PATH+=":$HOME/.anaconda3/bin"      # Anaconda binaries
+PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
 PATH+=":/Library/TeX/texbin"
 PATH+=":/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin"
 PATH+=":$HOME/Library/texlive/2016/bin/x86_64-darwin"
