@@ -65,5 +65,12 @@ export GOROOT="/usr/local/go"
 #-------------------------------------------------------------
 export ELM_HOME="$HOME/.elm"
 
+#-------------------------------------------------------------
+# Android
+#-------------------------------------------------------------
+export ANDROID_SDK_ROOT=~/Library/Android/sdk
+export ANDROID_SDK="$ANDROID_SDK_ROOT"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
+
 source "$HOME/.env.secure.sh"
 source "$HOME/.dotfiles/path.sh"
