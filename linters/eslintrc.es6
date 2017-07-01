@@ -3,7 +3,6 @@
   "env": {
     "browser": true,
     "es6": true,
-    "meteor": true,
     "node": true
   },
   "settings": {
@@ -39,10 +38,6 @@
     "jsx": true
   },
   "rules": {
-    "quotes": [
-      1,
-      "single"
-    ],
     "semi": [
       2,
       "never"
