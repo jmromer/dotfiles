@@ -178,7 +178,6 @@ values."
  '(compilation-message-face (quote default))
  '(evil-want-Y-yank-to-eol t)
  '(exec-path-from-shell-arguments (quote ("-l")))
- '(flycheck-eslintrc "~/.eslintrc")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -325,7 +324,7 @@ values."
   ;; Tweak for problem on OS X where Emacs.app doesn't run the right
   ;; init scripts when invoking a sub-shell
   (cond
-   ((eq window-system 'ns) ; macosx
+   ((eq window-system 'ns)              ; macosx
     ;; Invoke login shells, so that .profile or .bash_profile is read
     (setq shell-command-switch "-lc")))
 
@@ -566,14 +565,45 @@ values."
                 web-mode-css-indent-offset 2
                 web-mode-code-indent-offset 2)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
 
   ;; Tell js2 mode to shut the hell up about semicolons
   (setq js2-strict-missing-semi-warning nil)
 
+  ;; web-beautify
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook
                (lambda ()
                  (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+  (eval-after-load 'js
+    '(add-hook 'js-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+  (eval-after-load 'json-mode
+    '(add-hook 'json-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+  (eval-after-load 'sgml-mode
+    '(add-hook 'html-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+  (eval-after-load 'web-mode
+    '(add-hook 'web-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+  (eval-after-load 'css-mode
+    '(add-hook 'css-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
+
+  ;; enable flycheck globally
+  (setq flycheck-disabled-checkers '(javascript-jshint))
+  (global-flycheck-mode)
 
   ;; use global ruby rbenv
   (rbenv-use-global)
@@ -623,10 +653,6 @@ values."
   (global-company-mode)
   (with-eval-after-load 'company
     (company-flx-mode +1))
-
-  ;; enable flycheck globally
-  (setq flycheck-disabled-checkers '(javascript-jshint))
-  (global-flycheck-mode)
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
