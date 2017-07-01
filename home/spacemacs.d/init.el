@@ -120,8 +120,11 @@ values."
    dotspacemacs-editing-style 'vim
    dotspacemacs-verbose-loading nil
    dotspacemacs-startup-banner 'official
-   dotspacemacs-startup-lists '(recents projects bookmarks)
-   dotspacemacs-startup-recent-list-size 5
+   dotspacemacs-startup-lists '((recents . 3)
+                                (projects . 5)
+                                (bookmarks . 5)
+                                (agenda . 5)
+                                (todos . 5))
    dotspacemacs-scratch-mode 'markdown-mode
    dotspacemacs-themes '(solarized-dark spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
