@@ -5,6 +5,7 @@
 alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='vim +PlugInstall +qall'
 alias git=hub
+alias swift4="DEVELOPER_DIR=/Applications/Xcode-beta.app swift"
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
