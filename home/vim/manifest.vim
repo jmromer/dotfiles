@@ -19,3 +19,21 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
 
 Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
+
+" Text objects
+Plug 'kana/vim-textobj-entire' " Adds ae/ie
+Plug 'kana/vim-textobj-indent' " Adds i
+Plug 'kana/vim-textobj-user'   " custom text objects
+Plug 'kana/vim-textobj-line'   " Adds l
+
+" Ruby
+Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
+Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
+Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
