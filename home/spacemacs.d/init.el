@@ -181,6 +181,7 @@ values."
  '(compilation-message-face (quote default))
  '(evil-want-Y-yank-to-eol t)
  '(exec-path-from-shell-arguments (quote ("-l")))
+ '(flycheck-disabled-checkers (quote (javascript-jshint javascript-eslint)))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -599,7 +600,6 @@ values."
                  (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
 
   ;; enable flycheck globally
-  (setq flycheck-disabled-checkers '(javascript-jshint))
   (global-flycheck-mode)
 
   ;; use global ruby rbenv
