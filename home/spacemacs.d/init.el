@@ -603,7 +603,7 @@ values."
   (global-flycheck-mode)
 
   ;; use global ruby rbenv
-  (rbenv-use-global)
+  (rbenv-use-corresponding)
 
   (with-eval-after-load 'spaceline
     (spaceline-define-segment version-control
