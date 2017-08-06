@@ -17,7 +17,7 @@ values."
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
                       auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-complete-with-key-sequence-delay 0.5
                       auto-completion-private-snippets-directory nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
