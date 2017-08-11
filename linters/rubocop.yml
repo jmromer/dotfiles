@@ -78,11 +78,14 @@ Style/EmptyLinesAroundClassBody:
     - empty_lines
     - no_empty_lines
 
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
 Style/EmptyLinesAroundModuleBody:
-  EnforcedStyle: no_empty_lines
-  SupportedStyles:
-    - empty_lines
-    - no_empty_lines
+  EnforcedStyle: empty_lines
 
 Style/AsciiComments:
   Enabled: false
