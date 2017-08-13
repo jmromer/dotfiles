@@ -2,7 +2,7 @@
 	name = "Jake Romer"
 
 [gpg]
-	program = gpg2
+	program = gpg
 
 [credential]
 	helper = osxkeychain
