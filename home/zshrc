@@ -3,7 +3,7 @@
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
 alias vi='nvim -u ~/.vim/minimal.vim'
-alias vimplug='vim +PlugInstall +qall'
+alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
 alias git=hub
 alias swift4="DEVELOPER_DIR=/Applications/Xcode-beta.app swift"
 
