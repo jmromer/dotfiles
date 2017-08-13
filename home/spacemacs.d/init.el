@@ -14,10 +14,10 @@ values."
    dotspacemacs-configuration-layers
    '(
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior nil
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
                       auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.5
+                      auto-completion-complete-with-key-sequence-delay 1.0
                       auto-completion-private-snippets-directory nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
@@ -225,7 +225,7 @@ values."
            (concat
             (projectile-project-root)
             "bin")))))
- '(spacemacs-theme-comment-bg nil t)
+ '(spacemacs-theme-comment-bg nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
