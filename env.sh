@@ -72,10 +72,3 @@ if [[ -z "$JAVA_HOME" && -f "$java_path" ]]; then
   export JAVA_HOME
   launchctl setenv JAVA_HOME "$JAVA_HOME"
 fi
-
-#-------------------------------------------------------------
-# SDK MANAGER
-#-------------------------------------------------------------
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/jkrmr/.sdkman"
-[[ -s "/Users/jkrmr/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jkrmr/.sdkman/bin/sdkman-init.sh"
