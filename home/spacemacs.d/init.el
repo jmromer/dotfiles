@@ -581,6 +581,12 @@ values."
   ;; Tell js2 mode to shut the hell up about semicolons
   (setq js2-strict-missing-semi-warning nil)
 
+  (defun js-standard-fix ()
+    (interactive)
+    (shell-command-on-region
+     (point-min) (point-max)
+     (format "standard --fix %s" (buffer-file-name))))
+
   ;; web-beautify
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook
