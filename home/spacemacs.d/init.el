@@ -272,6 +272,9 @@ values."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
+  ;; Don't create lockfiles
+  (setq create-lockfiles nil)
+
   (with-eval-after-load 'linum
     (linum-relative-on))
 
