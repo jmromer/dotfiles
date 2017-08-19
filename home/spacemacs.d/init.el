@@ -567,11 +567,16 @@ values."
 
   ;; js, react configuration
   (setq-default js-indent-level 2
-                js2-basic-offset 2  ;; js2-mode
-                css-indent-offset 2 ;; web-mode
+                js2-basic-offset 2
+                css-indent-offset 2
                 web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
                 web-mode-code-indent-offset 2)
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
 
   ;; Tell js2 mode to shut the hell up about semicolons
   (setq js2-strict-missing-semi-warning nil)
