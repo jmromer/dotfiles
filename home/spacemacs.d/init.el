@@ -276,6 +276,9 @@ values."
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
+  ;; multi-term: just use emacs mode -- no vi bindings
+  (evil-set-initial-state 'term-mode 'emacs)
+
   (with-eval-after-load 'linum
     (linum-relative-on))
 
