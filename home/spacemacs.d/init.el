@@ -276,8 +276,31 @@ values."
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
-  ;; multi-term: just use emacs mode -- no vi bindings
+  ;; term: just use emacs mode -- no vi bindings
   (evil-set-initial-state 'term-mode 'emacs)
+
+  (defun term-send-ctrl-y ()
+    (interactive)
+    (term-send-raw-string "\C-y"))
+
+  ;; term modes
+  (defun term-mode-config ()
+    (define-key term-raw-map (kbd "C-y") 'term-send-ctrl-y)
+    (define-key term-raw-map (kbd "C-p") 'term-send-up)
+    (define-key term-raw-map (kbd "C-n") 'term-send-down)
+    (goto-address-mode))
+  (add-hook 'term-mode-hook 'term-mode-config)
+
+  ;; term: Use utf8
+  (defun my-term-use-utf8 ()
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+  (add-hook 'term-exec-hook 'my-term-use-utf8)
+
+  ;; ansi-term: always use zshell
+  (defvar my-term-shell "/bin/zsh")
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
+  (ad-activate 'ansi-term)
 
   (with-eval-after-load 'linum
     (linum-relative-on))
