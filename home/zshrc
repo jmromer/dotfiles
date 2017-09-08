@@ -320,6 +320,9 @@ bindkey -M viins '^k' kill-line
 bindkey -M viins '^y' accept-and-hold
 bindkey -M viins '^o' push-line-or-edit
 
+bindkey -M emacs '^y' accept-and-hold
+bindkey -M emacs '^o' push-line-or-edit
+
 # ^t Invoke FZF file finder
 bindkey '^t' fzf-file-widget
 
