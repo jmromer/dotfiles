@@ -71,7 +71,8 @@ values."
      (shell :variables
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
-            shell-default-height 30
+            shell-default-full-span nil
+            shell-default-height 35
             shell-default-position 'bottom)
      spacemacs-layouts
      sql
