@@ -281,7 +281,7 @@ values."
   (condition-case err
       (if (jkrmr/is-in-terminal-p)
           (spacemacs/load-theme 'spacemacs-dark))
-    (error "spacemacs/load-theme: %s" (error-message-string err)))
+    (error "Error in spacemacs/load-theme: %s" (error-message-string err)))
 
   ;; Copy exec-path from shell PATH
   (when (memq window-system '(mac ns x))
