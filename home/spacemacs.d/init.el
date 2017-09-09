@@ -268,6 +268,32 @@ values."
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
+  ;; flycheck
+  (setq-default flycheck-global-modes '(LaTeX-mode
+                                        c++-mode
+                                        c-mode
+                                        coffee-mode
+                                        elixir-mode
+                                        emacs-lisp-mode
+                                        enh-ruby-mode
+                                        go-mode
+                                        haml-mode
+                                        haskell-mode
+                                        js2-mode
+                                        json-mode
+                                        less-mode
+                                        markdown-mode
+                                        pug-mode
+                                        python-mode
+                                        react-mode
+                                        ruby-mode
+                                        sass-mode
+                                        scss-mode
+                                        slim-mode
+                                        web-mode
+                                        yaml-mode))
+  (global-flycheck-mode)
+
   ;; term: just use emacs mode -- no vi bindings
   (evil-set-initial-state 'term-mode 'emacs)
 
@@ -588,9 +614,6 @@ values."
     '(add-hook 'css-mode-hook
                (lambda ()
                  (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
-
-  ;; enable flycheck globally
-  (global-flycheck-mode)
 
   ;; rbenv: use global rbenv-managed ruby
   (rbenv-use-global)
