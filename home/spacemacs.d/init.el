@@ -279,6 +279,10 @@ values."
   ;; term: just use emacs mode -- no vi bindings
   (evil-set-initial-state 'term-mode 'emacs)
 
+  ;; toggle between emacs and evil-normal states
+  (global-set-key (kbd "ESC ESC ESC") 'evil-normal-state)
+  (spacemacs/set-leader-keys (kbd "ESC") 'evil-emacs-state)
+
   (defun term-send-ctrl-y ()
     (interactive)
     (term-send-raw-string "\C-y"))
