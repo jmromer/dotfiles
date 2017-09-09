@@ -41,7 +41,6 @@ values."
          go-use-gometalinter t)
      graphviz
      haskell
-     ipython-notebook
      ivy
      (javascript :variables
                  tern-command '("node" "/Users/jkrmr/.node/bin/tern"))
@@ -67,7 +66,6 @@ values."
            ruby-test-runner 'rspec)
      ruby-on-rails
      search-engine
-     scala
      (shell :variables
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
@@ -95,7 +93,6 @@ values."
      company-flx
      ob-swift
      seeing-is-believing
-     sicp
      vimish-fold
      )
    dotspacemacs-excluded-packages
@@ -196,9 +193,6 @@ values."
      ("#20240E" . 100))))
  '(magit-diff-use-overlays nil)
  '(org-confirm-babel-evaluate nil)
- '(package-selected-packages
-   (quote
-    (org-category-capture request-deferred flycheck-ocaml disaster company-c-headers cmake-mode clang-format deferred ein websocket caml powerline smex request pcre2el log4e gntp org-plus-contrib markdown-mode skewer-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct flx-ido projectile-rails rake git-commit iedit anzu goto-chg undo-tree scala-mode helm-dash web-completion-data dash-functional tern restclient know-your-http-well pos-tip go-mode flx hydra inflections edn multiple-cursors paredit peg eval-sexp-fu highlight seq spinner queue clojure-mode inf-ruby bind-map bind-key packed anaconda-mode pythonic f elixir-mode pkg-info epl avy auto-complete popup helm-make cider async sbt-mode flycheck alert s engine-mode intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode auctex-latexmk auctex company smartparens evil helm helm-core yasnippet magit magit-popup with-editor projectile js2-mode diminish company-flx wgrep ivy-hydra flyspell-correct-ivy counsel-projectile counsel-dash counsel swiper ivy yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vimish-fold vi-tilde-fringe uuidgen utop use-package unfill tuareg toc-org tagedit swift-mode sql-indent spaceline smeargle slim-mode sicp shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pbcopy paradox ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file ocp-indent ob-swift ob-restclient ob-http noflet neotree mwim multi-term move-text mmm-mode minitest merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide hyde hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ graphviz-dot-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flycheck-credo fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-rails evil-quickscope evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elm-mode elisp-slime-nav dumb-jump diff-hl deft dash-at-point dactyl-mode cython-mode company-web company-tern company-statistics company-restclient company-quickhelp company-go company-auctex company-anaconda command-log-mode column-enforce-mode coffee-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ac-ispell)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(projectile-git-command "/usr/local/bin/git ls-files -zco --exclude-standard")
@@ -226,7 +220,7 @@ values."
            (concat
             (projectile-project-root)
             "bin")))))
- '(spacemacs-theme-comment-bg nil)
+ '(spacemacs-theme-comment-bg nil t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
