@@ -27,6 +27,7 @@ PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
 PATH+=":$HOME/.local/bin"          # haskell binaries
 PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$HOME/.pyenv/bin"          # Pyenv binary path
+PATH+=":$HOME/.rbenv/bin"          # Rbenv binary path
 PATH+=":$HOME/.cargo/bin"          # Rust binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
@@ -53,6 +54,9 @@ export PATH
 if command -v rbenv > /dev/null; then
   eval "$(rbenv init - --no-rehash)"
 fi
+
+# Ensure RBENV_VERSION is unset on start-up
+unset RBENV_VERSION
 
 #-------------------------------------------------------------
 # EXENV
