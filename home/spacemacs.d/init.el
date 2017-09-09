@@ -50,7 +50,6 @@ values."
             latex-enable-folding t)
      (markdown :variables
                markdown-live-preview-engine 'vmd)
-     ocaml
      (org :variables
           org-enable-github-support t)
      osx
@@ -89,7 +88,6 @@ values."
      evil-rails
      evil-quickscope
      flx
-     flycheck-ocaml
      company-flx
      ob-swift
      seeing-is-believing
@@ -331,53 +329,6 @@ values."
                                         (t . ivy--regex-fuzzy))
                 ivy-initial-inputs-alist nil
                 ivy-wrap t)
-
-  ;; OCaml
-  ;; --------------------------------------------------------
-  (require 'opam-user-setup "~/.spacemacs.d/opam-user-setup.el")
-
-  (let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
-    (when (and opam-share (file-directory-p opam-share))
-      ;; Register Merlin
-      (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
-      (autoload 'merlin-mode "merlin" "Merlin" t nil)
-      ;; Automatically start it in OCaml buffers
-      (add-hook 'tuareg-mode-hook 'merlin-mode t)
-      (add-hook 'caml-mode-hook 'merlin-mode t)
-      ;; Use opam switch to lookup ocamlmerlin binary
-      (setq merlin-command 'opam)))
-
-  (with-eval-after-load 'merlin
-    ;; Disable Merlin's own error checking
-    (setq merlin-error-after-save nil)
-    ;; Enable Flycheck checker
-    (flycheck-ocaml-setup))
-
-  ;; -- Tweaks for OS X -------------------------------------
-  ;; Tweak for problem on OS X where Emacs.app doesn't run the right
-  ;; init scripts when invoking a sub-shell
-  (cond
-   ((eq window-system 'ns)              ; macosx
-    ;; Invoke login shells, so that .profile or .bash_profile is read
-    (setq shell-command-switch "-lc")))
-
-  ;; -- opam and utop setup --------------------------------
-  ;; Setup environment variables using opam
-  (dolist
-      (var (car (read-from-string
-                 (shell-command-to-string "opam config env --sexp"))))
-    (setenv (car var) (cadr var)))
-  ;; Update the emacs path
-  (setq exec-path (split-string (getenv "PATH") path-separator))
-  ;; Update the emacs load path
-  (push (concat (getenv "OCAML_TOPLEVEL_PATH")
-                "/../../share/emacs/site-lisp") load-path)
-  ;; Automatically load utop.el
-  (autoload 'utop "utop" "Toplevel for OCaml" t)
-  (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-  (add-hook 'tuareg-mode-hook 'utop-minor-mode)
-  ;; --------------------------------------------------------
-  ;; end OCaml setup
 
   ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
   (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
