@@ -592,8 +592,8 @@ values."
   ;; enable flycheck globally
   (global-flycheck-mode)
 
-  ;; use global ruby rbenv
-  (rbenv-use-corresponding)
+  ;; rbenv: use global rbenv-managed ruby
+  (rbenv-use-global)
 
   (with-eval-after-load 'spaceline
     (spaceline-define-segment version-control
