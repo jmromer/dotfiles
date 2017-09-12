@@ -650,10 +650,10 @@ values."
   ;; org-related config (must go in here to avoid conflicts between elpa and
   ;; builtin org modes)
 
-  ;; (setq-default org-md-headline-style 'setext)
   (with-eval-after-load 'org
-    '(progn
-       ))
+    (setq-default org-md-headline-style 'setext)
+    (add-hook 'org-mode-hook #'spacemacs/toggle-line-numbers-off 'append)
+    '(progn))
   ;; ===========================================================================
 
   ;; wrap lines in compilation buffer
