@@ -657,7 +657,7 @@ values."
   (defun my-compilation-mode-hook ()
     (setq truncate-lines nil) ;; automatically becomes buffer local
     (set (make-local-variable 'truncate-partial-width-windows) nil))
-  (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
+  (add-hook 'compilation-mode-hook #'my-compilation-mode-hook)
 
   ;; enable company globally
   (global-company-mode)
@@ -672,13 +672,13 @@ values."
   (setq-default whitespace-line-column chars
                 whitespace-style '(face lines-tail empty tabs))
   ;; Enable excess length highlighting in prog-mode
-  (add-hook 'prog-mode-hook 'whitespace-mode)
-  (add-hook 'org-mode-hook 'whitespace-mode)
+  (add-hook 'prog-mode-hook #'whitespace-mode)
+  (add-hook 'org-mode-hook #'whitespace-mode)
 
   ;; Manually set trailing whitespace cleanup
   ;; (workaround, since the preceding breaks whitespace-cleanup,
   ;; which `dotspacemacs-whitespace-cleanup 'all' uses.)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace))
+  (add-hook 'before-save-hook #'delete-trailing-whitespace))
 
 (defun config/evil-rails ()
   "Configure evil-rails.
