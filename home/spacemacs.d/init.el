@@ -85,12 +85,13 @@ values."
      )
    dotspacemacs-additional-packages
    '(
-     evil-rails
-     evil-quickscope
-     flx
      company-flx
+     evil-quickscope
+     evil-rails
+     flx
      ob-swift
      seeing-is-believing
+     toc-org
      vimish-fold
      )
    dotspacemacs-excluded-packages
