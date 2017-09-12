@@ -401,9 +401,11 @@ values."
                                  (python . t)
                                  (ruby . t)
                                  (swift . t)
-                                 (sh . t)))
+                                 (shell . t)))
 
   (with-eval-after-load 'org
+    (setq org-babel-python-command "python3")
+
     (setq org-babel-default-header-args:python
           (cons '(:results . "value pp")
                 (assq-delete-all :results org-babel-default-header-args:python)))
