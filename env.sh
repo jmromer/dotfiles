@@ -10,13 +10,6 @@ fi
 #-------------------------------------------------------------
 # GPG
 #-------------------------------------------------------------
-# if [ ! -f "${HOME}/.gpg-agent-info" ]; then
-#   gpg-agent --daemon >/dev/null
-# fi
-# shellcheck source=/dev/null
-# source "${HOME}/.gpg-agent-info"
-# export GPG_AGENT_INFO
-
 GPG_TTY=$(tty)
 export GPG_TTY
 
