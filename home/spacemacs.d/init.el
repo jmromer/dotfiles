@@ -125,8 +125,8 @@ values."
    dotspacemacs-scratch-mode 'markdown-mode
    dotspacemacs-themes '(solarized-dark spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 15
+   dotspacemacs-default-font '("Fira Code Retina"
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -269,6 +269,8 @@ values."
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
+  ;; set up fira code, ligatures
+  (config/firacode)
   ;; flycheck
   (setq-default flycheck-global-modes '(LaTeX-mode
                                         c++-mode
@@ -705,6 +707,38 @@ https://github.com/daimrod/highlight-sexp."
   (spacemacs/toggle-evil-cleverparens-on)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode))
+
+(defun config/firacode ()
+  "Configure firacode font face with ligatures.
+See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
+  (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+                 (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+                 (36 . ".\\(?:>\\)")
+                 (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+                 (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+                 (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+                 (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+                 (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+                 (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
+                 (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+                 (48 . ".\\(?:x[a-zA-Z]\\)")
+                 (58 . ".\\(?:::\\|[:=]\\)")
+                 (59 . ".\\(?:;;\\|;\\)")
+                 (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+                 (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+                 (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+                 (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+                 (91 . ".\\(?:]\\)")
+                 (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+                 (94 . ".\\(?:=\\)")
+                 (119 . ".\\(?:ww\\)")
+                 (123 . ".\\(?:-\\)")
+                 (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+                 (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
+                 )))
+    (dolist (char-regexp alist)
+      (set-char-table-range composition-function-table (car char-regexp)
+                            `([,(cdr char-regexp) 0 font-shape-gstring])))))
 
 (defun yas/strip (str)
   "Remove commas, spaces, and colons from STR."
