@@ -24,6 +24,7 @@ export MANPATH
 #-------------------------------------------------------------
 PATH="$HOME/.bin"                  # user binaries
 PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
+PATH+=":$ANACONDA_PREFIX/bin"      # Anaconda binaries
 PATH+=":$HOME/.local/bin"          # haskell binaries
 PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$HOME/.pyenv/bin"          # Pyenv binary path

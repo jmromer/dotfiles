@@ -407,8 +407,10 @@ values."
                 ivy-initial-inputs-alist nil
                 ivy-wrap t)
 
-  ;; Explicitly add pyenv shims to exec-path. Fixes flake8 failure to load.
-  (setq-default exec-path (cons (format "%s/.pyenv/shims" (getenv "HOME")) exec-path))
+  ;; Explicitly prepend python binaries location to exec-path.
+  ;; Fixes flake8, yapfify failure to load.
+  (setq-default exec-path
+                (cons (format "%s/.anaconda3/bin" (getenv "HOME")) exec-path))
 
   (config/evil-cleverparens)
   (config/highlight-sexp)

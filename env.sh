@@ -37,6 +37,7 @@ export N_PREFIX="$HOME/.node"
 #-------------------------------------------------------------
 # GO
 #-------------------------------------------------------------
+export ANACONDA_PREFIX="$HOME/.anaconda3"
 export GOPATH="$HOME/.go"
 export GOROOT="/usr/local/go"
 
