@@ -571,10 +571,11 @@ values."
   (setq-default large-file-warning-threshold nil)
 
   ;; make focus window commands primary
-  (spacemacs/set-leader-keys "ws" 'split-window-below-and-focus)
-  (spacemacs/set-leader-keys "wS" 'split-window-below)
-  (spacemacs/set-leader-keys "wv" 'split-window-right-and-focus)
-  (spacemacs/set-leader-keys "wV" 'split-window-right)
+  (spacemacs/set-leader-keys "ws" #'split-window-below-and-focus)
+  (spacemacs/set-leader-keys "wS" #'split-window-below)
+  (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
+  (spacemacs/set-leader-keys "wV" #'split-window-right)
+  (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
 
   ;; ruby mode: seeing-is-believing
   (require 'seeing-is-believing)
@@ -862,5 +863,29 @@ Excludes the ibuffer."
     (move-end-of-line nil)
     (alchemist-iex-send-region (region-beginning) (region-end))
     (pop-mark)))
+
+(defun split-term-window-right-and-focus ()
+  "Open an `ansi-term' split to the right and focus it."
+  (interactive)
+  (split-window-right-and-focus)
+  (ansi-term "/usr/local/bin/zsh"))
+
+(defun rerun-term-command-right ()
+   "Re-issue previously issued command in terminal split to the right."
+   (interactive)
+   (evil-window-right 1)
+   (evil-insert-state)
+   (execute-kbd-macro (kbd "M-p"))
+   (execute-kbd-macro (kbd "RET"))
+   (evil-window-left 1))
+
+(defun rerun-term-command-below ()
+  "Re-issue previously issued command in a terminal split below."
+  (interactive)
+  (evil-window-down 1)
+  (evil-insert-state)
+  (execute-kbd-macro (kbd "M-p"))
+  (execute-kbd-macro (kbd "RET"))
+  (evil-window-up 1))
 
 ;;; init.el ends here
