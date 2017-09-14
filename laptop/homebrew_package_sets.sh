@@ -23,6 +23,13 @@ pip install --upgrade \
     vim-vint \
     yapf \
 
+# React / React Native
+brew install watchman
+npm i -g create-react-app react-native-cli webpack
+
+# Google Closure
+npm i -g google-closure-compiler google-closure-linter
+
 # Go
 brew install go
 mkdir $HOME/.go
