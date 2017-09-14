@@ -26,23 +26,20 @@ PATH="$HOME/.bin"                  # user binaries
 PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
 PATH+=":$ANACONDA_PREFIX/bin"      # Anaconda binaries
 PATH+=":$HOME/.local/bin"          # haskell binaries
-PATH+=":$HOME/.exenv/bin"          # Exenv binary path
-PATH+=":$HOME/.pyenv/bin"          # Pyenv binary path
-PATH+=":$HOME/.rbenv/bin"          # Rbenv binary path
-PATH+=":$HOME/.cargo/bin"          # Rust binary path
-PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
-PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user gems for system ruby
 PATH+=":$N_PREFIX/bin"             # n version binaries
 PATH+=":$HOME/.fzf/bin"            # FZF fuzzy-finder
-PATH+=":$HOME/.gem/ruby/2.3.0/bin" # user-install system Ruby gems
+PATH+=":$HOME/.rbenv/bin"          # Rbenv binary path
+PATH+=":$HOME/.gem/ruby/2.0.0/bin" # user-install gems for system ruby
+PATH+=":$HOME/.gem/ruby/2.3.0/bin" # user-install gems for system ruby
+PATH+=":$HOME/.exenv/bin"          # Exenv binary path
+PATH+=":$HOME/.cargo/bin"          # Rust binary path
+PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
 PATH+=":/usr/local/sbin"           # homebrewed binaries
 PATH+=":/usr/bin:/bin"             # system binaries
 PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
 PATH+=":/opt/X11/bin"              # added by OSX
-PATH+=":/usr/local/opt/qt@5.5/bin" # QT 5.5, for capybara-webkit
-PATH+=":$HOME/.anaconda3/bin"      # Anaconda binaries
 PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
 PATH+=":/Library/TeX/texbin"
 PATH+=":/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin"
@@ -56,7 +53,7 @@ if command -v rbenv > /dev/null; then
   eval "$(rbenv init - --no-rehash)"
 fi
 
-# Ensure RBENV_VERSION is unset on start-up
+# Ensure RBENV_VERSION is unset on shell start-up
 unset RBENV_VERSION
 
 #-------------------------------------------------------------
