@@ -62,12 +62,3 @@ unset RBENV_VERSION
 if command -v exenv > /dev/null; then
   eval "$(exenv init -)";
 fi
-
-#-------------------------------------------------------------
-# PYENV
-#-------------------------------------------------------------
-if command -v pyenv > /dev/null; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
-
