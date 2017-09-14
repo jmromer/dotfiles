@@ -309,6 +309,13 @@ values."
 
   (add-hook 'emacs-lisp-mode-hook #'config/prettify-symbols-emacs-lisp)
 
+  (defun config/prettify-symbols-javascript ()
+    "Provide prettify-symbol mode mappings for javascript modes."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("function" .  #x0192))))
+
+  (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript)
+
   ;; flycheck
   (setq-default flycheck-global-modes '(LaTeX-mode
                                         c++-mode
