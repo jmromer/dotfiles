@@ -90,6 +90,7 @@ values."
      evil-rails
      flx
      ob-swift
+     pretty-mode
      seeing-is-believing
      toc-org
      vimish-fold
@@ -271,6 +272,43 @@ values."
 
   ;; set up fira code, ligatures
   (config/firacode)
+
+  ;; prettify fonts
+  (global-prettify-symbols-mode)
+
+  ;; configure pretty-mode
+  (require 'pretty-mode)
+  (global-pretty-mode t)
+
+  (pretty-deactivate-groups
+   '(:equality :ordering :ordering-double :ordering-triple
+               :arrows :arrows-twoheaded :punctuation
+               :logic :sets))
+
+  (pretty-activate-groups
+   '(:sub-and-superscripts :greek :arithmetic-nary))
+
+  ;; python prettify mode mappings
+  (defun config/prettify-symbols-python ()
+    "Provide prettify-symbol mode mappings for python-mode."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("def" .    #x0192)
+            ("in" .     #x2208)
+            ("is" .     #x2261)
+            ("is not" . #x2262)
+            ("not in" . #x2209)
+            ("all" .    #x2200)
+            ("any" .    #x2203))))
+
+  (add-hook 'python-mode-hook #'config/prettify-symbols-python)
+
+  (defun config/prettify-symbols-emacs-lisp ()
+    "Provide prettify-symbol mode mappings for emacs-lisp-mode."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("defun" .  #x0192))))
+
+  (add-hook 'emacs-lisp-mode-hook #'config/prettify-symbols-emacs-lisp)
+
   ;; flycheck
   (setq-default flycheck-global-modes '(LaTeX-mode
                                         c++-mode
