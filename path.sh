@@ -71,18 +71,3 @@ if command -v pyenv > /dev/null; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-#-------------------------------------------------------------
-# OCaml env config
-#-------------------------------------------------------------
-. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-eval $(opam config env)
-
-#-------------------------------------------------------------
-# SDK MANAGER
-#-------------------------------------------------------------
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
-  source "$HOME/.sdkman/bin/sdkman-init.sh"
-fi
