@@ -747,7 +747,7 @@ line are justified."
 % do not remove
 % The settings below are copied from fullpage.sty
 \\setlength{\\textwidth}{\\paperwidth}
-\\addtolength{\\textwidth}{-10cm}
+\\addtolength{\\textwidth}{-16cm}
 \\setlength{\\oddsidemargin}{1.5cm}
 \\addtolength{\\oddsidemargin}{-2.54cm}
 \\setlength{\\evensidemargin}{\\oddsidemargin}
@@ -766,7 +766,7 @@ line are justified."
            (= beg (line-beginning-position)))
       (let* ((img (create-image image 'imagemagick t))
              (width (car (image-size img)))
-             (offset (floor (- (/ (window-text-width) 2) (/ width 2)))))
+             (offset (floor (- (/ 40 2) (/ width 2)))))
         (overlay-put (ov-at) 'before-string (make-string offset ? ))))
 
      ;; Right justification
@@ -774,7 +774,7 @@ line are justified."
            (= beg (line-beginning-position)))
       (let* ((img (create-image image 'imagemagick t))
              (width (car (image-display-size (overlay-get (ov-at) 'display))))
-             (offset (floor (- (window-text-width) width (- (line-end-position) end)))))
+             (offset (floor (- 40 width (- (line-end-position) end)))))
         (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
 
   (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay))
