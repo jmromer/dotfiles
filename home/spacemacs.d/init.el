@@ -54,7 +54,6 @@ values."
           org-enable-github-support t)
      osx
      (python :variables
-             python-shell-completion-native-disabled-interpreters '("pypy" "ipython" "python")
              python-test-runner '(pytest nose)
              python-sort-imports-on-save t
              python-enable-yapf-format-on-save t)
