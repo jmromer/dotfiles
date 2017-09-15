@@ -453,7 +453,7 @@ values."
                                  (shell . t)))
 
   (with-eval-after-load 'org
-    (setq org-babel-python-command "python3")
+    (setq-default org-babel-python-command "python3")
 
     (setq org-babel-default-header-args:python
           (cons '(:results . "value pp")
