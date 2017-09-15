@@ -18,8 +18,10 @@ export GPG_TTY
 #-------------------------------------------------------------
 export TEXMFVAR="$HOME/Library/texlive/2016/texmf-var"
 export TEXMFCONFIG="$HOME/Library/texlive/2016/texmf-config"
-export TEXMFSYSVAR="$TEXMFVAR"
-export TEXMFSYSCONFIG="$TEXMFCONFIG"
+
+export TEXMFSYSVAR="" #"$TEXMFVAR"
+export TEXMFSYSCONFIG="" #"$TEXMFCONFIG"
+
 export TEXMFLOCAL="$HOME/Library/texlive/2016/texmf-local"
 export TEXDIR="$HOME/Library/texlive/2016"
 export TEXMFHOME="$HOME/Library/texmf"
