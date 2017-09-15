@@ -369,10 +369,9 @@ values."
     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
   (add-hook 'term-exec-hook 'my-term-use-utf8)
 
-  ;; ansi-term: always use zshell
-  (defvar my-term-shell "/bin/zsh")
+  ;; ansi-term: always use default shell
   (defadvice ansi-term (before force-bash)
-    (interactive (list my-term-shell)))
+    (interactive (list shell-default-term-shell)))
   (ad-activate 'ansi-term)
 
   (with-eval-after-load 'linum
@@ -391,9 +390,6 @@ values."
   (setq-default projectile-completion-system 'ivy
                 projectile-enable-caching t
                 projectile-globally-ignored-directories '("node_modules"))
-
-  ;; Use sh. Faster.
-  (setq-default shell-file-name "/bin/sh")
 
   ;; not working
   (setq-default counsel-rg-base-command "rg --column --no-heading")
@@ -872,8 +868,9 @@ Excludes the ibuffer."
 (defun split-term-window-right-and-focus ()
   "Open an `ansi-term' split to the right and focus it."
   (interactive)
+  (defvar shell-default-term-shell)
   (split-window-right-and-focus)
-  (ansi-term "/usr/local/bin/zsh"))
+  (ansi-term shell-default-term-shell))
 
 (defun rerun-term-command-right ()
    "Re-issue previously issued command in terminal split to the right."
