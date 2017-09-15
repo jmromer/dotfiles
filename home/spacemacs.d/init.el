@@ -374,6 +374,7 @@ values."
     (interactive (list shell-default-term-shell)))
   (ad-activate 'ansi-term)
 
+  ;; Enable relative line numbering
   (with-eval-after-load 'linum
     (linum-relative-on))
 
