@@ -89,6 +89,7 @@ values."
      evil-rails
      flx
      ob-swift
+     ov
      pretty-mode
      seeing-is-believing
      toc-org
@@ -709,6 +710,7 @@ values."
     (setq-default org-md-headline-style 'setext)
     (setq-default org-src-tab-acts-natively t)
     (add-hook 'org-mode-hook #'spacemacs/toggle-line-numbers-off 'append)
+    (config/org-latex-preview)
     '(progn))
   ;; ===========================================================================
 
@@ -725,6 +727,35 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/org-latex-preview ()
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :justify 'center))
+
+  (defun org-justify-fragment-overlay (beg end image imagetype)
+    "Adjust the justification of a LaTeX fragment.
+The justification is set by :justify in
+`org-format-latex-options'. Only equations at the beginning of a
+line are justified."
+    (require 'ov)
+    (cond
+     ;; Centered justification
+     ((and (eq 'center (plist-get org-format-latex-options :justify))
+           (= beg (line-beginning-position)))
+      (let* ((img (create-image image 'imagemagick t))
+             (width (car (image-size img)))
+             (offset (floor (- (/ (window-text-width) 2) (/ width 2)))))
+        (overlay-put (ov-at) 'before-string (make-string offset ? ))))
+
+     ;; Right justification
+     ((and (eq 'right (plist-get org-format-latex-options :justify))
+           (= beg (line-beginning-position)))
+      (let* ((img (create-image image 'imagemagick t))
+             (width (car (image-display-size (overlay-get (ov-at) 'display))))
+             (offset (floor (- (window-text-width) width (- (line-end-position) end)))))
+        (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
+
+  (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay))
 
 (defun config/highlight-lines-at-length (chars)
   "Configure and enable whitespace mode to color text after CHARS chars."
