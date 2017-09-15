@@ -275,6 +275,9 @@ values."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
+  ;; latex: update preview when file changes
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
