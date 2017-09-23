@@ -294,6 +294,7 @@ values."
   (config/git-and-magit)
   (config/yankee)
   (config/underscore-to-word-char-list)
+  (config/company)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -542,11 +543,6 @@ values."
     (set (make-local-variable 'truncate-partial-width-windows) nil))
   (add-hook 'compilation-mode-hook #'my-compilation-mode-hook)
 
-  ;; enable company globally
-  (global-company-mode)
-  (with-eval-after-load 'company
-    (company-flx-mode +1))
-
   ;; execute local configuration file last
   (jkrmr/config-load-local))
 
@@ -559,6 +555,12 @@ values."
   (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
+
+(defun config/company ()
+  "Enable and configure company mode."
+  (global-company-mode)
+  (with-eval-after-load 'company
+    (company-flx-mode +1)))
 
 (defun config/yankee ()
   "Load and configure yankee.el.
