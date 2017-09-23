@@ -306,6 +306,7 @@ values."
   (config/javascript-modes)
   (config/web-mode)
   (config/ivy-and-projectile)
+  (config/spaceline)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -372,6 +373,17 @@ values."
   ;; rbenv: use global rbenv-managed ruby
   (rbenv-use-global)
 
+  ;; wrap lines in compilation buffer
+  (defun compilation-mode-settings ()
+    (setq truncate-lines nil) ;; automatically becomes buffer local
+    (set (make-local-variable 'truncate-partial-width-windows) nil))
+  (add-hook 'compilation-mode-hook #'compilation-mode-settings)
+
+  ;; execute local configuration file last
+  (config/load-local-config))
+
+(defun config/spaceline ()
+  "Configure the spaceline."
   (with-eval-after-load 'spaceline
     (spaceline-define-segment version-control
       "Only display the current branch name in mode line."
@@ -379,17 +391,7 @@ values."
         (powerline-raw
          (s-trim (replace-regexp-in-string "Git[:-]" "" vc-mode)))))
     (setq-default powerline-default-separator nil)
-    (spaceline-compile))
-
-
-  ;; wrap lines in compilation buffer
-  (defun my-compilation-mode-hook ()
-    (setq truncate-lines nil) ;; automatically becomes buffer local
-    (set (make-local-variable 'truncate-partial-width-windows) nil))
-  (add-hook 'compilation-mode-hook #'my-compilation-mode-hook)
-
-  ;; execute local configuration file last
-  (config/load-local-config))
+    (spaceline-compile)))
 
 (defun config/ivy-and-projectile ()
   "Configure Ivy and Projectile for fuzzy-searching and project utilities."
