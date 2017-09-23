@@ -303,6 +303,8 @@ values."
   (config/diminish)
   (config/vimish-fold)
   (config/web-beautify)
+  (config/javascript-modes)
+  (config/web-mode)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -378,28 +380,6 @@ values."
   (spacemacs/set-leader-keys "wV" #'split-window-right)
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
 
-  ;; js, react configuration
-  (setq-default js-indent-level 2
-                js2-basic-offset 2
-                css-indent-offset 2
-                web-mode-markup-indent-offset 2
-                web-mode-css-indent-offset 2
-                web-mode-code-indent-offset 2)
-
-  (with-eval-after-load 'web-mode
-    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-
-  ;; Tell js2 mode to shut the hell up about semicolons
-  (setq js2-strict-missing-semi-warning nil)
-
-  (defun js-standard-fix ()
-    (interactive)
-    (shell-command-on-region
-     (point-min) (point-max)
-     (format "standard --fix %s" (buffer-file-name))))
-
   ;; rbenv: use global rbenv-managed ruby
   (rbenv-use-global)
 
@@ -423,6 +403,30 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/web-mode ()
+  "Configure web-mode (for CSS, HTML)."
+  (setq-default css-indent-offset 2
+                web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                web-mode-code-indent-offset 2)
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))))
+
+(defun config/javascript-modes ()
+  "Configure JavaScript modes: js, js2, react."
+  (setq-default js-indent-level 2
+                js2-basic-offset 2
+                js2-strict-missing-semi-warning nil)
+
+  (defun js-standard-fix ()
+    (interactive)
+    (shell-command-on-region
+     (point-min) (point-max)
+     (format "standard --fix %s" (buffer-file-name)))))
 
 (defun config/web-beautify ()
   "Configure web-beautify hooks."
