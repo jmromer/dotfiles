@@ -293,6 +293,7 @@ values."
   (config/org-latex-preview)
   (config/git-and-magit)
   (config/yankee)
+  (config/underscore-to-word-char-list)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -370,7 +371,6 @@ values."
   (spacemacs/declare-prefix-for-mode 'markdown-mode "e" "markdown/evaluate")
   (spacemacs/set-leader-keys-for-major-mode 'markdown-mode "ee" #'alchemist-iex-send-current-code-block)
 
-
   ;; Objective-C
   (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
@@ -403,24 +403,6 @@ values."
 
   ;; add a space to the right of line numbers
   (setq-default left-fringe-width 10)
-
-  (defun add-underscore-to-word-chars ()
-    "Adds underscore to the word chars syntax entry list."
-    (modify-syntax-entry ?_ "w"))
-
-  ;; Include underscore in word chars
-  (add-hook 'clojure-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'elixir-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'org-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'emacs-lisp-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'emacs-lisp-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'js2-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'web-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'yaml-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'ruby-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'enh-ruby-mode-hook #'add-underscore-to-word-chars)
 
   (add-hook 'highlight-sexp-mode-hook
             '(lambda () (diminish 'highlight-sexp-mode "⋂")))
@@ -567,6 +549,16 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/underscore-to-word-char-list ()
+  "Add underscore to word char list in prog and other modes."
+  (defun add-underscore-to-word-chars ()
+    "Adds underscore to the word chars syntax entry list."
+    (modify-syntax-entry ?_ "w"))
+
+  (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
 
 (defun config/yankee ()
   "Load and configure yankee.el.
