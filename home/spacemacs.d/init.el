@@ -298,6 +298,7 @@ values."
   (config/terminal-buffers)
   (config/dired)
   (config/latex-mode)
+  (config/markdown-mode)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -340,10 +341,6 @@ values."
 
   ;; disable mouse support in terminal
   (xterm-mouse-mode -1)
-
-  ;; markdown mode leader keybindings
-  (spacemacs/declare-prefix-for-mode 'markdown-mode "e" "markdown/evaluate")
-  (spacemacs/set-leader-keys-for-major-mode 'markdown-mode "ee" #'alchemist-iex-send-current-code-block)
 
   ;; Objective-C
   (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
@@ -496,6 +493,26 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/markdown-mode ()
+  "Configure Markdown mode."
+
+  (defun alchemist-iex-send-current-code-block ()
+    "Send the current Markdown code block to iex."
+    (interactive)
+    (save-excursion
+      (re-search-backward "```")
+      (forward-line)
+      (push-mark)
+      (re-search-forward "```")
+      (forward-line -1)
+      (move-end-of-line nil)
+      (alchemist-iex-send-region (region-beginning) (region-end))
+      (pop-mark)))
+
+  ;; markdown mode leader keybindings
+  (spacemacs/declare-prefix-for-mode 'markdown-mode "e" "markdown/evaluate")
+  (spacemacs/set-leader-keys-for-major-mode 'markdown-mode "ee" #'alchemist-iex-send-current-code-block))
 
 (defun config/latex-mode ()
   "Configure LaTeX mode."
@@ -907,19 +924,6 @@ Excludes the ibuffer."
   (interactive)
   (if (buffer-exists-p "*Ibuffer*")  (kill-buffer "*Ibuffer*"))
   (switch-to-buffer (other-buffer (current-buffer) 1)))
-
-(defun alchemist-iex-send-current-code-block ()
-  "Compile the current markdown block to iex."
-  (interactive)
-  (save-excursion
-    (re-search-backward "```")
-    (next-line)
-    (push-mark)
-    (re-search-forward "```")
-    (previous-line)
-    (move-end-of-line nil)
-    (alchemist-iex-send-region (region-beginning) (region-end))
-    (pop-mark)))
 
 (defun split-term-window-right-and-focus ()
   "Open an `ansi-term' split to the right and focus it."
