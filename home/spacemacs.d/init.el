@@ -297,9 +297,7 @@ values."
   (config/company)
   (config/terminal-buffers)
   (config/dired)
-
-  ;; latex: update preview when file changes
-  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (config/latex-mode)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -351,15 +349,6 @@ values."
   (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
 
-  ;; xelatex
-  (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode))
-  (defun XeLaTeX-compile ()
-    (interactive)
-    (async-shell-command (format "xelatex %s" (buffer-file-name))))
-
-  (spacemacs/declare-prefix-for-mode 'latex-mode "SPC" "compile")
-  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC SPC" 'XeLaTeX-compile)
-  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC r" 'XeLaTeX-compile-resume)
 
   ;; ruby-tools minor mode
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
@@ -507,6 +496,24 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/latex-mode ()
+  "Configure LaTeX mode."
+  (defun XeLaTeX-compile ()
+    (interactive)
+    (async-shell-command (format "xelatex %s" (buffer-file-name))))
+
+  (spacemacs/declare-prefix-for-mode 'latex-mode "SPC" "compile")
+  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC SPC" #'XeLaTeX-compile)
+
+  ;; Compile resume: Defined in local config
+  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC r" #'XeLaTeX-compile-resume)
+
+  ;; Update preview when file changes
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+  ;; Detect xelatex files
+  (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode)))
 
 (defun config/dired ()
   "Configure dired."
