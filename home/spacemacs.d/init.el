@@ -307,14 +307,11 @@ values."
   (config/web-mode)
   (config/ivy-and-projectile)
   (config/spaceline)
+  (config/set-terminal-emacs-theme)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
-  (condition-case err
-      (if (jkrmr/is-in-terminal-p)
-          (spacemacs/load-theme 'spacemacs-dark))
-    (error-message-string err))
 
   ;; Copy exec-path from shell PATH
   (when (memq window-system '(mac ns x))
@@ -381,6 +378,10 @@ values."
 
   ;; execute local configuration file last
   (config/load-local-config))
+(defun config/set-terminal-emacs-theme ()
+  "Set theme for terminal session."
+  (if (not (display-graphic-p))
+      (spacemacs/load-theme 'spacemacs-dark)))
 
 (defun config/spaceline ()
   "Configure the spaceline."
@@ -920,10 +921,6 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
 (defun config/load-local-config ()
   "Load local configuration overrides."
   (load "~/.init.local.el"))
-
-(defun jkrmr/is-in-terminal-p ()
-  "Return true if in terminal Emacs, else false."
-  (not (display-graphic-p)))
 
 (defun buffer-exists-p (bufname)
   "Check if a buffer with the given name BUFNAME exists."
