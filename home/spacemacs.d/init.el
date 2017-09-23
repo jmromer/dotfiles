@@ -287,38 +287,13 @@ values."
   (config/evil-cleverparens)
   (config/highlight-sexp)
   (config/highlight-lines-at-length 80)
+  (config/flycheck)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
-
-  ;; flycheck
-  (setq-default flycheck-global-modes '(LaTeX-mode
-                                        c++-mode
-                                        c-mode
-                                        coffee-mode
-                                        elixir-mode
-                                        emacs-lisp-mode
-                                        enh-ruby-mode
-                                        go-mode
-                                        haml-mode
-                                        haskell-mode
-                                        js2-mode
-                                        json-mode
-                                        less-mode
-                                        markdown-mode
-                                        pug-mode
-                                        python-mode
-                                        react-mode
-                                        ruby-mode
-                                        sass-mode
-                                        scss-mode
-                                        slim-mode
-                                        web-mode
-                                        yaml-mode))
-  (global-flycheck-mode)
 
   ;; term: just use emacs mode -- no vi bindings
   (evil-set-initial-state 'term-mode 'emacs)
@@ -680,6 +655,34 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/flycheck ()
+  "Configure and enable Flycheck."
+  (setq-default
+   flycheck-global-modes '(LaTeX-mode
+                           c++-mode
+                           c-mode
+                           coffee-mode
+                           elixir-mode
+                           emacs-lisp-mode
+                           enh-ruby-mode
+                           go-mode
+                           haml-mode
+                           haskell-mode
+                           js2-mode
+                           json-mode
+                           less-mode
+                           markdown-mode
+                           pug-mode
+                           python-mode
+                           react-mode
+                           ruby-mode
+                           sass-mode
+                           scss-mode
+                           slim-mode
+                           web-mode
+                           yaml-mode))
+  (global-flycheck-mode))
 
 (defun config/prettify-symbols ()
   "Enable and configure prettify-symbols mode and pretty mode."
