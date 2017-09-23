@@ -344,6 +344,7 @@ nnoremap <leader>wl <C-w>l
 " wq: close window
 nnoremap <leader>wq :quit<CR>
 nnoremap <leader>wd :x<CR>
+nnoremap <C-c><C-c> :x<CR>
 
 " ss: Save Session
 nnoremap <leader>ss :SaveSession<SPACE>
