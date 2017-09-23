@@ -99,6 +99,8 @@ values."
    '(
      ace-jump-mode
      evil-mc
+     fancy-battery
+     neotree
      ob-elixir
      )
    dotspacemacs-delete-orphan-packages t
