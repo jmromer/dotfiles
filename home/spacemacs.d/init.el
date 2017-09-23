@@ -314,12 +314,11 @@ values."
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
+  ;; add a space to the right of line numbers
+  (setq-default left-fringe-width 10)
 
-  ;; Go mode
-  (add-hook 'go-mode-hook '(lambda ()
-                             (whitespace-toggle-options 'tabs)))
-  ;; Haskell
-  (add-hook 'haskell-mode-hook 'intero-mode)
+  ;; don't warn about large files
+  (setq-default large-file-warning-threshold nil)
 
   ;; prevent visual selection from overriding system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
@@ -327,30 +326,8 @@ values."
   ;; disable mouse support in terminal
   (xterm-mouse-mode -1)
 
-  ;; Objective-C
-  (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
-
-  (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
-
-  ;; ruby-tools minor mode
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
-
-  ;; Configure miscellaneous settings (temporary).
-  ;; In evil ex buffer, backward char like emacs
-  (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
-
   ;; By default, don't soft-wrap lines longer than line length
   (set-default 'truncate-lines nil)
-
-  ;; enable evil-quickscope-mode
-  (global-evil-quickscope-mode 1)
-
-  ;; add a space to the right of line numbers
-  (setq-default left-fringe-width 10)
-
-  ;; don't warn about large files
-  (setq-default large-file-warning-threshold nil)
 
   ;; make focus window commands primary
   (spacemacs/set-leader-keys "ws" #'split-window-below-and-focus)
@@ -360,9 +337,29 @@ values."
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-file-path)
+  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
 
-  ;; rbenv: use global rbenv-managed ruby
+  ;; Emacs bindings in Evil ex minibuffer
+  (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
+  (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
+  (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line)
+  (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
+
+  ;; enable evil-quickscope-mode
+  (global-evil-quickscope-mode 1)
+
+  ;; Objective-C
+  (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
+  ;; Ruby
   (rbenv-use-global)
+  ;; Golang
+  (add-hook 'go-mode-hook '(lambda () (whitespace-toggle-options 'tabs)))
+  ;; Haskell
+  (add-hook 'haskell-mode-hook 'intero-mode)
+
+  ;; execute local configuration file last
+  (config/load-local-config))
 
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
@@ -383,8 +380,6 @@ values."
   (let ((python-path (format "%s/.anaconda3/bin" (getenv "HOME"))))
     (setq-default exec-path (cons python-path exec-path))))
 
-  ;; execute local configuration file last
-  (config/load-local-config))
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
   (if (not (display-graphic-p))
