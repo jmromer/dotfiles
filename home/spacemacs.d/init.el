@@ -301,6 +301,7 @@ values."
   (config/markdown-mode)
   (config/ruby-in-buffer-eval)
   (config/diminish)
+  (config/vimish-fold)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -376,25 +377,6 @@ values."
   (spacemacs/set-leader-keys "wV" #'split-window-right)
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
 
-  ;; vimish-fold settings
-  (add-to-list 'evil-fold-list '((vimish-fold-mode)
-                                 :open-all   vimish-fold-unfold-all
-                                 :close-all  nil
-                                 :toggle     vimish-fold-toggle
-                                 :open       vimish-fold-unfold
-                                 :open-rec   nil
-                                 :close      vimish-fold))
-  ;; vimish-fold keybindings
-  (define-key evil-normal-state-map (kbd "zf") nil)
-  (define-key evil-visual-state-map (kbd "zf") #'vimish-fold)
-  (define-key evil-normal-state-map (kbd "zfd") #'vimish-fold-delete)
-  (define-key evil-normal-state-map (kbd "zfj") #'vimish-fold-next-fold)
-  (define-key evil-normal-state-map (kbd "zfk") #'vimish-fold-previous-fold)
-  (define-key evil-normal-state-map (kbd "zfm") #'vimish-fold-refold-all)
-  (define-key evil-normal-state-map (kbd "zfr") #'vimish-fold-unfold-all)
-  (define-key evil-normal-state-map (kbd "zft") #'vimish-fold-toggle-all)
-  (define-key evil-normal-state-map (kbd "zfa") #'vimish-fold-toggle)
-
   ;; js, react configuration
   (setq-default js-indent-level 2
                 js2-basic-offset 2
@@ -466,6 +448,27 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/vimish-fold ()
+  "Configure vimish-fold and associated keybindings."
+
+  (add-to-list 'evil-fold-list '((vimish-fold-mode)
+                                 :open-all   vimish-fold-unfold-all
+                                 :close-all  nil
+                                 :toggle     vimish-fold-toggle
+                                 :open       vimish-fold-unfold
+                                 :open-rec   nil
+                                 :close      vimish-fold))
+
+  (define-key evil-normal-state-map (kbd "zf") nil)
+  (define-key evil-visual-state-map (kbd "zf") #'vimish-fold)
+  (define-key evil-normal-state-map (kbd "zfd") #'vimish-fold-delete)
+  (define-key evil-normal-state-map (kbd "zfj") #'vimish-fold-next-fold)
+  (define-key evil-normal-state-map (kbd "zfk") #'vimish-fold-previous-fold)
+  (define-key evil-normal-state-map (kbd "zfm") #'vimish-fold-refold-all)
+  (define-key evil-normal-state-map (kbd "zfr") #'vimish-fold-unfold-all)
+  (define-key evil-normal-state-map (kbd "zft") #'vimish-fold-toggle-all)
+  (define-key evil-normal-state-map (kbd "zfa") #'vimish-fold-toggle))
 
 (defun config/diminish ()
   "Configure diminish glyphs for various minor modes."
