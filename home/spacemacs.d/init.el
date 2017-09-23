@@ -348,6 +348,7 @@ values."
   (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
 
+  (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
 
   ;; ruby-tools minor mode
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
