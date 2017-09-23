@@ -289,6 +289,7 @@ values."
   (config/highlight-lines-at-length 80)
   (config/flycheck)
   (config/exercism)
+  (config/yankee)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -358,13 +359,6 @@ values."
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
 
-  ;; yank selection with line numbers
-  (load "yankee.el/yankee.el")
-  (require 'yankee)
-  (define-key evil-visual-state-map (kbd "gy") nil)
-  (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
-  (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
-  (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
 
   ;; Org mode
   ;; ==========
@@ -648,6 +642,15 @@ values."
   ;; execute local configuration file last
   (jkrmr/config-load-local))
 
+(defun config/yankee ()
+  "Load and configure yankee.el.
+Provides facilities for yanking formatted code snippets."
+  (load "yankee.el/yankee.el")
+  (require 'yankee)
+  (define-key evil-visual-state-map (kbd "gy") nil)
+  (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
+  (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
+  (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block))
 (defun config/exercism ()
   "Configure and enable exercism mode."
   (setq-default exercism-dir "~/Projects/exercism")
