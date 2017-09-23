@@ -203,3 +203,6 @@
 	hfeat    = log --format=brief --graph --abbrev-commit HEAD --not origin/develop
 	sqfeat   = rebase -i develop
 	upfeat   = !git fetch origin && git rebase origin/develop
+
+[magit]
+	hideCampaign = true
