@@ -302,6 +302,7 @@ values."
   (config/ruby-in-buffer-eval)
   (config/diminish)
   (config/vimish-fold)
+  (config/web-beautify)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -399,32 +400,6 @@ values."
      (point-min) (point-max)
      (format "standard --fix %s" (buffer-file-name))))
 
-  ;; web-beautify
-  (eval-after-load 'js2-mode
-    '(add-hook 'js2-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
-
-  (eval-after-load 'js
-    '(add-hook 'js-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
-
-  (eval-after-load 'json-mode
-    '(add-hook 'json-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
-
-  (eval-after-load 'sgml-mode
-    '(add-hook 'html-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-  (eval-after-load 'css-mode
-    '(add-hook 'css-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
-
   ;; rbenv: use global rbenv-managed ruby
   (rbenv-use-global)
 
@@ -448,6 +423,32 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/web-beautify ()
+  "Configure web-beautify hooks."
+
+  (defun web-beatify/beautify-js-buffer-on-save ()
+    "Add a before-save hook to beautify JavaScript on save."
+    (add-hook 'before-save-hook 'web-beautify-js-buffer t t))
+
+  (defun web-beatify/beautify-html-buffer-on-save ()
+    "Add a before-save hook to beautify HTML on save."
+    (add-hook 'before-save-hook 'web-beautify-html-buffer t t))
+
+  (defun web-beatify/beautify-css-buffer-on-save ()
+    "Add a before-save hook to beautify CSS on save."
+    (add-hook 'before-save-hook 'web-beautify-css-buffer t t))
+
+  (eval-after-load 'js2-mode
+    '(add-hook 'js2-mode-hook #'web-beautify/beautify-js-buffer-on-save))
+  (eval-after-load 'js
+    '(add-hook 'js-mode-hook #'web-beautify/beautify-js-buffer-on-save))
+  (eval-after-load 'json-mode
+    '(add-hook 'json-mode-hook #'web-beautify/beautify-js-buffer-on-save))
+  (eval-after-load 'html-mode
+    '(add-hook 'html-mode-hook #'web-beautify/beautify-html-buffer-on-save))
+  (eval-after-load 'css-mode
+    '(add-hook 'css-mode-hook #'web-beautify/beautify-css-buffer-on-save)))
 
 (defun config/vimish-fold ()
   "Configure vimish-fold and associated keybindings."
