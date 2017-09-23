@@ -295,39 +295,13 @@ values."
   (config/yankee)
   (config/underscore-to-word-char-list)
   (config/company)
+  (config/terminal-buffers)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
-
-  ;; term: just use emacs mode -- no vi bindings
-  (evil-set-initial-state 'term-mode 'emacs)
-
-  ;; toggle between emacs and evil-normal states
-  (global-set-key (kbd "ESC ESC ESC") 'evil-normal-state)
-  (defun term-send-ctrl-y ()
-    (interactive)
-    (term-send-raw-string "\C-y"))
-
-  ;; term modes
-  (defun term-mode-config ()
-    (define-key term-raw-map (kbd "C-y") 'term-send-ctrl-y)
-    (define-key term-raw-map (kbd "C-p") 'term-send-up)
-    (define-key term-raw-map (kbd "C-n") 'term-send-down)
-    (goto-address-mode))
-  (add-hook 'term-mode-hook 'term-mode-config)
-
-  ;; term: Use utf8
-  (defun my-term-use-utf8 ()
-    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
-  (add-hook 'term-exec-hook 'my-term-use-utf8)
-
-  ;; ansi-term: always use default shell
-  (defadvice ansi-term (before force-bash)
-    (interactive (list shell-default-term-shell)))
-  (ad-activate 'ansi-term)
 
   (condition-case err
       (if (jkrmr/is-in-terminal-p)
@@ -545,6 +519,37 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/terminal-buffers ()
+  "Configure terminal buffers."
+
+  ;; Use emacs state when starting term mode
+  (evil-set-initial-state 'term-mode 'emacs)
+
+  ;; toggle between emacs and evil-normal states with ESC x 3
+  (global-set-key (kbd "ESC ESC ESC") #'evil-normal-state)
+
+  (defun term-send-ctrl-y ()
+    (interactive)
+    (term-send-raw-string "\C-y"))
+
+  (defun term-mode-config ()
+    (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
+    (define-key term-raw-map (kbd "C-p") #'term-send-up)
+    (define-key term-raw-map (kbd "C-n") #'term-send-down)
+    (goto-address-mode))
+
+  (add-hook 'term-mode-hook #'term-mode-config)
+
+  ;; Use utf8
+  (defun my-term-use-utf8 ()
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+  (add-hook 'term-exec-hook #'my-term-use-utf8)
+
+  ;; ansi-term: always use default shell
+  (defadvice ansi-term (before force-bash)
+    (interactive (list shell-default-term-shell)))
+  (ad-activate #'ansi-term))
 
 (defun config/underscore-to-word-char-list ()
   "Add underscore to word char list in prog and other modes."
