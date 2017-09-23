@@ -299,6 +299,7 @@ values."
   (config/dired)
   (config/latex-mode)
   (config/markdown-mode)
+  (config/ruby-in-buffer-eval)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -390,19 +391,6 @@ values."
   (spacemacs/set-leader-keys "wV" #'split-window-right)
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
 
-  ;; ruby mode: seeing-is-believing
-  (require 'seeing-is-believing)
-  (add-hook 'ruby-mode-hook 'seeing-is-believing)
-
-  (defun xmpfilter-eval-current-line ()
-    (interactive)
-    (seeing-is-believing-mark-current-line-for-xmpfilter)
-    (seeing-is-believing-run-as-xmpfilter))
-
-  (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
-  (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
-  (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run)
-
   ;; vimish-fold settings
   (add-to-list 'evil-fold-list '((vimish-fold-mode)
                                  :open-all   vimish-fold-unfold-all
@@ -493,6 +481,20 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/ruby-in-buffer-eval ()
+  "Configure and enable seeing-is-believing and xmpfilter for Ruby."
+  (require 'seeing-is-believing)
+  (add-hook 'ruby-mode-hook 'seeing-is-believing)
+
+  (defun xmpfilter-eval-current-line ()
+    (interactive)
+    (seeing-is-believing-mark-current-line-for-xmpfilter)
+    (seeing-is-believing-run-as-xmpfilter))
+
+  (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
+  (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
+  (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
 
 (defun config/markdown-mode ()
   "Configure Markdown mode."
