@@ -480,7 +480,7 @@ values."
     ;; add <p for python expansion
     (add-to-list 'org-structure-template-alist
                  '("p"
-                   "#+BEGIN_SRC python\n?\n#+END_SRC"
+                   "#+BEGIN_SRC python :exports both\n?\n#+END_SRC"
                    "<src lang=\"python\">\n?\n</src>"))
 
     ;; add <x for elixir expansion
