@@ -157,7 +157,9 @@ values."
    dotspacemacs-inactive-transparency 90
    dotspacemacs-mode-line-unicode-symbols t
    dotspacemacs-smooth-scrolling t
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers '(:relative t
+                               :enabled-for-modes prog-mode
+                               :size-limit-kb 1024)
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server nil
@@ -381,10 +383,6 @@ values."
     (interactive (list shell-default-term-shell)))
   (ad-activate 'ansi-term)
 
-  ;; Enable relative line numbering
-  (with-eval-after-load 'linum
-    (linum-relative-on))
-
   (condition-case err
       (if (jkrmr/is-in-terminal-p)
           (spacemacs/load-theme 'spacemacs-dark))
@@ -534,9 +532,6 @@ values."
 
   ;; enable evil-quickscope-mode
   (global-evil-quickscope-mode 1)
-
-  ;; display line numbers globally
-  (global-linum-mode)
 
   ;; add a space to the right of line numbers
   (setq-default left-fringe-width 10)
@@ -709,7 +704,6 @@ values."
   (with-eval-after-load 'org
     (setq-default org-md-headline-style 'setext)
     (setq-default org-src-tab-acts-natively t)
-    (add-hook 'org-mode-hook #'spacemacs/toggle-line-numbers-off 'append)
     (config/org-latex-preview)
     '(progn))
   ;; ===========================================================================
