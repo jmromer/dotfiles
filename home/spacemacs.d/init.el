@@ -305,6 +305,7 @@ values."
   (config/web-beautify)
   (config/javascript-modes)
   (config/web-mode)
+  (config/ivy-and-projectile)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -317,20 +318,6 @@ values."
   ;; Copy exec-path from shell PATH
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
-
-  ;; Projectile settings
-  (setq-default projectile-completion-system 'ivy
-                projectile-enable-caching t
-                projectile-globally-ignored-directories '("node_modules"))
-
-  ;; ivy
-  (setq-default ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-fuzzy)
-                                        (mx . ivy--regex-fuzzy)
-                                        (swiper . ivy--regex-plus)
-                                        (counsel-git-grep . ivy--regex-fuzzy)
-                                        (t . ivy--regex-fuzzy))
-                ivy-initial-inputs-alist nil
-                ivy-wrap t)
 
   ;; Explicitly prepend python binaries location to exec-path.
   ;; Fixes flake8, yapfify failure to load.
@@ -403,6 +390,22 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/ivy-and-projectile ()
+  "Configure Ivy and Projectile for fuzzy-searching and project utilities."
+  ;; Projectile settings
+  (setq-default projectile-completion-system 'ivy
+                projectile-enable-caching t
+                projectile-globally-ignored-directories '("node_modules"))
+
+  ;; Ivy settings
+  (setq-default ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-fuzzy)
+                                        (mx . ivy--regex-fuzzy)
+                                        (swiper . ivy--regex-plus)
+                                        (counsel-git-grep . ivy--regex-fuzzy)
+                                        (t . ivy--regex-fuzzy))
+                ivy-initial-inputs-alist nil
+                ivy-wrap t))
 
 (defun config/web-mode ()
   "Configure web-mode (for CSS, HTML)."
