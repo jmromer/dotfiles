@@ -366,6 +366,8 @@ values."
   (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
   (spacemacs/set-leader-keys "wV" #'split-window-right)
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
+  (spacemacs/declare-prefix "fd" "files/display")
+  (spacemacs/set-leader-keys "fdp" 'display-file-path)
 
   ;; rbenv: use global rbenv-managed ruby
   (rbenv-use-global)
@@ -379,8 +381,6 @@ values."
     (setq-default powerline-default-separator nil)
     (spaceline-compile))
 
-  (spacemacs/declare-prefix "fd" "files/display")
-  (spacemacs/set-leader-keys "fdp" 'jkrmr/display-file-path)
 
   ;; wrap lines in compilation buffer
   (defun my-compilation-mode-hook ()
@@ -910,7 +910,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
              (split-string str ",")
              (yas/indented-newline)))
 
-(defun jkrmr/display-file-path ()
+(defun display-file-path ()
   "Print the path of the current buffer's file."
   (interactive)
   (message (abbreviate-file-name (buffer-file-name))))
