@@ -282,57 +282,14 @@ values."
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
 
+  (config/firacode)
+  (config/prettify-symbols)
+
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
-
-  ;; set up fira code, ligatures
-  (config/firacode)
-
-  ;; prettify fonts
-  (global-prettify-symbols-mode)
-
-  ;; configure pretty-mode
-  (require 'pretty-mode)
-  (global-pretty-mode t)
-
-  (pretty-deactivate-groups
-   '(:equality :ordering :ordering-double :ordering-triple
-               :arrows :arrows-twoheaded :punctuation
-               :logic :sets))
-
-  (pretty-activate-groups
-   '(:sub-and-superscripts :greek :arithmetic-nary))
-
-  ;; python prettify mode mappings
-  (defun config/prettify-symbols-python ()
-    "Provide prettify-symbol mode mappings for python-mode."
-    (mapc (lambda (pair) (push pair prettify-symbols-alist))
-          '(("def" .    #x0192)
-            ("in" .     #x2208)
-            ("is" .     #x2261)
-            ("is not" . #x2262)
-            ("not in" . #x2209)
-            ("all" .    #x2200)
-            ("any" .    #x2203))))
-
-  (add-hook 'python-mode-hook #'config/prettify-symbols-python)
-
-  (defun config/prettify-symbols-emacs-lisp ()
-    "Provide prettify-symbol mode mappings for emacs-lisp-mode."
-    (mapc (lambda (pair) (push pair prettify-symbols-alist))
-          '(("defun" .  #x0192))))
-
-  (add-hook 'emacs-lisp-mode-hook #'config/prettify-symbols-emacs-lisp)
-
-  (defun config/prettify-symbols-javascript ()
-    "Provide prettify-symbol mode mappings for javascript modes."
-    (mapc (lambda (pair) (push pair prettify-symbols-alist))
-          '(("function" .  #x0192))))
-
-  (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript)
 
   ;; flycheck
   (setq-default flycheck-global-modes '(LaTeX-mode
@@ -724,6 +681,48 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/prettify-symbols ()
+  "Enable and configure prettify-symbols mode and pretty mode."
+  ;; pretty-mode
+  (require 'pretty-mode)
+  (global-pretty-mode t)
+
+  (pretty-deactivate-groups '(:equality :ordering :ordering-double :arrows
+                                        :ordering-triple :arrows-twoheaded
+                                        :punctuation :logic :sets))
+
+  (pretty-activate-groups '(:sub-and-superscripts :greek :arithmetic-nary))
+
+  ;; prettify symbols
+  (global-prettify-symbols-mode)
+
+  ;; prettify symbols: Python
+  (defun config/prettify-symbols-python ()
+    "Provide prettify-symbol mode mappings for python-mode."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("def" .    #x0192)
+            ("in" .     #x2208)
+            ("is" .     #x2261)
+            ("is not" . #x2262)
+            ("not in" . #x2209)
+            ("all" .    #x2200)
+            ("any" .    #x2203))))
+  (add-hook 'python-mode-hook #'config/prettify-symbols-python)
+
+  ;; prettify symbols: Emacs Lisp
+  (defun config/prettify-symbols-emacs-lisp ()
+    "Provide prettify-symbol mode mappings for emacs-lisp-mode."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("defun" .  #x0192))))
+  (add-hook 'emacs-lisp-mode-hook #'config/prettify-symbols-emacs-lisp)
+
+  ;; prettify symbols: JavaScript
+  (defun config/prettify-symbols-javascript ()
+    "Provide prettify-symbol mode mappings for javascript modes."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("function" .  #x0192))))
+  (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript))
 
 (defun config/org-latex-preview ()
   (setq org-format-latex-options
