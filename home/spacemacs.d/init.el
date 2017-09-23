@@ -300,6 +300,7 @@ values."
   (config/latex-mode)
   (config/markdown-mode)
   (config/ruby-in-buffer-eval)
+  (config/diminish)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -363,23 +364,6 @@ values."
 
   ;; add a space to the right of line numbers
   (setq-default left-fringe-width 10)
-
-  (add-hook 'highlight-sexp-mode-hook
-            '(lambda () (diminish 'highlight-sexp-mode "⋂")))
-  (add-hook 'minitest-mode-hook
-            '(lambda () (diminish 'minitest-mode "⨷")))
-  (add-hook 'elm-indent-mode-hook
-            '(lambda () (diminish 'elm-indent-mode "⨕")))
-  (add-hook 'alchemist-mode-hook
-            '(lambda () (diminish 'alchemist-mode "⊛")))
-  (add-hook 'alchemist-phoenix-mode-hook
-            '(lambda () (diminish 'alchemist-phoenix-mode "⊙")))
-  (add-hook 'tern-mode-hook
-            '(lambda () (diminish 'tern-mode "₸")))
-  (add-hook 'rubocop-mode-hook
-            '(lambda () (diminish 'rubocop-mode "℞")))
-  (add-hook 'seeing-is-believing-hook
-            '(lambda () (diminish 'seeing-is-believing "S")))
 
   ;; don't warn about large files
   (setq-default large-file-warning-threshold nil)
@@ -481,6 +465,26 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/diminish ()
+  "Configure diminish glyphs for various minor modes."
+  (with-eval-after-load 'diminish
+    (add-hook 'highlight-sexp-mode-hook
+              '(lambda () (diminish 'highlight-sexp-mode "⋂")))
+    (add-hook 'minitest-mode-hook
+              '(lambda () (diminish 'minitest-mode "⨷")))
+    (add-hook 'elm-indent-mode-hook
+              '(lambda () (diminish 'elm-indent-mode "⨕")))
+    (add-hook 'alchemist-mode-hook
+              '(lambda () (diminish 'alchemist-mode "⊛")))
+    (add-hook 'alchemist-phoenix-mode-hook
+              '(lambda () (diminish 'alchemist-phoenix-mode "⊙")))
+    (add-hook 'tern-mode-hook
+              '(lambda () (diminish 'tern-mode "₸")))
+    (add-hook 'rubocop-mode-hook
+              '(lambda () (diminish 'rubocop-mode "℞")))
+    (add-hook 'seeing-is-believing-hook
+              '(lambda () (diminish 'seeing-is-believing "S")))))
 
 (defun config/ruby-in-buffer-eval ()
   "Configure and enable seeing-is-believing and xmpfilter for Ruby."
