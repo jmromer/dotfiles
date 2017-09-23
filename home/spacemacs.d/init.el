@@ -336,9 +336,6 @@ values."
                 projectile-enable-caching t
                 projectile-globally-ignored-directories '("node_modules"))
 
-  ;; not working
-  (setq-default counsel-rg-base-command "rg --column --no-heading")
-
   ;; ivy
   (setq-default ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-fuzzy)
                                         (mx . ivy--regex-fuzzy)
