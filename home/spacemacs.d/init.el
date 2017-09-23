@@ -289,6 +289,8 @@ values."
   (config/highlight-lines-at-length 80)
   (config/flycheck)
   (config/exercism)
+  (config/org-mode)
+  (config/org-latex-preview)
   (config/git-and-magit)
   (config/yankee)
 
@@ -352,67 +354,12 @@ values."
   ;; Fixes flake8, yapfify failure to load.
   (setq-default exec-path
                 (cons (format "%s/.anaconda3/bin" (getenv "HOME")) exec-path))
-
   ;; Go mode
   (add-hook 'go-mode-hook '(lambda ()
                              (whitespace-toggle-options 'tabs)))
-
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
 
-
-  ;; Org mode
-  ;; ==========
-  (load "ob-elixir/ob-elixir.el")
-  (require 'ob-elixir)
-
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((clojure . t)
-                                 (elixir . t)
-                                 (emacs-lisp . t)
-                                 (haskell . t)
-                                 (js . t)
-                                 (org . t)
-                                 (python . t)
-                                 (ruby . t)
-                                 (swift . t)
-                                 (shell . t)))
-
-  (with-eval-after-load 'org
-    (setq-default org-babel-python-command "python3")
-
-    (setq org-babel-default-header-args:python
-          (cons '(:results . "value pp")
-                (assq-delete-all :results org-babel-default-header-args:python)))
-
-    (setq org-babel-default-header-args:elixir
-          (cons '(:results . "value")
-                (assq-delete-all :results org-babel-default-header-args:elixir)))
-
-    (setq org-babel-default-header-args:elixir
-          (cons '(:preamble . "Code.compiler_options(ignore_module_conflict: true)")
-                (assq-delete-all :preamble org-babel-default-header-args:elixir)))
-
-    ;; add <p for python expansion
-    (add-to-list 'org-structure-template-alist
-                 '("p"
-                   "#+BEGIN_SRC python :exports both\n?\n#+END_SRC"
-                   "<src lang=\"python\">\n?\n</src>"))
-
-    ;; add <x for elixir expansion
-    (add-to-list 'org-structure-template-alist
-                 '("x"
-                   "#+BEGIN_SRC elixir\n?\n#+END_SRC"
-                   "<src lang=\"elixir\">\n?\n</src>"))
-
-    ;; add <el for emacs-lisp expansion
-    (add-to-list 'org-structure-template-alist
-                 '("el"
-                   "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
-                   "<src lang=\"emacs-lisp\">\n?\n</src>"))
-    )
-
-  ;; ===========================================================================
   ;; prevent visual selection from overriding system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
 
@@ -607,16 +554,6 @@ values."
               (define-key dired-mode-map (kbd "C-i")
                 (lambda () (interactive) (switch-to-previous-buffer)))))
 
-
-  ;; org-related config (must go in here to avoid conflicts between elpa and
-  ;; builtin org modes)
-  (with-eval-after-load 'org
-    (setq-default org-md-headline-style 'setext)
-    (setq-default org-src-tab-acts-natively t)
-    (config/org-latex-preview)
-    '(progn))
-  ;; ===========================================================================
-
   ;; wrap lines in compilation buffer
   (defun my-compilation-mode-hook ()
     (setq truncate-lines nil) ;; automatically becomes buffer local
@@ -657,6 +594,61 @@ Provides facilities for yanking formatted code snippets."
   ;; Git Gutter: Display fringe on left
   (setq-default git-gutter-fr+-side 'left-fringe)
   (setq-default git-gutter-fr:side 'left-fringe))
+
+(defun config/org-mode ()
+  "Configure and enable org mode."
+  ;; Org Babel: Elixir
+  (load "ob-elixir/ob-elixir.el")
+  (require 'ob-elixir)
+
+  ;; Org Babel languages
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((clojure . t)
+                                 (elixir . t)
+                                 (emacs-lisp . t)
+                                 (haskell . t)
+                                 (js . t)
+                                 (org . t)
+                                 (python . t)
+                                 (ruby . t)
+                                 (swift . t)
+                                 (shell . t)))
+
+  (with-eval-after-load 'org
+    (setq-default org-md-headline-style 'setext)
+    (setq-default org-src-tab-acts-natively t)
+
+    (setq-default org-babel-python-command "python3")
+    ;; Org Babel: Python
+    (setq org-babel-default-header-args:python
+          (cons '(:results . "value pp")
+                (assq-delete-all :results org-babel-default-header-args:python)))
+
+    ;; Org Babel: Elixir
+    (setq org-babel-default-header-args:elixir
+          (cons '(:results . "value")
+                (assq-delete-all :results org-babel-default-header-args:elixir)))
+    (setq org-babel-default-header-args:elixir
+          (cons '(:preamble . "Code.compiler_options(ignore_module_conflict: true)")
+                (assq-delete-all :preamble org-babel-default-header-args:elixir)))
+
+    ;; Source Blocks
+    ;; Python: <p
+    (add-to-list 'org-structure-template-alist
+                 '("p"
+                   "#+BEGIN_SRC python :exports both\n?\n#+END_SRC"
+                   "<src lang=\"python\">\n?\n</src>"))
+    ;; Elixir: <x
+    (add-to-list 'org-structure-template-alist
+                 '("x"
+                   "#+BEGIN_SRC elixir\n?\n#+END_SRC"
+                   "<src lang=\"elixir\">\n?\n</src>"))
+    ;; Emacs Lisp: <el
+    (add-to-list 'org-structure-template-alist
+                 '("el"
+                   "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
+                   "<src lang=\"emacs-lisp\">\n?\n</src>"))))
+
 (defun config/exercism ()
   "Configure and enable exercism mode."
   (setq-default exercism-dir "~/Projects/exercism")
@@ -735,17 +727,16 @@ Provides facilities for yanking formatted code snippets."
   (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript))
 
 (defun config/org-latex-preview ()
-  (setq org-format-latex-options
-        (plist-put org-format-latex-options :justify 'center))
+  "Configure LaTeX preview settings for Org mode."
+  (with-eval-after-load 'org
+    (setq org-format-latex-options
+          (plist-put org-format-latex-options :justify 'center))
 
-  (defun org-justify-fragment-overlay (beg end image imagetype)
-    "Adjust the justification of a LaTeX fragment.
-The justification is set by :justify in
-`org-format-latex-options'. Only equations at the beginning of a
-line are justified."
-    (setq-default
-     org-format-latex-header
-     "\\documentclass[reqno]{article}
+    (defun org-justify-fragment-overlay (beg end image imagetype)
+      "Adjust the justification of a LaTeX fragment.
+The justification is set by :justify in `org-format-latex-options'.
+Only equations at the beginning of a line are justified."
+      (setq-default org-format-latex-header "\\documentclass[reqno]{article}
 \\usepackage[usenames]{color}
 [PACKAGES]
 [DEFAULT-PACKAGES]
@@ -774,7 +765,6 @@ line are justified."
              (width (car (image-size img)))
              (offset (floor (- (/ 40 2) (/ width 2)))))
         (overlay-put (ov-at) 'before-string (make-string offset ? ))))
-
      ;; Right justification
      ((and (eq 'right (plist-get org-format-latex-options :justify))
            (= beg (line-beginning-position)))
@@ -782,8 +772,7 @@ line are justified."
              (width (car (image-display-size (overlay-get (ov-at) 'display))))
              (offset (floor (- 40 width (- (line-end-position) end)))))
         (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
-
-  (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay))
+  (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay)))
 
 (defun config/highlight-lines-at-length (chars)
   "Configure and enable whitespace mode to color text after CHARS chars."
