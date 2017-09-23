@@ -308,19 +308,12 @@ values."
   (config/ivy-and-projectile)
   (config/spaceline)
   (config/set-terminal-emacs-theme)
+  (config/exec-path)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
 
-  ;; Copy exec-path from shell PATH
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
-
-  ;; Explicitly prepend python binaries location to exec-path.
-  ;; Fixes flake8, yapfify failure to load.
-  (setq-default exec-path
-                (cons (format "%s/.anaconda3/bin" (getenv "HOME")) exec-path))
   ;; Go mode
   (add-hook 'go-mode-hook '(lambda ()
                              (whitespace-toggle-options 'tabs)))
@@ -375,6 +368,16 @@ values."
     (setq truncate-lines nil) ;; automatically becomes buffer local
     (set (make-local-variable 'truncate-partial-width-windows) nil))
   (add-hook 'compilation-mode-hook #'compilation-mode-settings)
+(defun config/exec-path ()
+  "Set up the `exec-path'."
+  ;; Copy exec-path from shell PATH if in GUI emacs
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+
+  ;; Python: Explicitly prepend python binaries location to exec-path.
+  ;; Fixes flake8, yapfify failure to load.
+  (let ((python-path (format "%s/.anaconda3/bin" (getenv "HOME"))))
+    (setq-default exec-path (cons python-path exec-path))))
 
   ;; execute local configuration file last
   (config/load-local-config))
