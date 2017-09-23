@@ -288,6 +288,7 @@ values."
   (config/highlight-sexp)
   (config/highlight-lines-at-length 80)
   (config/flycheck)
+  (config/exercism)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -353,12 +354,6 @@ values."
   ;; Go mode
   (add-hook 'go-mode-hook '(lambda ()
                              (whitespace-toggle-options 'tabs)))
-
-  ;; Exercism
-  (setq-default exercism-dir "~/Projects/exercism")
-  (setq-default exercism-auto-enable nil)
-  (load "exercism-emacs/exercism.el")
-  (require 'exercism)
 
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
@@ -652,6 +647,13 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/exercism ()
+  "Configure and enable exercism mode."
+  (setq-default exercism-dir "~/Projects/exercism")
+  (setq-default exercism-auto-enable nil)
+  (load "exercism-emacs/exercism.el")
+  (require 'exercism))
 
 (defun config/flycheck ()
   "Configure and enable Flycheck."
