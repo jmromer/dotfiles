@@ -284,6 +284,9 @@ values."
 
   (config/firacode)
   (config/prettify-symbols)
+  (config/evil-cleverparens)
+  (config/highlight-sexp)
+  (config/highlight-lines-at-length 80)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -374,10 +377,6 @@ values."
   ;; Fixes flake8, yapfify failure to load.
   (setq-default exec-path
                 (cons (format "%s/.anaconda3/bin" (getenv "HOME")) exec-path))
-
-  (config/evil-cleverparens)
-  (config/highlight-sexp)
-  (config/highlight-lines-at-length 80)
 
   ;; Go mode
   (add-hook 'go-mode-hook '(lambda ()
