@@ -289,6 +289,7 @@ values."
   (config/highlight-lines-at-length 80)
   (config/flycheck)
   (config/exercism)
+  (config/git-and-magit)
   (config/yankee)
 
   ;; latex: update preview when file changes
@@ -533,15 +534,6 @@ values."
   (define-key evil-normal-state-map (kbd "zft") #'vimish-fold-toggle-all)
   (define-key evil-normal-state-map (kbd "zfa") #'vimish-fold-toggle)
 
-  ;; magit switches
-  (with-eval-after-load 'magit
-    (setq magit-completing-read-function 'ivy-completing-read)
-    (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
-    '(magit-define-popup-switch 'magit-log-popup
-       ?m "Omit merge commits" "--no-merges"))
-  (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
-  (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
-
   ;; js, react configuration
   (setq-default js-indent-level 2
                 js2-basic-offset 2
@@ -615,9 +607,6 @@ values."
               (define-key dired-mode-map (kbd "C-i")
                 (lambda () (interactive) (switch-to-previous-buffer)))))
 
-  ;; git gutter fringe on left side, please
-  (setq-default git-gutter-fr+-side 'left-fringe)
-  (setq-default git-gutter-fr:side 'left-fringe)
 
   ;; org-related config (must go in here to avoid conflicts between elpa and
   ;; builtin org modes)
@@ -651,6 +640,23 @@ Provides facilities for yanking formatted code snippets."
   (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
   (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
   (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block))
+
+(defun config/git-and-magit ()
+  "Configure Magit and git-related settings."
+  (with-eval-after-load 'magit
+    (setq magit-completing-read-function 'ivy-completing-read)
+    (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
+    (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+
+  ;; leader gb to display branching controls
+  (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
+
+  ;; leader gB to display Git blame
+  (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
+
+  ;; Git Gutter: Display fringe on left
+  (setq-default git-gutter-fr+-side 'left-fringe)
+  (setq-default git-gutter-fr:side 'left-fringe))
 (defun config/exercism ()
   "Configure and enable exercism mode."
   (setq-default exercism-dir "~/Projects/exercism")
