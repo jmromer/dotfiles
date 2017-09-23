@@ -469,22 +469,14 @@ values."
 (defun config/diminish ()
   "Configure diminish glyphs for various minor modes."
   (with-eval-after-load 'diminish
-    (add-hook 'highlight-sexp-mode-hook
-              '(lambda () (diminish 'highlight-sexp-mode "⋂")))
-    (add-hook 'minitest-mode-hook
-              '(lambda () (diminish 'minitest-mode "⨷")))
-    (add-hook 'elm-indent-mode-hook
-              '(lambda () (diminish 'elm-indent-mode "⨕")))
-    (add-hook 'alchemist-mode-hook
-              '(lambda () (diminish 'alchemist-mode "⊛")))
-    (add-hook 'alchemist-phoenix-mode-hook
-              '(lambda () (diminish 'alchemist-phoenix-mode "⊙")))
-    (add-hook 'tern-mode-hook
-              '(lambda () (diminish 'tern-mode "₸")))
-    (add-hook 'rubocop-mode-hook
-              '(lambda () (diminish 'rubocop-mode "℞")))
-    (add-hook 'seeing-is-believing-hook
-              '(lambda () (diminish 'seeing-is-believing "S")))))
+    (diminish 'alchemist-mode "⊛")
+    (diminish 'alchemist-phoenix-mode "⊙")
+    (diminish 'elm-indent-mode "⨕")
+    (diminish 'highlight-sexp-mode "⋂")
+    (diminish 'minitest-mode "⨷")
+    (diminish 'rubocop-mode "℞")
+    (diminish 'seeing-is-believing "S"))
+    (diminish 'tern-mode "₸"))
 
 (defun config/ruby-in-buffer-eval ()
   "Configure and enable seeing-is-believing and xmpfilter for Ruby."
