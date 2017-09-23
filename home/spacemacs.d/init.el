@@ -309,6 +309,7 @@ values."
   (config/spaceline)
   (config/set-terminal-emacs-theme)
   (config/exec-path)
+  (config/compilation-buffers)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -363,11 +364,14 @@ values."
   ;; rbenv: use global rbenv-managed ruby
   (rbenv-use-global)
 
-  ;; wrap lines in compilation buffer
+(defun config/compilation-buffers ()
+  "Configure compilation buffer settings."
   (defun compilation-mode-settings ()
-    (setq truncate-lines nil) ;; automatically becomes buffer local
+    ;; wrap lines in compilation buffer
+    (setq truncate-lines nil)
     (set (make-local-variable 'truncate-partial-width-windows) nil))
-  (add-hook 'compilation-mode-hook #'compilation-mode-settings)
+  (add-hook 'compilation-mode-hook #'compilation-mode-settings))
+
 (defun config/exec-path ()
   "Set up the `exec-path'."
   ;; Copy exec-path from shell PATH if in GUI emacs
