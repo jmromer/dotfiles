@@ -389,7 +389,7 @@ values."
   (add-hook 'compilation-mode-hook #'my-compilation-mode-hook)
 
   ;; execute local configuration file last
-  (jkrmr/config-load-local))
+  (config/load-local-config))
 
 (defun config/ivy-and-projectile ()
   "Configure Ivy and Projectile for fuzzy-searching and project utilities."
@@ -915,7 +915,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
   (interactive)
   (message (abbreviate-file-name (buffer-file-name))))
 
-(defun jkrmr/config-load-local ()
+(defun config/load-local-config ()
   "Load local configuration overrides."
   (load "~/.init.local.el"))
 
