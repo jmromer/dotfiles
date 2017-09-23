@@ -296,6 +296,7 @@ values."
   (config/underscore-to-word-char-list)
   (config/company)
   (config/terminal-buffers)
+  (config/dired)
 
   ;; latex: update preview when file changes
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -364,9 +365,6 @@ values."
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
 
   ;; Configure miscellaneous settings (temporary).
-  ;; In normal mode, `-` opens dired in the PWD
-  (define-key evil-normal-state-map (kbd "-") #'dired-open-in-pwd)
-
   ;; In evil ex buffer, backward char like emacs
   (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
 
@@ -501,16 +499,6 @@ values."
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'jkrmr/display-file-path)
 
-  ;; dired keybindings
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              (define-key dired-mode-map "?" 'evil-search-backward)
-              (define-key dired-mode-map (kbd "C-w") nil)
-              (define-key dired-mode-map (kbd "C-o")
-                (lambda () (interactive) (switch-to-previous-buffer)))
-              (define-key dired-mode-map (kbd "C-i")
-                (lambda () (interactive) (switch-to-previous-buffer)))))
-
   ;; wrap lines in compilation buffer
   (defun my-compilation-mode-hook ()
     (setq truncate-lines nil) ;; automatically becomes buffer local
@@ -519,6 +507,23 @@ values."
 
   ;; execute local configuration file last
   (jkrmr/config-load-local))
+
+(defun config/dired ()
+  "Configure dired."
+  ;; In normal mode, `-` opens dired in the PWD
+  (define-key evil-normal-state-map (kbd "-")
+    (lambda () (interactive) (dired "./")))
+
+  (defun dired-keybindings ()
+    (define-key dired-mode-map "?" #'evil-search-backward)
+    (define-key dired-mode-map (kbd "C-w") nil)
+    (define-key dired-mode-map (kbd "C-o")
+      (lambda () (interactive) (switch-to-previous-buffer)))
+    (define-key dired-mode-map (kbd "C-i")
+      (lambda () (interactive) (switch-to-previous-buffer))))
+
+  ;; dired keybindings
+  (add-hook 'dired-mode-hook #'dired-keybindings))
 
 (defun config/terminal-buffers ()
   "Configure terminal buffers."
@@ -883,11 +888,6 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
 (defun jkrmr/is-in-terminal-p ()
   "Return true if in terminal Emacs, else false."
   (not (display-graphic-p)))
-
-(defun dired-open-in-pwd ()
-  "Open dired in the PWD."
-  (interactive)
-  (dired "./"))
 
 (defun buffer-exists-p (bufname)
   "Check if a buffer with the given name BUFNAME exists."
