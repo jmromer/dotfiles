@@ -661,13 +661,7 @@ Provides facilities for yanking formatted code snippets."
   (with-eval-after-load 'org
     (setq-default org-md-headline-style 'setext)
     (setq-default org-src-tab-acts-natively t)
-
     (setq-default org-babel-python-command "python3")
-    ;; Org Babel: Python
-    (setq org-babel-default-header-args:python
-          (cons '(:results . "value pp")
-                (assq-delete-all :results org-babel-default-header-args:python)))
-
     ;; Org Babel: Elixir
     (setq org-babel-default-header-args:elixir
           (cons '(:results . "value")
