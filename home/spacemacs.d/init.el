@@ -54,7 +54,6 @@ values."
           org-enable-github-support t)
      osx
      (python :variables
-             python-shell-completion-native-disabled-interpreters '("pypy" "ipython" "python")
              python-test-runner '(pytest nose)
              python-sort-imports-on-save t
              python-enable-yapf-format-on-save t)
@@ -311,6 +310,7 @@ values."
   (config/set-terminal-emacs-theme)
   (config/exec-path)
   (config/compilation-buffers)
+  (config/python)
 
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
@@ -374,12 +374,18 @@ values."
   "Set up the `exec-path'."
   ;; Copy exec-path from shell PATH if in GUI emacs
   (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
+    (exec-path-from-shell-initialize)))
 
+(defun config/python ()
+  "Configure python and related modes."
   ;; Python: Explicitly prepend python binaries location to exec-path.
   ;; Fixes flake8, yapfify failure to load.
   (let ((python-path (format "%s/.anaconda3/bin" (getenv "HOME"))))
-    (setq-default exec-path (cons python-path exec-path))))
+    (setq-default exec-path (cons python-path exec-path)))
+
+  (setq-default python-shell-completion-native-enable nil)
+  (setq-default python-indent-offset 4)
+  (setq-default python-shell-interpreter-args "-i --no-banner --simple-prompt"))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
@@ -662,6 +668,7 @@ Provides facilities for yanking formatted code snippets."
     (setq-default org-md-headline-style 'setext)
     (setq-default org-src-tab-acts-natively t)
     (setq-default org-babel-python-command "python3")
+
     ;; Org Babel: Elixir
     (setq org-babel-default-header-args:elixir
           (cons '(:results . "value")
