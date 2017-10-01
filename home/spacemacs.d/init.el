@@ -312,6 +312,8 @@ values."
   (config/compilation-buffers)
   (config/python)
 
+  (smartparens-global-strict-mode)
+
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
