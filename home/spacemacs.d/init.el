@@ -85,6 +85,7 @@ values."
    dotspacemacs-additional-packages
    '(
      company-flx
+     dockerfile-mode
      evil-quickscope
      flx
      ob-swift
