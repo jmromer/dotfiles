@@ -741,7 +741,7 @@ Provides facilities for yanking formatted code snippets."
                                         :ordering-triple :arrows-twoheaded
                                         :punctuation :logic :sets))
 
-  (pretty-activate-groups '(:sub-and-superscripts :greek :arithmetic-nary))
+  (pretty-activate-groups '(:greek :arithmetic-nary))
 
   ;; prettify symbols
   (global-prettify-symbols-mode)
