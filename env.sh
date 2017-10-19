@@ -36,6 +36,7 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 #-------------------------------------------------------------
 export N_PREFIX="$HOME/.node"
 export ANACONDA_PREFIX="$HOME/.anaconda3"
+export ANACONDA_HOME="$HOME/.anaconda3"
 export GOPATH="$HOME/.go"
 export GOROOT="/usr/local/go"
 export ELM_HOME="$HOME/.elm"
