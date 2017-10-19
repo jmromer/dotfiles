@@ -1,0 +1,27 @@
+# ~/.tmuxinator/starling.yml
+
+name: starling
+root: ~/starling/starling-api
+pre_window: source activate starling-api
+
+windows:
+  - be:
+      pre: export ENVIRONMENT=development
+      panes:
+        - python application.py
+  - fe:
+      pre: export ENVIRONMENT=development
+      panes:
+        - npm start
+  - be_test:
+      pre: export ENVIRONMENT=testing
+      panes:
+        - pytest
+  - fe_test: npm test
+  - e2e_test: echo ./e2e/scripts/start.sh
+  - repl:
+      pre: export ENVIRONMENT=development && export FLASK_APP=application.py
+      panes:
+        - flask shell
+  - shell:
+      -
