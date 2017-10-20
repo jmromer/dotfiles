@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -e
+
+PYTEST_ARGS=()
+while [[ $# -gt 0 ]]
+do
+  key="$1"
+
+  case $key in
+    -l|--last)
+      RUN_LAST_TEST=true
+      shift
+      ;;
+    --)
+      shift
+      ;;
+    *)
+      PYTEST_ARGS+=("$1")
+      shift
+      ;;
+  esac
+done
+
+tmpfile='/tmp/pytest-get-cmd'
+
+if [ $RUN_LAST_TEST ]; then
+  selection=$(cat "$tmpfile")
+else
+  selection="$(pytest --collect-only |\
+    fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index)"
+
+  # save selection to tmpfile
+  echo "$selection" > "$tmpfile"
+fi
+
+pytest_args="${PYTEST_ARGS[*]}"
+
+if [ -z "${pytest_args// }" ]; then
+  echo pytest -s "$selection"
+  pytest -s "$selection"
+else
+  echo pytest -s "$pytest_args" "$selection"
+  pytest -s "$pytest_args" "$selection"
+fi
+
+echo
+
