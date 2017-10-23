@@ -384,7 +384,9 @@ values."
   "Configure python and related modes."
   ;; Python: Explicitly prepend python binaries location to exec-path.
   ;; Fixes flake8, yapfify failure to load.
-  (let ((python-path (format "%s/.anaconda3/bin" (getenv "HOME"))))
+  (let* ((conda-path (format "%s/.anaconda3/" (getenv "HOME")))
+         (python-path (format "%s/bin" conda-path)))
+    (setenv "WORKON_HOME" (format "%s/envs" conda-path))
     (setq-default exec-path (cons python-path exec-path)))
 
   (setq-default python-shell-completion-native-enable nil)
