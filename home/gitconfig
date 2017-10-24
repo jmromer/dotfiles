@@ -87,7 +87,7 @@
 
 [mergetool]
 	keepBackup = false
-	path = nvim
+	path = mvim
 
 [pager]
 	diff  = true
