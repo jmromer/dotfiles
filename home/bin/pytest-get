@@ -30,18 +30,21 @@ else
   selection="$(pytest --collect-only |\
     fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index)"
 
+  [ -z "$selection" ] && exit 1
+
   # save selection to tmpfile
   echo "$selection" > "$tmpfile"
 fi
 
 pytest_args="${PYTEST_ARGS[*]}"
+selection="$(echo $selection | tr '\n' ' ')"
 
 if [ -z "${pytest_args// }" ]; then
-  echo pytest -s "$selection"
-  pytest -s "$selection"
+  echo pytest -s $selection
+  pytest -s $selection
 else
-  echo pytest -s "$pytest_args" "$selection"
-  pytest -s "$pytest_args" "$selection"
+  echo pytest -s $pytest_args $selection
+  pytest -s $pytest_args $selection
 fi
 
 echo
