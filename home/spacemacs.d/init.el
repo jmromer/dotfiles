@@ -341,7 +341,7 @@ values."
   (spacemacs/set-leader-keys "wV" #'split-window-right)
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
   (spacemacs/declare-prefix "fd" "files/display")
-  (spacemacs/set-leader-keys "fdp" 'display-file-path)
+  (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
 
   ;; Emacs bindings in Evil ex minibuffer
@@ -923,10 +923,14 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
              (split-string str ",")
              (yas/indented-newline)))
 
-(defun display-file-path ()
-  "Print the path of the current buffer's file."
+(defun display-and-copy-file-path ()
+  "Print the path of the current buffer's file.
+Depends on yankee.el.
+"
   (interactive)
-  (message (abbreviate-file-name (buffer-file-name))))
+  (let ((file-path (yankee--abbreviated-project-or-home-path-to-file)))
+    (kill-new file-path)
+    (message file-path)))
 
 (defun config/load-local-config ()
   "Load local configuration overrides."
