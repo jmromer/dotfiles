@@ -928,8 +928,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
 
 (defun display-and-copy-file-path ()
   "Print the path of the current buffer's file.
-Depends on yankee.el.
-"
+Depends on yankee.el."
   (interactive)
   (let ((file-path (yankee--abbreviated-project-or-home-path-to-file)))
     (kill-new file-path)
