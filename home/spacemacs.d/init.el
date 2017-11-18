@@ -319,6 +319,9 @@ values."
   ;; Don't create lockfiles
   (setq create-lockfiles nil)
 
+  ;; Raise the gc threshold
+  (setq gc-cons-threshold 100000000)
+
   ;; add a space to the right of line numbers
   (setq-default left-fringe-width 10)
 
