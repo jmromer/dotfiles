@@ -394,7 +394,19 @@ values."
 
   (setq-default python-shell-completion-native-enable nil)
   (setq-default python-indent-offset 4)
-  (setq-default python-shell-interpreter-args "-i --no-banner --simple-prompt"))
+  (setq-default python-shell-interpreter-args "-i --no-banner --simple-prompt")
+
+  (add-hook 'after-save-hook 'spacemacs//python-sort-imports)
+  (add-hook 'after-save-hook 'spacemacs/python-remove-unused-imports)
+
+  (defun projectile-pyenv-mode-set ()
+    "Set pyenv version matching project name."
+    (let ((project (projectile-project-name)))
+      (if (member project (pyenv-mode-versions))
+          (pyenv-mode-set project)
+        (pyenv-mode-unset))))
+
+  (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
