@@ -34,6 +34,7 @@ PATH+=":$HOME/.gem/ruby/2.3.0/bin" # user-install gems for system ruby
 PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$HOME/.cargo/bin"          # Rust binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
+PATH+=":./node_modules/.bin"       # Project-local node binaries
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
 PATH+=":/usr/local/sbin"           # homebrewed binaries
