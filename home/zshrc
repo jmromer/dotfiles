@@ -6,6 +6,7 @@ alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
 alias git=hub
 alias swift4="DEVELOPER_DIR=/Applications/Xcode-beta.app swift"
+alias dc='docker-compose'
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
