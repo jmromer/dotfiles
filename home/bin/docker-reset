@@ -13,3 +13,8 @@ docker image rm $(docker image ls -aq)
 
 # Remove any volumes
 docker volume rm $(docker volume ls -q)
+
+# Inspect lists
+docker ps -a
+docker image ls -a
+docker volume ls
