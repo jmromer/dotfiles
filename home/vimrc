@@ -797,6 +797,14 @@ let g:togglecursor_insert = 'underline'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#ternjs#docs = 1
 
+" Deoplete: GitHub source
+let g:deoplete#sources = {}
+let g:deoplete#sources.gitcommit=['github']
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.gitcommit = '.+'
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.gitcommit = '.+'
+
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local
