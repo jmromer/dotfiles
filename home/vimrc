@@ -793,12 +793,9 @@ let g:jsx_ext_required = 0
 " Togglecursor: insert mode uses an underline
 let g:togglecursor_insert = 'underline'
 
-" YouCompleteMe: keybindings
-set runtimepath+=~/.vim/plugged/YouCompleteMe
-let g:ycm_key_list_select_completion = ['<C-j>']
-let g:ycm_key_list_previous_completion = ['<C-k>']
-let g:ycm_key_invoke_completion = ''
-let g:ycm_min_num_of_chars_for_completion = 0
+" Deoplete: enable at startup
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#ternjs#docs = 1
 
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
