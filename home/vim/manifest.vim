@@ -16,11 +16,15 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete-rct'
 Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
+Plug 'SevereOverfl0w/deoplete-github'
 
 Plug 'benekastah/neomake'              " async linting, et al. best with nvim
 Plug 'kien/rainbow_parentheses.vim'    " delimiter highlighting
 Plug 'ntpeters/vim-better-whitespace'  " detect and highlight bad whitespace
 Plug 'tpope/vim-surround'              " surround text block with delimiters
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
 Plug 'christoomey/vim-system-copy'     " cp
 Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
