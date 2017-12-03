@@ -309,10 +309,8 @@ nnoremap <silent><leader>fs :StripWhitespace<CR>:w<CR>
 " g: Git
 nnoremap <leader>g :Git<SPACE>
 
-if has('nvim')
-  " m: (make) run Neomake. Use [l and ]l to cycle through loc list
-  nnoremap <leader>m :Neomake<CR>
-endif
+" m: (make) run Neomake. Use [l and ]l to cycle through loc list
+nnoremap <leader>m :Neomake<CR>
 
 " R: From visual mode, leader+R populates command line for search and replace
 vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
@@ -722,10 +720,10 @@ function! LLFileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'file') : ''
 endfunction
 
-
-if has('nvim')
+augroup neomake
+  autocmd!
   autocmd! BufWritePost * Neomake
-endif
+augroup END
 
 let g:neomake_coffee_enabled_makers     = ['coffeelint']
 let g:neomake_css_enabled_makers        = ['csslint']
