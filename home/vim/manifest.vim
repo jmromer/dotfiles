@@ -22,6 +22,7 @@ Plug 'benekastah/neomake'              " async linting, et al. best with nvim
 Plug 'kien/rainbow_parentheses.vim'    " delimiter highlighting
 Plug 'ntpeters/vim-better-whitespace'  " detect and highlight bad whitespace
 Plug 'tpope/vim-surround'              " surround text block with delimiters
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -30,11 +31,11 @@ Plug 'christoomey/vim-system-copy'     " cp
 Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
 Plug 'SirVer/ultisnips'                " snippets engine, integrates with YCM
 Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
-Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': ['ruby']  }
 Plug 'tpope/vim-vinegar'              " enhancements to netrw
 Plug 'tpope/vim-git'                  " git commit filetype settings, et al
 Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
+Plug 'jiangmiao/auto-pairs'
+Plug 'haya14busa/incsearch.vim'
 
 Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
@@ -56,3 +57,5 @@ Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
+Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': ['ruby']  }
