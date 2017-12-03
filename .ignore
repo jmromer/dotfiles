@@ -5,6 +5,7 @@ home/vim/plugins
 home/vim/plugged
 home/vim/backup
 home/vim/tmp
+home/vim/vim-plug
 home/zsh/zsh-syntax-highlighting
 home/zsh/completion
 shell/completions
