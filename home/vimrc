@@ -74,6 +74,11 @@ augroup vimrcEx
   autocmd VimResized * :wincmd =
 augroup END
 
+augroup atomic_save
+  autocmd!
+  autocmd BufWriteCmd * call AtomicSave()
+augroup END
+
 "-------------------------------------------------------------
 " Colors
 "-------------------------------------------------------------
