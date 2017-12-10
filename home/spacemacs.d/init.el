@@ -125,7 +125,7 @@ values."
                                        hybrid-mode-enable-hjkl-bindings t
                                        hybrid-mode-default-state 'normal)
    dotspacemacs-verbose-loading nil
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    dotspacemacs-startup-lists '((recents . 3)
                                 (projects . 5)
                                 (bookmarks . 5)
