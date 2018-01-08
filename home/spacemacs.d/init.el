@@ -629,6 +629,7 @@ values."
     (modify-syntax-entry ?_ "w"))
 
   (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
 
