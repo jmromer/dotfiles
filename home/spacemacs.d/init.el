@@ -867,7 +867,7 @@ https://github.com/daimrod/highlight-sexp."
   "Configure evil-cleverparens layer."
   (require 'evil-cleverparens-text-objects)
   (smartparens-strict-mode)
-  (spacemacs/toggle-evil-cleverparens-on)
+  (evil-cleverparens-mode)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode))
 
