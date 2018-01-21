@@ -109,12 +109,6 @@ function listening_on_port() {
 function e() {
   local editor=nvim
 
-  if [ -n "$INSIDE_EMACS" ]; then
-    echo emacsclient -n ${1:='.'}
-    emacsclient -n ${1:='.'}
-    return 0
-  fi
-
   if [ -z "$1" ]; then
     echo $editor .
     $editor .
@@ -125,7 +119,6 @@ function e() {
     $editor "$1"
   fi
 }
-alias ee="emacs -nw"
 
 # Fuzzy-select a file from git status to open in editor
 function eg() {
