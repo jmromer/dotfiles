@@ -31,7 +31,6 @@ values."
      elixir
      elm
      emacs-lisp
-     evil-cleverparens
      evil-commentary
      git
      github
@@ -867,7 +866,7 @@ https://github.com/daimrod/highlight-sexp."
   "Configure evil-cleverparens layer."
   (require 'evil-cleverparens-text-objects)
   (smartparens-strict-mode)
-  (evil-cleverparens-mode)
+  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
   (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode))
 
