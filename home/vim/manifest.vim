@@ -32,6 +32,7 @@ Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
 Plug 'SirVer/ultisnips'                " snippets engine, integrates with YCM
 Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
 Plug 'tpope/vim-vinegar'              " enhancements to netrw
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-git'                  " git commit filetype settings, et al
 Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
 Plug 'jiangmiao/auto-pairs'
