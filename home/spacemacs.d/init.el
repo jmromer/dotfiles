@@ -101,6 +101,7 @@ values."
      fancy-battery
      neotree
      ob-elixir
+     auctex-latexmk
      )
    dotspacemacs-delete-orphan-packages t
    dotspacemacs-enable-lazy-installation nil
