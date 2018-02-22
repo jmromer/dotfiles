@@ -297,7 +297,6 @@ values."
   (config/underscore-to-word-char-list)
   (config/company)
   (config/terminal-buffers)
-  (config/dired)
   (config/latex-mode)
   (config/markdown-mode)
   (config/ruby-in-buffer-eval)
