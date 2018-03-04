@@ -393,6 +393,7 @@ values."
   (setq-default python-shell-completion-native-enable t)
   (setq-default python-indent-offset 4)
   (setq-default python-shell-interpreter-args "-i --no-banner --simple-prompt")
+  (add-to-list 'company-backends 'company-anaconda)
 
   (add-hook 'after-save-hook 'spacemacs//python-sort-imports)
   (add-hook 'after-save-hook 'spacemacs/python-remove-unused-imports))
