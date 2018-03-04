@@ -522,9 +522,13 @@ values."
     (seeing-is-believing-mark-current-line-for-xmpfilter)
     (seeing-is-believing-run-as-xmpfilter))
 
-  (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
-  (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
-  (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
+  (defun define-xmpfilter-keybindings ()
+    "Define keybindings for xmpfilter."
+    (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
+    (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
+    (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
+
+  (add-hook 'ruby-mode-hook 'define-xmpfilter-keybindings))
 
 (defun config/markdown-mode ()
   "Configure Markdown mode."
