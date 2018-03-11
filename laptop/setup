@@ -39,10 +39,10 @@ touch $log_location
 
   # ===================================================
 
-  step "Cloning jkrmr/dotfiles"
+  step "Cloning jmromer/dotfiles"
 
   if [ ! -d $LOCAL_DOTFILES ]; then
-    git clone --recursive https://github.com/jkrmr/dotfiles.git \
+    git clone --recursive https://github.com/jmromer/dotfiles.git \
       $LOCAL_DOTFILES 1> /dev/null
   fi
 
@@ -55,7 +55,7 @@ touch $log_location
   fi
 
   if [ ! -d $HOME/.spacemacs.d ]; then
-    git clone --recursive https://github.com/jkrmr/dot_spacemacs $HOME/.spacemacs.d
+    git clone --recursive https://github.com/jmromer/dot_spacemacs $HOME/.spacemacs.d
   fi
 
   # ===================================================
