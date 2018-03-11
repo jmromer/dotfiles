@@ -421,7 +421,7 @@ nnoremap <silent><leader>r :VimuxRunLastCommand<CR>
 " - Optionally omit links / configure format
 " - Yank folded:
 "    <details>
-"    <summary><a href="https://github.com/jkrmr/dot_spacemacs/blob/498e45c8/init.el#L16-L23">init.el#L16-L23 (498e45c8)</a></summary>
+"    <summary><a href="https://github.com/jmromer/dot_spacemacs/blob/498e45c8/init.el#L16-L23">init.el#L16-L23 (498e45c8)</a></summary>
 "
 "    ```el
 "    ;; init.el L16-L23 (498e45c8)
