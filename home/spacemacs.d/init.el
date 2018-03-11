@@ -29,7 +29,9 @@ values."
      dash
      deft
      elixir
-     elm
+     (elm :variables
+          elm-sort-imports-on-save t
+          elm-format-command "elm-format")
      emacs-lisp
      evil-commentary
      git
