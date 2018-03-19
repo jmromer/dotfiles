@@ -85,6 +85,7 @@ values."
      )
    dotspacemacs-additional-packages
    '(
+     traad
      dockerfile-mode
      evil-quickscope
      ob-swift
