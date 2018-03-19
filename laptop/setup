@@ -48,14 +48,10 @@ touch $log_location
 
   # ===================================================
 
-  step "Cloning spacemacs config repos"
+  step "Cloning emacs config repo"
 
   if [ ! -d $HOME/.emacs.d ]; then
     git clone https://github.com/syl20bnr/spacemacs $HOME/.emacs.d
-  fi
-
-  if [ ! -d $HOME/.spacemacs.d ]; then
-    git clone --recursive https://github.com/jmromer/dot_spacemacs $HOME/.spacemacs.d
   fi
 
   # ===================================================
@@ -93,9 +89,9 @@ touch $log_location
 
   # ===================================================
 
-  step "Installing user gems for system ruby"
-  echo gem install --user neovim vim-vint gem-ctags tmuxinator
-  gem install --user neovim vim-vint gem-ctags tmuxinator
+  # step "Installing user gems for system ruby"
+  # echo gem install --user neovim vim-vint gem-ctags tmuxinator
+  # gem install --user neovim vim-vint gem-ctags tmuxinator
 
   # ===================================================
 
@@ -135,13 +131,22 @@ touch $log_location
   source "$HOME/.dotfiles/laptop/gnu_tools.sh"
 
   step "Installing Ruby, JS libraries"
-  source "$HOME/.dotfiles/laptop/libraries.sh"
+  #-------------------------------------------------------------
+  # Generate tags for ruby stdlib
+  #-------------------------------------------------------------
+  mkdir -p ~/.rbenv/plugins
+  git clone git://github.com/tpope/rbenv-ctags.git  ~/.rbenv/plugins/rbenv-ctags
+  rbenv ctags
+
+  #-------------------------------------------------------------
+  # Update RubyGems and generate tags for gems
+  #-------------------------------------------------------------
+  gem install gem-ctags
+  rbenv rehash
+  gem ctags
 
   step "Installing GUI apps with Homebrew Cask"
   source "$HOME/.dotfiles/laptop/homebrew_cask_packages.sh"
-
-  step "Installing Homebrew Packages"
-  source "$HOME/.dotfiles/laptop/homebrew_package_sets.sh"
 
   # ==================================================
 
@@ -246,16 +251,61 @@ curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
 source "$HOME/.zshrc"
 
 n stable
+brew install watchman
+npm install -g npm
+npm install -g babel-eslint
+npm install -g eslint
+npm install -g eslint-plugin-react
+npm install -g js-beautify
+npm install -g tern
+npm install -g create-react-app
+npm install -g react-native-cli
+npm install -g webpack
+npm install -g google-closure-compiler
+npm install -g google-closure-linter
 
-npm install -g \
-    babel-eslint \
-    coffeelint \
-    eslint \
-    eslint-plugin-react \
-    js-beautify \
-    npm \
-    tern \
+echo "Installing Python"
+# Install anaconda3
+curl -o ~/Desktop/anaconda_install.sh \
+    https://repo.continuum.io/archive/Anaconda3-4.4.0-MacOSX-x86_64.sh
 
+# run installer
+bash ~/Desktop/anaconda_install.sh
+
+# Install Python packages for emacs
+pip install --upgrade "jedi>=0.9.0"
+pip install --upgrade "json-rpc>=1.8.1"
+pip install --upgrade "service_factory>=0.1.5"
+pip install --upgrade autoflake
+pip install --upgrade flake8
+pip install --upgrade hy
+pip install --upgrade pip
+pip install --upgrade pygments
+pip install --upgrade setuptools
+pip install --upgrade vim-vint
+pip install --upgrade yapf
+
+echo "Installing Go"
+brew install go
+mkdir $HOME/.go
+mkdir -p $HOME/.go/src/github.com/user
+go get -u -v github.com/nsf/gocode
+go get -u -v github.com/rogpeppe/godef
+go get -u -v golang.org/x/tools/cmd/guru
+go get -u -v golang.org/x/tools/cmd/gorename
+go get -u -v golang.org/x/tools/cmd/goimports
+
+echo "Installing Elixir"
+brew install exenv elixir-build erlang
+
+echo "Installing Haskell"
+brew cask install haskell-platform
+cabal install apply-refact
+cabal install hlint
+cabal install stylish-haskell
+cabal install hasktags
+cabal install hoogle
+cabal install intero
 
 #-------------------------------------------------------------
 # Vim bootstrap

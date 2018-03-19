@@ -14,7 +14,7 @@ brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 #-------------------------------------------------------------
 brew install openssl
 brew install --with-openssl curl
-brew install --with-brewed-curl --with-brewed-openssl git
+brew install --with-curl --with-openssl git
 
 #-------------------------------------------------------------
 # Homebrewed Packages
@@ -78,7 +78,7 @@ gem install neovim
 # Emacs Installation
 #-------------------------------------------------------------
 brew tap d12frosted/emacs-plus
-brew install emacs-plus
+brew install emacs-plus --with-no-title-bars
 brew linkapps emacs-plus
 brew services start d12frosted/emacs-plus/emacs-plus
 
