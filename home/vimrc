@@ -803,6 +803,26 @@ let g:deoplete#keyword_patterns.gitcommit = '.+'
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.gitcommit = '.+'
 
+" vim-markdown
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_toc_autofit = 1
+
+" python-mode
+let g:pymode_python = 'python3'
+
+function! RunYAPF()
+  let save_pos = getpos('.')
+  execute "normal :YAPF\<CR>"
+  call setpos('.', save_pos)
+endfunction
+
+augroup python_mode
+  autocmd!
+  autocmd BufWritePre *.py call RunYAPF()
+augroup END
+
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local

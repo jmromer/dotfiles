@@ -60,3 +60,10 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': ['ruby']  }
+
+" Python
+Plug 'python-mode/python-mode', { 'for': 'python' }
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+
+" Markdown
+Plug 'plasticboy/vim-markdown' | Plug 'godlygeek/tabular'
