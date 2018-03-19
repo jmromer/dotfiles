@@ -13,10 +13,6 @@ set runtimepath+=~/.fzf
 " Disable italics
 let g:solarized_italic = 0
 
-" ----------------- Load Plugins ------------------------
-call plug#begin('~/.vim/plugged')
-  source $HOME/.vim/manifest.vim
-call plug#end()
 
 "-------------------------------------------------------------
 " Python interpreters
@@ -827,3 +823,8 @@ augroup END
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local
 endif
+
+" ----------------- Load Plugins ------------------------
+call plug#begin('~/.vim/plugged')
+  source $HOME/.vim/manifest.vim
+call plug#end()
