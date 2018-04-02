@@ -89,6 +89,7 @@ values."
      traad
      dockerfile-mode
      evil-quickscope
+     magithub
      ob-swift
      ov
      pretty-mode
@@ -545,6 +546,12 @@ Provides facilities for yanking formatted code snippets."
 
 (defun config/git-and-magit ()
   "Configure Magit and git-related settings."
+  (use-package magithub
+    :after magit
+    :config
+    (magithub-feature-autoinject t)
+    (setq-default magithub-clone-default-directory "~/Projects/"))
+
   (with-eval-after-load 'magit
     (setq magit-completing-read-function 'ivy-completing-read)
     (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
