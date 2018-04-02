@@ -41,6 +41,7 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
+     groovy
      haskell
      ivy
      (javascript :variables
@@ -91,6 +92,7 @@ values."
      ob-swift
      ov
      pretty-mode
+     s
      seeing-is-believing
      toc-org
      vimish-fold
