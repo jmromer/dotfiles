@@ -44,7 +44,8 @@ values."
      graphviz
      groovy
      haskell
-     ivy
+     (ivy :variables
+          ivy-wrap t)
      (javascript :variables
                  tern-command '("node" "/Users/jkrmr/.node/bin/tern"))
      jekyll
@@ -208,7 +209,8 @@ values."
   (config/web-beautify)
   (config/javascript-modes)
   (config/web-mode)
-  (config/ivy-and-projectile)
+  (config/projectile)
+  (config/ivy)
   (config/spaceline)
   (config/set-terminal-emacs-theme)
   (config/exec-path)
@@ -317,21 +319,20 @@ values."
     (setq-default powerline-default-separator nil)
     (spaceline-compile)))
 
-(defun config/ivy-and-projectile ()
-  "Configure Ivy and Projectile for fuzzy-searching and project utilities."
-  ;; Projectile settings
+(defun config/projectile ()
+  "Configure Projectile."
   (setq-default projectile-completion-system 'ivy
                 projectile-enable-caching t
-                projectile-globally-ignored-directories '("node_modules"))
+                projectile-globally-ignored-directories '("node_modules")))
 
-  ;; Ivy settings
+(defun config/ivy ()
+  "Configure Ivy."
   (setq-default ivy-re-builders-alist '((ivy-switch-buffer . ivy--regex-fuzzy)
                                         (mx . ivy--regex-fuzzy)
                                         (swiper . ivy--regex-plus)
                                         (counsel-git-grep . ivy--regex-fuzzy)
                                         (t . ivy--regex-fuzzy))
-                ivy-initial-inputs-alist nil
-                ivy-wrap t))
+                ivy-initial-inputs-alist nil))
 
 (defun config/web-mode ()
   "Configure web-mode (for CSS, HTML)."
