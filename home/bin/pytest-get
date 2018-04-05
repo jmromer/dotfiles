@@ -27,7 +27,8 @@ tmpfile='/tmp/pytest-get-cmd'
 if [ $RUN_LAST_TEST ]; then
   selection=$(cat "$tmpfile")
 else
-  selection="$(pytest --collect-only |\
+  selection="$(pytest --collect-only -q |\
+    grep --invert-match -E 'tests ran in .+ seconds' |\
     fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index)"
 
   [ -z "$selection" ] && exit 1
