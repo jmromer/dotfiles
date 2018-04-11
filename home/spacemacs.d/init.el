@@ -81,14 +81,13 @@ values."
                       syntax-checking-enable-by-default t
                       syntax-checking-enable-tooltips t)
      swift
+     version-control
      vimscript
      vinegar
-     version-control
      yaml
      )
    dotspacemacs-additional-packages
    '(
-     traad
      dockerfile-mode
      evil-quickscope
      magithub
@@ -98,16 +97,17 @@ values."
      s
      seeing-is-believing
      toc-org
+     traad
      vimish-fold
      )
    dotspacemacs-excluded-packages
    '(
      ace-jump-mode
+     auctex-latexmk
      evil-mc
      fancy-battery
      neotree
      ob-elixir
-     auctex-latexmk
      )
    dotspacemacs-delete-orphan-packages t
    dotspacemacs-enable-lazy-installation nil
