@@ -28,6 +28,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
 Plug 'christoomey/vim-system-copy'     " cp
+Plug 'christoomey/vim-sort-motion'
 Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
 Plug 'SirVer/ultisnips'                " snippets engine, integrates with YCM
 Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
