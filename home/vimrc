@@ -550,8 +550,8 @@ let g:UltiSnipsEditSplit='vertical'
 let g:yankring_history_dir = '~/.vim/tmp'
 
 " YankRing: Cycle through the yank register
-let g:yankring_replace_n_pkey = '<C-k>'
-let g:yankring_replace_n_nkey = '<C-j>'
+let g:yankring_replace_n_pkey = '<C-p>'
+let g:yankring_replace_n_nkey = '<C-n>'
 nnoremap <silent><leader>p :YRShow<CR>
 
 " AutoPairs: disable closed-pair jumping instead of inserting
