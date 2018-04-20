@@ -46,7 +46,8 @@ values."
      (ivy :variables
           ivy-wrap t)
      (javascript :variables
-                 tern-command '("node" "/Users/jkrmr/.node/bin/tern"))
+                 tern-command '("node" "/Users/jkrmr/.node/bin/tern")
+                 node-add-modules-path t)
      jekyll
      (latex :variables
             latex-enable-auto-fill t
