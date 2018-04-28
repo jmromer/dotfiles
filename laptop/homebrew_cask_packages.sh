@@ -14,7 +14,7 @@ brew cask install appcleaner
 # Quick Look viewers: Zip files
 brew cask install betterzipql
 # vpn
-brew cask install encryptme
+brew cask install expressvpn
 # web browser
 brew cask install firefox
 # controls screen brightness
