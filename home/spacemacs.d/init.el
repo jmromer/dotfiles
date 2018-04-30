@@ -544,7 +544,8 @@ Provides facilities for yanking formatted code snippets."
   (define-key evil-visual-state-map (kbd "gy") nil)
   (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
   (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
-  (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block))
+  (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
+  (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
 
 (defun config/git-and-magit ()
   "Configure Magit and git-related settings."
