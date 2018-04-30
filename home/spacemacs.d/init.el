@@ -88,6 +88,7 @@ values."
      )
    dotspacemacs-additional-packages
    '(
+     csv-mode
      dockerfile-mode
      evil-quickscope
      magithub
