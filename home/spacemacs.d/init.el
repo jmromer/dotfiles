@@ -95,6 +95,7 @@ values."
      ob-swift
      ov
      pretty-mode
+     rufo
      seeing-is-believing
      toc-org
      traad
@@ -203,6 +204,7 @@ values."
   (config/terminal-buffers)
   (config/latex-mode)
   (config/markdown-mode)
+  (config/ruby-autoformatter)
   (config/ruby-in-buffer-eval)
   (config/diminish)
   (config/vimish-fold)
@@ -416,6 +418,16 @@ values."
     (diminish 'rubocop-mode "℞")
     (diminish 'seeing-is-believing "S"))
     (diminish 'tern-mode "₸"))
+
+(defun config/ruby-autoformatter ()
+  "Configure autoformatter for Ruby mode."
+  ;; (setq-default rufo-minor-mode-use-bundler t)
+  ;; Enable rufo-format
+  (add-hook 'ruby-mode-hook 'rufo-minor-mode)
+  ;; Enable autoformat on save in Ruby modes
+  (add-hook 'ruby-mode-hook (lambda () (add-hook 'before-save-hook #'rufo-format t)))
+  ;; Define keybinding to manually trigger autoformat
+  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format))
 
 (defun config/ruby-in-buffer-eval ()
   "Configure and enable seeing-is-believing and xmpfilter for Ruby."
