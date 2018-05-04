@@ -82,10 +82,10 @@ Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
 Layout/EmptyLinesAroundClassBody:
-  EnforcedStyle: empty_lines
+  EnforcedStyle: no_empty_lines
 
 Layout/EmptyLinesAroundModuleBody:
-  EnforcedStyle: empty_lines
+  EnforcedStyle: no_empty_lines
 
 Style/AsciiComments:
   Enabled: false
@@ -96,18 +96,32 @@ Documentation:
 StringLiterals:
   EnforcedStyle: double_quotes
 
-Style/TrailingCommaInLiteral:
-  # If `comma`, the cop requires a comma after the last item in an array or
-  # hash, but only when each item is on its own line.
-  # If `consistent_comma`, the cop requires a comma after the last item of all
-  # non-empty array and hash literals.
+Style/TrailingCommaInArrayLiteral:
+  # If `comma`, the cop requires a comma after the last item, but only when each
+  # item is on its own line.
+  # If `consistent_comma`, the cop requires a comma after the last item
   # SupportedStyles:
   #   - comma
   #   - consistent_comma
   #   - no_comma
   EnforcedStyleForMultiline: comma
 
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
 # Favor modifier if/unless usage when you have a
 # single-line body.
 Style/IfUnlessModifier:
   Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
