@@ -521,6 +521,7 @@ values."
     (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
     (define-key term-raw-map (kbd "C-p") #'term-send-up)
     (define-key term-raw-map (kbd "C-n") #'term-send-down)
+    (define-key term-raw-map (kbd "C-v") #'term-paste)
     (goto-address-mode))
 
   (add-hook 'term-mode-hook #'term-mode-config)
