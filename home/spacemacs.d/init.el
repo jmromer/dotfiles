@@ -72,8 +72,7 @@ values."
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-full-span nil
-            shell-default-height 35
-            shell-default-position 'bottom)
+            shell-default-position 'full)
      spacemacs-layouts
      sql
      spell-checking
