@@ -91,8 +91,6 @@ values."
      csv-mode
      dockerfile-mode
      evil-quickscope
-     ghub
-     magithub
      ob-swift
      ov
      pretty-mode
@@ -214,7 +212,7 @@ values."
   (config/exercism)
   (config/firacode)
   (config/flycheck)
-  (config/git-and-magit)
+  (config/version-control)
   (config/highlight-lines-at-length 80)
   (config/highlight-sexp)
   (config/ivy)
@@ -536,25 +534,21 @@ Provides facilities for yanking formatted code snippets."
   (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
   (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
 
-(defun config/git-and-magit ()
-  "Configure Magit and git-related settings."
-  (use-package magithub
-    :after magit
-    :config
-    (magithub-feature-autoinject t)
-    (setq-default magithub-clone-default-directory "~/Projects/"))
-
+(defun config/version-control ()
+  "Configure version-control-related settings."
   (with-eval-after-load 'magit
-    (setq magit-completing-read-function 'ivy-completing-read)
-    (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
-    (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+    (if (and (boundp 'magit-completing-read-function)
+             (boundp 'magit-mode-map))
+        (progn
+          (setq magit-completing-read-function 'ivy-completing-read)
+          (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
+          (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+      (error "Failed setting up magit")))
 
   ;; leader gb to display branching controls
   (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
-
   ;; leader gB to display Git blame
   (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
-
   ;; Git Gutter: Display fringe on left
   (setq-default git-gutter-fr+-side 'left-fringe)
   (setq-default git-gutter-fr:side 'left-fringe))
