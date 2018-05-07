@@ -486,23 +486,6 @@ values."
   ;; Detect xelatex files
   (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode)))
 
-(defun config/dired ()
-  "Configure dired."
-  ;; In normal mode, `-` opens dired in the PWD
-  (define-key evil-normal-state-map (kbd "-")
-    (lambda () (interactive) (dired "./")))
-
-  (defun dired-keybindings ()
-    (define-key dired-mode-map "?" #'evil-search-backward)
-    (define-key dired-mode-map (kbd "C-w") nil)
-    (define-key dired-mode-map (kbd "C-o")
-      (lambda () (interactive) (switch-to-previous-buffer)))
-    (define-key dired-mode-map (kbd "C-i")
-      (lambda () (interactive) (switch-to-previous-buffer))))
-
-  ;; dired keybindings
-  (add-hook 'dired-mode-hook #'dired-keybindings))
-
 (defun config/terminal-buffers ()
   "Configure terminal buffers."
   (evil-set-initial-state 'term-mode 'normal)
