@@ -267,9 +267,12 @@ values."
 
 (defun config/evil-in-ex-buffer ()
   "Emacs bindings in Evil ex minibuffer."
-  (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
-  (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
-  (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
+  (if (boundp 'evil-ex-completion-map)
+      (progn
+        (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
+        (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
+        (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
+    (error "Failed setting up ex mode keybindings")))
 
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
@@ -297,7 +300,10 @@ values."
   (setq-default python-shell-completion-native-enable t)
   (setq-default python-indent-offset 4)
   (setq-default python-shell-interpreter-args "-i --no-banner --simple-prompt")
-  (add-to-list 'company-backends 'company-anaconda)
+
+  (if (boundp 'company-backends)
+      (add-to-list 'company-backends 'company-anaconda)
+    (error "Failed setting up anaconda autocomplete"))
 
   (add-hook 'after-save-hook 'spacemacs//python-sort-imports)
   (add-hook 'after-save-hook 'spacemacs/python-remove-unused-imports))
@@ -341,9 +347,12 @@ values."
                 web-mode-code-indent-offset 2)
 
   (with-eval-after-load 'web-mode
-    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))))
+    (if (boundp 'web-mode-indentation-params)
+        (progn
+          (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+          (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+          (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+      (error "Failed setting up web-mode indentation params"))))
 
 (defun config/javascript-modes ()
   "Configure JavaScript modes: js, js2, react."
@@ -444,9 +453,12 @@ values."
 
   (defun define-xmpfilter-keybindings ()
     "Define keybindings for xmpfilter."
-    (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
-    (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
-    (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
+    (if (boundp 'ruby-mode-map)
+        (progn
+          (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
+          (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
+          (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
+      (error "Failed setting up xmpfilter keybindings")))
 
   (add-hook 'ruby-mode-hook 'define-xmpfilter-keybindings))
 
@@ -497,11 +509,14 @@ values."
     (term-send-raw-string "\C-y"))
 
   (defun term-mode-config ()
-    (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
-    (define-key term-raw-map (kbd "C-p") #'term-send-up)
-    (define-key term-raw-map (kbd "C-n") #'term-send-down)
-    (define-key term-raw-map (kbd "C-v") #'term-paste)
-    (goto-address-mode))
+    (if (boundp 'term-raw-map)
+        (progn
+          (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
+          (define-key term-raw-map (kbd "C-p") #'term-send-up)
+          (define-key term-raw-map (kbd "C-n") #'term-send-down)
+          (define-key term-raw-map (kbd "C-v") #'term-paste)
+          (goto-address-mode))
+      (error "Failed setting up term mode keybindings")))
 
   (add-hook 'term-mode-hook #'term-mode-config)
 
@@ -532,11 +547,14 @@ values."
 Provides facilities for yanking formatted code snippets."
   (load "yankee.el/yankee.el")
   (require 'yankee)
-  (define-key evil-visual-state-map (kbd "gy") nil)
-  (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
-  (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
-  (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
-  (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
+  (if (boundp 'evil-visual-state-map)
+      (progn
+        (define-key evil-visual-state-map (kbd "gy") nil)
+        (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
+        (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
+        (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
+        (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
+    (error "Failed setting up yankee.el keybindings")))
 
 (defun config/version-control ()
   "Configure version-control-related settings."
@@ -582,29 +600,35 @@ Provides facilities for yanking formatted code snippets."
     (setq-default org-babel-python-command "python3")
 
     ;; Org Babel: Elixir
-    (setq org-babel-default-header-args:elixir
-          (cons '(:results . "value")
-                (assq-delete-all :results org-babel-default-header-args:elixir)))
-    (setq org-babel-default-header-args:elixir
-          (cons '(:preamble . "Code.compiler_options(ignore_module_conflict: true)")
-                (assq-delete-all :preamble org-babel-default-header-args:elixir)))
+    (if (boundp 'org-babel-default-header-args:elixir)
+        (progn
+          (setq org-babel-default-header-args:elixir
+                (cons '(:results . "value")
+                      (assq-delete-all :results org-babel-default-header-args:elixir)))
+          (setq org-babel-default-header-args:elixir
+                (cons '(:preamble . "Code.compiler_options(ignore_module_conflict: true)")
+                      (assq-delete-all :preamble org-babel-default-header-args:elixir))))
+      (error "Failed setting up org-babel for Elixir"))
 
     ;; Source Blocks
     ;; Python: <p
-    (add-to-list 'org-structure-template-alist
-                 '("p"
-                   "#+BEGIN_SRC python :exports both\n?\n#+END_SRC"
-                   "<src lang=\"python\">\n?\n</src>"))
-    ;; Elixir: <x
-    (add-to-list 'org-structure-template-alist
-                 '("x"
-                   "#+BEGIN_SRC elixir\n?\n#+END_SRC"
-                   "<src lang=\"elixir\">\n?\n</src>"))
-    ;; Emacs Lisp: <el
-    (add-to-list 'org-structure-template-alist
-                 '("el"
-                   "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
-                   "<src lang=\"emacs-lisp\">\n?\n</src>"))))
+    (if (boundp 'org-structure-template-alist)
+        (progn
+          (add-to-list 'org-structure-template-alist
+                       '("p"
+                         "#+BEGIN_SRC python :exports both\n?\n#+END_SRC"
+                         "<src lang=\"python\">\n?\n</src>"))
+          ;; Elixir: <x
+          (add-to-list 'org-structure-template-alist
+                       '("x"
+                         "#+BEGIN_SRC elixir\n?\n#+END_SRC"
+                         "<src lang=\"elixir\">\n?\n</src>"))
+          ;; Emacs Lisp: <el
+          (add-to-list 'org-structure-template-alist
+                       '("el"
+                         "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
+                         "<src lang=\"emacs-lisp\">\n?\n</src>")))
+      (error "Failed setting up org-babel source block"))))
 
 (defun config/exercism ()
   "Configure and enable exercism mode."
