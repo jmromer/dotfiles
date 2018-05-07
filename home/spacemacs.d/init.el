@@ -505,12 +505,7 @@ values."
 
 (defun config/terminal-buffers ()
   "Configure terminal buffers."
-
-  ;; Use emacs state when starting term mode
-  (evil-set-initial-state 'term-mode 'emacs)
-
-  ;; toggle between emacs and evil-normal states with ESC x 3
-  (global-set-key (kbd "ESC ESC ESC") #'evil-normal-state)
+  (evil-set-initial-state 'term-mode 'normal)
 
   (defun term-send-ctrl-y ()
     (interactive)
