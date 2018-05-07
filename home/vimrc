@@ -280,6 +280,7 @@ nnoremap <leader>sap :Rg ''<LEFT>
 "    open results in quickfix pane
 nnoremap <silent><S-k> yiw:grep! "<C-R>0"<CR>:cw<CR>
 vnoremap <silent><S-k> y:grep! "<C-R>0"<CR>:cw<CR>
+nnoremap <leader>* yiw:grep! "<C-R>0"<CR>:cw<CR>
 
 " -------------- Leader key mappings (ctrl) -----------------
 " C-]: Open ctag in a vertical split
