@@ -88,6 +88,7 @@ values."
      )
    dotspacemacs-additional-packages
    '(
+     bison-mode
      csv-mode
      dockerfile-mode
      evil-quickscope
