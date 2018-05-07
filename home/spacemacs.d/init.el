@@ -365,7 +365,7 @@ values."
 (defun config/web-beautify ()
   "Configure web-beautify hooks."
 
-  (defun web-beatify/beautify-js-buffer-on-save ()
+  (defun web-beautify/beautify-js-buffer-on-save ()
     "Add a before-save hook to beautify JavaScript on save."
     (add-hook 'before-save-hook 'web-beautify-js-buffer t t))
 
