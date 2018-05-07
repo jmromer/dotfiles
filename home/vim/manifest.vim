@@ -61,3 +61,6 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': ['ruby']  }
+
+" JS
+Plug 'wizicer/vim-jison'
