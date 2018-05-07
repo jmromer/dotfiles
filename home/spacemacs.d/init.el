@@ -182,98 +182,98 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Load variables before package initialization."
-  (setq-default git-magit-status-fullscreen t))
+  ;; Display Magit full-screen
+  (setq-default git-magit-status-fullscreen t)
+  ;; Don't create lockfiles
+  (setq-default create-lockfiles nil)
+  ;; Raise the gc threshold
+  (setq-default gc-cons-threshold 100000000)
+  ;; add a space to the right of line numbers
+  (setq-default left-fringe-width 10)
+  ;; don't warn about large files
+  (setq-default large-file-warning-threshold nil)
+  ;; prevent visual selection from overriding system clipboard
+  (fset 'evil-visual-update-x-selection 'ignore)
+  ;; disable mouse support in terminal
+  (xterm-mouse-mode -1)
+  ;; By default, don't soft-wrap lines longer than line length
+  (set-default 'truncate-lines nil)
+  ;; Add local packages directory to load path
+  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME"))))
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
-  ;; Add local packages directory to load path
-  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
+  ;; Enable globally enabled modes
+  (config/global-modes)
 
-  (config/firacode)
-  (config/prettify-symbols)
+  (config/compilation-buffers)
+  (config/diminish)
   (config/evil-cleverparens)
-  (config/highlight-sexp)
-  (config/highlight-lines-at-length 80)
-  (config/flycheck)
+  (config/evil-in-ex-buffer)
+  (config/exec-path)
   (config/exercism)
-  (config/org-mode)
-  (config/org-latex-preview)
+  (config/firacode)
+  (config/flycheck)
   (config/git-and-magit)
-  (config/yankee)
-  (config/underscore-to-word-char-list)
-  (config/company)
-  (config/terminal-buffers)
+  (config/highlight-lines-at-length 80)
+  (config/highlight-sexp)
+  (config/ivy)
+  (config/javascript-modes)
   (config/latex-mode)
   (config/markdown-mode)
+  (config/org-latex-preview)
+  (config/org-mode)
+  (config/prettify-symbols)
+  (config/projectile)
+  (config/python)
   (config/ruby-autoformatter)
   (config/ruby-in-buffer-eval)
-  (config/diminish)
+  (config/set-terminal-emacs-theme)
+  (config/spaceline)
+  (config/terminal-buffers)
+  (config/underscore-to-word-char-list)
   (config/vimish-fold)
   (config/web-beautify)
-  (config/javascript-modes)
   (config/web-mode)
-  (config/projectile)
-  (config/ivy)
-  (config/spaceline)
-  (config/set-terminal-emacs-theme)
-  (config/exec-path)
-  (config/compilation-buffers)
-  (config/python)
+  (config/window-splitting)
+  (config/yankee)
 
-  (smartparens-global-strict-mode)
-
-  ;; Don't create lockfiles
-  (setq create-lockfiles nil)
-
-  ;; Raise the gc threshold
-  (setq gc-cons-threshold 100000000)
-
-  ;; add a space to the right of line numbers
-  (setq-default left-fringe-width 10)
-
-  ;; don't warn about large files
-  (setq-default large-file-warning-threshold nil)
-
-  ;; prevent visual selection from overriding system clipboard
-  (fset 'evil-visual-update-x-selection 'ignore)
-
-  ;; disable mouse support in terminal
-  (xterm-mouse-mode -1)
-
-  ;; By default, don't soft-wrap lines longer than line length
-  (set-default 'truncate-lines nil)
-
-  ;; make focus window commands primary
-  (spacemacs/set-leader-keys "ws" #'split-window-below-and-focus)
-  (spacemacs/set-leader-keys "wS" #'split-window-below)
-  (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
-  (spacemacs/set-leader-keys "wV" #'split-window-right)
-  (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus)
+  ;; Toggle folds with TAB
+  (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
+  ;; Display and copy buffer-file's path
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "x#" 'ruby-tools-interpolate)
-
-  ;; Emacs bindings in Evil ex minibuffer
-  (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
-  (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
-  (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line)
-  (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
-
-  ;; enable evil-quickscope-mode
-  (global-evil-quickscope-mode 1)
-
   ;; Objective-C
   (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
-  ;; Ruby
-  (rbenv-use-global)
   ;; Golang
   (add-hook 'go-mode-hook '(lambda () (whitespace-toggle-options 'tabs)))
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
-
   ;; execute local configuration file last
   (config/load-local-config))
+
+(defun config/global-modes ()
+  "Enable globally set modes."
+  (global-company-mode)
+  (global-evil-quickscope-mode 1)
+  (rbenv-use-global)
+  (smartparens-global-strict-mode)
+  (visual-line-mode))
+
+(defun config/window-splitting ()
+  "Make focus window commands primary."
+  (spacemacs/set-leader-keys "ws" #'split-window-below-and-focus)
+  (spacemacs/set-leader-keys "wS" #'split-window-below)
+  (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
+  (spacemacs/set-leader-keys "wV" #'split-window-right)
+  (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus))
+
+(defun config/evil-in-ex-buffer ()
+  "Emacs bindings in Evil ex minibuffer."
+  (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
+  (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
+  (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
 
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
@@ -541,10 +541,6 @@ values."
   (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
-
-(defun config/company ()
-  "Enable and configure company mode."
-  (global-company-mode))
 
 (defun config/yankee ()
   "Load and configure yankee.el.
