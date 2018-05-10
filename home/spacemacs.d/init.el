@@ -205,7 +205,6 @@ values."
   (config/global-modes)
 
   (config/compilation-buffers)
-  (config/diminish)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
   (config/exec-path)
@@ -236,6 +235,8 @@ values."
   (config/window-splitting)
   (config/yankee)
 
+  ;; Dimish setup should occur last
+  (config/diminish)
   ;; Display and copy buffer-file's path
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
@@ -428,8 +429,10 @@ values."
     (diminish 'highlight-sexp-mode "⋂")
     (diminish 'minitest-mode "⨷")
     (diminish 'rubocop-mode "℞")
-    (diminish 'seeing-is-believing "S"))
-    (diminish 'tern-mode "₸"))
+    (diminish 'ruby-refactor-mode "RR")
+    (diminish 'rufo-minor-mode "℞℞")
+    (diminish 'seeing-is-believing "S")
+    (diminish 'tern-mode "₸")))
 
 (defun config/ruby-autoformatter ()
   "Configure autoformatter for Ruby mode."
