@@ -38,6 +38,7 @@ Plug 'tpope/vim-git'                  " git commit filetype settings, et al
 Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'haya14busa/incsearch.vim'
+Plug 'jmromer/yankee.vim'
 
 Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
