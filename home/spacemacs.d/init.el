@@ -205,6 +205,7 @@ values."
   (config/global-modes)
 
   (config/compilation-buffers)
+  (config/elm)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
   (config/exec-path)
@@ -433,6 +434,12 @@ values."
     (diminish 'rufo-minor-mode "℞℞")
     (diminish 'seeing-is-believing "S")
     (diminish 'tern-mode "₸")))
+
+(defun config/elm ()
+  "Configure Elm."
+  (if (boundp 'company-backends)
+      (add-to-list 'company-backends 'company-elm)
+    (error "Failed setting up Elm auto-completion")))
 
 (defun config/ruby-autoformatter ()
   "Configure autoformatter for Ruby mode."
