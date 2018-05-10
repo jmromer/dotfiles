@@ -125,3 +125,11 @@ Layout/MultilineMethodCallIndentation:
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 25
+  ExcludedMethods: ['describe', 'context', 'it']
