@@ -239,6 +239,11 @@ values."
 
   ;; Dimish setup should occur last
   (config/diminish)
+
+  (if (boundp 'company-backends)
+      (add-to-list 'company-backends 'company-restclient)
+    (error "Failed adding REST client to company backends"))
+
   ;; Display and copy buffer-file's path
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
