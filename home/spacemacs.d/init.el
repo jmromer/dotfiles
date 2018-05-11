@@ -74,6 +74,7 @@ values."
             shell-default-full-span nil
             shell-default-position 'full)
      spacemacs-layouts
+     speed-reading
      sql
      spell-checking
      (syntax-checking :variables
