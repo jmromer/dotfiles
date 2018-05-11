@@ -44,7 +44,6 @@ PATH+=":/opt/X11/bin"              # added by OSX
 PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
 PATH+=":/Library/TeX/texbin"
 PATH+=":/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin"
-PATH+=":$HOME/Library/texlive/2016/bin/x86_64-darwin"
 export PATH
 
 #-------------------------------------------------------------
