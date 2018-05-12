@@ -39,6 +39,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jmromer/yankee.vim'
+Plug 'mhinz/vim-hugefile'
 
 Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
