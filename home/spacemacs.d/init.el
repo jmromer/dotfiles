@@ -313,8 +313,12 @@ values."
       (add-to-list 'company-backends 'company-anaconda)
     (error "Failed setting up anaconda autocomplete"))
 
-  (add-hook 'after-save-hook 'spacemacs//python-sort-imports)
-  (add-hook 'after-save-hook 'spacemacs/python-remove-unused-imports))
+  (defun python-after-save-hooks ()
+    (if (eq major-mode 'python-mode)
+      (progn
+        (spacemacs/python-remove-unused-imports)
+        (spacemacs//python-sort-imports))))
+  (add-hook 'after-save-hook #'python-after-save-hooks))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
