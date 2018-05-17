@@ -35,7 +35,7 @@ Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
 Plug 'tpope/vim-vinegar'              " enhancements to netrw
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-git'                  " git commit filetype settings, et al
-Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'css', 'scss'] }
+Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jmromer/yankee.vim'

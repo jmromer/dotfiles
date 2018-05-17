@@ -492,7 +492,7 @@ augroup emmetVim
   autocmd FileType html,css,eruby,scss EmmetInstall
 augroup END
 
-" let g:user_emmet_leader_key='<C-y>'
+let g:user_emmet_leader_key='<C-y>'
 
 " Use bars for indents
 let g:indentLine_char = '│'
