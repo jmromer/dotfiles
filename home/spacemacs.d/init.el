@@ -451,6 +451,9 @@ values."
 
 (defun config/elm ()
   "Configure Elm."
+  (with-eval-after-load 'elm-mode
+    (remove-hook 'elm-mode-hook 'elm-indent-mode))
+
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-elm)
     (error "Failed setting up Elm auto-completion")))
