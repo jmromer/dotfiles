@@ -58,6 +58,7 @@ values."
           org-enable-github-support t)
      osx
      (python :variables
+             python-save-before-test t
              python-test-runner '(pytest nose)
              python-sort-imports-on-save t
              python-enable-yapf-format-on-save t)
