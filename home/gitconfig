@@ -88,7 +88,16 @@
 
 [mergetool]
 	keepBackup = false
-	path = mvim
+	prompt     = true
+
+[mergetool "vimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[difftool]
+	prompt = false
+
+[diff]
+	tool = vimdiff
 
 [pager]
 	diff  = true
