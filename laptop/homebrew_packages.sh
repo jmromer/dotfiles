@@ -33,6 +33,7 @@ homebrew=(
   hub                     # For github-flavored git
   imagemagick
   ispell
+  osxutils
   pgcli                   # Postgres CLI
   postgres
   qt
