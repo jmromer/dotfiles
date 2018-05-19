@@ -196,6 +196,9 @@
 	rem      = remote -v
 	rmc      = remove-commit
 	sha      = select-sha
+	ahs      = select-sha-reversed
+	shacp    = !sh -c 'git select-sha | pbcopy'
+	ahscp    = !sh -c 'git select-sha-reversed | pbcopy'
 	sf       = select-files
 	s        = stash
 	sc       = stash clear
