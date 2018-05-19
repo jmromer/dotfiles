@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Fuzzy-select a list of commits, in reverse order.
+#
+# Usage:
+#   git select-sha-reversed
+
+set -e
+
+# slice out the commit SHAs
+commit_shas="$(
+    git select-sha |\
+    tr ' ' '\n'    |\
+    tac            |\
+    tr '\n' ' '
+)"
+
+if [[ ! -z "$commit_shas" ]]; then
+    echo "$commit_shas"
+fi
