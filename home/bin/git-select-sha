@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-# Fuzzy selector for git commit hash ("sha")
-# pipes it through `fzf` with color,
-# slices out the selected hash and pipes it to pbcopy
+# Fuzzy select a git commit hash or list of hashes.
+# Print to stdout as a space-separated list.
 #
 # Usage:
 #   git select-sha
@@ -10,13 +9,23 @@
 set -e
 
 # fuzzy-select a commit
-target_commit="$(git log --format=select --color=always |\
-  fzf --ansi --no-sort --reverse --tiebreak=index)"
+target_commit="$(
+    git log --format=select --color=always |\
+    fzf \
+        --ansi --no-sort --reverse --tiebreak=index \
+        --bind 'ctrl-n:preview-down,ctrl-p:preview-up' \
+        $1 \
+        --preview='git show --color {+1}'
+)"
 
 # slice out the SHA
-commit_sha="$(echo "$target_commit" | awk '{ print $1 }')"
+commit_sha="$(
+    echo "$target_commit" |\
+    awk '{ print $1 }'    |\
+    tr '\n' ' '           |\
+    awk '{$1=$1};1'
+)"
 
 if [[ ! -z "$commit_sha" ]]; then
-  echo "$commit_sha" | pbcopy
-  echo "$commit_sha"
+    echo "$commit_sha"
 fi
