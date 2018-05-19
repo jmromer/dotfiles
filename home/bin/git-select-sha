@@ -10,12 +10,13 @@
 set -e
 
 # fuzzy-select a commit
-target_commit="$(git log --format=select --color=always  | \
+target_commit="$(git log --format=select --color=always |\
   fzf --ansi --no-sort --reverse --tiebreak=index)"
 
 # slice out the SHA
 commit_sha="$(echo "$target_commit" | awk '{ print $1 }')"
 
 if [[ ! -z "$commit_sha" ]]; then
+  echo "$commit_sha" | pbcopy
   echo "$commit_sha"
 fi
