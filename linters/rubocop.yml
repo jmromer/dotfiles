@@ -133,3 +133,6 @@ Metrics/BlockLength:
   CountComments: false
   Max: 25
   ExcludedMethods: ['describe', 'context', 'it']
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: 'comma'
