@@ -73,7 +73,7 @@ values."
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-full-span nil
-            shell-default-position 'full)
+            shell-default-position 'bottom)
      spacemacs-layouts
      speed-reading
      sql
