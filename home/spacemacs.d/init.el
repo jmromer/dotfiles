@@ -42,6 +42,7 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
+     groovy
      haskell
      (ivy :variables
           ivy-wrap t)
