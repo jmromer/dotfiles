@@ -90,9 +90,11 @@ values."
    dotspacemacs-additional-packages
    '(
      bison-mode
+     company-flx
      csv-mode
      dockerfile-mode
      evil-quickscope
+     flx
      ob-swift
      ov
      pretty-mode
@@ -262,6 +264,8 @@ values."
 (defun config/global-modes ()
   "Enable globally set modes."
   (global-company-mode)
+  (with-eval-after-load 'company
+    (company-flx-mode +1))
   (global-evil-quickscope-mode 1)
   (rbenv-use-global)
   (smartparens-global-strict-mode)
