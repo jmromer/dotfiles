@@ -208,6 +208,7 @@ values."
 
   (config/compilation-buffers)
   (config/elm)
+  (config/elixir)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
   (config/exec-path)
@@ -457,6 +458,22 @@ values."
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-elm)
     (error "Failed setting up Elm auto-completion")))
+
+(defun config/elixir ()
+  "Configure Elixir mode."
+  (setq-default flycheck-elixir-credo-strict t)
+
+  (defun elixir-format-buffer ()
+    (interactive)
+    (shell-command-on-region
+     (point-min) (point-max)
+     (format "mix format %s" (buffer-file-name))))
+
+  ;; mix-format interface
+  (defun elixir-after-save-hooks ()
+    (if (eq major-mode 'elixir-mode)
+        (elixir-format-buffer)))
+  (add-hook 'after-save-hook #'elixir-after-save-hooks))
 
 (defun config/ruby-autoformatter ()
   "Configure autoformatter for Ruby mode."
@@ -725,6 +742,16 @@ Provides facilities for yanking formatted code snippets."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("defun" .  #x0192))))
   (add-hook 'emacs-lisp-mode-hook #'config/prettify-symbols-emacs-lisp)
+
+  ;; prettify symbols: Elixir
+  (defun config/prettify-symbols-elixir()
+    "Provide prettify-symbol mode mappings for elixir-mode."
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+          '(("def" .  #x0192)
+            ("defp" .  #x0070)
+            ("defmodule" . #x006D)
+            ("fn" . #x03BB))))
+  (add-hook 'elixir-mode-hook #'config/prettify-symbols-elixir)
 
   ;; prettify symbols: JavaScript
   (defun config/prettify-symbols-javascript ()
