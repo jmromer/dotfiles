@@ -227,7 +227,6 @@ values."
   (config/markdown-mode)
   (config/org-latex-preview)
   (config/org-mode)
-  (config/prettify-symbols)
   (config/projectile)
   (config/python)
   (config/ruby-autoformatter)
@@ -244,6 +243,7 @@ values."
 
   ;; Dimish setup should occur last
   (config/diminish)
+  (config/prettify-symbols)
 
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-restclient)
