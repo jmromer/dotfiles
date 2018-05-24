@@ -259,6 +259,7 @@ values."
   (add-hook 'go-mode-hook '(lambda () (whitespace-toggle-options 'tabs)))
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
+
   ;; execute local configuration file last
   (config/load-local-config))
 
@@ -350,7 +351,13 @@ values."
   "Configure Projectile."
   (setq-default projectile-completion-system 'ivy
                 projectile-enable-caching t
-                projectile-globally-ignored-directories '("node_modules")))
+                projectile-find-dir-includes-top-level t)
+
+  (if (bound-and-true-p projectile-globally-ignored-directories)
+      (setq-default projectile-globally-ignored-directories
+                    (append projectile-globally-ignored-directories
+                            '("node_modules")))
+    (error "Failed appending to projectile-globally-ignored-directories")))
 
 (defun config/ivy ()
   "Configure Ivy."
