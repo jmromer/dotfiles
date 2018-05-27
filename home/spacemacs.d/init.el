@@ -392,6 +392,13 @@ values."
                 js2-basic-offset 2
                 js2-strict-missing-semi-warning nil)
 
+  (defun rjsx-hybrid-keybindings ()
+    "Bind C-d to `rjsx-delete-creates-full-tag'."
+    (if (bound-and-true-p evil-hybrid-state-map)
+        (define-key evil-hybrid-state-map (kbd "C-d") #'rjsx-delete-creates-full-tag)
+      (error "Failed defining RJSX hybrid state keybindings")))
+  (add-hook 'rjsx-mode-hook #'rjsx-hybrid-keybindings)
+
   (defun js-standard-fix ()
     (interactive)
     (shell-command-on-region
