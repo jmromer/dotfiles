@@ -94,6 +94,7 @@ values."
      company-flx
      csv-mode
      dockerfile-mode
+     emmet-mode
      evil-quickscope
      flx
      ob-swift
