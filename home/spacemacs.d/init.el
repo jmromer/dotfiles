@@ -207,7 +207,7 @@ values."
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
-  ;; Enable globally enabled modes
+  (config/frames)
   (config/global-modes)
 
   (config/compilation-buffers)
@@ -265,6 +265,11 @@ values."
 
   ;; execute local configuration file last
   (config/load-local-config))
+
+(defun config/frames ()
+  "Configure GUI Emacs frames."
+  (add-to-list 'default-frame-alist '(ns-appearance . light))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 (defun config/global-modes ()
   "Enable globally set modes."
