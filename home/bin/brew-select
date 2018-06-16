@@ -13,7 +13,7 @@ if [[ ! $1 =~ ^(list|search)$ || ! $2 =~ ^(cask)*$ ]]; then
 fi
 
 # fuzzy-select a package
-selection="$(brew $2 $1 | sed '1 d' | fzf)"
+selection="$(brew $2 $1 | sed '1 d' | fzf-tmux --multi --cycle --tiebreak=index)"
 
 # trim any extra characters, if present
 package="$(echo "$selection" | tr "\n" " ")"
