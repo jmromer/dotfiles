@@ -319,9 +319,8 @@ values."
 
   (setq-default python-indent-offset 4
                 python-shell-completion-native-enable t
-                python-shell-interpreter "python"  ;; is this really necessary?
-                ;; python-shell-interpreter-args "-i --simple-prompt"
-                python-shell-interpreter-args "")
+                python-shell-interpreter "ipython"
+                python-shell-interpreter-args "-i --simple-prompt")
 
   (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
   (add-hook 'python-mode-hook #'anaconda-mode)
