@@ -27,6 +27,7 @@ export ANACONDA_HOME="$HOME/.anaconda3"
 export GOPATH="$HOME/.go"
 export GOROOT="/usr/local/go"
 export ELM_HOME="$HOME/.elm"
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 #-------------------------------------------------------------
 # Android
