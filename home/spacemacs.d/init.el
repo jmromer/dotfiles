@@ -233,7 +233,6 @@ values."
   (config/ruby-autoformatter)
   (config/ruby-in-buffer-eval)
   (config/set-terminal-emacs-theme)
-  (config/spaceline)
   (config/terminal-buffers)
   (config/underscore-to-word-char-list)
   (config/code-folding)
@@ -340,17 +339,6 @@ values."
   "Set theme for terminal session."
   (if (not (display-graphic-p))
       (spacemacs/load-theme 'spacemacs-dark)))
-
-(defun config/spaceline ()
-  "Configure the spaceline."
-  (with-eval-after-load 'spaceline
-    (spaceline-define-segment version-control
-      "Only display the current branch name in mode line."
-      (when vc-mode
-        (powerline-raw
-         (s-trim (replace-regexp-in-string "Git[:-]" "" vc-mode)))))
-    (setq-default powerline-default-separator nil)
-    (spaceline-compile)))
 
 (defun config/projectile ()
   "Configure Projectile."
