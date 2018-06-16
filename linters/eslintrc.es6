@@ -7,7 +7,7 @@
   },
   "settings": {
     "ecmascript": 6,
-    "jax": true
+    "jsx": true
   },
   "parserOptions": {
     "ecmaVersion": 6,
