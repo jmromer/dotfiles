@@ -216,7 +216,6 @@ values."
   (config/elixir)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
-  (config/exec-path)
   (config/exercism)
   (config/firacode)
   (config/flycheck)
@@ -303,12 +302,6 @@ values."
     (setq truncate-lines nil)
     (set (make-local-variable 'truncate-partial-width-windows) nil))
   (add-hook 'compilation-mode-hook #'compilation-mode-settings))
-
-(defun config/exec-path ()
-  "Set up the `exec-path'."
-  ;; Copy exec-path from shell PATH if in GUI emacs
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
 
 (defun config/python ()
   "Configure python and related modes."
