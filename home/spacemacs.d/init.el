@@ -44,6 +44,7 @@ values."
      graphviz
      groovy
      haskell
+     html
      (ivy :variables
           ivy-wrap t)
      (javascript :variables
