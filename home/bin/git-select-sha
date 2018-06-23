@@ -11,8 +11,10 @@ set -e
 # fuzzy-select a commit
 target_commit="$(
     git log --format=select --color=always |\
-    fzf \
-        --ansi --no-sort --reverse --tiebreak=index \
+    fzf --ansi \
+        --no-sort \
+        --reverse \
+        --tiebreak=index \
         --bind 'ctrl-n:preview-down,ctrl-p:preview-up' \
         $1 \
         --preview='git show --color {+1}'
