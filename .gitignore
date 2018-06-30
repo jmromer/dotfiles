@@ -22,4 +22,5 @@ home/emacs.d/ido.last
 home/bundle/cache
 home/lein/repl-port
 home/spacemacs.d/local/sensitive
+home/spacemacs.d/spacemacs.env
 default.vim
