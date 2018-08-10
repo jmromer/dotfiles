@@ -633,6 +633,7 @@ Provides facilities for yanking formatted code snippets."
   ;; Org Babel languages
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((clojure . t)
+                                 (dot . t)
                                  (elixir . t)
                                  (emacs-lisp . t)
                                  (haskell . t)
