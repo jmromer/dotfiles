@@ -244,6 +244,9 @@ values."
   (config/diminish)
   (config/prettify-symbols)
 
+  (load "robot-mode/robot-mode.el")
+  (require 'robot-mode)
+
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-restclient)
     (error "Failed adding REST client to company backends"))
