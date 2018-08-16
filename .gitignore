@@ -24,3 +24,4 @@ home/lein/repl-port
 home/spacemacs.d/local/sensitive
 home/spacemacs.d/spacemacs.env
 default.vim
+.spacemacs.env
