@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# `git pr list` / `git pr checkout` with fuzzy-selection
+#
+# Dependency: `hub`
+#
+# Usage:
+#   git pull-requests
+#   git prs   # with a `prs` alias set in gitconfig
+
+set -e
+
+# See a fuzzy-selectable list of pull requests
+selected_pr="$(
+    hub pr list |\
+    fzf-tmux -d 15 \
+             --ansi \
+             --no-sort \
+             --reverse \
+             --no-multi \
+             --tiebreak=index |\
+    sed -E 's/^\s+//')"
+
+
+# Exit if no pull request was selected
+if [[ -z "$selected_pr" ]]; then
+    exit 0
+fi
+
+# Checkout the branch for the selected pull request
+echo Checking out "$selected_pr"
+
+pr_number="$(echo $selected_pr |\
+             sed -E 's/^#([[:digit:]]+).+/\1/')"
+
+hub pr checkout "$pr_number"
