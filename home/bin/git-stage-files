@@ -6,6 +6,8 @@
 #   git stage-files
 #   git stage-files file1 file2
 
+set -e
+
 if [[ ! -z "$1" ]]; then
   echo git add "$@"
   git add "$@"
@@ -15,8 +17,15 @@ fi
 # fuzzy-select files
 files="$(git select-files)"
 
-if [[ ! -z $files ]]; then
-  echo "git add $files"
-  git add $files
-  git status -sb
+if [[ -z "$files" ]]; then
+  exit 0
 fi
+
+IFS=$'\n'
+
+for file in $files; do
+  echo "git add $file"
+  git add "${file//[\"\']/}"
+done
+
+git status -sb
