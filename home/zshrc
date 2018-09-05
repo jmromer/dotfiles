@@ -313,6 +313,15 @@ bindkey -M viins '^o' push-line-or-edit
 bindkey -M emacs '^y' accept-and-hold
 bindkey -M emacs '^o' push-line-or-edit
 
+# enable ctrl-p/n for history search
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey -M vicmd "^n" history-beginning-search-backward-end
+bindkey -M vicmd "^p" history-beginning-search-forward-end
+bindkey -M viins "^n" history-beginning-search-backward-end
+bindkey -M viins "^p" history-beginning-search-forward-end
+
 # ^t Invoke FZF file finder
 bindkey '^t' fzf-file-widget
 
