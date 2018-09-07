@@ -11,8 +11,6 @@ echo brew upgrade
 brew upgrade
 echo brew cleanup
 brew cleanup
-echo brew cask cleanup
-brew cask cleanup
 
 echo
 echo Updating Emacs config
