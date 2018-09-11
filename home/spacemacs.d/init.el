@@ -313,7 +313,8 @@ values."
     (setenv "WORKON_HOME" (format "%s/envs" conda-path))
     (setq-default exec-path (cons python-path exec-path)))
 
-  (setq-default python-indent-offset 4
+  (setq-default python-guess-indent nil
+                python-indent-offset 4
                 python-shell-completion-native-enable t
                 python-shell-interpreter "ipython"
                 python-shell-interpreter-args "-i --simple-prompt")
