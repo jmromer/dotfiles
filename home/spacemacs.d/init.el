@@ -326,11 +326,18 @@ values."
       (add-to-list 'company-backends 'company-anaconda)
     (error "Failed setting up anaconda autocomplete"))
 
+  ;; Register Pipenv project type with projectile
+  (projectile-register-project-type 'python-pipenv '("Pipfile")
+                                    :compile "pipenv run compile"
+                                    :test "pipenv run test"
+                                    :test-suffix "_test")
+
   (defun python-after-save-hooks ()
     (if (eq major-mode 'python-mode)
       (progn
         (spacemacs/python-remove-unused-imports)
         (spacemacs//python-sort-imports))))
+
   (add-hook 'after-save-hook #'python-after-save-hooks))
 
 (defun config/set-terminal-emacs-theme ()
