@@ -144,7 +144,7 @@ values."
                                 (agenda . 5)
                                 (todos . 5))
    dotspacemacs-scratch-mode 'fundamental-mode
-   dotspacemacs-themes '(solarized-dark spacemacs-dark)
+   dotspacemacs-themes '(spacemacs-dark solarized-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Fira Code Retina"
                                :size 16
