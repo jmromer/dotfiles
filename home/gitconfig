@@ -187,7 +187,8 @@
 	pom      = push origin master
 	psm      = push staging master
 	ppm      = push production master
-  prs      = select-pull-request
+	prco     = checkout-pull-request
+	prop     = open-pull-request
 	prc      = pull-request
 	r        = rebase
 	ri       = rebase-interactive
