@@ -644,6 +644,12 @@ Provides facilities for yanking formatted code snippets."
           (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
       (error "Failed setting up magit")))
 
+  (setq-default
+   magit-repository-directories '(
+                                  ("~/Projects/" . 2)
+                                  ("~/Documents". 2)
+                                  ))
+
   ;; leader gb to display branching controls
   (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
   ;; leader gB to display Git blame
