@@ -66,3 +66,5 @@ Plug 'tpope/vim-rails', { 'for': ['ruby']  }
 
 " JS
 Plug 'wizicer/vim-jison'
+Plug 'elzr/vim-json'
+
