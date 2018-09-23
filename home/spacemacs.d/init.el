@@ -247,6 +247,9 @@ values."
   (load "robot-mode/robot-mode.el")
   (require 'robot-mode)
 
+  ;; leader-fp to open file at point
+  (spacemacs/set-leader-keys "fp" #'find-file-at-point)
+
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-restclient)
     (error "Failed adding REST client to company backends"))
