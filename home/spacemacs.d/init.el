@@ -214,6 +214,7 @@ values."
   (config/compilation-buffers)
   (config/elm)
   (config/elixir)
+  (config/evil-numbers)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
   (config/exercism)
@@ -871,6 +872,11 @@ https://github.com/daimrod/highlight-sexp."
   (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
   (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
   (add-hook 'clojure-mode-hook 'highlight-sexp-mode))
+
+(defun config/evil-numbers ()
+  "Configure evil-numbers keybindings."
+  (evil-define-key 'normal global-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (evil-define-key 'normal global-map (kbd "C-x") 'evil-numbers/dec-at-pt))
 
 (defun config/evil-cleverparens ()
   "Configure evil-cleverparens layer."
