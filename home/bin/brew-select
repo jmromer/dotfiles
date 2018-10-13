@@ -7,13 +7,15 @@
 
 set -e
 
-if [[ ! $1 =~ ^(list|search)$ || ! $2 =~ ^(cask)*$ ]]; then
-  echo "Usage: brew select (list|search) [cask]"
+if [[ ! $1 =~ ^(list|search)$ ]]; then
+  echo "Usage: brew select (list|search) [TARGET]"
   exit 1
 fi
 
 # fuzzy-select a package
-selection="$(brew $2 $1 | sed '1 d' | fzf-tmux --multi --cycle --tiebreak=index)"
+selection="$(
+  brew $1 $2 |\
+  fzf-tmux --multi --cycle --tiebreak=index)"
 
 # trim any extra characters, if present
 package="$(echo "$selection" | tr "\n" " ")"
