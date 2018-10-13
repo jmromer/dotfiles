@@ -3,18 +3,13 @@
 # Fuzzy-select a homebrew package to install
 #
 # Usage:
-#   brew get [cask]
+#   brew get
 #
 
 set -e
 
-if [[ ! $1 =~ ^(cask)*$ ]]; then
-  echo "Usage: brew get [cask]"
-  exit 1
-fi
-
 # select from packages available to download
-package="$(brew select search $1)"
+package="$(brew select search)"
 
 if [[ -z "$package" ]]; then
   echo "No package selected."
