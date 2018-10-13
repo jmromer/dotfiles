@@ -23,11 +23,24 @@ do
 done
 
 tmpfile='/tmp/pytest-get-cmd'
+tmpversionfile='/tmp/pytest-get-version'
 
 if [ $RUN_LAST_TEST ]; then
   selection=$(cat "$tmpfile")
 else
-  selection="$(pytest --collect-only -q |\
+  pytest --version 2> $tmpversionfile
+
+  pytest_version="$(cat "$tmpversionfile" |\
+    head -1 |\
+    sed -E 's/.+version (.+),.+/\1/')"
+
+  if [[ $pytest_version =~ 3.7 ]]; then
+    verbosity="--quiet"
+  else
+    verbosity=""
+  fi
+
+  selection="$(pytest --collect-only $verbosity |\
     grep --invert-match -E 'tests ran in .+ seconds' |\
     fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index)"
 
