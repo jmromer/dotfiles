@@ -22,17 +22,15 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      better-defaults
-     (c-c++ :variables
-            c-c++-enable-clang-support t)
-     (clojure :variables clojure-enable-fancify-symbols t)
+     ;; (c-c++ :variables
+     ;;        c-c++-enable-clang-support t)
      command-log
      dash
      deft
-     elixir
-     (elm :variables
-          elm-sort-imports-on-save t
-          elm-format-on-save t
-          elm-format-command "elm-format")
+     ;; (elm :variables
+     ;;      elm-sort-imports-on-save t
+     ;;      elm-format-on-save t
+     ;;      elm-format-command "elm-format")
      emacs-lisp
      evil-commentary
      git
@@ -42,8 +40,6 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
-     groovy
-     haskell
      html
      (ivy :variables
           ivy-wrap t)
@@ -83,7 +79,6 @@ values."
      (syntax-checking :variables
                       syntax-checking-enable-by-default t
                       syntax-checking-enable-tooltips t)
-     swift
      version-control
      vimscript
      vinegar
