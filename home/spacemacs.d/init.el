@@ -27,6 +27,7 @@ values."
      command-log
      dash
      deft
+     django
      ;; (elm :variables
      ;;      elm-sort-imports-on-save t
      ;;      elm-format-on-save t
@@ -93,9 +94,11 @@ values."
      emmet-mode
      evil-quickscope
      flx
+     graphql-mode
      ob-swift
      ov
      pretty-mode
+     rjsx-mode
      rufo
      seeing-is-believing
      toc-org
