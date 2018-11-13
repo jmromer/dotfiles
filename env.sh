@@ -51,3 +51,8 @@ if [[ -z "$JAVA_HOME" && -f "$java_path" ]]; then
   export JAVA_HOME
   launchctl setenv JAVA_HOME "$JAVA_HOME"
 fi
+
+#-------------------------------------------------------------
+# DOCKER
+#-------------------------------------------------------------
+export DOCKER_HIDE_LEGACY_COMMANDS=true
