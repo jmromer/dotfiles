@@ -9,16 +9,16 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'zchee/deoplete-jedi'
+Plug 'w0rp/ale'
+" Plug 'benekastah/neomake'              " async linting, et al. best with nvim
+
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-clang'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete-rct'
 Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
 Plug 'SevereOverfl0w/deoplete-github'
 
-Plug 'benekastah/neomake'              " async linting, et al. best with nvim
 Plug 'kien/rainbow_parentheses.vim'    " delimiter highlighting
 Plug 'ntpeters/vim-better-whitespace'  " detect and highlight bad whitespace
 Plug 'tpope/vim-surround'              " surround text block with delimiters
@@ -65,6 +65,10 @@ Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': ['ruby']  }
 
 " JS
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'wizicer/vim-jison'
 Plug 'elzr/vim-json'
 
+" Python
+Plug 'zchee/deoplete-jedi'
+Plug 'tweekmonster/django-plus.vim'
