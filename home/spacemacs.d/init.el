@@ -95,6 +95,7 @@ values."
      evil-quickscope
      flx
      graphql-mode
+     indium
      ob-swift
      ov
      pretty-mode
