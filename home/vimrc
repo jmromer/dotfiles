@@ -20,6 +20,17 @@ let g:solarized_italic = 0
 let g:python_host_prog = '/Users/jkrmr/.anaconda3/envs/neovim2/bin/python'
 let g:python3_host_prog = '/Users/jkrmr/.anaconda3/envs/neovim3/bin/python'
 
+let b:ale_linters = ['flake8']
+let b:ale_fixers = [
+\   'remove_trailing_lines',
+\   'isort',
+\   'ale#fixers#generic_python#BreakUpLongLines',
+\   'yapf',
+\]
+
+nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
+let g:ale_fix_on_save = 1
+
 "-------------------------------------------------------------
 " Fix for YankRing bug
 "-------------------------------------------------------------
