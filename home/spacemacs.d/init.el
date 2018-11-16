@@ -93,6 +93,7 @@ values."
      dockerfile-mode
      emmet-mode
      evil-quickscope
+     evil-text-object-python
      flx
      graphql-mode
      indium
@@ -323,6 +324,7 @@ values."
 
   (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
   (add-hook 'python-mode-hook #'anaconda-mode)
+  (add-hook 'python-mode-hook #'evil-text-object-python-add-bindings)
 
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-anaconda)
