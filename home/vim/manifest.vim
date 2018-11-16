@@ -70,5 +70,10 @@ Plug 'wizicer/vim-jison'
 Plug 'elzr/vim-json'
 
 " Python
-Plug 'zchee/deoplete-jedi'
+Plug 'cjrh/vim-conda'
+Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'plytophogy/vim-virtualenv'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'tweekmonster/django-plus.vim'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'zchee/deoplete-jedi'
