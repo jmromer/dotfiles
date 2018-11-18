@@ -245,9 +245,6 @@ values."
   (config/diminish)
   (config/prettify-symbols)
 
-  (load "robot-mode/robot-mode.el")
-  (require 'robot-mode)
-
   ;; leader-fp to open file at point
   (spacemacs/set-leader-keys "fp" #'find-file-at-point)
 
