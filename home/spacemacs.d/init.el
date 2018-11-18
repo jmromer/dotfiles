@@ -92,6 +92,7 @@ values."
      csv-mode
      dockerfile-mode
      emmet-mode
+     evil-lion
      evil-quickscope
      evil-text-object-python
      flx
@@ -265,6 +266,15 @@ values."
   (add-hook 'go-mode-hook '(lambda () (whitespace-toggle-options 'tabs)))
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
+
+  ;; evil-lion: align (e.g.: gaip=, gaip/)
+  (if (boundp 'evil-mode)
+      (progn
+        (define-key evil-normal-state-map (kbd "ga") #'evil-lion-left)
+        (define-key evil-normal-state-map (kbd "gA") #'evil-lion-right)
+        (define-key evil-visual-state-map (kbd "ga") #'evil-lion-left)
+        (define-key evil-visual-state-map (kbd "gA") #'evil-lion-right))
+    (error "Failed setting up evil-lion alignment keybindings"))
 
   ;; execute local configuration file last
   (config/load-local-config))
