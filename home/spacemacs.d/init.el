@@ -22,16 +22,16 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      better-defaults
-     ;; (c-c++ :variables
-     ;;        c-c++-enable-clang-support t)
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      command-log
      dash
      deft
      django
-     ;; (elm :variables
-     ;;      elm-sort-imports-on-save t
-     ;;      elm-format-on-save t
-     ;;      elm-format-command "elm-format")
+     (elm :variables
+          elm-sort-imports-on-save t
+          elm-format-on-save t
+          elm-format-command "elm-format")
      emacs-lisp
      evil-commentary
      git
