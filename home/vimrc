@@ -683,6 +683,13 @@ let g:deoplete#keyword_patterns.gitcommit = '.+'
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.gitcommit = '.+'
 
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local

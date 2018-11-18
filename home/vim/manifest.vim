@@ -42,6 +42,7 @@ Plug 'jmromer/yankee.vim'
 Plug 'mhinz/vim-hugefile'
 
 Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
+Plug 'junegunn/vim-easy-align'
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
 
 " Text objects
