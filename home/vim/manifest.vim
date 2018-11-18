@@ -9,9 +9,6 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'w0rp/ale'
-" Plug 'benekastah/neomake'              " async linting, et al. best with nvim
-
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-clang'
 Plug 'Shougo/deoplete-rct'
@@ -19,31 +16,31 @@ Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
 Plug 'SevereOverfl0w/deoplete-github'
 
-Plug 'kien/rainbow_parentheses.vim'    " delimiter highlighting
-Plug 'ntpeters/vim-better-whitespace'  " detect and highlight bad whitespace
-Plug 'tpope/vim-surround'              " surround text block with delimiters
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'tomtom/tcomment_vim'             " gcc / gc[ai][pim]
-Plug 'christoomey/vim-system-copy'     " cp
+Plug 'SirVer/ultisnips'               " snippets engine, integrates with YCM
 Plug 'christoomey/vim-sort-motion'
-Plug 'itchyny/lightline.vim'           " lightweight, configurable status line
-Plug 'SirVer/ultisnips'                " snippets engine, integrates with YCM
-Plug 'vim-scripts/YankRing.vim'        " maintain yank/del history
-Plug 'tpope/vim-vinegar'              " enhancements to netrw
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-git'                  " git commit filetype settings, et al
-Plug 'mattn/emmet-vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'christoomey/vim-system-copy'    " cp
 Plug 'haya14busa/incsearch.vim'
+Plug 'itchyny/lightline.vim'          " lightweight, configurable status line
+Plug 'jiangmiao/auto-pairs'
 Plug 'jmromer/yankee.vim'
-Plug 'mhinz/vim-hugefile'
-
 Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plug 'junegunn/vim-easy-align'
+Plug 'kien/rainbow_parentheses.vim'   " delimiter highlighting
+Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-hugefile'
+Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tomtom/tcomment_vim'            " gcc / gc[ai][pim]
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'                  " git commit filetype settings, et al
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'             " surround text block with delimiters
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'              " enhancements to netrw
+Plug 'vim-scripts/YankRing.vim'       " maintain yank/del history
+Plug 'w0rp/ale'                       " linting, autoformatting
 
 " Text objects
 Plug 'kana/vim-textobj-entire' " Adds ae/ie
