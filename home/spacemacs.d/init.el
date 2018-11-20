@@ -67,8 +67,8 @@ values."
      (python :variables
              python-save-before-test t
              python-test-runner '(pytest nose)
-             python-sort-imports-on-save t
-             python-enable-yapf-format-on-save t)
+             python-sort-imports-on-save nil
+             python-enable-yapf-format-on-save nil)
      react
      restclient
      (ruby :variables
@@ -344,13 +344,15 @@ values."
                                     :test "pipenv run test"
                                     :test-suffix "_test")
 
-  (defun python-after-save-hooks ()
-    (if (eq major-mode 'python-mode)
+  (defun python-before-save-hooks ()
+    (if (and (eq major-mode 'python-mode)
+             (not (string-match-p "kizen" (buffer-file-name))))
       (progn
         (spacemacs/python-remove-unused-imports)
-        (spacemacs//python-sort-imports))))
+        (py-isort-buffer)
+        (yapfify-buffer))))
 
-  (add-hook 'after-save-hook #'python-after-save-hooks))
+  (add-hook 'before-save-hook #'python-before-save-hooks))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
