@@ -5,12 +5,17 @@ Installation
 ------------
 
 1. Install Xcode
-2. Download `laptop/setup` and run it:
+2. Download `laptop/setup`
 
 ```shell
-curl --output \
-  $HOME/Desktop/setup \
+curl --output ~/Desktop/setup \
   https://raw.githubusercontent.com/jmromer/dotfiles/master/laptop/setup
 ```
 
-Stick around to enter your password when needed.
+3. Run it:
+
+```shell
+zsh ~/Desktop/setup
+```
+
+Stick around to enter your password as needed.
