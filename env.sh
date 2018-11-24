@@ -27,8 +27,8 @@ fi
 # N/Node, Anaconda, Golang, Elm
 #-------------------------------------------------------------
 export N_PREFIX="$HOME/.node"
-export ANACONDA_PREFIX="$HOME/.anaconda3"
-export ANACONDA_HOME="$HOME/.anaconda3"
+export ANACONDA_PREFIX="$HOME/.anaconda"
+export ANACONDA_HOME="$HOME/.anaconda"
 export GOPATH="$HOME/.go"
 export GOROOT="/usr/local/go"
 export ELM_HOME="$HOME/.elm"

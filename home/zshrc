@@ -434,6 +434,6 @@ disable r # disable zsh's r
 source ~/.dotfiles/path.sh
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[[ -f ~/.anaconda3/etc/profile.d/conda.sh ]] && source ~/.anaconda3/etc/profile.d/conda.sh
+[[ -f ~/.anaconda/etc/profile.d/conda.sh ]] && source ~/.anaconda/etc/profile.d/conda.sh
 
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
