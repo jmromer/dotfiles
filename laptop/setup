@@ -17,7 +17,7 @@ function step() {
 # Set up logging
 #-------------------------------------------------------------
 log_location="$HOME/Desktop/laptop.log"
-touch $log_location
+touch "$log_location"
 
 # pipe this whole script to tee
 (
@@ -28,7 +28,7 @@ touch $log_location
   step "Installing Xcode command line tools"
 
   loc="$(xcode-\select -p 2> /dev/null)"
-  if [[ ! $loc =~ "CommandLineTools" ]]; then
+  if [[ ! "$loc" =~ "CommandLineTools" ]]; then
     xcode-\select --install
     getc
   fi
@@ -41,17 +41,20 @@ touch $log_location
 
   step "Cloning jmromer/dotfiles"
 
-  if [ ! -d $LOCAL_DOTFILES ]; then
-    git clone --recursive https://github.com/jmromer/dotfiles.git \
-      $LOCAL_DOTFILES 1> /dev/null
+  if [ ! -d "$LOCAL_DOTFILES" ]; then
+    git clone --recursive \
+      https://github.com/jmromer/dotfiles.git \
+      "$LOCAL_DOTFILES" 1> /dev/null
   fi
 
   # ===================================================
 
   step "Cloning emacs config repo"
 
-  if [ ! -d $HOME/.emacs.d ]; then
-    git clone https://github.com/syl20bnr/spacemacs $HOME/.emacs.d
+  if [ ! -d "$HOME/.emacs.d" ]; then
+    git clone https://github.com/syl20bnr/spacemacs \
+      --branch=develop \
+      "${HOME}/.emacs.d"
   fi
 
   # ===================================================
@@ -102,7 +105,8 @@ touch $log_location
 
   eval "$(rbenv init - zsh)"
 
-  ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+  # TODO: Prompt for desired Ruby version
+  ruby_version="2.5.3"
   if ! rbenv versions | grep -Fq "$ruby_version"; then
     step "Installing Ruby $ruby_version"
     rbenv install -s "$ruby_version"
@@ -179,6 +183,7 @@ touch $log_location
   mkdir $HOME/.config
   ln -s $SYNCED/hub $HOME/.config/hub
   ln -s $SYNCED/karabiner $HOME/.config/karabiner
+  ln -s $SYNCED/exercism $HOME/.config/exercism
 
   # ======================================================
 
@@ -236,79 +241,76 @@ touch $log_location
 
   # ======================================================
 
-  step "Setup script is complete. Go install Xcode."
+  #-------------------------------------------------------------
+  # Node
+  #-------------------------------------------------------------
+  echo "Installing n and node..."
+  curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
+
+  source "$HOME/.zshrc"
+
+  n latest
+  npm install -g npm \
+  eslint \
+  babel-eslint \
+  eslint-plugin-react \
+  js-beautify \
+  prettier \
+  standard \
+  tern \
+  create-react-app \
+  react-native-cli \
+  typescript \
+  javascript-typescript-langserver
+
+  # Install Anaconda
+  echo "Installing Python"
+  curl \
+    -o ~/Desktop/anaconda_install.sh \
+    https://repo.anaconda.com/archive/Anaconda3-5.3.1-MacOSX-x86_64.sh
+
+  # run installer
+  bash ~/Desktop/anaconda_install.sh
+
+  # Install Python packages for emacs
+  pip install --upgrade "jedi>=0.9.0" \
+                        "json-rpc>=1.8.1" \
+                        "service_factory>=0.1.5" \
+                        python-language-server \
+                        pyls-isort \
+                        pyls-mypy \
+                        flake8 \
+                        autoflake \
+                        hy \
+                        pip \
+                        pygments \
+                        setuptools \
+                        vim-vint \
+                        yapf \
+                        importmagic \
+                        epc
+
+  # echo "Installing Elixir"
+  # brew install exenv elixir-build erlang
+  # exenv install 1.7.4
+
+  #-------------------------------------------------------------
+  # Vim bootstrap
+  #-------------------------------------------------------------
+  step "Installing Vim packages"
+  source "$HOME/.zshrc"
+
+  # ======================================================
+
+  step "Setup script is complete"
+
+  step "Adobe Creative Suite"
+  step "https://www.adobe.com/"
+
+  step "JetBrains IDEs"
+  step "https://www.jetbrains.com/"
+
+  step "Docker for Mac"
+  step "https://www.docker.com/products/docker-desktop"
 
 ) | tee $log_location
-
-# ======================================================
-
-#-------------------------------------------------------------
-# Node
-#-------------------------------------------------------------
-echo "Installing n and node..."
-curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
-
-source "$HOME/.zshrc"
-
-n stable
-brew install watchman
-npm install -g npm
-npm install -g babel-eslint
-npm install -g eslint
-npm install -g eslint-plugin-react
-npm install -g js-beautify
-npm install -g tern
-npm install -g create-react-app
-npm install -g react-native-cli
-npm install -g webpack
-npm install -g google-closure-compiler
-npm install -g google-closure-linter
-
-echo "Installing Python"
-# Install anaconda3
-curl -o ~/Desktop/anaconda_install.sh \
-    https://repo.continuum.io/archive/Anaconda3-4.4.0-MacOSX-x86_64.sh
-
-# run installer
-bash ~/Desktop/anaconda_install.sh
-
-# Install Python packages for emacs
-pip install --upgrade "jedi>=0.9.0"
-pip install --upgrade "json-rpc>=1.8.1"
-pip install --upgrade "service_factory>=0.1.5"
-pip install --upgrade autoflake
-pip install --upgrade flake8
-pip install --upgrade hy
-pip install --upgrade pip
-pip install --upgrade pygments
-pip install --upgrade setuptools
-pip install --upgrade vim-vint
-pip install --upgrade yapf
-
-echo "Installing Go"
-brew install go
-mkdir $HOME/.go
-mkdir -p $HOME/.go/src/github.com/user
-go get -u -v github.com/nsf/gocode
-go get -u -v github.com/rogpeppe/godef
-go get -u -v golang.org/x/tools/cmd/guru
-go get -u -v golang.org/x/tools/cmd/gorename
-go get -u -v golang.org/x/tools/cmd/goimports
-
-echo "Installing Elixir"
-brew install exenv elixir-build erlang
-
-echo "Installing Haskell"
-brew cask install haskell-platform
-cabal install apply-refact
-cabal install hlint
-cabal install stylish-haskell
-cabal install hasktags
-cabal install hoogle
-cabal install intero
-
-#-------------------------------------------------------------
-# Vim bootstrap
-#-------------------------------------------------------------
-step "Installing Vim packages"
-source "$HOME/.zshrc"

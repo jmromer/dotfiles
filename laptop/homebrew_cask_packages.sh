@@ -6,13 +6,11 @@
 # for alternate versions (e.g. iterm2-beta)
 brew tap caskroom/versions
 # terminal emulator
-brew cask install iterm2-beta
-# password manager (NB: don't use the app store version)
-brew cask install 1password
+brew cask install iterm2-nightly
+# password manager 6 (NB: don't use the app store version or v7)
+brew cask install 1password6
 # removes apps and related files
 brew cask install appcleaner
-# Quick Look viewers: Zip files
-brew cask install betterzipql
 # vpn
 brew cask install expressvpn
 # web browser
@@ -30,7 +28,6 @@ brew cask install java
 # trackpad gestures
 brew cask install bettertouchtool
 # remap cmd to esc, caps lock to ctrl
-# Requires OS X High Sierra
 brew cask install karabiner-elements
 # system-wide custom keymappings
 brew cask install keyboard-maestro
@@ -40,6 +37,9 @@ brew cask install launchbar
 brew cask install name-mangler
 # PDF article manager
 brew cask install papers
+
+# Quick Look viewers: Zip files
+brew cask install betterzipql
 # Quick Look viewers: Syntax highlighting
 brew cask install qlcolorcode
 # Quick Look viewers: Display image size and res
@@ -54,20 +54,23 @@ brew cask install qlstephen
 brew cask install quicklook-csv
 # Quick Look Preview: JSON files
 brew cask install quicklook-json
+# Quick Look Preview: Mac OS X Installer Packages
+brew cask install suspicious-package
+# Quick Look Preview: jupyter notebooks
+brew cask install jupyter-notebook-viewer
+# Quick Look Preview: webp images
+brew cask install webpquicklook
+
 # Gitter
 brew cask install gitter
 # lightweight PDF reader with auto-update
 brew cask install skim
 # Skype, duh.
 brew cask install skype
-# Quick Look Preview: Mac OS X Installer Packages
-brew cask install suspicious-package
 # torrent machine
 brew cask install transmission
 # video player
 brew cask install vlc
-# Quick Look Preview: webp images
-brew cask install webpquicklook
 # for graphical terminal output (R and Octave dependency)
 brew cask install xquartz
 # for mockups
@@ -76,3 +79,18 @@ brew cask install sketch
 brew cask install amethyst
 # documentation browser
 brew cask install dash
+# media management
+brew cask install 4k-stogram
+brew cask install 4k-video-downloader
+brew cask install 4k-youtube-to-mp3
+
+brew cask install slack
+brew cask install visual-studio-code
+brew cask install spotify
+brew cask install screenflow
+brew cask install divvy
+brew cask install keycastr
+brew cask install kindle
+brew cask install nvalt
+brew cask install postman
+brew cask install zeplin

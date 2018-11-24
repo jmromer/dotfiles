@@ -5,7 +5,6 @@
 alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
 alias git=hub
-alias swift4="DEVELOPER_DIR=/Applications/Xcode-beta.app swift"
 alias dc='docker-compose'
 
 #-------------------------------------------------------------
@@ -285,15 +284,15 @@ compdef g=git
 #-------------------------------------------------------------
 setopt autocd autopushd pushd_minus pushd_silent
 setopt pushd_to_home cdable_vars pushd_ignore_dups
-DIRSTACKSIZE=10
+export DIRSTACKSIZE=10
 
 #-------------------------------------------------------------
 # HISTORY SETTINGS
 #-------------------------------------------------------------
 setopt hist_ignore_all_dups inc_append_history
-HISTFILE=$HOME/.zhistory
-HISTSIZE=4096
-SAVEHIST=4096
+export HISTFILE=$HOME/.zhistory
+export HISTSIZE=4096
+export SAVEHIST=4096
 
 #-------------------------------------------------------------
 # COMMAND-LINE AND HISTORY NAVIGATION
