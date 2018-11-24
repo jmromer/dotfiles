@@ -92,12 +92,17 @@ set t_ZH=[3m
 set t_ZR=[23m
 
 " Color scheme settings
-if !has("gui_running")
-  let g:solarized_termcolors=16
+" if !has('gui_running')
+"   let g:solarized_termcolors=16
+" endif
+"
+if has('termguicolors')
+  set termguicolors
 endif
-
 set background=dark
-colorscheme solarized
+execute 'colorscheme ' . 'space-vim-dark'
+hi Comment cterm=italic
+let g:airline_theme='violet'
 
 "--------------------------------------------------------------
 " Line numbering

@@ -5,6 +5,8 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
+Plug 'liuchengxu/space-vim-dark'
+
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-clang'
 Plug 'Shougo/deoplete-rct'
