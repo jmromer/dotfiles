@@ -27,9 +27,7 @@ homebrew=(
   colordiff
   dfu-util                # KLL configuration loader
   gpg2                    # for PGP commit signing
-  gpg-agent
   pinentry-mac
-  heroku-toolbelt
   hub                     # For github-flavored git
   imagemagick
   ispell
@@ -79,11 +77,14 @@ gem install neovim
 # Emacs Installation
 #-------------------------------------------------------------
 brew tap d12frosted/emacs-plus
-brew install emacs-plus --with-no-title-bars
-brew linkapps emacs-plus
+brew install emacs-plus --with-no-titlebar
+
+ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
+
 brew services start d12frosted/emacs-plus/emacs-plus
 
-tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
+emacs_version="$(emacs --version | head -1 | sed -E 's/.+\s([0-9]+\.[0-9]+)$/\1/')"
+tic -o ~/.terminfo "/usr/local/share/emacs/$emacs_version/etc/e/eterm-color.ti"
 
 #-------------------------------------------------------------
 # MacVim Installation
@@ -92,13 +93,10 @@ tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
 # Note: Ensure everything is compiled against non-system Python
 
 # Use the MacVim binary as CLI vim
-# with lua (improves performance for plugins leveraging it)
-# use HEAD
-
 brew install macvim \
-  --with-override-system-vim  \
-  --with-python3 \
+  --with-override-system-vim \
   --with-lua  \
+  --with-luajit \
   --HEAD
 
-brew linkapps macvim
+ln -s /usr/local/opt/macvim/MacVim.app /Applications

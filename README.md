@@ -4,7 +4,8 @@ dotfiles
 Installation
 ------------
 
-1. Download `laptop/setup` and run it:
+1. Install Xcode
+2. Download `laptop/setup` and run it:
 
 ```shell
 curl --output \
