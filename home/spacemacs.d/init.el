@@ -245,6 +245,8 @@ values."
   (config/diminish)
   (config/prettify-symbols)
 
+  (setq-default ispell-program-name "/usr/local/bin/ispell")
+
   ;; leader-fp to open file at point
   (spacemacs/set-leader-keys "fp" #'find-file-at-point)
 
