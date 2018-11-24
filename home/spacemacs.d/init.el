@@ -45,7 +45,7 @@ values."
      (ivy :variables
           ivy-wrap t)
      (javascript :variables
-                 tern-command '("node" "/Users/jkrmr/.node/bin/tern")
+                 tern-command '("node" "/Users/jmromer/.node/bin/tern")
                  node-add-modules-path t)
      jekyll
      (latex :variables
@@ -727,6 +727,7 @@ Provides facilities for yanking formatted code snippets."
   "Configure and enable exercism mode."
   (setq-default exercism-dir "~/Projects/exercism")
   (setq-default exercism-auto-enable nil)
+  (setq-default exercism-config-file "~/.config/exercism/user.json")
   (load "exercism-emacs/exercism.el")
   (require 'exercism))
 
