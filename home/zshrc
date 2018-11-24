@@ -104,6 +104,9 @@ function listening_on_port() {
   lsof -wni tcp:$1
 }
 
+alias ec="emacsclient -nw"
+alias mux="tmux new -t"
+
 # Open the editor as appropriate
 function e() {
   local editor=nvim
