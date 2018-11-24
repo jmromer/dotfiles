@@ -318,7 +318,7 @@ values."
 
 (defun config/python ()
   "Configure python and related modes."
-  (let* ((conda-path (format "%s/.anaconda3/" (getenv "HOME")))
+  (let* ((conda-path (format "%s/.anaconda/" (getenv "HOME")))
          (python-path (format "%s/bin" conda-path)))
     (setenv "WORKON_HOME" (format "%s/envs" conda-path))
     (setq-default exec-path (cons python-path exec-path)))
