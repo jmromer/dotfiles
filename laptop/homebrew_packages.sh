@@ -77,7 +77,7 @@ gem install neovim
 # Emacs Installation
 #-------------------------------------------------------------
 brew tap d12frosted/emacs-plus
-brew install emacs-plus --with-no-titlebar
+brew install emacs-plus # --with-no-titlebar
 
 ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
 
