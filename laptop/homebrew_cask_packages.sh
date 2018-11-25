@@ -85,6 +85,7 @@ brew cask install 4k-video-downloader
 brew cask install 4k-youtube-to-mp3
 
 brew cask install slack
+brew cask install discord
 brew cask install visual-studio-code
 brew cask install spotify
 brew cask install screenflow
