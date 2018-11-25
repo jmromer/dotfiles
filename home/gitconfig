@@ -2,7 +2,7 @@
 	name = "Jake Romer"
 
 [gpg]
-	program = gpg
+	program = /usr/local/bin/gpg
 
 [credential]
 	helper = osxkeychain
@@ -17,7 +17,6 @@
 	ui = true
 
 [commit]
-	template = ~/.dotfiles/git/gitmessage
 	gpgsign = true
 
 [core]
