@@ -259,13 +259,6 @@ values."
   ;; Display and copy buffer-file's path
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
-  ;; Objective-C
-  (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . objc-mode))
-  ;; Golang
-  (add-hook 'go-mode-hook '(lambda () (whitespace-toggle-options 'tabs)))
-  ;; Haskell
-  (add-hook 'haskell-mode-hook 'intero-mode)
 
   ;; execute local configuration file last
   (config/load-local-config))
