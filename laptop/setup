@@ -202,8 +202,8 @@ touch "$log_location"
 
   step "Creating ~/.gnupg"
 
-  echo mkdir $HOME/.gnupg
-  mkdir $HOME/.gnupg
+  echo gpg --list-keys
+  gpg --list-keys
 
   echo cp -r $SYNCED/gnupg/* $HOME/.gnupg
   cp -r $SYNCED/gnupg/* $HOME/.gnupg
