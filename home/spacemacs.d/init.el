@@ -217,6 +217,7 @@ values."
   (config/elixir)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
+  (config/evil-lion)
   (config/exercism)
   (config/firacode)
   (config/flycheck)
@@ -265,15 +266,6 @@ values."
   (add-hook 'go-mode-hook '(lambda () (whitespace-toggle-options 'tabs)))
   ;; Haskell
   (add-hook 'haskell-mode-hook 'intero-mode)
-
-  ;; evil-lion: align (e.g.: gaip=, gaip/)
-  (if (boundp 'evil-mode)
-      (progn
-        (define-key evil-normal-state-map (kbd "ga") #'evil-lion-left)
-        (define-key evil-normal-state-map (kbd "gA") #'evil-lion-right)
-        (define-key evil-visual-state-map (kbd "ga") #'evil-lion-left)
-        (define-key evil-visual-state-map (kbd "gA") #'evil-lion-right))
-    (error "Failed setting up evil-lion alignment keybindings"))
 
   ;; execute local configuration file last
   (config/load-local-config))
@@ -724,6 +716,17 @@ Provides facilities for yanking formatted code snippets."
                          "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
                          "<src lang=\"emacs-lisp\">\n?\n</src>")))
       (error "Failed setting up org-babel source block"))))
+
+(defun config/evil-lion ()
+  "Configure evil-lion alignment text objects."
+  ;; align (e.g.: gaip=, gaip/)
+  (if (boundp 'evil-mode)
+      (progn
+        (define-key evil-normal-state-map (kbd "ga") #'evil-lion-left)
+        (define-key evil-normal-state-map (kbd "gA") #'evil-lion-right)
+        (define-key evil-visual-state-map (kbd "ga") #'evil-lion-left)
+        (define-key evil-visual-state-map (kbd "gA") #'evil-lion-right))
+    (error "Failed setting up evil-lion alignment keybindings")))
 
 (defun config/exercism ()
   "Configure and enable exercism mode."
