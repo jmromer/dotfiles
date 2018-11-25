@@ -92,11 +92,11 @@ tic -o ~/.terminfo "/usr/local/share/emacs/$emacs_version/etc/e/eterm-color.ti"
 #-------------------------------------------------------------
 # Note: Ensure everything is compiled against non-system Python
 
-# Use the MacVim binary as CLI vim
-brew install macvim \
-  --with-override-system-vim \
-  --with-lua  \
-  --with-luajit \
-  --HEAD
+# # Use the MacVim binary as CLI vim
+# brew install macvim \
+#   --with-override-system-vim \
+#   --with-lua  \
+#   --with-luajit \
+#   --HEAD
 
-ln -s /usr/local/opt/macvim/MacVim.app /Applications
+# ln -s /usr/local/opt/macvim/MacVim.app /Applications
