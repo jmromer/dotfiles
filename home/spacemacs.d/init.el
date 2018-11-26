@@ -47,6 +47,8 @@ values."
           ivy-wrap t)
      (javascript :variables
                  tern-command '("node" "/Users/jmromer/.node/bin/tern")
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'prettier
                  node-add-modules-path t)
      jekyll
      (latex :variables
