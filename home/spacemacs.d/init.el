@@ -56,7 +56,14 @@ values."
                markdown-live-preview-engine 'vmd)
      (org :variables
           org-enable-github-support t)
-     osx
+     (osx :variables
+          osx-command-as 'hyper
+          osx-option-as 'meta
+          osx-control-as 'control
+          osx-function-as nil
+          osx-right-command-as 'left
+          osx-right-option-as 'none
+          osx-right-control-as 'left)
      (python :variables
              python-save-before-test t
              python-test-runner '(pytest nose)
@@ -98,6 +105,7 @@ values."
      evil-lion
      evil-quickscope
      evil-text-object-python
+     exec-path-from-shell
      flx
      graphql-mode
      indium
@@ -248,6 +256,9 @@ values."
 
   (config/diminish)
   (config/prettify-symbols)
+
+  ;; osx setup
+  (exec-path-from-shell-initialize)
 
   (setq-default ispell-program-name "/usr/local/bin/ispell")
 
