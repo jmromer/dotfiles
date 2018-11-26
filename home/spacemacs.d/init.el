@@ -101,6 +101,7 @@ values."
    '(
      bison-mode
      company-flx
+     conda
      csv-mode
      dockerfile-mode
      emmet-mode
@@ -327,10 +328,17 @@ values."
 
 (defun config/python ()
   "Configure python and related modes."
-  (let* ((conda-path (format "%s/.anaconda/" (getenv "HOME")))
+  ;; anaconda setup
+  (require 'conda)
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell)
+  (conda-env-autoactivate-mode t)
+
+  (let* ((conda-path (format "%s/.anaconda" (getenv "HOME")))
          (python-path (format "%s/bin" conda-path)))
     (setenv "WORKON_HOME" (format "%s/envs" conda-path))
-    (setq-default exec-path (cons python-path exec-path)))
+    (setq-default conda-anaconda-home conda-path
+                  exec-path (cons python-path exec-path)))
 
   (setq-default python-guess-indent nil
                 python-indent-offset 4
