@@ -575,7 +575,7 @@ values."
 
 (defun config/terminal-buffers ()
   "Configure terminal buffers."
-  (evil-set-initial-state 'term-mode 'normal)
+  (evil-set-initial-state 'term-mode 'insert)
 
   (defun term-send-ctrl-y ()
     (interactive)
