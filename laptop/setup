@@ -248,7 +248,6 @@ touch "$log_location"
   curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
 
   source "$HOME/.zshrc"
-  source "$HOME/.bash_profile"
 
   # Install latest node version
   n latest
@@ -294,23 +293,30 @@ touch "$log_location"
                         importmagic \
                         epc
 
+  echo conda create -n neovim2 python=2.7
   conda create -n neovim2 python=2.7
-  # conda activate neovim2
-  # pip install neovim
 
+  echo conda activate neovim2
+  conda activate neovim2
+  echo pip install neovim
+  pip install neovim
+  echo conda deactivate
+  conda deactivate
+
+  echo conda create -n neovim3 python=3.7
   conda create -n neovim3 python=3.7
-  # conda activate neovim3
-  # pip install neovim
-
-  # echo "Installing Elixir"
-  # brew install exenv elixir-build erlang
-  # exenv install 1.7.4
+  echo conda activate neovim3
+  conda activate neovim3
+  echo pip install neovim
+  pip install neovim
+  echo conda deactivate
+  conda deactivate
 
   #-------------------------------------------------------------
   # Vim bootstrap
   #-------------------------------------------------------------
   step "Install Vim Packages"
-  nvim +PlugUpgrade +PlugUpdate +PlugInstall +UpdateRemotePlugin +qall
+  vim +PlugUpgrade +PlugUpdate +PlugInstall +UpdateRemotePlugin +qall
 
   step "Securing zsh compinit directories"
   compaudit | xargs chmod go-w
