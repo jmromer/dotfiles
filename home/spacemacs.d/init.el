@@ -411,9 +411,12 @@ values."
    web-mode-attr-indent-offset 2)
 
   (with-eval-after-load 'web-mode
-    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+    (if (boundp 'web-mode-indentation-params)
+        (progn
+          (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+          (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+          (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+      (error "Failed setting up js-modes indentation params")))
 
   (defun rjsx-hybrid-keybindings ()
     "Bind C-d to `rjsx-delete-creates-full-tag'."
@@ -729,7 +732,8 @@ Provides facilities for yanking formatted code snippets."
 (defun config/evil-lion ()
   "Configure evil-lion alignment text objects."
   ;; align (e.g.: gaip=, gaip/)
-  (if (boundp 'evil-mode)
+  (if (and (boundp 'evil-normal-state-map)
+           (boundp 'evil-visual-state-map))
       (progn
         (define-key evil-normal-state-map (kbd "ga") #'evil-lion-left)
         (define-key evil-normal-state-map (kbd "gA") #'evil-lion-right)
@@ -828,8 +832,9 @@ Provides facilities for yanking formatted code snippets."
 (defun config/org-latex-preview ()
   "Configure LaTeX preview settings for Org mode."
   (with-eval-after-load 'org
-    (setq org-format-latex-options
-          (plist-put org-format-latex-options :justify 'center))
+    (if (boundp 'org-format-latex-options)
+        (setq org-format-latex-options
+              (plist-put org-format-latex-options :justify 'center)))
 
     (defun org-justify-fragment-overlay (beg end image imagetype)
       "Adjust the justification of a LaTeX fragment.
