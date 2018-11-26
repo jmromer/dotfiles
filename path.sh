@@ -42,7 +42,6 @@ PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
 PATH+=":/opt/X11/bin"              # added by OSX
 PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
 PATH+=":/Library/TeX/texbin"
-PATH+=":/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin"
 export PATH
 
 #-------------------------------------------------------------
