@@ -44,7 +44,6 @@ homebrew=(
   ruby-build
   source-highlight        # syntax highlighting for less
   the_silver_searcher
-  tmux
   tree                    # for viewing directory contents in tree format
   zsh                     # Updated version of Zshell
   zsh-completions         # Command completions for Zshell
@@ -74,10 +73,15 @@ gem install neovim
 
 
 #-------------------------------------------------------------
+# tmux
+#-------------------------------------------------------------
+brew install tmux --with-utf8proc
+
+#-------------------------------------------------------------
 # Emacs Installation
 #-------------------------------------------------------------
 brew tap d12frosted/emacs-plus
-brew install emacs-plus # --with-no-titlebar
+brew install emacs-plus
 
 ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
 
