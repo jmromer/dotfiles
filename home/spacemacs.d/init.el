@@ -148,7 +148,7 @@ values."
    dotspacemacs-themes '(spacemacs-dark solarized-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Fira Code Retina"
-                               :size 16
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
