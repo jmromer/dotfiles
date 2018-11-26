@@ -92,9 +92,13 @@ touch "$log_location"
 
   # ===================================================
 
-  # step "Installing user gems for system ruby"
-  # echo gem install --user neovim vim-vint gem-ctags tmuxinator
-  # gem install --user neovim vim-vint gem-ctags tmuxinator
+  step "Installing user gems for system ruby"
+  echo gem install --user neovim vim-vint gem-ctags tmuxinator
+  gem install --user neovim vim-vint gem-ctags tmuxinator bundler
+
+  step "Configuring Bundler"
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle config --global jobs "$((number_of_cores - 1))"
 
   # ===================================================
 
@@ -115,12 +119,6 @@ touch "$log_location"
   rbenv global "$ruby_version"
   rbenv shell "$ruby_version"
   rbenv rehash
-
-  # ===================================================
-
-  step "Installing Bundler"
-
-  gem install bundler
 
   # ===================================================
 
@@ -209,13 +207,6 @@ touch "$log_location"
   cp -r $SYNCED/gnupg/* $HOME/.gnupg
 
   # ===================================================
-
-  step "Configuring Bundler"
-
-  number_of_cores=$(sysctl -n hw.ncpu)
-  bundle config --global jobs "$((number_of_cores - 1))"
-
-  # ======================================================
 
   step "Setting Mac OS X defaults"
 
