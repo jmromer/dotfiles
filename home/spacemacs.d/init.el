@@ -69,10 +69,12 @@ values."
      ruby-on-rails
      search-engine
      (shell :variables
-            shell-default-shell 'multi-term
-            shell-default-term-shell "/usr/local/bin/zsh"
+            multi-term-program "/usr/local/bin/zsh"
             shell-default-full-span nil
-            shell-default-position 'bottom)
+            shell-default-position 'bottom
+            shell-default-shell 'eshell ;; 'multi-term
+            shell-default-term-shell "/usr/local/bin/zsh"
+            shell-enable-smart-eshell t)
      spacemacs-layouts
      speed-reading
      sql
