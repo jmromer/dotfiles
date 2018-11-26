@@ -220,6 +220,9 @@ values."
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
+  ;; osx setup
+  (exec-path-from-shell-initialize)
+
   (config/frames)
   (config/global-modes)
 
@@ -256,9 +259,6 @@ values."
 
   (config/diminish)
   (config/prettify-symbols)
-
-  ;; osx setup
-  (exec-path-from-shell-initialize)
 
   (setq-default ispell-program-name "/usr/local/bin/ispell")
 
