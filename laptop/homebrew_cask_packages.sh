@@ -65,8 +65,12 @@ brew cask install webpquicklook
 brew cask install gitter
 # lightweight PDF reader with auto-update
 brew cask install skim
-# Skype, duh.
+# video conferencing
 brew cask install skype
+brew cask install zoomus
+# instant messaging
+brew cask install slack
+brew cask install discord
 # torrent machine
 brew cask install transmission
 # video player
@@ -84,8 +88,6 @@ brew cask install 4k-stogram
 brew cask install 4k-video-downloader
 brew cask install 4k-youtube-to-mp3
 
-brew cask install slack
-brew cask install discord
 brew cask install visual-studio-code
 brew cask install spotify
 brew cask install screenflow
