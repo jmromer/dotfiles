@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # bash_profile
 # symlinked to by ~/.bash_profile
 
@@ -106,7 +108,12 @@ else
   set -o vi
 fi
 
-source "$HOME/.dotfiles/env.sh"
-[[ -f $HOME/.bash_profile.local ]] && source $HOME/.bash_profile.local
+. "$HOME/.dotfiles/env.sh"
+
+[[ -f $HOME/.anaconda/etc/profile.d/conda.sh ]] && \
+    . $HOME/.anaconda/etc/profile.d/conda.sh
+
+[[ -f $HOME/.bash_profile.local ]] && \
+    . $HOME/.bash_profile.local
 
 # ------------------------------------------------------------------------
