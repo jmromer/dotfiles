@@ -108,7 +108,6 @@ values."
      evil-lion
      evil-quickscope
      evil-text-object-python
-     exec-path-from-shell
      flx
      graphql-mode
      indium
@@ -223,9 +222,6 @@ values."
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
-  ;; osx setup
-  (exec-path-from-shell-initialize)
-
   (config/frames)
   (config/global-modes)
 
