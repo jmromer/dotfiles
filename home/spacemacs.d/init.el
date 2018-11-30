@@ -101,7 +101,6 @@ values."
    '(
      bison-mode
      company-flx
-     conda
      csv-mode
      dockerfile-mode
      emmet-mode
@@ -326,12 +325,6 @@ values."
 
 (defun config/python ()
   "Configure python and related modes."
-  ;; anaconda setup
-  (require 'conda)
-  (conda-env-initialize-interactive-shells)
-  (conda-env-initialize-eshell)
-  (conda-env-autoactivate-mode t)
-
   (let* ((conda-path (format "%s/.anaconda" (getenv "HOME")))
          (python-path (format "%s/bin" conda-path)))
     (setenv "WORKON_HOME" (format "%s/envs" conda-path))
