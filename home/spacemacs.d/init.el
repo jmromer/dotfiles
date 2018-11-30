@@ -216,8 +216,6 @@ values."
   (xterm-mouse-mode -1)
   ;; By default, don't soft-wrap lines longer than line length
   (set-default 'truncate-lines nil)
-  ;; Display time in the modeline by default
-  (spacemacs/toggle-display-time-on)
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME"))))
 
@@ -293,10 +291,16 @@ values."
   (global-company-mode)
   (with-eval-after-load 'company
     (company-flx-mode +1))
+
   (global-evil-quickscope-mode 1)
   (rbenv-use-global)
   (smartparens-global-strict-mode)
-  (visual-line-mode))
+  (visual-line-mode)
+
+  ;; Display time in the modeline by default
+  (setq-default display-time-default-load-average nil
+                display-time-format "%m/%d %l:%M %p")
+  (spacemacs/toggle-display-time-on))
 
 (defun config/window-splitting ()
   "Make focus window commands primary."
