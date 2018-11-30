@@ -217,6 +217,8 @@ values."
   (xterm-mouse-mode -1)
   ;; By default, don't soft-wrap lines longer than line length
   (set-default 'truncate-lines nil)
+  ;; Display time in the modeline by default
+  (spacemacs/toggle-display-time-on)
   ;; Add local packages directory to load path
   (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME"))))
 
