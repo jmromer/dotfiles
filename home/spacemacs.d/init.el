@@ -283,7 +283,7 @@ values."
       (add-to-list 'default-frame-alist '(ns-appearance . dark))
       (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
       (set-frame-height (selected-frame) (x-display-pixel-height) :pixelwise t)
-      (set-frame-width (selected-frame) midpoint :pixelwise t)
+      (set-frame-width (selected-frame) (- midpoint 20) :pixelwise t)
       (set-frame-position (selected-frame) midpoint 0))))
 
 (defun config/global-modes ()
