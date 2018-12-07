@@ -394,8 +394,9 @@ values."
 (defun config/web-mode ()
   "Configure web-mode (for CSS, HTML)."
   (setq-default css-indent-offset 2
-                web-mode-markup-indent-offset 2
+                web-mode-markup-indent-offset 4
                 web-mode-css-indent-offset 2
+                web-mode-attr-indent-offset 2
                 web-mode-code-indent-offset 2)
 
   (with-eval-after-load 'web-mode
@@ -409,17 +410,8 @@ values."
 (defun config/javascript-modes ()
   "Configure JavaScript modes: js, js2, react."
   (setq-default js-indent-level 2
+                js2-basic-offset 2
                 js2-strict-missing-semi-warning nil)
-
-  (setq-default
-   ;; js2-mode
-   js2-basic-offset 2
-   ;; web-mode
-   css-indent-offset 2
-   web-mode-markup-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
 
   (with-eval-after-load 'web-mode
     (if (boundp 'web-mode-indentation-params)
