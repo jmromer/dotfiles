@@ -180,7 +180,7 @@
 	mt       = mergetool
 	p        = push
 	pf       = push --force-with-lease
-	pl       = pull
+	pls      = pull --autostash
 	plm      = pull origin master
 	po       = push origin
 	poh      = !sh -c 'git push origin && git push heroku' -
