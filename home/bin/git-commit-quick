@@ -3,7 +3,7 @@
 # Commit with message if passed arguments, else open an editor
 #
 # Usage:
-#   git cm [A brief commit message]
+#   git commit-quick [A brief commit message]
 
 if [[ $# -gt 0 ]]; then
   git commit -m "$*"
