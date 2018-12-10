@@ -50,7 +50,6 @@ values."
                  javascript-backend 'lsp
                  javascript-fmt-tool 'prettier
                  node-add-modules-path t)
-     jekyll
      (latex :variables
             latex-enable-auto-fill t
             latex-enable-folding t)
