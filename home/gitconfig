@@ -136,7 +136,7 @@
 	bdf      = branch -D
 	bdo      = clear-deleted-branches
 	bi       = bisect-helper
-	br       = browse
+	br       = !hub browse
 	ca       = commit-amend
 	cm       = commit-quick
 	cmm      = commit-quick-force
