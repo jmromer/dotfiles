@@ -56,6 +56,12 @@ values."
      (markdown :variables
                markdown-live-preview-engine 'vmd)
      (org :variables
+          org-projectile-file "TODOS.org"
+          org-enable-hugo-support t
+          org-enable-org-journal-support t
+          org-journal-dir "~/Dropbox/org/journal"
+          org-enable-reveal-js-support t
+          org-enable-bootstrap-support t
           org-enable-github-support t)
      (osx :variables
           osx-command-as 'hyper
@@ -695,11 +701,31 @@ Provides facilities for yanking formatted code snippets."
                                  (swift . t)
                                  (shell . t)))
 
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (setq-default org-agenda-files '("~/Dropbox/org"))
+
+    (if (boundp 'org-agenda-files)
+        (mapc
+         #'(lambda (file)
+             (when (file-exists-p file)
+               (push file org-agenda-files)))
+         (org-projectile-todo-files))
+      (error "Failed: 'org-agenda-files not bound")))
+
   (with-eval-after-load 'org
-    (setq-default org-md-headline-style 'setext)
-    (setq-default org-src-tab-acts-natively t)
-    (setq-default org-babel-python-command "python3")
-    (setq-default org-export-with-sub-superscripts '{})
+    (setq-default
+     org-md-headline-style 'setext
+     org-src-tab-acts-natively t
+     org-babel-python-command "python3"
+     org-export-with-sub-superscripts '{}
+     org-directory "~/Dropbox/org"
+     org-default-notes-file "~/Dropbox/org/notes.org")
+
+    ;; Org Journal
+    (spacemacs/set-leader-keys "aojv" 'view-journal)
+    (spacemacs/set-leader-keys "aojS" 'org-journal-search)
+    (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
 
     ;; Org Babel: Elixir
     (if (boundp 'org-babel-default-header-args:elixir)
