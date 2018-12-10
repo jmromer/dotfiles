@@ -96,7 +96,7 @@ values."
      spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-by-default t
-                      syntax-checking-enable-tooltips t)
+                      syntax-checking-enable-tooltips nil)
      version-control
      vimscript
      vinegar
