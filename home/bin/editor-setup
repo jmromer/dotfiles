@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -ex
+
+pip install --upgrade \
+  "jedi>=0.9.0" \
+  "json-rpc>=1.8.1" \
+  "service_factory>=0.1.5" \
+  autoflake \
+  epc \
+  flake8 \
+  hy \
+  importmagic \
+  ipdb \
+  ipython \
+  isort \
+  pyls-isort \
+  pyls-mypy \
+  python-language-server \
+  yapf
+
+npm install -g \
+  prettier \
+  eslint \
+  typescript \
+  javascript-typescript-langserver \
+  vmd \
+  markdownlint-cli \
+  babel-eslint \
+  eslint-plugin-react
+
+gem install \
+  sqlint \
+  pry
