@@ -23,12 +23,15 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      better-defaults
+     bm
      (c-c++ :variables
             c-c++-enable-clang-support t)
      command-log
      dash
      deft
      django
+     docker
+     elixir
      (elm :variables
           elm-sort-imports-on-save t
           elm-format-on-save t
@@ -42,8 +45,12 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
-     html
+     (html :variables
+           web-fmt-tool 'prettier)
+     imenu-list
+     ipython-notebook
      (ivy :variables
+          ivy-enable-advanced-buffer-information t
           ivy-wrap t)
      (javascript :variables
                  tern-command '("node" "/Users/jmromer/.node/bin/tern")
@@ -55,6 +62,7 @@ values."
             latex-enable-folding t)
      (markdown :variables
                markdown-live-preview-engine 'vmd)
+     nginx
      (org :variables
           org-projectile-file "TODOS.org"
           org-enable-hugo-support t
@@ -71,17 +79,21 @@ values."
           osx-right-command-as 'left
           osx-right-option-as 'none
           osx-right-control-as 'left)
+     phoenix
      (python :variables
              python-save-before-test t
-             python-test-runner '(pytest nose)
+             python-test-runner 'pytest
              python-sort-imports-on-save nil
              python-enable-yapf-format-on-save nil)
+     prettier
      react
      restclient
      (ruby :variables
+           ruby-enable-enh-ruby-mode t
            ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
      ruby-on-rails
+     scala
      search-engine
      (shell :variables
             multi-term-program "/usr/local/bin/zsh"
@@ -90,9 +102,13 @@ values."
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-enable-smart-eshell t)
+     smex
      spacemacs-layouts
+     spacemacs-purpose
      speed-reading
-     sql
+     (sql :variables
+          sql-capitalize-keywords t
+          sql-auto-indent t)
      spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-by-default t
@@ -107,7 +123,6 @@ values."
      bison-mode
      company-flx
      csv-mode
-     dockerfile-mode
      emmet-mode
      evil-lion
      evil-quickscope
@@ -128,10 +143,8 @@ values."
    dotspacemacs-excluded-packages
    '(
      ace-jump-mode
-     auctex-latexmk
      evil-mc
      fancy-battery
-     neotree
      ob-elixir
      )
    dotspacemacs-delete-orphan-packages t
