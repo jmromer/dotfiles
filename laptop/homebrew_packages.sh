@@ -63,6 +63,13 @@ brew tap thoughtbot/formulae
 brew install rcm parity gitsh
 
 #-------------------------------------------------------------
+# Octave
+#-------------------------------------------------------------
+brew install qt
+brew install octave --with-qt
+brew install gnuplot --with-qt
+
+#-------------------------------------------------------------
 # Neovim
 #-------------------------------------------------------------
 # Python, Pip
