@@ -24,7 +24,7 @@ let g:python3_host_prog = '/Users/jmromer/.anaconda/envs/neovim3/bin/python'
 let g:ale_linters = {'python': ['yapf']}
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'python': ['isort', 'ale#fixers#generic_python#BreakUpLongLines', 'yapf']
+      \ 'python': ['isort', 'yapf']
       \ }
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
 
