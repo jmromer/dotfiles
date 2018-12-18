@@ -97,3 +97,4 @@ brew cask install kindle
 brew cask install nvalt
 brew cask install postman
 brew cask install zeplin
+brew caks install julia
