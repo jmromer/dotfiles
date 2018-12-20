@@ -60,7 +60,10 @@ brew cask install suspicious-package
 brew cask install jupyter-notebook-viewer
 # Quick Look Preview: webp images
 brew cask install webpquicklook
-
+# Docker Desktop
+brew cask install docker
+# Docker GUI
+brew cask install kitematic
 # Gitter
 brew cask install gitter
 # lightweight PDF reader with auto-update
