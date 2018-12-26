@@ -90,9 +90,11 @@ brew cask install dash
 brew cask install 4k-stogram
 brew cask install 4k-video-downloader
 brew cask install 4k-youtube-to-mp3
+# streaming music, rss
+brew cask install spotify
+brew cask install winds
 
 brew cask install visual-studio-code
-brew cask install spotify
 brew cask install screenflow
 brew cask install divvy
 brew cask install keycastr
