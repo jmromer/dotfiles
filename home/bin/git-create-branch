@@ -7,7 +7,7 @@
 set -e
 
 name="$*"
-branch="${name// /_}"
+branch="${name// /-}"
 
 if [[ -z "$branch" ]]; then
   echo "branch name required." 1>&2
