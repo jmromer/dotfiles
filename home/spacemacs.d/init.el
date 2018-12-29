@@ -295,6 +295,9 @@ values."
 
 (defun config/frames ()
   "Configure GUI Emacs frames."
+  ;; Set frame title format (abbreviate-file-name (projectile-project-root))
+  (setq-default frame-title-format '("" "%b - emacs " emacs-version))
+
   ;; Open full-height, on left half of screen
   (let ((midpoint (/ (x-display-pixel-width) 2)))
     (progn
