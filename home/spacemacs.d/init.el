@@ -91,7 +91,7 @@ values."
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager 'rbenv
-           ruby-test-runner 'rspec)
+           ruby-test-runner 'ruby-test)
      ruby-on-rails
      scala
      search-engine
