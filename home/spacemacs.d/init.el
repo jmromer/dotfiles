@@ -134,6 +134,7 @@ values."
      ob-swift
      ov
      pretty-mode
+     pyimport
      rjsx-mode
      rufo
      seeing-is-believing
@@ -386,7 +387,8 @@ values."
     (if (and (eq major-mode 'python-mode)
              (not (string-match-p "kizen" (buffer-file-name))))
       (progn
-        (spacemacs/python-remove-unused-imports)
+        (pyimport-remove-unused)
+        (importmagic-fix-imports)
         (py-isort-buffer)
         (yapfify-buffer))))
 
