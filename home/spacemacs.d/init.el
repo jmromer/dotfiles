@@ -91,7 +91,7 @@ values."
      react
      restclient
      (ruby :variables
-           ruby-enable-enh-ruby-mode t
+           ruby-enable-enh-ruby-mode nil
            ruby-version-manager 'rbenv
            ruby-test-runner 'ruby-test)
      ruby-on-rails
