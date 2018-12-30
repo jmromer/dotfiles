@@ -299,13 +299,14 @@ values."
   (setq-default frame-title-format '("" "%b - emacs " emacs-version))
 
   ;; Open full-height, on left half of screen
-  (let ((midpoint (/ (x-display-pixel-width) 2)))
-    (progn
-      (add-to-list 'default-frame-alist '(ns-appearance . dark))
-      (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-      (set-frame-height (selected-frame) (x-display-pixel-height) :pixelwise t)
-      (set-frame-width (selected-frame) (- midpoint 20) :pixelwise t)
-      (set-frame-position (selected-frame) midpoint 0))))
+  (when window-system
+    (let ((midpoint (/ (x-display-pixel-width) 2)))
+      (progn
+        (add-to-list 'default-frame-alist '(ns-appearance . dark))
+        (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+        (set-frame-height (selected-frame) (x-display-pixel-height) :pixelwise t)
+        (set-frame-width (selected-frame) (- midpoint 20) :pixelwise t)
+        (set-frame-position (selected-frame) midpoint 0)))))
 
 (defun config/global-modes ()
   "Enable globally set modes."
