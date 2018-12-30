@@ -113,7 +113,7 @@ values."
      spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-by-default t
-                      syntax-checking-enable-tooltips nil)
+                      syntax-checking-enable-tooltips t)
      version-control
      vimscript
      vinegar
