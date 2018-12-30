@@ -412,8 +412,12 @@ values."
 
 (defun config/amx ()
   "Configure amx keybindings."
+  (if (boundp 'evil-visual-state-map)
+      (progn
+        (define-key evil-visual-state-map (kbd ",:") #'amx/amx-major-mode-commands)))
   (if (boundp 'evil-normal-state-map)
-      (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands)))
+      (progn
+        (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands))))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
