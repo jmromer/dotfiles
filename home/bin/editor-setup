@@ -27,7 +27,7 @@ pip install --upgrade \
   "python-language-server[all]" \
   yapf
 
-npm install -g \
+npm install --update --global \
   prettier \
   eslint \
   typescript \
@@ -35,8 +35,11 @@ npm install -g \
   vmd \
   markdownlint-cli \
   babel-eslint \
-  eslint-plugin-react
+  eslint-plugin-react \
+  bash-language-server
 
-gem install \
+gem install --update-sources \
   sqlint \
-  pry
+  jazz_fingers \
+  rufo \
+  solargraph
