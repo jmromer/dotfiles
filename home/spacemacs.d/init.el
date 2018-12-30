@@ -222,7 +222,7 @@ values."
 (defun dotspacemacs/user-init ()
   "Load variables before package initialization."
   ;; Display Magit full-screen
-  (setq-default git-magit-status-fullscreen t)
+  (setq-default git-magit-status-fullscreen nil)
   ;; Don't create lockfiles
   (setq-default create-lockfiles nil)
   ;; Raise the gc threshold
