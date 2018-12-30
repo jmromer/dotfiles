@@ -245,6 +245,7 @@ values."
   (config/frames)
   (config/global-modes)
 
+  (config/amx)
   (config/compilation-buffers)
   (config/elm)
   (config/elixir)
@@ -268,7 +269,6 @@ values."
   (config/python)
   (config/ruby-autoformatter)
   (config/ruby-in-buffer-eval)
-  (config/amx)
   (config/set-terminal-emacs-theme)
   (config/terminal-buffers)
   (config/underscore-to-word-char-list)
@@ -349,6 +349,27 @@ values."
         (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
     (error "Failed setting up ex mode keybindings")))
 
+(defun amx/emacs-commands ()
+  "Execute amx with a better prompt."
+  (interactive)
+  (let ((amx-prompt-string "Emacs commands: "))
+    (amx)))
+
+(defun amx/amx-major-mode-commands ()
+  "Reexecute smex with major mode commands only."
+  (interactive)
+  (let ((amx-prompt-string (format "%s commands: " major-mode)))
+    (amx-major-mode-commands)))
+
+(defun config/amx ()
+  "Configure amx keybindings."
+  (if (boundp 'evil-visual-state-map)
+      (progn
+        (define-key evil-visual-state-map (kbd ",:") #'amx/amx-major-mode-commands)))
+  (if (boundp 'evil-normal-state-map)
+      (progn
+        (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands))))
+
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
   (defun compilation-mode-settings ()
@@ -398,26 +419,6 @@ values."
 
   (add-hook 'before-save-hook #'python-before-save-hooks))
 
-(defun amx/emacs-commands ()
-  "Execute amx with a better prompt."
-  (interactive)
-  (let ((amx-prompt-string "Emacs commands: "))
-    (amx)))
-
-(defun amx/amx-major-mode-commands ()
-  "Reexecute smex with major mode commands only."
-  (interactive)
-  (let ((amx-prompt-string (format "%s commands: " major-mode)))
-    (amx-major-mode-commands)))
-
-(defun config/amx ()
-  "Configure amx keybindings."
-  (if (boundp 'evil-visual-state-map)
-      (progn
-        (define-key evil-visual-state-map (kbd ",:") #'amx/amx-major-mode-commands)))
-  (if (boundp 'evil-normal-state-map)
-      (progn
-        (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands))))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
