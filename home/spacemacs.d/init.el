@@ -14,6 +14,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      (auto-completion :variables
+                      spacemacs-default-company-backends '(company-files company-capf)
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
@@ -250,7 +251,6 @@ values."
   (config/compilation-buffers)
   (config/elm)
   (config/elixir)
-  (config/emacs-lisp)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
   (config/evil-goggles)
@@ -582,12 +582,6 @@ values."
     (if (eq major-mode 'elixir-mode)
         (elixir-format-buffer)))
   (add-hook 'after-save-hook #'elixir-after-save-hooks))
-
-(defun config/emacs-lisp ()
-  "Configure emacs-lisp mode."
-  (if (boundp 'company-backends)
-      (add-to-list 'company-backends 'company-capf)
-    (error "Failed setting up elisp company backends")))
 
 (defun config/ruby-autoformatter ()
   "Configure autoformatter for Ruby mode."
