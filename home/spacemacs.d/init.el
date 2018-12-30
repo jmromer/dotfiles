@@ -272,7 +272,7 @@ values."
   (config/org-mode)
   (config/projectile)
   (config/python)
-  (config/ruby-autoformatter)
+  (config/ruby)
   (config/ruby-in-buffer-eval)
   (config/semantic)
   (config/set-terminal-emacs-theme)
@@ -589,8 +589,8 @@ values."
         (elixir-format-buffer)))
   (add-hook 'after-save-hook #'elixir-after-save-hooks))
 
-(defun config/ruby-autoformatter ()
-  "Configure autoformatter for Ruby mode."
+(defun config/ruby ()
+  "Configure packages for Ruby mode."
   ;; Enable rufo-format
   (add-hook 'ruby-mode-hook 'rufo-minor-mode)
   ;; Enable autoformat on save in Ruby modes
