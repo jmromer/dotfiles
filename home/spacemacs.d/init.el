@@ -123,6 +123,7 @@ values."
      bison-mode
      company-flx
      csv-mode
+     doom-modeline
      emmet-mode
      evil-lion
      evil-quickscope
@@ -275,6 +276,9 @@ values."
 
   (config/diminish)
   (config/prettify-symbols)
+
+  (require 'doom-modeline)
+  (doom-modeline-init)
 
   (setq-default ispell-program-name "/usr/local/bin/ispell")
 
