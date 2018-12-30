@@ -86,6 +86,7 @@ values."
              python-sort-imports-on-save nil
              python-enable-yapf-format-on-save nil)
      prettier
+     semantic
      react
      restclient
      (ruby :variables
@@ -269,6 +270,7 @@ values."
   (config/python)
   (config/ruby-autoformatter)
   (config/ruby-in-buffer-eval)
+  (config/semantic)
   (config/set-terminal-emacs-theme)
   (config/terminal-buffers)
   (config/underscore-to-word-char-list)
@@ -419,6 +421,16 @@ values."
 
   (add-hook 'before-save-hook #'python-before-save-hooks))
 
+(defun config/semantic ()
+  "Remove semantic mode hooks."
+  (defun config/semantic-remove-hooks ()
+    (remove-hook 'completion-at-point-functions
+                 'semantic-analyze-completion-at-point-function)
+    (remove-hook 'completion-at-point-functions
+                 'semantic-analyze-notc-completion-at-point-function)
+    (remove-hook 'completion-at-point-functions
+                 'semantic-analyze-nolongprefix-completion-at-point-function))
+  (add-hook 'semantic-mode-hook #'config/semantic-remove-hooks))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
