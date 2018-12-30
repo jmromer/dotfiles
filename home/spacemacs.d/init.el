@@ -297,8 +297,12 @@ values."
    evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
    evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
+  ;; doom modeline
   (require 'doom-modeline)
   (doom-modeline-init)
+  (setq-default doom-modeline-buffer-file-name-style 'truncate-with-project
+                doom-modeline-github t
+                doom-modeline-major-mode-icon nil)
 
   ;; treemacs
   (treemacs-resize-icons 15)
