@@ -250,6 +250,7 @@ values."
   (config/elixir)
   (config/evil-cleverparens)
   (config/evil-in-ex-buffer)
+  (config/evil-goggles)
   (config/evil-lion)
   (config/exercism)
   (config/firacode)
@@ -801,6 +802,14 @@ Provides facilities for yanking formatted code snippets."
                          "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
                          "<src lang=\"emacs-lisp\">\n?\n</src>")))
       (error "Failed setting up org-babel source block"))))
+
+(defun config/evil-goggles ()
+  "Configure evil-goggles."
+  (setq-default evil-goggles-pulse nil
+                evil-goggles-duration 0.7)
+
+  (evil-goggles-mode)
+  (evil-goggles-use-diff-refine-faces))
 
 (defun config/evil-lion ()
   "Configure evil-lion alignment text objects."
