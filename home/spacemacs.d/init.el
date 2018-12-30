@@ -114,6 +114,9 @@ values."
      (syntax-checking :variables
                       syntax-checking-enable-by-default t
                       syntax-checking-enable-tooltips t)
+     (treemacs :variables
+               treemacs-use-filewatch-mode t
+               treemacs-use-follow-mode t)
      version-control
      vimscript
      vinegar
@@ -286,6 +289,9 @@ values."
 
   (require 'doom-modeline)
   (doom-modeline-init)
+
+  ;; treemacs
+  (treemacs-resize-icons 15)
 
   (setq-default ispell-program-name "/usr/local/bin/ispell")
 
