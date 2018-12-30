@@ -122,6 +122,7 @@ values."
      amx
      bison-mode
      company-flx
+     company-jedi
      csv-mode
      doom-modeline
      emmet-mode
@@ -374,8 +375,10 @@ values."
   (add-hook 'python-mode-hook #'evil-text-object-python-add-bindings)
 
   (if (boundp 'company-backends)
-      (add-to-list 'company-backends 'company-anaconda)
-    (error "Failed setting up anaconda autocomplete"))
+      (progn
+        (add-to-list 'company-backends 'company-jedi)
+        (add-to-list 'company-backends 'company-anaconda))
+    (error "Failed setting up python company backends"))
 
   ;; Register Pipenv project type with projectile
   (projectile-register-project-type 'python-pipenv '("Pipfile")
