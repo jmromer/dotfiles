@@ -2,6 +2,13 @@
 
 set -ex
 
+# TODO: Prompt
+
+# https://github.com/syl20bnr/spacemacs/issues/11541
+# if using dark mode, you'll need this
+# to disable: defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
+defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+
 pip install --upgrade \
   "jedi>=0.9.0" \
   "json-rpc>=1.8.1" \
@@ -16,7 +23,8 @@ pip install --upgrade \
   isort \
   pyls-isort \
   pyls-mypy \
-  python-language-server \
+  pyls-black \
+  "python-language-server[all]" \
   yapf
 
 npm install -g \
