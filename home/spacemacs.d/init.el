@@ -102,7 +102,6 @@ values."
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-enable-smart-eshell t)
-     smex
      spacemacs-layouts
      spacemacs-purpose
      speed-reading
@@ -120,6 +119,7 @@ values."
      )
    dotspacemacs-additional-packages
    '(
+     amx
      bison-mode
      company-flx
      csv-mode
@@ -265,6 +265,7 @@ values."
   (config/python)
   (config/ruby-autoformatter)
   (config/ruby-in-buffer-eval)
+  (config/amx)
   (config/set-terminal-emacs-theme)
   (config/terminal-buffers)
   (config/underscore-to-word-char-list)
@@ -390,6 +391,23 @@ values."
         (yapfify-buffer))))
 
   (add-hook 'before-save-hook #'python-before-save-hooks))
+
+(defun amx/emacs-commands ()
+  "Execute amx with a better prompt."
+  (interactive)
+  (let ((amx-prompt-string "Emacs commands: "))
+    (amx)))
+
+(defun amx/amx-major-mode-commands ()
+  "Reexecute smex with major mode commands only."
+  (interactive)
+  (let ((amx-prompt-string (format "%s commands: " major-mode)))
+    (amx-major-mode-commands)))
+
+(defun config/amx ()
+  "Configure amx keybindings."
+  (if (boundp 'evil-normal-state-map)
+      (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands)))
 
 (defun config/set-terminal-emacs-theme ()
   "Set theme for terminal session."
