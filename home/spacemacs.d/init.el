@@ -419,6 +419,10 @@ values."
   (add-hook 'python-mode-hook #'anaconda-mode)
   (add-hook 'python-mode-hook #'evil-text-object-python-add-bindings)
 
+  ;; traad
+  ;; Expects a conda env of the same name be defined
+  (setq-default traad-environment-name "traad")
+  ;;  (traad-install-server)
   (if (boundp 'company-backends)
       (progn
         (add-to-list 'company-backends 'company-jedi)
