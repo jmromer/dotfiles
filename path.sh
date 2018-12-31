@@ -35,6 +35,7 @@ PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$HOME/.cargo/bin"          # Rust binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.emacs.d/bin/"       # Doom
+PATH+=":/usr/local/share/dotnet/"  # .NET CLI
 PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
 PATH+=":/usr/local/bin"            # homebrewed binaries
 PATH+=":/usr/local/sbin"           # homebrewed binaries
