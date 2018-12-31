@@ -106,6 +106,7 @@ values."
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-enable-smart-eshell t)
+     shell-scripts
      spacemacs-layouts
      spacemacs-purpose
      speed-reading
