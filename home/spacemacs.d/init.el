@@ -46,6 +46,8 @@ values."
          go-tab-width 4
          go-use-gometalinter t)
      graphviz
+     (gtags :variables
+            gtags-enable-by-default t)
      (html :variables
            web-fmt-tool 'prettier)
      imenu-list
