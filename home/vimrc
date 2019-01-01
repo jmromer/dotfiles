@@ -343,11 +343,14 @@ nnoremap <leader>wk <C-w>k
 " wl: navigate pane right
 nnoremap <leader>wl <C-w>l
 
-" wq: close window
-nnoremap <leader>wq :quit<CR>
-nnoremap <leader>wd :x<CR>
+" wd: close window
+nnoremap <leader>wd :quit<CR>
+nnoremap <leader>wD :quit!<CR>
 nnoremap <C-c><C-c> :x<CR>
 
+" bd: kill buffer
+nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>bD :bdelete!<CR>
 
 " x: cut visual selection to system clipboard
 vnoremap <leader>x "*d
@@ -390,16 +393,22 @@ endfunction
 command! RA :call ReloadAllBuffers()
 
 "--------------------------------------------------------------
+" ctags
+"--------------------------------------------------------------
+" Re-generate project ctags
+nnoremap <leader>pG: !git-ctags<CR>
+
+"--------------------------------------------------------------
 " vim-test
 "--------------------------------------------------------------
 " (loaded /after because it doesn't work in the normal place,
 " because reasons)
 " ----------------------------------------------------------------------------
-nnoremap <leader>s :w<CR>:TestNearest<CR>
-nnoremap <leader>S :w<CR>:TestFile<CR>
-nnoremap <leader>A :wa<CR>:TestSuite<CR>
-nnoremap <leader>l :w<CR>:TestLast<CR>
-nnoremap <leader>g :w<CR>:TestVisit<CR>
+nnoremap <leader>tt :w<CR>:TestNearest<CR>
+nnoremap <leader>tb :w<CR>:TestFile<CR>
+nnoremap <leader>ta :wa<CR>:TestSuite<CR>
+nnoremap <leader>tl :w<CR>:TestLast<CR>
+nnoremap <leader>tv :w<CR>:TestVisit<CR>
 
 " default test strategy is vimux
 let g:test#strategy = 'vimux'
@@ -683,6 +692,9 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Vim-Fugitive:
+nnoremap <silent> <leader>gs :Gstatus<CR>:50wincmd_<CR>
 
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
