@@ -26,6 +26,7 @@ homebrew=(
   cmake                   # For YCM installation
   colordiff
   dfu-util                # KLL configuration loader
+  direnv                  # directory-specific env settings
   gpg2                    # for PGP commit signing
   pinentry-mac
   hub                     # For github-flavored git
@@ -37,6 +38,8 @@ homebrew=(
   qt
   shellcheck
   rbenv
+  rbenv-binstubs
+  rbenv-ctags
   rbenv-default-gems      # default gems to be installed
   reattach-to-user-namespace
   redis

@@ -133,12 +133,14 @@ values."
      company-jedi
      csv-mode
      doom-modeline
+     direnv
      emmet-mode
      evil-lion
      evil-quickscope
      evil-text-object-python
      flx
      graphql-mode
+     gxref
      indium
      ob-swift
      ov
@@ -264,6 +266,7 @@ values."
   (config/exercism)
   (config/firacode)
   (config/flycheck)
+  (config/gtags)
   (config/version-control)
   (config/highlight-lines-at-length 80)
   (config/highlight-sexp)
@@ -734,6 +737,13 @@ Provides facilities for yanking formatted code snippets."
         (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
         (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
     (error "Failed setting up yankee.el keybindings")))
+
+(defun config/gtags ()
+  "Configure GNU Global tag backend."
+  ;; Enable direnv-mode, so bundler-gtags-produced .envrc is activated
+  (direnv-mode)
+  ;; Add GNU Global as an xref-backend
+  (add-to-list 'xref-backend-functions 'gxref-xref-backend))
 
 (defun config/version-control ()
   "Configure version-control-related settings."
