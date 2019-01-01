@@ -4,6 +4,22 @@
 # exclude patterns (uncomment them if you want to use them):
 # *.[oa]
 # *~
-# default vim session (saved in project root)
+
+# Vim artifacts
 default.vim
 default.vim.lock
+
+# Emacs directory-local
+.dir-locals.el
+
+# Emacs amx cache
+amx-items
+
+# Exuberant / Universal CTAGS
+TAGS
+CTAGS
+
+# GNU Global tags
+GPATH   # path name database
+GRTAGS  # reference database
+GTAGS   # definition database
