@@ -1,4 +1,5 @@
 ;;; spacemacs.d/init.el -- Spacemacs configuration
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
 ;;; Commentary:
 ;; This file is loaded by Spacemacs at startup.
@@ -10,6 +11,21 @@ You should not put any user code in this function besides modifying the variable
 values."
   (setq-default
    dotspacemacs-distribution 'spacemacs
+
+   ;; Lazy installation of layers (i.e. layers are installed only when a file
+   ;; with a supported type is opened). Possible values are `all', `unused'
+   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+   ;; lazy install any layer that support lazy installation even the layers
+   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;; installation feature and you have to explicitly list a layer in the
+   ;; variable `dotspacemacs-configuration-layers' to install it.
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
+
+   ;; If non-nil then Spacemacs will ask for confirmation before installing
+   ;; a layer lazily. (default t)
+   dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
    dotspacemacs-configuration-layers
    '(
@@ -125,6 +141,14 @@ values."
      vinegar
      yaml
      )
+
+   ;; List of additional packages that will be installed without being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages, then consider creating a layer. You can also put the
+   ;; configuration in `dotspacemacs/user-config'.
+   ;; To use a local version of a package, use the `:location' property:
+   ;; '(your-package :location "~/path/to/your-package/")
+   ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
      amx
@@ -132,12 +156,12 @@ values."
      company-flx
      company-jedi
      csv-mode
-     doom-modeline
      direnv
      emmet-mode
      evil-lion
      evil-quickscope
      evil-text-object-python
+     (exercism :location (recipe :fetcher github :repo "canweriotnow/exercism-emacs"))
      flx
      graphql-mode
      gxref
@@ -152,17 +176,31 @@ values."
      toc-org
      traad
      vimish-fold
+     (yankee :location (recipe :fetcher github :repo "jmromer/yankee.el" :branch "develop"))
+     (ox-gfm :location (recipe :fetcher github :repo "jmromer/ox-gfm" :branch "develop"))
      )
+
+   ;; A list of packages that cannot be updated.
+   dotspacemacs-frozen-packages
+   '(
+     )
+
+   ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
    '(
      ace-jump-mode
      evil-mc
      fancy-battery
-     ob-elixir
      )
-   dotspacemacs-delete-orphan-packages t
-   dotspacemacs-enable-lazy-installation nil
-   ))
+
+   ;; Defines the behaviour of Spacemacs when installing packages.
+   ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
+   ;; `used-only' installs only explicitly used packages and deletes any unused
+   ;; packages as well as their unused dependencies. `used-but-keep-unused'
+   ;; installs only the used packages but won't delete unused ones. `all'
+   ;; installs *all* packages supported by Spacemacs and never uninstalls them.
+   ;; (default is `used-only')
+   dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -175,80 +213,310 @@ values."
   (setq-default
    dotspacemacs-elpa-https t
    dotspacemacs-elpa-timeout 5
-   dotspacemacs-check-for-update t
+
+   ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
+   ;; This is an advanced option and should not be changed unless you suspect
+   ;; performance issues due to garbage collection operations.
+   ;; (default '(100000000 0.1))
+   dotspacemacs-gc-cons '(100000000 0.1)
+   dotspacemacs-check-for-update nil
    dotspacemacs-editing-style '(hybrid :variables
                                        hybrid-mode-enable-evilified-state t
                                        hybrid-mode-enable-hjkl-bindings t
                                        hybrid-mode-default-state 'normal)
+
+   ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
+
+   ;; Specify the startup banner. Default value is `official', it displays
+   ;; the official spacemacs logo. An integer value is the index of text
+   ;; banner, `random' chooses a random text banner in `core/banners'
+   ;; directory. A string value must be a path to an image format supported
+   ;; by your Emacs build.
+   ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner nil
+
    dotspacemacs-startup-lists '((recents . 3)
                                 (projects . 5)
                                 (bookmarks . 5)
                                 (agenda . 5)
                                 (todos . 5))
-   dotspacemacs-scratch-mode 'fundamental-mode
-   dotspacemacs-themes '(spacemacs-dark solarized-dark)
+
+   ;; True if the home buffer should respond to resize events. (default t)
+   dotspacemacs-startup-buffer-responsive t
+
+   ;; Default major mode of the scratch buffer (default `text-mode')
+   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-themes '(spacemacs-dark
+                         solarized-dark)
+
+   ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
+   ;; (default '(spacemacs :separator wave :separator-scale 1.5))
+   dotspacemacs-mode-line-theme 'doom
    dotspacemacs-colorize-cursor-according-to-state t
+
+   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
+   ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Fira Code Retina"
                                :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
+
+   ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
-   dotspacemacs-emacs-leader-key "M-m"
-   dotspacemacs-major-mode-leader-key ","
-   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
-   dotspacemacs-distinguish-gui-tab nil
+
+   ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
+   ;; (default "SPC")
+   dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-command-key ":"
-   dotspacemacs-remap-Y-to-y$ t
-   dotspacemacs-default-layout-name "Default"
-   dotspacemacs-display-default-layout nil
+
+   ;; The key used for Vim Ex commands (default ":")
+   dotspacemacs-ex-command-key ":"
+
+   ;; The leader key accessible in `emacs state' and `insert state'
+   ;; (default "M-m")
+   dotspacemacs-emacs-leader-key "M-m"
+
+   ;; Major mode leader key is a shortcut key which is the equivalent of
+   ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
+   dotspacemacs-major-mode-leader-key ","
+
+   ;; Major mode leader key accessible in `emacs state' and `insert state'.
+   ;; (default "C-M-m")
+   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+
+   ;; These variables control whether separate commands are bound in the GUI to
+   ;; the key pairs `C-i', `TAB' and `C-m', `RET'.
+   ;; Setting it to a non-nil value, allows for separate commands under `C-i'
+   ;; and TAB or `C-m' and `RET'.
+   ;; In the terminal, these pairs are generally indistinguishable, so this only
+   ;; works in the GUI. (default nil)
+   dotspacemacs-distinguish-gui-tab nil
+
+   ;; Name of the default layout (default "Default")
+   dotspacemacs-default-layout-name "main"
+
+   ;; If non-nil the default layout name is displayed in the mode-line.
+   ;; (default nil)
+   dotspacemacs-display-default-layout t
+
+   ;; If non-nil then the last auto saved layouts are resumed automatically upon
+   ;; start. (default nil)
    dotspacemacs-auto-resume-layouts t
+
+   ;; If non-nil, auto-generate layout name when creating new layouts. Only has
+   ;; effect when using the "jump to layout by number" commands. (default nil)
+   dotspacemacs-auto-generate-layout-names t
+
+   ;; Size (in MB) above which spacemacs will prompt to open the large file
+   ;; literally to avoid performance issues. Opening a file literally means that
+   ;; no major mode or minor modes are active. (default is 1)
+   dotspacemacs-large-file-size 1
+
+   ;; Location where to auto-save files. Possible values are `original' to
+   ;; auto-save the file in-place, `cache' to auto-save the file to another
+   ;; file stored in the cache directory and `nil' to disable auto-saving.
+   ;; (default 'cache)
    dotspacemacs-auto-save-file-location 'cache
+
+   ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
-   dotspacemacs-use-ido nil
-   dotspacemacs-enable-paste-micro-state nil
-   dotspacemacs-which-key-delay 0.3
+
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
+   dotspacemacs-enable-paste-transient-state nil
+
+   ;; Which-key delay in seconds. The which-key buffer is the popup listing
+   ;; the commands bound to the current keystroke sequence. (default 0.4)
+   dotspacemacs-which-key-delay 0.2
+
+   ;; Which-key frame position. Possible values are `right', `bottom' and
+   ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
+   ;; right; if there is insufficient space it displays it at the bottom.
+   ;; (default 'bottom)
    dotspacemacs-which-key-position 'bottom
+
+   ;; Control where `switch-to-buffer' displays the buffer. If nil,
+   ;; `switch-to-buffer' displays the buffer in the current window even if
+   ;; another same-purpose window is available. If non-nil, `switch-to-buffer'
+   ;; displays the buffer in a same-purpose window even if the buffer can be
+   ;; displayed in the current window. (default nil)
+   dotspacemacs-switch-to-buffer-prefers-purpose nil
+
+   ;; If non-nil a progress bar is displayed when spacemacs is loading. This
+   ;; may increase the boot time on some systems and emacs builds, set it to
+   ;; nil to boost the loading time. (default t)
    dotspacemacs-loading-progress-bar nil
+
+   ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
+   ;; (Emacs 24.4+ only)
    dotspacemacs-fullscreen-at-startup nil
-   dotspacemacs-fullscreen-use-non-native t
-   dotspacemacs-maximized-at-startup nil
+
+   ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
+   ;; Use to disable fullscreen animations in OSX. (default nil)
+   dotspacemacs-fullscreen-use-non-native nil
+
+   ;; If non-nil the frame is maximized when Emacs starts up.
+   ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
+   ;; (default nil) (Emacs 24.4+ only)
+   dotspacemacs-maximized-at-startup t
+
+   ;; A value from the range (0..100), in increasing opacity, which describes
+   ;; the transparency level of a frame when it's active or selected.
+   ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-active-transparency 90
+
+   ;; A value from the range (0..100), in increasing opacity, which describes
+   ;; the transparency level of a frame when it's inactive or deselected.
+   ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+
+   ;; If non-nil show the titles of transient states. (default t)
+   dotspacemacs-show-transient-state-title t
+
+   ;; If non-nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-color-guide t
+
+   ;; If non-nil unicode symbols are displayed in the mode line.
+   ;; If you use Emacs as a daemon and wants unicode characters only in GUI set
+   ;; the value to quoted `display-graphic-p'. (default t)
    dotspacemacs-mode-line-unicode-symbols t
+
+   ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
+   ;; scrolling overrides the default behavior of Emacs which recenters point
+   ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
    dotspacemacs-line-numbers '(:relative t
                                :enabled-for-modes prog-mode
+                               :disabled-for-modes pdf-view-mode
+                                                   org-mode
+                                                   doc-view-mode
+                                                   dired-mode
                                :size-limit-kb 1024)
-   dotspacemacs-smartparens-strict-mode nil
+   ;; Code folding method. Possible values are `evil' and `origami'.
+   ;; (default 'evil)
+   dotspacemacs-folding-method 'evil
+
+   ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
+   ;; (default nil)
+   dotspacemacs-smartparens-strict-mode t
+
+   ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
+   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
+   dotspacemacs-smart-closing-parenthesis t
+
+   ;; Select a scope to highlight delimiters. Possible values are `any',
+   ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
+   ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
+
+   ;; If non-nil, start an Emacs server if one is not already running.
+   ;; (default nil)
+   dotspacemacs-enable-server t
+
+   ;; Set the emacs server socket location.
+   ;; If nil, uses whatever the Emacs default is, otherwise a directory path
+   ;; like \"~/.emacs.d/server\". It has no effect if
+   ;; `dotspacemacs-enable-server' is nil.
+   ;; (default nil)
+   dotspacemacs-server-socket-dir nil
+
+   ;; If non-nil, advise quit functions to keep server open when quitting.
+   ;; (default nil)
    dotspacemacs-persistent-server nil
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
-   dotspacemacs-default-package-repository nil
-   dotspacemacs-whitespace-cleanup 'all))
+
+   ;; List of search tool executable names. Spacemacs uses the first installed
+   ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
+   ;; (default '("rg" "ag" "pt" "ack" "grep"))
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+
+   ;; Format specification for setting the frame title.
+   ;; %a - the `abbreviated-file-name', or `buffer-name'
+   ;; %t - `projectile-project-name'
+   ;; %I - `invocation-name'
+   ;; %S - `system-name'
+   ;; %U - contents of $USER
+   ;; %b - buffer name
+   ;; %f - visited file name
+   ;; %F - frame name
+   ;; %s - process status
+   ;; %p - percent of buffer above top of window, or Top, Bot or All
+   ;; %P - percent of buffer above bottom of window, perhaps plus Top, or Bot or All
+   ;; %m - mode name
+   ;; %n - Narrow if appropriate
+   ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
+   ;; %Z - like %z, but including the end-of-line format
+   ;; (default "%I@%S")
+   dotspacemacs-frame-title-format "%b"
+
+   ;; Format specification for setting the icon title format
+   ;; (default nil - same as frame-title-format)
+   dotspacemacs-icon-title-format "%b"
+
+   ;; Delete whitespace while saving buffer. Possible values are `all'
+   ;; to aggressively delete empty line and long sequences of whitespace,
+   ;; `trailing' to delete only the whitespace at end of lines, `changed' to
+   ;; delete only whitespace for changed lines or `nil' to disable cleanup.
+   ;; (default nil)
+   dotspacemacs-whitespace-cleanup 'all
+
+   ;; Either nil or a number of seconds. If non-nil zone out after the specified
+   ;; number of seconds. (default nil)
+   dotspacemacs-zone-out-when-idle nil
+
+   ;; Run `spacemacs/prettify-org-buffer' when
+   ;; visiting README.org files of Spacemacs.
+   ;; (default nil)
+   dotspacemacs-pretty-docs t))
+
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
   "Load variables before package initialization."
   ;; Display Magit full-screen
   (setq-default git-magit-status-fullscreen t)
+
   ;; Don't create lockfiles
   (setq-default create-lockfiles nil)
-  ;; Raise the gc threshold
-  (setq-default gc-cons-threshold 100000000)
+
   ;; add a space to the right of line numbers
   (setq-default left-fringe-width 10)
+
   ;; don't warn about large files
-  (setq-default large-file-warning-threshold nil)
+  ;; (setq-default large-file-warning-threshold nil)
   ;; prevent visual selection from overriding system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
+
   ;; disable mouse support in terminal
   (xterm-mouse-mode -1)
+
   ;; By default, don't soft-wrap lines longer than line length
   (set-default 'truncate-lines nil)
+
   ;; Add local packages directory to load path
-  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME"))))
+  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
+  )
+
+(defun dotspacemacs/user-load ()
+  "Library to load while dumping.
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
+  )
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
@@ -303,12 +571,11 @@ values."
    evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
    evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
-  ;; doom modeline
-  (require 'doom-modeline)
-  (doom-modeline-init)
+  ;; doom-modeline
   (setq-default doom-modeline-buffer-file-name-style 'truncate-with-project
                 doom-modeline-github t
-                doom-modeline-major-mode-icon nil)
+                doom-modeline-major-mode-color-icon t
+                doom-modeline-major-mode-icon t)
 
   ;; treemacs
   (treemacs-resize-icons 15)
@@ -321,6 +588,7 @@ values."
   (if (boundp 'company-backends)
       (add-to-list 'company-backends 'company-restclient)
     (error "Failed adding REST client to company backends"))
+
   ;; Workaround for long line crashes
   (setq-default search-invisible t)
   ;; Display and copy buffer-file's path
@@ -332,34 +600,22 @@ values."
 
 (defun config/frames ()
   "Configure GUI Emacs frames."
-  ;; Set frame title format (abbreviate-file-name (projectile-project-root))
-  (setq-default frame-title-format '("" "%b - emacs " emacs-version))
-
-  ;; Open full-height, on left half of screen
   (when window-system
-    (let ((midpoint (/ (x-display-pixel-width) 2)))
-      (progn
-        (add-to-list 'default-frame-alist '(ns-appearance . dark))
-        (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-        (set-frame-height (selected-frame) (x-display-pixel-height) :pixelwise t)
-        (set-frame-width (selected-frame) (- midpoint 20) :pixelwise t)
-        (set-frame-position (selected-frame) midpoint 0)))))
+    (add-to-list 'default-frame-alist '(ns-appearance . dark))
+    (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))))
 
 (defun config/global-modes ()
   "Enable globally set modes."
   (global-company-mode)
+
   (with-eval-after-load 'company
     (company-flx-mode +1))
 
   (global-evil-quickscope-mode 1)
-  (rbenv-use-global)
-  (smartparens-global-strict-mode)
-  (visual-line-mode)
 
-  ;; Display time in the modeline by default
-  (setq-default display-time-default-load-average nil
-                display-time-format "%m/%d %l:%M %p")
-  (spacemacs/toggle-display-time-on))
+  (smartparens-global-strict-mode)
+
+  (visual-line-mode))
 
 (defun config/window-splitting ()
   "Make focus window commands primary."
@@ -427,8 +683,9 @@ values."
 
   ;; traad
   ;; Expects a conda env of the same name be defined
+  ;; Execute (traad-install-server) to set up
   (setq-default traad-environment-name "traad")
-  ;;  (traad-install-server)
+
   (if (boundp 'company-backends)
       (progn
         (add-to-list 'company-backends 'company-jedi)
@@ -617,8 +874,11 @@ values."
   "Configure packages for Ruby mode."
   ;; Enable rufo-format
   (add-hook 'ruby-mode-hook 'rufo-minor-mode)
+  (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
+
   ;; Enable autoformat on save in Ruby modes
   (add-hook 'ruby-mode-hook (lambda () (add-hook 'before-save-hook #'rufo-format t)))
+
   ;; Define keybinding to manually trigger autoformat
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format))
 
@@ -727,7 +987,6 @@ values."
 (defun config/yankee ()
   "Load and configure yankee.el.
 Provides facilities for yanking formatted code snippets."
-  (load "yankee.el/yankee.el")
   (require 'yankee)
   (if (boundp 'evil-visual-state-map)
       (progn
@@ -764,18 +1023,16 @@ Provides facilities for yanking formatted code snippets."
 
   ;; leader gb to display branching controls
   (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
+
   ;; leader gB to display Git blame
   (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
+
   ;; Git Gutter: Display fringe on left
   (setq-default git-gutter-fr+-side 'left-fringe)
   (setq-default git-gutter-fr:side 'left-fringe))
 
 (defun config/org-mode ()
   "Configure and enable org mode."
-  ;; Org Babel: Elixir
-  (load "ob-elixir/ob-elixir.el")
-  (require 'ob-elixir)
-
   ;; Org Babel languages
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((clojure . t)
@@ -869,11 +1126,9 @@ Provides facilities for yanking formatted code snippets."
 
 (defun config/exercism ()
   "Configure and enable exercism mode."
-  (setq-default exercism-dir "~/Projects/exercism")
-  (setq-default exercism-auto-enable nil)
-  (setq-default exercism-config-file "~/.config/exercism/user.json")
-  (load "exercism-emacs/exercism.el")
-  (require 'exercism))
+  (setq-default exercism-dir "~/Projects/exercism"
+                exercism-auto-enable nil
+                exercism-config-file "~/.config/exercism/user.json"))
 
 (defun config/flycheck ()
   "Configure and enable Flycheck."
