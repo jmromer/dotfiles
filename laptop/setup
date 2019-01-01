@@ -104,13 +104,17 @@ touch "$log_location"
 
   step "Installing Rbenv, latest Ruby, RubyGems"
 
-  mkdir "$HOME/.rbenv"
+  mkdir -p "$HOME/.rbenv/bin/"
+  git clone https://github.com/jbernsie/rbenv-clean "$(rbenv root)/plugins/rbenv-clean"
+  git clone https://github.com/rkh/rbenv-update.git "$(rbenv root)/plugins/rbenv-update"
+
   ln -sf $LOCAL_DOTFILES/default-gems $HOME/.rbenv/default-gems
+  ln -sf $(brew --prefix)/bin/rbenv $HOME/.rbenv/bin/rbenv
 
   eval "$(rbenv init - zsh)"
 
   # TODO: Prompt for desired Ruby version
-  ruby_version="2.5.3"
+  ruby_version="2.6.0"
   if ! rbenv versions | grep -Fq "$ruby_version"; then
     step "Installing Ruby $ruby_version"
     rbenv install -s "$ruby_version"
@@ -119,6 +123,7 @@ touch "$log_location"
   rbenv global "$ruby_version"
   rbenv shell "$ruby_version"
   rbenv rehash
+  gem ctags
 
   # ===================================================
 
@@ -131,21 +136,6 @@ touch "$log_location"
 
   step "Installing GNU tools"
   source "$HOME/.dotfiles/laptop/gnu_tools.sh"
-
-  step "Installing Ruby, JS libraries"
-  #-------------------------------------------------------------
-  # Generate tags for ruby stdlib
-  #-------------------------------------------------------------
-  mkdir -p ~/.rbenv/plugins
-  git clone git://github.com/tpope/rbenv-ctags.git  ~/.rbenv/plugins/rbenv-ctags
-  rbenv ctags
-
-  #-------------------------------------------------------------
-  # Update RubyGems and generate tags for gems
-  #-------------------------------------------------------------
-  gem install gem-ctags
-  rbenv rehash
-  gem ctags
 
   step "Installing GUI apps with Homebrew Cask"
   source "$HOME/.dotfiles/laptop/homebrew_cask_packages.sh"

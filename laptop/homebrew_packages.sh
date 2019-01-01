@@ -25,7 +25,6 @@ homebrew=(
   bash-completion         # Command completions for Bash
   cmake                   # For YCM installation
   colordiff
-  dfu-util                # KLL configuration loader
   direnv                  # directory-specific env settings
   gpg2                    # for PGP commit signing
   pinentry-mac
@@ -39,8 +38,10 @@ homebrew=(
   shellcheck
   rbenv
   rbenv-binstubs
+  rbenv-communal-gems
   rbenv-ctags
   rbenv-default-gems      # default gems to be installed
+  rbenv-vars
   reattach-to-user-namespace
   redis
   ripgrep
