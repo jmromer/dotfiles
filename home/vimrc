@@ -45,12 +45,6 @@ let g:netrw_winsize   = 70  " give previewed windows 70% of screen width
 let g:netrw_banner    = 0
 
 "--------------------------------------------------------------
-" Vim Session: session autosave
-"--------------------------------------------------------------
-let g:session_default_overwrite = 1
-let g:session_autosave = 'no'
-
-"--------------------------------------------------------------
 " Rainbow parentheses
 "--------------------------------------------------------------
 augroup rainbow_parentheses
@@ -331,9 +325,6 @@ vnoremap <leader>R y:%s/<C-R>"//g<LEFT><LEFT>
 " R: From normal mode, redraws
 nnoremap <leader>R :redraw!<CR>
 
-" os: Open Session
-nnoremap <leader>os :OpenSession<SPACE>
-
 " wv: open vertical split
 nnoremap <leader>wv <C-w>v
 
@@ -357,8 +348,6 @@ nnoremap <leader>wq :quit<CR>
 nnoremap <leader>wd :x<CR>
 nnoremap <C-c><C-c> :x<CR>
 
-" ss: Save Session
-nnoremap <leader>ss :SaveSession<SPACE>
 
 " x: cut visual selection to system clipboard
 vnoremap <leader>x "*d
