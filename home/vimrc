@@ -4,6 +4,9 @@ filetype plugin indent on
 scriptencoding utf-8
 set fileencodings=utf-8
 
+" Explicitly set viminfo
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+
 " Suppress 'Pattern not found' messages
 set shortmess+=c
 
@@ -254,6 +257,9 @@ set winwidth=84
 set winheight=5
 set winminheight=5
 set winheight=999
+
+" preview window height
+set previewheight=15
 
 " Make it obvious where 80 characters is
 set textwidth=80
