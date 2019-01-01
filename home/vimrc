@@ -399,6 +399,16 @@ endfunction
 command! RA :call ReloadAllBuffers()
 
 "--------------------------------------------------------------
+" vim-swoop
+"--------------------------------------------------------------
+let g:swoopUseDefaultKeyMap = 0
+let g:defaultWinSwoopHeight = 15
+nnoremap <leader>ss :call Swoop()<CR>
+vnoremap <leader>ss :call SwoopSelection()<CR>
+nnoremap <leader>sS :call SwoopMulti()<CR>
+vnoremap <leader>sS :call SwoopMultiSelection()<CR>
+
+"--------------------------------------------------------------
 " ctags
 "--------------------------------------------------------------
 " Re-generate project ctags
