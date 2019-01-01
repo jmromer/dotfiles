@@ -6,15 +6,3 @@
 	path = home/vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
 	branch = master
-[submodule "home/spacemacs.d/local/highlight-sexp"]
-	path = home/spacemacs.d/local/highlight-sexp
-	url = https://github.com/daimrod/highlight-sexp.git
-[submodule "home/spacemacs.d/local/exercism-emacs"]
-	path = home/spacemacs.d/local/exercism-emacs
-	url = https://github.com/canweriotnow/exercism-emacs.git
-[submodule "ob-elixir"]
-	path = home/spacemacs.d/local/ob-elixir
-	url = https://github.com/jkrmr/ob-elixir.git
-[submodule "yankee"]
-	path = home/spacemacs.d/local/yankee.el
-	url = https://github.com/jkrmr/yankee.el.git
