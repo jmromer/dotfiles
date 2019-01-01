@@ -1,5 +1,27 @@
-*~
-.#*
+# Vim artifacts
+default.vim
+default.vim.lock
+
+# Emacs directory-local
+.dir-locals.el
+
+# direnv config
+.envrc
+
+# Emacs amx cache
+amx-items
+
+# Exuberant / Universal CTAGS
+TAGS
+CTAGS
+
+# GNU Global tags
+GPATH
+GRTAGS
+GTAGS
+
+# Ruby env vars
+.rbenv-vars
 
 # Mac
 *.DS_Store
