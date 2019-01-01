@@ -537,7 +537,6 @@ dump."
   (config/gtags)
   (config/version-control)
   (config/highlight-lines-at-length 80)
-  (config/highlight-sexp)
   (config/ivy)
   (config/javascript-modes)
   (config/latex-mode)
@@ -837,7 +836,6 @@ dump."
     (diminish 'alchemist-mode "⊛")
     (diminish 'alchemist-phoenix-mode "⊙")
     (diminish 'elm-indent-mode "⨕")
-    (diminish 'highlight-sexp-mode "⋂")
     (diminish 'minitest-mode "⨷")
     (diminish 'rubocop-mode "℞")
     (diminish 'ruby-refactor-mode "RR")
@@ -1260,16 +1258,6 @@ Only equations at the beginning of a line are justified."
   ;; (workaround, since the preceding breaks whitespace-cleanup,
   ;; which `dotspacemacs-whitespace-cleanup 'all' uses.)
   (add-hook 'before-save-hook #'delete-trailing-whitespace))
-
-(defun config/highlight-sexp ()
-  "Configure highlight-sexp.
-https://github.com/daimrod/highlight-sexp."
-  (load "highlight-sexp/highlight-sexp.el")
-  (require 'highlight-sexp)
-  (setq-default hl-sexp-background-color "#20525E")
-  (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-  (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
-  (add-hook 'clojure-mode-hook 'highlight-sexp-mode))
 
 (defun config/evil-cleverparens ()
   "Configure evil-cleverparens layer."
