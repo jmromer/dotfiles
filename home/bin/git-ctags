@@ -1,7 +1,30 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Generate or update ctags and save to .git directory, if it exists
+#
+# Usage:
+#
+#   git ctags
+#
+# Dependencies:
+#
+#   ctags
+#
 
 set -e
 
-[ -f .git/hooks/ctags ] || git init
+gitdir="$(git rev-parse --git-dir)"
 
-.git/hooks/ctags
+trap 'rm -f "$gitdir/$$.tags"' EXIT
+
+git ls-files |\
+  ctags \
+  --tag-relative=yes \
+  --languages=-sql \
+  --fields=+l \
+  --c-kinds=+p \
+  --c++-kinds=+p \
+  -L - \
+  -f"$gitdir/$$.tags" \
+
+  mv "$gitdir/$$.tags" "$gitdir/tags"
