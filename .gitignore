@@ -10,7 +10,9 @@ home/pry/themes/vim*
 home/lein/repl-history
 home/vim/plugins/*
 home/vim/plugged/*
-home/vim/tmp/yankring_history_v2.txt
+home/vim/backup/*
+home/vim/cache/*
+home/vim/tmp/*
 home/zsh/zsh-syntax-highlighting/*
 home/emacs.d/elpa/*
 home/emacs.d/.cask/*
