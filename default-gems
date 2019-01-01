@@ -3,6 +3,7 @@ benchmark-ips
 bundler
 fastri
 gem-ctags
+bundler-gtags
 hirb
 jazz_fingers
 neovim

@@ -187,6 +187,11 @@ function del() {
   fi
 }
 
+function binstubs() {
+  bundle install --binstubs .bundle/bin
+  rbenv rehash
+}
+
 #-------------------------------------------------------------
 # Git
 #-------------------------------------------------------------
