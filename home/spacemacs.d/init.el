@@ -1073,17 +1073,6 @@ Provides facilities for yanking formatted code snippets."
     (spacemacs/set-leader-keys "aojS" 'org-journal-search)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
 
-    ;; Org Babel: Elixir
-    (if (boundp 'org-babel-default-header-args:elixir)
-        (progn
-          (setq org-babel-default-header-args:elixir
-                (cons '(:results . "value")
-                      (assq-delete-all :results org-babel-default-header-args:elixir)))
-          (setq org-babel-default-header-args:elixir
-                (cons '(:preamble . "Code.compiler_options(ignore_module_conflict: true)")
-                      (assq-delete-all :preamble org-babel-default-header-args:elixir))))
-      (error "Failed setting up org-babel for Elixir"))
-
     ;; Source Blocks
     ;; Python: <p
     (if (boundp 'org-structure-template-alist)
