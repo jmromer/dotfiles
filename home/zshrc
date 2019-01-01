@@ -6,6 +6,7 @@ alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
 alias git=hub
 alias dc='docker-compose'
+alias cdd='cd ~/.dotfiles'
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
