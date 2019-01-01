@@ -4,6 +4,7 @@ bundler
 fastri
 gem-ctags
 bundler-gtags
+gem-browse
 hirb
 jazz_fingers
 neovim
@@ -15,7 +16,9 @@ rake
 rcodetools
 rspec
 rubocop
-rufo
 rubygems-bundler
 rubygems-update
+rufo
+solargraph
+sqlint
 tmuxinator
