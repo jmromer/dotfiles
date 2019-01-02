@@ -872,6 +872,10 @@ dump."
 
 (defun config/ruby ()
   "Configure packages for Ruby mode."
+  ;; Don't display the rbenv ruby version (inaccurate, duplicated by doom
+  ;; major-mode indicator)
+  (setq-default rbenv-show-active-ruby-in-modeline nil)
+
   ;; Enable rufo-format
   (add-hook 'ruby-mode-hook 'rufo-minor-mode)
   (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
