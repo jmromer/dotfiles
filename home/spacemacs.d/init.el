@@ -159,6 +159,7 @@ values."
      bison-mode
      company-flx
      company-jedi
+     conda
      csv-mode
      direnv
      emmet-mode
@@ -710,6 +711,12 @@ dump."
   (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
   (add-hook 'python-mode-hook #'anaconda-mode)
   (add-hook 'python-mode-hook #'evil-text-object-python-add-bindings)
+
+  ;; conda-env
+  (setq-default conda-anaconda-home (getenv "ANACONDA_HOME"))
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell)
+  (conda-env-autoactivate-mode)
 
   ;; traad
   ;; Expects a conda env of the same name be defined
