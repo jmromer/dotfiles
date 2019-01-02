@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+parse_python_version() {
+    echo "$1" |\
+        cut -d' ' -f2 |\
+        sed -n '1p' |\
+        sed -E 's/([0-9]+\.[0-9]+)\.[0-9]+/\1/'
+}
+
+conda_env="$1"
+
+if [ -z "$conda_env" ] || [ -z "$ANACONDA_HOME" ]; then
+    parse_python_version "$(python --version 2>&1)"
+    exit 0
+fi
+
+available_envs="$(ls "$ANACONDA_HOME"/envs/)"
+
+if [[ ! $available_envs =~ $conda_env ]]; then
+    parse_python_version "$(python --version 2>&1)"
+    exit 1
+fi
+
+python_runtime="$("$ANACONDA_HOME"/envs/"$conda_env"/bin/python --version 2>&1)"
+python_version="$(parse_python_version "$python_runtime")"
+
+echo "$python_version ($conda_env)"
