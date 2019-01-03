@@ -353,6 +353,7 @@ nnoremap <leader>wl <C-w>l
 nnoremap <leader>wd :quit<CR>
 nnoremap <leader>wD :quit!<CR>
 nnoremap <C-c><C-c> :x<CR>
+nnoremap <C-c><C-k> :q!<CR>
 
 " bd: kill buffer
 nnoremap <leader>bd :bdelete<CR>
