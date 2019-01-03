@@ -32,7 +32,6 @@ values."
      (auto-completion :variables
                       spacemacs-default-company-backends '(company-files
                                                            company-capf
-                                                           company-robe
                                                            company-anaconda
                                                            company-jedi)
                       auto-completion-return-key-behavior 'complete
