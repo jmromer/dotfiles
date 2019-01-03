@@ -1,19 +1,30 @@
-Pry.config.theme  = 'solarized'
+# -*- mode: ruby -*-
+# vi:syntax=ruby
+# frozen_string_literal: true
+
+Pry.config.theme = "solarized"
 
 # Return only the methods not present on basic objects
 # alternatively, use `ls <object> -m`
 class Object
   def method_list
-    (self.methods - Object.instance_methods).sort
+    (methods - Object.instance_methods).sort
   end
 end
 
-# Aliases for common commands
-Pry.commands.alias_command 'q', 'exit'
-Pry.commands.alias_command '!!', 'disable-pry'
-Pry.commands.alias_command 'w', 'whereami'
-Pry.commands.alias_command 'r!', 'reload!' rescue nil
-Pry.commands.alias_command 'sh', 'shell-mode'
+unless defined?(Rails) && Rails.env
+  begin
+    require "jazz_fingers"
+  rescue LoadError
+    puts "Pry enhancements not loaded."
+  end
+end
+
+if defined?(JazzFingers)
+  JazzFingers.configure do |config|
+    config.application_name = "jmromer"
+  end
+end
 
 # Format stacktraces
 Pry.config.exception_handler = proc do |output, exception, _|
@@ -24,25 +35,21 @@ Pry.config.exception_handler = proc do |output, exception, _|
   end
 end
 
-unless defined?(Rails) && Rails.env
-  begin
-    # gem install pry-coolline pry-doc pry-git pry-byebug hirb awesome_print
-    require 'awesome_print' # Use awesome_print's output formatting and Pry's pager
-    require 'hirb'          # Use Hirb for tabular output
-  rescue LoadError
-    puts 'Pry enhancements not loaded.'
-  end
-end
+# Aliases for common commands
+Pry.commands.alias_command "q", "exit"
+Pry.commands.alias_command "!!", "disable-pry"
+Pry.commands.alias_command "w", "whereami"
+Pry.commands.alias_command "sh", "shell-mode"
 
 if defined?(PryByebug)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-  Pry.commands.alias_command 'f', 'finish'
+  Pry.commands.alias_command "c", "continue"
+  Pry.commands.alias_command "s", "step"
+  Pry.commands.alias_command "n", "next"
+  Pry.commands.alias_command "f", "finish"
 end
 
 if defined?(AwesomePrint)
-  AwesomePrint.defaults = { indent: -2 }
+  AwesomePrint.defaults = {indent: -2}
   AwesomePrint.pry!
 end
 
@@ -51,7 +58,7 @@ if defined?(Hirb)
   extend Hirb::Console
 end
 
-if ENV['TERM'] == 'emacs'
+if ENV["TERM"] == "emacs"
   Pry.config.color = false
   Pry.config.pager = false
   Pry.config.auto_indent = false
