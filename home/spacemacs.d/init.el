@@ -585,30 +585,13 @@ dump."
                 doom-modeline-env-command nil)
 
   (doom-modeline-def-modeline 'main
-    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys
-                       matches " " buffer-info remote-host buffer-position " "
-                       selection-info)
-    '(misc-info persp-name lsp github debug minor-modes input-method major-mode
-                process vcs flycheck))
+    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches
+                       " " buffer-info remote-host buffer-position
+                       " " selection-info)
+    '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
 
   (doom-modeline-set-modeline 'main t)
   (doom-modeline-init)
-
-  ;; (doom-modeline-def-modeline 'minimal
-  ;;   '(matches " " buffer-info)
-  ;;   '(major-mode))
-
-  ;; (doom-modeline-def-modeline 'special
-  ;;   '(bar window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info-simple buffer-position " " selection-info)
-  ;;   '(misc-info lsp debug minor-modes input-method buffer-encoding major-mode process flycheck))
-
-  ;; (doom-modeline-def-modeline 'project
-  ;;   '(bar " " buffer-default-directory)
-  ;;   '(misc-info github debug " " major-mode))
-
-  ;; (doom-modeline-def-modeline 'media
-  ;;   '(bar window-number " %b  ")
-  ;;   '(misc-info media-info major-mode))
 
   ;; treemacs
   (treemacs-resize-icons 15)
