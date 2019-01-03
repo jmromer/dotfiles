@@ -1093,8 +1093,7 @@ Provides facilities for yanking formatted code snippets."
      org-default-notes-file "~/Dropbox/org/notes.org")
 
     ;; Org Journal
-    (spacemacs/set-leader-keys "aojv" 'view-journal)
-    (spacemacs/set-leader-keys "aojS" 'org-journal-search)
+    (spacemacs/set-leader-keys "aojS" #'org-journal-search)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
 
     ;; Source Blocks
