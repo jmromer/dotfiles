@@ -895,12 +895,13 @@ dump."
   ;; major-mode indicator)
   (setq-default rbenv-show-active-ruby-in-modeline nil)
 
-  ;; Enable rufo-format
-  (add-hook 'ruby-mode-hook 'rufo-minor-mode)
   (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
 
+  ;; Enable rufo-format
+  ;; (add-hook 'ruby-mode-hook 'rufo-minor-mode)
+
   ;; Enable autoformat on save in Ruby modes
-  (add-hook 'ruby-mode-hook (lambda () (add-hook 'before-save-hook #'rufo-format t)))
+  ;; (add-hook 'ruby-mode-hook (lambda () (add-hook 'before-save-hook #'rufo-format t)))
 
   ;; Define keybinding to manually trigger autoformat
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format))
