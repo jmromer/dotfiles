@@ -38,7 +38,6 @@ homebrew=(
   shellcheck
   rbenv
   rbenv-binstubs
-  rbenv-communal-gems
   rbenv-ctags
   rbenv-default-gems      # default gems to be installed
   rbenv-vars
