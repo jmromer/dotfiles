@@ -48,4 +48,4 @@ done
 
 WORD2=$(head -n $NUM $DICT |tail -n 1)
 
-echo "$WORD1 $WORD2" | ruby -pe '$_.downcase'
+echo "$WORD1 $WORD2" | ruby -pe '$_.downcase!'
