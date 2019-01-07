@@ -161,6 +161,7 @@ values."
      conda
      csv-mode
      direnv
+     editorconfig
      emmet-mode
      evil-lion
      evil-quickscope
@@ -563,6 +564,8 @@ dump."
 
   (config/diminish)
   (config/prettify-symbols)
+
+  (editorconfig-mode 1)
 
   ;; evil mode indicators
   (setq-default
