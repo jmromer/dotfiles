@@ -813,18 +813,21 @@ dump."
 
 (defun config/web-beautify ()
   "Configure web-beautify hooks."
-  (defun web-beatify/beautify-html-buffer-on-save ()
-    "Add a before-save hook to beautify HTML on save."
-    (add-hook 'before-save-hook 'web-beautify-html-buffer t t))
+  (eval-after-load 'sgml-mode
+    '(add-hook 'html-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
 
-  (defun web-beatify/beautify-css-buffer-on-save ()
-    "Add a before-save hook to beautify CSS on save."
-    (add-hook 'before-save-hook 'web-beautify-css-buffer t t))
+  (eval-after-load 'web-mode
+    '(add-hook 'web-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
 
-  (eval-after-load 'html-mode
-    '(add-hook 'html-mode-hook #'web-beautify/beautify-html-buffer-on-save))
   (eval-after-load 'css-mode
-    '(add-hook 'css-mode-hook #'web-beautify/beautify-css-buffer-on-save)))
+    '(add-hook 'css-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t)))))
+
 
 (defun config/code-folding ()
   "Configure code folding settings."
