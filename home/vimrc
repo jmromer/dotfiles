@@ -11,7 +11,7 @@ set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
 set shortmess+=c
 
 " add fzf to rtp
-set runtimepath+=~/.fzf
+set runtimepath+=/usr/local/opt/fzf
 
 " Disable italics
 let g:solarized_italic = 0
