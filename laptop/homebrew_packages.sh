@@ -26,6 +26,8 @@ homebrew=(
   cmake                   # For YCM installation
   colordiff
   direnv                  # directory-specific env settings
+  elixir-build
+  exenv
   gpg2                    # for PGP commit signing
   pinentry-mac
   hub                     # For github-flavored git
