@@ -30,6 +30,7 @@ homebrew=(
   exenv
   gpg2                    # for PGP commit signing
   pinentry-mac
+  fzf
   hub                     # For github-flavored git
   imagemagick
   ispell
@@ -59,6 +60,9 @@ for package in ${homebrew[*]}; do
   echo "Installing or upgrading $package..." && echo
   brew install $package
 done
+
+# Install fzf completions
+$(brew --prefix)/opt/fzf/install
 
 #-------------------------------------------------------------
 # Thoughbot
