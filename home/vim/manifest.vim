@@ -52,20 +52,18 @@ Plug 'kana/vim-textobj-line'   " Adds l
 Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 Plug 't9md/vim-ruby-xmpfilter', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rails', { 'for': ['ruby']  }
+Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
 
 " JS
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'wizicer/vim-jison'
 Plug 'elzr/vim-json'
+Plug 'wizicer/vim-jison'
 
 " Python
 Plug 'cjrh/vim-conda'
@@ -75,3 +73,8 @@ Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'tweekmonster/django-plus.vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'zchee/deoplete-jedi'
+
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
+Plug 'c-brenn/phoenix.vim' | Plug 'tpope/vim-projectionist'
