@@ -72,7 +72,7 @@ export EDITOR="nvim"
 export PAGER="less"
 
 # brew install [or sudo apt-get install] source-highlight
-export LESS=' -r '
+export LESS=' --raw-control-chars --no-init --quit-if-one-screen'
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 
 # pager search matches coloring
