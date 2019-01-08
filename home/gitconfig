@@ -129,7 +129,8 @@
 	a        = stage-files
 	aa       = add --all
 	ap       = add --patch
-	b        = branch -vv
+	b        = checkout-branch
+	bb       = branch -vv
 	bc       = create-branch-with-remote
 	bcl      = create-branch
 	bd       = delete-branch
@@ -144,7 +145,6 @@
 	cms      = commit-squash
 	co       = checkout
 	cc       = checkout-commit
-	cob      = checkout-branch
 	comp     = !git checkout master && git pull
 	cp       = cherry-pick
 	cours    = checkout --ours
