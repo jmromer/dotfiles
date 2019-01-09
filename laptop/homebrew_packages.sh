@@ -30,6 +30,7 @@ homebrew=(
   exenv
   gpg2                    # for PGP commit signing
   pinentry-mac
+  fd
   fzf
   hub                     # For github-flavored git
   imagemagick
