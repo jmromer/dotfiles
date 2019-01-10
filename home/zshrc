@@ -90,7 +90,7 @@ export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 #-------------------------------------------------------------
 export FZF_DEFAULT_COMMAND='rg --files-with-matches "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--multi --ansi'
+export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-n:preview-down' --bind='ctrl-p:preview-up'"
 
 #-------------------------------------------------------------
 # FUNCTIONS
