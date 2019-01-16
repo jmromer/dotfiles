@@ -577,6 +577,12 @@ dump."
 
   (editorconfig-mode 1)
 
+  ;; yasnippet
+  (define-key global-map (kbd "C-j") nil)
+  (spacemacs/declare-prefix (kbd "C-j") "tools")
+  (define-key global-map (kbd "C-j C-j") #'ivy-yasnippet)
+  (define-key global-map (kbd "C-j C-;") #'yas-expand)
+
   ;; evil mode indicators
   (setq-default
    evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "green" :foreground "black")))
