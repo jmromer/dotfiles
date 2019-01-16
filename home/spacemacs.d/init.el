@@ -1325,6 +1325,12 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
       (set-char-table-range composition-function-table (car char-regexp)
                             `([,(cdr char-regexp) 0 font-shape-gstring])))))
 
+(defun yas/camelcase-file-name ()
+  "Camel-case the current buffer's file name."
+  (interactive)
+  (let ((filename (file-name-nondirectory (file-name-sans-extension (or (buffer-file-name) (buffer-name (current-buffer)))))))
+    (mapconcat #'capitalize (split-string filename "[_\-]") "")))
+
 (defun yas/strip (str)
   "Extract a parameter name from STR."
   (replace-regexp-in-string ":.*$" ""
