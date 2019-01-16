@@ -790,7 +790,9 @@ dump."
   "Configure JavaScript modes: js, js2, react."
   (setq-default js-indent-level 2
                 js2-basic-offset 2
-                js2-strict-missing-semi-warning nil)
+                js2-strict-missing-semi-warning nil
+                prettier-js-command "prettier-standard")
+
 
   (with-eval-after-load 'web-mode
     (if (boundp 'web-mode-indentation-params)
@@ -805,13 +807,7 @@ dump."
     (if (bound-and-true-p evil-hybrid-state-map)
         (define-key evil-hybrid-state-map (kbd "C-d") #'rjsx-delete-creates-full-tag)
       (error "Failed defining RJSX hybrid state keybindings")))
-  (add-hook 'rjsx-mode-hook #'rjsx-hybrid-keybindings)
-
-  (defun js-standard-fix ()
-    (interactive)
-    (shell-command-on-region
-     (point-min) (point-max)
-     (format "standard --fix %s" (buffer-file-name)))))
+  (add-hook 'rjsx-mode-hook #'rjsx-hybrid-keybindings))
 
 (defun config/web-beautify ()
   "Configure web-beautify hooks."
