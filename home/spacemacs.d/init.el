@@ -177,7 +177,7 @@ values."
      pretty-mode
      pyimport
      rjsx-mode
-     rufo
+     (rufo :location (recipe :fetcher github :repo "aleandros/emacs-rufo" :branch "master"))
      seeing-is-believing
      toc-org
      traad
@@ -866,7 +866,6 @@ dump."
     (diminish 'minitest-mode "⨷")
     (diminish 'rubocop-mode "℞")
     (diminish 'ruby-refactor-mode "RR")
-    (diminish 'rufo-minor-mode "℞℞")
     (diminish 'seeing-is-believing "S")
     (diminish 'tern-mode "₸")))
 
@@ -900,17 +899,11 @@ dump."
   ;; Don't display the rbenv ruby version (inaccurate, duplicated by doom
   ;; major-mode indicator)
   (setq-default rbenv-show-active-ruby-in-modeline nil)
-
   (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
 
-  ;; Enable rufo-format
-  ;; (add-hook 'ruby-mode-hook 'rufo-minor-mode)
-
-  ;; Enable autoformat on save in Ruby modes
-  ;; (add-hook 'ruby-mode-hook (lambda () (add-hook 'before-save-hook #'rufo-format t)))
-
   ;; Define keybinding to manually trigger autoformat
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format))
+  (setq-default rufo-enable-format-on-save t)
+  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format-buffer))
 
 (defun config/ruby-in-buffer-eval ()
   "Configure and enable seeing-is-believing and xmpfilter for Ruby."
