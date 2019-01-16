@@ -30,17 +30,6 @@ values."
    dotspacemacs-configuration-layers
    '(
      (auto-completion :variables
-                      spacemacs-default-company-backends '(company-files
-                                                           company-capf
-                                                           company-gtags
-                                                           company-etags
-                                                           company-keywords
-                                                           company-dabbrev
-                                                           company-dabbrev-code
-                                                           company-anaconda
-                                                           company-tern
-                                                           company-yasnippet
-                                                           company-jedi)
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-sort-by-usage t
@@ -580,6 +569,19 @@ dump."
   (spacemacs/declare-prefix (kbd "C-j") "tools")
   (define-key global-map (kbd "C-j C-j") #'ivy-yasnippet)
   (define-key global-map (kbd "C-j C-;") #'yas-expand)
+
+  ;; (setq-default
+  ;;  company-backends
+  ;;  '((company-anaconda :with company-yasnippet)
+  ;;    (company-capf :with company-yasnippet)
+  ;;    (company-dabbrev :with company-yasnippet)
+  ;;    (company-dabbrev-code :with company-yasnippet)
+  ;;    (company-etags :with company-yasnippet)
+  ;;    (company-files :with company-yasnippet)
+  ;;    (company-gtags :with company-yasnippet)
+  ;;    (company-jedi :with company-yasnippet)
+  ;;    (company-keywords :with company-yasnippet)
+  ;;    (company-tern :with company-yasnippet)))
 
   ;; evil mode indicators
   (setq-default
