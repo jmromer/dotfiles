@@ -1326,12 +1326,19 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
                             `([,(cdr char-regexp) 0 font-shape-gstring])))))
 
 (defun yas/strip (str)
-  "Remove commas, spaces, and colons from STR."
-  (replace-regexp-in-string "[:\s,]" "" str))
+  "Extract a parameter name from STR."
+  (replace-regexp-in-string ":.*$" ""
+   (replace-regexp-in-string "^\s+" ""
+    (replace-regexp-in-string "," ""
+     str))))
 
-(defun yas/to-ivar-assignment (str)
-  "Make 'STR' to '@`STR` = `STR`'."
-  (format "@%s = %s" (yas/strip str) (yas/strip str)))
+(defun yas/to-field-assignment (str)
+  "Make 'STR' to 'self.`STR` = `STR`'."
+  (format "self.%s = %s" (yas/strip str) (yas/strip str)))
+
+(defun yas/prepend-colon (str)
+  "Make `STR' to :`STR'."
+  (format ":%s" (yas/strip str)))
 
 (defun yas/indent-level ()
   "Determine the number of spaces the current line is indented."
@@ -1349,14 +1356,19 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
   (format "\n%s" (yas/indent-string)))
 
 (defun yas/args-list ()
-  "Extract an args list from teh current line."
+  "Extract an args list from the current line."
   (interactive)
   (string-match "\(.+\)" (thing-at-point 'line t)))
 
-(defun yas/to-ruby-ivars-list (str)
-  "Splits STR into a set of ivar assignments."
+(defun yas/to-ruby-accessors (str)
+  "Splits STR into an `attr_accesor' statement."
   (interactive)
-  (mapconcat 'yas/to-ivar-assignment
+  (mapconcat 'yas/prepend-colon (split-string str ",") ", "))
+
+(defun yas/to-ruby-setters (str)
+  "Splits STR into a sequence of field assignments."
+  (interactive)
+  (mapconcat 'yas/to-field-assignment
              (split-string str ",")
              (yas/indented-newline)))
 
