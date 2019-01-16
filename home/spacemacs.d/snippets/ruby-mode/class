@@ -1,12 +1,8 @@
 # -*- mode: snippet -*-
 # name : class ... end
 # group : definitions
-# key: c
+# key: cls
 # --
-class ${1:`(let ((fn (capitalize (file-name-nondirectory
-                                 (file-name-sans-extension
-         (or (buffer-file-name)
-             (buffer-name (current-buffer))))))))
-             (replace-regexp-in-string "_" "" fn t t))`}
+class ${1:`(yas/camelcase-file-name)`}
   $0
 end
