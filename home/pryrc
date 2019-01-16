@@ -20,7 +20,7 @@ unless defined?(Rails) && Rails.env
   end
 end
 
-if defined?(JazzFingers)
+if defined?(JazzFingers) && !defined?(Rails)
   JazzFingers.configure do |config|
     config.application_name = "jmromer"
   end
