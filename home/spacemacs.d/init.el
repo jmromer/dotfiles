@@ -32,15 +32,23 @@ values."
      (auto-completion :variables
                       spacemacs-default-company-backends '(company-files
                                                            company-capf
+                                                           company-gtags
+                                                           company-etags
+                                                           company-keywords
+                                                           company-dabbrev
+                                                           company-dabbrev-code
                                                            company-anaconda
+                                                           company-tern
+                                                           company-yasnippet
                                                            company-jedi)
                       auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-sort-by-usage t
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 2
-                      auto-completion-idle-delay 0.2
-                      auto-completion-private-snippets-directory nil
+                      auto-completion-idle-delay 0.1
                       auto-completion-enable-snippets-in-popup t
+                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets"
                       auto-completion-enable-help-tooltip t)
      better-defaults
      bm
@@ -605,10 +613,6 @@ dump."
   ;; leader-fp to open file at point
   (spacemacs/set-leader-keys "fp" #'find-file-at-point)
 
-  (if (boundp 'company-backends)
-      (add-to-list 'company-backends 'company-restclient)
-    (error "Failed adding REST client to company backends"))
-
   ;; Display and copy buffer-file's path
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
@@ -624,15 +628,13 @@ dump."
 
 (defun config/global-modes ()
   "Enable globally set modes."
-  (global-company-mode)
-
   (with-eval-after-load 'company
-    (company-flx-mode +1))
+    (progn
+      (company-flx-mode +1)
+      (add-hook 'text-mode-hook #'company-mode-on)))
 
   (global-evil-quickscope-mode 1)
-
   (smartparens-global-strict-mode)
-
   (visual-line-mode))
 
 (defun config/window-splitting ()
@@ -709,12 +711,6 @@ dump."
   ;; Expects a conda env of the same name be defined
   ;; Execute (traad-install-server) to set up
   (setq-default traad-environment-name "traad")
-
-  (if (boundp 'company-backends)
-      (progn
-        (add-to-list 'company-backends 'company-jedi)
-        (add-to-list 'company-backends 'company-anaconda))
-    (error "Failed setting up python company backends"))
 
   ;; Register Pipenv project type with projectile
   (projectile-register-project-type 'python-pipenv '("Pipfile")
@@ -873,11 +869,7 @@ dump."
 (defun config/elm ()
   "Configure Elm."
   (with-eval-after-load 'elm-mode
-    (remove-hook 'elm-mode-hook 'elm-indent-mode))
-
-  (if (boundp 'company-backends)
-      (add-to-list 'company-backends 'company-elm)
-    (error "Failed setting up Elm auto-completion")))
+    (remove-hook 'elm-mode-hook 'elm-indent-mode)))
 
 (defun config/elixir ()
   "Configure Elixir mode."
