@@ -172,6 +172,7 @@ values."
      graphql-mode
      gxref
      indium
+     magit-todos
      ob-swift
      ov
      pretty-mode
@@ -1034,6 +1035,7 @@ Provides facilities for yanking formatted code snippets."
              (boundp 'magit-mode-map))
         (progn
           (setq magit-completing-read-function 'ivy-completing-read)
+          (add-hook 'magit-mode-hook #'magit-todos-mode)
           (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
           (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
       (error "Failed setting up magit")))
