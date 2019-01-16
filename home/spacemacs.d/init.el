@@ -83,14 +83,12 @@ values."
           ivy-enable-advanced-buffer-information t
           ivy-wrap t)
      (javascript :variables
-                 tern-command '("node" "/Users/jmromer/.node/bin/tern")
-                 javascript-backend 'lsp
+                 javascript-backend 'tern
                  javascript-fmt-tool 'prettier
                  node-add-modules-path t)
      (latex :variables
             latex-enable-auto-fill t
             latex-enable-folding t)
-     lsp
      (markdown :variables
                markdown-live-preview-engine 'vmd)
      nginx
