@@ -1,4 +1,4 @@
 # -*- mode: snippet -*-
 #name : fireEvent
 # --
-fireEvent('$0')
+window.fireEvent('$1')$0
