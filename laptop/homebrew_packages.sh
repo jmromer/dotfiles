@@ -35,6 +35,7 @@ homebrew=(
   hub                     # For github-flavored git
   imagemagick
   ispell
+  mps-youtube             # command-line music player
   osxutils
   pgcli                   # Postgres CLI
   postgres
