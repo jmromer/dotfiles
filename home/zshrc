@@ -8,6 +8,7 @@ alias git=hub
 alias dc='docker-compose'
 alias cdd='cd ~/.dotfiles'
 alias b=bundle
+alias music=mpsyt
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
