@@ -1088,11 +1088,72 @@ Provides facilities for yanking formatted code snippets."
      org-babel-python-command "python3"
      org-export-with-sub-superscripts '{}
      org-directory "~/Dropbox/org"
-     org-default-notes-file "~/Dropbox/org/notes.org")
+     org-default-notes-file "~/Dropbox/org/inbox.org")
 
-    ;; Org Journal
+    ;; org-journal
+    (defun org-journal-find-location ()
+      "Open today's journal. Used non-interactively by org capture."
+      ;; Open today's journal, but specify a non-nil prefix argument in order to
+      ;; inhibit inserting the heading; org-capture will insert the heading.
+      (org-journal-new-entry t)
+      ;; Position point on the journal's top-level heading so that org-capture
+      ;; will add the new entry as a child entry.
+      (goto-char (point-min)))
+
+    (defun org-journal-today ()
+      "Open today's journal."
+      (interactive)
+      (org-journal-find-location)
+      (goto-char (point-max)))
+
     (spacemacs/set-leader-keys "aojS" #'org-journal-search)
+    (spacemacs/set-leader-keys "aojt" #'org-journal-today)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
+    (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "t" 'org-journal-today)
+
+    ;; Org capture templates
+    (setq-default
+     org-capture-templates
+     '(
+       ("t" "TODO" entry
+        (file+headline org-default-notes-file "Collect")
+        "* TODO %? %^G\n  %U"
+        :empty-lines 1)
+       ;;
+       ("s" "Scheduled TODO" entry
+        (file+headline org-default-notes-file "Collect")
+        "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
+        :empty-lines 1)
+       ;;
+       ("d" "Deadline" entry
+        (file+headline org-default-notes-file "Collect")
+        "* TODO %? %^G\n  DEADLINE: %^t"
+        :empty-lines 1)
+       ;;
+       ("p" "Priority" entry
+        (file+headline org-default-notes-file "Collect")
+        "* TODO [#A] %? %^G\n  SCHEDULED: %^t"
+        :empty-lines 1)
+       ;;
+       ("a" "Appointment" entry
+        (file+headline org-default-notes-file "Collect")
+        "* %? %^G\n  %^t"
+        :empty-lines 1)
+       ;;
+       ("l" "Link" entry
+        (file+headline org-default-notes-file "Collect")
+        "* TODO %A %? %^G\n  SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))"
+        :empty-lines 1)
+       ;;
+       ("n" "Note" entry
+        (file+headline org-default-notes-file "Notes")
+        "* %? %^G\n  %U" :empty-lines 1)
+       ;;
+       ("j" "Journal entry" entry
+        (function org-journal-find-location)
+        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+       )
+     )
 
     ;; Source Blocks
     ;; Python: <p
