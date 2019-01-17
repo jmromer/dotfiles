@@ -1088,6 +1088,7 @@ Provides facilities for yanking formatted code snippets."
      org-babel-python-command "python3"
      org-export-with-sub-superscripts '{}
      org-directory "~/Dropbox/org"
+     org-notes-directory "~/Dropbox/org/notes"
      org-default-notes-file "~/Dropbox/org/inbox.org")
 
     ;; org-journal
@@ -1110,6 +1111,19 @@ Provides facilities for yanking formatted code snippets."
     (spacemacs/set-leader-keys "aojt" #'org-journal-today)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "t" 'org-journal-today)
+
+    (defun org-notes-open-directory ()
+      "Open the org notes directory in dired."
+      (interactive)
+      (if (boundp 'org-notes-directory)
+          (find-file org-notes-directory)
+        (error "No `org-notes-directory' set")))
+
+    ;; Org notes
+    (spacemacs/set-leader-keys
+      "a o n" nil
+      "a o n <RET>" #'org-notes-open-directory)
+    (spacemacs/declare-prefix "a o n" "org notes")
 
     ;; Org capture templates
     (setq-default
