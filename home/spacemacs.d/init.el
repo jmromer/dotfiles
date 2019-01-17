@@ -1119,10 +1119,19 @@ Provides facilities for yanking formatted code snippets."
           (find-file org-notes-directory)
         (error "No `org-notes-directory' set")))
 
+    (defun org-notes-open-inbox ()
+      "Open the inbox file."
+      (interactive)
+      (if (boundp 'org-default-notes-file)
+          (find-file org-default-notes-file)
+        (error "No `org-default-notes-file' set")))
+
     ;; Org notes
     (spacemacs/set-leader-keys
       "a o n" nil
-      "a o n <RET>" #'org-notes-open-directory)
+      "a o n <RET>" #'org-notes-open-directory
+      "a o n i" #'org-notes-open-inbox
+      "a o n j" #'org-journal-today)
     (spacemacs/declare-prefix "a o n" "org notes")
 
     ;; Org capture templates
