@@ -545,6 +545,7 @@ dump."
   (config/flycheck)
   (config/gtags)
   (config/version-control)
+  (config/modeline)
   (config/highlight-lines-at-length 80)
   (config/ivy)
   (config/javascript-modes)
@@ -565,61 +566,15 @@ dump."
   (config/web-mode)
   (config/window-splitting)
   (config/yankee)
+  (config/yasnippet)
 
   (config/diminish)
   (config/prettify-symbols)
 
-  (editorconfig-mode 1)
-
   (config/company-tng)
   (add-hook 'text-mode-hook #'config/company-tng)
 
-  ;; yasnippet
-  (define-key global-map (kbd "C-j") nil)
-  (spacemacs/declare-prefix (kbd "C-j") "tools")
-  (define-key global-map (kbd "C-j C-j") #'ivy-yasnippet)
-  (define-key global-map (kbd "C-j C-;") #'yas-expand)
-
-  ;; (setq-default
-  ;;  company-backends
-  ;;  '((company-anaconda :with company-yasnippet)
-  ;;    (company-capf :with company-yasnippet)
-  ;;    (company-dabbrev :with company-yasnippet)
-  ;;    (company-dabbrev-code :with company-yasnippet)
-  ;;    (company-etags :with company-yasnippet)
-  ;;    (company-files :with company-yasnippet)
-  ;;    (company-gtags :with company-yasnippet)
-  ;;    (company-jedi :with company-yasnippet)
-  ;;    (company-keywords :with company-yasnippet)
-  ;;    (company-tern :with company-yasnippet)))
-
-  ;; evil mode indicators
-  (setq-default
-   evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "green" :foreground "black")))
-   evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "orange" :foreground "black")))
-   evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "red") :foreground "white"))
-   evil-hybrid-state-tag   (propertize "[Hybrid]" 'face '((:background "red") :foreground "white"))
-   evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
-   evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
-   evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
-
-  ;; doom-modeline
-  (setq-default doom-modeline-buffer-file-name-style 'truncate-with-project
-                doom-modeline-github t
-                doom-modeline-major-mode-color-icon t
-                doom-modeline-major-mode-icon t
-                doom-modeline-python-executable nil
-                doom-modeline-version nil
-                doom-modeline-env-command nil)
-
-  (doom-modeline-def-modeline 'main
-    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches
-                       " " buffer-info remote-host buffer-position
-                       " " selection-info)
-    '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
-
-  (doom-modeline-set-modeline 'main t)
-  (doom-modeline-init)
+  (editorconfig-mode 1)
 
   ;; treemacs
   (treemacs-resize-icons 15)
@@ -1085,6 +1040,12 @@ Provides facilities for yanking formatted code snippets."
   (direnv-mode)
   ;; Add GNU Global as an xref-backend
   (add-to-list 'xref-backend-functions 'gxref-xref-backend))
+(defun config/yasnippet ()
+  "Define yasnippet keybindings."
+  (define-key global-map (kbd "C-j") nil)
+  (spacemacs/declare-prefix (kbd "C-j") "tools")
+  (define-key global-map (kbd "C-j C-j") #'ivy-yasnippet)
+  (define-key global-map (kbd "C-j C-;") #'yas-expand))
 
 (defun config/version-control ()
   "Configure version-control-related settings."
@@ -1315,6 +1276,37 @@ Provides facilities for yanking formatted code snippets."
                            web-mode
                            yaml-mode))
   (global-flycheck-mode))
+
+
+(defun config/modeline ()
+  "Configure the modeline."
+  ;; evil mode indicators
+  (setq-default
+   evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "green" :foreground "black")))
+   evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "orange" :foreground "black")))
+   evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "red") :foreground "white"))
+   evil-hybrid-state-tag   (propertize "[Hybrid]" 'face '((:background "red") :foreground "white"))
+   evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
+   evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+   evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+
+  ;; doom-modeline
+  (setq-default doom-modeline-buffer-file-name-style 'truncate-with-project
+                doom-modeline-github t
+                doom-modeline-major-mode-color-icon t
+                doom-modeline-major-mode-icon t
+                doom-modeline-python-executable nil
+                doom-modeline-version nil
+                doom-modeline-env-command nil)
+
+  (doom-modeline-def-modeline 'main
+    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches
+                       " " buffer-info remote-host buffer-position
+                       " " selection-info)
+    '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
+
+  (doom-modeline-set-modeline 'main t)
+  (doom-modeline-init))
 
 (defun config/prettify-symbols ()
   "Enable and configure prettify-symbols mode and pretty mode."
