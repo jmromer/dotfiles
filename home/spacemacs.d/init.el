@@ -527,31 +527,32 @@ dump."
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
+  ;; Pre-config
   (config/frames)
   (config/global-modes)
 
   (config/amx)
+  (config/code-folding)
   (config/company)
   (config/compilation-buffers)
-  (config/elm)
   (config/deft)
   (config/elixir)
+  (config/elm)
   (config/evil-cleverparens)
   (config/evil-collection)
-  (config/evil-in-ex-buffer)
   (config/evil-goggles)
+  (config/evil-in-ex-buffer)
   (config/evil-lion)
   (config/exercism)
   (config/firacode)
   (config/flycheck)
   (config/gtags)
-  (config/version-control)
-  (config/modeline)
   (config/highlight-lines-at-length 80)
   (config/ivy)
   (config/javascript-modes)
   (config/latex-mode)
   (config/markdown-mode)
+  (config/modeline)
   (config/org-latex-preview)
   (config/org-mode)
   (config/projectile)
@@ -562,17 +563,16 @@ dump."
   (config/set-terminal-emacs-theme)
   (config/terminal-buffers)
   (config/underscore-to-word-char-list)
-  (config/code-folding)
+  (config/version-control)
   (config/web-beautify)
   (config/web-mode)
   (config/window-splitting)
   (config/yankee)
   (config/yasnippet)
 
+  ;; Post-config
   (config/diminish)
   (config/prettify-symbols)
-
-  (config/company-tng)
 
   (editorconfig-mode 1)
 
@@ -591,45 +591,9 @@ dump."
   ;; execute local configuration file last
   (config/load-local-config))
 
-(defun config/frames ()
-  "Configure GUI Emacs frames."
-  (when window-system
-    (add-to-list 'default-frame-alist '(ns-appearance . dark))
-    (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))))
+;; Custom Functions
 
-(defun config/global-modes ()
-  "Enable globally set modes."
-  (global-evil-quickscope-mode 1)
-  (smartparens-global-strict-mode)
-  (visual-line-mode))
-
-(defun config/window-splitting ()
-  "Make focus window commands primary."
-  (spacemacs/set-leader-keys "ws" #'split-window-below-and-focus)
-  (spacemacs/set-leader-keys "wS" #'split-window-below)
-  (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
-  (spacemacs/set-leader-keys "wV" #'split-window-right)
-  (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus))
-
-(defun config/evil-collection ()
-  "Enable evil keybindings everywhere."
-  (setq-default evil-collection-company-use-tng t
-                evil-collection-outline-bind-tab-p t
-                evil-collection-term-sync-state-and-mode-p t
-                evil-collection-setup-minibuffer t
-                evil-collection-setup-debugger-keys t)
-  ;; load init evil-collection after loading evil
-  (when (require 'evil-collection nil t)
-    (evil-collection-init)))
-
-(defun config/evil-in-ex-buffer ()
-  "Emacs bindings in Evil ex minibuffer."
-  (if (boundp 'evil-ex-completion-map)
-      (progn
-        (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
-        (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
-        (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
-    (error "Failed setting up ex mode keybindings")))
+;; amx
 
 (defun amx/emacs-commands ()
   "Execute amx with a better prompt."
@@ -638,10 +602,135 @@ dump."
     (amx)))
 
 (defun amx/amx-major-mode-commands ()
-  "Reexecute smex with major mode commands only."
+  "Re-execute smex with major mode commands only."
   (interactive)
   (let ((amx-prompt-string (format "%s commands: " major-mode)))
     (amx-major-mode-commands)))
+
+;; company
+
+(defun company-tng-on ()
+  "Enable company-tng-defaults, override TAB, RET, S-TAB key bindings."
+  (message "Setting company-tng defaults...")
+  (company-tng-configure-default)
+  (message "Overriding company-tng defaults...")
+  (if (boundp 'company-active-map)
+      (let ((keymap company-active-map))
+        (define-key keymap [return] #'company-complete)
+        (define-key keymap (kbd "RET") #'company-complete)
+        (define-key keymap [tab] #'company-complete)
+        (define-key keymap (kbd "TAB") #'company-select-next)
+        (define-key keymap [backtab] nil)
+        (define-key keymap (kbd "S-TAB") nil))
+    (error "Not overriding company-tng keybindings")))
+
+;; yasnippet
+
+(defun yas/camelcase-file-name ()
+  "Camel-case the current buffer's file name."
+  (interactive)
+  (let ((filename (file-name-nondirectory (file-name-sans-extension (or (buffer-file-name) (buffer-name (current-buffer)))))))
+    (mapconcat #'capitalize (split-string filename "[_\-]") "")))
+
+(defun yas/strip (str)
+  "Extract a parameter name from STR."
+  (replace-regexp-in-string ":.*$" ""
+   (replace-regexp-in-string "^\s+" ""
+    (replace-regexp-in-string "," ""
+     str))))
+
+(defun yas/to-field-assignment (str)
+  "Make 'STR' to 'self.`STR` = `STR`'."
+  (format "self.%s = %s" (yas/strip str) (yas/strip str)))
+
+(defun yas/prepend-colon (str)
+  "Make `STR' to :`STR'."
+  (format ":%s" (yas/strip str)))
+
+(defun yas/indent-level ()
+  "Determine the number of spaces the current line is indented."
+  (interactive)
+  (string-match "[^[:space:]]" (thing-at-point 'line t)))
+
+(defun yas/indent-string ()
+  "Return a string of spaces matching the current indentation level."
+  (interactive)
+  (make-string (yas/indent-level) ?\s))
+
+(defun yas/indented-newline ()
+  "Newline followed by correct indentation."
+  (interactive)
+  (format "\n%s" (yas/indent-string)))
+
+(defun yas/args-list ()
+  "Extract an args list from the current line."
+  (interactive)
+  (string-match "\(.+\)" (thing-at-point 'line t)))
+
+(defun yas/to-ruby-accessors (str)
+  "Splits STR into an `attr_accesor' statement."
+  (interactive)
+  (mapconcat 'yas/prepend-colon (split-string str ",") ", "))
+
+(defun yas/to-ruby-setters (str)
+  "Splits STR into a sequence of field assignments."
+  (interactive)
+  (mapconcat 'yas/to-field-assignment
+             (split-string str ",")
+             (yas/indented-newline)))
+
+;; Utilities
+
+(defun display-and-copy-file-path ()
+  "Print the path of the current buffer's file.
+Depends on yankee.el."
+  (interactive)
+  (let ((file-path (yankee--abbreviated-project-or-home-path-to-file)))
+    (kill-new file-path)
+    (message file-path)))
+
+(defun buffer-exists-p (bufname)
+  "Check if a buffer with the given name BUFNAME exists."
+  (not (eq nil (get-buffer bufname))))
+
+(defun switch-to-previous-buffer ()
+  "Switch to the previously open buffer.
+Repeated invocations toggle between the two most recently open buffers.
+Excludes the ibuffer."
+  (interactive)
+  (if (buffer-exists-p "*Ibuffer*")  (kill-buffer "*Ibuffer*"))
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(defun split-term-window-right-and-focus ()
+  "Open an `ansi-term' split to the right and focus it."
+  (interactive)
+  (defvar shell-default-term-shell)
+  (split-window-right-and-focus)
+  (ansi-term shell-default-term-shell))
+
+(defun rerun-term-command-right ()
+   "Re-issue previously issued command in terminal split to the right."
+   (interactive)
+   (evil-window-right 1)
+   (evil-insert-state)
+   (execute-kbd-macro (kbd "M-p"))
+   (execute-kbd-macro (kbd "RET"))
+   (evil-window-left 1))
+
+(defun rerun-term-command-below ()
+  "Re-issue previously issued command in a terminal split below."
+  (interactive)
+  (evil-window-down 1)
+  (evil-insert-state)
+  (execute-kbd-macro (kbd "M-p"))
+  (execute-kbd-macro (kbd "RET"))
+  (evil-window-up 1))
+
+(defun config/load-local-config ()
+  "Load local configuration overrides."
+  (load "~/.init.local.el"))
+
+;; Config Functions
 
 (defun config/amx ()
   "Configure amx keybindings."
@@ -652,13 +741,40 @@ dump."
       (progn
         (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands))))
 
+(defun config/code-folding ()
+  "Configure code folding settings."
+  (if (and (boundp 'evil-visual-state-map)
+           (boundp 'evil-normal-state-map)
+           (boundp 'evil-fold-list))
+      (progn
+        ;; Toggle folds with TAB
+        (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
+        ;; Set up vimish-fold
+        (add-to-list 'evil-fold-list '((vimish-fold-mode)
+                                       :open-all   vimish-fold-unfold-all
+                                       :close-all  nil
+                                       :toggle     vimish-fold-toggle
+                                       :open       vimish-fold-unfold
+                                       :open-rec   nil
+                                       :close      vimish-fold))
+        (define-key evil-visual-state-map (kbd "zf") #'vimish-fold)
+        (define-key evil-normal-state-map (kbd "zf") nil)
+        (define-key evil-normal-state-map (kbd "zfd") #'vimish-fold-delete)
+        (define-key evil-normal-state-map (kbd "zfj") #'vimish-fold-next-fold)
+        (define-key evil-normal-state-map (kbd "zfk") #'vimish-fold-previous-fold)
+        (define-key evil-normal-state-map (kbd "zfm") #'vimish-fold-refold-all)
+        (define-key evil-normal-state-map (kbd "zfr") #'vimish-fold-unfold-all)
+        (define-key evil-normal-state-map (kbd "zft") #'vimish-fold-toggle-all)
+        (define-key evil-normal-state-map (kbd "zfa") #'vimish-fold-toggle))
+    (error "Failed setting up vimish-fold")))
+
 (defun config/company ()
   "Configure company auto-completion mode."
   (with-eval-after-load 'company
     (progn
       (company-flx-mode +1)
       (add-hook 'text-mode-hook #'company-mode-on)
-      (add-hook 'text-mode-hook #'config/company-tng)
+      (add-hook 'text-mode-hook #'company-tng-on)
 
       (if (boundp 'company-frontends)
           (progn
@@ -680,21 +796,6 @@ dump."
       ;;   (error "Not adding company backends"))
       )))
 
-(defun config/company-tng ()
-  "Enable company-tng-defaults, override TAB, RET, S-TAB key bindings."
-  (message "Setting company-tng defaults...")
-  (company-tng-configure-default)
-  (message "Overriding company-tng defaults...")
-  (if (boundp 'company-active-map)
-      (let ((keymap company-active-map))
-        (define-key keymap [return] #'company-complete)
-        (define-key keymap (kbd "RET") #'company-complete)
-        (define-key keymap [tab] #'company-complete)
-        (define-key keymap (kbd "TAB") #'company-select-next)
-        (define-key keymap [backtab] nil)
-        (define-key keymap (kbd "S-TAB") nil))
-    (error "Not overriding company-tng keybindings")))
-
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
   (defun compilation-mode-settings ()
@@ -703,79 +804,191 @@ dump."
     (set (make-local-variable 'truncate-partial-width-windows) nil))
   (add-hook 'compilation-mode-hook #'compilation-mode-settings))
 
-(defun config/python ()
-  "Configure python and related modes."
-  (let* ((conda-path (format "%s/.anaconda" (getenv "HOME")))
-         (python-path (format "%s/bin" conda-path)))
-    (setenv "WORKON_HOME" (format "%s/envs" conda-path))
-    (setq-default conda-anaconda-home conda-path
-                  exec-path (cons python-path exec-path)))
+(defun config/deft ()
+  "Configure deft notes browser."
+  (setq-default
+   deft-directory "~/Dropbox/deft"
+   deft-extensions '("txt" "text" "tex" "md" "markdown" "org")
+   deft-recursive t))
 
-  (setq-default python-guess-indent nil
-                python-indent-offset 4
-                python-shell-completion-native-enable t
-                python-shell-interpreter "ipython"
-                python-shell-interpreter-args "-i --simple-prompt")
+(defun config/diminish ()
+  "Configure diminish glyphs for various minor modes."
+  (with-eval-after-load 'diminish
+    (diminish 'alchemist-mode "⊛")
+    (diminish 'alchemist-phoenix-mode "⊙")
+    (diminish 'elm-indent-mode "⨕")
+    (diminish 'minitest-mode "⨷")
+    (diminish 'rubocop-mode "℞")
+    (diminish 'ruby-refactor-mode "RR")
+    (diminish 'seeing-is-believing "S")
+    (diminish 'tern-mode "₸")))
 
-  (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
-  (add-hook 'python-mode-hook #'anaconda-mode)
-  (add-hook 'python-mode-hook #'evil-text-object-python-add-bindings)
+(defun config/elixir ()
+  "Configure Elixir mode."
+  (setq-default flycheck-elixir-credo-strict t)
 
-  ;; conda-env
-  (setq-default conda-anaconda-home (getenv "ANACONDA_HOME"))
-  (conda-env-initialize-interactive-shells)
-  (conda-env-initialize-eshell)
-  (conda-env-autoactivate-mode)
+  (defun elixir-format-buffer ()
+    (interactive)
+    (shell-command-on-region
+     (point-min) (point-max)
+     (format "mix format %s" (buffer-file-name))))
 
-  ;; traad
-  ;; Expects a conda env of the same name be defined
-  ;; Execute (traad-install-server) to set up
-  (setq-default traad-environment-name "traad")
+  ;; mix-format interface
+  (defun elixir-after-save-hooks ()
+    (if (eq major-mode 'elixir-mode)
+        (elixir-format-buffer)))
+  (add-hook 'after-save-hook #'elixir-after-save-hooks))
 
-  ;; Register Pipenv project type with projectile
-  (projectile-register-project-type 'python-pipenv '("Pipfile")
-                                    :compile "pipenv run compile"
-                                    :test "pipenv run test"
-                                    :test-suffix "_test")
+(defun config/elm ()
+  "Configure Elm."
+  (with-eval-after-load 'elm-mode
+    (remove-hook 'elm-mode-hook 'elm-indent-mode)))
 
-  (defun python-before-save-hooks ()
-    (if (and (eq major-mode 'python-mode)
-             (not (string-match-p "kizen" (buffer-file-name))))
+(defun config/evil-collection ()
+  "Enable evil keybindings everywhere."
+  (setq-default evil-collection-company-use-tng t
+                evil-collection-outline-bind-tab-p t
+                evil-collection-term-sync-state-and-mode-p t
+                evil-collection-setup-minibuffer t
+                evil-collection-setup-debugger-keys t)
+  ;; load init evil-collection after loading evil
+  (when (require 'evil-collection nil t)
+    (evil-collection-init)))
+
+(defun config/evil-in-ex-buffer ()
+  "Emacs bindings in Evil ex minibuffer."
+  (if (boundp 'evil-ex-completion-map)
       (progn
-        (pyimport-remove-unused)
-        (importmagic-fix-imports)
-        (py-isort-buffer)
-        (yapfify-buffer))))
+        (define-key evil-ex-completion-map (kbd "C-b") 'backward-char)
+        (define-key evil-ex-completion-map (kbd "C-k") 'kill-line)
+        (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
+    (error "Failed setting up ex mode keybindings")))
 
-  (add-hook 'before-save-hook #'python-before-save-hooks))
+(defun config/evil-cleverparens ()
+  "Configure evil-cleverparens layer."
+  (require 'evil-cleverparens-text-objects)
+  (smartparens-strict-mode)
+  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
+  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+  (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode))
 
-(defun config/semantic ()
-  "Remove semantic mode hooks."
-  (defun config/semantic-remove-hooks ()
-    (remove-hook 'completion-at-point-functions
-                 'semantic-analyze-completion-at-point-function)
-    (remove-hook 'completion-at-point-functions
-                 'semantic-analyze-notc-completion-at-point-function)
-    (remove-hook 'completion-at-point-functions
-                 'semantic-analyze-nolongprefix-completion-at-point-function))
-  (add-hook 'semantic-mode-hook #'config/semantic-remove-hooks))
+(defun config/evil-goggles ()
+  "Configure evil-goggles."
+  (setq-default evil-goggles-pulse nil
+                evil-goggles-duration 0.7)
 
-(defun config/set-terminal-emacs-theme ()
-  "Set theme for terminal session."
-  (if (not (display-graphic-p))
-      (spacemacs/load-theme 'spacemacs-dark)))
+  (evil-goggles-mode)
+  (evil-goggles-use-diff-refine-faces))
 
-(defun config/projectile ()
-  "Configure Projectile."
-  (setq-default projectile-completion-system 'ivy
-                projectile-enable-caching t
-                projectile-find-dir-includes-top-level t)
+(defun config/evil-lion ()
+  "Configure evil-lion alignment text objects."
+  ;; align (e.g.: gaip=, gaip/)
+  (if (and (boundp 'evil-normal-state-map)
+           (boundp 'evil-visual-state-map))
+      (progn
+        (define-key evil-normal-state-map (kbd "ga") #'evil-lion-left)
+        (define-key evil-normal-state-map (kbd "gA") #'evil-lion-right)
+        (define-key evil-visual-state-map (kbd "ga") #'evil-lion-left)
+        (define-key evil-visual-state-map (kbd "gA") #'evil-lion-right))
+    (error "Failed setting up evil-lion alignment keybindings")))
 
-  (if (bound-and-true-p projectile-globally-ignored-directories)
-      (setq-default projectile-globally-ignored-directories
-                    (append projectile-globally-ignored-directories
-                            '("node_modules")))
-    (error "Failed appending to projectile-globally-ignored-directories")))
+(defun config/exercism ()
+  "Configure and enable exercism mode."
+  (setq-default exercism-dir "~/Projects/exercism"
+                exercism-auto-enable nil
+                exercism-config-file "~/.config/exercism/user.json"))
+
+(defun config/firacode ()
+  "Configure firacode font face with ligatures.
+See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
+  (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+                 (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+                 (36 . ".\\(?:>\\)")
+                 (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+                 (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+                 (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+                 (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+                 (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+                 (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
+                 (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+                 (48 . ".\\(?:x[a-zA-Z]\\)")
+                 (58 . ".\\(?:::\\|[:=]\\)")
+                 (59 . ".\\(?:;;\\|;\\)")
+                 (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+                 (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+                 (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+                 (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+                 (91 . ".\\(?:]\\)")
+                 (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+                 (94 . ".\\(?:=\\)")
+                 (119 . ".\\(?:ww\\)")
+                 (123 . ".\\(?:-\\)")
+                 (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+                 (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
+                 )))
+    (dolist (char-regexp alist)
+      (set-char-table-range composition-function-table (car char-regexp)
+                            `([,(cdr char-regexp) 0 font-shape-gstring])))))
+
+(defun config/frames ()
+  "Configure GUI Emacs frames."
+  (when window-system
+    (add-to-list 'default-frame-alist '(ns-appearance . dark))
+    (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))))
+
+(defun config/flycheck ()
+  "Configure and enable Flycheck."
+  (setq-default
+   flycheck-global-modes '(LaTeX-mode
+                           c++-mode
+                           c-mode
+                           coffee-mode
+                           elixir-mode
+                           emacs-lisp-mode
+                           enh-ruby-mode
+                           go-mode
+                           haml-mode
+                           haskell-mode
+                           js2-mode
+                           json-mode
+                           less-mode
+                           markdown-mode
+                           pug-mode
+                           python-mode
+                           react-mode
+                           ruby-mode
+                           sass-mode
+                           scss-mode
+                           slim-mode
+                           web-mode
+                           yaml-mode))
+  (global-flycheck-mode))
+
+(defun config/global-modes ()
+  "Enable globally set modes."
+  (global-evil-quickscope-mode 1)
+  (smartparens-global-strict-mode)
+  (visual-line-mode))
+
+(defun config/gtags ()
+  "Configure GNU Global tag backend."
+  ;; Enable direnv-mode, so bundler-gtags-produced .envrc is activated
+  (direnv-mode)
+  ;; Add GNU Global as an xref-backend
+  (add-to-list 'xref-backend-functions 'gxref-xref-backend))
+
+(defun config/highlight-lines-at-length (chars)
+  "Configure and enable whitespace mode to color text after CHARS chars."
+  (setq-default whitespace-line-column chars
+                whitespace-style '(face lines-tail empty tabs))
+  ;; Enable excess length highlighting in prog-mode
+  (add-hook 'prog-mode-hook #'whitespace-mode)
+  (add-hook 'org-mode-hook #'whitespace-mode)
+
+  ;; Manually set trailing whitespace cleanup
+  ;; (workaround, since the preceding breaks whitespace-cleanup,
+  ;; which `dotspacemacs-whitespace-cleanup 'all' uses.)
+  (add-hook 'before-save-hook #'delete-trailing-whitespace))
 
 (defun config/ivy ()
   "Configure Ivy."
@@ -785,22 +998,6 @@ dump."
                                         (counsel-git-grep . ivy--regex-fuzzy)
                                         (t . ivy--regex-fuzzy))
                 ivy-initial-inputs-alist nil))
-
-(defun config/web-mode ()
-  "Configure web-mode (for CSS, HTML)."
-  (setq-default css-indent-offset 2
-                web-mode-markup-indent-offset 4
-                web-mode-css-indent-offset 2
-                web-mode-attr-indent-offset 2
-                web-mode-code-indent-offset 2)
-
-  (with-eval-after-load 'web-mode
-    (if (boundp 'web-mode-indentation-params)
-        (progn
-          (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-          (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-          (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-      (error "Failed setting up web-mode indentation params"))))
 
 (defun config/javascript-modes ()
   "Configure JavaScript modes: js, js2, react."
@@ -831,115 +1028,23 @@ dump."
       (error "Failed defining RJSX hybrid state keybindings")))
   (add-hook 'rjsx-mode-hook #'rjsx-hybrid-keybindings))
 
-(defun config/web-beautify ()
-  "Configure web-beautify hooks."
-  (eval-after-load 'sgml-mode
-    '(add-hook 'html-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-  (eval-after-load 'web-mode
-    '(add-hook 'web-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-  (eval-after-load 'css-mode
-    '(add-hook 'css-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t)))))
-
-
-(defun config/code-folding ()
-  "Configure code folding settings."
-  (if (and (boundp 'evil-visual-state-map)
-           (boundp 'evil-normal-state-map)
-           (boundp 'evil-fold-list))
-      (progn
-        ;; Toggle folds with TAB
-        (define-key evil-normal-state-map (kbd "TAB") #'evil-toggle-fold)
-        ;; Set up vimish-fold
-        (add-to-list 'evil-fold-list '((vimish-fold-mode)
-                                       :open-all   vimish-fold-unfold-all
-                                       :close-all  nil
-                                       :toggle     vimish-fold-toggle
-                                       :open       vimish-fold-unfold
-                                       :open-rec   nil
-                                       :close      vimish-fold))
-        (define-key evil-visual-state-map (kbd "zf") #'vimish-fold)
-        (define-key evil-normal-state-map (kbd "zf") nil)
-        (define-key evil-normal-state-map (kbd "zfd") #'vimish-fold-delete)
-        (define-key evil-normal-state-map (kbd "zfj") #'vimish-fold-next-fold)
-        (define-key evil-normal-state-map (kbd "zfk") #'vimish-fold-previous-fold)
-        (define-key evil-normal-state-map (kbd "zfm") #'vimish-fold-refold-all)
-        (define-key evil-normal-state-map (kbd "zfr") #'vimish-fold-unfold-all)
-        (define-key evil-normal-state-map (kbd "zft") #'vimish-fold-toggle-all)
-        (define-key evil-normal-state-map (kbd "zfa") #'vimish-fold-toggle))
-    (error "Failed setting up vimish-fold")))
-
-(defun config/diminish ()
-  "Configure diminish glyphs for various minor modes."
-  (with-eval-after-load 'diminish
-    (diminish 'alchemist-mode "⊛")
-    (diminish 'alchemist-phoenix-mode "⊙")
-    (diminish 'elm-indent-mode "⨕")
-    (diminish 'minitest-mode "⨷")
-    (diminish 'rubocop-mode "℞")
-    (diminish 'ruby-refactor-mode "RR")
-    (diminish 'seeing-is-believing "S")
-    (diminish 'tern-mode "₸")))
-
-(defun config/elm ()
-  "Configure Elm."
-  (with-eval-after-load 'elm-mode
-    (remove-hook 'elm-mode-hook 'elm-indent-mode)))
-
-(defun config/elixir ()
-  "Configure Elixir mode."
-  (setq-default flycheck-elixir-credo-strict t)
-
-  (defun elixir-format-buffer ()
+(defun config/latex-mode ()
+  "Configure LaTeX mode."
+  (defun XeLaTeX-compile ()
     (interactive)
-    (shell-command-on-region
-     (point-min) (point-max)
-     (format "mix format %s" (buffer-file-name))))
+    (async-shell-command (format "xelatex %s" (buffer-file-name))))
 
-  ;; mix-format interface
-  (defun elixir-after-save-hooks ()
-    (if (eq major-mode 'elixir-mode)
-        (elixir-format-buffer)))
-  (add-hook 'after-save-hook #'elixir-after-save-hooks))
+  (spacemacs/declare-prefix-for-mode 'latex-mode "SPC" "compile")
+  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC SPC" #'XeLaTeX-compile)
 
-(defun config/ruby ()
-  "Configure packages for Ruby mode."
-  ;; Don't display the rbenv ruby version (inaccurate, duplicated by doom
-  ;; major-mode indicator)
-  (setq-default rbenv-show-active-ruby-in-modeline nil)
-  (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
+  ;; Compile resume: Defined in local config
+  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC r" #'XeLaTeX-compile-resume)
 
-  ;; Define keybinding to manually trigger autoformat
-  (setq-default rufo-enable-format-on-save t)
-  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format-buffer))
+  ;; Update preview when file changes
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
-(defun config/ruby-in-buffer-eval ()
-  "Configure and enable seeing-is-believing and xmpfilter for Ruby."
-  (require 'seeing-is-believing)
-  (add-hook 'ruby-mode-hook 'seeing-is-believing)
-
-  (defun xmpfilter-eval-current-line ()
-    (interactive)
-    (seeing-is-believing-mark-current-line-for-xmpfilter)
-    (seeing-is-believing-run-as-xmpfilter))
-
-  (defun define-xmpfilter-keybindings ()
-    "Define keybindings for xmpfilter."
-    (if (boundp 'ruby-mode-map)
-        (progn
-          (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
-          (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
-          (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
-      (error "Failed setting up xmpfilter keybindings")))
-
-  (add-hook 'ruby-mode-hook 'define-xmpfilter-keybindings))
+  ;; Detect xelatex files
+  (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode)))
 
 (defun config/markdown-mode ()
   "Configure Markdown mode."
@@ -962,122 +1067,35 @@ dump."
 
   (setq-default markdown-asymmetric-header t))
 
-(defun config/latex-mode ()
-  "Configure LaTeX mode."
-  (defun XeLaTeX-compile ()
-    (interactive)
-    (async-shell-command (format "xelatex %s" (buffer-file-name))))
-
-  (spacemacs/declare-prefix-for-mode 'latex-mode "SPC" "compile")
-  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC SPC" #'XeLaTeX-compile)
-
-  ;; Compile resume: Defined in local config
-  (spacemacs/set-leader-keys-for-major-mode 'latex-mode "SPC r" #'XeLaTeX-compile-resume)
-
-  ;; Update preview when file changes
-  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-  ;; Detect xelatex files
-  (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode)))
-
-(defun config/terminal-buffers ()
-  "Configure terminal buffers."
-  (evil-set-initial-state 'term-mode 'insert)
-
-  (defun term-send-ctrl-y ()
-    (interactive)
-    (term-send-raw-string "\C-y"))
-
-  (defun term-mode-config ()
-    (if (boundp 'term-raw-map)
-        (progn
-          (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
-          (define-key term-raw-map (kbd "C-p") #'term-send-up)
-          (define-key term-raw-map (kbd "C-n") #'term-send-down)
-          (define-key term-raw-map (kbd "C-v") #'term-paste)
-          (goto-address-mode))
-      (error "Failed setting up term mode keybindings")))
-
-  (add-hook 'term-mode-hook #'term-mode-config)
-
-  ;; Use utf8
-  (defun my-term-use-utf8 ()
-    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
-  (add-hook 'term-exec-hook #'my-term-use-utf8)
-
-  ;; ansi-term: always use default shell
-  (defadvice ansi-term (before force-bash)
-    (interactive (list shell-default-term-shell)))
-  (ad-activate #'ansi-term))
-
-(defun config/underscore-to-word-char-list ()
-  "Add underscore to word char list in prog and other modes."
-  (defun add-underscore-to-word-chars ()
-    "Adds underscore to the word chars syntax entry list."
-    (modify-syntax-entry ?_ "w"))
-
-  (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'text-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
-
-(defun config/yankee ()
-  "Load and configure yankee.el.
-Provides facilities for yanking formatted code snippets."
-  (require 'yankee)
-  (if (boundp 'evil-visual-state-map)
-      (progn
-        (define-key evil-visual-state-map (kbd "gy") nil)
-        (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
-        (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
-        (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
-        (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
-    (error "Failed setting up yankee.el keybindings")))
-
-(defun config/gtags ()
-  "Configure GNU Global tag backend."
-  ;; Enable direnv-mode, so bundler-gtags-produced .envrc is activated
-  (direnv-mode)
-  ;; Add GNU Global as an xref-backend
-  (add-to-list 'xref-backend-functions 'gxref-xref-backend))
-(defun config/yasnippet ()
-  "Define yasnippet keybindings."
-  (define-key global-map (kbd "C-j") nil)
-  (spacemacs/declare-prefix (kbd "C-j") "tools")
-  (define-key global-map (kbd "C-j C-j") #'ivy-yasnippet)
-  (define-key global-map (kbd "C-j C-;") #'yas-expand))
-
-(defun config/version-control ()
-  "Configure version-control-related settings."
-  (with-eval-after-load 'magit
-    (if (and (boundp 'magit-completing-read-function)
-             (boundp 'magit-mode-map))
-        (progn
-          (setq magit-completing-read-function 'ivy-completing-read)
-          (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
-
-          (add-hook 'magit-mode-hook #'magit-todos-mode)
-          (spacemacs/set-leader-keys-for-major-mode 'magit-status-mode "t" #'magit-todos-jump-to-todos)
-
-          (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
-      (error "Failed setting up magit")))
-
+(defun config/modeline ()
+  "Configure the modeline."
+  ;; evil mode indicators
   (setq-default
-   magit-repository-directories '(
-                                  ("~/Projects/" . 2)
-                                  ("~/Documents". 2)
-                                  ))
+   evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "green" :foreground "black")))
+   evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "orange" :foreground "black")))
+   evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "red") :foreground "white"))
+   evil-hybrid-state-tag   (propertize "[Hybrid]" 'face '((:background "red") :foreground "white"))
+   evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
+   evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+   evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
 
-  ;; leader gb to display branching controls
-  (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
+  ;; doom-modeline
+  (setq-default doom-modeline-buffer-file-name-style 'truncate-with-project
+                doom-modeline-github t
+                doom-modeline-major-mode-color-icon t
+                doom-modeline-major-mode-icon t
+                doom-modeline-python-executable nil
+                doom-modeline-version nil
+                doom-modeline-env-command nil)
 
-  ;; leader gB to display Git blame
-  (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
+  (doom-modeline-def-modeline 'main
+    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches
+                       " " buffer-info remote-host buffer-position
+                       " " selection-info)
+    '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
 
-  ;; Git Gutter: Display fringe on left
-  (setq-default git-gutter-fr+-side 'left-fringe)
-  (setq-default git-gutter-fr:side 'left-fringe))
+  (doom-modeline-set-modeline 'main t)
+  (doom-modeline-init))
 
 (defun config/org-mode ()
   "Configure and enable org mode."
@@ -1238,96 +1256,54 @@ Provides facilities for yanking formatted code snippets."
                          "<src lang=\"emacs-lisp\">\n?\n</src>")))
       (error "Failed setting up org-babel source block"))))
 
-(defun config/evil-goggles ()
-  "Configure evil-goggles."
-  (setq-default evil-goggles-pulse nil
-                evil-goggles-duration 0.7)
+(defun config/org-latex-preview ()
+  "Configure LaTeX preview settings for Org mode."
+  (with-eval-after-load 'org
+    (if (boundp 'org-format-latex-options)
+        (setq org-format-latex-options
+              (plist-put org-format-latex-options :justify 'center)))
 
-  (evil-goggles-mode)
-  (evil-goggles-use-diff-refine-faces))
+    (defun org-justify-fragment-overlay (beg end image imagetype)
+      "Adjust the justification of a LaTeX fragment.
+The justification is set by :justify in `org-format-latex-options'.
+Only equations at the beginning of a line are justified."
+      (setq-default org-format-latex-header "\\documentclass[reqno]{article}
+\\usepackage[usenames]{color}
+[PACKAGES]
+[DEFAULT-PACKAGES]
+\\pagestyle{empty}
+% do not remove
+% The settings below are copied from fullpage.sty
+\\setlength{\\textwidth}{\\paperwidth}
+\\addtolength{\\textwidth}{-16cm}
+\\setlength{\\oddsidemargin}{1.5cm}
+\\addtolength{\\oddsidemargin}{-2.54cm}
+\\setlength{\\evensidemargin}{\\oddsidemargin}
+\\setlength{\\textheight}{\\paperheight}
+\\addtolength{\\textheight}{-\\headheight}
+\\addtolength{\\textheight}{-\\headsep}
+\\addtolength{\\textheight}{-\\footskip}
+\\addtolength{\\textheight}{-3cm}
+\\setlength{\\topmargin}{1.5cm}
+\\addtolength{\\topmargin}{-2.54cm}")
 
-(defun config/evil-lion ()
-  "Configure evil-lion alignment text objects."
-  ;; align (e.g.: gaip=, gaip/)
-  (if (and (boundp 'evil-normal-state-map)
-           (boundp 'evil-visual-state-map))
-      (progn
-        (define-key evil-normal-state-map (kbd "ga") #'evil-lion-left)
-        (define-key evil-normal-state-map (kbd "gA") #'evil-lion-right)
-        (define-key evil-visual-state-map (kbd "ga") #'evil-lion-left)
-        (define-key evil-visual-state-map (kbd "gA") #'evil-lion-right))
-    (error "Failed setting up evil-lion alignment keybindings")))
-
-(defun config/exercism ()
-  "Configure and enable exercism mode."
-  (setq-default exercism-dir "~/Projects/exercism"
-                exercism-auto-enable nil
-                exercism-config-file "~/.config/exercism/user.json"))
-
-(defun config/flycheck ()
-  "Configure and enable Flycheck."
-  (setq-default
-   flycheck-global-modes '(LaTeX-mode
-                           c++-mode
-                           c-mode
-                           coffee-mode
-                           elixir-mode
-                           emacs-lisp-mode
-                           enh-ruby-mode
-                           go-mode
-                           haml-mode
-                           haskell-mode
-                           js2-mode
-                           json-mode
-                           less-mode
-                           markdown-mode
-                           pug-mode
-                           python-mode
-                           react-mode
-                           ruby-mode
-                           sass-mode
-                           scss-mode
-                           slim-mode
-                           web-mode
-                           yaml-mode))
-  (global-flycheck-mode))
-
-(defun config/deft ()
-  "Configure deft notes browser."
-  (setq-default
-   deft-directory "~/Dropbox/deft"
-   deft-extensions '("txt" "text" "tex" "md" "markdown" "org")
-   deft-recursive t))
-
-(defun config/modeline ()
-  "Configure the modeline."
-  ;; evil mode indicators
-  (setq-default
-   evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "green" :foreground "black")))
-   evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "orange" :foreground "black")))
-   evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "red") :foreground "white"))
-   evil-hybrid-state-tag   (propertize "[Hybrid]" 'face '((:background "red") :foreground "white"))
-   evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
-   evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
-   evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
-
-  ;; doom-modeline
-  (setq-default doom-modeline-buffer-file-name-style 'truncate-with-project
-                doom-modeline-github t
-                doom-modeline-major-mode-color-icon t
-                doom-modeline-major-mode-icon t
-                doom-modeline-python-executable nil
-                doom-modeline-version nil
-                doom-modeline-env-command nil)
-
-  (doom-modeline-def-modeline 'main
-    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches
-                       " " buffer-info remote-host buffer-position
-                       " " selection-info)
-    '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
-
-  (doom-modeline-set-modeline 'main t)
-  (doom-modeline-init))
+    (require 'ov)
+    (cond
+     ;; Centered justification
+     ((and (eq 'center (plist-get org-format-latex-options :justify))
+           (= beg (line-beginning-position)))
+      (let* ((img (create-image image 'imagemagick t))
+             (width (car (image-size img)))
+             (offset (floor (- (/ 40 2) (/ width 2)))))
+        (overlay-put (ov-at) 'before-string (make-string offset ? ))))
+     ;; Right justification
+     ((and (eq 'right (plist-get org-format-latex-options :justify))
+           (= beg (line-beginning-position)))
+      (let* ((img (create-image image 'imagemagick t))
+             (width (car (image-display-size (overlay-get (ov-at) 'display))))
+             (offset (floor (- 40 width (- (line-end-position) end)))))
+        (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
+  (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay)))
 
 (defun config/prettify-symbols ()
   "Enable and configure prettify-symbols mode and pretty mode."
@@ -1381,209 +1357,245 @@ Provides facilities for yanking formatted code snippets."
           '(("function" .  #x0192))))
   (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript))
 
-(defun config/org-latex-preview ()
-  "Configure LaTeX preview settings for Org mode."
-  (with-eval-after-load 'org
-    (if (boundp 'org-format-latex-options)
-        (setq org-format-latex-options
-              (plist-put org-format-latex-options :justify 'center)))
+(defun config/projectile ()
+  "Configure Projectile."
+  (setq-default projectile-completion-system 'ivy
+                projectile-enable-caching t
+                projectile-find-dir-includes-top-level t)
 
-    (defun org-justify-fragment-overlay (beg end image imagetype)
-      "Adjust the justification of a LaTeX fragment.
-The justification is set by :justify in `org-format-latex-options'.
-Only equations at the beginning of a line are justified."
-      (setq-default org-format-latex-header "\\documentclass[reqno]{article}
-\\usepackage[usenames]{color}
-[PACKAGES]
-[DEFAULT-PACKAGES]
-\\pagestyle{empty}
-% do not remove
-% The settings below are copied from fullpage.sty
-\\setlength{\\textwidth}{\\paperwidth}
-\\addtolength{\\textwidth}{-16cm}
-\\setlength{\\oddsidemargin}{1.5cm}
-\\addtolength{\\oddsidemargin}{-2.54cm}
-\\setlength{\\evensidemargin}{\\oddsidemargin}
-\\setlength{\\textheight}{\\paperheight}
-\\addtolength{\\textheight}{-\\headheight}
-\\addtolength{\\textheight}{-\\headsep}
-\\addtolength{\\textheight}{-\\footskip}
-\\addtolength{\\textheight}{-3cm}
-\\setlength{\\topmargin}{1.5cm}
-\\addtolength{\\topmargin}{-2.54cm}")
+  (if (bound-and-true-p projectile-globally-ignored-directories)
+      (setq-default projectile-globally-ignored-directories
+                    (append projectile-globally-ignored-directories
+                            '("node_modules")))
+    (error "Failed appending to projectile-globally-ignored-directories")))
 
-    (require 'ov)
-    (cond
-     ;; Centered justification
-     ((and (eq 'center (plist-get org-format-latex-options :justify))
-           (= beg (line-beginning-position)))
-      (let* ((img (create-image image 'imagemagick t))
-             (width (car (image-size img)))
-             (offset (floor (- (/ 40 2) (/ width 2)))))
-        (overlay-put (ov-at) 'before-string (make-string offset ? ))))
-     ;; Right justification
-     ((and (eq 'right (plist-get org-format-latex-options :justify))
-           (= beg (line-beginning-position)))
-      (let* ((img (create-image image 'imagemagick t))
-             (width (car (image-display-size (overlay-get (ov-at) 'display))))
-             (offset (floor (- 40 width (- (line-end-position) end)))))
-        (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
-  (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay)))
+(defun config/python ()
+  "Configure python and related modes."
+  (let* ((conda-path (format "%s/.anaconda" (getenv "HOME")))
+         (python-path (format "%s/bin" conda-path)))
+    (setenv "WORKON_HOME" (format "%s/envs" conda-path))
+    (setq-default conda-anaconda-home conda-path
+                  exec-path (cons python-path exec-path)))
 
-(defun config/highlight-lines-at-length (chars)
-  "Configure and enable whitespace mode to color text after CHARS chars."
-  (setq-default whitespace-line-column chars
-                whitespace-style '(face lines-tail empty tabs))
-  ;; Enable excess length highlighting in prog-mode
-  (add-hook 'prog-mode-hook #'whitespace-mode)
-  (add-hook 'org-mode-hook #'whitespace-mode)
+  (setq-default python-guess-indent nil
+                python-indent-offset 4
+                python-shell-completion-native-enable t
+                python-shell-interpreter "ipython"
+                python-shell-interpreter-args "-i --simple-prompt")
 
-  ;; Manually set trailing whitespace cleanup
-  ;; (workaround, since the preceding breaks whitespace-cleanup,
-  ;; which `dotspacemacs-whitespace-cleanup 'all' uses.)
-  (add-hook 'before-save-hook #'delete-trailing-whitespace))
+  (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
+  (add-hook 'python-mode-hook #'anaconda-mode)
+  (add-hook 'python-mode-hook #'evil-text-object-python-add-bindings)
 
-(defun config/evil-cleverparens ()
-  "Configure evil-cleverparens layer."
-  (require 'evil-cleverparens-text-objects)
-  (smartparens-strict-mode)
-  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
-  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-  (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode))
+  ;; conda-env
+  (setq-default conda-anaconda-home (getenv "ANACONDA_HOME"))
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell)
+  (conda-env-autoactivate-mode)
 
-(defun config/firacode ()
-  "Configure firacode font face with ligatures.
-See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
-  (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
-                 (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
-                 (36 . ".\\(?:>\\)")
-                 (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
-                 (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
-                 (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
-                 (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
-                 (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
-                 (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
-                 (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
-                 (48 . ".\\(?:x[a-zA-Z]\\)")
-                 (58 . ".\\(?:::\\|[:=]\\)")
-                 (59 . ".\\(?:;;\\|;\\)")
-                 (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
-                 (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
-                 (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
-                 (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
-                 (91 . ".\\(?:]\\)")
-                 (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
-                 (94 . ".\\(?:=\\)")
-                 (119 . ".\\(?:ww\\)")
-                 (123 . ".\\(?:-\\)")
-                 (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
-                 (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
-                 )))
-    (dolist (char-regexp alist)
-      (set-char-table-range composition-function-table (car char-regexp)
-                            `([,(cdr char-regexp) 0 font-shape-gstring])))))
+  ;; traad
+  ;; Expects a conda env of the same name be defined
+  ;; Execute (traad-install-server) to set up
+  (setq-default traad-environment-name "traad")
 
-(defun yas/camelcase-file-name ()
-  "Camel-case the current buffer's file name."
-  (interactive)
-  (let ((filename (file-name-nondirectory (file-name-sans-extension (or (buffer-file-name) (buffer-name (current-buffer)))))))
-    (mapconcat #'capitalize (split-string filename "[_\-]") "")))
+  ;; Register Pipenv project type with projectile
+  (projectile-register-project-type 'python-pipenv '("Pipfile")
+                                    :compile "pipenv run compile"
+                                    :test "pipenv run test"
+                                    :test-suffix "_test")
 
-(defun yas/strip (str)
-  "Extract a parameter name from STR."
-  (replace-regexp-in-string ":.*$" ""
-   (replace-regexp-in-string "^\s+" ""
-    (replace-regexp-in-string "," ""
-     str))))
+  (defun python-before-save-hooks ()
+    (if (and (eq major-mode 'python-mode)
+             (not (string-match-p "kizen" (buffer-file-name))))
+      (progn
+        (pyimport-remove-unused)
+        (importmagic-fix-imports)
+        (py-isort-buffer)
+        (yapfify-buffer))))
 
-(defun yas/to-field-assignment (str)
-  "Make 'STR' to 'self.`STR` = `STR`'."
-  (format "self.%s = %s" (yas/strip str) (yas/strip str)))
+  (add-hook 'before-save-hook #'python-before-save-hooks))
 
-(defun yas/prepend-colon (str)
-  "Make `STR' to :`STR'."
-  (format ":%s" (yas/strip str)))
+(defun config/ruby ()
+  "Configure packages for Ruby mode."
+  ;; Don't display the rbenv ruby version (inaccurate, duplicated by doom
+  ;; major-mode indicator)
+  (setq-default rbenv-show-active-ruby-in-modeline nil)
+  (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
 
-(defun yas/indent-level ()
-  "Determine the number of spaces the current line is indented."
-  (interactive)
-  (string-match "[^[:space:]]" (thing-at-point 'line t)))
+  ;; Define keybinding to manually trigger autoformat
+  (setq-default rufo-enable-format-on-save t)
+  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format-buffer))
 
-(defun yas/indent-string ()
-  "Return a string of spaces matching the current indentation level."
-  (interactive)
-  (make-string (yas/indent-level) ?\s))
+(defun config/ruby-in-buffer-eval ()
+  "Configure and enable seeing-is-believing and xmpfilter for Ruby."
+  (require 'seeing-is-believing)
+  (add-hook 'ruby-mode-hook 'seeing-is-believing)
 
-(defun yas/indented-newline ()
-  "Newline followed by correct indentation."
-  (interactive)
-  (format "\n%s" (yas/indent-string)))
+  (defun xmpfilter-eval-current-line ()
+    (interactive)
+    (seeing-is-believing-mark-current-line-for-xmpfilter)
+    (seeing-is-believing-run-as-xmpfilter))
 
-(defun yas/args-list ()
-  "Extract an args list from the current line."
-  (interactive)
-  (string-match "\(.+\)" (thing-at-point 'line t)))
+  (defun define-xmpfilter-keybindings ()
+    "Define keybindings for xmpfilter."
+    (if (boundp 'ruby-mode-map)
+        (progn
+          (define-key ruby-mode-map (kbd "C-c C-c") 'xmpfilter-eval-current-line)
+          (define-key ruby-mode-map (kbd "C-c C-v") 'seeing-is-believing-clear)
+          (define-key ruby-mode-map (kbd "C-c C-f") 'seeing-is-believing-run))
+      (error "Failed setting up xmpfilter keybindings")))
 
-(defun yas/to-ruby-accessors (str)
-  "Splits STR into an `attr_accesor' statement."
-  (interactive)
-  (mapconcat 'yas/prepend-colon (split-string str ",") ", "))
+  (add-hook 'ruby-mode-hook 'define-xmpfilter-keybindings))
 
-(defun yas/to-ruby-setters (str)
-  "Splits STR into a sequence of field assignments."
-  (interactive)
-  (mapconcat 'yas/to-field-assignment
-             (split-string str ",")
-             (yas/indented-newline)))
+(defun config/semantic ()
+  "Remove semantic mode hooks."
+  (defun config/semantic-remove-hooks ()
+    (remove-hook 'completion-at-point-functions
+                 'semantic-analyze-completion-at-point-function)
+    (remove-hook 'completion-at-point-functions
+                 'semantic-analyze-notc-completion-at-point-function)
+    (remove-hook 'completion-at-point-functions
+                 'semantic-analyze-nolongprefix-completion-at-point-function))
+  (add-hook 'semantic-mode-hook #'config/semantic-remove-hooks))
 
-(defun display-and-copy-file-path ()
-  "Print the path of the current buffer's file.
-Depends on yankee.el."
-  (interactive)
-  (let ((file-path (yankee--abbreviated-project-or-home-path-to-file)))
-    (kill-new file-path)
-    (message file-path)))
+(defun config/set-terminal-emacs-theme ()
+  "Set theme for terminal session."
+  (if (not (display-graphic-p))
+      (spacemacs/load-theme 'spacemacs-dark)))
 
-(defun config/load-local-config ()
-  "Load local configuration overrides."
-  (load "~/.init.local.el"))
+(defun config/terminal-buffers ()
+  "Configure terminal buffers."
+  (evil-set-initial-state 'term-mode 'insert)
 
-(defun buffer-exists-p (bufname)
-  "Check if a buffer with the given name BUFNAME exists."
-  (not (eq nil (get-buffer bufname))))
+  (defun term-send-ctrl-y ()
+    (interactive)
+    (term-send-raw-string "\C-y"))
 
-(defun switch-to-previous-buffer ()
-  "Switch to the previously open buffer.
-Repeated invocations toggle between the two most recently open buffers.
-Excludes the ibuffer."
-  (interactive)
-  (if (buffer-exists-p "*Ibuffer*")  (kill-buffer "*Ibuffer*"))
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
+  (defun term-mode-config ()
+    (if (boundp 'term-raw-map)
+        (progn
+          (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
+          (define-key term-raw-map (kbd "C-p") #'term-send-up)
+          (define-key term-raw-map (kbd "C-n") #'term-send-down)
+          (define-key term-raw-map (kbd "C-v") #'term-paste)
+          (goto-address-mode))
+      (error "Failed setting up term mode keybindings")))
 
-(defun split-term-window-right-and-focus ()
-  "Open an `ansi-term' split to the right and focus it."
-  (interactive)
-  (defvar shell-default-term-shell)
-  (split-window-right-and-focus)
-  (ansi-term shell-default-term-shell))
+  (add-hook 'term-mode-hook #'term-mode-config)
 
-(defun rerun-term-command-right ()
-   "Re-issue previously issued command in terminal split to the right."
-   (interactive)
-   (evil-window-right 1)
-   (evil-insert-state)
-   (execute-kbd-macro (kbd "M-p"))
-   (execute-kbd-macro (kbd "RET"))
-   (evil-window-left 1))
+  ;; Use utf8
+  (defun my-term-use-utf8 ()
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+  (add-hook 'term-exec-hook #'my-term-use-utf8)
 
-(defun rerun-term-command-below ()
-  "Re-issue previously issued command in a terminal split below."
-  (interactive)
-  (evil-window-down 1)
-  (evil-insert-state)
-  (execute-kbd-macro (kbd "M-p"))
-  (execute-kbd-macro (kbd "RET"))
-  (evil-window-up 1))
+  ;; ansi-term: always use default shell
+  (defadvice ansi-term (before force-bash)
+    (interactive (list shell-default-term-shell)))
+  (ad-activate #'ansi-term))
+
+(defun config/underscore-to-word-char-list ()
+  "Add underscore to word char list in prog and other modes."
+  (defun add-underscore-to-word-chars ()
+    "Adds underscore to the word chars syntax entry list."
+    (modify-syntax-entry ?_ "w"))
+
+  (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'text-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
+
+(defun config/version-control ()
+  "Configure version-control-related settings."
+  (with-eval-after-load 'magit
+    (if (and (boundp 'magit-completing-read-function)
+             (boundp 'magit-mode-map))
+        (progn
+          (setq magit-completing-read-function 'ivy-completing-read)
+          (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
+
+          (add-hook 'magit-mode-hook #'magit-todos-mode)
+          (spacemacs/set-leader-keys-for-major-mode 'magit-status-mode "t" #'magit-todos-jump-to-todos)
+
+          (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+      (error "Failed setting up magit")))
+
+  (setq-default
+   magit-repository-directories '(
+                                  ("~/Projects/" . 2)
+                                  ("~/Documents". 2)
+                                  ))
+
+  ;; leader gb to display branching controls
+  (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
+
+  ;; leader gB to display Git blame
+  (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
+
+  ;; Git Gutter: Display fringe on left
+  (setq-default git-gutter-fr+-side 'left-fringe)
+  (setq-default git-gutter-fr:side 'left-fringe))
+
+(defun config/web-beautify ()
+  "Configure web-beautify hooks."
+  (eval-after-load 'sgml-mode
+    '(add-hook 'html-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+  (eval-after-load 'web-mode
+    '(add-hook 'web-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+  (eval-after-load 'css-mode
+    '(add-hook 'css-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t)))))
+
+(defun config/web-mode ()
+  "Configure web-mode (for CSS, HTML)."
+  (setq-default css-indent-offset 2
+                web-mode-markup-indent-offset 4
+                web-mode-css-indent-offset 2
+                web-mode-attr-indent-offset 2
+                web-mode-code-indent-offset 2)
+
+  (with-eval-after-load 'web-mode
+    (if (boundp 'web-mode-indentation-params)
+        (progn
+          (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+          (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+          (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+      (error "Failed setting up web-mode indentation params"))))
+
+(defun config/window-splitting ()
+  "Make focus window commands primary."
+  (spacemacs/set-leader-keys "ws" #'split-window-below-and-focus)
+  (spacemacs/set-leader-keys "wS" #'split-window-below)
+  (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
+  (spacemacs/set-leader-keys "wV" #'split-window-right)
+  (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus))
+
+(defun config/yankee ()
+  "Load and configure yankee.el.
+Provides facilities for yanking formatted code snippets."
+  (require 'yankee)
+  (if (boundp 'evil-visual-state-map)
+      (progn
+        (define-key evil-visual-state-map (kbd "gy") nil)
+        (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
+        (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
+        (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
+        (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
+    (error "Failed setting up yankee.el keybindings")))
+
+(defun config/yasnippet ()
+  "Define yasnippet keybindings."
+  (define-key global-map (kbd "C-j") nil)
+  (spacemacs/declare-prefix (kbd "C-j") "tools")
+  (define-key global-map (kbd "C-j C-j") #'ivy-yasnippet)
+  (define-key global-map (kbd "C-j C-;") #'yas-expand))
 
 ;;; init.el ends here
 (defun dotspacemacs/emacs-custom-settings ()
