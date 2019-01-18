@@ -534,6 +534,7 @@ dump."
   (config/company)
   (config/compilation-buffers)
   (config/elm)
+  (config/deft)
   (config/elixir)
   (config/evil-cleverparens)
   (config/evil-collection)
@@ -1291,6 +1292,12 @@ Provides facilities for yanking formatted code snippets."
                            yaml-mode))
   (global-flycheck-mode))
 
+(defun config/deft ()
+  "Configure deft notes browser."
+  (setq-default
+   deft-directory "~/Dropbox/deft"
+   deft-extensions '("txt" "text" "tex" "md" "markdown" "org")
+   deft-recursive t))
 
 (defun config/modeline ()
   "Configure the modeline."
