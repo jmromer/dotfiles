@@ -493,6 +493,10 @@ See the header of this file for more information."
   ;; Display Magit full-screen
   (setq-default git-magit-status-fullscreen t)
 
+  ;; set these before loading evil
+  (setq-default evil-want-integration t
+                evil-want-keybinding nil)
+
   ;; Don't create lockfiles
   (setq-default create-lockfiles nil)
 
@@ -527,10 +531,12 @@ dump."
   (config/global-modes)
 
   (config/amx)
+  (config/company)
   (config/compilation-buffers)
   (config/elm)
   (config/elixir)
   (config/evil-cleverparens)
+  (config/evil-collection)
   (config/evil-in-ex-buffer)
   (config/evil-goggles)
   (config/evil-lion)
@@ -565,23 +571,8 @@ dump."
 
   (editorconfig-mode 1)
 
-  ;; Enable evil keybindings everywhere
-  (evil-collection-init)
-  (setq-default
-   evil-collection-company-use-tng t
-   evil-collection-outline-bind-tab-p t
-   evil-collection-term-sync-state-and-mode-p t
-   evil-collection-setup-minibuffer t
-   evil-collection-setup-debugger-keys t)
-
-  ;; Override TAB, RET, S-TAB for company-tng
-  (let ((keymap company-active-map))
-    (define-key keymap [return] #'company-complete)
-    (define-key keymap (kbd "RET") #'company-complete)
-    (define-key keymap [tab] #'company-complete)
-    (define-key keymap (kbd "TAB") #'company-select-next)
-    (define-key keymap [backtab] nil)
-    (define-key keymap (kbd "S-TAB") nil))
+  (config/company-tng)
+  (add-hook 'text-mode-hook #'config/company-tng)
 
   ;; yasnippet
   (define-key global-map (kbd "C-j") nil)
@@ -653,11 +644,6 @@ dump."
 
 (defun config/global-modes ()
   "Enable globally set modes."
-  (with-eval-after-load 'company
-    (progn
-      (company-flx-mode +1)
-      (add-hook 'text-mode-hook #'company-mode-on)))
-
   (global-evil-quickscope-mode 1)
   (smartparens-global-strict-mode)
   (visual-line-mode))
@@ -669,6 +655,17 @@ dump."
   (spacemacs/set-leader-keys "wv" #'split-window-right-and-focus)
   (spacemacs/set-leader-keys "wV" #'split-window-right)
   (spacemacs/set-leader-keys "wT" #'split-term-window-right-and-focus))
+
+(defun config/evil-collection ()
+  "Enable evil keybindings everywhere."
+  (setq-default evil-collection-company-use-tng t
+                evil-collection-outline-bind-tab-p t
+                evil-collection-term-sync-state-and-mode-p t
+                evil-collection-setup-minibuffer t
+                evil-collection-setup-debugger-keys t)
+  ;; load init evil-collection after loading evil
+  (when (require 'evil-collection nil t)
+    (evil-collection-init)))
 
 (defun config/evil-in-ex-buffer ()
   "Emacs bindings in Evil ex minibuffer."
@@ -699,6 +696,48 @@ dump."
   (if (boundp 'evil-normal-state-map)
       (progn
         (define-key evil-normal-state-map (kbd ",:") #'amx/amx-major-mode-commands))))
+
+(defun config/company ()
+  "Configure company auto-completion mode."
+  (with-eval-after-load 'company
+    (progn
+      (company-flx-mode +1)
+      (add-hook 'text-mode-hook #'company-mode-on)
+
+      (if (boundp 'company-frontends)
+          (progn
+            (add-to-list 'company-frontends 'company-tng-frontend))
+        (error "Not adding company front-ends"))
+
+      ;; (if (boundp 'company-backends)
+      ;;     (progn
+      ;;       (add-to-list 'company-backends '(company-anaconda :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-capf :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-dabbrev :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-dabbrev-code :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-etags :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-files :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-gtags :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-jedi :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-keywords :with company-yasnippet))
+      ;;       (add-to-list 'company-backends '(company-tern :with company-yasnippet)))
+      ;;   (error "Not adding company backends"))
+      )))
+
+(defun config/company-tng ()
+  "Enable company-tng-defaults, override TAB, RET, S-TAB key bindings."
+  (message "Setting company-tng defaults...")
+  (company-tng-configure-default)
+  (message "Overriding company-tng defaults...")
+  (if (boundp 'company-active-map)
+      (let ((keymap company-active-map))
+        (define-key keymap [return] #'company-complete)
+        (define-key keymap (kbd "RET") #'company-complete)
+        (define-key keymap [tab] #'company-complete)
+        (define-key keymap (kbd "TAB") #'company-select-next)
+        (define-key keymap [backtab] nil)
+        (define-key keymap (kbd "S-TAB") nil))
+    (error "Not overriding company-tng keybindings")))
 
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
