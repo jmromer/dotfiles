@@ -799,6 +799,12 @@ dump."
                 js2-strict-missing-semi-warning nil
                 prettier-js-command "prettier-standard")
 
+  (defun json-mode-hooks ()
+    (progn
+      (setq tab-width 2)
+      (spacemacs/set-leader-keys-for-major-mode
+        'json-mode "=" #'json-pretty-print-buffer)))
+  (add-hook 'json-mode-hook #'json-mode-hooks)
 
   (with-eval-after-load 'web-mode
     (if (boundp 'web-mode-indentation-params)
