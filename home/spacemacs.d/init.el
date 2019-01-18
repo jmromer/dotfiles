@@ -572,7 +572,6 @@ dump."
   (config/prettify-symbols)
 
   (config/company-tng)
-  (add-hook 'text-mode-hook #'config/company-tng)
 
   (editorconfig-mode 1)
 
@@ -658,6 +657,7 @@ dump."
     (progn
       (company-flx-mode +1)
       (add-hook 'text-mode-hook #'company-mode-on)
+      (add-hook 'text-mode-hook #'config/company-tng)
 
       (if (boundp 'company-frontends)
           (progn
