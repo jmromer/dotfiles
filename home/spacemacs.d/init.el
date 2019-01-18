@@ -159,6 +159,7 @@ values."
      direnv
      editorconfig
      emmet-mode
+     evil-collection
      evil-lion
      evil-quickscope
      evil-text-object-python
@@ -563,6 +564,9 @@ dump."
   (config/prettify-symbols)
 
   (editorconfig-mode 1)
+
+  ;; Enable evil keybindings everywhere
+  (evil-collection-init)
 
   ;; yasnippet
   (define-key global-map (kbd "C-j") nil)
