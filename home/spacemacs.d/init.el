@@ -567,6 +567,21 @@ dump."
 
   ;; Enable evil keybindings everywhere
   (evil-collection-init)
+  (setq-default
+   evil-collection-company-use-tng t
+   evil-collection-outline-bind-tab-p t
+   evil-collection-term-sync-state-and-mode-p t
+   evil-collection-setup-minibuffer t
+   evil-collection-setup-debugger-keys t)
+
+  ;; Override TAB, RET, S-TAB for company-tng
+  (let ((keymap company-active-map))
+    (define-key keymap [return] #'company-complete)
+    (define-key keymap (kbd "RET") #'company-complete)
+    (define-key keymap [tab] #'company-complete)
+    (define-key keymap (kbd "TAB") #'company-select-next)
+    (define-key keymap [backtab] nil)
+    (define-key keymap (kbd "S-TAB") nil))
 
   ;; yasnippet
   (define-key global-map (kbd "C-j") nil)
