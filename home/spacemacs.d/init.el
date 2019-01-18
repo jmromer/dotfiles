@@ -1163,43 +1163,57 @@ Provides facilities for yanking formatted code snippets."
     (setq-default
      org-capture-templates
      '(
-       ("t" "TODO" entry
-        (file+headline org-default-notes-file "Collect")
-        "* TODO %? %^G\n  %U"
-        :empty-lines 1)
        ;;
-       ("s" "Scheduled TODO" entry
-        (file+headline org-default-notes-file "Collect")
-        "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
-        :empty-lines 1)
+       ;; TODOS
        ;;
-       ("d" "Deadline" entry
-        (file+headline org-default-notes-file "Collect")
-        "* TODO %? %^G\n  DEADLINE: %^t"
-        :empty-lines 1)
+       ("t" "To-do" entry
+            (file+headline org-default-notes-file "Tasks")
+            "* TODO %? %^G\n  %U"
+            :empty-lines 1)
+       ("s" "To-do with scheduled date" entry
+            (file+headline org-default-notes-file "Tasks")
+            "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
+            :empty-lines 1)
+       ("d" "To-do with deadline date" entry
+            (file+headline org-default-notes-file "Tasks")
+            "* TODO %? %^G\n  DEADLINE: %^t"
+            :empty-lines 1)
        ;;
-       ("p" "Priority" entry
-        (file+headline org-default-notes-file "Collect")
-        "* TODO [#A] %? %^G\n  SCHEDULED: %^t"
-        :empty-lines 1)
+       ;; Collected items (to be scheduled / prioritized)
+       ;;
+       ("c" "Collect item" entry
+            (file+headline org-default-notes-file "Collect")
+            "* %?\n  %l  %^G\n  %U"
+            :empty-lines 1)
+       ("p" "Priority item" entry
+            (file+headline org-default-notes-file "Collect")
+            "* [#A] %? %^G\n  SCHEDULED: %^t"
+            :empty-lines 1)
+       ;;
+       ;; Special Items
        ;;
        ("a" "Appointment" entry
-        (file+headline org-default-notes-file "Collect")
-        "* %? %^G\n  %^t"
-        :empty-lines 1)
-       ;;
+            (file+headline org-default-notes-file "Collect")
+            "* %? %^G\n  %^t"
+            :empty-lines 1)
        ("l" "Link" entry
-        (file+headline org-default-notes-file "Collect")
-        "* TODO %A %? %^G\n  SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))"
-        :empty-lines 1)
+            (file+headline org-default-notes-file "Collect")
+            "* %A %? %^G\n  SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))"
+            :empty-lines 1)
        ;;
-       ("n" "Note" entry
-        (file+headline org-default-notes-file "Notes")
-        "* %? %^G\n  %U" :empty-lines 1)
+       ;; Notes
+       ;;
+       ("n" "Note" checkitem
+            (file+headline org-default-notes-file "Notes")
+            nil
+            :kill-buffer t
+            :prepend t)
+       ;;
+       ;; Journal entry
        ;;
        ("j" "Journal entry" entry
-        (function org-journal-find-location)
-        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+            (function org-journal-find-location)
+            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
        )
      )
 
