@@ -848,11 +848,6 @@ Excludes the ibuffer."
       (add-hook 'text-mode-hook #'company-mode-on)
       (add-hook 'text-mode-hook #'company-tng-on)
 
-      (if (boundp 'company-frontends)
-          (progn
-            (add-to-list 'company-frontends 'company-tng-frontend))
-        (error "Not adding company front-ends"))
-
       ;; (if (boundp 'company-backends)
       ;;     (progn
       ;;       (add-to-list 'company-backends '(company-anaconda :with company-yasnippet))
@@ -866,6 +861,11 @@ Excludes the ibuffer."
       ;;       (add-to-list 'company-backends '(company-keywords :with company-yasnippet))
       ;;       (add-to-list 'company-backends '(company-tern :with company-yasnippet)))
       ;;   (error "Not adding company backends"))
+
+      (if (boundp 'company-frontends)
+          (progn
+            (add-to-list 'company-frontends 'company-tng-frontend))
+        (error "Not adding company front-ends"))
       )))
 
 (defun config/compilation-buffers ()
