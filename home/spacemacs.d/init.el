@@ -1279,56 +1279,54 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
        ;; Icebox items (to be prioritized, scoped, estimated)
        ;;
        ("i" "Icebox" entry
-           (file org-default-icebox-file)
-           "* %?\n  %U"
-           :empty-lines 0)
+        (file org-default-icebox-file)
+        "* %?\n  %U"
+        :empty-lines 0)
        ;;
        ;; Sprint
        ;;
        ("t" "TODO" entry
-            (file+headline org-default-notes-file "Today")
-            "* TODO %? %^G\n  %U"
-            :empty-lines 1)
+        (file+headline org-default-notes-file "Today")
+        "* TODO %? %^G\n  %U"
+        :empty-lines 1)
        ("s" "TODO (Scheduled)" entry
-            (file+headline org-default-notes-file "Today")
-            "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
-            :empty-lines 1)
+        (file+headline org-default-notes-file "Today")
+        "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
+        :empty-lines 1)
        ("d" "TODO (Deadline)" entry
-            (file+headline org-default-notes-file "Today")
-            "* TODO %? %^G\n  DEADLINE: %^t"
-            :empty-lines 1)
+        (file+headline org-default-notes-file "Today")
+        "* TODO %? %^G\n  DEADLINE: %^t"
+        :empty-lines 1)
        ("p" "Priority item" entry
-            (file+headline org-default-notes-file "Today")
-            "* [#A] %? %^G\n  SCHEDULED: %^t"
-            :empty-lines 1)
+        (file+headline org-default-notes-file "Today")
+        "* [#A] %? %^G\n  SCHEDULED: %^t"
+        :empty-lines 1)
        ;;
        ;; Special Items
        ;;
        ("a" "Appointment" entry
-            (file+headline org-default-notes-file "Appointments")
-            "* %? %^G\n  %^t"
-            :empty-lines 1)
+        (file+headline org-default-notes-file "Appointments")
+        "* %? %^G\n  %^t"
+        :empty-lines 1)
        ("l" "Link" entry
-            (file+headline org-default-notes-file "Links")
-            "* %?\n  %l\n  %U"
-            :empty-lines 1)
+        (file+headline org-default-notes-file "Links")
+        "* %?\n  %l\n  %U"
+        :empty-lines 1)
        ;;
        ;; Notes
        ;;
        ("m" "Marginalia" checkitem
-            (file+headline org-default-notes-file "Marginalia")
-            nil
-            :kill-buffer t
-            :prepend t)
-       ("n" "Note" plain
-            (function org-capture-deft-new-file)
-            "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
+        (file+headline org-default-notes-file "Marginalia")
+        nil
+        :kill-buffer t :prepend t)
+       ("n" "Note" plain (function org-capture-deft-new-file)
+        "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
        ;;
        ;; Journal entry
        ;;
        ("j" "Journal entry" entry
-            (function org-journal-find-location)
-            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
+        (function org-journal-find-location)
+        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
 
     (setq-default org-structure-template-alist '(("a" . "export ascii")
                                                  ("c" . "center")
