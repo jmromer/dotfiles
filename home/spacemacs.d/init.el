@@ -624,8 +624,7 @@ dump."
 
 ;; Org mode
 
-(defun org-capture-journal-new-entry ()
-  "Open today's journal. Used non-interactively by org capture."
+(defun org-journal-find-location ()
   ;; Open today's journal, but specify a non-nil prefix argument in order to
   ;; inhibit inserting the heading; org-capture will insert the heading.
   (org-journal-new-entry t)
@@ -1250,7 +1249,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
        ;; Journal entry
        ;;
        ("j" "Journal entry" entry
-            (function org-capture-journal-new-entry)
+            (function org-journal-find-location)
             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
        )
      )
