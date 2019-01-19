@@ -139,8 +139,7 @@ values."
      version-control
      vimscript
      vinegar
-     yaml
-     )
+     yaml)
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -182,21 +181,18 @@ values."
      traad
      vimish-fold
      (yankee :location (recipe :fetcher github :repo "jmromer/yankee.el" :branch "develop"))
-     (ox-gfm :location (recipe :fetcher github :repo "jmromer/ox-gfm" :branch "develop"))
-     )
+     (ox-gfm :location (recipe :fetcher github :repo "jmromer/ox-gfm" :branch "develop")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages
-   '(
-     )
+   '()
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
    '(
      ace-jump-mode
      evil-mc
-     fancy-battery
-     )
+     fancy-battery)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -517,15 +513,13 @@ See the header of this file for more information."
   (set-default 'truncate-lines nil)
 
   ;; Add local packages directory to load path
-  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME")))
-  )
+  (add-to-list 'load-path (format "%s/.spacemacs.d/local" (getenv "HOME"))))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
-dump."
-  )
+dump.")
 
 (defun dotspacemacs/user-config ()
   "Load configuration after layer initialization."
@@ -865,8 +859,7 @@ Excludes the ibuffer."
       (if (boundp 'company-frontends)
           (progn
             (add-to-list 'company-frontends 'company-tng-frontend))
-        (error "Not adding company front-ends"))
-      )))
+        (error "Not adding company front-ends")))))
 
 (defun config/compilation-buffers ()
   "Configure compilation buffer settings."
@@ -1008,8 +1001,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
                  (119 . ".\\(?:ww\\)")
                  (123 . ".\\(?:-\\)")
                  (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
-                 (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
-                 )))
+                 (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)"))))
     (dolist (char-regexp alist)
       (set-char-table-range composition-function-table (car char-regexp)
                             `([,(cdr char-regexp) 0 font-shape-gstring])))))
@@ -1297,9 +1289,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
        ;;
        ("j" "Journal entry" entry
             (function org-journal-find-location)
-            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-       )
-     )
+            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
 
     ;; Source Blocks
     ;; Python: <p
@@ -1352,23 +1342,23 @@ Only equations at the beginning of a line are justified."
 \\setlength{\\topmargin}{1.5cm}
 \\addtolength{\\topmargin}{-2.54cm}")
 
-    (require 'ov)
-    (cond
-     ;; Centered justification
-     ((and (eq 'center (plist-get org-format-latex-options :justify))
-           (= beg (line-beginning-position)))
-      (let* ((img (create-image image 'imagemagick t))
-             (width (car (image-size img)))
-             (offset (floor (- (/ 40 2) (/ width 2)))))
-        (overlay-put (ov-at) 'before-string (make-string offset ? ))))
-     ;; Right justification
-     ((and (eq 'right (plist-get org-format-latex-options :justify))
-           (= beg (line-beginning-position)))
-      (let* ((img (create-image image 'imagemagick t))
-             (width (car (image-display-size (overlay-get (ov-at) 'display))))
-             (offset (floor (- 40 width (- (line-end-position) end)))))
-        (overlay-put (ov-at) 'before-string (make-string offset ? ))))))
-  (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay)))
+      (require 'ov)
+      (cond
+       ;; Centered justification
+       ((and (eq 'center (plist-get org-format-latex-options :justify))
+             (= beg (line-beginning-position)))
+        (let* ((img (create-image image 'imagemagick t))
+               (width (car (image-size img)))
+               (offset (floor (- (/ 40 2) (/ width 2)))))
+          (overlay-put (ov-at) 'before-string (make-string offset ?\s))))
+       ;; Right justification
+       ((and (eq 'right (plist-get org-format-latex-options :justify))
+             (= beg (line-beginning-position)))
+        (let* ((img (create-image image 'imagemagick t))
+               (width (car (image-display-size (overlay-get (ov-at) 'display))))
+               (offset (floor (- 40 width (- (line-end-position) end)))))
+          (overlay-put (ov-at) 'before-string (make-string offset ?\s))))))
+    (advice-add 'org--format-latex-make-overlay :after #'org-justify-fragment-overlay)))
 
 (defun config/prettify-symbols ()
   "Enable and configure prettify-symbols mode and pretty mode."
@@ -1595,10 +1585,9 @@ Only equations at the beginning of a line are justified."
       (error "Failed setting up magit")))
 
   (setq-default
-   magit-repository-directories '(
-                                  ("~/Projects/" . 2)
-                                  ("~/Documents". 2)
-                                  ))
+   magit-repository-directories '(("~/Projects/" . 2)
+                                  ("~/Documents". 2)))
+
 
   ;; leader gb to display branching controls
   (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
@@ -1676,7 +1665,7 @@ Provides facilities for yanking formatted code snippets."
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
+This function is called at the very end of Spacemacs initialization.")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1685,10 +1674,8 @@ This function is called at the very end of Spacemacs initialization."
  '(package-selected-packages
    (quote
     (editorconfig doom-modeline hl-todo yasnippet-snippets yapfify yankee yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vimish-fold vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil traad toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sqlup-mode sql-indent spray spaceline-all-the-icons solarized-theme smex smeargle slim-mode shrink-path shell-pop seeing-is-believing scss-mode sass-mode rvm rufo ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters pyvenv pytest pyimport pyenv-mode py-isort pug-mode projectile-rails pretty-mode prettier-js popwin pony-mode pippel pipenv pip-requirements persp-mode password-generator paradox ox-twbs ox-reveal ox-hugo ox-gfm overseer ov osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file ob-swift ob-restclient ob-ipython ob-http ob-elixir noflet nginx-mode nameless mwim mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magithub magit-todos magit-svn magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-rich ivy-purpose ivy-hydra insert-shebang indium indent-guide importmagic impatient-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-make gxref groovy-mode groovy-imports graphviz-dot-mode graphql-mode gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags fuzzy forge font-lock+ flyspell-correct-ivy flycheck-rtags flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flycheck-credo flycheck-bashate flx-ido fish-mode fill-column-indicator feature-mode eyebrowse expand-region exercism evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-text-object-python evil-surround evil-quickscope evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-commentary evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime engine-mode emmet-mode elm-test-runner elm-mode elisp-slime-nav eldoc-eval ein dumb-jump dotenv-mode dockerfile-mode docker disaster direnv diminish diff-hl deft dash-at-point dactyl-mode cython-mode csv-mode counsel-projectile counsel-gtags counsel-dash counsel-css conda company-web company-tern company-statistics company-shell company-rtags company-restclient company-quickhelp company-jedi company-go company-flx company-emacs-eclim company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode clean-aindent-mode clang-format chruby centered-cursor-mode bundler browse-at-remote bm bison-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk amx alchemist aggressive-indent add-node-modules-path ace-link ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+(custom-set-faces)
