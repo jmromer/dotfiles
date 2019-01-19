@@ -657,6 +657,39 @@ Overrides doom-modeline's version to respect
         (define-key keymap (kbd "S-TAB") nil))
     (error "Not overriding company-tng keybindings")))
 
+;; layout
+
+(defun reset-layouts ()
+  "Reset to the default set of layouts."
+  (interactive)
+  (progn
+    ;; Kill other buffers, don't prompt for confirmation.
+    (mapc 'kill-buffer
+          (mapc 'switch-to-buffer
+                (delq (current-buffer) (buffer-list))))
+    (delete-other-windows)
+
+    (find-file "~/.spacemacs.d/init.el")
+    (rename-buffer "init.el")
+
+    (find-file "~/Dropbox/org/inbox.org")
+    (rename-buffer "inbox")
+
+    (org-journal-today)
+    (rename-buffer "journal")
+
+    (split-window-right-and-focus)
+    (org-agenda-list)
+    (rename-buffer "weekly-agenda")
+
+    (select-window (get-buffer-window "inbox"))
+    (split-window-right-and-focus)
+
+    (find-file "~/Dropbox/org/icebox.org")
+    (rename-buffer "icebox")
+
+    (select-window (get-buffer-window "inbox"))))
+
 ;; Org mode
 
 (defun org-journal-find-location ()
