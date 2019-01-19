@@ -535,7 +535,6 @@ dump.")
   (config/deft)
   (config/elixir)
   (config/elm)
-  (config/evil-cleverparens)
   (config/evil-collection)
   (config/evil-goggles)
   (config/evil-in-ex-buffer)
@@ -548,12 +547,11 @@ dump.")
   (config/ivy)
   (config/javascript-modes)
   (config/latex-mode)
-  (config/lispy)
+  (config/lisps)
   (config/markdown-mode)
   (config/modeline)
   (config/org-latex-preview)
   (config/org-mode)
-  (config/parinfer)
   (config/projectile)
   (config/python)
   (config/ruby)
@@ -975,14 +973,6 @@ Excludes the ibuffer."
         (define-key evil-ex-completion-map (kbd "C-a") 'beginning-of-line))
     (error "Failed setting up ex mode keybindings")))
 
-(defun config/evil-cleverparens ()
-  "Configure evil-cleverparens layer."
-  (require 'evil-cleverparens-text-objects)
-  (smartparens-strict-mode)
-  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
-  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-  (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode))
-
 (defun config/evil-goggles ()
   "Configure evil-goggles."
   (setq-default evil-goggles-pulse nil
@@ -1138,13 +1128,6 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
       (error "Failed defining RJSX hybrid state keybindings")))
   (add-hook 'rjsx-mode-hook #'rjsx-hybrid-keybindings))
 
-(defun config/lispy ()
-  "Configure lispy mode."
-  (defun lispy-enable ()
-    "Enable Lispy"
-    (lispy-mode 1))
-  (add-hook 'emacs-lisp-mode-hook #'lispy-enable))
-
 (defun config/latex-mode ()
   "Configure LaTeX mode."
   (defun XeLaTeX-compile ()
@@ -1162,6 +1145,41 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
 
   ;; Detect xelatex files
   (add-to-list 'auto-mode-alist '("\\.xtx\\'" . LaTeX-mode)))
+
+(defun config/lisps ()
+  "Configure Lisp modes."
+  ;; evil-cleverparens
+  (require 'evil-cleverparens-text-objects)
+  (smartparens-strict-mode)
+  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
+
+  (setq-default parinfer-extensions '(defaults
+                                      pretty-parens
+                                      evil
+                                      lispy
+                                      paredit
+                                      smart-tab
+                                      smart-yank))
+  ;; Lisp modes
+  (defun add-lisp-modes-hook (func)
+    "Add FUNC as a hook to each of the major Lisp major modes."
+    (progn
+      (add-hook 'clojure-mode-hook func)
+      (add-hook 'scheme-mode-hook func)
+      (add-hook 'emacs-lisp-mode-hook func)))
+
+  ;; Lisp minor modes
+  (defun lisp-packages ()
+    "Enable Lisp minor modes, in the correct sequence."
+    (progn
+      (lispy-mode +1)
+      (parinfer-mode)
+      (spacemacs/toggle-parinfer-indent-on)
+      (evil-cleverparens-mode)))
+
+  (remove-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+  (add-lisp-modes-hook #'lisp-packages))
+
 
 (defun config/markdown-mode ()
   "Configure Markdown mode."
@@ -1439,15 +1457,6 @@ Only equations at the beginning of a line are justified."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("function" .  #x0192))))
   (add-hook 'js2-mode-hook #'prettify-symbols-javascript))
-
-(defun config/parinfer ()
-  "Configure parinfer."
-  (with-eval-after-load 'evil
-    (progn
-      (setq-default parinfer-extensions '(defaults pretty-parns evil lispy paredit smart-tab smart-yank))
-      (add-hook 'clojure-mode-hook #'parinfer-mode)
-      (add-hook 'scheme-mode-hook #'parinfer-mode)
-      (add-hook 'emacs-lisp-mode #'parinfer-mode))))
 
 (defun config/projectile ()
   "Configure Projectile."
