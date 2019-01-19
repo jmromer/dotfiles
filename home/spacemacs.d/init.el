@@ -1199,55 +1199,58 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
      org-capture-templates
      '(
        ;;
-       ;; TODOS
+       ;; Icebox items (to be prioritized, scoped, estimated)
        ;;
-       ("t" "To-do" entry
-            (file+headline org-default-notes-file "Tasks")
+       ("i" "Icebox" entry
+           (file org-default-icebox-file)
+           "* %?\n  %U"
+           :empty-lines 0)
+       ;;
+       ;; Sprint
+       ;;
+       ("t" "TODO" entry
+            (file+headline org-default-notes-file "Today")
             "* TODO %? %^G\n  %U"
             :empty-lines 1)
-       ("s" "To-do with scheduled date" entry
-            (file+headline org-default-notes-file "Tasks")
+       ("s" "TODO (Scheduled)" entry
+            (file+headline org-default-notes-file "Today")
             "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
             :empty-lines 1)
-       ("d" "To-do with deadline date" entry
-            (file+headline org-default-notes-file "Tasks")
+       ("d" "TODO (Deadline)" entry
+            (file+headline org-default-notes-file "Today")
             "* TODO %? %^G\n  DEADLINE: %^t"
             :empty-lines 1)
-       ;;
-       ;; Collected items (to be scheduled / prioritized)
-       ;;
-       ("c" "Collect item" entry
-            (file+headline org-default-notes-file "Collect")
-            "* %?\n  %l  %^G\n  %U"
-            :empty-lines 1)
        ("p" "Priority item" entry
-            (file+headline org-default-notes-file "Collect")
+            (file+headline org-default-notes-file "Today")
             "* [#A] %? %^G\n  SCHEDULED: %^t"
             :empty-lines 1)
        ;;
        ;; Special Items
        ;;
        ("a" "Appointment" entry
-            (file+headline org-default-notes-file "Collect")
+            (file+headline org-default-notes-file "Appointments")
             "* %? %^G\n  %^t"
             :empty-lines 1)
        ("l" "Link" entry
-            (file+headline org-default-notes-file "Collect")
-            "* %A %? %^G\n  SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))"
+            (file+headline org-default-notes-file "Links")
+            "* %?\n  %l\n  %U"
             :empty-lines 1)
        ;;
        ;; Notes
        ;;
-       ("n" "Note" checkitem
-            (file+headline org-default-notes-file "Notes")
+       ("m" "Marginalia" checkitem
+            (file+headline org-default-notes-file "Marginalia")
             nil
             :kill-buffer t
             :prepend t)
+       ("n" "Note" plain
+            (function org-capture-deft-new-file)
+            "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
        ;;
        ;; Journal entry
        ;;
        ("j" "Journal entry" entry
-            (function org-journal-find-location)
+            (function org-capture-journal-new-entry)
             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
        )
      )
