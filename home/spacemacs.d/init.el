@@ -1200,7 +1200,8 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
 
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
-    (setq-default org-agenda-files '("~/Dropbox/org"))
+    (setq-default org-agenda-files '("~/Dropbox/org")
+                  org-agenda-window-setup 'current-window)
 
     (if (boundp 'org-agenda-files)
         (mapc
