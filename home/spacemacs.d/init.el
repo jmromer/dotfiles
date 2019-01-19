@@ -68,6 +68,8 @@ values."
            web-fmt-tool 'prettier)
      imenu-list
      ipython-notebook
+     (ibuffer :variables
+              ibuffer-group-buffers-by 'projects)
      (ivy :variables
           ivy-enable-advanced-buffer-information t
           ivy-wrap t)
