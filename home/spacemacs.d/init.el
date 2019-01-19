@@ -611,9 +611,7 @@ dump."
 
 (defun company-tng-on ()
   "Enable company-tng-defaults, override TAB, RET, S-TAB key bindings."
-  (message "Setting company-tng defaults...")
   (company-tng-configure-default)
-  (message "Overriding company-tng defaults...")
   (if (boundp 'company-active-map)
       (let ((keymap company-active-map))
         (define-key keymap [return] #'company-complete)
