@@ -1607,8 +1607,8 @@ Only equations at the beginning of a line are justified."
   (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
 
   ;; Git Gutter: Display fringe on left
-  (setq-default git-gutter-fr+-side 'left-fringe)
-  (setq-default git-gutter-fr:side 'left-fringe))
+  (setq-default git-gutter-fr+-side 'left-fringe
+                git-gutter-fr:side 'left-fringe))
 
 (defun config/web-beautify ()
   "Configure web-beautify hooks."
