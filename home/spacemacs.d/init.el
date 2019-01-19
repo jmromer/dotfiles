@@ -1330,25 +1330,17 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
             (function org-journal-find-location)
             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
 
-    ;; Source Blocks
-    ;; Python: <p
-    (if (boundp 'org-structure-template-alist)
-        (progn
-          (add-to-list 'org-structure-template-alist
-                       '("p"
-                         "#+BEGIN_SRC python :exports both\n?\n#+END_SRC"
-                         "<src lang=\"python\">\n?\n</src>"))
-          ;; Elixir: <x
-          (add-to-list 'org-structure-template-alist
-                       '("x"
-                         "#+BEGIN_SRC elixir\n?\n#+END_SRC"
-                         "<src lang=\"elixir\">\n?\n</src>"))
-          ;; Emacs Lisp: <el
-          (add-to-list 'org-structure-template-alist
-                       '("el"
-                         "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"
-                         "<src lang=\"emacs-lisp\">\n?\n</src>")))
-      (error "Failed setting up org-babel source block"))))
+    (setq-default org-structure-template-alist '(("a" . "export ascii")
+                                                 ("c" . "center")
+                                                 ("C" . "comment")
+                                                 ("e" . "example")
+                                                 ("E" . "export")
+                                                 ("h" . "export html")
+                                                 ("l" . "export latex")
+                                                 ("n" . "export notes")
+                                                 ("q" . "quote")
+                                                 ("s" . "src")
+                                                 ("v" . "verse")))))
 
 (defun config/org-latex-preview ()
   "Configure LaTeX preview settings for Org mode."
