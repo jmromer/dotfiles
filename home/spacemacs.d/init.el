@@ -622,6 +622,41 @@ dump."
         (define-key keymap (kbd "S-TAB") nil))
     (error "Not overriding company-tng keybindings")))
 
+;; Org mode
+
+(defun org-capture-journal-new-entry ()
+  "Open today's journal. Used non-interactively by org capture."
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  ;; Position point on the journal's top-level heading so that org-capture
+  ;; will add the new entry as a child entry.
+  (goto-char (point-min)))
+
+(defun org-capture-deft-new-file ()
+  "Open a new deft notes file, prompting for the file name."
+  (setq org-capture-deft--title (read-string "Title: ")
+        org-capture-deft--timestamp (format-time-string "%Y%m%d%H%M%S"))
+
+  (if (and (boundp 'org-capture-deft--title)
+           (not (string-blank-p org-capture-deft--title)))
+    (deft-new-file-named
+      (downcase (replace-regexp-in-string " " "-" org-capture-deft--title)))
+    (deft-new-file)))
+
+(defun org-journal-today ()
+  "Open today's journal."
+  (interactive)
+  (org-journal-find-location)
+  (goto-char (point-max)))
+
+(defun org-notes-open-inbox ()
+  "Open the inbox file."
+  (interactive)
+  (if (boundp 'org-default-notes-file)
+      (find-file org-default-notes-file)
+    (error "No `org-default-notes-file' set")))
+
 ;; yasnippet
 
 (defun yas/camelcase-file-name ()
@@ -1133,40 +1168,12 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
      org-notes-directory "~/Dropbox/org/notes"
      org-default-notes-file "~/Dropbox/org/inbox.org")
 
-    ;; org-journal
-    (defun org-journal-find-location ()
-      "Open today's journal. Used non-interactively by org capture."
-      ;; Open today's journal, but specify a non-nil prefix argument in order to
-      ;; inhibit inserting the heading; org-capture will insert the heading.
-      (org-journal-new-entry t)
-      ;; Position point on the journal's top-level heading so that org-capture
-      ;; will add the new entry as a child entry.
-      (goto-char (point-min)))
-
-    (defun org-journal-today ()
-      "Open today's journal."
-      (interactive)
-      (org-journal-find-location)
-      (goto-char (point-max)))
 
     (spacemacs/set-leader-keys "aojS" #'org-journal-search)
     (spacemacs/set-leader-keys "aojt" #'org-journal-today)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
     (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "t" 'org-journal-today)
 
-    (defun org-notes-open-directory ()
-      "Open the org notes directory in dired."
-      (interactive)
-      (if (boundp 'org-notes-directory)
-          (find-file org-notes-directory)
-        (error "No `org-notes-directory' set")))
-
-    (defun org-notes-open-inbox ()
-      "Open the inbox file."
-      (interactive)
-      (if (boundp 'org-default-notes-file)
-          (find-file org-default-notes-file)
-        (error "No `org-default-notes-file' set")))
 
     ;; Org notes
     (spacemacs/set-leader-keys
