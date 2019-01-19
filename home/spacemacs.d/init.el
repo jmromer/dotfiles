@@ -1386,7 +1386,7 @@ Only equations at the beginning of a line are justified."
   (global-prettify-symbols-mode)
 
   ;; prettify symbols: Python
-  (defun config/prettify-symbols-python ()
+  (defun prettify-symbols-python ()
     "Provide prettify-symbol mode mappings for python-mode."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("def" .    #x0192)
@@ -1396,31 +1396,32 @@ Only equations at the beginning of a line are justified."
             ("not in" . #x2209)
             ("all" .    #x2200)
             ("any" .    #x2203))))
-  (add-hook 'python-mode-hook #'config/prettify-symbols-python)
+  (add-hook 'python-mode-hook #'prettify-symbols-python)
 
   ;; prettify symbols: Emacs Lisp
-  (defun config/prettify-symbols-emacs-lisp ()
+  (defun prettify-symbols-emacs-lisp ()
     "Provide prettify-symbol mode mappings for emacs-lisp-mode."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("defun" .  #x0192))))
-  (add-hook 'emacs-lisp-mode-hook #'config/prettify-symbols-emacs-lisp)
+  (add-hook 'emacs-lisp-mode-hook #'prettify-symbols-emacs-lisp)
 
   ;; prettify symbols: Elixir
-  (defun config/prettify-symbols-elixir()
+  (defun prettify-symbols-elixir()
     "Provide prettify-symbol mode mappings for elixir-mode."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("def" .  #x0192)
             ("defp" .  #x0070)
             ("defmodule" . #x006D)
             ("fn" . #x03BB))))
-  (add-hook 'elixir-mode-hook #'config/prettify-symbols-elixir)
+  (add-hook 'elixir-mode-hook #'prettify-symbols-elixir)
 
   ;; prettify symbols: JavaScript
-  (defun config/prettify-symbols-javascript ()
+  (defun prettify-symbols-javascript ()
     "Provide prettify-symbol mode mappings for javascript modes."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("function" .  #x0192))))
-  (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript))
+  (add-hook 'js2-mode-hook #'prettify-symbols-javascript))
+
 (defun config/parinfer ()
   "Configure parinfer."
   (with-eval-after-load 'evil
