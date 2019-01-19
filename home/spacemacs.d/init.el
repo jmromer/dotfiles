@@ -97,6 +97,7 @@ values."
           osx-right-command-as 'left
           osx-right-option-as 'none
           osx-right-control-as 'left)
+     parinfer
      phoenix
      (python :variables
              python-save-before-test t
@@ -168,6 +169,7 @@ values."
      graphql-mode
      gxref
      indium
+     lispy
      magit-todos
      ob-swift
      ov
@@ -551,10 +553,12 @@ dump."
   (config/ivy)
   (config/javascript-modes)
   (config/latex-mode)
+  (config/lispy)
   (config/markdown-mode)
   (config/modeline)
   (config/org-latex-preview)
   (config/org-mode)
+  (config/parinfer)
   (config/projectile)
   (config/python)
   (config/ruby)
@@ -1108,6 +1112,13 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
       (error "Failed defining RJSX hybrid state keybindings")))
   (add-hook 'rjsx-mode-hook #'rjsx-hybrid-keybindings))
 
+(defun config/lispy ()
+  "Configure lispy mode."
+  (defun lispy-enable ()
+    "Enable Lispy"
+    (lispy-mode 1))
+  (add-hook 'emacs-lisp-mode-hook #'lispy-enable))
+
 (defun config/latex-mode ()
   "Configure LaTeX mode."
   (defun XeLaTeX-compile ()
@@ -1410,6 +1421,14 @@ Only equations at the beginning of a line are justified."
     (mapc (lambda (pair) (push pair prettify-symbols-alist))
           '(("function" .  #x0192))))
   (add-hook 'js2-mode-hook #'config/prettify-symbols-javascript))
+(defun config/parinfer ()
+  "Configure parinfer."
+  (with-eval-after-load 'evil
+    (progn
+      (setq-default parinfer-extensions '(defaults pretty-parns evil lispy paredit smart-tab smart-yank))
+      (add-hook 'clojure-mode-hook #'parinfer-mode)
+      (add-hook 'scheme-mode-hook #'parinfer-mode)
+      (add-hook 'emacs-lisp-mode #'parinfer-mode))))
 
 (defun config/projectile ()
   "Configure Projectile."
