@@ -1177,23 +1177,22 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
      org-babel-python-command "python3"
      org-export-with-sub-superscripts '{}
      org-directory "~/Dropbox/org"
-     org-notes-directory "~/Dropbox/org/notes"
-     org-default-notes-file "~/Dropbox/org/inbox.org")
+     org-default-notes-file "~/Dropbox/org/inbox.org"
+     org-default-icebox-file "~/Dropbox/org/icebox.org")
 
+    (spacemacs/set-leader-keys-for-major-mode
+      'org-journal-mode
+      "s" 'org-journal-search
+      "t" 'org-journal-today)
 
-    (spacemacs/set-leader-keys "aojS" #'org-journal-search)
-    (spacemacs/set-leader-keys "aojt" #'org-journal-today)
-    (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "s" 'org-journal-search)
-    (spacemacs/set-leader-keys-for-major-mode 'org-journal-mode "t" 'org-journal-today)
-
-
-    ;; Org notes
     (spacemacs/set-leader-keys
-      "a o n" nil
-      "a o n <RET>" #'org-notes-open-directory
-      "a o n i" #'org-notes-open-inbox
-      "a o n j" #'org-journal-today)
-    (spacemacs/declare-prefix "a o n" "org notes")
+      "a j" nil
+      "a j RET" #'org-journal-new-entry
+      "a j t" #'org-journal-today
+      "a j s" #'org-journal-search
+      "a j f" #'org-journal-search-forever
+      "a j d" #'org-journal-new-date-entry)
+    (spacemacs/declare-prefix "a j" "org-journal")
 
     ;; Org capture templates
     (setq-default
