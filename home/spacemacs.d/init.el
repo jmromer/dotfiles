@@ -842,7 +842,19 @@ Excludes the ibuffer."
   (setq-default
    deft-directory "~/Dropbox/deft"
    deft-extensions '("txt" "text" "tex" "md" "markdown" "org")
-   deft-recursive t))
+   deft-default-extension "org"
+   deft-recursive t)
+
+  (spacemacs/set-leader-keys
+    "a n" nil
+    "a n RET" #'spacemacs/deft
+    "a n f" #'deft-find-file
+    "a n n" #'deft-new-file-named
+    "a n i" #'org-notes-open-inbox)
+  (spacemacs/declare-prefix "a n" "notes")
+
+  (spacemacs/set-leader-keys-for-major-mode 'deft-mode
+    "g" #'deft-refresh))
 
 (defun config/diminish ()
   "Configure diminish glyphs for various minor modes."
