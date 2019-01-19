@@ -591,7 +591,42 @@ dump."
   ;; execute local configuration file last
   (config/load-local-config))
 
-;; Custom Functions
+;; Overrides
+
+(with-eval-after-load 'doom-modeline-segments
+  (defun doom-modeline-update-persp-name (&rest _)
+    "Update perspective name in mode-line.
+Overrides doom-modeline's version to respect
+`dotspacemacs-display-default-layout'."
+    (setq doom-modeline--persp-name
+          ;; Support `persp-mode', while not support `perspective'
+          (when (and doom-modeline-persp-name
+                     (bound-and-true-p persp-mode)
+                     (fboundp 'safe-persp-name)
+                     (fboundp 'get-current-persp))
+            (let* ((persp (get-current-persp))
+                   (name (safe-persp-name persp)))
+              (unless (and (string-equal persp-nil-name name)
+                           ;; NB: Added the below
+                           (not dotspacemacs-display-default-layout))
+                (propertize
+                 (format " #%s " name)
+                 'face (if (and persp
+                                (not (persp-contain-buffer-p (current-buffer) persp)))
+                           'doom-modeline-persp-buffer-not-in-persp
+                         'doom-modeline-persp-name)
+                 'help-echo "mouse-1: Switch perspective, mouse-2: Show help for minor mode"
+                 'mouse-face 'mode-line-highlight
+                 'local-map (let ((map (make-sparse-keymap)))
+                              (define-key map [mode-line mouse-1]
+                                #'persp-switch)
+                              (define-key map [mode-line mouse-2]
+                                (lambda ()
+                                  (interactive)
+                                  (describe-function 'persp-mode)))
+                              map))))))))
+
+;; Custom functions
 
 ;; amx
 
