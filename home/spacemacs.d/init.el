@@ -625,6 +625,7 @@ dump."
 ;; Org mode
 
 (defun org-journal-find-location ()
+  "Open today's journal entry."
   ;; Open today's journal, but specify a non-nil prefix argument in order to
   ;; inhibit inserting the heading; org-capture will insert the heading.
   (org-journal-new-entry t)
