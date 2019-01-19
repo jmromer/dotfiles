@@ -1254,6 +1254,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
      org-default-notes-file "~/Dropbox/org/inbox.org"
      org-default-icebox-file "~/Dropbox/org/icebox.org")
 
+    ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
       'org-journal-mode
       "s" 'org-journal-search
@@ -1267,6 +1268,8 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
       "a j f" #'org-journal-search-forever
       "a j d" #'org-journal-new-date-entry)
     (spacemacs/declare-prefix "a j" "org-journal")
+
+    (add-hook 'org-journal-mode-hook #'org-mode)
 
     ;; Org capture templates
     (setq-default
