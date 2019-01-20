@@ -683,26 +683,26 @@ Overrides doom-modeline's version to respect
   (progn
     (spacemacs/layout-goto-default)
     (delete-other-windows)
-    (find-file (expand-file-name "~/Dropbox/org/inbox.org"))
-    (rename-buffer "*inbox*")
-    (find-file (expand-file-name "~/Dropbox/org/icebox.org"))
-    (rename-buffer "*icebox*")
+    (find-file (expand-file-name org-default-notes-file))
+    (rename-buffer "*sprint*")
+    (find-file (expand-file-name org-default-backlog-file))
+    (rename-buffer "*backlog*")
     (org-journal-today)
     (rename-buffer "*journal*")
     (delete-other-windows)
 
-    (switch-to-buffer "*inbox*")
+    (switch-to-buffer "*sprint*")
     (split-window-right-and-focus)
-    (switch-to-buffer "*icebox*")
+    (switch-to-buffer "*backlog*")
     (split-window-below-and-focus)
     (switch-to-buffer "*journal*")
 
-    (select-window (get-buffer-window "*inbox*"))
+    (select-window (get-buffer-window "*sprint*"))
     (split-window-below-and-focus)
     (org-agenda-list)
     (rename-buffer "*agenda*")
 
-    (select-window (get-buffer-window "*inbox*"))))
+    (select-window (get-buffer-window "*sprint*"))))
 
 (defun layouts-dotfiles ()
   "Set up dotfiles layout."
@@ -741,12 +741,19 @@ Overrides doom-modeline's version to respect
   (org-journal-find-location)
   (goto-char (point-max)))
 
-(defun org-notes-open-inbox ()
-  "Open the inbox file."
+(defun org-notes-open-sprint ()
+  "Open the sprint file."
   (interactive)
   (if (boundp 'org-default-notes-file)
       (find-file org-default-notes-file)
     (error "No `org-default-notes-file' set")))
+
+(defun org-notes-open-backlog ()
+  "Open the backlog file."
+  (interactive)
+  (if (boundp 'org-default-backlog-file)
+      (find-file org-default-backlog-file)
+    (error "No `org-default-backlog-file' set")))
 
 ;; yasnippet
 
@@ -940,7 +947,8 @@ Excludes the ibuffer."
     "a n RET" #'spacemacs/deft
     "a n f" #'deft-find-file
     "a n n" #'deft-new-file-named
-    "a n i" #'org-notes-open-inbox)
+    "a n s" #'org-notes-open-sprint
+    "a n b" #'org-notes-open-backlog)
   (spacemacs/declare-prefix "a n" "notes")
 
   (spacemacs/set-leader-keys-for-major-mode 'deft-mode
@@ -1297,8 +1305,8 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
      org-babel-python-command "python3"
      org-export-with-sub-superscripts '{}
      org-directory "~/Dropbox/org"
-     org-default-notes-file "~/Dropbox/org/inbox.org"
-     org-default-icebox-file "~/Dropbox/org/icebox.org")
+     org-default-notes-file "~/Dropbox/org/sprint.org"
+     org-default-backlog-file "~/Dropbox/org/backlog.org")
 
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
