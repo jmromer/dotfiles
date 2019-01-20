@@ -218,7 +218,7 @@ set backupskip=/tmp/*,/private/tmp/*
 set writebackup
 
 " Backspace behavior
-set backspace=indent,start " allow backspace over indent and start, not eol.
+set backspace=indent,start,eol
 
 " Searching
 set incsearch     " do incremental searching
