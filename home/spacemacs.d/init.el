@@ -655,7 +655,7 @@ Overrides doom-modeline's version to respect
 
 ;; layout
 
-(defun reset-layouts ()
+(defun layouts-reset ()
   "Reset to the default set of layouts."
   (interactive)
   (progn
@@ -663,28 +663,45 @@ Overrides doom-modeline's version to respect
     (mapc 'kill-buffer
           (mapc 'switch-to-buffer
                 (delq (current-buffer) (buffer-list))))
+    (layouts-org)
+    (layouts-dotfiles)
+    (spacemacs/layout-goto-default)))
+
+(defun layouts-org ()
+  "Set up org layout."
+  (interactive)
+  (progn
+    (spacemacs/layout-goto-default)
+    (delete-other-windows)
+    (find-file (expand-file-name "~/Dropbox/org/inbox.org"))
+    (rename-buffer "*inbox*")
+    (find-file (expand-file-name "~/Dropbox/org/icebox.org"))
+    (rename-buffer "*icebox*")
+    (org-journal-today)
+    (rename-buffer "*journal*")
     (delete-other-windows)
 
-    (find-file "~/.spacemacs.d/init.el")
-    (rename-buffer "init.el")
-
-    (find-file "~/Dropbox/org/inbox.org")
-    (rename-buffer "inbox")
-
-    (org-journal-today)
-    (rename-buffer "journal")
-
+    (switch-to-buffer "*inbox*")
     (split-window-right-and-focus)
+    (switch-to-buffer "*icebox*")
+    (split-window-below-and-focus)
+    (switch-to-buffer "*journal*")
+
+    (select-window (get-buffer-window "*inbox*"))
+    (split-window-below-and-focus)
     (org-agenda-list)
-    (rename-buffer "weekly-agenda")
+    (rename-buffer "*agenda*")
 
-    (select-window (get-buffer-window "inbox"))
-    (split-window-right-and-focus)
+    (select-window (get-buffer-window "*inbox*"))))
 
-    (find-file "~/Dropbox/org/icebox.org")
-    (rename-buffer "icebox")
-
-    (select-window (get-buffer-window "inbox"))))
+(defun layouts-dotfiles ()
+  "Set up dotfiles layout."
+  (interactive)
+  (progn
+    (persp-switch "dotfiles")
+    (delete-other-windows)
+    (find-file (expand-file-name "~/.spacemacs.d/init.el"))
+    (rename-buffer "*init.el*")))
 
 ;; Org mode
 
