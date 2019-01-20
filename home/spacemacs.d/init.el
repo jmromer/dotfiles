@@ -584,6 +584,13 @@ dump.")
   (spacemacs/declare-prefix "fd" "files/display")
   (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
 
+  (spacemacs/declare-prefix "L" "layouts")
+  (spacemacs/set-leader-keys
+    "L" nil
+    "L r" #'layouts-reset
+    "L o" #'layouts-org
+    "L d" #'layouts-dotfiles)
+
   ;; execute local configuration file last
   (config/load-local-config))
 
