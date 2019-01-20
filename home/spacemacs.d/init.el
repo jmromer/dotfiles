@@ -1180,7 +1180,6 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
   (remove-hook 'emacs-lisp-mode-hook #'parinfer-mode)
   (add-lisp-modes-hook #'lisp-packages))
 
-
 (defun config/markdown-mode ()
   "Configure Markdown mode."
   (defun alchemist-iex-send-current-code-block ()
@@ -1229,8 +1228,16 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
                        " " selection-info)
     '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
 
+  (defun enable-doom-modeline-in-messages ()
+    "Enable doom-modeline in messages buffer."
+    (let ((msg-window (get-buffer-window "*Messages*")))
+      (if msg-window
+          (with-current-buffer (window-buffer msg-window)
+            (doom-modeline-set-main-modeline)))))
+  (add-hook 'post-command-hook #'enable-doom-modeline-in-messages)
+
   (doom-modeline-set-modeline 'main t)
-  (doom-modeline-init))
+  (doom-modeline-mode))
 
 (defun config/org-mode ()
   "Configure and enable org mode."
