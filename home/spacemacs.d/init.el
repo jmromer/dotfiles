@@ -432,7 +432,7 @@ values."
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
 
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
@@ -488,6 +488,10 @@ See the header of this file for more information."
 
 (defun dotspacemacs/user-init ()
   "Load variables before package initialization."
+  ;; Separate server socket location for CLI emacs
+  (when (not window-system)
+    (setq-default server-socket-dir (getenv "EMACS_SOCKET_DIR")))
+
   ;; Display Magit full-screen
   (setq-default git-magit-status-fullscreen t)
 

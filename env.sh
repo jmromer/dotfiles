@@ -4,8 +4,11 @@
 # Emacs
 #-------------------------------------------------------------
 if [ -n "$INSIDE_EMACS" ]; then
-  export EDITOR=emacsclient
+  export EDITOR=ec
 fi
+
+export EMACS_SOCKET_DIR="$HOME/.emacs.d/server"
+export EMACS_SOCKET_NAME="emacs-cli"
 
 #-------------------------------------------------------------
 # GPG
