@@ -2,7 +2,6 @@
 #-------------------------------------------------------------
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
-alias ec="emacsclient -nw"
 alias vim='nvim'
 alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
@@ -11,6 +10,8 @@ alias dc='docker-compose'
 alias cdd='cd ~/.dotfiles'
 alias b=bundle
 alias music=mpsyt
+alias ec="emacsclient -nw --socket-name=$EMACS_SOCKET_DIR/$EMACS_SOCKET_NAME"
+alias es="emacs -nw --bg-daemon=$EMACS_SOCKET_NAME"
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
