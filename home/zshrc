@@ -96,12 +96,6 @@ export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-n:preview-down' --bind='ctr
 #-------------------------------------------------------------
 # FUNCTIONS
 #-------------------------------------------------------------
-# restart homebrewed postgres
-function restart_postgres() {
-  launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-}
-
 # Display any processes listening on the given port
 function kill-port() {
     local listeners="$(lsof -wnP -i tcp)"
@@ -119,43 +113,6 @@ function kill-port() {
 
     echo "kill $pids"
     eval "kill ${pids[@]}"
-}
-
-alias ec="emacsclient -nw"
-alias mux="tmux new -t"
-
-# Open the editor as appropriate
-function e() {
-  local editor=nvim
-
-  if [ -z "$1" ]; then
-    echo $editor .
-    $editor .
-  elif [ "$#" -gt 1 ]; then
-    $editor -p $@
-  else
-    echo $editor "$1"
-    $editor "$1"
-  fi
-}
-
-# Fuzzy-select a file from git status to open in editor
-function eg() {
-  local file="$(git select-files)"
-
-  if [[ ! -z "$file" ]]; then
-    e $(echo "$file")
-  fi
-}
-
-# Fuzzy-select a file from all those modified on the current git branch (up to
-# origin/master) to open in editor
-function egg() {
-  local file="$(git branch-modified-files | fzf-tmux --reverse -d 20)"
-
-  if [[ ! -z "$file" ]]; then
-    e $(echo "$file")
-  fi
 }
 
 # create dir $1 and cd into it, creating subdirectories as necessary
@@ -212,16 +169,6 @@ function binstubs() {
 #-------------------------------------------------------------
 # Git
 #-------------------------------------------------------------
-#-------------------------------------------------------------
-# FUNCTIONS
-#-------------------------------------------------------------
-function clone() {
-  git clone $1 $2         # git@github.com:user/repo_name.git
-  repo=${1##*/}           # repo_name.git
-  dir=${2:=${repo%.*}}    # repo_name unless $2 is provided
-  cd $dir                 # cds into repo directory
-}
-
 # No arguments: `git status`
 # With arguments: acts like `git`
 function g() {
