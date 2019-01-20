@@ -4,9 +4,6 @@ filetype plugin indent on
 scriptencoding utf-8
 set fileencodings=utf-8
 
-" Explicitly set viminfo
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
-
 " Suppress 'Pattern not found' messages
 set shortmess+=c
 
@@ -403,16 +400,6 @@ function! ReloadAllBuffers ()
 endfunction
 
 command! RA :call ReloadAllBuffers()
-
-"--------------------------------------------------------------
-" vim-swoop
-"--------------------------------------------------------------
-let g:swoopUseDefaultKeyMap = 0
-let g:defaultWinSwoopHeight = 15
-nnoremap <leader>ss :call Swoop()<CR>
-vnoremap <leader>ss :call SwoopSelection()<CR>
-nnoremap <leader>sS :call SwoopMulti()<CR>
-vnoremap <leader>sS :call SwoopMultiSelection()<CR>
 
 "--------------------------------------------------------------
 " ctags
