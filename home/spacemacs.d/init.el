@@ -1152,13 +1152,9 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
   (smartparens-strict-mode)
   (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
 
-  (setq-default parinfer-extensions '(defaults
-                                      pretty-parens
-                                      evil
-                                      lispy
-                                      paredit
-                                      smart-tab
-                                      smart-yank))
+  (setq-default
+   parinfer-extensions '(defaults pretty-parens evil lispy paredit smart-tab smart-yank))
+
   ;; Lisp modes
   (defun add-lisp-modes-hook (func)
     "Add FUNC as a hook to each of the major Lisp major modes."
@@ -1709,18 +1705,16 @@ Provides facilities for yanking formatted code snippets."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ibuffer-projectile editorconfig doom-modeline hl-todo yasnippet-snippets yapfify yankee yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vimish-fold vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil traad toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sqlup-mode sql-indent spray spaceline-all-the-icons solarized-theme smex smeargle slim-mode shrink-path shell-pop seeing-is-believing scss-mode sass-mode rvm rufo ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters pyvenv pytest pyimport pyenv-mode py-isort pug-mode projectile-rails pretty-mode prettier-js popwin pony-mode pippel pipenv pip-requirements persp-mode password-generator paradox ox-twbs ox-reveal ox-hugo ox-gfm overseer ov osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file ob-swift ob-restclient ob-ipython ob-http ob-elixir noflet nginx-mode nameless mwim mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magithub magit-todos magit-svn magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-rich ivy-purpose ivy-hydra insert-shebang indium indent-guide importmagic impatient-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-make gxref groovy-mode groovy-imports graphviz-dot-mode graphql-mode gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags fuzzy forge font-lock+ flyspell-correct-ivy flycheck-rtags flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flycheck-credo flycheck-bashate flx-ido fish-mode fill-column-indicator feature-mode eyebrowse expand-region exercism evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-text-object-python evil-surround evil-quickscope evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-commentary evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime engine-mode emmet-mode elm-test-runner elm-mode elisp-slime-nav eldoc-eval ein dumb-jump dotenv-mode dockerfile-mode docker disaster direnv diminish diff-hl deft dash-at-point dactyl-mode cython-mode csv-mode counsel-projectile counsel-gtags counsel-dash counsel-css conda company-web company-tern company-statistics company-shell company-rtags company-restclient company-quickhelp company-jedi company-go company-flx company-emacs-eclim company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode clean-aindent-mode clang-format chruby centered-cursor-mode bundler browse-at-remote bm bison-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk amx alchemist aggressive-indent add-node-modules-path ace-link ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(package-selected-packages
+     (quote
+      (magithub forge doom-modeline magit yasnippet-snippets yapfify yankee yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vimish-fold vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil traad toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sqlup-mode sql-indent spray spaceline-all-the-icons solarized-theme smex smeargle slim-mode shrink-path shell-pop seeing-is-believing scss-mode sass-mode rvm rufo ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters pyvenv pytest pyimport pyenv-mode py-isort pug-mode projectile-rails pretty-mode prettier-js popwin pony-mode pippel pipenv pip-requirements persp-mode password-generator parinfer paradox ox-twbs ox-reveal ox-hugo ox-gfm overseer ov osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file ob-swift ob-restclient ob-ipython ob-http ob-elixir noflet nginx-mode nameless mwim mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-todos magit-svn magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode lispy link-hint launchctl json-navigator js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-rich ivy-purpose ivy-hydra insert-shebang indium indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-make gxref groovy-mode groovy-imports graphviz-dot-mode graphql-mode gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist ghub+ gh-md ggtags fuzzy font-lock+ flyspell-correct-ivy flycheck-rtags flycheck-pos-tip flycheck-mix flycheck-gometalinter flycheck-elm flycheck-credo flycheck-bashate flx-ido fish-mode fill-column-indicator feature-mode eyebrowse expand-region exercism evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-text-object-python evil-surround evil-quickscope evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-commentary evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime engine-mode emmet-mode elm-test-runner elm-mode elisp-slime-nav eldoc-eval ein editorconfig dumb-jump dotenv-mode dockerfile-mode docker disaster direnv diminish diff-hl deft dash-at-point dactyl-mode cython-mode csv-mode counsel-projectile counsel-gtags counsel-dash counsel-css conda company-web company-tern company-statistics company-shell company-rtags company-restclient company-quickhelp company-jedi company-go company-flx company-emacs-eclim company-c-headers company-auctex company-anaconda command-log-mode column-enforce-mode closql clean-aindent-mode clang-format chruby centered-cursor-mode bundler browse-at-remote bm bison-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk amx alchemist aggressive-indent add-node-modules-path ace-link ac-ispell))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  (custom-set-faces))
