@@ -266,7 +266,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Fira Code Retina"
-                               :size 14
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
@@ -396,12 +396,11 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   dotspacemacs-line-numbers '(
-                               :relative t
+   dotspacemacs-line-numbers '(:relative t
                                :enabled-for-modes prog-mode
                                :disabled-for-modes pdf-view-mode org-mode doc-view-mode dired-mode
-                               :size-limit-kb 1024
-                               )
+                               :size-limit-kb 1024)
+
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
