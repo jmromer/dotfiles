@@ -578,11 +578,14 @@ dump.")
   (setq-default ispell-program-name "/usr/local/bin/ispell")
 
   ;; leader-fp to open file at point
-  (spacemacs/set-leader-keys "fp" #'find-file-at-point)
+  (spacemacs/set-leader-keys
+    "f p" #'find-file-at-point)
 
   ;; Display and copy buffer-file's path
-  (spacemacs/declare-prefix "fd" "files/display")
-  (spacemacs/set-leader-keys "fdp" 'display-and-copy-file-path)
+  (spacemacs/declare-prefix "f d" "files/display")
+  (spacemacs/set-leader-keys
+    "f d" nil
+    "f d p" #'display-and-copy-file-path)
 
   (spacemacs/declare-prefix "L" "layouts")
   (spacemacs/set-leader-keys
