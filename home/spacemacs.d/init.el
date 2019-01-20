@@ -1330,57 +1330,50 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
      org-capture-templates
      '(
        ;;
-       ;; Icebox items (to be prioritized, scoped, estimated)
+       ;; Checklist items (for current task)
        ;;
-       ("i" "Icebox" entry
-        (file org-default-icebox-file)
-        "* %?\n  %U"
-        :empty-lines 0)
+       ("c" "Checklist item" checkitem
+        (file+headline org-default-notes-file "Current Task")
+        "- [ ] %?\n"
+        :prepend t)
        ;;
-       ;; Sprint
+       ;; Backlog items (to be prioritized, scoped, estimated)
        ;;
-       ("t" "TODO" entry
-        (file+headline org-default-notes-file "Today")
-        "* TODO %? %^G\n  %U"
-        :empty-lines 1)
-       ("s" "TODO (Scheduled)" entry
-        (file+headline org-default-notes-file "Today")
-        "* TODO %? %^G\n  SCHEDULED: %^t\n  %U"
-        :empty-lines 1)
-       ("d" "TODO (Deadline)" entry
-        (file+headline org-default-notes-file "Today")
-        "* TODO %? %^G\n  DEADLINE: %^t"
-        :empty-lines 1)
-       ("p" "Priority item" entry
-        (file+headline org-default-notes-file "Today")
-        "* [#A] %? %^G\n  SCHEDULED: %^t"
-        :empty-lines 1)
+       ("b" "Backlog item" entry (file org-default-backlog-file)
+        "* %?\n  %U")
+       ("f" "Link (to the current file / selection)" entry (file org-default-backlog-file)
+        "* %?\n  %a\n  %U")
+       ("l" "Link (from clipboard)" entry (file org-default-backlog-file)
+        "* %c\n  %U")
+       ("m" "Meeting" entry (file org-default-backlog-file)
+        "* Meeting: %?\n  %^t\n  %U")
+       ("d" "Deadline" entry (file org-default-backlog-file)
+        "* %?\n  DEADLINE: %^t\n  %U")
+       ("p" "Priority item" entry (file org-default-backlog-file)
+        "* [#A] %?\n  %U")
        ;;
-       ;; Special Items
+       ;; Notes / Journal
        ;;
-       ("a" "Appointment" entry
-        (file+headline org-default-notes-file "Appointments")
-        "* %? %^G\n  %^t"
-        :empty-lines 1)
-       ("l" "Link" entry
-        (file+headline org-default-notes-file "Links")
-        "* %?\n  %l\n  %U"
-        :empty-lines 1)
-       ;;
-       ;; Notes
-       ;;
-       ("m" "Marginalia" checkitem
-        (file+headline org-default-notes-file "Marginalia")
-        nil
-        :kill-buffer t :prepend t)
-       ("n" "Note" plain (function org-capture-deft-new-file)
+       ("n" "Note" plain
+        (function org-capture-deft-new-file)
         "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
-       ;;
-       ;; Journal entry
-       ;;
        ("j" "Journal entry" entry
         (function org-journal-find-location)
-        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
+        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+       ;;
+       ;; Recurring Task
+       ;;
+       ("r" "Task (Recurring)" entry
+        (file+headline org-default-notes-file "Recurring Tasks")
+        "* TODO %?\n  DEADLINE: %^t\n  %U"
+        :empty-lines 1)
+       ;;
+       ;; Today's Sprint Tasks
+       ;;
+       ("t" "Task (Today's Sprint)" entry
+        (file+headline org-default-notes-file "Today's Tasks")
+        "* TODO %?\n  SCHEDULED: %t\n  %U"
+        :empty-lines 1)))
 
     (setq-default org-structure-template-alist '(("a" . "export ascii")
                                                  ("c" . "center")
