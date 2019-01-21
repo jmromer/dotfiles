@@ -196,6 +196,7 @@ values."
    dotspacemacs-excluded-packages
    '(
      ace-jump-mode
+     emoji-cheat-sheet-plus
      evil-mc
      fancy-battery)
 
