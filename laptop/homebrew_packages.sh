@@ -33,6 +33,7 @@ homebrew=(
   fd
   fzf
   hub                     # For github-flavored git
+  hugo
   imagemagick
   ispell
   mps-youtube             # command-line music player
