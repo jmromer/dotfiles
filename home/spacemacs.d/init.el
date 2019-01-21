@@ -767,7 +767,10 @@ Overrides doom-modeline's version to respect
 (defun yas/camelcase-file-name ()
   "Camel-case the current buffer's file name."
   (interactive)
-  (let ((filename (file-name-nondirectory (file-name-sans-extension (or (buffer-file-name) (buffer-name (current-buffer)))))))
+  (let ((filename
+         (file-name-nondirectory (file-name-sans-extension
+                                  (or (buffer-file-name)
+                                      (buffer-name (current-buffer)))))))
     (mapconcat #'capitalize (split-string filename "[_\-]") "")))
 
 (defun yas/strip (str)
