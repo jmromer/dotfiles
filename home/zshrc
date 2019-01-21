@@ -97,25 +97,6 @@ export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-n:preview-down' --bind='ctr
 #-------------------------------------------------------------
 # FUNCTIONS
 #-------------------------------------------------------------
-# Display any processes listening on the given port
-function kill-port() {
-    local listeners="$(lsof -wnP -i tcp)"
-    test -z "$listeners" && return
-
-    local pids="$(echo $listeners |\
-                   fzf-tmux -d 30 --exact --multi --reverse --no-sort --border |\
-                   awk '{ print $2 }' |\
-                   sort |\
-                   uniq |\
-                   grep --invert-match PID |\
-                   tr '\n' ' ')"
-
-    test -z "$listeners" && return
-
-    echo "kill $pids"
-    eval "kill ${pids[@]}"
-}
-
 # create dir $1 and cd into it, creating subdirectories as necessary
 function md() {
   local directory_name=$(echo $@ | sed -e "s/\s/_/g")
