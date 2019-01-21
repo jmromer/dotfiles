@@ -115,6 +115,7 @@ values."
            ruby-version-manager 'rbenv
            ruby-test-runner 'ruby-test)
      ruby-on-rails
+     rust
      scala
      search-engine
      (shell :variables
