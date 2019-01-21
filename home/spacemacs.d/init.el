@@ -1327,12 +1327,14 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
   (with-eval-after-load 'org
     (setq-default
      org-md-headline-style 'setext
+     spaceline-org-clock-p t
      org-src-tab-acts-natively t
      org-babel-python-command "python3"
      org-export-with-sub-superscripts '{}
      org-directory "~/Dropbox/org"
      org-default-notes-file "~/Dropbox/org/sprint.org"
-     org-default-backlog-file "~/Dropbox/org/backlog.org")
+     org-default-backlog-file "~/Dropbox/org/backlog.org"
+     org-archive-location "~/Dropbox/org/archive.org::* %s")
 
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
