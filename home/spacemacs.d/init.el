@@ -763,6 +763,21 @@ Overrides doom-modeline's version to respect
       (find-file org-default-backlog-file)
     (error "No `org-default-backlog-file' set")))
 
+(defun org-hugo-new-post-capture-template ()
+  "Return `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+  (save-match-data
+    (let* ((title (read-from-minibuffer "Post Title: "))
+           (fname (org-hugo-slug title)))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* TODO " title)
+                   ":PROPERTIES:"
+                   ,(concat "   :EXPORT_FILE_NAME: " fname)
+                   "   :END:"
+                   "   %?\n")
+                 "\n"))))
+
 ;; yasnippet
 
 (defun yas/camelcase-file-name ()
@@ -1363,7 +1378,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
        ("p" "Priority item" entry (file org-default-backlog-file)
         "* [#A] %?\n  %U")
        ;;
-       ;; Notes / Journal
+       ;; Notes / Journal / Blog Entry
        ;;
        ("n" "Note" plain
         (function org-capture-deft-new-file)
@@ -1371,6 +1386,9 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
        ("j" "Journal entry" entry
         (function org-journal-find-location)
         "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+       ("h" "Hugo post" entry
+        (file+olp "blog-jmromer.org" "Post Ideas")
+        (function org-hugo-new-post-capture-template))
        ;;
        ;; Recurring Task
        ;;
