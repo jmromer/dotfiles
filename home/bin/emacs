@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+#
+# emacs
+#
+# Open emacs as a client, start a server if necessary.
+# Any files passed as arguments will be opened in buffers.
+#
+# Usage:
+#   emacs [FILENAMES]
+#
+
+set -e
+
+if ! command -v brew > /dev/null 2>&1 ||
+       test ! -L "$(brew --prefix)/bin/emacs"; then
+    echo "Error: Install Homebrew and emacs."
+    echo "https://brew.sh"
+    echo "brew install emacs-plus"
+    exit 1
+fi
+
+if [ -z "$EMACS_SOCKET_DIR" ]; then
+    export EMACS_SOCKET_DIR="$HOME/.emacs.d/server"
+fi
+
+if  [ -z "$EMACS_SOCKET_NAME" ]; then
+    export EMACS_SOCKET_NAME=emacs-cli
+fi
+
+emacs_server="$(brew --prefix)/bin/emacs"
+emacs_client="$(brew --prefix)/bin/emacsclient"
+emacs_socket="$EMACS_SOCKET_DIR/$EMACS_SOCKET_NAME"
+
+# Start the cli server if it hasn't been already
+if [ ! -S "$emacs_socket" ]; then
+    echo "$emacs_server" -nw --bg-daemon="$EMACS_SOCKET_NAME"
+    "$emacs_server" -nw --bg-daemon="$EMACS_SOCKET_NAME"
+fi
+
+echo "$emacs_client" -nw --socket-name="$emacs_socket" "$@"
+"$emacs_client" -nw --socket-name="$emacs_socket" "$@"
