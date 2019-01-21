@@ -125,6 +125,9 @@ values."
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-enable-smart-eshell t)
      shell-scripts
+     (slack :variables
+            slack-spacemacs-layout-name "slack"
+            slack-spacemacs-layout-binding "C")
      spacemacs-layouts
      spacemacs-purpose
      speed-reading
