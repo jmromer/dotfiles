@@ -82,6 +82,14 @@ values."
             latex-enable-folding t)
      (markdown :variables
                markdown-live-preview-engine 'vmd)
+     (mu4e :variables
+           mu4e-enable-async-operations t
+           mu4e-enable-mode-line t
+           mu4e-enable-notifications t
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e"
+           mu4e-spacemacs-kill-layout-on-exit t
+           mu4e-spacemacs-layout-binding "m"
+           mu4e-spacemacs-layout-name "mail")
      nginx
      (org :variables
           org-projectile-file "TODOS.org"
@@ -543,6 +551,7 @@ dump.")
   (config/deft)
   (config/elixir)
   (config/elm)
+  (config/email)
   (config/evil-collection)
   (config/evil-goggles)
   (config/evil-in-ex-buffer)
@@ -580,6 +589,9 @@ dump.")
   (config/prettify-symbols)
 
   (editorconfig-mode 1)
+
+  ;; tramp
+  (setq-default tramp-default-method "ssh")
 
   ;; treemacs
   (treemacs-resize-icons 15)
@@ -721,6 +733,23 @@ Overrides doom-modeline's version to respect
     (delete-other-windows)
     (find-file (expand-file-name "~/.spacemacs.d/init.el"))
     (rename-buffer "*init.el*")))
+
+;; mu4e
+
+(defun mu4e-save-message-at-point (&optional dir)
+  "Save message at point to somewhere else as <date>_<subject>.eml.
+Optionally save at DIR (default value: ~/Desktop)."
+  (interactive)
+  (let* ((msg (mu4e-message-at-point))
+         (target (format "%s_%s.eml"
+                         (format-time-string "%F" (mu4e-message-field msg :date))
+                         (or (mu4e-message-field msg :subject) "No subject"))))
+    (copy-file
+     (mu4e-message-field msg :path)
+     (format "%s/%s"
+             (or dir (read-directory-name "Copy message to: " "~/Desktop"))
+             target)
+     1)))
 
 ;; Org mode
 
@@ -1013,6 +1042,75 @@ Excludes the ibuffer."
   "Configure Elm."
   (with-eval-after-load 'elm-mode
     (remove-hook 'elm-mode-hook 'elm-indent-mode)))
+
+(defun config/email ()
+  "Configure email packages."
+  (mu4e-maildirs-extension)
+
+  (setq-default
+   mail-user-agent 'mu4e-user-agent
+   mu4e-change-filenames-when-moving t ;; t required for mbsync
+   mu4e-compose-signature-auto-include t
+   mu4e-compose-complete-only-personal t
+   mu4e-context-policy 'pick-first
+   mu4e-get-mail-command "mbsync --all"
+   mu4e-maildir (expand-file-name "~/Dropbox/mail")
+   mu4e-maildir-shortcuts '(("/fastmail/INBOX" . ?i)
+                            ("/fastmail/Archive" . ?a)
+                            ("/fastmail/Trash" . ?t))
+   mu4e-drafts-folder "/fastmail/Drafts"
+   mu4e-refile-folder "/fastmail/Archive"
+   mu4e-trash-folder "/fastmail/Trash"
+   mu4e-sent-folder "/fastmail/Sent"
+   mu4e-completing-read-function 'completing-read
+   message-kill-buffer-on-exit t
+   mu4e-confirm-quit nil
+   mu4e-update-interval 600
+   mu4e-view-show-addresses t
+   mu4e-compose-format-flowed t
+   mu4e-use-fancy-chars t
+   mu4e-view-show-images t
+   mu4e-view-prefer-html t
+   mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout"
+   mu4e-html2text-command "w3m -dump -cols 80 -T text/html"
+   mu4e-msg2pdf ""
+   mu4e-headers-include-related t
+   mu4e-attachment-dir (expand-file-name "~/Downloads")
+   smtpmail-queue-dir (expand-file-name "~/Dropbox/mail/queue/cur")
+   smtpmail-queue-mail nil
+   smtpmail-stream-type 'ssl
+   send-mail-function #'async-smtpmail-send-it
+   message-send-mail-function #'async-smtpmail-send-it
+   mu4e-bookmarks `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+                    ("date:today..now" "Today's messages" ?t)
+                    ("maildir:\"/Fastmail/Sent\" date:1d..now" "Sent recently" ?r)
+                    ("flag:flagged" "Flagged messages" ?f)
+                    ("date:7d..now" "Last 7 days" ?w)))
+
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
+
+
+  (with-eval-after-load 'mu4e-view
+    (if (boundp 'mu4e-view-actions)
+        (setq-default
+         mu4e-view-actions
+         '(("capture message" . mu4e-action-capture-message)
+           ("show this thread" . mu4e-action-show-thread)
+           ("view in browser" . mu4e-action-view-in-browser)))
+      (error "Not adding to `mu4e-view-actions'")))
+
+  (defun mu4e-compose-config ()
+    "Config mu4e compose view."
+    (set-fill-column 72)
+    (auto-fill-mode 0)
+    (setq-default mu4e-compose-format-flowed t
+                  visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+    (visual-line-mode))
+  (add-hook 'mu4e-compose-mode-hook #'mu4e-compose-config)
+
+  (with-eval-after-load 'mu4e-alert
+    (mu4e-alert-set-default-style 'notifier)))
 
 (defun config/evil-collection ()
   "Enable evil keybindings everywhere."
