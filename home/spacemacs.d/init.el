@@ -1127,6 +1127,7 @@ See: https://github.com/tonsky/FiraCode/wiki/Setting-up-Emacs"
 
 (defun config/global-modes ()
   "Enable globally set modes."
+  (flx-ido-mode)
   (global-evil-quickscope-mode 1)
   (smartparens-global-strict-mode)
   (visual-line-mode))
