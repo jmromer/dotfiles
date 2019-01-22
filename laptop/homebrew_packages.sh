@@ -37,6 +37,10 @@ homebrew=(
   imagemagick
   ispell
   mps-youtube             # command-line music player
+  mu                      # command-line email indexing
+  isync                   # command-line email sync
+  msmtp                   # command-line email delivery
+  w3m                     # HTML -> text
   osxutils
   pgcli                   # Postgres CLI
   postgres
