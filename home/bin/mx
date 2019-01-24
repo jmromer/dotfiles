@@ -16,6 +16,7 @@
 #
 #   here (h)   -- Attach to a PWD-named session if it exists, else start and attach to it
 #   kill (k)   -- Kill the given tmux session(s) and/or tmuxinator template(s)
+#   new  (n)   -- Start and switch to a new, randomly-named tmux session
 #
 #   tmuxinator:
 #
@@ -186,7 +187,11 @@ while [ $# -gt -1 ]; do
             kill_session_or_template
             exit 0
             ;;
-        'create'|'c'|'new'|'n')
+        'new'|'n')
+            tmux-attach-or-create "$(random_phrase)"
+            exit 0
+            ;;
+        'create'|'c')
             [[ -z "$2" ]] && echo "Usage: mx create [TEMPLATE_NAME]" && exit 1
 
             echo "Generate from a running session? (y/n)"
