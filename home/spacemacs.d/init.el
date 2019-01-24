@@ -704,6 +704,10 @@ Overrides doom-modeline's version to respect
   (progn
     (spacemacs/layout-goto-default)
     (delete-other-windows)
+
+    ;; Kill the journal buffer, since it might need to visit a new file
+    (kill-buffer "*journal*")
+
     (find-file (expand-file-name org-default-notes-file))
     (rename-buffer "*sprint*")
     (find-file (expand-file-name org-default-backlog-file))
