@@ -1475,14 +1475,14 @@ Excludes the ibuffer."
        ;;
        ;; Checklist items (for current task)
        ;;
-       ("c" "Checklist item" checkitem
-        (file+headline org-default-notes-file "Current Task")
-        "- [ ] %?\n"
-        :prepend t)
+       ;; ("c" "Checklist item" checkitem
+       ;;  (file+headline org-default-notes-file "Checklist")
+       ;;  "- [ ] %?\n"
+       ;;  :prepend t)
        ;;
        ;; Backlog items (to be prioritized, scoped, estimated)
        ;;
-       ("b" "Backlog item" entry (file org-default-backlog-file)
+       ("c" "Backlog item" entry (file org-default-backlog-file)
         "* %?\n  %U")
        ("f" "Link (to the current file / selection)" entry (file org-default-backlog-file)
         "* %?\n  %a\n  %U")
@@ -1507,17 +1507,10 @@ Excludes the ibuffer."
         (file+olp "blog-jmromer.org" "Post Ideas")
         (function org-hugo-new-post-capture-template))
        ;;
-       ;; Recurring Task
-       ;;
-       ("r" "Task (Recurring)" entry
-        (file+headline org-default-notes-file "Recurring Tasks")
-        "* TODO %?\n  DEADLINE: %^t\n  %U"
-        :empty-lines 1)
-       ;;
        ;; Today's Sprint Tasks
        ;;
        ("t" "Task (Today's Sprint)" entry
-        (file+headline org-default-notes-file "Today's Tasks")
+        (file+headline org-default-notes-file "To Do Today")
         "* TODO %?\n  SCHEDULED: %t\n  %U"
         :empty-lines 1)))
 
