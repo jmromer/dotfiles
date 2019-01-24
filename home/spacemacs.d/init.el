@@ -708,7 +708,8 @@ Overrides doom-modeline's version to respect
     (delete-other-windows)
 
     ;; Kill the journal buffer, since it might need to visit a new file
-    (kill-buffer "*journal*")
+    (when (get-buffer "*journal*")
+      (kill-buffer "*journal*"))
 
     (find-file (expand-file-name org-default-notes-file))
     (rename-buffer "*sprint*")
