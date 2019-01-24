@@ -79,60 +79,7 @@ touch "$log_location"
   # ===================================================
 
   step "Installing Homebrew formulas"
-
   source "$HOME/.dotfiles/laptop/homebrew_packages.sh"
-
-  # ===================================================
-
-  step "Setting up Dropbox (press any key when complete)"
-
-  brew cask install dropbox
-  open /Applications/Dropbox.app
-  getc
-
-  # ===================================================
-
-  step "Installing user gems for system ruby"
-  echo gem install --user neovim vim-vint gem-ctags tmuxinator
-  gem install --user neovim vim-vint gem-ctags tmuxinator bundler
-
-  step "Configuring Bundler"
-  number_of_cores=$(sysctl -n hw.ncpu)
-  bundle config --global jobs "$((number_of_cores - 1))"
-
-  # ===================================================
-
-  step "Installing Rbenv, latest Ruby, RubyGems"
-
-  mkdir -p "$HOME/.rbenv/bin/"
-  git clone https://github.com/jbernsie/rbenv-clean "$(rbenv root)/plugins/rbenv-clean"
-  git clone https://github.com/rkh/rbenv-update.git "$(rbenv root)/plugins/rbenv-update"
-
-  ln -sf $LOCAL_DOTFILES/default-gems $HOME/.rbenv/default-gems
-  ln -sf $(brew --prefix)/bin/rbenv $HOME/.rbenv/bin/rbenv
-
-  eval "$(rbenv init - zsh)"
-
-  # TODO: Prompt for desired Ruby version
-  ruby_version="2.6.0"
-  if ! rbenv versions | grep -Fq "$ruby_version"; then
-    step "Installing Ruby $ruby_version"
-    rbenv install -s "$ruby_version"
-  fi
-
-  rbenv global "$ruby_version"
-  rbenv shell "$ruby_version"
-  rbenv rehash
-  gem ctags
-
-  # ===================================================
-
-  step "Linking OpenSSL, Installing libyaml"
-
-  brew unlink openssl && brew link openssl --force
-  brew install --force libyaml
-
-  # ===================================================
 
   step "Installing GNU tools"
   source "$HOME/.dotfiles/laptop/gnu_tools.sh"
@@ -140,15 +87,15 @@ touch "$log_location"
   step "Installing GUI apps with Homebrew Cask"
   source "$HOME/.dotfiles/laptop/homebrew_cask_packages.sh"
 
-  # ==================================================
+  step "Linking OpenSSL, Installing libyaml"
+  brew unlink openssl && brew link openssl --force
+  brew install --force libyaml
 
   step "Setting up LaunchAgents"
-
   mkdir -p ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/emacs/*.plist ~/Library/LaunchAgents
-
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.emacs.plist
@@ -172,6 +119,37 @@ touch "$log_location"
   ln -s $SYNCED/hub $HOME/.config/hub
   ln -s $SYNCED/karabiner $HOME/.config/karabiner
   ln -s $SYNCED/exercism $HOME/.config/exercism
+
+  # ===================================================
+
+  step "Setting up Dropbox (press any key when complete)"
+
+  brew cask install dropbox
+  open /Applications/Dropbox.app
+  getc
+
+  # ===================================================
+
+  step "Setting up asdf"
+  . "$(brew --prefix asdf)/asdf.sh"
+  . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+
+  step "Setting Ruby compilation vars"
+  . "$HOME/.ruby-build-vars"
+  ln -sf $LOCAL_DOTFILES/default-gems $HOME/.default-gems
+
+  step "Installing Ruby"
+  ruby_version="$(asdf list-all ruby | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort | tail -1)"
+  if ! asdf versions ruby | grep -Fq "$ruby_version"; then
+    step "Installing Ruby $ruby_version"
+    asdf install ruby "$ruby_version"
+    asdf global ruby "$ruby_version"
+    gem ctags
+
+    step "Configuring Bundler"
+    number_of_cores=$(sysctl -n hw.ncpu)
+    bundle config --global jobs "$((number_of_cores - 1))"
+  fi
 
   # ======================================================
 
@@ -220,32 +198,19 @@ touch "$log_location"
   echo wget -O ~/Desktop/delivery-status.zip https://junecloud.com/get/delivery-status-widget
   wget -O ~/Desktop/delivery-status.zip https://junecloud.com/get/delivery-status-widget
 
-  # ======================================================
-
   #-------------------------------------------------------------
   # Node
   #-------------------------------------------------------------
-  echo "Installing n and node..."
-  curl -L http://git.io/n-install | N_PREFIX=~/.node bash -s -- -y
+
+  echo "Installing node..."
+  asdf plugin-add nodejs
+  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
   source "$HOME/.zshrc"
-
   # Install latest node version
-  n latest
-
-  npm install -g npm \
-      eslint \
-      babel-eslint \
-      eslint-plugin-react \
-      js-beautify \
-      prettier \
-      standard \
-      tern \
-      create-react-app \
-      react-native-cli \
-      typescript \
-      javascript-typescript-langserver \
-      neovim
+  node_version="$(asdf list-all nodejs | tail -1)"
+  asdf install nodejs "$node_version"
+  asdf global nodejs "$node_version"
 
   # Install Anaconda
   echo "Installing Python"
@@ -257,22 +222,7 @@ touch "$log_location"
   bash ~/Desktop/anaconda_install.sh
 
   # Install Python packages for emacs
-  pip install --upgrade "jedi>=0.9.0" \
-                        "json-rpc>=1.8.1" \
-                        "service_factory>=0.1.5" \
-                        python-language-server \
-                        pyls-isort \
-                        pyls-mypy \
-                        flake8 \
-                        autoflake \
-                        hy \
-                        pip \
-                        pygments \
-                        setuptools \
-                        vim-vint \
-                        yapf \
-                        importmagic \
-                        epc
+  editor-setup py
 
   echo conda create -n neovim2 python=2.7
   conda create -n neovim2 python=2.7
@@ -296,6 +246,7 @@ touch "$log_location"
   #-------------------------------------------------------------
   # Vim bootstrap
   #-------------------------------------------------------------
+
   step "Install Vim Packages"
   vim +PlugUpgrade +PlugUpdate +PlugInstall +UpdateRemotePlugin +qall
 
@@ -303,6 +254,7 @@ touch "$log_location"
   compaudit | xargs chmod go-w
 
   # ======================================================
+
   step "Setup script is complete"
 
   step "Adobe Creative Suite"

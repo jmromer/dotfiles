@@ -29,9 +29,7 @@ PATH+=":$HOME/.local/bin"          # haskell binaries
 PATH+=":./node_modules/.bin"       # Project-local node binaries
 PATH+=":$N_PREFIX/bin"             # n version binaries, global node binaries
 PATH+=":$HOME/.fzf/bin"            # FZF fuzzy-finder
-PATH+=":$HOME/.rbenv/bin"          # Rbenv binary path
 PATH+=":$HOME/.gem/ruby/2.5.0/bin" # user-install gems for system ruby
-PATH+=":$HOME/.exenv/bin"          # Exenv binary path
 PATH+=":$HOME/.cargo/bin"          # Rust binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
 PATH+=":$HOME/.emacs.d/bin/"       # Doom
@@ -45,20 +43,3 @@ PATH+=":/opt/X11/bin"              # added by OSX
 PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
 PATH+=":/Library/TeX/texbin"
 export PATH
-
-#-------------------------------------------------------------
-# RBENV
-#-------------------------------------------------------------
-if command -v rbenv > /dev/null; then
-  eval "$(rbenv init - --no-rehash)"
-fi
-
-# Ensure RBENV_VERSION is unset on shell start-up
-unset RBENV_VERSION
-
-#-------------------------------------------------------------
-# EXENV
-#-------------------------------------------------------------
-if command -v exenv > /dev/null; then
-  eval "$(exenv init -)";
-fi
