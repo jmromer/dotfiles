@@ -147,7 +147,6 @@ function del() {
 
 function binstubs() {
   bundle install --binstubs .bundle/bin
-  rbenv rehash
 }
 
 #-------------------------------------------------------------
@@ -390,6 +389,12 @@ disable r # disable zsh's r
 
 [[ -f $HOME/.fzf.zsh ]] && \
     . $HOME/.fzf.zsh
+
+[[ -f "$(brew --prefix asdf)/asdf.sh" ]] && \
+    . "$(brew --prefix asdf)/asdf.sh"
+
+[[ -f "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" ]] && \
+    . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
 
 [[ -f $HOME/.anaconda/etc/profile.d/conda.sh ]] && \
     . $HOME/.anaconda/etc/profile.d/conda.sh

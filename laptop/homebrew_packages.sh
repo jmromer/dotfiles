@@ -1,25 +1,8 @@
 #-------------------------------------------------------------
-# Universal Ctags
-#-------------------------------------------------------------
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-
-#-------------------------------------------------------------
-# Exuberant Ctags + Global
-#-------------------------------------------------------------
-# brew install ctags --HEAD
-# brew install global --with-ctags --with-pygments
-
-#-------------------------------------------------------------
-# Git
-#-------------------------------------------------------------
-brew install openssl
-brew install --with-openssl curl
-brew install --with-curl --with-openssl git
-
-#-------------------------------------------------------------
 # Homebrewed Packages
 #-------------------------------------------------------------
-homebrew=(
+packages=(
+  asdf
   awscli                  # AWS command line interface
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
@@ -27,7 +10,6 @@ homebrew=(
   colordiff
   direnv                  # directory-specific env settings
   elixir-build
-  exenv
   gpg2                    # for PGP commit signing
   pinentry-mac
   fd
@@ -46,15 +28,9 @@ homebrew=(
   postgres
   qt
   shellcheck
-  rbenv
-  rbenv-binstubs
-  rbenv-ctags
-  rbenv-default-gems      # default gems to be installed
-  rbenv-vars
   reattach-to-user-namespace
   redis
   ripgrep
-  ruby-build
   source-highlight        # syntax highlighting for less
   the_silver_searcher
   tree                    # for viewing directory contents in tree format
@@ -63,19 +39,37 @@ homebrew=(
   zsh-syntax-highlighting # Syntax highlighting as you type
 )
 
-for package in ${homebrew[*]}; do
+for package in ${packages[*]}; do
   echo "Installing or upgrading $package..." && echo
   brew install $package
 done
 
-# Install fzf completions
+#-------------------------------------------------------------
+# fzf completions
+#-------------------------------------------------------------
 $(brew --prefix)/opt/fzf/install
+
+#-------------------------------------------------------------
+# Universal Ctags
+#-------------------------------------------------------------
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+#-------------------------------------------------------------
+# GNU Global
+#-------------------------------------------------------------
+brew install global --with-ctags --with-pygments
+
+#-------------------------------------------------------------
+# Git
+#-------------------------------------------------------------
+brew install openssl libyaml libffi
+brew install --with-openssl curl
+brew install --with-curl --with-openssl git
 
 #-------------------------------------------------------------
 # Thoughbot
 #-------------------------------------------------------------
 brew tap thoughtbot/formulae
-
 brew install rcm parity gitsh
 
 #-------------------------------------------------------------
@@ -88,12 +82,9 @@ brew install gnuplot --with-qt
 #-------------------------------------------------------------
 # Neovim
 #-------------------------------------------------------------
-# Python, Pip
 brew install neovim/neovim/neovim
 mkdir "$HOME/.config"
 ln -s "$HOME/.vim" "$HOME/.config/nvim"
-gem install neovim
-
 
 #-------------------------------------------------------------
 # tmux
@@ -112,18 +103,3 @@ brew services start d12frosted/emacs-plus/emacs-plus
 
 emacs_version="$(emacs --version | head -1 | sed -E 's/.+\s([0-9]+\.[0-9]+)$/\1/')"
 tic -o ~/.terminfo "/usr/local/share/emacs/$emacs_version/etc/e/eterm-color.ti"
-
-#-------------------------------------------------------------
-# MacVim Installation
-# - Take advantage of MacVim's faster rendering engine
-#-------------------------------------------------------------
-# Note: Ensure everything is compiled against non-system Python
-
-# # Use the MacVim binary as CLI vim
-# brew install macvim \
-#   --with-override-system-vim \
-#   --with-lua  \
-#   --with-luajit \
-#   --HEAD
-
-# ln -s /usr/local/opt/macvim/MacVim.app /Applications

@@ -120,8 +120,8 @@ values."
      restclient
      (ruby :variables
            ruby-enable-enh-ruby-mode nil
-           ruby-version-manager 'rbenv
-           ruby-test-runner 'ruby-test)
+           ruby-version-manager nil
+           ruby-test-runner 'rspec)
      ruby-on-rails
      rust
      scala
@@ -207,7 +207,9 @@ values."
      ace-jump-mode
      emoji-cheat-sheet-plus
      evil-mc
-     fancy-battery)
+     fancy-battery
+     rbenv
+     rvm)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -1692,11 +1694,6 @@ Only equations at the beginning of a line are justified."
 
 (defun config/ruby ()
   "Configure packages for Ruby mode."
-  ;; Don't display the rbenv ruby version (inaccurate, duplicated by doom
-  ;; major-mode indicator)
-  (setq-default rbenv-show-active-ruby-in-modeline nil)
-  (add-hook 'ruby-mode-hook 'rbenv-use-corresponding)
-
   ;; Define keybinding to manually trigger autoformat
   (setq-default rufo-enable-format-on-save t)
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format-buffer))
