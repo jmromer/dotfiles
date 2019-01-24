@@ -56,7 +56,8 @@ setup_python() {
         pyls-mypy \
         pyls-black \
         "python-language-server[all]" \
-        yapf
+        yapf \
+        vim-vint
     }
 
 setup_mac() {
