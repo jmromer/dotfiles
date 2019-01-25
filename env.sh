@@ -26,13 +26,13 @@ fi
 #-------------------------------------------------------------
 # N/Node, Anaconda, Golang, Elm
 #-------------------------------------------------------------
-export N_PREFIX="$HOME/.node"
 export ANACONDA_PREFIX="$HOME/.anaconda"
 export ANACONDA_HOME="$HOME/.anaconda"
 export GOPATH="$HOME/.go"
 export GOROOT="/usr/local/go"
 export ELM_HOME="$HOME/.elm"
 export ERL_AFLAGS="-kernel shell_history enabled"
+export HOMEBREW_PREFIX="$(brew --prefix)"
 
 #-------------------------------------------------------------
 # Android

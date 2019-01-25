@@ -3,6 +3,9 @@
 # bash_profile
 # symlinked to by ~/.bash_profile
 
+# load env vars
+source "$HOME/.dotfiles/env.sh"
+
 #-------------------------------------------------------------
 # Aliases
 #-------------------------------------------------------------
@@ -21,8 +24,8 @@ function g() {
 #-------------------------------------------------------------
 # COMMAND COMPLETION
 #-------------------------------------------------------------
-if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-  source "$(brew --prefix)/etc/bash_completion"
+if [ -f "$HOMEBREW_PREFIX/etc/bash_completion" ]; then
+  source "$HOMEBREW_PREFIX/etc/bash_completion"
 fi
 source "$HOME/.dotfiles/bash/git-completion.bash"
 complete -C aws_completer aws
@@ -107,8 +110,6 @@ if [ -n "$INSIDE_EMACS" ]; then
 else
   set -o vi
 fi
-
-. "$HOME/.dotfiles/env.sh"
 
 [[ -f $HOME/.anaconda/etc/profile.d/conda.sh ]] && \
     . $HOME/.anaconda/etc/profile.d/conda.sh
