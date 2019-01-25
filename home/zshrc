@@ -385,16 +385,16 @@ fi
 #-------------------------------------------------------------
 disable r # disable zsh's r
 
-. $HOME/.dotfiles/path.sh
+source "$HOME/.dotfiles/path.sh"
 
 [[ -f $HOME/.fzf.zsh ]] && \
     . $HOME/.fzf.zsh
 
-[[ -f "$(brew --prefix asdf)/asdf.sh" ]] && \
-    . "$(brew --prefix asdf)/asdf.sh"
+[[ -f "$HOMEBREW_PREFIX/opt/asdf/asdf.sh" ]] && \
+    . "$HOMEBREW_PREFIX/opt/asdf/asdf.sh"
 
-[[ -f "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" ]] && \
-    . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+[[ -f "$HOMEBREW_PREFIX/opt/asdf/etc/bash_completion.d/asdf.bash" ]] && \
+    . "$HOMEBREW_PREFIX/opt/asdf/etc/bash_completion.d/asdf.bash"
 
 [[ -f $HOME/.anaconda/etc/profile.d/conda.sh ]] && \
     . $HOME/.anaconda/etc/profile.d/conda.sh
