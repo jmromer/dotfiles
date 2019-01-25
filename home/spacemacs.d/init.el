@@ -1781,21 +1781,21 @@ Only equations at the beginning of a line are justified."
 (defun config/version-control ()
   "Configure version-control-related settings."
   (with-eval-after-load 'magit
+    (magit-todos-mode)
+
     (if (and (boundp 'magit-completing-read-function)
              (boundp 'magit-mode-map))
         (progn
           (setq magit-completing-read-function 'ivy-completing-read)
           (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
 
-          (add-hook 'magit-mode-hook #'magit-todos-mode)
           (spacemacs/set-leader-keys-for-major-mode 'magit-status-mode "t" #'magit-todos-jump-to-todos)
-
           (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
       (error "Failed setting up magit")))
 
   (setq-default
    magit-repository-directories '(("~/Projects/" . 2)
-                                  ("~/Documents". 2)))
+                                  ("~/Documents/". 2)))
 
 
   ;; leader gb to display branching controls
