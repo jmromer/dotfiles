@@ -187,6 +187,7 @@ values."
      magit-todos
      ob-swift
      ov
+     (ox-gfm :location (recipe :fetcher github :repo "jmromer/ox-gfm" :branch "develop"))
      pretty-mode
      pyimport
      rjsx-mode
@@ -195,8 +196,7 @@ values."
      toc-org
      traad
      vimish-fold
-     (yankee :location (recipe :fetcher github :repo "jmromer/yankee.el" :branch "develop"))
-     (ox-gfm :location (recipe :fetcher github :repo "jmromer/ox-gfm" :branch "develop")))
+     (yankee :location (recipe :fetcher github :repo "jmromer/yankee.el" :branch "develop")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages
