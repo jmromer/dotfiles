@@ -1683,8 +1683,7 @@ Only equations at the beginning of a line are justified."
                                     :test-suffix "_test")
 
   (defun python-before-save-hooks ()
-    (if (and (eq major-mode 'python-mode)
-             (not (string-match-p "kizen" (buffer-file-name))))
+    (if (eq major-mode 'python-mode)
       (progn
         (pyimport-remove-unused)
         (importmagic-fix-imports)
