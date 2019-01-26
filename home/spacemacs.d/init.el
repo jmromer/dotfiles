@@ -1468,6 +1468,11 @@ Excludes the ibuffer."
      org-default-backlog-file "~/Dropbox/org/backlog.org"
      org-archive-location "~/Dropbox/org/archive.org::* %s")
 
+    (setq-default
+     org-todo-keywords
+     '((sequence "TODO(t)" "NEXT(n)" "INPROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
+
+
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
       'org-journal-mode
