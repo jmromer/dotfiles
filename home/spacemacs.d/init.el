@@ -153,6 +153,7 @@ values."
      version-control
      vimscript
      vinegar
+     w3m
      yaml)
 
    ;; List of additional packages that will be installed without being
@@ -1097,6 +1098,15 @@ Excludes the ibuffer."
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
+  ;; w3m
+  (setq-default browse-url-default-browser 'w3m
+                w3m-home-page "https://www.google.com"
+                w3m-default-display-inline-images t
+                w3m-default-toggle-inline-images t
+                w3m-command-arguments '("-cookie" "-F")
+                w3m-use-cookies t
+                browse-url-browser-function 'w3m-browse-url
+                w3m-view-this-url-new-session-in-background t)
 
   (with-eval-after-load 'mu4e-view
     (if (boundp 'mu4e-view-actions)
