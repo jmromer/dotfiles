@@ -1107,8 +1107,12 @@ Excludes the ibuffer."
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
+  ;; Open with external browser
+  (setq-default browse-url-generic-program "open")
+  (spacemacs/set-leader-keys "f P" #'browse-url-generic)
+
   ;; w3m
-  (setq-default browse-url-default-browser 'w3m
+  (setq-default browse-url-default-browser nil
                 w3m-home-page "https://www.google.com"
                 w3m-default-display-inline-images t
                 w3m-default-toggle-inline-images t
