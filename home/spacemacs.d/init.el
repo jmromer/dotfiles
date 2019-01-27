@@ -1472,6 +1472,14 @@ Excludes the ibuffer."
          (org-projectile-todo-files))
       (error "Failed: 'org-agenda-files not bound")))
 
+  (setq-default
+   org-refile-use-outline-path 'file
+   org-refile-allow-creating-parent-nodes 'confirm
+   org-outline-path-complete-in-steps nil
+   org-refile-targets '(("~/Dropbox/org/sprint-today.org" :maxlevel . 1)
+                        ("~/Dropbox/org/sprint-backlog.org" :maxlevel . 1)
+                        ("~/Dropbox/org/sprint-icebox.org" :maxlevel . 1)))
+
   (with-eval-after-load 'org
     (setq-default
      org-md-headline-style 'setext
