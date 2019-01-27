@@ -1472,15 +1472,15 @@ Excludes the ibuffer."
      org-src-tab-acts-natively t
      org-babel-python-command "python3"
      org-export-with-sub-superscripts '{}
+     org-export-coding-system 'utf-8
      org-directory "~/Dropbox/org"
-     org-default-notes-file "~/Dropbox/org/sprint.org"
-     org-default-backlog-file "~/Dropbox/org/backlog.org"
+     org-default-notes-file "~/Dropbox/org/sprint-today.org"
+     org-default-backlog-file "~/Dropbox/org/sprint-backlog.org"
      org-archive-location "~/Dropbox/org/archive.org::* %s")
 
     (setq-default
      org-todo-keywords
      '((sequence "TODO(t)" "NEXT(n)" "INPROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
-
 
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
