@@ -1489,6 +1489,7 @@ Excludes the ibuffer."
     (spacemacs/declare-prefix "a j" "org-journal")
 
     (add-hook 'org-journal-mode-hook #'org-mode)
+    (add-hook 'org-capture-mode-hook #'org-align-all-tags)
 
     ;; Org capture templates
     (setq-default
