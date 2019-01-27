@@ -108,6 +108,7 @@ values."
           osx-right-option-as 'none
           osx-right-control-as 'left)
      parinfer
+     pdf
      phoenix
      (python :variables
              python-save-before-test t
