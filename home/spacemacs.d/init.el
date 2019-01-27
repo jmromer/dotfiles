@@ -1560,6 +1560,12 @@ Excludes the ibuffer."
         (function org-hugo-new-post-capture-template)
         :empty-lines 1)
        ;;
+       ;; Journal: Daily standup
+       ;;
+       ("s" "Standup" plain
+        (file+datetree "~/Dropbox/org/journal-standup.org")
+        "     %?")
+       ;;
        ;; Journal: Health
        ;;
        ("h" "Health / Diet journal" entry
