@@ -596,6 +596,9 @@ dump.")
   ;; tramp
   (setq-default tramp-default-method "ssh")
 
+  ;; dash prefix
+  (spacemacs/declare-prefix "d" "docs")
+
   ;; treemacs
   (treemacs-resize-icons 15)
 
