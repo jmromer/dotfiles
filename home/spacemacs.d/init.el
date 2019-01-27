@@ -1108,18 +1108,21 @@ Excludes the ibuffer."
     (imagemagick-register-types))
 
   ;; Open with external browser
-  (setq-default browse-url-generic-program "open")
+  (setq-default
+   ;; browse-url-browser-function #'w3m-browse-url
+   browse-url-default-browser nil
+   browse-url-generic-program "open")
+
   (spacemacs/set-leader-keys "f P" #'browse-url-generic)
 
   ;; w3m
-  (setq-default browse-url-default-browser nil
-                w3m-home-page "https://www.google.com"
-                w3m-default-display-inline-images t
-                w3m-default-toggle-inline-images t
-                w3m-command-arguments '("-cookie" "-F")
-                w3m-use-cookies t
-                browse-url-browser-function 'w3m-browse-url
-                w3m-view-this-url-new-session-in-background t)
+  (setq-default
+   w3m-home-page "https://www.google.com"
+   w3m-default-display-inline-images t
+   w3m-default-toggle-inline-images t
+   w3m-command-arguments '("-cookie" "-F")
+   w3m-use-cookies t
+   w3m-view-this-url-new-session-in-background t)
 
   (with-eval-after-load 'mu4e-view
     (if (boundp 'mu4e-view-actions)
