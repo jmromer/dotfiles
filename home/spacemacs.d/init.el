@@ -1495,46 +1495,62 @@ Excludes the ibuffer."
      org-capture-templates
      '(
        ;;
-       ;; Checklist items (for current task)
-       ;;
-       ;; ("c" "Checklist item" checkitem
-       ;;  (file+headline org-default-notes-file "Checklist")
-       ;;  "- [ ] %?\n"
-       ;;  :prepend t)
-       ;;
        ;; Backlog items (to be prioritized, scoped, estimated)
        ;;
-       ("c" "Backlog item" entry (file org-default-backlog-file)
+       ("b" "Backlog" entry
+        (file "~/Dropbox/org/sprint-backlog.org")
         "* %?\n  %U")
-       ("f" "Link (to the current file / selection)" entry (file org-default-backlog-file)
+       ("a" "Annotation" entry
+        (file org-default-backlog-file)
         "* %?\n  %a\n  %U")
-       ("l" "Link (from clipboard)" entry (file org-default-backlog-file)
-        "* %c\n  %U")
-       ("m" "Meeting" entry (file org-default-backlog-file)
-        "* Meeting: %?\n  %^t\n  %U")
-       ("d" "Deadline" entry (file org-default-backlog-file)
+       ;;
+       ("d" "Deadline" entry
+        (file org-default-backlog-file)
         "* %?\n  DEADLINE: %^t\n  %U")
-       ("p" "Priority item" entry (file org-default-backlog-file)
-        "* [#A] %?\n  %U")
-       ;;
-       ;; Notes / Journal / Blog Entry
-       ;;
-       ("n" "Note" plain
-        (function org-capture-deft-new-file)
-        "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
-       ("j" "Journal entry" entry
-        (function org-journal-find-location)
-        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-       ("h" "Hugo post" entry
-        (file+olp "blog-jmromer.org" "Post Ideas")
-        (function org-hugo-new-post-capture-template))
        ;;
        ;; Today's Sprint Tasks
        ;;
        ("t" "Task (Today's Sprint)" entry
         (file+headline org-default-notes-file "To Do Today")
         "* TODO %?\n  SCHEDULED: %t\n  %U"
-        :empty-lines 1)))
+        :empty-lines 1)
+       ;;
+       ("m" "Meeting" entry
+        (file org-default-backlog-file)
+        "* Meeting: %?\n  %^t\n  %U"
+        :empty-lines 1)
+       ;;
+       ;; Notes / Journal / Blog Entry
+       ;;
+       ("n" "Note" plain
+        (function org-capture-deft-new-file)
+        "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
+       ;;
+       ("j" "Journal entry" entry
+        (function org-journal-find-location)
+        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+       ;;
+       ("p" "Blog post" entry
+        (file+headline "blog-metier.org" "Post Ideas")
+        (function org-hugo-new-post-capture-template)
+        :empty-lines 1)
+       ;;
+       ;; Journal: Health
+       ;;
+       ("h" "Health / Diet journal" entry
+        (file+datetree "~/Dropbox/org/journal-health.org")
+        "**** [%<%l:%M %p>] %^{Entry} %^g"
+        :immediate-finish t)
+       ;;
+       ;; Reading / Code Journals
+       ;;
+       ("v" "Paste from clipboard" entry
+        (file org-default-backlog-file)
+        "* %^{Title} %^G\n   %?\n   %c")
+       ;;
+       ("c" "Commonplace" entry
+        (file "~/Dropbox/org/journal-commonplaces.org")
+        "* %^{Title} %^G\n   %?")))
 
     (setq-default org-structure-template-alist '(("a" . "export ascii")
                                                  ("c" . "center")
