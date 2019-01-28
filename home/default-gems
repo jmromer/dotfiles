@@ -19,6 +19,7 @@ rubocop
 rubygems-bundler
 rubygems-update
 rufo
+seeing_is_believing
 solargraph
 sqlint
 tmuxinator
