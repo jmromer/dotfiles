@@ -1497,10 +1497,8 @@ Excludes the ibuffer."
      '((sequence "TODO(t)" "NEXT(n)" "INPROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
 
     ;; Keybindings
-    (evil-define-key 'hybrid
-      evil-org-mode-map
-      (kbd "C-H-<return>")
-      'org-insert-subheading)
+    (evil-define-key 'hybrid evil-org-mode-map (kbd "C-H-<return>") 'org-insert-subheading)
+    (evil-define-key 'hybrid evil-org-mode-map (kbd "<return>") 'evil-org-open-below)
 
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
