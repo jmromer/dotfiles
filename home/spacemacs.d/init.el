@@ -179,7 +179,6 @@ values."
      evil-lion
      evil-quickscope
      evil-text-object-python
-     (exercism :location (recipe :fetcher github :repo "canweriotnow/exercism-emacs"))
      flx
      graphql-mode
      gxref
@@ -560,7 +559,6 @@ dump.")
   (config/evil-goggles)
   (config/evil-in-ex-buffer)
   (config/evil-lion)
-  (config/exercism)
   (config/flycheck)
   (config/gtags)
   (config/highlight-lines-at-length 80)
@@ -1184,12 +1182,6 @@ Excludes the ibuffer."
         (define-key evil-visual-state-map (kbd "ga") #'evil-lion-left)
         (define-key evil-visual-state-map (kbd "gA") #'evil-lion-right))
     (error "Failed setting up evil-lion alignment keybindings")))
-
-(defun config/exercism ()
-  "Configure and enable exercism mode."
-  (setq-default exercism-dir "~/Projects/exercism"
-                exercism-auto-enable nil
-                exercism-config-file "~/.config/exercism/user.json"))
 
 (defun config/frames ()
   "Configure GUI Emacs frames."
