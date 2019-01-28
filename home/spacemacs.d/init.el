@@ -1479,6 +1479,8 @@ Excludes the ibuffer."
 
   (with-eval-after-load 'org
     (setq-default
+     org-startup-indented t
+     org-edit-src-content-indentation 0
      org-md-headline-style 'setext
      spaceline-org-clock-p t
      org-src-tab-acts-natively t
