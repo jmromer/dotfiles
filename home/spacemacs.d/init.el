@@ -55,6 +55,7 @@ values."
           elm-format-command "elm-format")
      emacs-lisp
      evil-commentary
+     finance
      git
      github
      (go :variables
@@ -176,6 +177,7 @@ values."
      editorconfig
      emmet-mode
      evil-collection
+     evil-ledger
      evil-lion
      evil-quickscope
      evil-text-object-python
@@ -597,6 +599,9 @@ dump.")
 
   ;; dash prefix
   (spacemacs/declare-prefix "d" "docs")
+
+  ;; ledger
+  (add-hook 'ledger-mode-hook #'evil-ledger-mode)
 
   ;; treemacs
   (treemacs-resize-icons 15)
