@@ -211,6 +211,7 @@ values."
      emoji-cheat-sheet-plus
      evil-mc
      fancy-battery
+     google-translate
      rbenv
      rvm)
 
