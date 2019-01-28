@@ -118,7 +118,6 @@ touch "$log_location"
   mkdir $HOME/.config
   ln -s $SYNCED/hub $HOME/.config/hub
   ln -s $SYNCED/karabiner $HOME/.config/karabiner
-  ln -s $SYNCED/exercism $HOME/.config/exercism
 
   # ===================================================
 
