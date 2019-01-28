@@ -1344,7 +1344,12 @@ Excludes the ibuffer."
   (with-eval-after-load 'mu4e-headers
     (if (boundp 'mu4e-headers-mode-hook)
       (add-hook 'mu4e-headers-mode-hook #'toggle-ligatures-off)
-     (error "Not disabling ligatures in mu4e headers"))))
+     (error "Not disabling ligatures in mu4e headers"))
+
+   (with-eval-after-load 'org
+     (if (boundp 'org-mode-hook)
+         (add-hook 'org-mode-hook #'toggle-ligatures-off)
+       (error "Not disabling ligatures in org mode")))))
 
 (defun config/lisps ()
   "Configure Lisp modes."
