@@ -22,13 +22,13 @@ target_commit="$(
 )"
 
 # slice out the SHA
-commit_sha="$(
+commit_shas="$(
     echo "$target_commit" |\
     awk '{ print $1 }'    |\
     tr '\n' ' '           |\
     awk '{$1=$1};1'
 )"
 
-if [[ ! -z "$commit_sha" ]]; then
-    echo "$commit_sha"
+if [[ ! -z "$commit_shas" ]]; then
+    printf "$commit_shas"
 fi
