@@ -16,5 +16,5 @@ commit_shas="$(
 )"
 
 if [[ ! -z "$commit_shas" ]]; then
-    echo "$commit_shas"
+    printf "$commit_shas"
 fi
