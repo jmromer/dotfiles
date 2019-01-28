@@ -1555,13 +1555,13 @@ Excludes the ibuffer."
        ;; Journal: Daily standup
        ;;
        ("s" "Standup" plain
-        (file+datetree "~/Dropbox/org/journal-standup.org")
+        (file+olp+datetree "~/Dropbox/org/journal-standup.org")
         "     %?")
        ;;
        ;; Journal: Health
        ;;
        ("h" "Health / Diet journal" entry
-        (file+datetree "~/Dropbox/org/journal-health.org")
+        (file+olp+datetree "~/Dropbox/org/journal-health.org")
         "**** [%<%l:%M %p>] %^{Entry} %^g"
         :immediate-finish t)
        ;;
