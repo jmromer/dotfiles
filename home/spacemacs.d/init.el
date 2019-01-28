@@ -1489,6 +1489,12 @@ Excludes the ibuffer."
      org-todo-keywords
      '((sequence "TODO(t)" "NEXT(n)" "INPROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
 
+    ;; Keybindings
+    (evil-define-key 'hybrid
+      evil-org-mode-map
+      (kbd "C-H-<return>")
+      'org-insert-subheading)
+
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
       'org-journal-mode
