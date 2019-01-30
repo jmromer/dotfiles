@@ -1014,6 +1014,7 @@ Excludes the ibuffer."
 (defun config/deft ()
   "Configure deft notes browser."
   (setq-default
+   deft-auto-save-interval 10
    deft-directory "~/Dropbox/deft"
    deft-extensions '("txt" "text" "tex" "md" "markdown" "org")
    deft-default-extension "org"
