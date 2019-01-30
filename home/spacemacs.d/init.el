@@ -1505,6 +1505,10 @@ Excludes the ibuffer."
     ;; Keybindings
     (evil-define-key 'hybrid evil-org-mode-map (kbd "C-H-<return>") 'org-insert-subheading)
 
+    ;; Save clocks
+    (setq-default org-clock-persist t)
+    (org-clock-persistence-insinuate)
+
     ;; Journal
     (spacemacs/set-leader-keys-for-major-mode
       'org-journal-mode
