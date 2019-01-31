@@ -1449,20 +1449,6 @@ Excludes the ibuffer."
 
 (defun config/org-mode ()
   "Configure and enable org mode."
-  ;; Org Babel languages
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((clojure . t)
-                                 (dot . t)
-                                 (elixir . t)
-                                 (emacs-lisp . t)
-                                 (haskell . t)
-                                 (js . t)
-                                 (org . t)
-                                 (python . t)
-                                 (ruby . t)
-                                 (swift . t)
-                                 (shell . t)))
-
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
     (setq-default org-agenda-files '("~/Dropbox/org")
@@ -1597,6 +1583,20 @@ Excludes the ibuffer."
         (file "~/Dropbox/org/journal-commonplaces.org")
         "* %^{Title} %^G\n   %?")))
 
+    ;; Org Babel languages
+    (org-babel-do-load-languages 'org-babel-load-languages
+                                 '((clojure . t)
+                                   (dot . t)
+                                   (elixir . t)
+                                   (emacs-lisp . t)
+                                   (haskell . t)
+                                   (js . t)
+                                   (org . t)
+                                   (python . t)
+                                   (ruby . t)
+                                   (swift . t)
+                                   (shell . t)))
+
     (setq-default org-structure-template-alist '(("a" . "export ascii")
                                                  ("c" . "center")
                                                  ("C" . "comment")
@@ -1607,6 +1607,10 @@ Excludes the ibuffer."
                                                  ("n" . "export notes")
                                                  ("q" . "quote")
                                                  ("s" . "src")
+                                                 ("sp" . "src python")
+                                                 ("se" . "src elixir")
+                                                 ("sr" . "src ruby")
+                                                 ("sj" . "src js")
                                                  ("v" . "verse")))))
 
 (defun config/org-latex-preview ()
