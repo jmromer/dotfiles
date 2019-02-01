@@ -753,7 +753,7 @@ Overrides doom-modeline's version to respect
   (progn
     (persp-switch "dotfiles")
     (delete-other-windows)
-    (find-file (expand-file-name "~/.spacemacs.d/init.el"))
+    (spacemacs/find-dotfile)
     (rename-buffer "*init.el*")))
 
 ;; mu4e
