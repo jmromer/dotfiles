@@ -6,6 +6,7 @@ packages=(
   awscli                  # AWS command line interface
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
+  ccat                    # colorized cat
   cmake                   # For YCM installation
   colordiff
   direnv                  # directory-specific env settings
