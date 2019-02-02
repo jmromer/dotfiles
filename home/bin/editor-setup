@@ -45,17 +45,17 @@ setup_python() {
         "json-rpc>=1.8.1" \
         "service_factory>=0.1.5" \
         autoflake \
+        black \
         epc \
-        flake8 \
         hy \
         importmagic \
         ipdb \
         ipython \
         isort \
+        mypy \
         pyls-isort \
         pyls-mypy \
         pyls-black \
-        "python-language-server[all]" \
         yapf \
         vim-vint
     }
