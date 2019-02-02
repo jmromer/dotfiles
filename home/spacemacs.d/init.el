@@ -1942,13 +1942,8 @@ Only equations at the beginning of a line are justified."
 Provides facilities for yanking formatted code snippets."
   (require 'yankee)
   (if (boundp 'evil-visual-state-map)
-      (progn
-        (define-key evil-visual-state-map (kbd "gy") nil)
-        (define-key evil-visual-state-map (kbd "gym") #'yankee/yank-as-gfm-code-block)
-        (define-key evil-visual-state-map (kbd "gyf") #'yankee/yank-as-gfm-code-block-folded)
-        (define-key evil-visual-state-map (kbd "gyo") #'yankee/yank-as-org-code-block)
-        (define-key evil-visual-state-map (kbd "gyj") #'yankee/yank-as-jira-code-block))
-    (error "Failed setting up yankee.el keybindings")))
+      (define-key evil-visual-state-map (kbd "g y") #'yankee/yank)
+    (error "Failed setting up yankee.el keybinding")))
 
 (defun config/yasnippet ()
   "Define yasnippet keybindings."
