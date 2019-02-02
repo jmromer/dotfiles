@@ -44,6 +44,7 @@ values."
      (c-c++ :variables
             c-c++-enable-clang-support t)
      command-log
+     copy-as-format
      dash
      deft
      django
@@ -555,6 +556,7 @@ dump.")
   (config/code-folding)
   (config/company)
   (config/compilation-buffers)
+  (config/copy-as-format)
   (config/deft)
   (config/elixir)
   (config/elm)
@@ -1011,6 +1013,12 @@ Excludes the ibuffer."
     (setq truncate-lines nil)
     (set (make-local-variable 'truncate-partial-width-windows) nil))
   (add-hook 'compilation-mode-hook #'compilation-mode-settings))
+
+(defun config/copy-as-format ()
+  "Configure copy-as-format."
+  (setq-default
+   copy-as-format-asciidoc-include-file-name t
+   copy-as-format-default "org-mode"))
 
 (defun config/deft ()
   "Configure deft notes browser."
