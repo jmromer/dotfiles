@@ -788,6 +788,7 @@ Optionally save at DIR (default value: ~/Desktop)."
 
 (defun org-capture-deft-new-file ()
   "Open a new deft notes file, prompting for the file name."
+  (require 'deft)
   (setq org-capture-deft--title (read-string "Title: ")
         org-capture-deft--timestamp (format-time-string "%Y%m%d%H%M%S"))
 
