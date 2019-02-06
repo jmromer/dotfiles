@@ -135,7 +135,7 @@ values."
             shell-default-position 'bottom
             shell-default-shell 'multi-term
             shell-default-term-shell "/usr/local/bin/zsh"
-            shell-enable-smart-eshell t)
+            shell-enable-smart-eshell nil)
      shell-scripts
      (slack :variables
             slack-spacemacs-layout-name "slack"
