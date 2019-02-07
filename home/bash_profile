@@ -10,7 +10,6 @@ source "$HOME/.dotfiles/env.sh"
 # Aliases
 #-------------------------------------------------------------
 alias reload!="source ~/.bash_profile"
-alias ls="ls --color=always"
 alias git="hub"
 
 function g() {
