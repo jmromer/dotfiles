@@ -2,7 +2,7 @@
 #-------------------------------------------------------------
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
-alias cat=ccat
+alias cat=bat
 alias vim='nvim'
 alias v=vim
 alias e=emacs
