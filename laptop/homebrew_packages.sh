@@ -6,7 +6,7 @@ packages=(
   awscli                  # AWS command line interface
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
-  ccat                    # colorized cat
+  bat                     # colorized cat with line numbers
   cmake                   # For YCM installation
   colordiff
   direnv                  # directory-specific env settings
@@ -19,6 +19,7 @@ packages=(
   hugo
   imagemagick
   ispell
+  mosh
   mps-youtube             # command-line music player
   mu                      # command-line email indexing
   isync                   # command-line email sync
@@ -34,6 +35,7 @@ packages=(
   ripgrep
   source-highlight        # syntax highlighting for less
   the_silver_searcher
+  tldr
   tree                    # for viewing directory contents in tree format
   zsh                     # Updated version of Zshell
   zsh-completions         # Command completions for Zshell
