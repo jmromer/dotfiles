@@ -51,6 +51,12 @@ done
 source "$(brew --prefix fzf)/install"
 
 #-------------------------------------------------------------
+# gitin
+#-------------------------------------------------------------
+brew tap isacikgoz/gitin
+brew install gitin
+
+#-------------------------------------------------------------
 # Universal Ctags
 #-------------------------------------------------------------
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
