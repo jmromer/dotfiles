@@ -11,6 +11,7 @@ Plug 'Shougo/deoplete-rct'
 Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
 Plug 'SevereOverfl0w/deoplete-github'
+Plug 'osyo-manga/vim-over'
 
 Plug 'SirVer/ultisnips'               " snippets engine, integrates with YCM
 Plug 'christoomey/vim-sort-motion'
