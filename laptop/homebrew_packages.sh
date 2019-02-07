@@ -11,15 +11,16 @@ packages=(
   colordiff
   direnv                  # directory-specific env settings
   elixir-build
+  exa                     # better ls
   gpg2                    # for PGP commit signing
   pinentry-mac
-  fd
+  fd                      # a simpler find
   fzf
   hub                     # For github-flavored git
   hugo
   imagemagick
   ispell
-  mosh
+  mosh                    # a better ssh
   mps-youtube             # command-line music player
   mu                      # command-line email indexing
   isync                   # command-line email sync
@@ -30,6 +31,7 @@ packages=(
   postgres
   qt
   shellcheck
+  ranger                  # file navigation
   reattach-to-user-namespace
   redis
   ripgrep
