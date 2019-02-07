@@ -1899,6 +1899,9 @@ Only equations at the beginning of a line are justified."
 
 (defun config/web-beautify ()
   "Configure web-beautify hooks."
+  (with-eval-after-load 'web-beautify
+    (defconst web-beautify-args '("-")))
+
   (eval-after-load 'sgml-mode
     '(add-hook 'html-mode-hook
                (lambda ()
