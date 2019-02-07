@@ -21,19 +21,7 @@ alias ..='\cd ..; l'     # go to parent dir and list contents
 alias ...='\cd ../..; l' # go to grandparent dir and list contents
 alias mkdir='mkdir -p'   # create subdirectories as necessary
 alias h='history'        # show history
-alias ls='gls'           # use GNU ls (emacs needs this)
-alias l='gls --color'    # use GNU ls
-alias la='l -A'          # list all files
-alias ll='l -loh'        # show extended listing (but not all files)
-alias llg='l -lh'        # show extended listing with group
-alias lla='l -Aloh'      # all files, info, hide group, short sizes
-alias llag='l -Al'       # all files, info, show group, short sizes
-alias l.='l -d .*'       # show only files beginning with a dot
-alias ll.='l -dloh .*'   # extended listing of files beginning with a dot
-alias lt='tree'          # show directory as tree
 alias d='dirs -v'        # show directory stack
-alias c='clear'          # clear shell output
-alias q='exit'           # quit the current process
 
 #-------------------------------------------------------------
 # ALIASES: SAFEGUARDS
