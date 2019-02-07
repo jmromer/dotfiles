@@ -4,6 +4,7 @@
 packages=(
   asdf
   awscli                  # AWS command line interface
+  atool                   # Add universal archive unpacker
   bash                    # Updated version of Bash
   bash-completion         # Command completions for Bash
   bat                     # colorized cat with line numbers
