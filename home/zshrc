@@ -22,6 +22,8 @@ alias ...='\cd ../..; l' # go to grandparent dir and list contents
 alias mkdir='mkdir -p'   # create subdirectories as necessary
 alias h='history'        # show history
 alias ls='exa'           # use exa
+alias l='ls'
+alias lla='ls -al'
 alias d='dirs -v'        # show directory stack
 
 #-------------------------------------------------------------
