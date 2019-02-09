@@ -514,7 +514,7 @@ See the header of this file for more information."
     (setq-default server-socket-dir (getenv "EMACS_SOCKET_DIR")))
 
   ;; Display Magit full-screen
-  (setq-default git-magit-status-fullscreen t)
+  (setq-default git-magit-status-fullscreen nil)
 
   ;; set these before loading evil
   (setq-default evil-want-integration t
