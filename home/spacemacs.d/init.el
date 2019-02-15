@@ -221,6 +221,7 @@ values."
      evil-mc
      fancy-battery
      google-translate
+     magithub
      rbenv
      rvm)
 
