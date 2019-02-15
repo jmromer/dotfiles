@@ -86,7 +86,7 @@ values."
                markdown-live-preview-engine 'vmd)
      (mu4e :variables
            mu4e-enable-async-operations t
-           mu4e-enable-mode-line t
+           mu4e-enable-mode-line nil  ;; TEMP
            mu4e-enable-notifications t
            mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e"
            mu4e-spacemacs-kill-layout-on-exit t
