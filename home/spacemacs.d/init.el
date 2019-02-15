@@ -82,6 +82,13 @@ values."
      (latex :variables
             latex-enable-auto-fill t
             latex-enable-folding t)
+     (lsp :variables
+          lsp-navigation 'both
+          lsp-ui-remap-xref-keybindings nil
+          lsp-ui-doc-enable t
+          lsp-ui-doc-include-signature nil
+          lsp-ui-sideline-enable nil
+          lsp-ui-sideline-show-symbol nil)
      (markdown :variables
                markdown-live-preview-engine 'vmd)
      (mu4e :variables
@@ -597,6 +604,11 @@ dump.")
   (config/prettify-symbols)
 
   (editorconfig-mode 1)
+
+  ;; lsp
+  (add-hook 'python-mode-hook #'lsp)
+  (add-hook 'elixir-mode-hook #'lsp)
+  (add-hook 'ruby-mode-hook #'lsp)
 
   ;; tramp
   (setq-default tramp-default-method "ssh")
