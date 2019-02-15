@@ -1404,7 +1404,6 @@ Excludes the ibuffer."
     (progn
       (lispy-mode +1)
       (parinfer-mode)
-      (spacemacs/toggle-parinfer-indent-on)
       (evil-cleverparens-mode)))
 
   (remove-hook 'emacs-lisp-mode-hook #'parinfer-mode)
