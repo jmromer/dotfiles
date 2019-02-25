@@ -1071,6 +1071,11 @@ Excludes the ibuffer."
   "Configure Elixir mode."
   (setq-default flycheck-elixir-credo-strict t)
 
+  (projectile-register-project-type 'elixir-mix '("mix.exs")
+                                    :compile "mix compile"
+                                    :test "mix test"
+                                    :test-suffix "_test")
+
   (defun elixir-format-buffer ()
     (interactive)
     (shell-command-on-region
