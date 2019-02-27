@@ -11,6 +11,7 @@ packages=(
   cmake                   # For YCM installation
   colordiff
   direnv                  # directory-specific env settings
+  editorconfig
   elixir-build
   exa                     # better ls
   gpg2                    # for PGP commit signing
