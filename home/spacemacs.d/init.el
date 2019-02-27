@@ -1295,8 +1295,10 @@ Excludes the ibuffer."
                 js2-strict-missing-semi-warning nil
                 prettier-js-command "prettier-standard")
 
+  (setq-default javascript-format-on-save t)
   (defun js-before-save-hooks ()
-    (if (eq major-mode 'js2-mode)
+    (when (and javascript-format-on-save
+               (eq major-mode 'js2-mode))
         (prettier-js)))
   (add-hook 'before-save-hook #'js-before-save-hooks)
 
