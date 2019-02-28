@@ -69,7 +69,6 @@ brew cask install gitter
 # lightweight PDF reader with auto-update
 brew cask install skim
 # video conferencing
-brew cask install skype
 brew cask install zoomus
 # instant messaging
 brew cask install slack
@@ -92,7 +91,6 @@ brew cask install 4k-video-downloader
 brew cask install 4k-youtube-to-mp3
 # streaming music, rss
 brew cask install spotify
-brew cask install winds
 
 brew cask install visual-studio-code
 brew cask install screenflow
