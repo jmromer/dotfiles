@@ -207,6 +207,7 @@ values."
      toc-org
      traad
      vimish-fold
+     vue-mode
      (yankee :location (recipe :fetcher github :repo "jmromer/yankee.el" :branch "develop")))
 
    ;; A list of packages that cannot be updated.
