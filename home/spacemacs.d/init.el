@@ -1299,7 +1299,8 @@ Excludes the ibuffer."
   (setq-default javascript-format-on-save t)
   (defun js-before-save-hooks ()
     (when (and javascript-format-on-save
-               (eq major-mode 'js2-mode))
+               (or (eq major-mode 'rjsx-mode)
+                   (eq major-mode 'js2-mode)))
         (prettier-js)))
   (add-hook 'before-save-hook #'js-before-save-hooks)
 
