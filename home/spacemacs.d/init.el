@@ -1801,8 +1801,10 @@ Only equations at the beginning of a line are justified."
                                     :test "pipenv run test"
                                     :test-suffix "_test")
 
+  (setq-default python-format-on-save t)
   (defun python-before-save-hooks ()
-    (if (eq major-mode 'python-mode)
+    (when (and python-format-on-save
+               (eq major-mode 'python-mode))
       (progn
         (pyimport-remove-unused)
         (importmagic-fix-imports)
