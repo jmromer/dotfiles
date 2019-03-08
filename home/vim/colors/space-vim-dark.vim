@@ -1,1 +1,1 @@
-/Users/jmromer/.vim/plugged/space-vim-dark/colors/space-vim-dark.vim
+../plugged/space-vim-dark/colors/space-vim-dark.vim
