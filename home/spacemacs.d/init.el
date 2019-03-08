@@ -1294,7 +1294,8 @@ Excludes the ibuffer."
   (setq-default js-indent-level 2
                 js2-basic-offset 2
                 js2-strict-missing-semi-warning nil
-                prettier-js-command "prettier-standard")
+                prettier-js-command "prettier-standard"
+                prettier-js-show-errors 'echo)
 
   (setq-default javascript-format-on-save t)
   (defun js-before-save-hooks ()
