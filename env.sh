@@ -40,7 +40,7 @@ export HOMEBREW_PREFIX="$(brew --prefix)"
 export FZF_DIR="$HOMEBREW_PREFIX/opt/fzf"
 export FZF_DEFAULT_COMMAND='rg --files-with-matches "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-j:preview-down' --bind='ctrl-k:preview-up'"
+export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-f:preview-down' --bind='ctrl-b:preview-up'"
 
 #-------------------------------------------------------------
 # Android

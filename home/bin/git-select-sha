@@ -15,8 +15,8 @@ target_commit="$(
         --no-sort \
         --reverse \
         --tiebreak=index \
-        --bind 'ctrl-n:preview-down' \
-        --bind 'ctrl-p:preview-up' \
+        --bind 'ctrl-f:preview-down' \
+        --bind 'ctrl-b:preview-up' \
         $1 \
         --preview='git show --color {+1}'
 )"
