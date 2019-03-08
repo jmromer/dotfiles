@@ -3,6 +3,7 @@
 # bash_profile
 # symlinked to by ~/.bash_profile
 
+# shellcheck source=/dev/null
 source "$HOME/.dotfiles/env.sh"
 source "$HOME/.dotfiles/path.sh"
 
@@ -111,9 +112,12 @@ else
 fi
 
 [[ -f $HOME/.anaconda/etc/profile.d/conda.sh ]] && \
-    . $HOME/.anaconda/etc/profile.d/conda.sh
+    . "$HOME/.anaconda/etc/profile.d/conda.sh"
 
 [[ -f $HOME/.bash_profile.local ]] && \
-    . $HOME/.bash_profile.local
+    . "$HOME/.bash_profile.local"
+
+[[ -f $HOME/.fzf.bash ]] && \
+    . "$HOME/.fzf.bash"
 
 # ------------------------------------------------------------------------
