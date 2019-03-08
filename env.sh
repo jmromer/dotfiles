@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 #-------------------------------------------------------------
+# Set HOMEBREW_PREFIX
+#-------------------------------------------------------------
+export PATH="/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
+export HOMEBREW_PREFIX="$(brew --prefix)"
+
+#-------------------------------------------------------------
 # Emacs
 #-------------------------------------------------------------
 if [ -n "$INSIDE_EMACS" ]; then
@@ -32,7 +38,6 @@ export GOPATH="$HOME/.go"
 export GOROOT="/usr/local/go"
 export ELM_HOME="$HOME/.elm"
 export ERL_AFLAGS="-kernel shell_history enabled"
-export HOMEBREW_PREFIX="$(brew --prefix)"
 
 #-------------------------------------------------------------
 # Use Ripgrep for FZF instead of find
