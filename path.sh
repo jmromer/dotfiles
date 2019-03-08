@@ -16,7 +16,7 @@ fi
 MANPATH="$GNUTOOLS_MANS"
 MANPATH+="/usr/local/opt/erlang/lib/erlang/man:"
 MANPATH+="/usr/local/opt/coreutils/libexec/gnuman:"
-MANPATH+="$(manpath)"
+MANPATH+="$(manpath 2>/dev/null)"
 export MANPATH
 
 #-------------------------------------------------------------
