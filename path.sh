@@ -22,22 +22,23 @@ export MANPATH
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="$HOME/.bin"                  # user binaries
-PATH+=$GNUTOOLS_PATHS              # GNU command-line tools
-PATH+=":$ANACONDA_PREFIX/bin"      # Anaconda binaries
-PATH+=":$HOME/.local/bin"          # haskell binaries
-PATH+=":$HOME/.asdf/shims"         # asdf shims
-PATH+=":./node_modules/.bin"       # Project-local node binaries
-PATH+=":$HOME/.fzf/bin"            # FZF fuzzy-finder
-PATH+=":$HOME/.gem/ruby/2.5.0/bin" # user-install gems for system ruby
-PATH+=":$HOME/.cargo/bin"          # Rust binary path
-PATH+=":$GOPATH/bin:$GOROOT/bin"   # Go binaries
-PATH+=":/usr/local/heroku/bin"     # heroku-toolbelt binaries
-PATH+=":/usr/local/bin"            # homebrewed binaries
-PATH+=":/usr/local/sbin"           # homebrewed binaries
-PATH+=":/usr/bin:/bin"             # system binaries
-PATH+=":/usr/sbin:/sbin"           # system binaries requiring root
-PATH+=":/opt/X11/bin"              # added by OSX
+PATH="$HOME/.bin"                    # user binaries
+PATH+=$GNUTOOLS_PATHS                # GNU command-line tools
+PATH+=":$ANACONDA_PREFIX/bin"        # Anaconda binaries
+PATH+=":$HOME/.local/bin"            # haskell binaries
+PATH+=":$HOME/.asdf/shims"           # asdf shims
+PATH+=":./node_modules/.bin"         # Project-local node binaries
+PATH+=":$FZF_DIR/bin"                # FZF fuzzy-finder
+PATH+=":$HOME/.gem/ruby/2.5.0/bin"   # user-install gems for system ruby
+PATH+=":$HOME/.cargo/bin"            # Rust binary path
+PATH+=":$GOPATH/bin:$GOROOT/bin"     # Go binaries
+PATH+=":$HOMEBREW_PREFIX/heroku/bin" # heroku-toolbelt binaries
+PATH+=":$HOMEBREW_PREFIX/bin"        # homebrewed binaries
+PATH+=":$HOMEBREW_PREFIX/sbin"       # homebrewed binaries
+PATH+=":/usr/bin:/bin"               # system binaries
+PATH+=":/usr/sbin:/sbin"             # system binaries requiring root
+PATH+=":/opt/X11/bin"                # added by OSX
 PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
+PATH+=":$HOMEBREW_PREFIX/share/git-core/contrib/diff-highlight"
 PATH+=":/Library/TeX/texbin"
 export PATH

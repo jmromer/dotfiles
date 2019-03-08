@@ -35,6 +35,14 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export HOMEBREW_PREFIX="$(brew --prefix)"
 
 #-------------------------------------------------------------
+# Use Ripgrep for FZF instead of find
+#-------------------------------------------------------------
+export FZF_DIR="$HOMEBREW_PREFIX/opt/fzf"
+export FZF_DEFAULT_COMMAND='rg --files-with-matches "" 2>/dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-j:preview-down' --bind='ctrl-k:preview-up'"
+
+#-------------------------------------------------------------
 # Android
 #-------------------------------------------------------------
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
