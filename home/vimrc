@@ -8,7 +8,7 @@ set fileencodings=utf-8
 set shortmess+=c
 
 " add fzf to rtp
-set runtimepath+=/usr/local/opt/fzf
+set runtimepath+=$FZF_DIR
 
 " Disable italics
 let g:solarized_italic = 0

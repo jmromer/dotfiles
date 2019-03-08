@@ -3,8 +3,8 @@
 # bash_profile
 # symlinked to by ~/.bash_profile
 
-# load env vars
 source "$HOME/.dotfiles/env.sh"
+source "$HOME/.dotfiles/path.sh"
 
 #-------------------------------------------------------------
 # Aliases

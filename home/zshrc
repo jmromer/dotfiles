@@ -82,13 +82,6 @@ export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
 export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 
 #-------------------------------------------------------------
-# Use Ripgrep for FZF instead of find
-#-------------------------------------------------------------
-export FZF_DEFAULT_COMMAND='rg --files-with-matches "" 2>/dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-n:preview-down' --bind='ctrl-p:preview-up'"
-
-#-------------------------------------------------------------
 # FUNCTIONS
 #-------------------------------------------------------------
 # create dir $1 and cd into it, creating subdirectories as necessary
@@ -211,7 +204,7 @@ autoload -U zmv     # rename files like zmv '(*).txt' '$1.html'
 #-------------------------------------------------------------
 # COMMAND COMPLETION
 #-------------------------------------------------------------
-shared='/usr/local/share'
+shared="$HOMEBREW_PREFIX/share"
 fpath=(
   $HOME/.zsh/completion
   $shared/zsh-completions
