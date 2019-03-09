@@ -5,8 +5,8 @@ if [ -z "$GNUTOOLS_PATHS" ] || [ -z "$GNUTOOLS_MANS" ]; then
   gnu_tools='coreutils gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls'
 
   for gnu_tool in $(echo $gnu_tools); do
-    GNUTOOLS_PATHS+=":/usr/local/opt/$gnu_tool/libexec/gnubin"
-    GNUTOOLS_MANS+="/usr/local/opt/$gnu_tool/libexec/gnuman:"
+    GNUTOOLS_PATHS+=":$HOMEBREW_PREFIX/opt/$gnu_tool/libexec/gnubin"
+    GNUTOOLS_MANS+="$HOMEBREW_PREFIX/opt/$gnu_tool/libexec/gnuman:"
   done
 fi
 
@@ -14,8 +14,8 @@ fi
 # MANPATH
 #-------------------------------------------------------------
 MANPATH="$GNUTOOLS_MANS"
-MANPATH+="/usr/local/opt/erlang/lib/erlang/man:"
-MANPATH+="/usr/local/opt/coreutils/libexec/gnuman:"
+MANPATH+="$HOMEBREW_PREFIX/opt/erlang/lib/erlang/man:"
+MANPATH+="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:"
 MANPATH+="$(manpath 2>/dev/null)"
 export MANPATH
 
@@ -23,9 +23,9 @@ export MANPATH
 # PATH
 #-------------------------------------------------------------
 PATH="$HOME/.bin"                    # user binaries
+PATH+=":$HOME/.local/bin"            # user binaries
 PATH+=$GNUTOOLS_PATHS                # GNU command-line tools
 PATH+=":$ANACONDA_PREFIX/bin"        # Anaconda binaries
-PATH+=":$HOME/.local/bin"            # haskell binaries
 PATH+=":$HOME/.asdf/shims"           # asdf shims
 PATH+=":./node_modules/.bin"         # Project-local node binaries
 PATH+=":$FZF_DIR/bin"                # FZF fuzzy-finder
