@@ -120,4 +120,7 @@ fi
 [[ -f $HOME/.fzf.bash ]] && \
     . "$HOME/.fzf.bash"
 
+# shellcheck source=/dev/null
+source "$HOME/.dotfiles/path.sh"
+
 # ------------------------------------------------------------------------

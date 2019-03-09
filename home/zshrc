@@ -371,9 +371,6 @@ fi
 #-------------------------------------------------------------
 disable r # disable zsh's r
 
-# shellcheck source=/dev/null
-source "$HOME/.dotfiles/path.sh"
-
 [[ -f $HOME/.fzf.zsh ]] && \
     . "$HOME/.fzf.zsh"
 
@@ -388,3 +385,6 @@ source "$HOME/.dotfiles/path.sh"
 
 [[ -f $HOME/.zshrc.local ]] && \
     . "$HOME/.zshrc.local"
+
+# shellcheck source=/dev/null
+source "$HOME/.dotfiles/path.sh"
