@@ -9,6 +9,10 @@
 # Generate a two-word phrase of random words
 #
 
+clean() {
+  ruby -pe '$_.gsub!(/[^[:alnum:]]/, "").downcase!'
+}
+
 DICT="/usr/share/dict/words"
 
 NUM_WORDS=$(wc -l $DICT | awk -F " " '{print $1}')
@@ -29,7 +33,7 @@ do
     fi
 done
 
-WORD1=$(head -n $NUM $DICT |tail -n 1)
+WORD1=$(head -n $NUM $DICT | tail -n 1 | clean)
 
 while true
 do
@@ -46,6 +50,6 @@ do
     fi
 done
 
-WORD2=$(head -n $NUM $DICT |tail -n 1)
+WORD2=$(head -n $NUM $DICT | tail -n 1 | clean)
 
-echo "$WORD1 $WORD2" | ruby -pe '$_.downcase!'
+echo "$WORD1 $WORD2"
