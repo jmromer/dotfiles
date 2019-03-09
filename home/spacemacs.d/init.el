@@ -219,6 +219,7 @@ values."
    '(
      ace-jump-mode
      emoji-cheat-sheet-plus
+     company-emoji
      evil-mc
      fancy-battery
      google-translate
