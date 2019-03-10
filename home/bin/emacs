@@ -12,13 +12,10 @@
 
 set -e
 
-export HOMEBREW_PREFIX="$(brew --prefix)"
-
-if ! command -v brew > /dev/null 2>&1 ||
-       test ! -L "$HOMEBREW_PREFIX/bin/emacs"; then
+if ! command -v brew >/dev/null 2>&1 ||
+   test ! -L "$HOMEBREW_PREFIX/bin/emacs"; then
     echo "Error: Install Homebrew and emacs."
     echo "https://brew.sh"
-    echo "brew install emacs-plus"
     exit 1
 fi
 
