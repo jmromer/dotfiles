@@ -4,10 +4,8 @@
 [gpg]
 	program = gpg
 
-[credential]
-	helper = osxkeychain
-
 [include]
+	path = ~/.gitconfig.secure
 	path = ~/.gitconfig.local
 
 [branch]
