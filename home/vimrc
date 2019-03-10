@@ -680,8 +680,8 @@ let g:jsdoc_custom_args_hook = {}
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0
 
-" Togglecursor: insert mode uses an underline
-let g:togglecursor_insert = 'underline'
+" NeoVim native cursor toggling
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
 " Deoplete: enable at startup
 let g:deoplete#enable_at_startup = 1
