@@ -606,6 +606,15 @@ dump.")
   (config/diminish)
   (config/prettify-symbols)
 
+  ;; Disable mousing entirely
+  (mouse-wheel-mode -1)
+  (global-set-key [wheel-up] 'ignore)
+  (global-set-key [wheel-down] 'ignore)
+  (global-set-key [double-wheel-up] 'ignore)
+  (global-set-key [double-wheel-down] 'ignore)
+  (global-set-key [triple-wheel-up] 'ignore)
+  (global-set-key [triple-wheel-down] 'ignore)
+
   (editorconfig-mode 1)
 
   ;; lsp
