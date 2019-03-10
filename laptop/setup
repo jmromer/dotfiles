@@ -116,7 +116,8 @@ touch "$log_location"
   rcup
 
   mkdir $HOME/.config
-  ln -s $SYNCED/hub $HOME/.config/hub
+  ln -s $SYNCED/config/hub $HOME/.config/hub
+  ln -s $SYNCED/config/git $HOME/.config/git
   ln -s $SYNCED/karabiner $HOME/.config/karabiner
 
   # ===================================================
