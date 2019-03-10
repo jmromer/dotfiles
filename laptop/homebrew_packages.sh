@@ -34,7 +34,6 @@ packages=(
   qt
   shellcheck
   ranger                  # file navigation
-  reattach-to-user-namespace
   redis
   ripgrep
   source-highlight        # syntax highlighting for less
