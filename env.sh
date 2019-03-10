@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
 
+uname_out="$(uname -s)"
+case "${uname_out}" in
+  Linux*)  machine=linux;;
+  Darwin*) machine=mac;;
+  CYGWIN*) machine=windows;;
+  *)       machine="UNKNOWN:${uname_out}"
+esac
+export MACHINE="$machine"
+
 #-------------------------------------------------------------
 # Set HOMEBREW_PREFIX
 #-------------------------------------------------------------
-export PATH="/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
-export HOMEBREW_PREFIX="$(brew --prefix)"
+if [[ "$MACHINE" == "linux" ]]; then
+  HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+else
+  HOMEBREW_PREFIX="/usr/local"
+fi
+export HOMEBREW_PREFIX
 
 #-------------------------------------------------------------
 # Emacs
