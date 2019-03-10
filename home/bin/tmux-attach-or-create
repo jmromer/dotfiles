@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Attach to or create the tmux session named as given, or, by default, matching
 # a name deterministically generated from the current working directory.
@@ -20,7 +20,7 @@ if [[ "$path_name" == '~' ]]; then
 fi
 
 session_name=${1:-"$path_name"}
-tmux="tmux"
+tmux_cmd="tmux"
 
 not_in_tmux() {
   [ -z "$TMUX" ]
@@ -33,11 +33,11 @@ session_exists() {
 }
 
 create_detached_session() {
-  (TMUX='' $tmux new-session -Ad -s "$session_name")
+  (TMUX='' $tmux_cmd new-session -Ad -s "$session_name")
 }
 
 if not_in_tmux; then
-  $tmux new-session -As "$session_name"
+  $tmux_cmd new-session -As "$session_name"
 
   exit 0
 fi
@@ -46,4 +46,4 @@ if ! session_exists; then
   create_detached_session
 fi
 
-$tmux switch-client -t "$session_name"
+$tmux_cmd switch-client -t "$session_name"
