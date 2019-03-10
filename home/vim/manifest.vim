@@ -21,7 +21,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'itchyny/lightline.vim'          " lightweight, configurable status line
 Plug 'jiangmiao/auto-pairs'
 Plug 'jmromer/yankee.vim'
-Plug 'jszakmeister/vim-togglecursor'  " toggle cursor between modes
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'   " delimiter highlighting
 Plug 'mattn/emmet-vim'
