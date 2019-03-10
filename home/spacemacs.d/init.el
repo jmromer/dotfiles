@@ -634,7 +634,7 @@ dump.")
   ;; treemacs
   (treemacs-resize-icons 15)
 
-  (setq-default ispell-program-name "/usr/local/bin/ispell")
+  (setq-default ispell-program-name "ispell")
 
   ;; leader-fp to open file at point
   (spacemacs/set-leader-keys
