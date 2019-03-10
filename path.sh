@@ -25,7 +25,6 @@ export MANPATH
 PATH="$HOME/.bin"                    # user binaries
 PATH+=":$HOME/.local/bin"            # user binaries
 PATH+=$GNUTOOLS_PATHS                # GNU command-line tools
-PATH+=":$ANACONDA_PREFIX/bin"        # Anaconda binaries
 PATH+=":$HOME/.asdf/shims"           # asdf shims
 PATH+=":./node_modules/.bin"         # Project-local node binaries
 PATH+=":$FZF_DIR/bin"                # FZF fuzzy-finder
