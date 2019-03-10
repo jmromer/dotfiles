@@ -13,12 +13,11 @@ set runtimepath+=$FZF_DIR
 " Disable italics
 let g:solarized_italic = 0
 
-
 "-------------------------------------------------------------
 " Python interpreters
 "-------------------------------------------------------------
-let g:python_host_prog = expand('~/.anaconda/envs/neovim2/bin/python')
-let g:python3_host_prog = expand('~/.anaconda/envs/neovim3/bin/python')
+let g:python_host_prog = expand('$HOMEBREW_PREFIX/bin/python2')
+let g:python3_host_prog = expand('~/.asdf/shims/python')
 
 " let b:ale_linters = ['flake8']
 let g:ale_linters = {'python': ['yapf']}

@@ -211,36 +211,13 @@ touch "$log_location"
   asdf install nodejs "$node_version"
   asdf global nodejs "$node_version"
 
-  # Install Anaconda
-  echo "Installing Python"
-  curl \
-    -o ~/Desktop/anaconda_install.sh \
-    https://repo.anaconda.com/archive/Anaconda3-5.3.1-MacOSX-x86_64.sh
+  echo "Installing Python..."
+  asdf plugin-add python
+  asdf install python anaconda3-2018.12
+  pip install pynvim
 
-  # run installer
-  bash ~/Desktop/anaconda_install.sh
-
-  # Install Python packages for emacs
-  editor-setup py
-
-  echo conda create -n neovim2 python=2.7
-  conda create -n neovim2 python=2.7
-
-  echo conda activate neovim2
-  conda activate neovim2
-  echo pip install neovim
-  pip install neovim
-  echo conda deactivate
-  conda deactivate
-
-  echo conda create -n neovim3 python=3.7
-  conda create -n neovim3 python=3.7
-  echo conda activate neovim3
-  conda activate neovim3
-  echo pip install neovim
-  pip install neovim
-  echo conda deactivate
-  conda deactivate
+  brew install python@2
+  pip2 install pynvim
 
   #-------------------------------------------------------------
   # Vim bootstrap

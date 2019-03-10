@@ -4,3 +4,4 @@ elixir 1.8.1
 erlang 21.2.4
 mongodb 3.6.6
 java openjdk-11
+python anaconda3-2018.12
