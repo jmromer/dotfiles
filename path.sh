@@ -22,20 +22,23 @@ export MANPATH
 #-------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------
-PATH="$HOME/.bin"                    # user binaries
-PATH+=":$HOME/.local/bin"            # user binaries
-PATH+=$GNUTOOLS_PATHS                # GNU command-line tools
-PATH+=":$HOME/.asdf/shims"           # asdf shims
+PATH="$HOME/.bin"
+PATH+=":$HOME/.local/bin"
+PATH+=$GNUTOOLS_PATHS
+PATH+=":$HOME/.asdf/shims"
 PATH+=":./node_modules/.bin"         # Project-local node binaries
-PATH+=":$FZF_DIR/bin"                # FZF fuzzy-finder
-PATH+=":$HOME/.gem/ruby/2.5.0/bin"   # user-install gems for system ruby
+PATH+=":$FZF_DIR/bin"
 PATH+=":$HOME/.cargo/bin"            # Rust binary path
 PATH+=":$GOPATH/bin:$GOROOT/bin"     # Go binaries
-PATH+=":$HOMEBREW_PREFIX/heroku/bin" # heroku-toolbelt binaries
-PATH+=":$HOMEBREW_PREFIX/bin"        # homebrewed binaries
-PATH+=":$HOMEBREW_PREFIX/sbin"       # homebrewed binaries
-PATH+=":/usr/bin:/bin"               # system binaries
-PATH+=":/usr/sbin:/sbin"             # system binaries requiring root
+PATH+=":$HOMEBREW_PREFIX/heroku/bin"
+PATH+=":$HOMEBREW_PREFIX/bin"
+PATH+=":$HOMEBREW_PREFIX/sbin"
+PATH+=":/usr/local/bin"
+PATH+=":/usr/local/sbin"
+PATH+=":/usr/bin"
+PATH+=":/usr/sbin"
+PATH+=":/bin"
+PATH+=":/sbin"
 PATH+=":/opt/X11/bin"                # added by OSX
 PATH+=":$HOME/Library/Android/sdk/tools/bin" # Android SDK CLT binaries
 PATH+=":$HOMEBREW_PREFIX/share/git-core/contrib/diff-highlight"
