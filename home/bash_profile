@@ -4,8 +4,8 @@
 # symlinked to by ~/.bash_profile
 
 # shellcheck source=/dev/null
-source "$HOME/.dotfiles/env.sh"
-source "$HOME/.dotfiles/path.sh"
+source "$HOME/.dotfiles/shell/env.sh"
+source "$HOME/.dotfiles/shell/path.sh"
 
 #-------------------------------------------------------------
 # Aliases
@@ -121,6 +121,6 @@ fi
     . "$HOME/.fzf.bash"
 
 # shellcheck source=/dev/null
-source "$HOME/.dotfiles/path.sh"
+source "$HOME/.dotfiles/shell/path.sh"
 
 # ------------------------------------------------------------------------
