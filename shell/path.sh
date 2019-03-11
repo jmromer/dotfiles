@@ -24,6 +24,7 @@ export MANPATH
 #-------------------------------------------------------------
 PATH="$HOME/.bin"
 PATH+=":$HOME/.local/bin"
+PATH+=":$HOMEBREW_PREFIX/opt/gettext/bin"
 PATH+=$GNUTOOLS_PATHS
 PATH+=":$HOME/.asdf/shims"
 PATH+=":./node_modules/.bin"         # Project-local node binaries
