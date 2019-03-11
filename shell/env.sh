@@ -70,13 +70,12 @@ export ANDROID_HOME="$ANDROID_SDK_ROOT"
 #-------------------------------------------------------------
 # JAVA
 #-------------------------------------------------------------
-java_path=/usr/libexec/java_home
+# java_path=/usr/libexec/java_home
+# JAVA_HOME=$($java_path)
 
-if [[ -z "$JAVA_HOME" && -f "$java_path" ]]; then
-  JAVA_HOME=$($java_path)
-  export JAVA_HOME
-  launchctl setenv JAVA_HOME "$JAVA_HOME"
-fi
+JAVA_HOME="$HOME/.asdf/installs/java/openjdk-11/"
+export JAVA_HOME
+launchctl setenv JAVA_HOME "$JAVA_HOME"
 
 #-------------------------------------------------------------
 # DOCKER
