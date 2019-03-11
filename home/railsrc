@@ -7,5 +7,5 @@
 --skip-test
 --skip-test-unit
 --skip-turbolinks
---template=~/.dotfiles/rails_template.rb
+--template=~/.dotfiles/config/rails_template.rb
 --webpack=react

@@ -387,4 +387,4 @@ disable r # disable zsh's r
     . "$HOME/.zshrc.local"
 
 # shellcheck source=/dev/null
-source "$HOME/.dotfiles/path.sh"
+source "$HOME/.dotfiles/shell/path.sh"
