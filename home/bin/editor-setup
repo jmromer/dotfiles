@@ -62,11 +62,13 @@ setup_python() {
     }
 
 setup_mac() {
-    # https://github.com/syl20bnr/spacemacs/issues/11541
-    # if using dark mode, you'll need this
-    # to disable: defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
-    echo defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
-    defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+    if [[ "$MACHINE" == "mac" ]]; then
+        # https://github.com/syl20bnr/spacemacs/issues/11541
+        # if using dark mode, you'll need this
+        # to disable: defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
+        echo defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+        defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+    fi
 }
 
 message() {
