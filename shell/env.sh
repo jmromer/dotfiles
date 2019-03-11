@@ -35,9 +35,7 @@ export GPG_TTY
 #-------------------------------------------------------------
 # Python
 #-------------------------------------------------------------
-if [[ "$MACHINE" == "mac" ]]; then
-  export PYTHON_CONFIGURE_OPTS="--enable-framework"
-fi
+export PYTHONDONTWRITEBYTECODE=1
 
 # http://vi.stackexchange.com/a/7654
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
