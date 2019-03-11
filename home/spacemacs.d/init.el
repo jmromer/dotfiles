@@ -137,11 +137,11 @@ values."
      scala
      search-engine
      (shell :variables
-            multi-term-program "/usr/local/bin/zsh"
+            multi-term-program "zsh"
             shell-default-full-span nil
             shell-default-position 'bottom
             shell-default-shell 'multi-term
-            shell-default-term-shell "/usr/local/bin/zsh"
+            shell-default-term-shell "zsh"
             shell-enable-smart-eshell nil)
      shell-scripts
      (slack :variables
