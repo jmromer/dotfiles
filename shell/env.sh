@@ -75,7 +75,10 @@ export ANDROID_HOME="$ANDROID_SDK_ROOT"
 
 JAVA_HOME="$HOME/.asdf/installs/java/openjdk-11/"
 export JAVA_HOME
-launchctl setenv JAVA_HOME "$JAVA_HOME"
+
+if [[ "$MACHINE" == "mac" ]]; then
+  launchctl setenv JAVA_HOME "$JAVA_HOME"
+fi
 
 #-------------------------------------------------------------
 # DOCKER
