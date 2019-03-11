@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #-------------------------------------------------------------
 # Mac Settings
 #-------------------------------------------------------------
@@ -144,4 +146,3 @@ sudo pmset -a sms 0
 # Restart affected services
 killall Dock
 killall SystemUIServer
-
