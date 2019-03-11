@@ -13,7 +13,7 @@ source "$HOME/.dotfiles/path.sh"
 alias reload!="source ~/.bash_profile"
 alias git="hub"
 
-function g() {
+g() {
   if [[ $# > 0 ]]; then
     git $@
   else
@@ -27,13 +27,13 @@ function g() {
 if [ -f "$HOMEBREW_PREFIX/etc/bash_completion" ]; then
   source "$HOMEBREW_PREFIX/etc/bash_completion"
 fi
-source "$HOME/.dotfiles/bash/git-completion.bash"
+source "$HOME/.dotfiles/shell/git-completion.bash"
 complete -C aws_completer aws
 
 #-------------------------------------------------------------
 # COLORS  # NB: wrapping incorrectly in bash
 #-------------------------------------------------------------
-function color {
+color() {
   if   [[ $1 == 'red'    ]]; then echo -ne '\e[0;31m'   # $(tput setaf 1)
   elif [[ $1 == 'yellow' ]]; then echo -ne '\e[1;33m'   # $(tput setaf 3)
   elif [[ $1 == 'green'  ]]; then echo -ne '\e[0;32m'   # $(tput setaf 2)
@@ -47,43 +47,43 @@ function color {
 #-------------------------------------------------------------
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
-function git_color() {
+git_color() {
   local clean='working (directory|tree) clean'
   local ahead_of_remote="Your branch is ahead of"
   local applying_patch="Unmerged"
 
   if [[ $git_status =~ $clean ]]; then
     if [[ $git_status =~ $ahead_of_remote ]]; then
-      echo -ne $(color yellow)
+      echo -ne "$(color yellow)"
     else
-      echo -ne $(color green)
+      echo -ne "$(color green)"
     fi
   elif [[ $git_status =~ $applying_patch ]]; then
-    echo -ne $(color violet)
+    echo -ne "$(color violet)"
   else
-    echo -ne $(color red)
+    echo -ne "$(color red)"
   fi
 }
 
-function git_branch() {
+git_branch() {
   local git_status="$(\git status 2> /dev/null)"
   local is_on_branch='^On branch ([^[:space:]]+)'
   local is_on_commit='HEAD detached at ([^[:space:]]+)'
   local is_rebasing="rebasing branch '([^[:space:]]+)' on '([^[:space:]]+)'"
 
   if [[ $git_status =~ $is_on_branch ]]; then
-    local branch=${BASH_REMATCH[1]:-$match[1]} # bash/zsh portable
+    local branch=${BASH_REMATCH[1]:-${match[1]}} # bash/zsh portable
     if [[ $git_status =~ "Unmerged paths" ]]; then
       git_color && echo -n "merging into $branch "
     else
       git_color && echo -n "$branch "
     fi
   elif [[ $git_status =~ $is_on_commit ]]; then
-    local commit=${BASH_REMATCH[1]:-$match[1]}
+    local commit=${BASH_REMATCH[1]:-${match[1]}}
     git_color && echo -n "$commit "
   elif [[ $git_status =~ $is_rebasing ]]; then
-    local branch=${BASH_REMATCH[1]:-$match[1]}
-    local commit=${BASH_REMATCH[2]:-$match[2]}
+    local branch=${BASH_REMATCH[1]:-${match[1]}}
+    local commit=${BASH_REMATCH[2]:-${match[2]}}
     git_color && echo -n "rebasing $branch on $commit "
   fi
 }
