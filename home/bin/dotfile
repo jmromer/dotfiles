@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILE_PATH="$HOME/.dotfiles/home"
+
+origin_file="$1"
+target_file="$DOTFILE_PATH/${origin_file/./}"
+
+echo mv "$origin_file" "$target_file"
+mv "$origin_file" "$target_file"
+
+echo ln -s "$target_file" "$origin_file"
+ln -s "$target_file" "$origin_file"
