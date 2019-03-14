@@ -128,7 +128,6 @@
 	aa       = add --all
 	ap       = add --patch
 	b        = branch -vv
-	bb       = checkout-branch
 	bc       = create-branch-with-remote
 	bcl      = create-branch
 	bd       = delete-branch
@@ -142,7 +141,8 @@
 	cmf      = commit-fixup
 	cms      = commit-squash
 	co       = checkout
-	cc       = checkout-commit
+	cob      = checkout-branch
+	coc      = checkout-commit
 	comp     = !git checkout master && git pull
 	cp       = cherry-pick
 	cours    = checkout --ours
