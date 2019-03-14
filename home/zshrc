@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC1090
+# SC1090: Can't follow non-constant source.
+#         Use a directive to specify location.
+
 #-------------------------------------------------------------
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
@@ -86,13 +90,14 @@ export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 # FUNCTIONS
 #-------------------------------------------------------------
 # create dir $1 and cd into it, creating subdirectories as necessary
-function md() {
-  local directory_name=$(echo $@ | sed -e "s/\s/_/g")
-  mkdir -p "$directory_name" && cd "$directory_name";
+md() {
+  directory_name="${*//\s/-}"
+  mkdir -p "$directory_name"
+  cd "$directory_name" || return
 }
 
 # pretty-print the command search path
-function pp() {
+pp() {
   if [[ "$1" == 'path' ]]; then
     ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
   elif [[ "$1" == 'manpath' ]]; then
@@ -103,7 +108,7 @@ function pp() {
 }
 
 # Mac-specific: show and hide hidden files
-function hidden_files() {
+hidden_files() {
   if [[ $1 != "hide" && $1 != "show" ]]; then
     echo "Usage: hidden_files [show|hide]"; return 1;
   fi
@@ -117,21 +122,21 @@ function hidden_files() {
 }
 
 # wrap rm -rf with a guard prompt
-function del() {
-  echo "rm -rf $@"
+del() {
+  echo "rm -rf $*"
   echo -n "rm: Permanently delete the selected files/directories? "
   echo -n "This cannot be undone. "
   read dir
 
   if [[ $dir =~ ^[yY](es)?$ ]]; then
-    echo "Deleting: $@"
-    rm -rf "$@"
+    echo "Deleting: $*"
+    rm -rf "$*"
   else
     echo "Canceling with no changes made."
   fi
 }
 
-function binstubs() {
+binstubs() {
   bundle install --binstubs .bundle/bin
 }
 
@@ -140,9 +145,9 @@ function binstubs() {
 #-------------------------------------------------------------
 # No arguments: `git status`
 # With arguments: acts like `git`
-function g() {
-  if [[ $# > 0 ]]; then
-    git $@
+g() {
+  if [[ $# -gt 0 ]]; then
+    git "$@"
   else
     \git status -sb
   fi
@@ -151,43 +156,43 @@ function g() {
 #-------------------------------------------------------------
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
-function git_color() {
-  local clean='working (directory|tree) clean'
-  local ahead_of_remote="Your branch is ahead of"
-  local applying_patch="Unmerged"
+git_color() {
+  clean='working (directory|tree) clean'
+  ahead_of_remote="Your branch is ahead of"
+  applying_patch="Unmerged"
 
   if [[ $git_status =~ $clean ]]; then
     if [[ $git_status =~ $ahead_of_remote ]]; then
-      echo -ne $(color yellow)
+      echo -ne "$(color yellow)"
     else
-      echo -ne $(color green)
+      echo -ne "$(color green)"
     fi
   elif [[ $git_status =~ $applying_patch ]]; then
-    echo -ne $(color violet)
+    echo -ne "$(color violet)"
   else
-    echo -ne $(color red)
+    echo -ne "$(color red)"
   fi
 }
 
-function git_branch() {
-  local git_status="$(\git status 2> /dev/null)"
-  local is_on_branch='^On branch ([^[:space:]]+)'
-  local is_on_commit='HEAD detached at ([^[:space:]]+)'
-  local is_rebasing="rebasing branch '([^[:space:]]+)' on '([^[:space:]]+)'"
+git_branch() {
+  git_status="$(\git status 2> /dev/null)"
+  is_on_branch='^On branch ([^[:space:]]+)'
+  is_on_commit='HEAD detached at ([^[:space:]]+)'
+  is_rebasing="rebasing branch '([^[:space:]]+)' on '([^[:space:]]+)'"
 
   if [[ $git_status =~ $is_on_branch ]]; then
-    local branch=${BASH_REMATCH[1]:-$match[1]} # bash/zsh portable
+    branch=${BASH_REMATCH[1]:-${match[1]}} # bash/zsh portable
     if [[ $git_status =~ "Unmerged paths" ]]; then
       git_color && echo -n "merging into $branch "
     else
       git_color && echo -n "$branch "
     fi
   elif [[ $git_status =~ $is_on_commit ]]; then
-    local commit=${BASH_REMATCH[1]:-$match[1]}
+    commit=${BASH_REMATCH[1]:-${match[1]}}
     git_color && echo -n "$commit "
   elif [[ $git_status =~ $is_rebasing ]]; then
-    local branch=${BASH_REMATCH[1]:-$match[1]}
-    local commit=${BASH_REMATCH[2]:-$match[2]}
+    branch=${BASH_REMATCH[1]:-${match[1]}}
+    commit=${BASH_REMATCH[2]:-${match[2]}}
     git_color && echo -n "rebasing $branch on $commit "
   fi
 }
