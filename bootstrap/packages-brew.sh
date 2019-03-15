@@ -8,6 +8,7 @@ brew install bash-completion
 brew install bat
 brew install cmake
 brew install colordiff
+brew install csvkit
 brew install direnv
 brew install editorconfig
 brew install exa
