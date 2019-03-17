@@ -1910,6 +1910,8 @@ Only equations at the beginning of a line are justified."
           (define-key term-raw-map (kbd "C-y") #'term-send-ctrl-y)
           (define-key term-raw-map (kbd "C-p") #'term-send-up)
           (define-key term-raw-map (kbd "C-n") #'term-send-down)
+          (evil-define-key 'normal term-raw-map (kbd "C-p") #'evil-scroll-page-up)
+          (evil-define-key 'normal term-raw-map (kbd "C-n") #'evil-scroll-page-down)
           (define-key term-raw-map (kbd "C-v") #'term-paste)
           (goto-address-mode))
       (error "Failed setting up term mode keybindings")))
