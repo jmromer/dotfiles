@@ -121,16 +121,14 @@ hidden_files() {
   killall Finder;
 }
 
-# wrap rm -rf with a guard prompt
 del() {
-  echo "rm -rf $*"
-  echo -n "rm: Permanently delete the selected files/directories? "
-  echo -n "This cannot be undone. "
+  echo "mv -t ~/.Trash/ $@"
+  echo -n "del: Delete the selected files/directories? "
   read dir
 
   if [[ $dir =~ ^[yY](es)?$ ]]; then
-    echo "Deleting: $*"
-    rm -rf "$*"
+    echo "Trashing: $@"
+    mv -t ~/.Trash/ "$@"
   else
     echo "Canceling with no changes made."
   fi
