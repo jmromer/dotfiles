@@ -89,3 +89,9 @@ export DOCKER_HIDE_LEGACY_COMMANDS=true
 # GTAGS
 #-------------------------------------------------------------
 export GTAGSLABEL=pygments
+
+#-------------------------------------------------------------
+# Compilation flags
+#-------------------------------------------------------------
+export LDFLAGS="-L/usr/local/opt/gettext/lib"
+export CPPFLAGS="-I/usr/local/opt/gettext/include"
