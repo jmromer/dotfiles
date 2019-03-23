@@ -391,3 +391,5 @@ disable r # disable zsh's r
 
 # shellcheck source=/dev/null
 source "$HOME/.dotfiles/shell/path.sh"
+
+#-------------------------------------------------------------
