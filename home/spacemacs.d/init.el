@@ -1854,8 +1854,14 @@ Only equations at the beginning of a line are justified."
 
 (defun config/ruby ()
   "Configure packages for Ruby mode."
+  (setq-default ruby-format-on-save t)
+  (defun ruby-before-save-hooks ()
+    (when (and ruby-format-on-save
+               (eq major-mode 'ruby-mode))
+      (rufo-format-buffer)))
+  (add-hook 'before-save-hook #'ruby-before-save-hooks)
+
   ;; Define keybinding to manually trigger autoformat
-  (setq-default rufo-enable-format-on-save t)
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format-buffer))
 
 (defun config/ruby-in-buffer-eval ()
