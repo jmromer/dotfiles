@@ -622,7 +622,6 @@ dump.")
   ;; lsp
   (add-hook 'python-mode-hook #'lsp)
   (add-hook 'elixir-mode-hook #'lsp)
-  (add-hook 'ruby-mode-hook #'lsp)
 
   ;; tramp
   (setq-default tramp-default-method "ssh")
