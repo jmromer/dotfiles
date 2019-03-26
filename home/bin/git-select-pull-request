@@ -14,16 +14,9 @@ set -e
 pr_list="$(hub pr list 2>/dev/null)"
 
 # Select from a fuzzy-selectable list of pull requests
-selected_pr="$(
-    echo "$pr_list" |\
-    fzf-tmux -d 15 \
-             --ansi \
-             --no-sort \
-             --reverse \
-             --no-multi \
-             --tiebreak=index |\
-    sed -E 's/^\s+//')"
-
+selected_pr="$(echo "$pr_list" |\
+  fzf --ansi --no-sort --reverse --no-multi --tiebreak=index |\
+  sed -E 's/^\s+//')"
 
 # Exit quietly if no pull request was selected
 if [[ -z "$selected_pr" ]]; then
