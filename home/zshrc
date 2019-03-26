@@ -15,9 +15,55 @@ alias vi='nvim -u ~/.vim/minimal.vim'
 alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
 alias git=hub
 alias dc='docker-compose'
-alias cdd='cd ~/.dotfiles'
 alias b=bundle
 alias music=mpsyt
+
+cd () {
+    if [[ $# -eq 0 ]]; then
+        echo "cd ~"
+        builtin cd && return
+    fi
+
+    local target
+    local abbreviated
+
+    target="$(readlink -f "$*")"
+
+    if [[ -f "$target" ]]; then
+        target="$(dirname "$target")"
+    fi
+
+    abbreviated="${target/$HOME/~}"
+    echo "cd $abbreviated"
+    echo "$abbreviated" >> ~/.cdhistory
+
+    builtin cd "$target" || return
+}
+
+cdd () {
+    local selection
+    local target
+
+    selection=$(sort ~/.cdhistory |\
+                 uniq -c |\
+                 sort -nr |\
+                 head -10 |\
+                 awk '{ print $2 }' |\
+                 fzf --ansi \
+                 --no-sort \
+                 --no-multi \
+                 --reverse \
+                 --tiebreak=index \
+                 --bind 'ctrl-f:preview-down' \
+                 --bind 'ctrl-b:preview-up' \
+                 --preview='eval echo {+1} | xargs exa --all --long --group-directories-first --color=always --git --header')
+
+    [[ -z "$selection" ]] && return
+    target=$(eval echo "$selection")
+
+    echo "cd $selection"
+    builtin cd "$target" || return
+}
 
 #-------------------------------------------------------------
 # ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
