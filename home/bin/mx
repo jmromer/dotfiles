@@ -27,7 +27,7 @@
 
 set -e
 
-fzf_command="fzf-tmux -d 20 --ansi --no-sort --reverse --tiebreak=index"
+fzf_command="fzf --ansi --no-sort --reverse --tiebreak=index"
 
 usage() {
     grep '^#' < "$0" | tail -n +2 | cut -c 3-
