@@ -4,7 +4,7 @@
 #
 # Usage: git delete-branch [rem]
 
-branches="$(git branch | cut -c 3- | fzf-tmux -d 20)"
+branches="$(git branch | cut -c 3- | fzf --multi)"
 test -z "$branches" && exit 0
 
 for branch in $branches; do

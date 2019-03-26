@@ -34,7 +34,7 @@ test -z "$listeners" && exit 0
 
 pids="$(echo "$listeners" |\
         awk '{ printf("%-15s%-10s%-10s%-20s\n", $1, $2, $8, $9) }' |\
-        fzf-tmux -d 30 --exact --multi --reverse --no-sort --border |\
+        fzf --exact --multi --reverse --no-sort --border |\
         awk '{ print $2 }' |\
         sort --unique |\
         grep --invert-match PID |\
