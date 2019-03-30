@@ -12,7 +12,9 @@ brew cask install 1password6
 # removes apps and related files
 brew cask install appcleaner
 # vpn
-brew cask install expressvpn
+brew cask install protonvpn
+# email
+brew cask install protonmail-bridge
 # web browser
 brew cask install firefox
 # controls screen brightness
