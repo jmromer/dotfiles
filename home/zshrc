@@ -47,7 +47,7 @@ cdd () {
     selection=$(sort ~/.cdhistory |\
                  uniq -c |\
                  sort -nr |\
-                 head -10 |\
+                 head -20 |\
                  awk '{ print $2 }' |\
                  fzf --ansi \
                  --no-sort \
