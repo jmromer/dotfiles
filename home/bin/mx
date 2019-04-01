@@ -10,13 +10,13 @@
 #
 # Available subcommands:
 #
-#   [none]     -- Start either a currently running or tmuxinator-managed session
-#   help       -- Displays this menu
-#   list (ls)  -- List all running and available sessions
+#   [none]           -- Start either a currently running or tmuxinator-managed session
+#   help             -- Displays this menu
+#   list (ls)        -- List all running and available sessions
 #
-#   here (h)   -- Attach to a PWD-named session if it exists, else start and attach to it
-#   kill (k)   -- Kill the given tmux session(s) and/or tmuxinator template(s)
-#   new  (n)   -- Start and switch to a new, randomly-named tmux session
+#   here (h)         -- Attach to a PWD-named session if it exists, else start and attach to it
+#   kill (k)         -- Kill the given tmux session(s) and/or tmuxinator template(s)
+#   new  (n) [NAME]  -- Start and switch to a new tmux session, randomly named if no name given
 #
 #   tmuxinator:
 #
@@ -36,8 +36,7 @@ usage() {
 running_tmux_sessions() {
     tmux list-sessions 2> /dev/null |\
         grep -v 'failed to connect' |\
-        sed -E 's/(.+): .+/\1/' |\
-        sed -n '1!p'
+        sed -E 's/(.+): .+/\1/'
     }
 
 tmuxinator_templates() {
@@ -188,7 +187,14 @@ while [ $# -gt -1 ]; do
             exit 0
             ;;
         'new'|'n')
-            tmux-attach-or-create "$(random_phrase)"
+            name="${*:2}"
+
+            if [[ -n "$name" ]]; then
+                tmux-attach-or-create "$name"
+            else
+                tmux-attach-or-create "$(random_phrase)"
+            fi
+
             exit 0
             ;;
         'create'|'c')
