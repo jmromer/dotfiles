@@ -137,7 +137,7 @@ export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
 #-------------------------------------------------------------
 # create dir $1 and cd into it, creating subdirectories as necessary
 md() {
-  directory_name="${*//\s/-}"
+  directory_name="${*// /-}"
   mkdir -p "$directory_name"
   cd "$directory_name" || return
 }
