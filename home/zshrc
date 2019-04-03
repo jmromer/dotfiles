@@ -43,8 +43,9 @@ cd () {
 cdd () {
     local selection
     local target
+    local histfile="$HOME/.cdhistory"
 
-    selection=$(sort ~/.cdhistory |\
+    selection=$(sort "$histfile" |\
                  uniq -c |\
                  sort -nr |\
                  head -20 |\
@@ -56,10 +57,17 @@ cdd () {
                  --tiebreak=index \
                  --bind 'ctrl-f:preview-down' \
                  --bind 'ctrl-b:preview-up' \
-                 --preview='eval echo {+1} | xargs exa --all --long --group-directories-first --color=always --git --header')
+                 --preview='eval echo {+1} | xargs exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')
 
     [[ -z "$selection" ]] && return
     target=$(eval echo "$selection")
+
+    if [[ ! -d "$target" ]]; then
+      echo "$selection no longer exists, removing from history."
+      local pattern="${selection//\//\\/}"
+      sed -i "/$pattern/d" "$histfile"
+      return
+    fi
 
     echo "cd $selection"
     builtin cd "$target" || return
