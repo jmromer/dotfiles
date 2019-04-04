@@ -166,6 +166,7 @@ values."
    '(
      amx
      bison-mode
+     coffee-mode
      company-flx
      company-jedi
      conda
