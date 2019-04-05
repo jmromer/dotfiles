@@ -20,8 +20,11 @@ alias music=mpsyt
 
 cd () {
     if [[ $# -eq 0 ]]; then
-        echo "cd ~"
         builtin cd && return
+    fi
+
+    if [[ $1 == "-" ]]; then
+        builtin cd "-" && return
     fi
 
     local target
@@ -45,32 +48,32 @@ cdd () {
     local target
     local histfile="$HOME/.cdhistory"
 
-    selection=$(sort "$histfile" |\
+    selection=$(tail -100 "$histfile" |\
+                 sort |\
                  uniq -c |\
                  sort -nr |\
-                 head -20 |\
-                 awk '{ print $2 }' |\
+                 ruby -pe '$_.sub!(/^[[:space:][:digit:]]+/, "")' |\
                  fzf --ansi \
-                 --no-sort \
-                 --no-multi \
-                 --reverse \
-                 --tiebreak=index \
-                 --bind 'ctrl-f:preview-down' \
-                 --bind 'ctrl-b:preview-up' \
-                 --preview='eval echo {+1} | xargs exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')
+                     --no-sort \
+                     --no-multi \
+                     --reverse \
+                     --tiebreak=index \
+                     --bind 'ctrl-f:preview-down' \
+                     --bind 'ctrl-b:preview-up' \
+                     --preview='eval echo {+} | xargs -d "\n" exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')
 
     [[ -z "$selection" ]] && return
-    target=$(eval echo "$selection")
+
+    target="$(eval echo "$selection")"
 
     if [[ ! -d "$target" ]]; then
-      echo "$selection no longer exists, removing from history."
+      echo "$target no longer exists, removing from history."
       local pattern="${selection//\//\\/}"
-      sed -i "/$pattern/d" "$histfile"
+      sed -i "/^${pattern}$/d" "$histfile"
       return
     fi
 
-    echo "cd $selection"
-    builtin cd "$target" || return
+    cd "$target" || return
 }
 
 #-------------------------------------------------------------
