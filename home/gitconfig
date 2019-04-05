@@ -4,10 +4,6 @@
 [gpg]
 	program = gpg
 
-[include]
-	path = ~/.gitconfig.secure
-	path = ~/.gitconfig.local
-
 [branch]
 	autosetuprebase = always
 
@@ -53,6 +49,19 @@
 [filter "media"]
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
+
+[format]
+	headers = "Content-Type: text/plain;charset=utf-8\n"
+	signOff = yes
+
+[sendemail]
+	smtpEncryption = starttls
+	smtpServer = 127.0.0.1
+	smtpServerport = 1025
+	transferEncoding = 8bit
+	confirm = auto
+	suppressCC = self
+	annotate = true
 
 [gitsh]
 	noGreeting = true
@@ -227,3 +236,7 @@
 	includeStatusHeader = false
 	includePullRequestsSection = false
 	includeIssuesSection = false
+
+[include]
+	path = ~/.gitconfig.secure
+	path = ~/.gitconfig.local
