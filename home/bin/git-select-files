@@ -5,11 +5,6 @@
 # Usage:
 #   git select-files [FZF_OPTS]
 
-# fuzzy-select files
-files="$(git status -s |\
-  sed 's/^[^\s]*\s//' |\
-  fzf --ansi --no-sort --reverse --tiebreak=index $1)"
-
-if [[ ! -z $files ]]; then
-  echo "$files"
-fi
+git status -s |
+    sed 's/^[^\s]*\s//' |
+    fzf --multi --tiebreak=index $1 --preview='less {+}'
