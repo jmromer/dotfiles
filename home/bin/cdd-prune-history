@@ -33,7 +33,8 @@ def prune_history():
                 outdated_targets.add(line.strip())
 
     shutil.move(new_file, old_file)
-    log.info('Removed: %s', repr(list(outdated_targets)))
+    if outdated_targets:
+        log.info('Removed: %s', repr(list(outdated_targets)))
 
 
 if __name__ == '__main__':
