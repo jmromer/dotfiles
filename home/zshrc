@@ -44,36 +44,48 @@ cd () {
 }
 
 cdd () {
+    if [[ $1 == "prune" ]]; then
+        cdd-prune-history || return
+        return
+    fi
+
+    if [[ "$1" == "kill" ]] || [[ "$1" == "k" ]]; then
+        cdd-remove-entries || return
+        return
+    fi
+
+    local potential_targets
     local selection
     local target
-    local histfile="$HOME/.cdhistory"
+    local histfile
 
-    selection=$(tail -100 "$histfile" |\
-                 sort |\
-                 uniq -c |\
-                 sort -nr |\
-                 ruby -pe '$_.sub!(/^[[:space:][:digit:]]+/, "")' |\
-                 fzf --ansi \
-                     --no-sort \
-                     --no-multi \
-                     --reverse \
-                     --tiebreak=index \
-                     --bind 'ctrl-f:preview-down' \
-                     --bind 'ctrl-b:preview-up' \
-                     --preview='eval echo {+} | xargs -d "\n" exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')
+    histfile="${CD_HISTORY_FILE:-"$HOME/.cdhistory"}"
+    potential_targets=$(tail -100 "$histfile" |\
+      sort |\
+      uniq -c |\
+      sort -nr |\
+      ruby -pe '$_.sub!(/^[[:space:][:digit:]]+/, "")')
+
+    selection="$(echo "$potential_targets" |\
+      fzf --ansi \
+      --no-sort \
+      --no-multi \
+      --reverse \
+      --tiebreak=index \
+      --bind 'ctrl-f:preview-down' \
+      --bind 'ctrl-b:preview-up' \
+      --preview='eval echo {+} | xargs -d "\n" exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')"
 
     [[ -z "$selection" ]] && return
 
     target="$(eval echo "$selection")"
 
     if [[ ! -d "$target" ]]; then
-      echo "$target no longer exists, removing from history."
-      local pattern="${selection//\//\\/}"
-      sed -i "/^${pattern}$/d" "$histfile"
-      return
+      echo "$target no longer exists, pruning history."
+      cdd prune || return
+    else
+      cd "$target" || return
     fi
-
-    cd "$target" || return
 }
 
 #-------------------------------------------------------------
