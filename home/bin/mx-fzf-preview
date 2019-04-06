@@ -6,6 +6,8 @@ args=($*)
 type="${args[0]}"
 name="${args[@]:1}"
 
+TMUXINATOR_TEMPLATES_HOME="${TMUXINATOR_TEMPLATES_HOME:-$HOME/.config/tmuxinator}"
+
 if [[ "$type" == '[session]' ]]; then
     tmux list-windows \
          -t "$name" \
@@ -16,5 +18,5 @@ fi
 
 if [[ "$type" == '[template]' ]]; then
     bat --color=always \
-        "$HOME/.config/tmuxinator/${name}.yml"
+        "${TMUXINATOR_TEMPLATES_HOME}"/"${name}".{yml,yaml} 2>/dev/null
 fi
