@@ -27,6 +27,8 @@
 
 set -e
 
+TMUXINATOR_TEMPLATES_HOME="${TMUXINATOR_TEMPLATES_HOME:-$HOME/.config/tmuxinator}"
+
 usage() {
     grep '^#' < "$0" | tail -n +2 | cut -c 3-
 }
@@ -35,13 +37,12 @@ running_tmux_sessions() {
     tmux list-sessions 2> /dev/null |\
         grep -v 'failed to connect' |\
         sed -E 's/(.+): .+/\1/'
-    }
+}
 
 tmuxinator_templates() {
-    tmuxinator list |\
-        sed -n '1!p' |\
-        sed -E 's/\s+/\n/g'
-    }
+    ls "${TMUXINATOR_TEMPLATES_HOME}"/*.{yml,yaml} 2>/dev/null |
+        sed -E 's/.+\/(.+)\.ya?ml/\1/'
+}
 
 open_or_switch_to_session() {
     if [[ -z "$TMUX" ]]; then
