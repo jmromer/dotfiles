@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+args=($*)
+type="${args[0]}"
+name="${args[@]:1}"
+
+if [[ "$type" == '[session]' ]]; then
+    tmux list-windows \
+         -t "$name" \
+         -F '#{window_index}: #{window_name} (#{window_panes} panes)'
+    echo --------------- [Preview] ---------------
+    tmux capture-pane -pt "$name"
+fi
+
+if [[ "$type" == '[template]' ]]; then
+    bat --color=always \
+        "$HOME/.config/tmuxinator/${name}.yml"
+fi
