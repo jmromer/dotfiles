@@ -26,7 +26,7 @@ fi
 last_good_ref="$1"
 
 if [[ -z "$last_good_ref" ]]; then
-  last_good_ref="$(git select-sha)"
+  last_good_ref="$(git select-sha --no-multi)"
 fi
 
 echo git bisect start HEAD "$last_good_ref"

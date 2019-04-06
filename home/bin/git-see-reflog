@@ -13,6 +13,7 @@ target_commits="$(
     git reflog --format=select --color=always |\
     fzf --ansi \
         --no-sort \
+        --multi \
         --reverse \
         --tiebreak=index \
         --bind 'ctrl-f:preview-down' \
