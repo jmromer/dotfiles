@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+histfile="${CD_HISTORY_FILE:-"$HOME/.cdhistory"}"
+
+potential_targets=$(tail -100 "$histfile" |\
+  sort |\
+  uniq -c |\
+  sort -nr |\
+  ruby -pe '$_.sub!(/^[[:space:][:digit:]]+/, "")')
+
+selection="$(echo "$potential_targets" |\
+  fzf --ansi \
+  --no-sort \
+  --reverse \
+  --tiebreak=index \
+  --bind 'ctrl-f:preview-down' \
+  --bind 'ctrl-b:preview-up' \
+  --preview='eval echo {+} | xargs -d "\n" exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')"
+
+[[ -z "$selection" ]] && exit 0
+
+for entry in $(echo "$selection"); do
+  printf "%s..." "Removing $entry"
+
+  pattern="${entry//\//\\/}"
+  sed -i "/^${pattern}$/d" "$histfile"
+
+  printf " done.\n"
+done

@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import logging
+import os
+import shutil
+import sys
+
+CD_HISTORY_FILE = os.getenv('CD_HISTORY_FILE', '~/.cdhistory')
+
+# Set up stdout handler
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s',
+                              '%Y-%m-%d %H:%M')
+handler.setFormatter(formatter)
+
+# Set up logger
+log = logging.getLogger()
+log.setLevel(logging.INFO)
+log.addHandler(handler)
+
+
+def prune_history():
+    old_file = os.path.expanduser(CD_HISTORY_FILE)
+    new_file = os.path.expanduser('{}.new'.format(CD_HISTORY_FILE))
+    outdated_targets = set()
+
+    with open(old_file) as old_f, open(new_file, 'w') as new_f:
+        for line in old_f:
+            target = os.path.expanduser(line.strip())
+            if os.path.isdir(target):
+                new_f.write(line)
+            else:
+                outdated_targets.add(line.strip())
+
+    shutil.move(new_file, old_file)
+    log.info('Removed: %s', repr(list(outdated_targets)))
+
+
+if __name__ == '__main__':
+    try:
+        prune_history()
+    except Exception as err:
+        log.error('%s', err)
+        sys.exit(1)
