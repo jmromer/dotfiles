@@ -3,7 +3,7 @@
 # Removes a commit from your git repo's history
 
 if [[ -z "$1" ]]; then
-  sha="$(git select-sha --no-multi)"
+  sha="$(git select-sha)"
 else
   sha="$1"
 fi
