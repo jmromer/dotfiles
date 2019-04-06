@@ -114,22 +114,28 @@ kill_session_or_template() {
 
     selections_list=$(echo -e "$selections_list" | sed '/^[[:space:]]*$/d')
 
-    selection=$(echo "$selections_list" | fzf --preview="mx-fzf-preview {}")
+    selection=$(echo "$selections_list" | fzf --multi --preview="mx-fzf-preview {}")
     [[ -z "$selection" ]] && exit 0
 
-    kind="$(echo $selection | awk '{ print $1 }')"
-    name="$(echo $selection | sed -E 's/\[.+\]\s(.+)$/\1/')"
 
-    if [[ "$kind" == '[session]' ]]; then
-        echo tmux kill-session -t "$name"
-        tmux kill-session -t "$name"
-    elif [[ "$kind" == '[template]' ]]; then
-        echo tmuxinator start "$name"
-        tmuxinator delete "$name"
-    else
-        echo "Unfamiliar selection: $selection"
-        exit 1
-    fi
+    IFS=$'\n'
+    for entry in $selection; do
+        kind="$(echo $entry | awk '{ print $1 }' | sed -E 's/\[(.+)\]/\1/')"
+        name="$(echo $entry | sed -E 's/\[.+\]\s(.+)$/\1/')"
+
+        printf "Removing $kind '$name'... "
+
+        if [[ "$kind" == 'session' ]]; then
+            tmux kill-session -t "$name"
+            printf "done. [tmux kill-session -t $name]\n"
+        elif [[ "$kind" == 'template' ]]; then
+            tmuxinator delete "$name"
+            printf "done. [tmuxinator delete $name]\n"
+        else
+            echo "Unfamiliar selection: $entry\n"
+        fi
+    done
+    unset IFS
 }
 
 tmux_status() {
