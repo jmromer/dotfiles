@@ -16,12 +16,12 @@
 #   $ git top 20 --since february
 
 if [[ $1 =~ ^[[:digit:]]+$ ]]; then
-  lines="-$1"
-  shift
+    lines="-$1"
+    shift
 fi
 
 git log --all --name-only --format='format:' "$@" |\
   grep -v '^$'|\
   sort | uniq -c | sort -rg |\
   sed -E 's/^\s+[[:digit:]]+\s//' |\
-  head "$lines"
+  head $lines

@@ -6,7 +6,7 @@
 #   git commit-fixup
 
 # fuzzy-select a SHA
-commit_sha="$(git-select-sha)"
+commit_sha="$(git-select-sha --no-multi)"
 
 if [[ ! -z $commit_sha ]]; then
   # create a fixup-commit if target commit selected
