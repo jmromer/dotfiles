@@ -58,7 +58,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export FZF_DIR="$HOMEBREW_PREFIX/opt/fzf"
 export FZF_DEFAULT_COMMAND='rg --files-with-matches "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--multi --ansi --bind='ctrl-f:preview-down' --bind='ctrl-b:preview-up'"
+export FZF_DEFAULT_OPTS="--no-multi --ansi --reverse --tiebreak=index --bind='ctrl-f:preview-down' --bind='ctrl-b:preview-up'"
 
 #-------------------------------------------------------------
 # Android

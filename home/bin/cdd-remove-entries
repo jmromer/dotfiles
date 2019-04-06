@@ -11,12 +11,8 @@ potential_targets=$(tail -100 "$histfile" |\
   ruby -pe '$_.sub!(/^[[:space:][:digit:]]+/, "")')
 
 selection="$(echo "$potential_targets" |\
-  fzf --ansi \
-  --no-sort \
-  --reverse \
-  --tiebreak=index \
-  --bind 'ctrl-f:preview-down' \
-  --bind 'ctrl-b:preview-up' \
+  fzf --no-sort \
+  --multi \
   --preview='eval echo {+} | xargs -d "\n" exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')"
 
 [[ -z "$selection" ]] && exit 0
