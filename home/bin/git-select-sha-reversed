@@ -9,7 +9,7 @@ set -e
 
 # slice out the commit SHAs
 commit_shas="$(
-    git select-sha |\
+    git-select-sha |\
     tr ' ' '\n'    |\
     tac            |\
     tr '\n' ' '
