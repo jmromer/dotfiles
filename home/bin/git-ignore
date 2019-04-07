@@ -6,7 +6,7 @@ langs_list="$(curl -L -s "https://www.gitignore.io/api/list")"
 
 langs_selection="$(echo "$langs_list" |\
   sed -e 's/,/\n/g' |\
-  fzf -i --ansi --no-sort --reverse --tiebreak=index)"
+  fzf -i --no-sort --reverse --multi)"
 
 query_param="${langs_selection//$'\n'/,}"
 
