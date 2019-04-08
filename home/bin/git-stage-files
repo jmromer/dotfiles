@@ -8,14 +8,14 @@
 
 set -e
 
-if [[ ! -z "$1" ]]; then
+if [[ -n "$1" ]]; then
   echo git add "$@"
   git add "$@"
   exit 0
 fi
 
 # fuzzy-select files
-files="$(git select-files)"
+files="$(git-select-files)"
 
 if [[ -z "$files" ]]; then
   exit 0
