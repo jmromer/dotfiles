@@ -6,5 +6,6 @@
 #   git select-files [FZF_OPTS]
 
 git status -s |
-    fzf --multi --tiebreak=index $1 --preview='less {+2} 2>/dev/null' |
-    sed 's/^[^\s]*\s//'
+  fzf --multi --tiebreak=index $1 \
+      --preview='echo {} | sed "s/^[^\s]*\s//" | xargs bat --color=always 2>/dev/null' |
+  sed 's/^[^\s]*\s//'
