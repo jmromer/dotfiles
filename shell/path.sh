@@ -30,7 +30,6 @@ PATH+=":$HOME/.asdf/shims"
 PATH+=":./node_modules/.bin"         # Project-local node binaries
 PATH+=":$FZF_DIR/bin"
 PATH+=":$HOME/.cargo/bin"            # Rust binary path
-PATH+=":$GOPATH/bin:$GOROOT/bin"     # Go binaries
 PATH+=":$HOMEBREW_PREFIX/heroku/bin"
 PATH+=":$HOMEBREW_PREFIX/bin"
 PATH+=":$HOMEBREW_PREFIX/sbin"
