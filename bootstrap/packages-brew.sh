@@ -9,6 +9,7 @@ brew install bat
 brew install cmake
 brew install colordiff
 brew install csvkit
+brew install ddgr
 brew install direnv
 brew install editorconfig
 brew install exa

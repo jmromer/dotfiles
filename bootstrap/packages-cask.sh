@@ -73,8 +73,7 @@ brew cask install skim
 # video conferencing
 brew cask install zoomus
 # instant messaging
-brew cask install slack
-brew cask install discord
+brew cask install ripcord                                                                                                                                                              [insert]
 # torrent machine
 brew cask install transmission
 # video player
