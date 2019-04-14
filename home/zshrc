@@ -68,6 +68,7 @@ cdd () {
 
     selection="$(echo "$potential_targets" |\
       fzf --ansi \
+      --cycle \
       --no-sort \
       --reverse \
       --tiebreak=index \
