@@ -152,7 +152,6 @@ values."
      version-control
      vimscript
      vinegar
-     w3m
      yaml)
 
    ;; List of additional packages that will be installed without being
