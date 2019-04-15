@@ -186,9 +186,9 @@ values."
      lispy
      magit-todos
      ob-swift
-     (ob-elixir :location (recipe :fetcher github :repo "jmromer/ob-elixir" :branch "develop"))
+     (ob-elixir :location (recipe :fetcher github :repo "zweifisch/ob-elixir" :branch "master"))
      ov
-     (ox-gfm :location (recipe :fetcher github :repo "jmromer/ox-gfm" :branch "develop"))
+     ox-gfm
      pretty-mode
      pyimport
      rjsx-mode
