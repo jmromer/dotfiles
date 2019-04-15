@@ -1396,7 +1396,7 @@ Excludes the ibuffer."
                 doom-modeline-env-command nil)
 
   (doom-modeline-def-modeline 'main
-    '(workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches
+    '(workspace-name window-number evil-state god-state ryo-modal xah-fly-keys matches
                        " " buffer-info remote-host buffer-position
                        " " selection-info)
     '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode process vcs checker))
