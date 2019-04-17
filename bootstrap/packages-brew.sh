@@ -23,10 +23,6 @@ brew install ispell
 brew install isync
 brew install libffi
 brew install libyaml
-brew install mosh
-brew install mps-youtube
-brew install msmtp
-brew install mu
 brew install openssl
 brew install pgcli
 brew install postgres
@@ -42,7 +38,6 @@ brew install the_silver_searcher
 brew install tldr
 brew install tree
 brew install universal-ctags --HEAD
-brew install w3m
 brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
