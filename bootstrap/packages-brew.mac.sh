@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 brew install qt
-brew install octave --with-qt
-brew install gnuplot --with-qt
+brew install octave
+brew install gnuplot
 
 brew install osxutils
 brew install pinentry-mac
