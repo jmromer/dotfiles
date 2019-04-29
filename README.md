@@ -13,7 +13,7 @@ Installation
    curl --output ~/Desktop/setup \
      https://raw.githubusercontent.com/jmromer/dotfiles/master/bootstrap/mac
 
-   zsh ~/Desktop/setup
+   bash ~/Desktop/setup
    ```
 
 ### Linux
@@ -24,7 +24,7 @@ Installation
    curl --output ~/Desktop/setup \
      https://raw.githubusercontent.com/jmromer/dotfiles/master/bootstrap/linux
 
-   zsh ~/Desktop/setup
+   bash ~/Desktop/setup
    ```
 
 Stick around to enter your password as needed.
