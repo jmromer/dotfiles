@@ -4,8 +4,6 @@
 # SC1090: Can't follow non-constant source.
 #         Use a directive to specify location.
 
-set -x
-
 timestamp="$(date +%s)"
 export BOOTSTRAP_LOG_PATH="$HOME/Desktop/bootstrap-$timestamp.log"
 touch "$BOOTSTRAP_LOG_PATH"
@@ -70,15 +68,12 @@ step() {
   step "Installing GUI apps with Homebrew Cask"
   source "$HOME/.dotfiles/bootstrap/packages-cask.sh"
 
-  step "Linking OpenSSL, Installing libyaml"
-  brew unlink openssl && brew link openssl --force
-  brew install --force libyaml
-
   step "Setting up LaunchAgents"
   mkdir -p ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
   ln -sfv /usr/local/opt/emacs/*.plist ~/Library/LaunchAgents
+  ln -sfv "$HOME/.dotfiles/launch_agents/jmromer.cdd-prune-history.plist" ~/Library/LaunchAgents
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.emacs.plist
@@ -171,14 +166,4 @@ step() {
   compaudit | xargs chmod go-w
 
   step "Setup script is complete"
-
-  step "Adobe Creative Suite"
-  step "https://www.adobe.com/"
-
-  step "JetBrains IDEs"
-  step "https://www.jetbrains.com/"
-
-  step "Docker for Mac"
-  step "https://www.docker.com/products/docker-desktop"
-
 ) | tee "$BOOTSTRAP_LOG_PATH"
