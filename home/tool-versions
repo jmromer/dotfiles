@@ -1,8 +1,9 @@
 ruby 2.6.0
 nodejs 11.7.0
 elixir 1.8.1
-erlang 21.2.4
+erlang 21.3.7
 mongodb 3.6.6
-java openjdk-11
+java openjdk-11.0.1
 python anaconda3-2018.12
 golang 1.12.2
+redis 5.0.4
