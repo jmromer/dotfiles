@@ -25,8 +25,6 @@ brew cask install google-chrome
 brew cask install google-chrome-canary
 # SQL UI for MySQL, Postgres, MSSQL, SQLite
 brew cask install sqlpro-studio
-# Java SDK
-brew cask install java
 # trackpad gestures
 brew cask install bettertouchtool
 # remap cmd to esc, caps lock to ctrl

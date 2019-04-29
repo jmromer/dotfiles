@@ -20,7 +20,6 @@ brew install hub
 brew install hugo
 brew install imagemagick
 brew install ispell
-brew install isync
 brew install libffi
 brew install libyaml
 brew install openssl
@@ -42,10 +41,10 @@ brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
 
-brew install tmux --with-utf8proc
-brew install curl --with-openssl
-brew install git --with-curl --with-openssl
-brew install global --with-ctags --with-pygments
+brew install tmux
+brew install curl
+brew install git
+brew install global
 
 brew install neovim/neovim/neovim
 mkdir "$HOME/.config"
