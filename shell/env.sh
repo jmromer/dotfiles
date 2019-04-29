@@ -73,7 +73,7 @@ export ANDROID_HOME="$ANDROID_SDK_ROOT"
 # java_path=/usr/libexec/java_home
 # JAVA_HOME=$($java_path)
 
-JAVA_HOME="$HOME/.asdf/installs/java/openjdk-11/"
+JAVA_HOME="$HOME/.asdf/installs/java/openjdk-11.0.1"
 export JAVA_HOME
 
 if [[ "$MACHINE" == "mac" ]]; then
@@ -93,6 +93,18 @@ export GTAGSLABEL=pygments
 #-------------------------------------------------------------
 # Compilation flags
 #-------------------------------------------------------------
-export LDFLAGS="-L/usr/local/opt/gettext/lib -L/usr/local/opt/libffi/lib -L/usr/local/opt/readline/lib"
-export CPPFLAGS="-I/usr/local/opt/gettext/include -I/usr/local/opt/readline/include"
-export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig"
+LDFLAGS="-L/usr/local/opt/gettext/lib"
+LDFLAGS+=" -L/usr/local/opt/libffi/lib"
+LDFLAGS+=" -L/usr/local/opt/readline/lib"
+LDFLAGS+=" -L/usr/local/opt/openssl/lib"
+export LDFLAGS
+
+CPPFLAGS="-I/usr/local/opt/gettext/include"
+CPPFLAGS+=" -I/usr/local/opt/readline/include"
+CPPFLAGS+=" -I/usr/local/opt/openssl/include"
+export CPPFLAGS
+
+PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+PKG_CONFIG_PATH+=":/usr/local/opt/readline/lib/pkgconfig"
+PKG_CONFIG_PATH+=":/usr/local/opt/openssl/lib/pkgconfig"
+export PKG_CONFIG_PATH
