@@ -40,6 +40,7 @@ Pry.commands.alias_command "q", "exit"
 Pry.commands.alias_command "!!", "disable-pry"
 Pry.commands.alias_command "w", "whereami"
 Pry.commands.alias_command "sh", "shell-mode"
+Pry.commands.alias_command "ss", "show-source"
 
 if defined?(PryByebug)
   Pry.commands.alias_command "c", "continue"
