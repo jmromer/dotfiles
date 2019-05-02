@@ -1742,11 +1742,22 @@ Only equations at the beginning of a line are justified."
 (defun config/ruby ()
   "Configure packages for Ruby mode."
   (setq-default ruby-format-on-save t)
+  (setq-default ruby-current-line nil)
+
   (defun ruby-before-save-hooks ()
     (when (and ruby-format-on-save
                (eq major-mode 'ruby-mode))
+      (setq ruby-current-line (line-number-at-pos))
       (rufo-format-buffer)))
+
+  (defun ruby-after-save-hooks ()
+    (when (and ruby-format-on-save
+               (eq major-mode 'ruby-mode))
+      (when ruby-current-line
+          (evil-scroll-line-to-center ruby-current-line))))
+
   (add-hook 'before-save-hook #'ruby-before-save-hooks)
+  (add-hook 'after-save-hook #'ruby-after-save-hooks)
 
   ;; Define keybinding to manually trigger autoformat
   (spacemacs/set-leader-keys-for-major-mode 'ruby-mode "=" #'rufo-format-buffer))
