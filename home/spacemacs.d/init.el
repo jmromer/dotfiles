@@ -1924,7 +1924,7 @@ Only equations at the beginning of a line are justified."
 Provides facilities for yanking formatted code snippets."
   (require 'yankee)
   (if (boundp 'evil-visual-state-map)
-      (define-key evil-visual-state-map (kbd "g y") #'yankee/yank)
+      (define-key evil-visual-state-map (kbd "g y") #'yankee-yank)
     (error "Failed setting up yankee.el keybinding")))
 
 (defun config/yasnippet ()
