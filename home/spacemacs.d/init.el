@@ -582,6 +582,7 @@ dump.")
   (config/python)
   (config/ruby)
   (config/ruby-in-buffer-eval)
+  (config/ruby-folding)
   (config/semantic)
   (config/set-terminal-emacs-theme)
   (config/terminal-buffers)
@@ -1782,6 +1783,25 @@ Only equations at the beginning of a line are justified."
       (error "Failed setting up xmpfilter keybindings")))
 
   (add-hook 'ruby-mode-hook 'define-xmpfilter-keybindings))
+
+(defun config/ruby-folding ()
+  "Configure ruby folding."
+  (add-hook 'ruby-mode-hook
+            (lambda () (hs-minor-mode)))
+
+  (eval-after-load "hideshow"
+    '(add-to-list 'hs-special-modes-alist
+                  `(ruby-mode
+                    ,(rx (or "def" "class" "module" "do" "{" "[")) ; Block start
+                    ,(rx (or "}" "]" "end"))                       ; Block end
+                    ,(rx (or "#" "=begin")) ; Comment start
+                    ruby-forward-sexp nil)))
+
+  (if (boundp 'ruby-mode-map)
+      (progn
+        (define-key ruby-mode-map (kbd "C-c h") 'hs-hide-block)
+        (define-key ruby-mode-map (kbd "C-c s") 'hs-show-block))
+    (error "Failed setting up ruby-folding keybindings")))
 
 (defun config/semantic ()
   "Remove semantic mode hooks."
