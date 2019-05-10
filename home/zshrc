@@ -19,7 +19,7 @@ alias b=bundle
 alias music=mpsyt
 
 cd () {
-    if [[ $# -eq 0 ]]; then
+    if [[ $# -eq 0 ]] || [[ $1 == "~" ]]; then
         builtin cd && return
     fi
 
