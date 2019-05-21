@@ -1017,7 +1017,7 @@ Excludes the ibuffer."
   "Configure copy-as-format."
   (setq-default
    copy-as-format-asciidoc-include-file-name t
-   copy-as-format-default "org-mode"))
+   copy-as-format-default "github"))
 
 (defun config/deft ()
   "Configure deft notes browser."
