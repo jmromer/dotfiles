@@ -1281,10 +1281,8 @@ Excludes the ibuffer."
                  (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
                  (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
                  (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
-                 (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
                  (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
                  (48 . ".\\(?:x[a-zA-Z]\\)")
-                 (58 . ".\\(?:::\\|[:=]\\)")
                  (59 . ".\\(?:;;\\|;\\)")
                  (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
                  (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
@@ -1293,7 +1291,6 @@ Excludes the ibuffer."
                  (91 . ".\\(?:]\\)")
                  (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
                  (94 . ".\\(?:=\\)")
-                 (119 . ".\\(?:ww\\)")
                  (123 . ".\\(?:-\\)")
                  (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
                  (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)"))))
@@ -1304,23 +1301,16 @@ Excludes the ibuffer."
   (defun toggle-ligatures-off ()
     "Disable ligatures."
     (interactive)
-    (auto-composition-mode -1))
+    (setq auto-composition-mode nil))
 
   (defun toggle-ligatures-on ()
     "Disable ligatures."
     (interactive)
-    (auto-composition-mode))
+    (setq auto-composition-mode t))
 
   ;; Disable Fira Code ligatures in the following modes:
-  (with-eval-after-load 'mu4e-headers
-    (if (boundp 'mu4e-headers-mode-hook)
-      (add-hook 'mu4e-headers-mode-hook #'toggle-ligatures-off)
-     (error "Not disabling ligatures in mu4e headers"))
-
-   (with-eval-after-load 'org
-     (if (boundp 'org-mode-hook)
-         (add-hook 'org-mode-hook #'toggle-ligatures-off)
-       (error "Not disabling ligatures in org mode")))))
+  (add-hook 'mu4e-headers-mode-hook #'toggle-ligatures-off)
+  (add-hook 'org-mode-hook #'toggle-ligatures-off))
 
 (defun config/lisps ()
   "Configure Lisp modes."
