@@ -3,6 +3,8 @@
 # frozen_string_literal: true
 
 require "set"
+
+require "colorize"
 require "thor"
 
 class CDDispatch
@@ -31,7 +33,7 @@ class CDDispatch
   def self.entries_pruned
     entries_by_frequency
       .select { |(path, _entry), _count| Dir.exist?(File.expand_path(path)) }
-      .map! { |(path, entry), count| [count, path, entry] }
+      .map! { |(path, _entry), count| [count, path, build_label(path)] }
   end
 
   # Search for and add any version-controlled projects not already in list.
@@ -62,16 +64,16 @@ class CDDispatch
   end
 
   def self.parse_path(log_entry)
-    project_name, label = log_entry.split
+    project_name, path = log_entry.uncolorize.split
 
-    path = label ? label.match(/\((.+)\)/)[1] : Dir.home
-    path = path.start_with?("/") ? path : "#{Dir.home}/#{path}"
+    path = Dir.home if path.nil?
+    path = "#{Dir.home}/#{path}" unless path.start_with?("/")
 
     "#{path}/#{project_name}"
   end
 
   def self.build_label(file_path)
-    path = file_path.strip.sub!(Dir.home, "~")
+    path = file_path.strip.sub(Dir.home, "~")
     root_segment, *segments, project_name = path.split("/")
 
     project_path =
@@ -81,7 +83,10 @@ class CDDispatch
         [root_segment, *segments].join("/")
       end
 
-    project_path.empty? ? project_name : "#{project_name} (#{project_path})"
+    label = [project_name.colorize(:blue)]
+    label << project_path.colorize(:light_black) unless project_path.empty?
+
+    label.join(" ")
   end
 
   # Return ["project (~/dir/project)", "project2 (~/dir2/project2)", ...]
