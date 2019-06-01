@@ -1,0 +1,137 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "set"
+require "thor"
+
+class CDDispatch
+  HISTORY_FILE = ENV.fetch("CDD_HISTORY_FILE", "~/.cddlog")
+  PROJECT_ROOTS = ENV.fetch("CDD_PROJECT_ROOTS", "~/Work,~/Projects").split(",")
+  MAX_DEPTH = 4
+
+  # Return ["10,/path1/repo,repo (path1)", ...]
+  def self.entries
+    File
+      .open(File.expand_path(HISTORY_FILE), "r")
+      .readlines
+      .map! { |line| line.chomp.split(",") }
+      .map! { |count, path, entry| [count.to_i, path, entry] }
+  end
+
+  # Sort entries in descending order of frequency.
+  # Return [[["/path/dir", "dir (/path)"], 10], ...]
+  def self.entries_by_frequency
+    entries
+      .each_with_object(Hash.new(0)) { |(count, path, entry), cts| cts[[path, entry]] += count }
+      .sort_by { |_entry, count| -count }
+  end
+
+  # Remove any entries that no longer exist.
+  def self.entries_pruned
+    entries_by_frequency
+      .select { |(path, _entry), _count| Dir.exist?(File.expand_path(path)) }
+      .map! { |(path, entry), count| [count, path, entry] }
+  end
+
+  # Search for and add any version-controlled projects not already in list.
+  def self.new_projects
+    PROJECT_ROOTS
+      .flat_map { |root_dir| find_command(root_dir).split("\n") }
+      .map! { |path| path.sub("/.git", "") }
+      .to_set
+      .difference(entries.map { |e| e[1] })
+      .map! { |path| [1, path, build_label(path)] }
+  end
+
+  # Build and execute the command to recursively search for version-controlled
+  # projects. Return the result (stdout contents) as a string.
+  def self.find_command(root_dir)
+    %x(/usr/local/bin/find \
+         #{File.expand_path root_dir} \
+         -regextype posix-extended \
+         -maxdepth #{MAX_DEPTH} \
+         -type d \
+         -name .git)
+  end
+
+  # Return an array of paths - ranked entries followed by any newly found
+  # projects at the end.
+  def self.entries_updated
+    [*entries_pruned, *new_projects]
+  end
+
+  def self.parse_path(log_entry)
+    project_name, label = log_entry.split
+
+    path = label ? label.match(/\((.+)\)/)[1] : Dir.home
+    path = path.start_with?("/") ? path : "#{Dir.home}/#{path}"
+
+    "#{path}/#{project_name}"
+  end
+
+  def self.build_label(file_path)
+    path = file_path.strip.sub!(Dir.home, "~")
+    root_segment, *segments, project_name = path.split("/")
+
+    project_path =
+      if root_segment == "~"
+        segments.join("/")
+      else
+        [root_segment, *segments].join("/")
+      end
+
+    project_path.empty? ? project_name : "#{project_name} (#{project_path})"
+  end
+
+  # Return ["project (~/dir/project)", "project2 (~/dir2/project2)", ...]
+  def self.project_listing
+    entries_updated.map! { |entry| entry[2] }
+  end
+
+  def self.save(list)
+    text = list.map! { |entry| entry.join(",") }.join("\n")
+    File.write(File.expand_path(HISTORY_FILE), "#{text}\n", mode: "w")
+  end
+
+  def self.append(entry)
+    text = entry.join(",")
+    File.write(File.expand_path(HISTORY_FILE), "#{text}\n", mode: "a")
+  end
+end
+
+class App < Thor
+  desc "list", "Print updated project listing"
+
+  def list
+    puts CDDispatch.project_listing
+  end
+
+  desc "sync", "Re-rank and update the project listing"
+
+  def sync
+    CDDispatch.save(CDDispatch.entries_updated)
+  end
+
+  desc "save_entry", "Save a log entry for the given file path"
+
+  def save_entry(path)
+    return if ["~", "/", Dir.home].include?(path)
+
+    CDDispatch.append([1, path, CDDispatch.build_label(path)])
+  end
+
+  desc "build_label", "Build a log entry label from the given file path"
+
+  def build_label(entry)
+    puts CDDispatch.build_label(entry)
+  end
+
+  desc "parse_path", "Parse the path from the given log entry"
+
+  def parse_path(entry)
+    puts CDDispatch.parse_path(entry)
+  end
+end
+
+App.start

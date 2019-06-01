@@ -3,11 +3,12 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>jmromer.cdd-prune-history</string>
+    <string>jmromer.cdd-sync</string>
 
     <key>ProgramArguments</key>
     <array>
-      <string>/Users/jmromer/.bin/cdd-prune-history</string>
+      <string>/Users/jmromer/.bin/cd-dispatch</string>
+      <string>sync</string>
     </array>
 
     <key>Nice</key>
@@ -20,9 +21,9 @@
     <true/>
 
     <key>StandardOutPath</key>
-    <string>/tmp/jmromer.cdd-prune-history.stdout.log</string>
+    <string>/tmp/jmromer.cdd-sync.stdout.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/tmp/jmromer.cdd-prune-history.stderr.log</string>
+    <string>/tmp/jmromer.cdd-sync.stderr.log</string>
   </dict>
 </plist>
