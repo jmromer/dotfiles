@@ -32,60 +32,54 @@ cd () {
 
     target="$(readlink -f "$*")"
 
-    if [[ -f "$target" ]]; then
+    if [[ ! -d "$target" ]] && [[ -f "$target" ]]; then
         target="$(dirname "$target")"
     fi
 
+    if [[ ! -d "$target" ]]; then
+        echo "Not a directory: $target"
+        return
+    fi
+
+    cd-dispatch save_entry "$target"
+
     abbreviated="${target/$HOME/~}"
-    echo "cd $abbreviated"
-    echo "$abbreviated" >> ~/.cdhistory
+    echo "$abbreviated"
 
     builtin cd "$target" || return
 }
 
 cdd () {
-    if [[ $1 == "prune" ]]; then
-        cdd-prune-history || return
+    if [[ $1 == "sync" ]]; then
+        cd-dispatch sync  || return
         return
     fi
 
-    if [[ "$1" == "kill" ]] || [[ "$1" == "k" ]]; then
-        cdd-remove-entries || return
-        return
-    fi
-
-    local potential_targets
     local selection
     local target
-    local histfile
 
-    histfile="${CD_HISTORY_FILE:-"$HOME/.cdhistory"}"
-    potential_targets=$(tail -100 "$histfile" |\
-      sort |\
-      uniq -c |\
-      sort -nr |\
-      ruby -pe '$_.sub!(/^[[:space:][:digit:]]+/, "")')
+    candidates="$(cat ~/.cddlog | awk -F, '{ print $3 }')"
 
-    selection="$(echo "$potential_targets" |\
-      fzf --ansi \
-      --cycle \
-      --no-sort \
-      --reverse \
-      --tiebreak=index \
-      --bind 'ctrl-f:preview-down' \
-      --bind 'ctrl-b:preview-up' \
-      --preview='eval echo {+} | xargs -d "\n" exa --all --long --group-directories-first --color=always --git --header 2>/dev/null')"
+    selection="$(
+      echo $candidates |\
+        fzf --ansi \
+        --cycle \
+        --no-sort \
+        --reverse \
+        --tiebreak=index \
+        --bind 'ctrl-f:preview-down' \
+        --bind 'ctrl-b:preview-up' \
+        --preview='cd-dispatch-fzf-preview {+}')"
 
     [[ -z "$selection" ]] && return
 
-    target="$(eval echo "$selection")"
+    target="$(cd-dispatch parse_path $selection)"
+    cd-dispatch save_entry "$target"
 
-    if [[ ! -d "$target" ]]; then
-      echo "$target no longer exists, pruning history."
-      cdd prune || return
-    else
-      cd "$target" || return
-    fi
+    abbreviated="${target/$HOME/~}"
+    echo "$abbreviated"
+
+    builtin cd "$target" || return
 }
 
 #-------------------------------------------------------------
