@@ -95,16 +95,37 @@ export GTAGSLABEL=pygments
 #-------------------------------------------------------------
 LDFLAGS="-L/usr/local/opt/gettext/lib"
 LDFLAGS+=" -L/usr/local/opt/libffi/lib"
-LDFLAGS+=" -L/usr/local/opt/readline/lib"
+LDFLAGS+=" -L/usr/local/opt/libxml2/lib"
+LDFLAGS+=" -L/usr/local/opt/ncurses/lib"
 LDFLAGS+=" -L/usr/local/opt/openssl/lib"
+LDFLAGS+=" -L/usr/local/opt/readline/lib"
+LDFLAGS+=" -L/usr/local/opt/zlib/lib"
 export LDFLAGS
 
 CPPFLAGS="-I/usr/local/opt/gettext/include"
-CPPFLAGS+=" -I/usr/local/opt/readline/include"
+CPPFLAGS+=" -I/usr/local/opt/libxml2/include"
+CPPFLAGS+=" -I/usr/local/opt/ncurses/include"
 CPPFLAGS+=" -I/usr/local/opt/openssl/include"
+CPPFLAGS+=" -I/usr/local/opt/readline/include"
+CPPFLAGS+=" -I/usr/local/opt/zlib/include"
 export CPPFLAGS
 
 PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/readline/lib/pkgconfig"
+PKG_CONFIG_PATH+=":/usr/local/opt/libxml2/lib/pkgconfig"
+PKG_CONFIG_PATH+=":/usr/local/opt/ncurses/lib/pkgconfig"
 PKG_CONFIG_PATH+=":/usr/local/opt/openssl/lib/pkgconfig"
+PKG_CONFIG_PATH+=":/usr/local/opt/readline/lib/pkgconfig"
+PKG_CONFIG_PATH+=":/usr/local/opt/zlib/lib/pkgconfig"
 export PKG_CONFIG_PATH
+
+RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
+RUBY_CONFIGURE_OPTS+=" --with-openssl-dir=/usr/local/opt/openssl"
+RUBY_CONFIGURE_OPTS+=" --enable-shared"
+export RUBY_CONFIGURE_OPTS
+
+export ARCHFLAGS="-arch x86_64"
+export RUBY_CFLAGS="-march=native -Os"
+export CC="clang"
+export CXX="clang++"
+export RUBY_GC_MALLOC_LIMIT=60000000
+export RUBY_GC_HEAP_FREE_SLOTS=200000
