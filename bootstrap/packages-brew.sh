@@ -2,6 +2,7 @@
 
 brew install asdf
 brew install atool
+brew install autoconf
 brew install awscli
 brew install bash
 brew install bash-completion
@@ -21,7 +22,11 @@ brew install hugo
 brew install imagemagick
 brew install ispell
 brew install libffi
+brew install libxml2
 brew install libyaml
+brew install libzip
+brew install llvm
+brew install ncurses
 brew install openssl
 brew install pgcli
 brew install postgres
@@ -37,6 +42,7 @@ brew install the_silver_searcher
 brew install tldr
 brew install tree
 brew install universal-ctags --HEAD
+brew install zlib
 brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
