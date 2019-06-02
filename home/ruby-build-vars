@@ -3,10 +3,5 @@
   export RUBY_CONFIGURE_OPTS
   export ARCHFLAGS="-arch x86_64"
   export RUBY_CFLAGS="-march=native -Os"
-  export CC="clang"
-  export CXX="clang++"
   export RUBY_GC_MALLOC_LIMIT=60000000
   export RUBY_GC_HEAP_FREE_SLOTS=200000
-  export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/libffi/lib"
-  export CPPFLAGS="-I/usr/local/opt/openssl/include"
-  export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"

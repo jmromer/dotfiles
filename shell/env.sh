@@ -48,6 +48,8 @@ fi
 export ANACONDA_PREFIX="$HOME/.anaconda"
 export ANACONDA_HOME="$HOME/.anaconda"
 export ELM_HOME="$HOME/.elm"
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+export KERL_BUILD_DOCS=no
 export ERL_AFLAGS="-kernel shell_history enabled"
 unset GOPATH
 unset GOROOT
@@ -96,6 +98,7 @@ export GTAGSLABEL=pygments
 LDFLAGS="-L/usr/local/opt/gettext/lib"
 LDFLAGS+=" -L/usr/local/opt/libffi/lib"
 LDFLAGS+=" -L/usr/local/opt/libxml2/lib"
+LDFLAGS+=" -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 LDFLAGS+=" -L/usr/local/opt/ncurses/lib"
 LDFLAGS+=" -L/usr/local/opt/openssl/lib"
 LDFLAGS+=" -L/usr/local/opt/readline/lib"
@@ -104,6 +107,8 @@ export LDFLAGS
 
 CPPFLAGS="-I/usr/local/opt/gettext/include"
 CPPFLAGS+=" -I/usr/local/opt/libxml2/include"
+CPPFLAGS+=" -I/usr/local/opt/llvm/include"
+CPPFLAGS+=" -I/usr/local/opt/llvm/include/c++/v1"
 CPPFLAGS+=" -I/usr/local/opt/ncurses/include"
 CPPFLAGS+=" -I/usr/local/opt/openssl/include"
 CPPFLAGS+=" -I/usr/local/opt/readline/include"
@@ -123,9 +128,8 @@ RUBY_CONFIGURE_OPTS+=" --with-openssl-dir=/usr/local/opt/openssl"
 RUBY_CONFIGURE_OPTS+=" --enable-shared"
 export RUBY_CONFIGURE_OPTS
 
+export CFLAGS="-O3 -g"
 export ARCHFLAGS="-arch x86_64"
 export RUBY_CFLAGS="-march=native -Os"
-export CC="clang"
-export CXX="clang++"
 export RUBY_GC_MALLOC_LIMIT=60000000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
