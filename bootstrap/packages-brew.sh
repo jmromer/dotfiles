@@ -33,6 +33,7 @@ brew install postgres
 brew install python@2
 brew install ranger
 brew install redis
+brew install re2
 brew install rcm
 brew install readline
 brew install ripgrep
