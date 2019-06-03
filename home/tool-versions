@@ -5,5 +5,5 @@ erlang 22.0.1
 mongodb 3.6.6
 java openjdk-11.0.1
 python anaconda3-2018.12
-golang 1.12.2
+golang 1.12.5
 redis 5.0.4
