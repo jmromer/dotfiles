@@ -135,6 +135,14 @@ class App < Thor
     logger.info("Synced at #{Time.now}")
   end
 
+  desc "save_entry", "Log the given path"
+
+  def save_entry(path)
+    return if ["~", "/", Dir.home].include?(path)
+
+    CDDispatch.append([1, path, CDDispatch.build_label(path)])
+  end
+
   desc "change_to", "Log a change to the given project, returning the path"
 
   def change_to(label)
