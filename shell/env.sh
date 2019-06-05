@@ -60,7 +60,7 @@ unset GOROOT
 export FZF_DIR="$HOMEBREW_PREFIX/opt/fzf"
 export FZF_DEFAULT_COMMAND='rg --files-with-matches "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--no-multi --ansi --tiebreak=index --bind='ctrl-f:preview-down' --bind='ctrl-b:preview-up'"
+export FZF_DEFAULT_OPTS="--no-multi --tiebreak=index --bind='ctrl-f:preview-down' --bind='ctrl-b:preview-up'"
 
 #-------------------------------------------------------------
 # Android
