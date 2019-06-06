@@ -53,7 +53,8 @@ brew install curl
 brew install git
 brew install global
 
-brew install neovim/neovim/neovim
+brew install vim
+brew install neovim
 mkdir "$HOME/.config"
 ln -s "$HOME/.vim" "$HOME/.config/nvim"
 
