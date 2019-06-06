@@ -7,12 +7,19 @@
 #-------------------------------------------------------------
 # ALIASES: Editors, Tmux
 #-------------------------------------------------------------
+# nvim
+alias vim=nvim
+alias vim0='vim -u NONE'
+alias vim1='vim -u ~/.vim/minimal.vim'
+alias vimplug='vim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
+
+# vim
+alias vi=vim
+alias vi0='vi -u NONE'
+alias vi1='vi -u ~/.vim/minimal.vim'
+alias viplug='vi +PlugInstall +PlugUpgrade +PlugUpdate +qall'
+
 alias cat=bat
-alias vim='nvim'
-alias v=vim
-alias e=emacs
-alias vi='nvim -u ~/.vim/minimal.vim'
-alias vimplug='nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
 alias git=hub
 alias dc='docker-compose'
 alias b=bundle
