@@ -115,17 +115,16 @@ end
 class App < Thor
   LOG_FILE = "/tmp/jmromer.cdd-sync.log"
 
-  attr_reader :logger
-
-  def initialize(*args, **kwargs, &block)
-    super
-    @logger = Logger.new(LOG_FILE, 5, "daily")
+  def initialize(*args, out: $stdout, **kwargs, &block)
+    super(*args, **kwargs, &block)
+    self.out = out
+    self.logger = Logger.new(LOG_FILE, "daily", 5)
   end
 
   desc "list", "Print updated project listing"
 
   def list
-    puts CDDispatch.project_listing
+    out.puts CDDispatch.project_listing
   end
 
   desc "sync", "Re-rank and update the project listing"
@@ -151,20 +150,24 @@ class App < Thor
 
     CDDispatch.append([1, path, label])
 
-    puts path
+    out.puts path
   end
 
   desc "build_label", "Build a log entry label from the given file path"
 
   def build_label(entry)
-    puts CDDispatch.build_label(entry)
+    out.puts CDDispatch.build_label(entry)
   end
 
   desc "parse_path", "Parse the path from the given log entry"
 
   def parse_path(entry)
-    puts CDDispatch.parse_path(entry)
+    out.puts CDDispatch.parse_path(entry)
   end
+
+  private
+
+  attr_accessor :logger, :out
 end
 
 App.start
