@@ -133,3 +133,8 @@ export ARCHFLAGS="-arch x86_64"
 export RUBY_CFLAGS="-march=native -Os"
 export RUBY_GC_MALLOC_LIMIT=60000000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
+
+#-------------------------------------------------------------
+# Spring: Enable for parallel_tests
+#-------------------------------------------------------------
+export DISABLE_SPRING=0
