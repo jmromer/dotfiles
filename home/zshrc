@@ -167,12 +167,12 @@ md() {
 
 # pretty-print the command search path
 pp() {
-  if [[ "$1" == 'path' ]]; then
-    ruby -e 'puts `echo $PATH`.gsub(":", "\n")'
+  if [[ "$1" == "path" ]]; then
+    echo "$PATH" | tr ":" "\n"
   elif [[ "$1" == 'manpath' ]]; then
-    ruby -e 'puts `echo $MANPATH`.gsub(":", "\n")'
+    echo "$MANPATH" | tr ":" "\n"
   elif [[ "$1" == 'cdpath' ]]; then
-    ruby -e 'puts `echo $CDPATH`.gsub(":", "\n")'
+    echo "$CDPATH" | tr ":" "\n"
   fi
 }
 
