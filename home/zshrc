@@ -167,13 +167,19 @@ md() {
 
 # pretty-print the command search path
 pp() {
+  local paths
+
   if [[ "$1" == "path" ]]; then
-    echo "$PATH" | tr ":" "\n"
-  elif [[ "$1" == 'manpath' ]]; then
-    echo "$MANPATH" | tr ":" "\n"
-  elif [[ "$1" == 'cdpath' ]]; then
-    echo "$CDPATH" | tr ":" "\n"
+    paths="$PATH"
+  elif [[ "$1" == "manpath" ]]; then
+    paths="$MANPATH"
+  elif [[ "$1" == "cdpath" ]]; then
+    paths="$CDPATH"
   fi
+
+  [[ -z "$paths" ]] && return
+
+  echo "$paths" | tr ":" "\n" | nl -ba | less
 }
 
 # Mac-specific: show and hide hidden files
