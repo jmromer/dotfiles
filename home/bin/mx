@@ -34,6 +34,18 @@ usage() {
     grep '^#' < "$0" | tail -n +2 | cut -c 3-
 }
 
+BLUE="\e[0;34m"
+BOLDBLK="\e[1;30m"
+CYAN="\e[0;36m"
+GREEN="\e[0;32m"
+PURPLE="\e[0;35m"
+RED="\e[0;31m"
+RESET="\e[0m"
+YELLOW="\e[33m"
+
+TEMPLATE="${BOLDBLK}template${RESET}"
+SESSION="${BLUE}session${RESET}"
+
 running_tmux_sessions() {
     tmux list-sessions 2> /dev/null |\
         grep -v 'failed to connect' |\
@@ -63,25 +75,25 @@ tmux_dwim() {
     selections_list=""
     IFS=$'\n'
     for session in $sessions; do
-      selections_list="$selections_list\n[session]\t$session"
+      selections_list="$selections_list\n$SESSION\t\t$session"
     done
 
     for template in $templates; do
-      selections_list="$selections_list\n[template]\t$template"
+      selections_list="$selections_list\n$TEMPLATE\t$template"
     done
     unset IFS
 
     selections_list=$(echo -e "$selections_list" | sed '/^[[:space:]]*$/d')
 
-    selection=$(echo "$selections_list" | fzf --preview="mx-fzf-preview {+}")
+    selection=$(echo "$selections_list" | fzf --ansi --preview="mx-fzf-preview {+}")
     [[ -z "$selection" ]] && exit 0
 
     kind="$(echo $selection | awk '{ print $1 }')"
-    name="$(echo $selection | sed -E 's/\[.+\]\s(.+)$/\1/')"
+    name="$(echo $selection | sed -E 's/.+\s(.+)$/\1/')"
 
-    if [[ "$kind" == '[session]' ]]; then
+    if [[ "$kind" == 'session' ]]; then
         open_or_switch_to_session "$name"
-    elif [[ "$kind" == '[template]' ]]; then
+    elif [[ "$kind" == 'template' ]]; then
         echo tmuxinator start "$name"
         tmuxinator start "$name"
     else
@@ -94,7 +106,7 @@ tmux_attach() {
     available_sessions="$(running_tmux_sessions)"
     [[ -z "$available_sessions" ]] && exit 0
 
-    selection=$(echo "$available_sessions" | fzf --preview="mx-fzf-preview '[session]' {+}")
+    selection=$(echo "$available_sessions" | fzf --preview="mx-fzf-preview 'session' {+}")
     [[ -z "$selection" ]] && exit 0
 }
 
@@ -106,24 +118,24 @@ kill_session_or_template() {
     selections_list=""
     IFS=$'\n'
     for session in $sessions; do
-      selections_list="$selections_list\n[session]\t$session"
+      selections_list="$selections_list\n$SESSION\t$session"
     done
 
     for template in $templates; do
-      selections_list="$selections_list\n[template]\t$template"
+      selections_list="$selections_list\n$TEMPLATE\t$template"
     done
     unset IFS
 
     selections_list=$(echo -e "$selections_list" | sed '/^[[:space:]]*$/d')
 
-    selection=$(echo "$selections_list" | fzf --multi --preview="mx-fzf-preview {}")
+    selection=$(echo "$selections_list" | fzf --ansi --multi --preview="mx-fzf-preview {}")
     [[ -z "$selection" ]] && exit 0
 
 
     IFS=$'\n'
     for entry in $selection; do
-        kind="$(echo $entry | awk '{ print $1 }' | sed -E 's/\[(.+)\]/\1/')"
-        name="$(echo $entry | sed -E 's/\[.+\]\s(.+)$/\1/')"
+        kind="$(echo $entry | awk '{ print $1 }')"
+        name="$(echo $entry | sed -E 's/.+\s(.+)$/\1/')"
 
         printf "Removing $kind '$name'... "
 
@@ -167,7 +179,7 @@ tmuxinator_fuzzy_select() {
     templates="$(tmuxinator_templates)"
     [[ -z "$templates" ]] && exit 0
 
-    selection=$(echo "$templates" | fzf --preview="mx-fzf-preview '[template]' {+}" | sed 's/^ *//;s/ *$//')
+    selection=$(echo "$templates" | fzf --preview="mx-fzf-preview 'template' {+}" | sed 's/^ *//;s/ *$//')
     [[ -z "$selection" ]] && exit 0
 
     echo tmuxinator "$1" "$selection"
@@ -183,7 +195,7 @@ tmuxinator_stop() {
 
     candidates="$(printf "%s\n%s\n" "$templates" "$sessions" | sort | uniq -d)"
 
-    selection=$(echo "$candidates" | fzf --preview="mx-fzf-preview '[session]' {+}" | sed 's/^ *//;s/ *$//')
+    selection=$(echo "$candidates" | fzf --preview="mx-fzf-preview 'session' {+}" | sed 's/^ *//;s/ *$//')
     [[ -z "$selection" ]] && exit 0
 
     echo tmuxinator stop "$selection"
@@ -228,7 +240,7 @@ while [ $# -gt -1 ]; do
             if [[ "$generate" == "y" ]]; then
                 available_sessions="$(running_tmux_sessions)"
 
-                selection=$(echo "$available_sessions" | fzf --preview="mx-fzf-preview '[session]' {+}")
+                selection=$(echo "$available_sessions" | fzf --preview="mx-fzf-preview 'session' {+}")
                 [[ -z "$selection" ]] && exit 0
 
                 tmuxinator new "$2" "$selection"
