@@ -135,7 +135,7 @@ kill_session_or_template() {
     IFS=$'\n'
     for entry in $selection; do
         kind="$(echo $entry | awk '{ print $1 }')"
-        name="$(echo $entry | sed -E 's/.+\s(.+)$/\1/')"
+        name="$(echo $entry | sed -E 's/(session|template)\s+(.+)$/\2/')"
 
         printf "Removing $kind '$name'... "
 
