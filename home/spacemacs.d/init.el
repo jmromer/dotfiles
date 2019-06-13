@@ -532,9 +532,6 @@ See the header of this file for more information."
   ;; prevent visual selection from overriding system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
 
-  ;; disable mouse support in terminal
-  (xterm-mouse-mode -1)
-
   ;; By default, don't soft-wrap lines longer than line length
   (set-default 'truncate-lines nil)
 
@@ -597,15 +594,6 @@ dump.")
   ;; Post-config
   (config/diminish)
   (config/prettify-symbols)
-
-  ;; Disable mousing entirely
-  (mouse-wheel-mode -1)
-  (global-set-key [wheel-up] 'ignore)
-  (global-set-key [wheel-down] 'ignore)
-  (global-set-key [double-wheel-up] 'ignore)
-  (global-set-key [double-wheel-down] 'ignore)
-  (global-set-key [triple-wheel-up] 'ignore)
-  (global-set-key [triple-wheel-down] 'ignore)
 
   (editorconfig-mode 1)
 
