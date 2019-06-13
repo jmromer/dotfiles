@@ -615,6 +615,12 @@ dump.")
 
   (setq-default ispell-program-name "ispell")
 
+  ;; Mac-like keybindings
+  (global-set-key (kbd "s-s") #'save-buffer)
+  (global-set-key (kbd "s-=") #'spacemacs/scale-up-font)
+  (global-set-key (kbd "s--") #'spacemacs/scale-down-font)
+  (global-set-key (kbd "s-0") #'spacemacs/reset-font-size)
+
   ;; leader-fp to open file at point
   (spacemacs/set-leader-keys
     "f p" #'find-file-at-point)
