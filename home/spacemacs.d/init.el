@@ -1866,9 +1866,8 @@ Only equations at the beginning of a line are justified."
    magit-repository-directories '(("~/Projects/" . 2)
                                   ("~/Documents/". 2)))
 
-
   ;; leader gb to display branching controls
-  (spacemacs/set-leader-keys "gb" 'magit-branch-popup)
+  (spacemacs/set-leader-keys "gb" #'magit-branch-or-checkout)
 
   ;; leader gB to display Git blame
   (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
