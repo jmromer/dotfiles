@@ -1858,6 +1858,10 @@ Only equations at the beginning of a line are justified."
           (setq magit-completing-read-function 'ivy-completing-read)
           (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
 
+          (magit-remove-popup-key 'magit-branch-popup :action ?b)
+          (magit-define-popup-action 'magit-branch-popup ?b
+            "Checkout" 'magit-branch-or-checkout 'magit-branch t)
+
           (spacemacs/set-leader-keys-for-major-mode 'magit-status-mode "t" #'magit-todos-jump-to-todos)
           (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
       (error "Failed setting up magit")))
