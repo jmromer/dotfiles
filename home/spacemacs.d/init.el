@@ -1875,7 +1875,7 @@ Only equations at the beginning of a line are justified."
   (spacemacs/set-leader-keys "gb" #'magit-branch-or-checkout)
 
   ;; leader gB to display Git blame
-  (spacemacs/set-leader-keys "gB" 'spacemacs/git-blame-micro-state)
+  (spacemacs/set-leader-keys "gB" #'spacemacs/git-blame-micro-state)
 
   ;; Git Gutter: Display fringe on left
   (setq-default git-gutter-fr+-side 'left-fringe
