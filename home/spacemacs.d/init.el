@@ -616,6 +616,7 @@ dump.")
   (setq-default ispell-program-name "ispell")
 
   ;; Mac-like keybindings
+  (setq-default mac-command-modifier 'super)
   (global-set-key (kbd "s-s") #'save-buffer)
   (global-set-key (kbd "s-=") #'spacemacs/scale-up-font)
   (global-set-key (kbd "s--") #'spacemacs/scale-down-font)
