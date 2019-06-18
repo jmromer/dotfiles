@@ -564,6 +564,7 @@ dump.")
   (config/helpful)
   (config/highlight-lines-at-length 80)
   (config/ivy)
+  (config/ivy-rich)
   (config/javascript-modes)
   (config/latex-mode)
   (config/ligatures)
@@ -1207,6 +1208,33 @@ Excludes the ibuffer."
                                         (t . ivy--regex-fuzzy))
                 ivy-initial-inputs-alist nil))
 
+(defun config/ivy-rich ()
+  "Configure ivy-rich-mode."
+  (defun ivy-rich-switch-buffer-icon (candidate)
+    (with-current-buffer
+        (get-buffer candidate)
+      (let ((icon (all-the-icons-icon-for-mode major-mode)))
+        (if (symbolp icon)
+            (all-the-icons-icon-for-mode 'fundamental-mode)
+          icon))))
+
+  (setq-default
+   ivy-rich--display-transformers-list
+   '(ivy-switch-buffer
+     (:columns
+      ((ivy-rich-switch-buffer-icon :width 2)
+       (ivy-rich-candidate (:width 30))
+       (ivy-rich-switch-buffer-size (:width 7))
+       (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+       (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+       (ivy-rich-switch-buffer-project (:width 15 :face success))
+       (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+      :predicate
+      (lambda (cand) (get-buffer cand)))))
+
+  (ivy-rich-mode -1)
+  (ivy-rich-mode +1))
+
 (defun config/javascript-modes ()
   "Configure JavaScript modes: js, js2, react."
   (setq-default js-indent-level 2
@@ -1220,7 +1248,7 @@ Excludes the ibuffer."
     (when (and javascript-format-on-save
                (or (eq major-mode 'rjsx-mode)
                    (eq major-mode 'js2-mode)))
-        (prettier-js)))
+      (prettier-js)))
   (add-hook 'before-save-hook #'js-before-save-hooks)
 
   (defun json-mode-hooks ()
