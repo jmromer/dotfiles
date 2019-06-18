@@ -20,6 +20,15 @@ unless defined?(Rails) && Rails.env
   end
 end
 
+if defined?(Rails)
+  begin
+    require "factory_bot_rails"
+    include FactoryBot::Syntax::Methods
+  rescue LoadError
+    puts "FactoryBot not loaded."
+  end
+end
+
 if defined?(JazzFingers) && !defined?(Rails)
   JazzFingers.configure do |config|
     config.application_name = "jmromer"
