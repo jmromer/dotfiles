@@ -1002,7 +1002,9 @@ Excludes the ibuffer."
   "Configure compilation buffer settings."
   (defun compilation-mode-settings ()
     ;; wrap lines in compilation buffer
-    (setq truncate-lines nil)
+    (setq truncate-lines t)
+    (add-hook 'compilation-mode-hook
+              (lambda () (font-lock-mode -1)))
     (set (make-local-variable 'truncate-partial-width-windows) nil))
   (add-hook 'compilation-mode-hook #'compilation-mode-settings))
 
@@ -1330,6 +1332,7 @@ Excludes the ibuffer."
 
   ;; Disable Fira Code ligatures in the following modes:
   (add-hook 'mu4e-headers-mode-hook #'toggle-ligatures-off)
+  (add-hook 'compilation-mode-hook #'toggle-ligatures-off)
   (add-hook 'org-mode-hook #'toggle-ligatures-off))
 
 (defun config/lisps ()
