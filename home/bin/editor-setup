@@ -20,31 +20,43 @@ set -e
 
 setup_ruby() {
     gem install --update-sources \
-        sqlint \
+        bundler-gtags \
+        fastri \
+        gem-browse \
+        gem-ctags \
         jazz_fingers \
+        neovim \
+        pretty_backtrace \
+        pry \
+        pry-byebug \
+        pry-theme \
+        rcodetools \
         rufo \
-        solargraph
-    }
+        seeing_is_believing \
+        solargraph \
+        sqlint \
+        tmuxinator
+}
 
 setup_javascript() {
     npm install --update --global \
-        prettier \
-        eslint \
-        typescript \
-        javascript-typescript-langserver \
-        vmd \
-        markdownlint-cli \
         babel-eslint \
+        bash-language-server \
+        eslint \
         eslint-plugin-react \
-        bash-language-server
-    }
+        javascript-typescript-langserver \
+        markdownlint-cli \
+        neovim \
+        prettier \
+        typescript \
+        vmd
+}
 
 setup_python() {
     pip install --upgrade \
         "jedi>=0.9.0" \
         "json-rpc>=1.8.1" \
         "service_factory>=0.1.5" \
-        pynvim \
         autoflake \
         black \
         epc \
@@ -54,12 +66,13 @@ setup_python() {
         ipython \
         isort \
         mypy \
+        pyls-black \
         pyls-isort \
         pyls-mypy \
-        pyls-black \
-        yapf \
-        vim-vint
-    }
+        pynvim \
+        vim-vint \
+        yapf
+}
 
 setup_mac() {
     if [[ "$MACHINE" == "mac" ]]; then
@@ -72,9 +85,9 @@ setup_mac() {
 }
 
 message() {
-  gprintf "\n-----------------------\n"
-  gprintf "%s\n" "$1"
-  gprintf "-----------------------\n\n"
+    gprintf "\n-----------------------\n"
+    gprintf "%s\n" "$1"
+    gprintf "-----------------------\n\n"
 }
 
 usage() {
