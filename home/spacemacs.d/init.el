@@ -514,9 +514,6 @@ See the header of this file for more information."
   (when (not window-system)
     (setq-default server-socket-dir (getenv "EMACS_SOCKET_DIR")))
 
-  ;; Display Magit full-screen
-  (setq-default git-magit-status-fullscreen nil)
-
   ;; set these before loading evil
   (setq-default evil-want-integration t
                 evil-want-keybinding nil)
@@ -1853,18 +1850,17 @@ Only equations at the beginning of a line are justified."
   (with-eval-after-load 'magit
     (magit-todos-mode)
 
+    ;; Display Magit full-screen
+    (setq-default git-magit-status-fullscreen t)
+
+    (spacemacs/set-leader-keys-for-major-mode
+      'magit-status-mode "t" #'magit-todos-jump-to-todos)
+
     (if (and (boundp 'magit-completing-read-function)
              (boundp 'magit-mode-map))
         (progn
           (setq magit-completing-read-function 'ivy-completing-read)
-          (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
-
-          (magit-remove-popup-key 'magit-branch-popup :action ?b)
-          (magit-define-popup-action 'magit-branch-popup ?b
-            "Checkout" 'magit-branch-or-checkout 'magit-branch t)
-
-          (spacemacs/set-leader-keys-for-major-mode 'magit-status-mode "t" #'magit-todos-jump-to-todos)
-          (magit-define-popup-switch 'magit-log-popup ?m "Omit merge commits" "--no-merges"))
+          (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle))
       (error "Failed setting up magit")))
 
   (setq-default
