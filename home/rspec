@@ -1,4 +1,5 @@
 --color
+--format progress
+--no-profile
 --order random
 --tty
---format documentation
