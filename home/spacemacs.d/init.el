@@ -637,11 +637,6 @@ dump.")
     "L o" #'layouts-org
     "L d" #'layouts-dotfiles)
 
-  (spacemacs/declare-prefix "E" "edit")
-  (spacemacs/set-leader-keys
-    "E" nil
-    "E i" #'iedit-mode)
-
   ;; execute local configuration file last
   (config/load-local-config))
 
