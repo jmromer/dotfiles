@@ -1754,6 +1754,39 @@ Only equations at the beginning of a line are justified."
   (setq-default ruby-format-on-save t)
   (setq-default ruby-current-line nil)
 
+  (defun rails--find-related-file (path)
+    "Toggle between controller implementation and request spec.
+Fall back to controller spec."
+    (if (string-match
+         (rx (group (or "app" "spec"))
+             (group "/" (or "controllers" "requests"))
+             (group "/" (1+ anything))
+             (group (or "_controller" "_request"))
+             (group (or ".rb" "_spec.rb")))
+         path)
+        (let ((dir (match-string 1 path))
+              (subdir (match-string 2 path))
+              (file-name (match-string 3 path)))
+          (let ((implementation (concat "app/controllers" file-name "_controller.rb"))
+                (request-spec (concat "spec/requests" file-name "_request_spec.rb"))
+                (controller-spec (concat "spec/controllers" file-name "_controller_spec.rb")))
+            (if (equal dir "spec")
+                (list :impl implementation)
+              (list :test (if (file-exists-p (concat (projectile-project-root) request-spec))
+                              request-spec
+                            controller-spec)
+                    :request-spec request-spec
+                    :controller-spec controller-spec))))))
+
+  (projectile-register-project-type
+   'rails-rspec '("Gemfile" "app" "lib" "db" "config" "spec")
+   :compile "bin/rails server"
+   :src-dir "lib/"
+   :test "bin/rspec --no-profile --format progress"
+   :test-dir "spec/"
+   :test-suffix "_spec"
+   :related-files-fn #'rails--find-related-file)
+
   (eval-after-load 'evil-mode
     (require 'evil-rails))
 
@@ -1767,7 +1800,7 @@ Only equations at the beginning of a line are justified."
     (when (and ruby-format-on-save
                (eq major-mode 'ruby-mode))
       (when ruby-current-line
-          (evil-scroll-line-to-center ruby-current-line))))
+        (evil-scroll-line-to-center ruby-current-line))))
 
   (add-hook 'before-save-hook #'ruby-before-save-hooks)
   (add-hook 'after-save-hook #'ruby-after-save-hooks)
