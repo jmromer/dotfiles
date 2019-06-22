@@ -177,6 +177,7 @@ values."
      evil-ledger
      evil-lion
      evil-quickscope
+     evil-rails
      evil-text-object-python
      flx
      graphql-mode
@@ -1752,6 +1753,9 @@ Only equations at the beginning of a line are justified."
   "Configure packages for Ruby mode."
   (setq-default ruby-format-on-save t)
   (setq-default ruby-current-line nil)
+
+  (eval-after-load 'evil-mode
+    (require 'evil-rails))
 
   (defun ruby-before-save-hooks ()
     (when (and ruby-format-on-save
