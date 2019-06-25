@@ -9,14 +9,14 @@ endif
 
 Plug 'liuchengxu/space-vim-dark'
 
-Plug 'Shougo/neco-vim'
-Plug 'zchee/deoplete-clang'
-Plug 'Shougo/deoplete-rct'
-Plug 'zchee/deoplete-zsh'
-Plug 'wellle/tmux-complete.vim'
 Plug 'SevereOverfl0w/deoplete-github'
+Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-zsh'
+
+Plug 'Shougo/neco-vim'
 Plug 'osyo-manga/vim-over'
 Plug 'posva/vim-vue'
+Plug 'wellle/tmux-complete.vim'
 
 Plug 'SirVer/ultisnips'               " snippets engine, integrates with YCM
 Plug 'christoomey/vim-sort-motion'
