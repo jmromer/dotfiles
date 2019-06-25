@@ -1,8 +1,10 @@
 babel-eslint
 bash-language-server
+catj
 create-react-app
 eslint
 eslint-plugin-react
+git-pending
 javascript-typescript-langserver
 js-beautify
 markdownlint-cli
