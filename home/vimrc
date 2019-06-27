@@ -306,6 +306,17 @@ map <silent><leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " ]: Open ctag in a horizontal split
 map <silent><leader>] :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" tl: toggle line wrapping
+function! ToggleLineWrap()
+  if &wrap
+    setlocal nowrap
+  else
+    setlocal wrap
+  endif
+endfunction
+
+nnoremap <silent><leader>tl :call ToggleLineWrap()<cr>
+
 " ------------------- Leader key mappings ---------------------
 " -: zoom the current vim pane
 nnoremap <leader>- :wincmd _<CR>:wincmd \|<CR>
@@ -409,14 +420,11 @@ nnoremap <leader>pG: !git-ctags<CR>
 "--------------------------------------------------------------
 " vim-test
 "--------------------------------------------------------------
-" (loaded /after because it doesn't work in the normal place,
-" because reasons)
-" ----------------------------------------------------------------------------
-nnoremap <leader>tt :w<CR>:TestNearest<CR>
-nnoremap <leader>tb :w<CR>:TestFile<CR>
-nnoremap <leader>ta :wa<CR>:TestSuite<CR>
-nnoremap <leader>tl :w<CR>:TestLast<CR>
-nnoremap <leader>tv :w<CR>:TestVisit<CR>
+" nnoremap <leader>tt :w<CR>:TestNearest<CR>
+" nnoremap <leader>tb :w<CR>:TestFile<CR>
+" nnoremap <leader>ta :wa<CR>:TestSuite<CR>
+" nnoremap <leader>tl :w<CR>:TestLast<CR>
+" nnoremap <leader>tv :w<CR>:TestVisit<CR>
 
 " default test strategy is vimux
 let g:test#strategy = 'vimux'
