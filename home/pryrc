@@ -16,7 +16,7 @@ unless defined?(Rails) && Rails.env
   begin
     require "jazz_fingers"
   rescue LoadError
-    puts "Pry enhancements not loaded."
+    puts "jazz_fingers not loaded."
   end
 end
 
@@ -59,7 +59,7 @@ if defined?(PryByebug)
 end
 
 if defined?(AwesomePrint)
-  AwesomePrint.defaults = {indent: -2}
+  AwesomePrint.defaults = { indent: -2 }
   AwesomePrint.pry!
 end
 
@@ -73,3 +73,6 @@ if ENV["TERM"] == "emacs"
   Pry.config.pager = false
   Pry.config.auto_indent = false
 end
+
+pryrc_local = File.expand_path("~/.pryrc.local")
+load(pryrc_local) if File.exist?(pryrc_local)
