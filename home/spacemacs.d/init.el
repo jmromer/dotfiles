@@ -561,6 +561,7 @@ dump.")
   (config/evil-in-ex-buffer)
   (config/evil-lion)
   (config/flycheck)
+  (config/google-translate)
   (config/gtags)
   (config/helpful)
   (config/highlight-lines-at-length 80)
@@ -1149,6 +1150,28 @@ Excludes the ibuffer."
   (global-evil-quickscope-mode 1)
   (smartparens-global-strict-mode)
   (visual-line-mode))
+
+(defun config/google-translate ()
+  "Configure google-translate."
+  (load "google-translate/google-translate-backend.el")
+  (load "google-translate/google-translate-tk.el")
+  (load "google-translate/google-translate-core.el")
+  (load "google-translate/google-translate-core-ui.el")
+  (load "google-translate/google-translate-smooth-ui.el")
+  (load "google-translate/google-translate-default-ui.el")
+  (load "google-translate/google-translate.el")
+  (require 'google-translate)
+  (require 'google-translate-smooth-ui)
+
+  (setq-default google-translate-backend-method 'curl
+                ;; 'popup 'kill-ring 'current-buffer
+                google-translate-output-destination 'current-buffer
+                google-translate-pop-up-buffer-set-focus t
+                google-translate-translation-directions-alist '(("en" . "es")
+                                                                ("en" . "fr")
+                                                                ("en" . "nl")))
+  (spacemacs/set-leader-keys
+    "x g t" #'google-translate-smooth-translate))
 
 (defun config/gtags ()
   "Configure GNU Global tag backend."
