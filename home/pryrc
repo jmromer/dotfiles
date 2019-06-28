@@ -2,6 +2,8 @@
 # vi:syntax=ruby
 # frozen_string_literal: true
 
+# rubocop:disable Style/MixinUsage
+
 Pry.config.theme = "solarized"
 
 # Return only the methods not present on basic objects
@@ -59,7 +61,7 @@ if defined?(PryByebug)
 end
 
 if defined?(AwesomePrint)
-  AwesomePrint.defaults = { indent: -2 }
+  AwesomePrint.defaults = {indent: -2}
   AwesomePrint.pry!
 end
 
@@ -68,11 +70,14 @@ if defined?(Hirb)
   extend Hirb::Console
 end
 
-if ENV["TERM"] == "emacs"
-  Pry.config.color = false
+if ENV["TERM"] == "emacs" || !ENV["INSIDE_EMACS"].nil?
+  Pry.prompt = Pry::Prompt[:default][:value]
+  Pry.config.color = true
   Pry.config.pager = false
   Pry.config.auto_indent = false
 end
 
 pryrc_local = File.expand_path("~/.pryrc.local")
 load(pryrc_local) if File.exist?(pryrc_local)
+
+# rubocop:enable Style/MixinUsage
