@@ -136,8 +136,6 @@ values."
             shell-default-term-shell "zsh"
             shell-enable-smart-eshell nil)
      shell-scripts
-     spacemacs-layouts
-     spacemacs-purpose
      speed-reading
      (sql :variables
           sql-capitalize-keywords t
