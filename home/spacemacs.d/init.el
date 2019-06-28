@@ -1930,11 +1930,12 @@ Fall back to controller spec."
     "Adds underscore to the word chars syntax entry list."
     (modify-syntax-entry ?_ "w"))
 
-  (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'text-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
   (add-hook 'markdown-mode-hook #'add-underscore-to-word-chars)
-  (add-hook 'org-mode-hook #'add-underscore-to-word-chars))
+  (add-hook 'org-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'prog-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'python-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'restclient-mode-hook #'add-underscore-to-word-chars)
+  (add-hook 'text-mode-hook #'add-underscore-to-word-chars))
 
 (defun config/version-control ()
   "Configure version-control-related settings."
