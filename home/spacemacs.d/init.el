@@ -675,6 +675,55 @@ Overrides doom-modeline's version to respect
                                   (describe-function 'persp-mode)))
                               map))))))))
 
+(with-eval-after-load 'ox-hugo
+  ;; TODO: submit upstream
+  (defun org-hugo-headline (headline contents info)
+    "Transcode HEADLINE element into Markdown format.
+CONTENTS is the headline contents.  INFO is a plist used as
+a communication channel."
+    (unless (org-element-property :footnote-section-p headline)
+      (let* ((numbers (org-hugo--get-headline-number headline info nil))
+             (loffset (string-to-number (plist-get info :hugo-level-offset))) ;"" -> 0, "0" -> 0, "1" -> 1, ..
+             (level (org-export-get-relative-level headline info))
+             (level-effective (+ loffset level))
+             (title (org-export-data (org-element-property :title headline) info)) ;`org-export-data' required
+             (todo (and (org-hugo--plist-get-true-p info :with-todo-keywords)
+                        (org-element-property :todo-keyword headline)))
+             (todo-fmtd (when todo
+                          (concat (org-hugo--todo todo info) " ")))
+             (tags (and (org-hugo--plist-get-true-p info :with-tags)
+                        (let ((tag-list (org-export-get-tags headline info)))
+                          (and tag-list
+                               (format "     :%s:"
+                                       (mapconcat #'identity tag-list ":"))))))
+             (priority
+              (and (org-hugo--plist-get-true-p info :with-priority)
+                   (let ((char (org-element-property :priority headline)))
+                     (and char (format "[#%c] " char)))))
+             (style (plist-get info :md-headline-style)))
+        ;; (message "[ox-hugo-headline DBG] num: %s" numbers)
+        (cond
+         ;; Cannot create a headline.  Fall-back to a list.
+         ((or (org-export-low-level-p headline info)
+              (not (memq style '(atx setext)))
+              (and (eq style 'atx) (> level-effective 6))
+              (and (eq style 'setext) (> level-effective 2)))
+          (let ((bullet
+                 (if (not (org-export-numbered-headline-p headline info)) "-"
+                   (concat (number-to-string
+                            (car (last (org-export-get-headline-number
+                                        headline info))))
+                           ".")))
+                (heading (concat todo-fmtd " " priority title))) ;Headline text without tags
+            (concat bullet (make-string (- 4 (length bullet)) ?\s) heading tags "\n\n"
+                    (and contents (replace-regexp-in-string "^" "    " contents)))))
+         (t
+          (let ((anchor (format "<span style=\"font-size: 15px;\">[#]({{< relref \"#%s\" >}})</span>"
+                                (or (org-element-property :CUSTOM_ID headline)
+                                    (org-hugo-slug title)))))
+            (concat (org-hugo--headline-title style level loffset title todo-fmtd anchor numbers)
+                    contents))))))))
+
 ;; Custom functions
 
 ;; amx
@@ -812,11 +861,11 @@ See `org-capture-templates' for more information."
            (fname (org-hugo-slug title)))
       (mapconcat #'identity
                  `(
-                   ,(concat "* TODO " title)
+                   ,(concat "* DRAFT " title)
                    ":PROPERTIES:"
-                   ,(concat "   :EXPORT_FILE_NAME: " fname)
-                   "   :END:"
-                   "   %?\n")
+                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ":END:"
+                   "%?\n")
                  "\n"))))
 
 ;; yasnippet
@@ -1511,6 +1560,9 @@ Excludes the ibuffer."
     (add-hook 'org-journal-mode-hook #'org-mode)
     (add-hook 'org-capture-mode-hook #'org-align-all-tags)
 
+    ;; ox-hugo
+    (setq-default org-hugo-export-with-toc t)
+
     ;; Org capture templates
     (setq-default
      org-capture-templates
@@ -1552,7 +1604,7 @@ Excludes the ibuffer."
         "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
        ;;
        ("p" "Blog post" entry
-        (file+headline "blog-metier.org" "Post Ideas")
+        (file+headline "blog.org" "Blog")
         (function org-hugo-new-post-capture-template)
         :empty-lines 1)
        ;;
