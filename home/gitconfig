@@ -139,6 +139,7 @@
 	b        = branch -vv
 	bc       = create-branch-with-remote
 	bcl      = create-branch
+	bcc      = create-branch-continuation
 	bd       = delete-branch
 	bdf      = branch -D
 	bdo      = clear-deleted-branches
