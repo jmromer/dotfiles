@@ -1570,99 +1570,74 @@ Excludes the ibuffer."
     (setq-default
      org-capture-templates
      '(
-       ;;
-       ;; Backlog items (to be prioritized, scoped, estimated)
-       ;;
-       ("b" "Backlog" entry
-        (file "~/Dropbox/org/sprint-backlog.org")
-        "* %?\n  %U")
-       ("a" "Annotation" entry
-        (file org-default-backlog-file)
-        "* %?\n  %a\n  %U")
-       ;;
-       ("d" "Deadline" entry
-        (file org-default-backlog-file)
-        "* %?\n  DEADLINE: %^t\n  %U")
-       ;;
-       ;; Today's Sprint Tasks
-       ;;
-       ("t" "Task (Today's Sprint)" entry
-        (file+headline org-default-notes-file "To Do Today")
-        "* TODO %?\n  SCHEDULED: %t\n  %U"
-        :empty-lines 1)
-       ;;
-       ("m" "Meeting" entry
-        (file org-default-backlog-file)
-        "* Meeting: %?\n  %^t\n  %U"
-        :empty-lines 1)
-       ;;
-       ;; Notes / Journal / Blog Entry
-       ;;
-       ("n" "Note" plain
-        (function org-capture-deft-new-file)
+       ("b" "Backlog" entry (file+headline org-default-backlog-file "Captures")
+        "** %?\n%U" :empty-lines 1)
+
+       ("a" "Annotation" entry (file+headline org-default-backlog-file "Captures")
+        "** %?\n%a\n%U" :empty-lines 1)
+
+       ("d" "Deadline" entry (file+headline org-default-backlog-file "Captures")
+        "** %?\nDEADLINE: %^t\n %U" :empty-lines 1)
+
+       ("t" "Task (Today's Sprint)" entry (file+headline org-default-notes-file "To Do Today")
+        "** TODO %?\nSCHEDULED: %t\n %U" :empty-lines 1)
+
+       ("m" "Meeting" entry (file+headline org-default-backlog-file "Captures")
+        "** Meeting: %?\n %^t\n %U" :empty-lines 1)
+
+       ("n" "Note" plain (function org-capture-deft-new-file)
         "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
-       ;;
-       ("j" "Journal entry" entry
-        (function org-journal-find-location)
-        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-       ;;
-       ("p" "Blog post" entry
-        (file+headline "blog.org" "Blog")
-        (function org-hugo-new-post-capture-template)
-        :empty-lines 1)
-       ;;
-       ;; Journal: Daily standup
-       ;;
-       ("s" "Standup" plain
-        (file+olp+datetree "~/Dropbox/org/journal-standup.org")
+
+       ("j" "Journal entry" entry (function org-journal-find-location)
+        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
+
+       ("p" "Blog post" entry (file+headline "blog.org" "Blog")
+        (function org-hugo-new-post-capture-template) :empty-lines 1)
+
+       ("s" "Standup" plain (file+olp+datetree "~/Dropbox/org/journal-standup.org")
         "     %?")
-       ;;
-       ;; Journal: Health
-       ;;
-       ("h" "Health / Diet journal" entry
-        (file+olp+datetree "~/Dropbox/org/journal-health.org")
-        "**** [%<%l:%M %p>] %^{Entry} %^g"
-        :immediate-finish t)
-       ;;
-       ;; Reading / Code Journals
-       ;;
-       ("v" "Paste from clipboard" entry
-        (file org-default-backlog-file)
-        "* %^{Title} %^G\n   %?\n   %c")
-       ;;
-       ("c" "Commonplace" entry
-        (file "~/Dropbox/org/journal-commonplaces.org")
-        "* %^{Title} %^G\n   %?")))
+
+       ("h" "Health / Diet journal" entry (file+olp+datetree "~/Dropbox/org/journal-health.org")
+        "**** [%<%l:%M %p>] %^{Entry} %^g" :immediate-finish t)
+
+       ("v" "Paste from clipboard" entry (file+headline org-default-backlog-file "Captures")
+        "** %^{Title} %^G\n%?\n%c")
+
+       ("c" "Commonplace" entry (file "~/Dropbox/org/journal-commonplaces.org")
+        "* %^{Title} %^G\n%?")))
 
     ;; Org Babel languages
-    (org-babel-do-load-languages 'org-babel-load-languages
-                                 '((clojure . t)
-                                   (dot . t)
-                                   (elixir . t)
-                                   (emacs-lisp . t)
-                                   (haskell . t)
-                                   (js . t)
-                                   (org . t)
-                                   (python . t)
-                                   (ruby . t)
-                                   (swift . t)
-                                   (shell . t)))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((clojure . t)
+       (dot . t)
+       (elixir . t)
+       (emacs-lisp . t)
+       (haskell . t)
+       (js . t)
+       (org . t)
+       (python . t)
+       (ruby . t)
+       (swift . t)
+       (shell . t)))
 
-    (setq-default org-structure-template-alist '(("a" . "export ascii")
-                                                 ("c" . "center")
-                                                 ("C" . "comment")
-                                                 ("e" . "example")
-                                                 ("E" . "export")
-                                                 ("h" . "export html")
-                                                 ("l" . "export latex")
-                                                 ("n" . "export notes")
-                                                 ("q" . "quote")
-                                                 ("s" . "src")
-                                                 ("sp" . "src python")
-                                                 ("se" . "src elixir")
-                                                 ("sr" . "src ruby")
-                                                 ("sj" . "src js")
-                                                 ("v" . "verse")))))
+    (setq-default
+     org-structure-template-alist
+     '(("a" . "export ascii")
+       ("c" . "center")
+       ("C" . "comment")
+       ("e" . "example")
+       ("E" . "export")
+       ("h" . "export html")
+       ("l" . "export latex")
+       ("n" . "export notes")
+       ("q" . "quote")
+       ("s" . "src")
+       ("sp" . "src python")
+       ("se" . "src elixir")
+       ("sr" . "src ruby")
+       ("sj" . "src js")
+       ("v" . "verse")))))
 
 (defun config/org-latex-preview ()
   "Configure LaTeX preview settings for Org mode."
