@@ -169,6 +169,7 @@ values."
      conda
      csv-mode
      direnv
+     (doom-modeline :location (recipe :fetcher github :repo "seagle0128/doom-modeline" :branch "master"))
      editorconfig
      emmet-mode
      evil-collection
