@@ -111,6 +111,7 @@ values."
      parinfer
      pdf
      phoenix
+     prodigy
      (python :variables
              python-save-before-test t
              python-test-runner 'pytest
