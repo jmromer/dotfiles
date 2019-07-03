@@ -1551,8 +1551,25 @@ Excludes the ibuffer."
       "s" 'org-journal-search
       "t" 'org-journal-today)
 
+    (spacemacs|define-transient-state org-journal
+      :title "Git Timemachine Transient State"
+      :doc "
+[_p_/_N_] previous [_n_] next [_c_] current [_s_] search all [_f_] search future [_S_] search range [_q_] quit"
+      :hint nil
+      :foreign-keys run
+      :bindings
+      ("p" org-journal-open-previous-entry)
+      ("N" org-journal-open-previous-entry)
+      ("n" org-journal-open-next-entry)
+      ("c" org-journal-today)
+      ("s" org-journal-search-forever)
+      ("f" org-journal-search-future)
+      ("S" org-journal-search)
+      ("q" nil :exit t))
+
     (spacemacs/set-leader-keys
       "a j" nil
+      "a j ." #'spacemacs/org-journal-transient-state/body
       "a j RET" #'org-journal-new-entry
       "a j t" #'org-journal-today
       "a j s" #'org-journal-search
