@@ -822,7 +822,7 @@ a communication channel."
   (org-journal-new-entry t)
   ;; Position point on the journal's top-level heading so that org-capture
   ;; will add the new entry as a child entry.
-  (goto-char (point-min)))
+  (goto-char (point-max)))
 
 (defun org-capture-deft-new-file ()
   "Open a new deft notes file, prompting for the file name."
@@ -1560,6 +1560,10 @@ Excludes the ibuffer."
       "a j d" #'org-journal-new-date-entry)
     (spacemacs/declare-prefix "a j" "org-journal")
 
+    (setq-default org-journal-find-file #'find-file
+                  org-journal-file-format "%Y%m%d"
+                  org-journal-file-type 'monthly)
+
     (add-hook 'org-journal-mode-hook #'org-mode)
     (add-hook 'org-capture-mode-hook #'org-align-all-tags)
 
@@ -1588,8 +1592,8 @@ Excludes the ibuffer."
        ("n" "Note" plain (function org-capture-deft-new-file)
         "%(format \"#+TITLE: %s\n#+DATE: %s\n\" org-capture-deft--title %U)\n*  %?")
 
-       ("j" "Journal entry" entry (function org-journal-find-location)
-        "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
+       ("j" "Journal entry" plain (function org-journal-find-location)
+        "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
 
        ("p" "Blog post" entry (file+headline "blog.org" "Blog")
         (function org-hugo-new-post-capture-template) :empty-lines 1)
