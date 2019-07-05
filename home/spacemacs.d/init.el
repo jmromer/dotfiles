@@ -729,6 +729,8 @@ a communication channel."
 
 ;; Custom functions
 
+;; org-hugo
+
 ;; amx
 
 (defun amx/emacs-commands ()
@@ -815,15 +817,6 @@ a communication channel."
 
 ;; Org mode
 
-(defun org-journal-find-location ()
-  "Open today's journal entry."
-  ;; Open today's journal, but specify a non-nil prefix argument in order to
-  ;; inhibit inserting the heading; org-capture will insert the heading.
-  (org-journal-new-entry t)
-  ;; Position point on the journal's top-level heading so that org-capture
-  ;; will add the new entry as a child entry.
-  (goto-char (point-max)))
-
 (defun org-capture-deft-new-file ()
   "Open a new deft notes file, prompting for the file name."
   (require 'deft)
@@ -832,9 +825,18 @@ a communication channel."
 
   (if (and (boundp 'org-capture-deft--title)
            (not (string-blank-p org-capture-deft--title)))
-    (deft-new-file-named
-      (downcase (replace-regexp-in-string " " "-" org-capture-deft--title)))
+      (deft-new-file-named
+        (downcase (replace-regexp-in-string " " "-" org-capture-deft--title)))
     (deft-new-file)))
+
+(defun org-journal-find-location ()
+  "Open today's journal entry."
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  ;; Position point on the journal's top-level heading so that org-capture
+  ;; will add the new entry as a child entry.
+  (goto-char (point-max)))
 
 (defun org-journal-today ()
   "Open today's journal."
@@ -856,6 +858,8 @@ a communication channel."
       (find-file org-default-backlog-file)
     (error "No `org-default-backlog-file' set")))
 
+;; Org Export: Hugo
+
 (defun org-hugo-new-post-capture-template ()
   "Return `org-capture' template string for new Hugo post.
 See `org-capture-templates' for more information."
@@ -870,6 +874,33 @@ See `org-capture-templates' for more information."
                    ":END:"
                    "%?\n")
                  "\n"))))
+
+(defun org-hugo-clean-export-deploy ()
+  "Clean export destination for hugo blog, export org file to markdown, build production and deploy."
+  (if (and (boundp 'hugo-base-dir)
+           (boundp 'hugo-section))
+      (progn
+        (delete-directory (format "%s/content/%s" hugo-base-dir hugo-section) :recursive)
+        (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil)
+        (call-process-shell-command (format "(cd %s && bin/deploy) &" hugo-base-dir) nil 0))
+    (error "Ensure HUGO_BASE_DIR and HUGO_SECTION are set as local variables")))
+
+(define-minor-mode org-hugo-auto-clean-export-deploy-mode
+  "Toggle auto cleaning the export destination using `ox-hugo'."
+  :global nil
+  :lighter ""
+  (if org-hugo-auto-clean-export-deploy-mode
+      (add-hook 'after-save-hook #'org-hugo-clean-export-deploy :append :local)
+    (remove-hook 'after-save-hook #'org-hugo-clean-export-deploy :local)))
+
+(defun org-hugo-serve ()
+  "Start development server."
+  (interactive)
+  (if (boundp 'hugo-base-dir)
+      (let ((serve-command (format "cd %s && bin/serve" hugo-base-dir))
+            (buffer (get-buffer-create (format "*hugo (%s) *" hugo-base-dir))))
+        (async-shell-command serve-command buffer buffer))
+    (error "Ensure HUGO_BASE_DIR is set as a local variables")))
 
 ;; yasnippet
 
@@ -1613,7 +1644,7 @@ Excludes the ibuffer."
         "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
 
        ("p" "Blog post" entry (file+headline "blog.org" "Blog")
-        (function org-hugo-new-post-capture-template) :empty-lines 1)
+        (function org-hugo-new-post-capture-template) :empty-lines 1 :prepend t)
 
        ("s" "Standup" plain (file+olp+datetree "~/Dropbox/org/journal-standup.org")
         "     %?")
