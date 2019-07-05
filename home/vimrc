@@ -291,7 +291,7 @@ nnoremap <silent><CR> :noh<CR><CR>
 
 " \: (backward slash) to grep-with-ag-to-quickfix shortcut
 command! -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>sap :Rg ''<LEFT>
+nnoremap <leader>sp :Rg ''<LEFT>
 
 " K: Grep for the word under the cursor or visual selection,
 "    open results in quickfix pane
