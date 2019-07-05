@@ -893,15 +893,6 @@ See `org-capture-templates' for more information."
       (add-hook 'after-save-hook #'org-hugo-clean-export-deploy :append :local)
     (remove-hook 'after-save-hook #'org-hugo-clean-export-deploy :local)))
 
-(defun org-hugo-serve ()
-  "Start development server."
-  (interactive)
-  (if (boundp 'hugo-base-dir)
-      (let ((serve-command (format "cd %s && bin/serve" hugo-base-dir))
-            (buffer (get-buffer-create (format "*hugo (%s) *" hugo-base-dir))))
-        (async-shell-command serve-command buffer buffer))
-    (error "Ensure HUGO_BASE_DIR is set as a local variables")))
-
 ;; yasnippet
 
 (defun yas/camelcase-file-name ()
