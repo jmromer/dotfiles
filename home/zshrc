@@ -12,6 +12,7 @@ alias vim=nvim
 alias vim0='vim -u NONE'
 alias vim1='vim -u ~/.vim/minimal.vim'
 alias vimplug='vim +PlugInstall +PlugUpgrade +PlugUpdate +qall'
+alias pp=pretty-print-path
 
 # vim
 alias vi=vim
@@ -163,23 +164,6 @@ md() {
   directory_name="${*// /-}"
   mkdir -p "$directory_name"
   cd "$directory_name" || return
-}
-
-# pretty-print the command search path
-pp() {
-  local paths
-
-  if [[ "$1" == "path" ]]; then
-    paths="$PATH"
-  elif [[ "$1" == "manpath" ]]; then
-    paths="$MANPATH"
-  elif [[ "$1" == "cdpath" ]]; then
-    paths="$CDPATH"
-  fi
-
-  [[ -z "$paths" ]] && return
-
-  echo "$paths" | tr ":" "\n" | nl -ba | less
 }
 
 # Mac-specific: show and hide hidden files
