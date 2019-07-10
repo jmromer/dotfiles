@@ -91,8 +91,6 @@ values."
           lsp-ui-sideline-show-symbol nil)
      (markdown :variables
                markdown-live-preview-engine 'vmd)
-     (multiple-cursors :variables
-                       multiple-cursors-backend 'evil-mc)
      nginx
      (org :variables
           org-projectile-file "TODOS.org"
