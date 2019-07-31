@@ -167,6 +167,7 @@ values."
      coffee-mode
      company-flx
      company-jedi
+     company-tabnine
      conda
      csv-mode
      direnv
@@ -1046,23 +1047,36 @@ Excludes the ibuffer."
       (add-hook 'text-mode-hook #'company-mode-on)
       (add-hook 'text-mode-hook #'company-tng-on)
 
-      ;; (if (boundp 'company-backends)
-      ;;     (progn
-      ;;       (add-to-list 'company-backends '(company-anaconda :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-capf :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-dabbrev :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-dabbrev-code :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-etags :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-files :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-gtags :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-jedi :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-keywords :with company-yasnippet))
-      ;;       (add-to-list 'company-backends '(company-tern :with company-yasnippet)))
-      ;;   (error "Not adding company backends"))
+      (if (boundp 'company-backends)
+          (progn
+            (add-to-list 'company-backends #'company-tabnine)
+            (add-to-list 'company-backends '(company-anaconda :with company-yasnippet))
+            (add-to-list 'company-backends '(company-capf :with company-yasnippet))
+            (add-to-list 'company-backends '(company-dabbrev :with company-yasnippet))
+            (add-to-list 'company-backends '(company-dabbrev-code :with company-yasnippet))
+            (add-to-list 'company-backends '(company-etags :with company-yasnippet))
+            (add-to-list 'company-backends '(company-files :with company-yasnippet))
+            (add-to-list 'company-backends '(company-gtags :with company-yasnippet))
+            (add-to-list 'company-backends '(company-jedi :with company-yasnippet))
+            (add-to-list 'company-backends '(company-keywords :with company-yasnippet))
+            (add-to-list 'company-backends '(company-tern :with company-yasnippet)))
+        (error "Not adding company backends"))
+
+      (setq-default
+       ;; Number the candidates (use M-1, M-2 etc to select completions).
+       company-show-numbers t
+       ;; Trigger completion immediately.
+       company-idle-delay 0)
+
+      ;; Use the tab-and-go frontend.
+      ;; Allows TAB to select and complete at the same time.
+      (company-tng-configure-default)
 
       (if (boundp 'company-frontends)
           (progn
-            (add-to-list 'company-frontends 'company-tng-frontend))
+            (add-to-list 'company-frontends 'company-tng-frontend)
+            (add-to-list 'company-frontends 'company-pseudo-tooltip-frontend)
+            (add-to-list 'company-frontends 'company-echo-metadata-frontend))
         (error "Not adding company front-ends")))))
 
 (defun config/compilation-buffers ()
