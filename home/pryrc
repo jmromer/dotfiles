@@ -31,6 +31,15 @@ if defined?(Rails)
   end
 end
 
+if defined?(Rails)
+  begin
+    include Rails.application.routes.url_helpers
+    default_url_options[:host] = ENV["BASE_URL"]
+  rescue StandardError
+    puts "URL helpers not loaded."
+  end
+end
+
 if defined?(JazzFingers) && !defined?(Rails)
   JazzFingers.configure do |config|
     config.application_name = "jmromer"
