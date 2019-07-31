@@ -10,6 +10,7 @@ endif
 Plug 'liuchengxu/space-vim-dark'
 
 Plug 'SevereOverfl0w/deoplete-github'
+Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-zsh'
 
