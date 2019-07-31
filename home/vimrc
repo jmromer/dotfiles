@@ -712,6 +712,10 @@ nmap ga <Plug>(EasyAlign)
 " Vim-Fugitive:
 nnoremap <silent> <leader>gs :Gstatus<CR>:50wincmd_<CR>
 
+" Vim-i18n
+vnoremap <leader>z :call I18nTranslateString()<CR>
+vnoremap <leader>dt :call I18nDisplayTranslation()<CR>
+
 " ---------------- Overrides  --------------------------
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local

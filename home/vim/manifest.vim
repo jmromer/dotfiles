@@ -62,6 +62,8 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-projectionist' | Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rails', { 'for': ['ruby']  }
 Plug 'vim-ruby/vim-ruby' " can't be lazy-loaded with { 'for': 'ruby' }
+Plug 'airblade/vim-localorie'
+Plug 'stefanoverna/vim-i18n'
 
 " JS
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
