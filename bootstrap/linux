@@ -110,7 +110,7 @@ step() {
 
   echo "Installing Python..."
   asdf plugin-add python
-  asdf install python anaconda3-2018.12
+  asdf install python anaconda3-2019.07
   pip install pynvim
   pip2 install pynvim
 
