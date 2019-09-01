@@ -269,15 +269,15 @@ autoload -U zmv     # rename files like zmv '(*).txt' '$1.html'
 #-------------------------------------------------------------
 shared="$HOMEBREW_PREFIX/share"
 fpath=(
-  $HOME/.zsh/completion
-  $shared/zsh-completions
-  $shared/zsh/site-functions
+  "$HOME/.zsh/completion"
+  "$shared/zsh-completions"
+  "$shared/zsh/site-functions"
   $fpath
 )
 
 autoload -U compinit && compinit
-source $shared/zsh/site-functions/_aws
-source $shared/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$shared/zsh/site-functions/_aws"
+source "$shared/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 compdef git=hub
 compdef g=git
