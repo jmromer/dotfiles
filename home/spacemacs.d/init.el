@@ -1860,8 +1860,17 @@ Only equations at the beginning of a line are justified."
 
 (defun config/ruby ()
   "Configure packages for Ruby mode."
-  (setq-default ruby-format-on-save t)
-  (setq-default ruby-current-line nil)
+  (defun switch-to-rspec-compilation-buffer ()
+    "Switch to the RSpec compilation buffer."
+    (switch-to-buffer "*rspec-compilation*"))
+
+  (setq-default
+   ruby-format-on-save t
+   ruby-current-line nil
+   rspec-use-opts-file-when-available nil
+   rspec-autosave-buffer t
+   rspec-before-verification-hook #'switch-to-rspec-compilation-buffer
+   rspec-command-options "--format progress --no-profile")
 
   (defun rails--find-related-file (path)
     "Toggle between controller implementation and request spec.
