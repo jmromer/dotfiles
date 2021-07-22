@@ -822,6 +822,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; theme definitions
   (load "themes")
+  (load "thinkscript-mode")
 
   ;; exec-path
   (setq-default
