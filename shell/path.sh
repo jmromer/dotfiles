@@ -2,7 +2,7 @@
 # GNU TOOLS (prepend to PATH)
 #-------------------------------------------------------------
 if [ -z "$GNUTOOLS_PATHS" ] || [ -z "$GNUTOOLS_MANS" ]; then
-  gnu_tools='coreutils gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls'
+  gnu_tools='coreutils gnu-bin gnu-indent gnu-sed gnu-tar gnu-which gnutls make'
 
   for gnu_tool in $(echo $gnu_tools); do
     GNUTOOLS_PATHS+=":$HOMEBREW_PREFIX/opt/$gnu_tool/libexec/gnubin"

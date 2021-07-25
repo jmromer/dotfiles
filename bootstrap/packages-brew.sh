@@ -7,6 +7,7 @@ brew install awscli
 brew install bash
 brew install bash-completion
 brew install bat
+brew install byacc
 brew install cmake
 brew install colordiff
 brew install csvkit
@@ -28,6 +29,7 @@ brew install libxml2
 brew install libyaml
 brew install libzip
 brew install llvm
+brew install make
 brew install ncurses
 brew install openssl
 brew install pgcli
