@@ -14,3 +14,4 @@ tmux 3.0
 rust 1.43.0
 mysql 8.0.24
 sqlite 3.34.1
+perl 5.34.0
