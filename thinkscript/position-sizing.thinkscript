@@ -37,6 +37,7 @@ def shouldDisplay =
   if !isNaN(maxUnitsBuyable)
   and !isNaN(currPositionSize)
   and !isNaN(remainingUnits)
+  and maxUnitsBuyable > 0
   then displayLabel
   else no;
 
