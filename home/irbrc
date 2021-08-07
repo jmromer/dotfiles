@@ -44,12 +44,22 @@ PRINT_CONFIG = {
 }
 
 def configure_irb_prompt
-  IRB.conf[:PROMPT][:CUSTOM] = {
-    PROMPT_I: "» ".red,
-    PROMPT_C: "» ",
-    PROMPT_S: "%l ".yellowish,
-    RETURN: ["=>".blueish, "%s\n"].join(" "),
-  }
+  IRB.conf[:PROMPT][:CUSTOM] =
+    if defined?(AmazingPrint)
+      {
+        PROMPT_I: "» ".red,
+        PROMPT_C: "» ",
+        PROMPT_S: "%l ".yellowish,
+        RETURN: ["=>".blueish, "%s\n"].join(" "),
+      }
+    else
+      {
+        PROMPT_I: "» ",
+        PROMPT_C: "» ",
+        PROMPT_S: "%l ",
+        RETURN: ["=>", "%s\n"].join(" "),
+      }
+    end
   IRB.conf[:AUTO_INDENT] = true
   IRB.conf[:PROMPT_MODE] = ENV.key?("INSIDE_EMACS") ? :INF_RUBY : :CUSTOM
 end
