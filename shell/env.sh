@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 
-uname_out="$(uname -s)"
-case "${uname_out}" in
-  Linux*)  machine=linux;;
-  Darwin*) machine=mac;;
-  CYGWIN*) machine=windows;;
-  *)       machine="UNKNOWN:${uname_out}"
+case "$(uname -ps)" in
+  Linux*)
+      MACHINE="linux"
+      HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+      ;;
+  Darwin\ arm*)
+      MACHINE="apple"
+      HOMEBREW_PREFIX="/opt/homebrew"
+      ;;
+  Darwin*)
+      MACHINE="intel-mac"
+      HOMEBREW_PREFIX="/usr/local"
+      ;;
+  *)
+      MACHINE="UNKNOWN"
+      HOMEBREW_PREFIX="$(brew --prefix)"
+      ;;
 esac
-export MACHINE="$machine"
 
-#-------------------------------------------------------------
-# Set HOMEBREW_PREFIX
-#-------------------------------------------------------------
-if [[ "$MACHINE" == "linux" ]]; then
-  HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-else
-  HOMEBREW_PREFIX="/usr/local"
-fi
+export MACHINE
 export HOMEBREW_PREFIX
 
 #-------------------------------------------------------------
@@ -90,7 +93,7 @@ JAVA_VERSION=openjdk-15.0.1
 JAVA_HOME="$HOME/.asdf/installs/java/${JAVA_VERSION}"
 export JAVA_HOME
 
-if [[ "$MACHINE" == "mac" ]]; then
+if [[ "$MACHINE" =~ (apple|intel-mac) ]]; then
   launchctl setenv JAVA_HOME "$JAVA_HOME"
 fi
 
@@ -108,50 +111,47 @@ export GTAGSCONF="${HOME}/.globalrc"
 #-------------------------------------------------------------
 # Compilation flags
 #-------------------------------------------------------------
-# export CC=gcc
-# export CXX=g++
-#
-# LDFLAGS="-L/usr/local/opt/gettext/lib"
-# LDFLAGS+=" -L/usr/local/opt/libffi/lib"
-# LDFLAGS+=" -L/usr/local/opt/libxml2/lib"
-# LDFLAGS+=" -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
-# LDFLAGS+=" -L/usr/local/opt/ncurses/lib"
-# LDFLAGS+=" -L/usr/local/opt/openssl/lib"
-# LDFLAGS+=" -L/usr/local/opt/icu4c/lib"
-# LDFLAGS+=" -L/usr/local/opt/readline/lib"
-# LDFLAGS+=" -L/usr/local/opt/zlib/lib"
-# LDFLAGS+=" -L/usr/local/opt/imagemagick@6/lib"
-# export LDFLAGS
-#
-# CPPFLAGS="-I/usr/local/opt/gettext/include"
-# CPPFLAGS+=" -I/usr/local/opt/libxml2/include"
-# CPPFLAGS+=" -I/usr/local/opt/llvm/include"
-# CPPFLAGS+=" -I/usr/local/opt/ncurses/include"
-# CPPFLAGS+=" -I/usr/local/opt/openssl/include"
-# CPPFLAGS+=" -I/usr/local/opt/icu4c/include"
-# CPPFLAGS+=" -I/usr/local/opt/readline/include"
-# CPPFLAGS+=" -I/usr/local/opt/zlib/include"
-# CPPFLAGS+=" -I/usr/local/opt/imagemagick@6/include"
-# export CPPFLAGS
+export CC=gcc
+export CXX=g++
 
-PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/libxml2/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/ncurses/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/openssl/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/icu4c/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/readline/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/zlib/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/imagemagick@6/lib/pkgconfig"
-PKG_CONFIG_PATH+=":/usr/local/opt/imagemagick/lib/pkgconfig"
+LDFLAGS="-L$HOMEBREW_PREFIX/opt/gettext/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/libffi/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/libxml2/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/llvm/lib -Wl,-rpath,$HOMEBREW_PREFIX/opt/llvm/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/ncurses/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/openssl/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/icu4c/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/readline/lib"
+LDFLAGS+=" -L$HOMEBREW_PREFIX/opt/zlib/lib"
+export LDFLAGS
+
+CPPFLAGS="-I$HOMEBREW_PREFIX/opt/gettext/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/libxml2/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/llvm/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/ncurses/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/openssl/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/icu4c/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/readline/include"
+CPPFLAGS+=" -I$HOMEBREW_PREFIX/opt/zlib/include"
+export CPPFLAGS
+
+PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/libxml2/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/ncurses/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/openssl/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/icu4c/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/readline/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/zlib/lib/pkgconfig"
+PKG_CONFIG_PATH+=":$HOMEBREW_PREFIX/opt/imagemagick/lib/pkgconfig"
 export PKG_CONFIG_PATH
 
-RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
-RUBY_CONFIGURE_OPTS+=" --with-openssl-dir=/usr/local/opt/openssl"
+RUBY_CONFIGURE_OPTS="--with-readline-dir=$HOMEBREW_PREFIX/opt/readline"
+RUBY_CONFIGURE_OPTS+=" --with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl"
 RUBY_CONFIGURE_OPTS+=" --enable-shared"
 RUBY_CONFIGURE_OPTS+=" --disable-libedit"
 export RUBY_CONFIGURE_OPTS
 
-export CFLAGS="-O3 -g -I/usr/local/opt/openssl/include"
+export CFLAGS="-O3 -g -I$HOMEBREW_PREFIX/opt/openssl/include"
 export ARCHFLAGS="-arch x86_64"
 export RUBY_CFLAGS="-march=native -Os"
 export RUBY_GC_MALLOC_LIMIT=60000000
