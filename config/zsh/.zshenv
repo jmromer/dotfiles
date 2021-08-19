@@ -1,1 +1,1 @@
-echo "[Loading $ZDOTDIR/.zshenv ...]"
+printf "${ZDOTDIR/$HOME/~}/.zshenv ... "

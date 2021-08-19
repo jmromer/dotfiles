@@ -1,1 +1,1 @@
-echo "[Loading $ZDOTDIR/.zlogin ...]"
+printf "${ZDOTDIR/$HOME/~}/.zlogin ... \n"
