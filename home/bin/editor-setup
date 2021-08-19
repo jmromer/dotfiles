@@ -53,7 +53,7 @@ setup_python() {
 }
 
 setup_mac() {
-    if [[ "$MACHINE" == "mac" ]]; then
+    if [[ "$MACHINE" =~ (apple|intel-mac) ]]; then
         # https://github.com/syl20bnr/spacemacs/issues/11541
         # if using dark mode, you'll need this
         # to disable: defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
