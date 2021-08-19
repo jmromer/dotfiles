@@ -71,3 +71,7 @@ share/*/*
 # state dirs
 state/*/*
 !state/*/.keep
+
+# cache dirs
+cache/*/*
+!cache/*/.keep
