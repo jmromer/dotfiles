@@ -1,3 +1,6 @@
 [submodule "config/emacs"]
 	path = config/emacs
 	url = https://github.com/hlissner/doom-emacs
+[submodule "share/asdf-manager"]
+	path = share/asdf-manager
+	url = https://github.com/asdf-vm/asdf.git
