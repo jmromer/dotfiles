@@ -16,3 +16,6 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 
 # zsh config and ephemeral files locations (also set in LaunchAgent)
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+
+# vim config (ephemeral files config therein)
+export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
