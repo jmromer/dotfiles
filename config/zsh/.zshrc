@@ -1,15 +1,15 @@
-echo "[Loading $ZDOTDIR/.zshrc ...]"
+printf "${ZDOTDIR/$HOME/~}/.zshrc ... "
 
 source "${HOME}/.dotfiles/env/xdg.sh"
 source "${HOME}/.dotfiles/env/asdf.sh"
-source "$ASDF_DIR/asdf.sh"
+source "${ASDF_DIR}/asdf.sh"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 export BREW_PREFIX="$(brew --prefix)"
 
 PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
-PATH="${HOME}/.dotfiles/bin:${PATH}"
-PATH="${HOME}/.dotfiles/config/emacs/bin:${PATH}"
+PATH="${DOTFILES_DIR}/bin:${PATH}"
+PATH="${XDG_CONFIG_HOME}/emacs/bin:${PATH}"
 export PATH
 
 
