@@ -58,3 +58,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# high-churn files
+config/karabiner/automatic_backups
+config/iterm2/AppSupport
