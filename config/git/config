@@ -1,3 +1,217 @@
 [user]
 	name = Jake Romer
 	email = jake@jmromer.org
+
+[gpg]
+	program = gpg
+
+[branch]
+	autosetuprebase = always
+
+[color]
+	ui = true
+
+[commit]
+# 	gpgsign = true
+
+[core]
+	autocrlf     = input
+	editor       = vim
+	pager        = diff-highlight | delta
+
+[color "diff"]
+	commit     = green
+	meta       = yellow
+	frag       = cyan
+	old        = red
+	new        = green
+	whitespace = red reverse
+
+[color "diff-highlight"]
+	oldNormal    = red
+	oldHighlight = red 52
+	newNormal    = green
+	newHighlight = green 22
+
+[diff]
+	renames = true
+	tool    = vimdiff
+
+[fetch]
+	prune = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+
+[filter "media"]
+	clean  = git-media-clean %f
+	smudge = git-media-smudge %f
+
+[format]
+	headers = "Content-Type: text/plain;charset=utf-8\n"
+	signOff = yes
+
+[sendemail]
+	smtpEncryption = starttls
+	smtpServer = 127.0.0.1
+	smtpServerport = 1025
+	transferEncoding = 8bit
+	confirm = auto
+	suppressCC = self
+	annotate = true
+
+[interactive]
+	singlekey  = true
+
+[log]
+	date = short
+
+[merge]
+	conflictstyle = diff3
+	ff            = no
+	prompt        = false
+	tool          = vimdiff
+
+[mergetool]
+	keepBackup = false
+	prompt     = true
+
+[mergetool "vimdiff"]
+	cmd = vimdiff
+
+[difftool]
+	prompt = false
+
+[diff]
+	tool = vimdiff
+
+[pager]
+	diff  = true
+	log   = true
+	stash = false
+
+[pretty]
+	brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
+	select = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset %Cgreen%>>(20)%D%Creset"
+
+[push]
+	default = simple
+
+[pull]
+	rebase  = true
+
+[rerere]
+	enabled = true
+
+[rebase]
+	autosquash = true
+
+[http]
+	postbuffer = 524288000
+
+[ssh]
+	postbuffer = 524288000
+
+[alias]
+	a        = stage-files
+	aa       = add --all
+	ap       = add --patch
+	b        = branch -vv
+	bc       = create-branch-with-remote
+	bcl      = create-branch
+	bcc      = create-branch-continuation
+	bd       = delete-branch
+	bdf      = branch -D
+	bdo      = clear-deleted-branches
+	bi       = bisect-helper
+	ca       = commit-amend
+	cap      = commit --no-verify --amend --no-edit
+	cli      = clock-in
+	clo      = clock-out
+	cm       = commit-quick
+	cmf      = commit-fixup
+	cmm      = commit-quick-force
+	cms      = commit-squash
+	co       = checkout
+	cob      = checkout-branch
+	coba     = checkout-branch --all
+	coc      = checkout-commit
+	cp       = cherry-pick
+	cours    = checkout --ours
+	ctheirs  = checkout --theirs
+	d        = diff
+	ds       = diff --staged
+	dh       = diff --histogram
+	dump     = cat-file -p
+	f        = fetch
+	file-mod = branch-modified-files
+	file-del = branch-deleted-files
+	h        = log --format=brief --abbrev-commit --graph
+	hg       = log --format=brief --abbrev-commit
+	hb       = hg HEAD --not origin/master
+	hm       = hg --merge
+	hnm      = hg --no-merges --show-linear-break
+	hh       = --no-pager hg -n 15
+	hdiff    = hg -U1
+	hfiles   = hg --format=medium --stat
+	hsince   = !sh -c 'git hg --since=$1' -
+	hstat    = hg --stat
+	i        = init
+	ii       = initialize
+	ig       = ignore
+	lg       = log --grep
+	lgr      = log --walk-reflogs --grep
+	lp       = log --patch
+	lpr      = log --patch -G
+	lps      = log --patch -S
+	m        = merge
+	ma       = merge --abort
+	mc       = merge --continue
+	mt       = mergetool
+	p        = push
+	pf       = push --force-with-lease
+	pls      = pull --autostash
+	po       = push origin
+	pu       = push -u
+	prco     = checkout-pull-request
+	prop     = open-pull-request
+	prc      = pull-request
+	r        = rebase --ignore-date
+	ri       = rebase-interactive
+	ra       = rebase --abort
+	rc       = rebase --continue
+	rem      = remote -v
+	rmc      = remove-commit
+	sha      = select-sha
+	ahs      = select-sha-reversed
+	shacp    = !sh -c 'git select-sha | pbcopy'
+	ahscp    = !sh -c 'git select-sha-reversed | pbcopy'
+	sf       = select-files
+	s        = stash
+	sc       = stash clear
+	sa       = !sh -c 'git stash apply stash@{$1}' -
+	sd       = !sh -c 'git stash drop stash@{$1}' -
+	ss       = !sh -c 'git show stash@{$1}' -
+	su       = stash --include-untracked
+	sl       = stash list
+	sp       = stash pop
+	squash   = rebase -i origin/master
+	type     = cat-file -t
+
+[magit]
+	hideCampaign = true
+
+[magithub]
+	online = false
+
+[magithub "status"]
+	includeStatusHeader = false
+	includePullRequestsSection = false
+	includeIssuesSection = false
+
+[include]
+        # path = ~/.gitconfig.secure
+        # path = ~/.gitconfig.local
