@@ -39,17 +39,17 @@ export HOMEBREW_PREFIX
 eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
 # PATH setup
-PATH="/usr/local/bin"
-PATH+=":/usr/bin"
-PATH+=":/bin"
-PATH+=":/usr/local/sbin"
-PATH+=":/usr/sbin"
-PATH+=":/sbin"
-PATH+=":${DOTFILES_DIR}/bin"
+PATH="${DOTFILES_DIR}/bin"
 PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
 PATH+=":${XDG_DATA_HOME}/asdf-manager/bin"
 PATH+=":${XDG_DATA_HOME}/fzf/bin"
 PATH+=":${XDG_CONFIG_HOME}/emacs/bin"
+PATH+=":${HOMEBREW_PREFIX}/bin"
+PATH+=":/usr/bin"
+PATH+=":/bin"
+PATH+=":${HOMEBREW_PREFIX}/sbin"
+PATH+=":/usr/sbin"
+PATH+=":/sbin"
 PATH+=":/Library/TeX/texbin"
 export PATH
 
