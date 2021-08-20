@@ -318,7 +318,7 @@ export PS1
 fpath=(
   ${BREW_PREFIX}/share/zsh/site-functions
   ${BREW_PREFIX}/share/zsh-completions
-  ${ASDF_DIR}/completions 
+  ${ASDF_DIR}/completions
   ${ZDOTDIR}/completions
   $fpath
 )
