@@ -11,13 +11,6 @@
 # |   ~/.zlogout (logout only) |         I         |                       |        |
 # | /etc/zlogout (logout only) |         J         |                       |        |
 
-# dotfiles dir
-export DOTFILES_DIR="${HOME}/.dotfiles"
-
-source "${DOTFILES_DIR}/env/xdg.sh"
-source "${DOTFILES_DIR}/env/asdf.sh"
-source "${ASDF_DIR}/asdf.sh"
-
 # Homebrew setup
 case "$(uname -ps)" in
   Linux*)
@@ -37,6 +30,18 @@ esac
 export MACHINE
 export HOMEBREW_PREFIX
 eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+
+
+# Environment setup
+# -----------------------------
+export DOTFILES_DIR="${HOME}/.dotfiles"
+source "${DOTFILES_DIR}/env/xdg.sh"
+
+source "${DOTFILES_DIR}/env/asdf.sh"
+source "${DOTFILES_DIR}/env/build.sh"
+source "${DOTFILES_DIR}/env/fzf.sh"
+source "${ASDF_DIR}/asdf.sh"
+
 
 # PATH setup
 PATH="${DOTFILES_DIR}/bin"

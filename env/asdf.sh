@@ -2,11 +2,11 @@
 # https://github.com/asdf-vm/asdf/blob/master/docs/manage/configuration.md
 
 if [[ -z "${XDG_CONFIG_HOME}" ]]; then
-  echo "WARNING: XDG_CONFIG_HOME env var is not set"
+  echo "WARNING: XDG_CONFIG_HOME env var is not set in ${0}"
 fi
 
 if [[ -z "${XDG_DATA_HOME}" ]]; then
-  echo "WARNING: XDG_DATA_HOME env var is not set"
+  echo "WARNING: XDG_DATA_HOME env var is not set in ${0}"
 fi
 
 # Defaults to ~/.asdfrc. Can be set to any location.
