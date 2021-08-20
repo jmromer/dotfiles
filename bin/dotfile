@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILE_PATH="$HOME/.dotfiles/home"
+
+origin_file="$1"
+origin_filename="$(basename "$origin_file")"
+
+if [[ -L "$origin_file" ]]; then
+    ls -al "$origin_file"
+    exit 0
+fi
+
+target_file="$DOTFILE_PATH/${origin_filename/./}"
+
+echo mv "$origin_file" "$target_file"
+mv "$origin_file" "$target_file"
+
+echo ln -s "$target_file" "$origin_file"
+ln -s "$target_file" "$origin_file"
+
+ls -al "$origin_file"

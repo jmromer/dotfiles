@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -ex
+
+rm -f /tmp/jmromer.blog-serve.*.log
+
+cd ~/Projects/blogs/jmromer
+
+~/.asdf/shims/hugo server --buildDrafts --watch

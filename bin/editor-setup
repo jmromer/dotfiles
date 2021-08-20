@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+
+#
+# editor-setup
+#
+# Usage:
+#   mx [OPTIONS]
+#
+#   Install some libraries.
+#
+# Examples:
+#   editor-setup
+#   editor-setup py
+#   editor-setup rb py js
+#   editor-setup js mac py
+#   editor-setup all
+#
+
+set -e
+
+setup_golang() {
+  # GO111MODULE=on CGO_ENABLED=0 \
+    # go get -v -trimpath -ldflags '-s -w' \
+    # github.com/golangci/golangci-lint/cmd/golangci-lint
+  export CC=gcc-10 CXX=g++-10
+  while read -r package; do
+    go get -u -v "${package}"
+  done < "${HOME}/.default-golang-packages"
+}
+
+setup_ruby() {
+  while read -r package; do
+    gem install --update-sources "${package}"
+  done < "${HOME}/.default-gems"
+}
+
+setup_system_ruby() {
+  while read -r package; do
+    gem install --user --update-sources "${package}"
+  done < "${HOME}/.default-gems"
+}
+
+setup_javascript() {
+  while read -r package; do
+    npm install --update --global "${package}"
+  done < "${HOME}/.default-npm-packages"
+}
+
+setup_python() {
+  while read -r package; do
+    pip install --upgrade "${package}"
+  done < "${HOME}/.default-python-packages"
+}
+
+setup_mac() {
+    if [[ "$MACHINE" =~ (apple|intel-mac) ]]; then
+        # https://github.com/syl20bnr/spacemacs/issues/11541
+        # if using dark mode, you'll need this
+        # to disable: defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
+        echo defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+        defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+    fi
+}
+
+message() {
+    gprintf "\n-----------------------\n"
+    gprintf "%s\n" "$1"
+    gprintf "-----------------------\n\n"
+}
+
+usage() {
+    grep '^#' < "$0" | tail -n +2 | cut -c 3-
+}
+
+[[ "$*" =~ "--help" ]] && usage && exit 2
+
+[[ -z "$1" ]] && set -- all
+
+
+while [ $# -gt -1 ]; do
+    case "$1" in
+        'all')
+            set -- mac py rb js
+            ;;
+        'go')
+            message "Installing Go Libraries"
+            setup_golang
+            shift
+            ;;
+        'js')
+            message "Installing JavaScript Libraries"
+            setup_javascript
+            shift
+            ;;
+        'py')
+            message "Installing Python Libraries"
+            setup_python
+            shift
+            ;;
+        'rb')
+            message "Installing Ruby Libraries"
+            setup_ruby
+            shift
+            ;;
+      'sysrb')
+            message "Installing System Ruby Libraries"
+            setup_system_ruby
+            shift
+            ;;
+        'mac')
+            message "Configuring Mac"
+            setup_mac
+            shift
+            ;;
+        "")
+            exit 0
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
