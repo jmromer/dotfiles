@@ -4,3 +4,12 @@
 [submodule "share/asdf-manager"]
 	path = share/asdf-manager
 	url = https://github.com/asdf-vm/asdf.git
+[submodule "share/zsh-syntax-highlighting"]
+	path = share/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "share/zsh/zsh-syntax-highlighting"]
+	path = share/zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "share/zsh/zsh-vim-mode"]
+	path = share/zsh/zsh-vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode.git
