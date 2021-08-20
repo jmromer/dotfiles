@@ -14,6 +14,13 @@ set runtimepath+=$VIM,$VIMRUNTIME
 
 runtime xdg.vim
 
+"--------------------------------------------------------------
+" Load Plugins
+"--------------------------------------------------------------
+call plug#begin('$XDG_DATA_HOME/vim/plugged')
+source $XDG_CONFIG_HOME/vim/plugins.vim
+call plug#end()
+
 
 "--------------------------------------------------------------
 " netrw
@@ -59,7 +66,7 @@ if has('termguicolors')
 endif
 
 set background=dark
-" execute 'colorscheme ' . 'space-vim-dark'
+execute 'colorscheme ' . 'space-vim-dark'
 
 hi Comment cterm=italic
 let g:airline_theme='violet'
@@ -367,3 +374,178 @@ nnoremap <silent> <leader>bb :call fzf#run({
 "--------------------------------------------------------------
 " Plugins
 "--------------------------------------------------------------
+
+" Rainbow parentheses
+augroup rainbow_parentheses
+  autocmd!
+
+  autocmd VimEnter * RainbowParenthesesToggle
+  autocmd Syntax * RainbowParenthesesLoadRound
+  autocmd Syntax * RainbowParenthesesLoadSquare
+  autocmd Syntax * RainbowParenthesesLoadBraces
+augroup END
+
+
+" AutoPairs: disable closed-pair jumping instead of inserting
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<C-b>'
+
+function! IsEmptyPair(str)
+  for pair in split(&matchpairs, ',') + [ "''", '""', '``' ]
+    if a:str == join(split(pair, ':'),'')
+      return 1
+    endif
+  endfor
+
+  return 0
+endfunc
+
+function! SkipDelim(char)
+  let cur = strpart(getline('.'), col('.')-2, 3)
+
+  if cur[0] == "\\"
+    return a:char
+  elseif cur[1] == a:char
+    return "\<Right>"
+  elseif cur[1] == ' ' && cur[2] == a:char
+    return "\<Right>\<Right>"
+  elseif IsEmptyPair(cur[0] . a:char)
+    return a:char . "\<Left>"
+  else
+    return a:char
+  endif
+endfunc
+
+inoremap <expr> ) SkipDelim(')')
+inoremap <expr> ] SkipDelim(']')
+inoremap <expr> } SkipDelim('}')
+inoremap <expr> ' SkipDelim("'")
+inoremap <expr> " SkipDelim('"')
+inoremap <expr> ` SkipDelim('`')
+
+" Disable by default
+let g:user_emmet_install_global = 0
+
+"enable for html, css, erb, scss
+augroup emmetVim
+  autocmd!
+  autocmd FileType html,css,eruby,scss EmmetInstall
+augroup END
+
+let g:user_emmet_leader_key='<C-y>'
+
+" Use bars for indents
+let g:indentLine_char = '│'
+
+" Disable indent guides by default
+let g:indentLine_enabled = 0
+
+let g:used_javascript_libs = 'jquery,underscore,react,flux,requirejs'
+
+let g:lightline = {
+      \   'colorscheme': 'solarized',
+      \   'active': {
+      \     'left': [
+      \       [ 'mode', 'paste' ],
+      \       [ 'fugitive', 'filename' ]
+      \     ],
+      \     'right': [
+      \       [ 'syntastic', 'lineinfo' ],
+      \       [ 'percent' ],
+      \       [ 'fileformat', 'fileencoding', 'filetype' ]
+      \     ]
+      \   },
+      \   'component_function': {
+      \     'mode':         'LLMode',
+      \     'fugitive':     'LLFugitive',
+      \     'filename':     'LLFilename',
+      \     'readonly':     'LLReadonly',
+      \     'modified':     'LLModified',
+      \     'fileformat':   'LLFileFormat',
+      \     'fileencoding': 'LLFileEncoding',
+      \     'filetype':     'LLFileType'
+      \   },
+      \   'component_expand': {
+      \     'syntastic': 'SyntasticStatuslineFlag'
+      \   },
+      \   'component_type': {
+      \     'syntastic': 'error'
+      \   },
+      \   'subseparator': {
+      \     'left': '|', 'right': '|'
+      \   }
+      \ }
+
+function! LLMode()
+  let fname = expand('%:t')
+  return  fname == '__Gundo__'  ? 'Gundo'  :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ winwidth(0) < 60 ? '' :
+        \ lightline#mode() == 'NORMAL'  ? 'N'  :
+        \ lightline#mode() == 'INSERT'  ? 'I'  :
+        \ lightline#mode() == 'VISUAL'  ? 'V'  :
+        \ lightline#mode() == 'V-LINE'  ? 'VL' :
+        \ lightline#mode() == 'V-BLOCK' ? 'VB' :
+        \ lightline#mode() == 'REPLACE' ? 'R'  : lightline#mode()
+endfunction
+
+function! LLModified()
+  return &modified ? '+' : ''
+endfunction
+
+function! LLReadonly()
+  return &readonly ? '' : ''
+endfunction
+
+function! LLFugitive()
+  if !exists('*fugitive#head')
+    return ''
+  endif
+
+  let head = fugitive#head()
+  return strlen(head) ? ' ' .head : ''
+endfunction
+
+function! LLFilename()
+  let fname = expand('%:t')
+  return  fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname == '__Scratch__' ? 'Scratch' :
+        \ fname =~ '__Gundo\|NERD_tree' ? '' :
+        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite'    ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ ('' != LLReadonly() ? LLReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != LLModified() ? ' ' . LLModified() : '')
+endfunction
+
+function! LLFileEncoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! LLFileFormat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LLFileType()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'file') : ''
+endfunction
+
+let g:better_whitespace_filetypes_blacklist=['qf']
+
+" HugeFile: disable options for large files (>= 1MB)
+let g:hugefile_trigger_size = 1
+
+" EasyAlign: Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" EasyAlign: Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" VimFugitive: Show git status
+nnoremap <silent> <leader>gs :Gstatus<CR>:50wincmd_<CR>
+
+" ---------------- Overrides  --------------------------
+if filereadable(expand('~/.vimrc.local'))
+  source $HOME/.vimrc.local
+endif
