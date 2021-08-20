@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Show top for whole repo:
+#   $ git top
+#
+# Show top for specific directories:
+#   $ git top app lib
+#
+# Show top for a time range:
+#   $ git top --since "2 months ago"
+#   $ git top --since february
+#   $ git top --since last_week
+#
+# Show top for a time range:
+#   $ git top 10 --since "2 months ago"
+#   $ git top 20 --since february
+
+if [[ $1 =~ ^[[:digit:]]+$ ]]; then
+    lines="-$1"
+    shift
+fi
+
+git log --all --name-only --format='format:' "$@" |\
+  grep -v '^$'|\
+  sort | uniq -c | sort -rg |\
+  sed -E 's/^\s+[[:digit:]]+\s//' |\
+  head $lines

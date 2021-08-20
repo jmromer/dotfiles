@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Displays branches for fuzzy selection, checks out the selected branch
+# $* contains any arguments passed to git branch
+#
+# Dependencies: fzf (install using homebrew)
+#
+# Examples:
+#   git checkout-branch
+#   git checkout-branch --all
+
+# If including remote branches, fetch first
+if [[ "$1" =~ "--all" ]]; then
+  echo "Fetching from remote..."
+  git fetch
+fi
+
+# select a branch to checkout
+selected_branch="$(git branch "$@" | cut -c 3- | fzf --no-multi)"
+current_head="$(git rev-parse --abbrev-ref HEAD)"
+
+if [[ -z $selected_branch || $selected_branch == "$current_head" ]]; then
+  exit 0
+fi
+
+if [[ $selected_branch =~ ^remotes ]]; then
+  remote_branch="${selected_branch#remotes\/}"
+  local_branch="$(echo "$remote_branch" | sed -e 's/\w\+\///')"
+
+  git checkout -b "$local_branch" "$remote_branch"
+else
+  git checkout "$selected_branch"
+fi
