@@ -16,3 +16,6 @@
 [submodule "share/fzf"]
 	path = share/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "share/vim/vim-plug"]
+	path = share/vim/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
