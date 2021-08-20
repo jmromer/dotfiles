@@ -77,3 +77,6 @@ state/*/*
 # cache dirs
 cache/*/*
 !cache/*/.keep
+
+# binaries
+bin/pd

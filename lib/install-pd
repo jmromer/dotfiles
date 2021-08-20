@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# Build p/d binary in local bin directory
+# Generate initial project catalog file
+
+set -ex
+
+builtin cd ${XDG_DATA_HOME}/pd
+
+go get
+
+go build -o ${DOTFILES_DIR}/bin/pd main.go
+
+pd --pd-refresh &
