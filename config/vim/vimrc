@@ -7,7 +7,10 @@ set fileencodings=utf-8
 " Suppress 'Pattern not found' messages
 set shortmess+=c
 
-set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+" add xdg, fzf paths to rtp
+set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after
+set runtimepath+=$XDG_DATA_HOME/fzf
+set runtimepath+=$VIM,$VIMRUNTIME
 
 runtime xdg.vim
 
