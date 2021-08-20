@@ -1,0 +1,134 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "./lib/bootstrap"
+
+prompt_and_wait "Ensure XCode is installed before continuing."
+
+group :launch_agents do
+  link_launchagent "env.xdg"
+end
+
+group :homebrew do
+  install_homebrew
+end
+
+group :core_cli_tools do
+  brew_install :binutils
+  brew_install :coreutils
+  brew_install :curl
+  brew_install :diffutils
+  brew_install :fd
+  brew_install :findutils
+  brew_install :gawk
+  brew_install :gcc
+  brew_install :git
+  brew_install :gnu_indent
+  brew_install :gnu_sed
+  brew_install :gnu_tar
+  brew_install :gnu_which
+  brew_install :gnutls
+  brew_install :grep
+  brew_install :libgccjit
+  brew_install :ripgrep
+  brew_install :shellcheck
+  brew_install :tree
+  brew_install :watch
+  brew_install :wdiff
+  brew_install :wget
+end
+
+group :gui_apps do
+  cask_install "1password"
+  cask_install :appcleaner
+  cask_install :authy
+  cask_install :bettertouchtool
+  cask_install :brave_browser
+  cask_install :dash
+  cask_install :discord
+  cask_install :divvy
+  cask_install :docker
+  cask_install :dropbox
+  cask_install :keyboard_maestro
+  cask_install :keycastr
+  cask_install :latexit
+  cask_install :launchbar
+  cask_install :launchcontrol
+  cask_install :launchpad_manager
+  cask_install :name_mangler
+  cask_install :nvalt
+  cask_install :pandora
+  cask_install :protonmail_bridge
+  cask_install :protonvpn
+  cask_install :responsively
+  cask_install :screenflow
+  cask_install :skim
+  cask_install :slack
+  cask_install :spotify
+  cask_install :sqlpro_studio
+  cask_install :telegram
+  cask_install :tex_live_utility
+  cask_install :thinkorswim
+  cask_install :transmission
+  cask_install :vlc
+  cask_install :zoom
+end
+
+group :quick_look_viewers do
+  cask_install :jupyter_notebook_viewer
+  cask_install :qlcolorcode
+  cask_install :qlimagesize
+  cask_install :qlmarkdown
+  cask_install :qlprettypatch
+  cask_install :qlstephen
+  cask_install :qlvideo
+  cask_install :quicklook_csv
+  cask_install :quicklook_json
+  cask_install :quicklookase
+  cask_install :suspicious_package
+  cask_install :webpquicklook
+  install_quicklook_viewers
+end
+
+group :development_tools do
+  brew_install :aws_cli
+  brew_install :bat
+  brew_install :editorconfig
+  brew_install :exa
+  brew_install :fzf
+  brew_install :gh
+  brew_install :git_delta
+  brew_install :httpie, options: :head
+  brew_install :tmux
+  brew_install :zsh
+  brew_install :zsh_completions
+
+  cask_install :iterm2_beta
+  cask_install :karabiner_elements
+end
+
+group :mac_tools do
+  brew_install :pinentry_mac
+  brew_install :osxutils
+  brew_install :reattach_to_user_namespace
+end
+
+group :editors do
+  brew_install :macvim, options: :head
+
+  brew_tap "daviderestivo/emacs-head"
+  brew_install :emacs_head, version: 28, options: %i[
+    with_cocoa
+    with_imagemagick
+    with_modern_icon_purple
+    with_no_frame_refocus
+    with_pdumper
+    with_xwidgets
+  ]
+end
+
+group :asdf_plugins do
+  asdf_install
+end
+
+puts "\n\nThat's it! Restart and run the customization script."
