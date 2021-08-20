@@ -44,9 +44,9 @@ if empty("$XDG_DATA_HOME")
     let $XDG_DATA_HOME="$HOME/.local/share"
 endif
 
-set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
-set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
-set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
+set directory=$XDG_CACHE_HOME/vim/swap
+set backupdir=$XDG_CACHE_HOME/vim/backup
+set undodir=$XDG_CACHE_HOME/vim/undo
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 
 let g:netrw_home=$XDG_CACHE_HOME . '/vim'
