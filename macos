@@ -136,6 +136,10 @@ setup :asdf_plugins do
   asdf_install_versions
 end
 
+perform :cli_installations do
+  script_install :pd
+end
+
 perform :cleanups do
   brew_cleanup
   brew_doctor

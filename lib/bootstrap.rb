@@ -158,3 +158,7 @@ def install_launchagent(filename)
   execho("ln -sfv #{DOTFILES_DIR}/launch_agents/#{filename}.plist ~/Library/LaunchAgents")
   execho("launchctl load ~/Library/LaunchAgents/#{filename}.plist")
 end
+
+def script_install(name)
+  execho("${DOTFILES_DIR}/lib/install-#{name}")
+end
