@@ -1,5 +1,6 @@
-# dotfiles dir (configs and permanent)
-export DOTFILES_DIR="${HOME}/.dotfiles"
+if [[ -z "${DOTFILES_DIR}" ]]; then
+  echo "WARNING: DOTFILES_DIR env var is not set"
+fi
 
 # user-specific data locations
 export XDG_DATA_HOME="${DOTFILES_DIR}/share"     # data files
