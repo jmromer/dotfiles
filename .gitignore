@@ -69,6 +69,7 @@ config/zsh/.zsh_sessions
 # data dirs
 share/*/*
 !share/*/.keep
+!share/git/bin
 
 # state dirs
 state/*/*

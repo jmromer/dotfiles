@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# fuzzy-select files listed via `git status`
+#
+# Usage:
+#   git select-files [FZF_OPTS]
+
+git status -s |
+  fzf --multi --tiebreak=index --layout=reverse $1 \
+      --preview-window=up:75% \
+      --preview='echo {} | sed "s/^[^\s]*\s//" | xargs bat --color=always 2>/dev/null' |
+  sed 's/^[^\s]*\s//'

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Select a GitHub pull request for the current repository
+#
+# Dependency: `hub`
+#
+# Usage:
+#   git select-pull-request
+#   git select-pull-request number
+
+set -e
+
+# if not a github repo, aborts and exits with error
+pr_list="$(hub pr list 2>/dev/null)"
+
+# Select from a fuzzy-selectable list of pull requests
+selected_pr="$(echo "$pr_list" | fzf --no-sort --no-multi | sed -E 's/^\s+//')"
+
+# Exit quietly if no pull request was selected
+if [[ -z "$selected_pr" ]]; then
+    exit 0
+fi
+
+
+if [[ "$1" == "^number$" ]]; then
+  pr_number="$(echo $selected_pr | sed -E 's/^#([[:digit:]]+).+/\1/')"
+  echo "$pr_number"
+else
+  echo "$selected_pr"
+fi
