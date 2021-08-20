@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+#
+#  toggle-wifi
+#
+#  Does just what it says on the tin.
+#
+
+set -e
+
+usage() {
+    grep '^#' < "$0" | tail -n +2 | cut -c 3-
+}
+
+toggle_wifi_power() {
+    device_name="$(networksetup -listallhardwareports |\
+        awk '$3 == "Wi-Fi" { getline; print }' |\
+        awk '{ print $2 }')"
+
+    device_status="$(networksetup -getairportpower "$device_name" |\
+        awk '{ print $4 }')"
+
+    if [[ "$device_status" == "On" ]]; then
+        echo "Disabling WiFi..."
+        desired_status="Off"
+    else
+        echo "Enabling WiFi..."
+        desired_status="On"
+    fi
+
+    networksetup -setairportpower "$device_name" "$desired_status"
+}
+
+while [ $# -gt -1 ]; do
+    case "$1" in
+        '-h'|'--help')
+            usage
+            exit 2
+            ;;
+        "")
+            toggle_wifi_power
+            exit 0
+            ;;
+        *)
+            (>&2 echo "Unrecognized argument: $1")
+            exit 1
+            ;;
+    esac
+done
