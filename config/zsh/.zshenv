@@ -46,8 +46,10 @@ PATH+=":/usr/local/sbin"
 PATH+=":/usr/sbin"
 PATH+=":/sbin"
 PATH+=":${DOTFILES_DIR}/bin"
-PATH+=":${DOTFILES_DIR}/share/asdf-versions/shims"
-PATH+=":${DOTFILES_DIR}/share/asdf-manager/bin"
+PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
+PATH+=":${XDG_DATA_HOME}/asdf-manager/bin"
+PATH+=":${XDG_DATA_HOME}/fzf/bin"
+PATH+=":${XDG_CONFIG_HOME}/emacs/bin"
 PATH+=":/Library/TeX/texbin"
 export PATH
 
