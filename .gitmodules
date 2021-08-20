@@ -19,3 +19,6 @@
 [submodule "share/vim/vim-plug"]
 	path = share/vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+[submodule "share/pd"]
+	path = share/pd
+	url = https://github.com/jmromer/pd.git
