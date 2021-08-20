@@ -1,12 +1,9 @@
-<!-- linked from ~/Library/LaunchAgents -->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>env.xdg</string>
+    <string>conclave.pd.refresh</string>
 
     <key>Program</key>
     <string>/bin/zsh</string>
@@ -15,21 +12,25 @@
     <array>
       <string>/bin/zsh</string>
       <string>-c</string>
-      <string>
-        launchctl setenv XDG_CONFIG_HOME "${HOME}/.dotfiles/config"; 
-        launchctl setenv ZDOTDIR "${HOME}/.dotfiles/config/zsh";
-      </string>
+      <string>"${HOME}/.go/bin/pd --pd-refresh"</string>
     </array>
+
+    <key>Nice</key>
+    <integer>1</integer>
 
     <key>RunAtLoad</key>
     <true />
 
+    <key>KeepAlive</key>
+    <false />
+
+    <key>StartInterval</key>
+    <integer>900</integer>
+
     <key>StandardOutPath</key>
-    <string>/tmp/env.xdg.out</string>
+    <string>/tmp/conclave.pd.refresh.out</string>
 
     <key>StandardErrorPath</key>
-    <string>/tmp/env.xdg.err</string>
+    <string>/tmp/conclave.pd.refresh.err</string>
   </dict>
 </plist>
-
-

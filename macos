@@ -7,6 +7,7 @@ prompt_and_wait "Ensure XCode is installed before continuing."
 
 group :launch_agents do
   link_launchagent "env.xdg"
+  link_launchagent "conclave.pd.refresh"
 end
 
 group :homebrew do
