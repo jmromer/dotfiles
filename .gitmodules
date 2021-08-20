@@ -13,3 +13,6 @@
 [submodule "share/zsh/zsh-vim-mode"]
 	path = share/zsh/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode.git
+[submodule "share/fzf"]
+	path = share/fzf
+	url = https://github.com/junegunn/fzf.git
