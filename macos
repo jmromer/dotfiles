@@ -5,16 +5,16 @@ require_relative "./lib/bootstrap"
 
 prompt_and_wait "Ensure XCode is installed before continuing."
 
-group :launch_agents do
-  link_launchagent "env.xdg"
-  link_launchagent "conclave.pd.refresh"
+setup :launch_agents do
+  install_launchagent "env.xdg"
+  install_launchagent "conclave.pd.refresh"
 end
 
-group :homebrew do
+setup :homebrew do
   install_homebrew
 end
 
-group :core_cli_tools do
+setup :core_cli_tools do
   brew_install :binutils
   brew_install :coreutils
   brew_install :curl
@@ -28,6 +28,7 @@ group :core_cli_tools do
   brew_install :gnu_sed
   brew_install :gnu_tar
   brew_install :gnu_which
+  brew_install :gnupg
   brew_install :gnutls
   brew_install :grep
   brew_install :libgccjit
@@ -39,7 +40,7 @@ group :core_cli_tools do
   brew_install :wget
 end
 
-group :gui_apps do
+setup :gui_apps do
   cask_install "1password"
   cask_install :appcleaner
   cask_install :authy
@@ -75,7 +76,7 @@ group :gui_apps do
   cask_install :zoom
 end
 
-group :quick_look_viewers do
+setup :quick_look_viewers do
   cask_install :jupyter_notebook_viewer
   cask_install :qlcolorcode
   cask_install :qlimagesize
@@ -91,8 +92,8 @@ group :quick_look_viewers do
   install_quicklook_viewers
 end
 
-group :development_tools do
-  brew_install :aws_cli
+setup :development_tools do
+  brew_install :awscli
   brew_install :bat
   brew_install :editorconfig
   brew_install :exa
@@ -104,32 +105,40 @@ group :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
-  cask_install :iterm2_beta
+  cask_install :iterm2
   cask_install :karabiner_elements
 end
 
-group :mac_tools do
+setup :mac_tools do
   brew_install :pinentry_mac
   brew_install :osxutils
   brew_install :reattach_to_user_namespace
 end
 
-group :editors do
+setup :editors do
   brew_install :macvim, options: :head
 
   brew_tap "daviderestivo/emacs-head"
-  brew_install :emacs_head, version: 28, options: %i[
-    with_cocoa
-    with_imagemagick
-    with_modern_icon_purple
-    with_no_frame_refocus
-    with_pdumper
-    with_xwidgets
-  ]
+  brew_install :emacs_head,
+               version: 28,
+               options: %i[
+                 with_cocoa
+                 with_imagemagick
+                 with_modern_icon_purple
+                 with_no_frame_refocus
+                 with_pdumper
+                 with_xwidgets
+               ]
 end
 
-group :asdf_plugins do
-  asdf_install
+setup :asdf_plugins do
+  asdf_install_plugins
+  asdf_install_versions
+end
+
+perform :cleanups do
+  brew_cleanup
+  brew_doctor
 end
 
 puts "\n\nThat's it! Restart and run the customization script."
