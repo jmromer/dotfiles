@@ -104,14 +104,15 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
-  cask_install :iterm2
-  cask_install :karabiner_elements
+  brew_tap "homebrew/cask-versions"
+  cask_install :iterm2_nightly
 end
 
 setup :mac_tools do
   brew_install :pinentry_mac
   brew_install :osxutils
   brew_install :reattach_to_user_namespace
+  cask_install :karabiner_elements
 end
 
 setup :editors do
