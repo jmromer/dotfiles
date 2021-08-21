@@ -226,5 +226,5 @@
 	includeIssuesSection = false
 
 [include]
- 	path = ~/.dotfiles/secure/config/git/config
- 	path = ~/.dotfiles/local/config/git/config
+ 	path = ~/.dotfiles/secure/git/config
+ 	path = ~/.dotfiles/locals/git/config
