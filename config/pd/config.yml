@@ -1,0 +1,3 @@
+debug: false
+skip_dirs:
+  - ~/Library
