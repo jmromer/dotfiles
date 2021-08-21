@@ -1,17 +1,5 @@
-# |                            | Interactive login | Interactive non-login | Script |
-# |---------------------------:|:-----------------:|:---------------------:|:------:|
-# |                /etc/zshenv |         A         |           A           |    A   |
-# |                  ~/.zshenv |         B         |           B           |    B   |
-# |              /etc/zprofile |         C         |                       |        |
-# |                ~/.zprofile |         D         |                       |        |
-# |                 /etc/zshrc |         E         |           C           |        |
-# |                   ~/.zshrc |         F         |           D           |        |
-# |                /etc/zlogin |         G         |                       |        |
-# |                  ~/.zlogin |         H         |                       |        |
-# |   ~/.zlogout (logout only) |         I         |                       |        |
-# | /etc/zlogout (logout only) |         J         |                       |        |
-
 # Homebrew setup
+# -----------------------------
 case "$(uname -ps)" in
   Linux*)
     MACHINE="linux"
@@ -29,13 +17,17 @@ esac
 
 export MACHINE
 export HOMEBREW_PREFIX
+export MACHINE_CORES=$(echo "$(sysctl -n hw.ncpu) / 2" | bc)
+
 eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
-# Environment setup
+# XDG setup
 # -----------------------------
 export DOTFILES_DIR="${HOME}/.dotfiles"
 source "${DOTFILES_DIR}/env/xdg.sh"
 
+# Environment setup
+# -----------------------------
 source "${DOTFILES_DIR}/env/asdf.sh"
 source "${DOTFILES_DIR}/env/build.sh"
 source "${DOTFILES_DIR}/env/fzf.sh"
@@ -43,6 +35,7 @@ source "${ASDF_DIR}/asdf.sh"
 
 
 # PATH setup
+# -----------------------------
 PATH="${DOTFILES_DIR}/bin"
 
 PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
@@ -74,6 +67,20 @@ PATH+=":/sbin"
 
 PATH+=":/Library/TeX/texbin"
 export PATH
+
+# Shell config execution order
+# |                            | Interactive login | Interactive non-login | Script |
+# |---------------------------:|:-----------------:|:---------------------:|:------:|
+# |                /etc/zshenv |         A         |           A           |    A   |
+# |                  ~/.zshenv |         B         |           B           |    B   |
+# |              /etc/zprofile |         C         |                       |        |
+# |                ~/.zprofile |         D         |                       |        |
+# |                 /etc/zshrc |         E         |           C           |        |
+# |                   ~/.zshrc |         F         |           D           |        |
+# |                /etc/zlogin |         G         |                       |        |
+# |                  ~/.zlogin |         H         |                       |        |
+# |   ~/.zlogout (logout only) |         I         |                       |        |
+# | /etc/zlogout (logout only) |         J         |                       |        |
 
 # disable to prevent /etc/profile from overwriting
 # possible replacement: https://github.com/yb66/path_helper
