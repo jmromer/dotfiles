@@ -12,7 +12,7 @@
 	ui = true
 
 [commit]
-# 	gpgsign = true
+	gpgsign = true
 
 [core]
 	autocrlf     = input
@@ -213,5 +213,5 @@
 	includeIssuesSection = false
 
 [include]
-        # path = ~/.gitconfig.secure
-        # path = ~/.gitconfig.local
+ 	path = ~/.dotfiles/secure/config/git/config
+ 	path = ~/.dotfiles/local/config/git/config
