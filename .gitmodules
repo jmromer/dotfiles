@@ -25,3 +25,6 @@
 [submodule "share/tmux/tmux-yank"]
 	path = share/tmux/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
+[submodule "share/emacs"]
+	path = share/emacs
+	url = https://github.com/hlissner/doom-emacs
