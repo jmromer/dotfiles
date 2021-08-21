@@ -230,6 +230,7 @@ cd() {
     fi
 }
 
+
 #-------------------------------------------------------------
 # Use FZF to set versions with ASDF
 #-------------------------------------------------------------
@@ -260,6 +261,7 @@ bindkey "^z"    ctrlz
 # string-based
 
 bindkey -s "^h" "cd\n" # cd with pd
+bindkey -s "^g" "mx\n" # jump around in tmux
 
 # emacs mode
 
