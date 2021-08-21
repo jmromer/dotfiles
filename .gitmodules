@@ -22,3 +22,9 @@
 [submodule "share/pd"]
 	path = share/pd
 	url = https://github.com/jmromer/pd.git
+[submodule "share/tmux/tpm"]
+	path = share/tmux/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "share/tmux/tmux-yank"]
+	path = share/tmux/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank.git
