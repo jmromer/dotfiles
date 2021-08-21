@@ -12,7 +12,9 @@ alias h='history'        # show history
 alias d='dirs -v'        # show directory stack
 alias ls='exa'
 alias l='ls'
+alias la='ls -a'
 alias lla='ls -al'
+alias lt='exa --tree --level=3'
 
 #-------------------------------------------------------------
 # ALIASES: SAFEGUARDS
