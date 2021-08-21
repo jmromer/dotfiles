@@ -4,7 +4,12 @@
 #
 # Usage:
 #
-#   git see
+#   git show [git ref]
+
+if [[ $# -ne 0 ]]; then
+    git show --pretty=fuller "${@}"
+    exit 0
+fi
 
 commit_shas="$(git-select-sha)"
 

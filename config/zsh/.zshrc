@@ -65,12 +65,18 @@ diff() {
 # Git
 #-------------------------------------------------------------
 # No arguments: `git status`
-# With arguments: acts like `git`
+# With arguments: acts like `git`.
 g() {
-  if [[ $# -gt 0 ]]; then
-    git "$@"
+  if [[  $# -eq 0  ]]; then
+    git status --short --branch && return
+  fi
+
+  local subcommand="${1}"
+
+  if command -v "git-${subcommand}" >/dev/null; then
+    git-"${subcommand}" "${@:2}"
   else
-    \git status -sb
+    git "$@"
   fi
 }
 
