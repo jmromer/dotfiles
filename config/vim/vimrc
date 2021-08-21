@@ -41,9 +41,9 @@ augroup vimrcEx
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   " automatically re-balance the visible splits as tmux panes are created,
   " destroyed, or resized or window resized
@@ -364,11 +364,11 @@ endfunction
 
 " fuzzy-select from buffer list
 nnoremap <silent> <leader>bb :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
+      \   'source':  reverse(<sid>buflist()),
+      \   'sink':    function('<sid>bufopen'),
+      \   'options': '+m',
+      \   'down':    len(<sid>buflist()) + 2
+      \ })<CR>
 
 
 "--------------------------------------------------------------
@@ -453,36 +453,36 @@ let g:used_javascript_libs = 'jquery,underscore,react,flux,requirejs'
 let g:lightline = {
       \   'colorscheme': 'solarized',
       \   'active': {
-      \     'left': [
-      \       [ 'mode', 'paste' ],
-      \       [ 'fugitive', 'filename' ]
-      \     ],
-      \     'right': [
-      \       [ 'syntastic', 'lineinfo' ],
-      \       [ 'percent' ],
-      \       [ 'fileformat', 'fileencoding', 'filetype' ]
-      \     ]
-      \   },
-      \   'component_function': {
-      \     'mode':         'LLMode',
-      \     'fugitive':     'LLFugitive',
-      \     'filename':     'LLFilename',
-      \     'readonly':     'LLReadonly',
-      \     'modified':     'LLModified',
-      \     'fileformat':   'LLFileFormat',
-      \     'fileencoding': 'LLFileEncoding',
-      \     'filetype':     'LLFileType'
-      \   },
-      \   'component_expand': {
-      \     'syntastic': 'SyntasticStatuslineFlag'
-      \   },
-      \   'component_type': {
-      \     'syntastic': 'error'
-      \   },
-      \   'subseparator': {
-      \     'left': '|', 'right': '|'
-      \   }
-      \ }
+        \     'left': [
+          \       [ 'mode', 'paste' ],
+          \       [ 'fugitive', 'filename' ]
+          \     ],
+          \     'right': [
+            \       [ 'syntastic', 'lineinfo' ],
+            \       [ 'percent' ],
+            \       [ 'fileformat', 'fileencoding', 'filetype' ]
+            \     ]
+            \   },
+            \   'component_function': {
+              \     'mode':         'LLMode',
+              \     'fugitive':     'LLFugitive',
+              \     'filename':     'LLFilename',
+              \     'readonly':     'LLReadonly',
+              \     'modified':     'LLModified',
+              \     'fileformat':   'LLFileFormat',
+              \     'fileencoding': 'LLFileEncoding',
+              \     'filetype':     'LLFileType'
+              \   },
+              \   'component_expand': {
+                \     'syntastic': 'SyntasticStatuslineFlag'
+                \   },
+                \   'component_type': {
+                  \     'syntastic': 'error'
+                  \   },
+                  \   'subseparator': {
+                    \     'left': '|', 'right': '|'
+                    \   }
+                    \ }
 
 function! LLMode()
   let fname = expand('%:t')
@@ -556,19 +556,19 @@ nnoremap <silent> <leader>gs :Gstatus<CR>:50wincmd_<CR>
 " FZF: Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 
 " ---------------- Overrides  --------------------------
