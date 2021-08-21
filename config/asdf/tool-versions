@@ -7,7 +7,7 @@ golang 1.14.1
 redis 6.2.5
 postgres 13.4
 java openjdk-16
-tmux 3.0
+tmux 3.2a
 rust 1.43.0
 mysql 8.0.24
 sqlite 3.34.1
