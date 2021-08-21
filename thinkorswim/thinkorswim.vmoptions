@@ -1,0 +1,13 @@
+-Xmx65408m
+-Xms8192m
+-Djava.net.preferIPv4stack=true
+-Djava.util.Arrays.useLegacyMergeSort=true
+-Djxbrowser.logging.level=INFO
+-Dsun.awt.disableMixing=true
+-Dsun.java2d.noddraw=true
+-Dsun.java2d.xrender=True
+-Dsun.net.http.allowRestrictedHeaders=true
+-XX:-UseConcMarkSweepGC
+-classpath/p launcher-second.jar
+-Dawt.useSystemAAFontSettings=lcd_hrgb
+-XX:MaxPermSize=256m
