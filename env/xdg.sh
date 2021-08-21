@@ -23,3 +23,15 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 # vim config (ephemeral files config therein)
 export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
+
+# gnupg
+export GNUPGHOME="${XDG_SECURE_DIR}/gnupg"
+
+# less
+export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
+export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
+
+# misc
+export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
+export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
+
