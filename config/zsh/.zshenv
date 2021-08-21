@@ -31,6 +31,7 @@ source "${DOTFILES_DIR}/env/xdg.sh"
 source "${DOTFILES_DIR}/env/asdf.sh"
 source "${DOTFILES_DIR}/env/build.sh"
 source "${DOTFILES_DIR}/env/fzf.sh"
+source "${DOTFILES_DIR}/env/bundler.sh"
 source "${ASDF_DIR}/asdf.sh"
 
 
