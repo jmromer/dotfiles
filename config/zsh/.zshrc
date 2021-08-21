@@ -30,9 +30,10 @@ alias -g C="| pbcopy" # copy to clipboard
 alias -g P='| less'   # send to pager
 
 #-------------------------------------------------------------
-# ALIASES: highlighting
+# ALIASES: highlighting, xdg
 #-------------------------------------------------------------
 alias cat=bat
+alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget/history"
 
 #-------------------------------------------------------------
 # EDITOR / PAGER
