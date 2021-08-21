@@ -129,8 +129,8 @@ export DIRSTACKSIZE=10
 #-------------------------------------------------------------
 setopt hist_ignore_all_dups inc_append_history
 export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
-export HISTFILE=$HOME/.zhistory
 export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export HISTSIZE=4096
 export SAVEHIST=4096
 
