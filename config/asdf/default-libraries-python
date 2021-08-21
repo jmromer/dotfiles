@@ -1,0 +1,11 @@
+autoflake
+fastapi
+flake8
+importmagic
+ipdb
+ipython
+mypy
+pip
+poetry
+virtualenv
+yapf

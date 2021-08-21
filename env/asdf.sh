@@ -16,10 +16,17 @@ export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
 # Defaults to .tool-versions. Can be any valid filename.
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME/asdf/tool-versions"
 
-# Defaults to ~/.asdf - Location of the asdf scripts. 
+# Defaults to ~/.asdf - Location of the asdf scripts.
 # If you install asdf to some other directory, set this to that directory.
 export ASDF_DIR="$XDG_DATA_HOME/asdf-manager"
 
 # Defaults to ~/.asdf - Location where asdf install plugins, shims and installs.
 # Can be set to any location before sourcing asdf.sh
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf-versions"
+
+# Default libraries locations
+export ASDF_GEM_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-libraries-ruby"
+export ASDF_NPM_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-libraries-nodejs"
+export ASDF_PYTHON_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-libraries-python"
+export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-libraries-golang"
+

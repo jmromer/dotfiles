@@ -1,0 +1,12 @@
+babel-eslint
+create-react-app
+marked
+npm
+prettier-standard
+react-native-cli
+typescript
+typescript-formatter
+typescript-language-server
+vscode-css-languageserver-bin
+vscode-html-languageserver-bin
+yarn
