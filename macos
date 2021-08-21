@@ -94,6 +94,7 @@ end
 
 setup :development_tools do
   brew_install :awscli
+  brew_install :bash
   brew_install :bat
   brew_install :editorconfig
   brew_install :exa
