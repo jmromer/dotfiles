@@ -9,8 +9,7 @@ export FZF_DIR="${XDG_DATA_HOME}/fzf"
 export FZF_DEFAULT_OPTS="
   --no-multi
   --tiebreak=index
-  --color='dark'
-  --color='bg:#000000,bg+:#000000,preview-bg:#000000,border:#000000'
+  --color='bg:#1d1e20,bg+:#1d1e20,preview-bg:#1d1e20,border:#1d1e20'
   --bind='ctrl-f:preview-down'
   --bind='ctrl-b:preview-up'
 "
