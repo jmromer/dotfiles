@@ -15,9 +15,16 @@ case "$(uname -ps)" in
   ;;
 esac
 
+if command -v /usr/sbin/sysctl >/dev/null; then
+  MACHINE_CORES=$(echo "$(/usr/sbin/sysctl -n hw.ncpu) / 2" | bc)
+else
+  MACHINE_CORES=8
+  echo "Warning: MACHINE_CORES set to default value of ${MACHINE_CORES}."
+fi
+
 export MACHINE
+export MACHINE_CORES
 export HOMEBREW_PREFIX
-export MACHINE_CORES=$(echo "$(sysctl -n hw.ncpu) / 2" | bc)
 
 eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
