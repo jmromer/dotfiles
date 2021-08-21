@@ -6,7 +6,7 @@ args=($*)
 type="${args[0]}"
 name="${args[@]:1}"
 
-TMUXINATOR_TEMPLATES_HOME="${TMUXINATOR_TEMPLATES_HOME:-$HOME/.config/tmuxinator}"
+TMUXINATOR_TEMPLATES_HOME="${TMUXINATOR_TEMPLATES_HOME:-$XDG_CONFIG_HOME/tmuxinator}"
 
 GRAY="\033[1;30m"
 RESET="\033[0m"
