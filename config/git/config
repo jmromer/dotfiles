@@ -5,6 +5,9 @@
 [gpg]
 	program = gpg
 
+[credential]
+	helper = osxkeychain
+
 [branch]
 	autosetuprebase = always
 
