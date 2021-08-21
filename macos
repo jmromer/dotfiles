@@ -34,7 +34,6 @@ setup :core_cli_tools do
   brew_install :libgccjit
   brew_install :ripgrep
   brew_install :shellcheck
-  brew_install :tree
   brew_install :watch
   brew_install :wdiff
   brew_install :wget
