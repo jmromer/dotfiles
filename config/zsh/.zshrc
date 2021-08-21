@@ -40,6 +40,9 @@ alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget/history"
 #-------------------------------------------------------------
 export EDITOR="vim"
 export PAGER="less"
+export LESSOPEN="| src-hilite-lesspipe.sh %s"
+export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '
+
 
 #-------------------------------------------------------------
 # FUNCTIONS
