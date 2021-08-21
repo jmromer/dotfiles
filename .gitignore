@@ -66,6 +66,9 @@ config/zsh/.zcompdump
 config/zsh/.zsh_history
 config/zsh/.zsh_sessions
 
+# local dir
+local/
+
 # data dirs
 share/*/*
 !share/*/.keep
