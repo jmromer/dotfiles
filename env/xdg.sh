@@ -34,4 +34,5 @@ export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
 # misc
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
+export IPYTHONDIR="${XDG_DATA_HOME}/ipython"
 
