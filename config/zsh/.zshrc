@@ -346,3 +346,15 @@ if [[ -d "${XDG_DATA_HOME}/fzf/shell" ]]; then
   . "${XDG_DATA_HOME}/fzf/shell/completion.zsh"
   . "${XDG_DATA_HOME}/fzf/shell/key-bindings.zsh"
 fi
+
+
+#-------------------------------------------------------------
+# SECURE / LOCALS
+#-------------------------------------------------------------
+
+[[ -f "${XDG_SECURE_DIR}/config/zsh/zshrc" ]] && \
+    . "${XDG_SECURE_DIR}/config/zsh/zshrc"
+
+[[ -f "${XDG_LOCALS_DIR}/config/zsh/zshrc" ]] && \
+    . "${XDG_LOCALS_DIR}/config/zsh/zshrc"
+
