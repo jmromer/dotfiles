@@ -18,7 +18,7 @@ runtime xdg.vim
 " Load Plugins
 "--------------------------------------------------------------
 call plug#begin('$XDG_DATA_HOME/vim/plugged')
-source $XDG_CONFIG_HOME/vim/plugins.vim
+source ${XDG_CONFIG_HOME}/vim/plugins.vim
 call plug#end()
 
 
@@ -385,6 +385,14 @@ augroup rainbow_parentheses
   autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
+" YankRing
+" YankRing: location of history file
+let g:yankring_history_dir = '$XDG_STATE_HOME/vim'
+
+" YankRing: Cycle through the yank register
+let g:yankring_replace_n_pkey = '<C-p>'
+let g:yankring_replace_n_nkey = '<C-n>'
+nnoremap <silent><leader>p :YRShow<CR>
 
 " AutoPairs: disable closed-pair jumping instead of inserting
 let g:AutoPairsFlyMode = 0
@@ -549,3 +557,4 @@ nnoremap <silent> <leader>gs :Gstatus<CR>:50wincmd_<CR>
 if filereadable(expand('~/.vimrc.local'))
   source $HOME/.vimrc.local
 endif
+
