@@ -1,5 +1,5 @@
 [user]
-	name = Jake Romer
+	name  = Jake Romer
 	email = jake@jmromer.org
 
 [gpg]
@@ -18,9 +18,8 @@
 	gpgsign = true
 
 [core]
-	autocrlf     = input
-	editor       = vim
-	pager        = diff-highlight | delta
+	autocrlf = input
+	editor   = vim
 
 [color "diff"]
 	commit     = green
@@ -37,17 +36,18 @@
 	newHighlight = green 22
 
 [diff]
-	renames = true
-	tool    = vimdiff
+	line-numbers = true
+	renames      = true
+	tool         = vimdiff
 
 [fetch]
 	prune = true
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+	clean    = git-lfs clean -- %f
+	smudge   = git-lfs smudge -- %f
 	required = true
-	process = git-lfs filter-process
+	process  = git-lfs filter-process
 
 [filter "media"]
 	clean  = git-media-clean %f
@@ -58,16 +58,17 @@
 	signOff = yes
 
 [sendemail]
-	smtpEncryption = starttls
-	smtpServer = 127.0.0.1
-	smtpServerport = 1025
+	smtpEncryption   = starttls
+	smtpServer       = 127.0.0.1
+	smtpServerport   = 1025
 	transferEncoding = 8bit
-	confirm = auto
-	suppressCC = self
-	annotate = true
+	confirm          = auto
+	suppressCC       = self
+	annotate         = true
 
 [interactive]
 	singlekey  = true
+	diffFilter  = delta --color-only
 
 [log]
 	date = short
@@ -92,12 +93,21 @@
 	tool = vimdiff
 
 [pager]
-	diff  = true
-	log   = true
-	stash = false
+	diff   = delta
+	log    = delta
+	stash  = delta
+	reflog = delta
+	show   = delta
+
+[delta]
+	plus-style   = "syntax #012800"
+	minus-style  = "syntax #340001"
+	navigate     = true
+	line-numbers = true
+	side-by-side = true
 
 [pretty]
-	brief = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
+	brief  = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
 	select = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset %Cgreen%>>(20)%D%Creset"
 
 [push]
