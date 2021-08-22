@@ -8,6 +8,8 @@ prompt_and_wait "Ensure XCode is installed before continuing."
 setup :launch_agents do
   install_launchagent "env.xdg"
   install_launchagent "conclave.pd.refresh"
+  install_launchagent "samizdat.deploy"
+  install_launchagent "samizdat.serve"
 end
 
 setup :homebrew do
