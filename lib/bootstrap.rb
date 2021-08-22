@@ -38,11 +38,13 @@ def get_yes_no(prompt = "")
   loop do
     print [prompt, "[Y/n]: "].reject(&:empty?).join(" ")
 
-    case gets.strip
+    case gets.to_s.strip
     when /^(yes|y)$/i, "" then return true
     when /^(no|n)$/i then return false
     end
   end
+rescue Interrupt
+  exit 0
 end
 
 def execho(command)
@@ -68,6 +70,7 @@ end
 
 def install_launchagent(filename)
   execho("ln -sfv ${XDG_CONFIG_HOME}/launch_agents/#{filename}.plist ~/Library/LaunchAgents")
+  execho("launchctl unload ~/Library/LaunchAgents/#{filename}.plist")
   execho("launchctl load ~/Library/LaunchAgents/#{filename}.plist")
 end
 
@@ -165,10 +168,16 @@ def asdf_install_versions
   asdf_plugins.each { |plugin| execho("asdf install #{plugin}") }
 end
 
+# Help
+# ----------
+if ARGV.delete("--help").to_s.eql?("--help")
+  puts "Run with --debug to dry-run."
+  exit 2
+end
+
 # Debug mode
 # ----------
-
-if (IN_DEBUG_MODE = !ENV["BOOTSTRAP_DEBUG"].to_s.empty?)
+if (IN_DEBUG_MODE = ARGV.delete("--debug").to_s.eql?("--debug"))
   puts "-*- Running in debug mode -*-"
   def execho(*args); system(*args); end
   def system(*args); puts(*args); end
@@ -187,7 +196,7 @@ ENVIRONMENT =
       . #{DOTFILES_DIR}/env/xdg.sh &&
       . #{DOTFILES_DIR}/env/asdf.sh &&
       env |
-      grep -Ei '(xdg|asdf|path)'"
+      grep -E '^(XDG_|ASDF_|PATH)'"
   ].strip
    .split("\n")
    .map { |line| line.split("=") }

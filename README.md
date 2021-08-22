@@ -15,7 +15,7 @@ Installation
 3. Run the bootstrap script
 
    ```shell
-    ~/.dotfiles/macos
+    ~/.dotfiles/bin/bootstrap
     ```
 
 Stick around to enter your password as needed.
