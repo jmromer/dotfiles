@@ -9,11 +9,12 @@ set -x
 
 # Update Emacs config
 # ---------------------
-(cd ~/.emacs.d && git pull --rebase --autostash)
+doom upgrade
+doom sync
 
 # Update Vim packages
 # ---------------------
-nvim +PlugInstall +PlugUpgrade +PlugUpdate +qall
+vim +PlugInstall +PlugUpgrade +PlugUpdate +qall
 
 # Update Homebrew packages
 # --------------------------
