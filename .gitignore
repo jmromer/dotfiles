@@ -78,6 +78,10 @@ share/*/*
 state/*/*
 !state/*/.keep
 
+# runtime dirs
+sockets/*/*
+!sockets/*/.keep
+
 # cache dirs
 cache/*/*
 !cache/*/.keep
