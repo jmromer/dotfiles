@@ -16,6 +16,7 @@ alias la='ls -a'
 alias lla='ls -al'
 alias lt='exa --tree --level=3'
 alias pp='pretty-print-path'
+alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
 
 #-------------------------------------------------------------
 # ALIASES: SAFEGUARDS
