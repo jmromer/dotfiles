@@ -66,7 +66,7 @@ if has('termguicolors')
 endif
 
 set background=dark
-execute 'colorscheme ' . 'space-vim-dark'
+execute 'colorscheme spacemacs'
 
 hi Comment cterm=italic
 let g:airline_theme='violet'
