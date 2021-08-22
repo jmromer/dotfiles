@@ -25,31 +25,31 @@ setup_golang() {
   export CC=gcc-10 CXX=g++-10
   while read -r package; do
     go get -u -v "${package}"
-  done < "${HOME}/.default-golang-packages"
+  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-golang"
 }
 
 setup_ruby() {
   while read -r package; do
     gem install --update-sources "${package}"
-  done < "${HOME}/.default-gems"
+  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-ruby"
 }
 
 setup_system_ruby() {
   while read -r package; do
     gem install --user --update-sources "${package}"
-  done < "${HOME}/.default-gems"
+  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-ruby"
 }
 
 setup_javascript() {
   while read -r package; do
     npm install --update --global "${package}"
-  done < "${HOME}/.default-npm-packages"
+  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-nodejs"
 }
 
 setup_python() {
   while read -r package; do
     pip install --upgrade "${package}"
-  done < "${HOME}/.default-python-packages"
+  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-python"
 }
 
 setup_mac() {
