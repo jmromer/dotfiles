@@ -105,6 +105,9 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
+  brew_tap "universal-ctags/universal-ctags"
+  brew_install :universal_ctags, options: :head
+
   brew_tap "homebrew/cask-versions"
   cask_install :iterm2_nightly
 end
