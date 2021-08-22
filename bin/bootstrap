@@ -3,13 +3,10 @@
 
 require_relative "../lib/bootstrap"
 
-prompt_and_wait "Ensure XCode is installed before continuing."
+ensure_xcode_is_set_up
 
-setup :launch_agents do
+setup :xdg_base_directory_environment do
   install_launchagent "env.xdg"
-  install_launchagent "conclave.pd.refresh"
-  install_launchagent "samizdat.deploy"
-  install_launchagent "samizdat.serve"
 end
 
 setup :homebrew do
@@ -138,13 +135,25 @@ setup :editors do
 end
 
 setup :asdf_plugins do
-  asdf_install_plugins
-  asdf_install_versions
+  setup(:ruby)   { asdf_install(:ruby)   }
+  setup(:python) { asdf_install(:python) }
+  setup(:nodejs) { asdf_install(:nodejs) }
 end
 
-perform :cli_installations do
-  script_install :pd
+setup :doom_config do
   script_install :doom
+end
+
+setup :pd_tool do
+  asdf_install :golang
+  install_launchagent "conclave.pd.refresh"
+  script_install :pd
+end
+
+setup :samizdat do
+  asdf_install :gohugo
+  install_launchagent "samizdat.deploy"
+  install_launchagent "samizdat.serve"
 end
 
 perform :cleanups do
