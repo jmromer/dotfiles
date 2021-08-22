@@ -235,8 +235,8 @@ cd() {
     if type pd >/dev/null; then
       builtin cd "$(pd "$1")" || return
     else
-      echo "p/d not installed"
-      builtin cd "$*" || return
+      echo "warning: p/d not installed"
+      builtin cd "$@" || return
     fi
 }
 
