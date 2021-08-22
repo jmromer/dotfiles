@@ -1,8 +1,0 @@
-scss_files: 'app/assets/stylesheets/**/*.scss'
-exclude: 'app/assets/stylesheets/application.css'
-
-linters:
-  LeadingZero:
-    enabled: false
-  ColorVariable:
-    enabled: false
