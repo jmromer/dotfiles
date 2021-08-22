@@ -1,0 +1,7 @@
+--database=postgresql
+--skip-coffeescript
+--skip-test
+--skip-test-unit
+--webpack
+--webpacker=react
+--template=~/.dotfiles/config/rails/template.rb
