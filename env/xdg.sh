@@ -36,3 +36,7 @@ export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
 export IPYTHONDIR="${XDG_DATA_HOME}/ipython"
 
+# npm
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
+export NPM_CONFIG_PREFIX="${XDG_DATA_HOME}/npm"
