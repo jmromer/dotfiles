@@ -86,12 +86,12 @@ g() {
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
 git_color() {
-  clean='working (directory|tree) clean'
-  ahead_of_remote="Your branch is ahead of"
-  applying_patch="Unmerged"
+  local clean="(working [[:alpha:]]+ clean|está limpio)"
+  local diverged="(branch is ahead of|have diverged|rama está adelantada|han divergido)"
+  local applying_patch="(Unmerged|no fusionadas)"
 
   if [[ $git_status =~ $clean ]]; then
-    if [[ $git_status =~ $ahead_of_remote ]]; then
+    if [[ $git_status =~ $diverged ]]; then
       echo -ne "$(color yellow)"
     else
       echo -ne "$(color green)"
@@ -105,24 +105,26 @@ git_color() {
 
 git_branch() {
   git_status="$(\git status 2> /dev/null)"
-  is_on_branch='^On branch ([^[:space:]]+)'
-  is_on_commit='HEAD detached at ([^[:space:]]+)'
-  is_rebasing="rebasing branch '([^[:space:]]+)' on '([^[:space:]]+)'"
+  local is_on_branch='^(On branch|En la rama) ([^[:space:]]+)'
+  local is_on_commit='HEAD (detached at|desacoplada en) ([^[:space:]]+)'
+  local is_rebasing="(rebasing branch|rebase de la rama) '([^[:space:]]+)' (on|sobre) '([^[:space:]]+)'"
+  local branch
+  local commit
 
   if [[ $git_status =~ $is_on_branch ]]; then
-    branch=${BASH_REMATCH[1]:-${match[1]}} # bash/zsh portable
-    if [[ $git_status =~ "Unmerged paths" ]]; then
-      git_color && echo -n "merging into $branch "
+    branch=${BASH_REMATCH[2]:-${match[2]}} # bash/zsh portable
+    if [[ $git_status =~ "(Unmerged paths|no fusionadas)" ]]; then
+      git_color && echo -n "merging into ${branch} "
     else
-      git_color && echo -n "$branch "
+      git_color && echo -n "${branch} "
     fi
   elif [[ $git_status =~ $is_on_commit ]]; then
-    commit=${BASH_REMATCH[1]:-${match[1]}}
-    git_color && echo -n "$commit "
-  elif [[ $git_status =~ $is_rebasing ]]; then
-    branch=${BASH_REMATCH[1]:-${match[1]}}
     commit=${BASH_REMATCH[2]:-${match[2]}}
-    git_color && echo -n "rebasing $branch on $commit "
+    git_color && echo -n "${commit} "
+  elif [[ $git_status =~ $is_rebasing ]]; then
+    branch=${BASH_REMATCH[2]:-${match[2]}}
+    commit=${BASH_REMATCH[4]:-${match[4]}}
+    git_color && echo -n "rebasing ${branch} onto ${commit} "
   fi
 }
 
