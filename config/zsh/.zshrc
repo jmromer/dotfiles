@@ -15,6 +15,7 @@ alias l='ls'
 alias la='ls -a'
 alias lla='ls -al'
 alias lt='exa --tree --level=3'
+alias pp='pretty-print-path'
 
 #-------------------------------------------------------------
 # ALIASES: SAFEGUARDS

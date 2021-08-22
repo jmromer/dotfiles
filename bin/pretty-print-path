@@ -13,7 +13,7 @@ fi
 [[ -z "$paths" ]] && exit
 
 path="$(
-  echo "$paths" | tr ":" "\n" | nl -ba | fzf \
+  echo "$paths" | ruby -pe '$_.gsub!(/:+/, "\n").strip!' | nl -ba | fzf \
       --ansi \
       --no-sort \
       --reverse \
