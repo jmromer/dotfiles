@@ -36,3 +36,5 @@ export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-librar
 
 # extra config options for installs
 export POSTGRES_EXTRA_CONFIGURE_OPTIONS="--with-uuid=e2fs"
+
+source "${ASDF_DIR}/asdf.sh"
