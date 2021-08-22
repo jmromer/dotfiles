@@ -139,6 +139,7 @@ end
 
 perform :cli_installations do
   script_install :pd
+  script_install :doom
 end
 
 perform :cleanups do
