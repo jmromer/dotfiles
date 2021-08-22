@@ -1,6 +1,0 @@
-ssl_verify: true
-channels:
-  - defaults
-  - conda-forge
-env_prompt: '[conda: {name}]'
-report_errors: false

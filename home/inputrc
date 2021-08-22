@@ -1,5 +1,0 @@
-set bell-style none
-
-$if mode=vi
-  set keymap vi-insert
-$endif

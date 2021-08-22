@@ -1,6 +1,0 @@
-# set Qt as graphics handler
-setenv('GNUTERM','qt')
-graphics_toolkit("gnuplot")
-
-# simple prompt
-PS1 ("\n>> ")

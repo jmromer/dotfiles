@@ -1,8 +1,0 @@
-{
-  "default": true,
-  "heading-style": { "style": "setext_with_atx" },
-  "ul-style": "sublist",
-  "ul-indent": { "indent": 4 },
-  "no-hard-tabs": true,
-  "whitespace": false
-}
