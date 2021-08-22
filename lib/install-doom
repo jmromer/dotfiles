@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+# Run the doom installation script
+
+set -ex
+
+doom install
