@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 if [[ -z "${DOTFILES_DIR}" ]]; then
   echo "WARNING: DOTFILES_DIR env var is not set in ${0}"
 fi
