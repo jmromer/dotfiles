@@ -64,25 +64,6 @@ diff() {
 }
 
 #-------------------------------------------------------------
-# Git
-#-------------------------------------------------------------
-# No arguments: `git status`
-# With arguments: acts like `git`.
-g() {
-  if [[  $# -eq 0  ]]; then
-    git status --short --branch && return
-  fi
-
-  local subcommand="${1}"
-
-  if command -v "git-${subcommand}" >/dev/null; then
-    git-"${subcommand}" "${@:2}"
-  else
-    git "$@"
-  fi
-}
-
-#-------------------------------------------------------------
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
 git_color() {
