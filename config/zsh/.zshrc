@@ -67,21 +67,29 @@ diff() {
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
 git_color() {
-  local clean="(working [[:alpha:]]+ clean|está limpio)"
-  local diverged="(branch is ahead of|have diverged|rama está adelantada|han divergido)"
-  local applying_patch="(Unmerged|no fusionadas)"
-
-  if [[ $git_status =~ $clean ]]; then
-    if [[ $git_status =~ $diverged ]]; then
+  case "$git_status" in
+    *'not staged'* |\
+      *'to be committed'* |\
+      *'untracked files present'* |\
+      *'no rastreados'* |\
+      *'a ser confirmados'*)
+      echo -ne "$(color red)"
+      ;;
+    *'branch is ahead of'* |\
+      *'have diverged'* |\
+      *'rama está adelantada'* |\
+      *'han divergido'*)
       echo -ne "$(color yellow)"
-    else
+      ;;
+    *working\ *\ clean* |\
+      *'está limpio'*)
       echo -ne "$(color green)"
-    fi
-  elif [[ $git_status =~ $applying_patch ]]; then
-    echo -ne "$(color violet)"
-  else
-    echo -ne "$(color red)"
-  fi
+      ;;
+    *'Unmerged'* |\
+      *'no fusionadas'*)
+      echo -ne "$(color violet)"
+      ;;
+  esac
 }
 
 git_branch() {
