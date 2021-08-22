@@ -64,6 +64,31 @@ def flagified(str)
   "--#{dashified str}"
 end
 
+# Xcode-related
+# -------------
+
+def ensure_xcode_is_set_up
+  unless xcode_installed?
+    puts "Please install Xcode before running this script."
+    abort
+  end
+
+  xcode_configure
+end
+
+def xcode_installed?
+  system("test -d /Applications/Xcode.app")
+end
+
+def xcode_configured?
+  system("xcode-select --print-path | grep -q '^/Applications/Xcode'")
+end
+
+def xcode_configure
+  return if xcode_configured?
+
+  system("xcode-select --switch /Applications/Xcode.app")
+end
 
 # Shell commands
 # --------------
@@ -157,15 +182,18 @@ def asdf_plugins
       .readlines("#{DOTFILES_DIR}/config/asdf/tool-versions")
       .map(&:split)
       .map(&:first)
+      .map(&:to_sym)
+      .to_set
       .freeze
 end
 
-def asdf_install_plugins
-  asdf_plugins.each { |plugin| execho("asdf plugin-add #{plugin}") }
-end
-
-def asdf_install_versions
-  asdf_plugins.each { |plugin| execho("asdf install #{plugin}") }
+def asdf_install(plugin)
+  if asdf_plugins.include?(plugin)
+    execho("asdf plugin-add #{plugin}")
+    execho("asdf install #{plugin}")
+  else
+    puts "No global version set for #{plugin}. Skipping."
+  end
 end
 
 # Help
@@ -180,7 +208,7 @@ end
 if (IN_DEBUG_MODE = ARGV.delete("--debug").to_s.eql?("--debug"))
   puts "-*- Running in debug mode -*-"
   def execho(*args); system(*args); end
-  def system(*args); puts(*args); end
+  def system(*args); puts(*args); true; end
 end
 
 
