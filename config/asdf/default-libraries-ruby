@@ -12,7 +12,6 @@ jazz_fingers
 pretty_backtrace
 pry
 pry-byebug
-pry-theme
 rake
 rcodetools
 rspec
