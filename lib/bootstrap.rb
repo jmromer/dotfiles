@@ -69,7 +69,7 @@ end
 # --------------
 
 def install_launchagent(filename)
-  execho("ln -sfv ${XDG_CONFIG_HOME}/launch_agents/#{filename}.plist ~/Library/LaunchAgents")
+  execho("ln -sfv ${XDG_CONFIG_HOME}/launch_agents/#{filename}.plist ~/Library/LaunchAgents/#{filename}.plist")
   execho("launchctl unload ~/Library/LaunchAgents/#{filename}.plist 2>/dev/null")
   execho("launchctl load ~/Library/LaunchAgents/#{filename}.plist")
 end
