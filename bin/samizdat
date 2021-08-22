@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "${HOME}/Projects/blogs/samizdat"
+
+if [[ "$1" == "deploy" ]]; then
+  rm -f /tmp/samizdat.deploy.*
+  touch /tmp/samizdat.deploy.{out,err}
+  printf "\n[Deploy: %s]\n " "$(date)"
+
+  if ./bin/deploy; then
+    printf "\nDeployed.\n"
+    exit 0
+  else
+    printf "\nError.\n"
+    exit 1
+  fi
+fi
+
+if [[ "$1" == "serve" ]]; then
+  rm -f /tmp/samizdat.serve.*
+  touch /tmp/samizdat.serve.{out,err}
+
+  # hugo server --buildDrafts --watch
+  ./bin/serve
+fi
+
