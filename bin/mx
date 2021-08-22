@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 #
-# m-x
-#
-# Usage:
-#   mx [SUBCOMMAND]
+# mx
 #
 # A simplified wrapper over tmux and tmuxinator.
 #
 # Note: Depends on Bash 5
+#
+# Usage:
+#
+#   mx [SUBCOMMAND]
 #
 # Available subcommands:
 #
