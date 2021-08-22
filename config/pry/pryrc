@@ -1,0 +1,169 @@
+# -*- mode: ruby -*-
+# vi:syntax=ruby
+# frozen_string_literal: true
+
+# rubocop:disable Style/MixinUsage
+
+# Return only the methods not present on basic objects
+# alternatively, use `ls <object> -m`
+
+Pry.editor = "/usr/local/bin/vim -u ~/.vim/minimal.vim"
+
+unless defined?(Rails) && Rails.env
+  begin
+    require "jazz_fingers"
+  rescue LoadError
+    puts "jazz_fingers not loaded."
+  end
+end
+
+if defined?(Rails)
+  begin
+    require "factory_bot_rails"
+    include FactoryBot::Syntax::Methods
+  rescue LoadError
+    puts "FactoryBot not loaded."
+  end
+end
+
+if defined?(Rails)
+  def url_helpers
+    include Rails.application.routes.url_helpers
+    default_url_options[:host] = ENV["BASE_URL"]
+  end
+end
+
+# Format stacktraces
+Pry.config.exception_handler = proc do |output, exception, _|
+  output.puts "#{exception.class}: #{exception.message}"
+  exception.backtrace.each do |bt|
+    puts "\tfrom: #{bt}"
+    break if bt =~ /^\(pry\)/
+  end
+end
+
+# Hit Enter to repeat last command
+Pry::Commands.command(/^$/, "repeat last command") do
+  last_cmd = Pry.history.to_a.last
+  puts ["\e[37m\e[1m", last_cmd, "\e[0m"].join
+  pry_instance.run_command(last_cmd)
+end
+
+# Aliases for common commands
+Pry.commands.alias_command ".q", "exit"
+Pry.commands.alias_command "!!", "disable-pry"
+Pry.commands.alias_command ".w", "whereami"
+Pry.commands.alias_command ".sh", "shell-mode"
+Pry.commands.alias_command ".ss", "show-source"
+Pry.commands.alias_command ".methods", "ls -m"
+
+if defined?(PryByebug)
+  Pry.commands.alias_command ".c", "continue"
+  Pry.commands.alias_command ".s", "step"
+  Pry.commands.alias_command ".n", "next"
+  Pry.commands.alias_command ".f", "finish"
+end
+
+if defined?(Hirb)
+  Hirb.enable
+  extend Hirb::Console
+end
+
+if defined?(JazzFingers)
+  JazzFingers.configure do |config|
+    config.colored_prompt = true
+    config.application_name = File.basename(ENV["PWD"]) unless defined?(Rails)
+  end
+
+  PRINT_CONFIG = {
+    indent: -2, # Number of spaces for indenting.
+    index: true, # Display array indices.
+    html: false, # Use ANSI color codes rather than HTML.
+    multiline: true, # Display in multiple lines.
+    plain: false, # Use colors.
+    raw: false, # Do not recursively format instance variables.
+    sort_keys: false, # Do not sort hash keys.
+    sort_vars: true, # Sort instance variables.
+    limit: false, # Limit arrays & hashes. Accepts bool or int.
+    ruby19_syntax: true, # Use Ruby 1.9 hash syntax in output.
+    class_name: :class, # Method called to report the instance class name. (e.g. :to_s)
+    object_id: true, # Show object id.
+    color: {
+      args: :whiteish,
+      array: :white,
+      bigdecimal: :blue,
+      class: :yellow,
+      date: :greenish,
+      falseclass: :red,
+      integer: :blue,
+      float: :blue,
+      hash: :whiteish,
+      keyword: :cyan,
+      method: :purpleish,
+      nilclass: :red,
+      rational: :blue,
+      string: :yellowish,
+      struct: :whiteish,
+      symbol: :cyanish,
+      time: :greenish,
+      trueclass: :green,
+      variable: :cyanish,
+    },
+  }
+
+  if defined?(AmazingPrint)
+    AmazingPrint.defaults = PRINT_CONFIG
+    AmazingPrint.pry!
+  end
+
+  if defined?(AwesomePrint)
+    color = PRINT_CONFIG[:color].merge(args: :pale, hash: :pale, struct: :pale)
+    AwesomePrint.defaults = PRINT_CONFIG.merge(color: color)
+    AwesomePrint.pry!
+  end
+
+  # https://github.com/awesome-print/awesome_print/pull/373
+  module AwesomePrint
+    module Formatters
+      class BaseFormatter
+        def indented(&block)
+          inspector.increase_indentation(&block)
+        end
+      end
+    end
+
+    class Inspector
+      def increase_indentation(&block)
+        indentator.indent(&block)
+      end
+    end
+  end
+end
+
+if %w[emacs dumb].include?(ENV["TERM"]) || !ENV["INSIDE_EMACS"].nil?
+  Pry.config.auto_indent = false
+  Pry.config.color = true
+  Pry.config.pager = false
+  default = Pry::Prompt[:default]
+  Pry.config.prompt = Pry::VERSION < "0.13.0" ? default[:value] : default
+else
+  Pry.config.auto_indent = true
+  Pry.config.color = true
+  Pry.config.pager = true
+  Pry.config.theme = "railscasts"
+end
+
+def timeit
+  starting = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  yield if block_given?
+  ending = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  (ending - starting).round(4)
+end
+
+
+require "fileutils"
+pryrc_local_path = FileUtils.mkdir_p(File.join(ENV["XDG_LOCALS_DIR"], "config/pry")).first
+pryrc_local = File.join(pryrc_local_path, "pryrc")
+load(pryrc_local) if File.exist?(pryrc_local)
+
+# rubocop:enable Style/MixinUsage
