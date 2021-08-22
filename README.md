@@ -1,4 +1,4 @@
-bootstrap
+dotfiles
 =========
 
 Installation
@@ -9,7 +9,7 @@ Installation
 2. Clone this repo
 
    ```shell
-    git clone --recurse-submodules -j8 https://github.com/jmromer/bootstrap ~/.dotfiles
+    git clone --recurse-submodules -j8 https://github.com/jmromer/dotfiles ~/.dotfiles
    ```
 
 3. Run the bootstrap script
