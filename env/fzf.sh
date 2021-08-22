@@ -1,6 +1,3 @@
-#-------------------------------------------------------------
-# Use Ripgrep for FZF instead of find
-#-------------------------------------------------------------
 if [[ -z "${XDG_DATA_HOME}" ]]; then
   echo "WARNING: XDG_DATA_HOME env var is not set in $0"
 fi
