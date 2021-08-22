@@ -5,8 +5,8 @@ fi
 #-------------------------------------------------------------
 # Compilation flags
 #-------------------------------------------------------------
-export CC=gcc
-export CXX=g++
+export CC=gcc-11
+export CXX=g++-11
 
 LDFLAGS="  -L${HOMEBREW_PREFIX}/opt/gettext/lib"
 LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/libffi/lib"
