@@ -12,7 +12,7 @@
     <array>
       <string>/bin/zsh</string>
       <string>-c</string>
-      <string>${DOTFILES_DIR}/bin/pd --pd-refresh</string>
+      <string>${HOME}/.dotfiles/bin/pd --pd-refresh</string>
     </array>
 
     <key>Nice</key>
