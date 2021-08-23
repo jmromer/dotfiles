@@ -66,6 +66,9 @@
 	suppressCC       = self
 	annotate         = true
 
+[init]
+	defaultBranch = master
+
 [interactive]
 	singlekey  = true
 	diffFilter  = delta --color-only
