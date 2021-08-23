@@ -4,8 +4,10 @@
 
 source "${ASDF_DIR}/asdf.sh"
 
+# If the  brew service is running, stop it.
 brew services stop postgresql 2>/dev/null
 
+# If any other ASDF-managed version is running, stop it.
 for version in $(asdf list postgres); do
   asdf shell postgres "${version}"
   pg_ctl stop 2>/dev/null
