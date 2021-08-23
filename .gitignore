@@ -79,3 +79,6 @@ state
 
 # keep
 !**/*/.keep
+
+# specific files
+config/configstore/update-notifier-npm.json
