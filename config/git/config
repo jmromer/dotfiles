@@ -76,12 +76,11 @@
 [merge]
 	conflictstyle = diff3
 	ff            = no
-	prompt        = false
 	tool          = vimdiff
 
 [mergetool]
 	keepBackup = false
-	prompt     = true
+	prompt     = false
 
 [mergetool "vimdiff"]
 	cmd = vimdiff
