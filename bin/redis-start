@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [[ -z "${XDG_STATE_HOME}" ]]; then
+  echo "WARNING: XDG_STATE_HOME env var is not set in ${0}"
+fi
+
+# Start server with a db stored at the XDG_STATE_HOME path
+DB_DIR="${XDG_STATE_HOME}/redis"
+DB_NAME="$(basename ${PWD})"
+
+printf "%s\n\n" "redis-server --dir ${DB_DIR} --dbfilename ${DB_NAME}.rdb"
+redis-server --dir "${DB_DIR}" --dbfilename "${DB_NAME}".rdb
