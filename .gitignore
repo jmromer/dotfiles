@@ -79,6 +79,7 @@ state
 
 # keep
 !**/*/.keep
+!share/tmux/
 
 # specific files
 config/configstore/update-notifier-npm.json
