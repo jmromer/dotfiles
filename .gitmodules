@@ -28,3 +28,6 @@
 [submodule "share/emacs"]
 	path = share/emacs
 	url = https://github.com/hlissner/doom-emacs
+[submodule "share/tmux/tmux-prefix-highlight"]
+	path = share/tmux/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
