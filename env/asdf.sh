@@ -13,10 +13,6 @@ if [[ -z "${MACHINE_CORES}" ]]; then
   echo "WARNING: MACHINE_CORES env var is not set in ${0}"
 fi
 
-if [[ -z "${ASDF_DIR}" ]]; then
-  echo "WARNING: MACHINE_CORES env var is not set in ${0}"
-fi
-
 # Defaults to ~/.asdfrc. Can be set to any location.
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/config"
 
@@ -27,6 +23,7 @@ export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="${XDG_CONFIG_HOME}/asdf/tool-version
 # Defaults to ~/.asdf - Location of the asdf scripts.
 # If you install asdf to some other directory, set this to that directory.
 export ASDF_DIR="${XDG_DATA_HOME}/asdf-manager"
+source "${ASDF_DIR}/asdf.sh"
 
 # Defaults to ~/.asdf - Location where asdf install plugins, shims and installs.
 # Can be set to any location before sourcing asdf.sh
@@ -45,4 +42,3 @@ export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-librar
 # extra config options for installs
 export POSTGRES_EXTRA_CONFIGURE_OPTIONS="--with-uuid=e2fs"
 
-source "${ASDF_DIR}/asdf.sh"
