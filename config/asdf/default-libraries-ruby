@@ -3,6 +3,7 @@ benchmark-ips
 bundler
 bundler-gtags
 colorize
+debug
 fastri
 gem-browse
 gem-ctags
@@ -10,8 +11,6 @@ hirb
 interactive_editor
 jazz_fingers
 pretty_backtrace
-pry
-pry-byebug
 rake
 rcodetools
 rspec
