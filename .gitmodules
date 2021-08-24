@@ -31,3 +31,6 @@
 [submodule "share/tmux/tmux-prefix-highlight"]
 	path = share/tmux/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
+[submodule "share/tmux/tmux-open"]
+	path = share/tmux/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open.git
