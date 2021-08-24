@@ -15,7 +15,7 @@ reshim         Recreate shims for version of a package
 freeze         Write a .tool-versions file in the current directory
 "
 
-FZF_DEFAULT_OPTS="--ansi --layout=reverse --no-multi"
+FZF_DEFAULT_OPTS+=" --layout=reverse --no-multi"
 
 select-subcommand() {
     echo "$SUBCOMMANDS" | grep -E '[a-z]' | fzf | awk '{ print $1 }'
