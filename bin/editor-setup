@@ -16,8 +16,6 @@
 #   editor-setup all
 #
 
-set -e
-
 setup_golang() {
   # GO111MODULE=on CGO_ENABLED=0 \
     # go get -v -trimpath -ldflags '-s -w' \
@@ -53,12 +51,22 @@ setup_python() {
 }
 
 setup_mac() {
-    if [[ "$MACHINE" =~ (apple|intel-mac) ]]; then
-        # https://github.com/syl20bnr/spacemacs/issues/11541
-        # if using dark mode, you'll need this
-        # to disable: defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
-        echo defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
-        defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
+  return
+}
+
+setup_emacs_plus() {
+    [[ ! "$MACHINE" =~ (apple|intel-mac) ]] && return
+
+    # emacs-plus mod: Render emacs app's title bar text for dark mode
+    # https://github.com/syl20bnr/spacemacs/issues/11541
+    is_enabled="$(defaults read org.gnu.Emacs NSRequiresAquaSystemAppearance 2>/dev/null)"
+
+    if [[ "${is_enabled}" == "true" ]]; then
+      echo "Disabling emacs-plus dark mode"
+      defaults delete org.gnu.Emacs NSRequiresAquaSystemAppearance
+    else
+      echo "Enabling emacs-plus dark mode"
+      defaults write org.gnu.Emacs NSRequiresAquaSystemAppearance true
     fi
 }
 
@@ -110,6 +118,11 @@ while [ $# -gt -1 ]; do
         'mac')
             message "Configuring Mac"
             setup_mac
+            shift
+            ;;
+        'emacs-plus')
+            message "Configuring emacs-plus"
+            setup_emacs_plus
             shift
             ;;
         "")
