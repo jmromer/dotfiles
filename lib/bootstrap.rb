@@ -219,13 +219,8 @@ DOTFILES_DIR = File.expand_path("~/.dotfiles")
 
 ENVIRONMENT =
   %x[
-    zsh -c "
-      . #{DOTFILES_DIR}/config/zsh/.zshenv &&
-      . #{DOTFILES_DIR}/env/xdg.sh &&
-      . #{DOTFILES_DIR}/env/asdf.sh &&
-      env |
-      grep -E '^(XDG_|ASDF_|PATH)'"
-  ].strip
+    zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|ASDF_|PATH)'"]
+    .strip
    .split("\n")
    .map { |line| line.split("=") }
    .push(["HOMEBREW_NO_INSTALL_CLEANUP", "true"])
