@@ -89,6 +89,9 @@ git_color() {
       *'no fusionadas'*)
       echo -ne "$(color violet)"
       ;;
+    *)
+      echo -ne "$(color white)"
+      ;;
   esac
 }
 
