@@ -1,0 +1,62 @@
+# /Users/jmromer/.config/tmuxinator/remote_first.yml
+
+name: remote_first
+root: ~/Work/remote_first
+
+# Optional tmux socket
+# socket_name: foo
+
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
+
+# Project hooks
+
+# Runs on project start, always
+# on_project_start: command
+
+# Run on project start, the first time
+on_project_first_start: pg_start
+
+# Run on project start, after the first time
+# on_project_restart: command
+
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+
+# Run on project stop
+# on_project_stop: command
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+windows:
+  - webpack:
+      layout: even-horizontal
+      panes:
+        - cd ~/Desktop/open-pro/open-pro-react && PORT=3009 npm start
+        - bin/webpack-dev-server
+  - server:
+      layout: tiled
+      panes:
+        - bin/rails server --port 3000
+        - sleep 4 && bin/docs
+        - redis-server
+        - bin/sidekiq
+  - specs: bin/rspec
+  - console: bin/rails console
+  - shell: fortune
