@@ -41,5 +41,6 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 export NPM_CONFIG_PREFIX="${XDG_DATA_HOME}/npm"
 
-# bundler
+# bundler, rubygems
 export BUNDLE_CACHE_PATH="${XDG_CACHE_HOME}/bundler"
+export GEMRC="${XDG_CONFIG_HOME}/gem/gemrc"
