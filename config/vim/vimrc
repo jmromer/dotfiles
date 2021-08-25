@@ -65,11 +65,24 @@ if has('termguicolors')
   set termguicolors
 endif
 
+" Color scheme settings
+if has('gui_running')
+  set vb                    " no audible bell
+  set guioptions-=T         " no toolbar
+  set guioptions+=c         " use console dialogs
+  set transparency=1        " enable transparency
+  set lines=50 columns=80   " size of window
+  set guifont=JuliaMono:h16
+  colorscheme 'spacemacs'
+endif
+
 set background=dark
 execute 'colorscheme spacemacs'
 
+"comments in italics
 hi Comment cterm=italic
-let g:airline_theme='violet'
+" transparent background
+hi Normal guibg=NONE ctermbg=NONE
 
 
 "--------------------------------------------------------------
@@ -451,7 +464,7 @@ let g:indentLine_enabled = 0
 let g:used_javascript_libs = 'jquery,underscore,react,flux,requirejs'
 
 let g:lightline = {
-      \   'colorscheme': 'solarized',
+      \   'colorscheme': 'one',
       \   'active': {
         \     'left': [
           \       [ 'mode', 'paste' ],
