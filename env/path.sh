@@ -46,4 +46,6 @@ export PATH
 
 # Prefer BSD uname, becuase it reports m1 arch as 'arm'
 # GNU uname reports it as 'arm64', which breaks some build scripts
-ln -sf /usr/bin/uname "${HOMEBREW_PREFIX}/bin/uname"
+if [[ -d "${HOMEBREW_PREFIX}/bin" ]]; then
+  ln -sf /usr/bin/uname "${HOMEBREW_PREFIX}/bin/uname"
+fi

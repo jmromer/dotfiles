@@ -28,7 +28,7 @@ export MACHINE
 export MACHINE_CORES
 export HOMEBREW_PREFIX
 
-eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # XDG setup
 # -----------------------------
