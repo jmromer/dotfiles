@@ -3,6 +3,7 @@
 set -e
 
 SUBCOMMANDS="
+current        Display currently enabled versions
 plugin-add     Add a plugin from the plugin repo
 plugin-remove  Remove plugin and package versions
 plugin-update  Update a plugin to latest commit
@@ -24,6 +25,8 @@ select-subcommand() {
 select-language() {
     if [[ "$1" == plugin-add ]]; then
         asdf plugin list all | awk '{ print $1 }' | fzf
+    elif [[ "$1" == "with-all" ]]; then
+        echo all $(asdf plugin list) | tr ' ' '\n' | fzf
     else
         asdf plugin list | fzf
     fi
@@ -65,7 +68,20 @@ if [[ $subcommand =~ ^plugin ]]; then
     [[ -n "$selection" ]] && echo "asdf $subcommand $selection" && exit 0
 fi
 
-language=$(select-language)
+
+if [[ "$subcommand" == current ]]; then
+  language=$(select-language "with-all")
+else
+  language=$(select-language)
+fi
+
+
+if [[ "$subcommand" == current ]]; then
+    lang=$(echo $language | sed -E 's/^all$//')
+    echo asdf ${subcommand} ${lang} | sed -E 's/ +/ /g'
+    exit 0
+fi
+
 selection=$(select-language-version "$subcommand" "$language")
 
 [[ -z "$selection" ]] && exit 0
