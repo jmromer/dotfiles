@@ -161,4 +161,5 @@ build_flags_set \
   readline \
   ruby \
   zlib \
-  gcc-11
+  gcc-11 \
+  g++-11
