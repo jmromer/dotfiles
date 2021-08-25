@@ -7,7 +7,10 @@
 # Return only the methods not present on basic objects
 # alternatively, use `ls <object> -m`
 
-Pry.editor = "/usr/local/bin/vim -u ~/.vim/minimal.vim"
+updated_vim = File.join(ENV["HOMEBREW_PREFIX"], "bin/vim")
+minimalrc = File.join(ENV["XDG_CONFIG_HOME"], "vim/vimrc.minimal.vim")
+Pry.editor = "#{updated_vim} -u #{minimalrc}"
+
 
 unless defined?(Rails) && Rails.env
   begin
