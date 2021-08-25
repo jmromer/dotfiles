@@ -24,6 +24,9 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 # vim config (ephemeral files config therein)
 export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
 
+# doom
+export DOOMDIR="${XDG_CONFIG_HOME}/doom"
+
 # gnupg
 export GNUPGHOME="${XDG_SECURE_DIR}/gnupg"
 
