@@ -2,7 +2,7 @@
 
 set -e
 
-cd "${HOME}/Projects/blogs/samizdat"
+cd "${XDG_DATA_HOME}/blogs/samizdat"
 
 if [[ "$1" == "deploy" ]]; then
   rm -f /tmp/samizdat.deploy.*
