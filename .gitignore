@@ -1,6 +1,8 @@
 ### Emacs ###
 
 # -*- mode: gitignore; -*-
+
+# Emacs
 *~
 \#*\#
 /.emacs.desktop
@@ -23,7 +25,7 @@ flycheck_*.el
 /server/
 /network-security.data
 
-### Vim ###
+# Vim
 
 [._]*.s[a-v][a-z]
 !*.svg  # comment out if you don't need vector files
@@ -38,7 +40,7 @@ tags
 [._]*.un~
 
 
-### macOS ###
+# macOS
 
 .DS_Store
 .AppleDouble
@@ -58,28 +60,37 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# high-churn files
+# xdg: top-level directories
+
+cache
+locals
+sockets
+state
+
+# xdg: data directories
+
+share/asdf-versions
+share/gem/
+share/npm/
+share/vim/plugged/
+share/ipython/
+share/iterm2/
+share/delta/
+
+# high-churn config files
 config/iterm2/AppSupport
 config/karabiner/automatic_backups
 config/zsh/.zcompcache
 config/zsh/.zcompdump
 config/zsh/.zsh_history
 config/zsh/.zsh_sessions
+config/configstore/update-notifier-npm.json
 
 # binaries
 bin/pd
 
-# xdg directories
-
-cache
-locals
-share
-sockets
-state
-
 # keep
-!**/*/.keep
-!share/tmux/
 
-# specific files
-config/configstore/update-notifier-npm.json
+!**/*/.keep
+
+# ---------------------------------------
