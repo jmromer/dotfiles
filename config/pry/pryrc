@@ -165,6 +165,10 @@ end
 
 
 require "fileutils"
+
+pry_history_path = FileUtils.mkdir_p(File.join(ENV["XDG_STATE_HOME"], "pry")).first
+Pry.config.history_file = File.join(pry_history_path, "pry_history")
+
 pryrc_local_path = FileUtils.mkdir_p(File.join(ENV["XDG_LOCALS_DIR"], "config/pry")).first
 pryrc_local = File.join(pryrc_local_path, "pryrc")
 load(pryrc_local) if File.exist?(pryrc_local)
