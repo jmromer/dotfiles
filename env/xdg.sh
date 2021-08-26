@@ -31,7 +31,7 @@ export DOOMDIR="${XDG_CONFIG_HOME}/doom"
 export GNUPGHOME="${XDG_SECURE_DIR}/gnupg"
 
 # less
-export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
 
 # misc
