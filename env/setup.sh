@@ -18,7 +18,14 @@ case "$(uname -ps)" in
 esac
 
 if command -v /usr/sbin/sysctl >/dev/null; then
-  MACHINE_CORES=$(echo "$(/usr/sbin/sysctl -n hw.ncpu) / 2" | bc)
+  # n-1: http://archlever.blogspot.com/2013/09/lies-damned-lies-and-truths-backed-by.html
+  MACHINE_CORES=$(echo "$(/usr/sbin/sysctl -n hw.ncpu) - 1" | bc)
+
+  IN_ROSETTA="$(/usr/sbin/sysctl -in sysctl.proc_translated)"
+  if [ "${IN_ROSETTA}" -eq "1" ]; then
+    MACHINE="apple"
+    HOMEBREW_PREFIX="/opt/homebrew"
+  fi
 else
   MACHINE_CORES=8
   echo "Warning: MACHINE_CORES set to default value of ${MACHINE_CORES}."
@@ -28,7 +35,7 @@ export MACHINE
 export MACHINE_CORES
 export HOMEBREW_PREFIX
 
-[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # XDG setup
 # -----------------------------
