@@ -131,9 +131,32 @@
 	postbuffer = 524288000
 
 [alias]
-	a        = stage-files
-	aa       = add --all
-	ap       = add --patch
+	# plumbing
+	i        = init
+	ig       = ignore
+	bh       = bisect-helper
+	sf       = select-files
+	cp       = cherry-pick
+
+	# time tracking
+	cli      = clock-in
+	clo      = clock-out
+
+	# checkout
+	co       = checkout
+	cob      = checkout-branch
+	coba     = checkout-branch --all
+	coc      = checkout-commit
+	cours    = checkout --ours
+	ctheirs  = checkout --theirs
+
+	# sha selection
+	sha      = select-sha
+	ahs      = select-sha-reversed
+	shacp    = !sh -c 'git select-sha | pbcopy'
+	ahscp    = !sh -c 'git select-sha-reversed | pbcopy'
+
+	# branch management
 	b        = branch -vv
 	bc       = create-branch-with-remote
 	bcl      = create-branch
@@ -141,70 +164,66 @@
 	bd       = delete-branch
 	bdf      = branch -D
 	bdo      = clear-deleted-branches
-	bi       = bisect-helper
-	ca       = commit-amend
-	cap      = commit --no-verify --amend --no-edit
-	cli      = clock-in
-	clo      = clock-out
+
+	# staging files
+	a        = stage-files
+	aa       = add --all
+	ap       = add --patch
+
+	# committing
 	cm       = commit-quick
 	cmf      = commit-fixup
 	cmm      = commit-quick-force
 	cms      = commit-squash
-	co       = checkout
-	cob      = checkout-branch
-	coba     = checkout-branch --all
-	coc      = checkout-commit
-	cp       = cherry-pick
-	cours    = checkout --ours
-	ctheirs  = checkout --theirs
-	d        = diff
-	ds       = diff --staged
-	dh       = diff --histogram
-	dump     = cat-file -p
+	ca       = commit-amend
+	cap      = commit --no-verify --amend --no-edit
+
+	# remotes: fetching, pushing, pulling
 	f        = fetch
-	file-mod = branch-modified-files
-	file-del = branch-deleted-files
-	h        = log --format=brief --abbrev-commit --graph
-	hg       = log --format=brief --abbrev-commit
-	hb       = hg HEAD --not origin/master
-	hm       = hg --merge
-	hnm      = hg --no-merges --show-linear-break
-	hh       = --no-pager hg -n 15
-	hdiff    = hg -U1
-	hfiles   = hg --format=medium --stat
-	hsince   = !sh -c 'git hg --since=$1' -
-	hstat    = hg --stat
-	i        = init
-	ii       = initialize
-	ig       = ignore
-	lg       = log --grep
-	lgr      = log --walk-reflogs --grep
-	lp       = log --patch
-	lpr      = log --patch -G
-	lps      = log --patch -S
-	m        = merge
-	ma       = merge --abort
-	mc       = merge --continue
-	mt       = mergetool
 	p        = push
 	pf       = push --force-with-lease
 	pls      = pull --autostash
 	po       = push origin
 	pu       = push -u
-	prco     = checkout-pull-request
-	prop     = open-pull-request
-	prc      = pull-request
+	rem      = remote -v
+
+	# rebasing
 	r        = rebase --ignore-date
 	ri       = rebase-interactive
 	ra       = rebase --abort
 	rc       = rebase --continue
-	rem      = remote -v
+	squash   = rebase -i origin/master
 	rmc      = remove-commit
-	sha      = select-sha
-	ahs      = select-sha-reversed
-	shacp    = !sh -c 'git select-sha | pbcopy'
-	ahscp    = !sh -c 'git select-sha-reversed | pbcopy'
-	sf       = select-files
+
+	# merging
+	m        = merge
+	ma       = merge --abort
+	mc       = merge --continue
+	mt       = mergetool
+
+	# diffing
+	d        = diff
+	ds       = diff --staged
+	dh       = diff --histogram
+
+	# log / history
+	h        = log --format=brief --abbrev-commit --graph
+	hb       = hg HEAD --not origin/master
+	hdiff    = hg -U1
+	hfiles   = hg --format=medium --stat
+	hg       = log --format=brief --abbrev-commit
+	hh       = --no-pager hg -n 15
+	hm       = hg --merge
+	hnm      = hg --no-merges --show-linear-break
+	hsince   = !sh -c 'git hg --since=$1' -
+	hstat    = hg --stat
+	lg       = log --grep
+	lgr      = log --walk-reflogs --grep
+	lp       = log --patch
+	lpr      = log --patch -G
+	lps      = log --patch -S
+
+	# stashing
 	s        = stash
 	sc       = stash clear
 	sa       = !sh -c 'git stash apply stash@{$1}' -
@@ -213,8 +232,10 @@
 	su       = stash --include-untracked
 	sl       = stash list
 	sp       = stash pop
-	squash   = rebase -i origin/master
-	type     = cat-file -t
+
+	# patch packaging
+	typeof   = cat-file -t
+	dump     = cat-file -p
 
 [magit]
 	hideCampaign = true
