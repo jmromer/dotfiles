@@ -37,3 +37,9 @@
 [submodule "share/org"]
 	path = share/org
 	url = https://github.com/jmromer/org.git
+[submodule "share/blogs/conclave"]
+	path = share/blogs/conclave
+	url = https://github.com/jmromer/conclave.git
+[submodule "share/blogs/samizdat"]
+	path = share/blogs/samizdat
+	url = https://github.com/jmromer/samizdat.git
