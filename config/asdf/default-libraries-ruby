@@ -11,8 +11,10 @@ interactive_editor
 rake
 rcodetools
 rspec
+rubocop
 rubygems-bundler
 rufo
 seeing_is_believing
+solargraph
 spicy-proton
 tmuxinator
