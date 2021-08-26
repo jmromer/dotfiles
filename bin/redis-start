@@ -8,5 +8,7 @@ fi
 DB_DIR="${XDG_STATE_HOME}/redis"
 DB_NAME="$(basename ${PWD})"
 
+mkdir -p ${DB_DIR}
+
 printf "%s\n\n" "redis-server --dir ${DB_DIR} --dbfilename ${DB_NAME}.rdb"
 redis-server --dir "${DB_DIR}" --dbfilename "${DB_NAME}".rdb
