@@ -43,7 +43,7 @@ Doom exposes five (optional) variables for controlling fonts in Doom.
 Here are the three important ones:
 
 #+begin_src elisp
-; `doom-big-font' -- used for `doom-big-font-mode': use this for presentations / streaming
+;; `doom-big-font' -- used for `doom-big-font-mode': use this for presentations / streaming
 (setq doom-font (font-spec :family "SF Mono" :size 16 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "SF Mono" :size 16)
       doom-big-font (font-spec :family "SF Mono" :size 24))
