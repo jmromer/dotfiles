@@ -59,6 +59,20 @@ File paths for Org documents, Deft notes, and etc.
 * Package configuration functions
 Define per-package configuration in functions to aid bisecting.
 
+** format-all
+
+Disable autoformatting in ruby temporarily until =rufo= is updated to format
+Ruby 3's new language constructs.
+
+#+BEGIN_SRC elisp
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+            sql-mode         ; sqlformat is currently broken
+            tex-mode         ; latexindent is broken
+            latex-mode
+            org-msg-edit-mode
+            ruby-mode))
+#+END_SRC
 ** company
 ** javascript
 ** markdown
