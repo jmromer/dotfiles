@@ -366,11 +366,25 @@ Look for a controller spec if there's no request spec."
 
 * yankee
 
+Set keybindings for visual mode.
+
+TODO: Define with text objects?
+
 #+begin_src elisp
 (require 'yankee)
+
 (map! :desc "yank with annotation"
       :n "g y" #'yankee-yank
       :v "g y" #'yankee-yank)
+#+end_src
+
+Set parameters for =copy-as-format=.
+
+TODO: Move into or document in yankee
+
+#+begin_src elisp
+(setq copy-as-format-asciidoc-include-file-name t
+      copy-as-format-default "github")
 #+end_src
 
 * yasnippet
