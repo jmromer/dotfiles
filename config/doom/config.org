@@ -204,8 +204,8 @@ Ruby 3's new language constructs.
 
 ** ruby-factory
 
-TODO: Make =ruby-factory-switch-to-buffer= a toggle.
-TODO: Refactor to use =(after! (:all yasnippet ruby-factory))= and =add-hook!=.
+- TODO: Make =ruby-factory-switch-to-buffer= a toggle.
+- TODO: Refactor to use =(after! (:all yasnippet ruby-factory))= and =add-hook!=.
 
 #+begin_src elisp
 (require 'yasnippet)
