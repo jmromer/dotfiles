@@ -201,6 +201,17 @@ Ruby 3's new language constructs.
             ruby-mode))
 #+end_src
 
+** ruby-factory
+
+TODO: Make =ruby-factory-switch-to-buffer= a toggle.
+TODO: Refactor to use =(after! (:all yasnippet ruby-factory))= and =add-hook!=.
+
+#+begin_src elisp
+(require 'yasnippet)
+(require 'ruby-factory)
+(add-hook 'ruby-mode-hook #'ruby-factory-mode)
+#+end_src
+
 ** ruby-test
 
 Unbind conflicting =rspec-mode= functions.
