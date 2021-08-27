@@ -65,6 +65,8 @@
 (package! evil-matchit)
 
 ;; ruby
+
+(package! evil-rails)
 (package! seeing-is-believing)
 
 (package! yankee
