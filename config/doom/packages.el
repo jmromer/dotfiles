@@ -65,8 +65,10 @@
 (package! evil-matchit)
 
 ;; ruby
+(disable-packages! minitest)
 
 (package! evil-rails)
+(package! ruby-test-mode)
 (package! seeing-is-believing)
 
 (package! yankee
