@@ -120,14 +120,14 @@ When called with a prefix argument DESC, sort in descending order."
 Add motions to normal state map.
 
 #+begin_src elisp
-(define-key evil-normal-state-map (kbd "g s i p") #'evil-sort-inner-paragraph)
-(define-key evil-normal-state-map (kbd "g s i g") #'evil-sort-inner-buffer)
-(define-key evil-normal-state-map (kbd "g s i {") #'evil-sort-inner-curly)
-(define-key evil-normal-state-map (kbd "g s i }") #'evil-sort-inner-curly)
-(define-key evil-normal-state-map (kbd "g s i [") #'evil-sort-inner-bracket)
-(define-key evil-normal-state-map (kbd "g s i ]") #'evil-sort-inner-bracket)
-(define-key evil-normal-state-map (kbd "g s i (") #'evil-sort-inner-paren)
-(define-key evil-normal-state-map (kbd "g s i )") #'evil-sort-inner-paren)
+(map! :desc "sort paragraph lines" :n "g s i p" #'evil-sort-inner-paragraph
+      :desc "sort buffer lines"    :n "g s i g" #'evil-sort-inner-buffer
+      :desc "sort inside braces"   :n "g s i {" #'evil-sort-inner-curly
+      :desc "sort inside braces"   :n "g s i }" #'evil-sort-inner-curly
+      :desc "sort inside brackets" :n "g s i [" #'evil-sort-inner-bracket
+      :desc "sort inside brackets" :n "g s i ]" #'evil-sort-inner-bracket
+      :desc "sort inside parens"   :n "g s i (" #'evil-sort-inner-paren
+      :desc "sort inside parens"   :n "g s i )" #'evil-sort-inner-paren)
 #+end_src
 
 * folding
