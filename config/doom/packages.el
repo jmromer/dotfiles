@@ -60,3 +60,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;;
 ;(unpin! t)
+
+(package! yankee
+  :recipe (:host github
+           :repo "jmromer/yankee.el"
+           :files ("yankee.el")))
+

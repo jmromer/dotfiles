@@ -134,6 +134,32 @@ Add motions to normal state map.
 (map! :desc "Open magit" "s-g" #'magit-status)
 #+end_src
 
+* Yanking
+
+#+begin_src emacs-lisp
+(after! yankee
+  (define-key evil-visual-state-map (kbd "g y") #'yankee-yank))
+#+end_src
+
+* Time tracking
+
+#+begin_src emacs-lisp
+(defun git-clock-in ()
+  "Clock in with Git."
+  (interactive)
+  (let ((subject-line (read-string "Task: ")))
+    (magit-run-git-with-editor "clock-in" subject-line)))
+
+(defun git-clock-out ()
+  "Clock in with Git."
+  (interactive)
+  (magit-run-git-with-editor "clock-out"))
+
+(with-eval-after-load 'magit
+  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" git-clock-in))
+  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" git-clock-out)))
+#+end_src
+
 * Package configuration functions
 
 Define per-package configuration in functions to aid bisecting.
