@@ -262,8 +262,10 @@ Bind =ruby-test= functions.
 * yankee
 
 #+begin_src elisp
-(after! yankee
-  (define-key evil-visual-state-map (kbd "g y") #'yankee-yank))
+(require 'yankee)
+(map! :desc "yank with annotation"
+      :n "g y" #'yankee-yank
+      :v "g y" #'yankee-yank)
 #+end_src
 
 * yasnippet
