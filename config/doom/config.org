@@ -14,7 +14,7 @@ Some additional useful functions/macros:
   =require= or =use-package=.
 - =map!= for binding new keys
 
-* Identity
+* General
 
 Some functionality uses this to identify you, e.g. GPG configuration, email
 clients, file templates and snippets.
@@ -24,7 +24,14 @@ clients, file templates and snippets.
       user-mail-address "jake@jmromer.org")
 #+end_src
 
-* Display
+File paths for Org documents, Deft notes, and etc.
+
+#+begin_src elisp
+(setq org-directory (concat (getenv "XDG_DATA_HOME") "/org"))
+(setq deft-directory (concat org-directory "/notes"))
+#+end_src
+
+* display
 
 Doom exposes five (optional) variables for controlling fonts in Doom.
 Here are the three important ones:
@@ -40,27 +47,21 @@ Here are the three important ones:
 (add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start maximized
 #+end_src
 
-* Data locations
-
-File paths for Org documents, Deft notes, and etc.
+* dired
 
 #+begin_src elisp
-(setq org-directory (concat (getenv "XDG_DATA_HOME") "/org"))
-(setq deft-directory (concat org-directory "/notes"))
+(map! :desc "Enter dired in the CWD of the current buffer's file." :n "-" #'dired-jump)
 #+end_src
 
-* Code folding
+* evil
 
-Use tab to fold in prog modes.
+** evil-matchit
 
 #+begin_src emacs-lisp
-(defun tab-to-fold-in-normal-state ()
-  "Bind toggle-fold function to the <tab> key."
-  (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
-(add-hook 'prog-mode-hook #'tab-to-fold-in-normal-state)
+(global-evil-matchit-mode)
 #+end_src
 
-* Evil sort motions
+** evil-sort
 
 Define "inside" motion for: buffer, paragraphs, delimiters.
 
@@ -122,26 +123,24 @@ Add motions to normal state map.
 (define-key evil-normal-state-map (kbd "g s i )") #'evil-sort-inner-paren)
 #+end_src
 
-* Keybindings
+* folding
 
-** dired
-#+begin_src elisp
-(map! :desc "Enter dired in the CWD of the current buffer's file." :n "-" #'dired-jump)
+Use tab to fold in prog modes.
+
+#+begin_src emacs-lisp
+(defun tab-to-fold-in-normal-state ()
+  "Bind toggle-fold function to the <tab> key."
+  (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
+(add-hook 'prog-mode-hook #'tab-to-fold-in-normal-state)
 #+end_src
 
-** magit
+* magit
+
 #+begin_src elisp
 (map! :desc "Open magit" "s-g" #'magit-status)
 #+end_src
 
-* Yanking
-
-#+begin_src emacs-lisp
-(after! yankee
-  (define-key evil-visual-state-map (kbd "g y") #'yankee-yank))
-#+end_src
-
-* Time tracking
+** Time tracking
 
 #+begin_src emacs-lisp
 (defun git-clock-in ()
@@ -160,9 +159,7 @@ Add motions to normal state map.
   (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" git-clock-out)))
 #+end_src
 
-* Package configuration functions
-
-Define per-package configuration in functions to aid bisecting.
+* ruby
 
 ** format-all
 
@@ -179,18 +176,16 @@ Ruby 3's new language constructs.
             ruby-mode))
 #+END_SRC
 
-** company
-** javascript
-** markdown
-** org
-** python
-** ruby
-** snippets
-** web
 
-* Auxiliary functions
+* yankee
 
-** yasnippet
+#+begin_src emacs-lisp
+(after! yankee
+  (define-key evil-visual-state-map (kbd "g y") #'yankee-yank))
+#+end_src
+
+* yasnippet
+
 #+begin_src elisp
 (defun yas/camelcase-file-name ()
   "Camel-case the current buffer's file name."
