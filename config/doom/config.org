@@ -24,6 +24,12 @@ clients, file templates and snippets.
       user-mail-address "jake@jmromer.org")
 #+end_src
 
+Use =,= for the local leader key.
+
+#+begin_src elisp
+(setq doom-localleader-key ",")
+#+end_src
+
 File paths for Org documents, Deft notes, and etc.
 
 #+begin_src elisp
