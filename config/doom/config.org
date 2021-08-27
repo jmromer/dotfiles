@@ -215,13 +215,40 @@ Ruby 3's new language constructs.
 
 ** ruby-test
 
-Unbind conflicting =rspec-mode= functions.
+#+begin_src elisp
+(setq
+ ruby-test-rspec-options '("--backtrace" "--format progress" "--no-profile")
+ ruby-test-plain-test-options '("--backtrace" "--format progress" "--no-profile")
+ ruby-test-rails-test-options '("--backtrace" "--format progress" "--no-profile"))
+
+;; Enable entering pry / irb in test runs.
+(add-hook! comint-mode #'evil-normal-state #'inf-ruby-auto-enter)
+#+end_src
+
+rspec-mode options:
 
 #+begin_src elisp
-(map! :map 'rspec-mode-map
-      :localleader
-      "t l" nil
-      "t t" nil)
+(setq
+ rspec-autosave-buffer t
+ rspec-command-options "--backtrace --format progress --no-profile"
+ rspec-spec-command "rspec"
+ rspec-use-bundler-when-possible t
+ rspec-use-opts-file-when-available nil
+ rspec-use-spring-when-possible nil)
+#+end_src
+
+Unbind conflicting =rspec-mode= bindings.
+
+#+begin_src elisp
+(defun unbind-rspec-keybindings ()
+  "Unbind rspec-mode bindings that need to be overriden at the major mode level."
+  (interactive)
+  (map! :map 'rspec-mode-map
+        :localleader
+        "t l" nil
+        "t t" nil))
+
+(add-hook! rspec-mode #'unbind-rspec-keybindings)
 #+end_src
 
 Bind =ruby-test= functions.
