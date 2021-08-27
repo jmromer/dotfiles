@@ -138,7 +138,8 @@ Use tab to fold in prog modes.
 (defun tab-to-fold-in-normal-state ()
   "Bind toggle-fold function to the <tab> key."
   (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
-(add-hook 'prog-mode-hook #'tab-to-fold-in-normal-state)
+
+(add-hook! prog-mode #'tab-to-fold-in-normal-state)
 #+end_src
 
 * magit
@@ -161,7 +162,7 @@ Use tab to fold in prog modes.
   (interactive)
   (magit-run-git-with-editor "clock-out"))
 
-(with-eval-after-load 'magit
+(after! magit
   (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" git-clock-in))
   (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" git-clock-out)))
 #+end_src
