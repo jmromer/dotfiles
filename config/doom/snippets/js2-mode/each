@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+#name : each
+# --
+${1:collection}.forEach(${2:args} => ${3:($4)})$0

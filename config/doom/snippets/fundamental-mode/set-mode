@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: set-mode
+# key: mode
+# --
+
+# -*- mode: $1 -*-
+# vim: set syntax=$1 filetype=$1:
+$0
