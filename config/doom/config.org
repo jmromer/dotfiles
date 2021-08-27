@@ -240,23 +240,23 @@ Bind =ruby-test= functions.
 #+begin_src elisp
 (require 'seeing-is-believing)
 
+(setq seeing-is-believing-max-length 150
+      seeing-is-believing-max-results 10
+      seeing-is-believing-timeout 10.5
+      seeing-is-believing-alignment 'file)
+
+(add-hook! ruby-mode #'seeing-is-believing)
+
 (defun xmpfilter-eval-current-line ()
   "Mark the current line for evaluation and evaluate."
   (interactive)
   (seeing-is-believing-mark-current-line-for-xmpfilter)
   (seeing-is-believing-run-as-xmpfilter))
 
-(after! seeing-is-believing
-  (progn
-    (add-hook! ruby-mode #'seeing-is-believing)
-    (define-key! ruby-mode-map
-      "C-c C-c" #'xmpfilter-eval-current-line
-      "C-c C-v" #'seeing-is-believing-clear
-      "C-c C-f" #'seeing-is-believing-run)
-    (setq seeing-is-believing-max-length 150
-          seeing-is-believing-max-results 10
-          seeing-is-believing-timeout 10.5
-          seeing-is-believing-alignment 'file)))
+(map! :map ruby-mode-map
+      :desc "evaluate line"  "C-c C-c" #'xmpfilter-eval-current-line
+      :desc "evaluate clear" "C-c C-v" #'seeing-is-believing-clear
+      :desc "evaluate file"  "C-c C-f" #'seeing-is-believing-run)
 #+end_src
 
 * yankee
