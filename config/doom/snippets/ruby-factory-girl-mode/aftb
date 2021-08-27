@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name: after :build do |model| ... end
+#group: factory_girl
+# --
+after :build do |${1:`(ruby-factory--yas-factory-girl-model-name)`}|
+  $0
+end

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name: transient :attribute
+#group: fabrication
+# --
+transient :${1:attribute}$0
