@@ -61,8 +61,10 @@
 ;;
 ;(unpin! t)
 
+;; editing
+(package! evil-matchit)
+
 (package! yankee
   :recipe (:host github
            :repo "jmromer/yankee.el"
            :files ("yankee.el")))
-
