@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: module ... end
+# key: mod
+# --
+module ${1:`(yas/camelcase-file-name)`}
+$0
+end

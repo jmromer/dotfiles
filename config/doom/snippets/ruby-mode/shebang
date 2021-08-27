@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: /usr/bin/ruby -wU
+# group: general
+# key: shebang
+# --
+#!/usr/bin/ruby -wU

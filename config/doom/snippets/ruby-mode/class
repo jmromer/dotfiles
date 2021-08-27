@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : class ... end
+# group : definitions
+# key: cls
+# --
+class ${1:`(yas/camelcase-file-name)`}
+  $0
+end
