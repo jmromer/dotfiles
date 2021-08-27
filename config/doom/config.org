@@ -45,6 +45,16 @@ File paths for Org documents, Deft notes, and etc.
 (setq deft-directory (concat org-directory "/notes"))
 #+end_src
 
+* Code folding
+Use tab to fold in prog modes.
+
+#+begin_src emacs-lisp
+(defun tab-to-fold-in-normal-state ()
+  "Bind toggle-fold function to the <tab> key."
+  (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
+(add-hook 'prog-mode-hook #'tab-to-fold-in-normal-state)
+
+#+end_src
 * Keybindings
 ** dired
 #+begin_src elisp
