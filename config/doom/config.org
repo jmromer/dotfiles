@@ -60,7 +60,66 @@ Use tab to fold in prog modes.
 (add-hook 'prog-mode-hook #'tab-to-fold-in-normal-state)
 #+end_src
 
+* Evil sort motions
 
+Define "inside" motion for: buffer, paragraphs, delimiters.
+
+#+begin_src emacs-lisp
+(defun evil-sort-inner (textobj &optional desc)
+  "Sort inside the TEXTOBJ surrounding the point.
+When DESC is non-nil, sort in descending order.
+TEXTOBJ should be a symbol corresponding to `x' in the `evil-inner-x' functions."
+  (interactive)
+  (let ((evil-textobj (intern (format "evil-inner-%s" textobj)))
+        (start-pos (point)))
+    (save-excursion
+      (let* ((bounds (call-interactively evil-textobj))
+             (beg (first bounds))
+             (end (second bounds)))
+        (sort-lines desc beg end)))
+    (goto-char start-pos)))
+
+(defun evil-sort-inner-paragraph (desc)
+  "Sort inside the paragraph under the point.
+When called with a prefix argument DESC, sort in descending order."
+  (interactive "P")
+  (evil-sort-inner 'paragraph desc))
+
+(defun evil-sort-inner-buffer(desc)
+  "Sort inside the current buffer.
+When called with a prefix argument DESC, sort in descending order."
+  (interactive "P")
+  (evil-sort-inner 'buffer desc))
+
+(defun evil-sort-inner-curly(desc)
+  "Sort inside the current curly braces.
+When called with a prefix argument DESC, sort in descending order."
+  (interactive "P")
+  (evil-sort-inner 'curly desc))
+
+(defun evil-sort-inner-paren(desc)
+  "Sort inside the current parentheses.
+When called with a prefix argument DESC, sort in descending order."
+  (interactive "P")
+  (evil-sort-inner 'paren desc))
+
+(defun evil-sort-inner-bracket(desc)
+  "Sort inside the current parentheses.
+When called with a prefix argument DESC, sort in descending order."
+  (interactive "P")
+  (evil-sort-inner 'bracket desc))
+#+end_src
+
+Add motions to normal state map.
+#+begin_src emacs-lisp
+(define-key evil-normal-state-map (kbd "g s i p") #'evil-sort-inner-paragraph)
+(define-key evil-normal-state-map (kbd "g s i g") #'evil-sort-inner-buffer)
+(define-key evil-normal-state-map (kbd "g s i {") #'evil-sort-inner-curly)
+(define-key evil-normal-state-map (kbd "g s i }") #'evil-sort-inner-curly)
+(define-key evil-normal-state-map (kbd "g s i [") #'evil-sort-inner-bracket)
+(define-key evil-normal-state-map (kbd "g s i ]") #'evil-sort-inner-bracket)
+(define-key evil-normal-state-map (kbd "g s i (") #'evil-sort-inner-paren)
+(define-key evil-normal-state-map (kbd "g s i )") #'evil-sort-inner-paren)
 #+end_src
 
 * Keybindings
