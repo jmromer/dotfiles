@@ -165,6 +165,16 @@ Use tab to fold in prog modes.
   (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" git-clock-out)))
 #+end_src
 
+* projectile
+
+#+begin_src elisp
+(map! :desc "toggle test/implementation"
+      :map 'prog-mode-map
+      :localleader
+      :n ","
+      #'projectile-toggle-between-implementation-and-test)
+#+end_src
+
 * ruby
 
 ** evil-rails
