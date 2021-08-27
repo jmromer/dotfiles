@@ -1,6 +1,7 @@
 #+TITLE: Emacs Config
 
 * Notes
+
 You do not need to run 'doom sync' after modifying this file!
 
 Some additional useful functions/macros:
@@ -14,6 +15,7 @@ Some additional useful functions/macros:
 - =map!= for binding new keys
 
 * Identity
+
 Some functionality uses this to identify you, e.g. GPG configuration, email
 clients, file templates and snippets.
 
@@ -23,6 +25,7 @@ clients, file templates and snippets.
 #+end_src
 
 * Display
+
 Doom exposes five (optional) variables for controlling fonts in Doom.
 Here are the three important ones:
 
@@ -37,7 +40,8 @@ Here are the three important ones:
 (add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start maximized
 #+end_src
 
-* Data Locations
+* Data locations
+
 File paths for Org documents, Deft notes, and etc.
 
 #+begin_src elisp
@@ -46,6 +50,7 @@ File paths for Org documents, Deft notes, and etc.
 #+end_src
 
 * Code folding
+
 Use tab to fold in prog modes.
 
 #+begin_src emacs-lisp
@@ -53,9 +58,13 @@ Use tab to fold in prog modes.
   "Bind toggle-fold function to the <tab> key."
   (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
 (add-hook 'prog-mode-hook #'tab-to-fold-in-normal-state)
+#+end_src
+
 
 #+end_src
+
 * Keybindings
+
 ** dired
 #+begin_src elisp
 (map! :desc "Enter dired in the CWD of the current buffer's file." :n "-" #'dired-jump)
@@ -67,6 +76,7 @@ Use tab to fold in prog modes.
 #+end_src
 
 * Package configuration functions
+
 Define per-package configuration in functions to aid bisecting.
 
 ** format-all
@@ -83,6 +93,7 @@ Ruby 3's new language constructs.
             org-msg-edit-mode
             ruby-mode))
 #+END_SRC
+
 ** company
 ** javascript
 ** markdown
@@ -93,6 +104,7 @@ Ruby 3's new language constructs.
 ** web
 
 * Auxiliary functions
+
 ** yasnippet
 #+begin_src elisp
 (defun yas/camelcase-file-name ()
