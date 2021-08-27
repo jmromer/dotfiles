@@ -64,6 +64,9 @@
 ;; editing
 (package! evil-matchit)
 
+;; ruby
+(package! seeing-is-believing)
+
 (package! yankee
   :recipe (:host github
            :repo "jmromer/yankee.el"

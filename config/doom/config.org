@@ -176,6 +176,29 @@ Ruby 3's new language constructs.
             ruby-mode))
 #+END_SRC
 
+** seeing-is-believing
+
+#+begin_src emacs-lisp
+(require 'seeing-is-believing)
+
+(defun xmpfilter-eval-current-line ()
+  "Mark the current line for evaluation and evaluate."
+  (interactive)
+  (seeing-is-believing-mark-current-line-for-xmpfilter)
+  (seeing-is-believing-run-as-xmpfilter))
+
+(after! seeing-is-believing
+  (progn
+    (add-hook! ruby-mode #'seeing-is-believing)
+    (define-key! ruby-mode-map
+      "C-c C-c" #'xmpfilter-eval-current-line
+      "C-c C-v" #'seeing-is-believing-clear
+      "C-c C-f" #'seeing-is-believing-run)
+    (setq seeing-is-believing-max-length 150
+          seeing-is-believing-max-results 10
+          seeing-is-believing-timeout 10.5
+          seeing-is-believing-alignment 'file)))
+#+end_src
 
 * yankee
 
