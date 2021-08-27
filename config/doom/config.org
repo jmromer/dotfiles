@@ -225,6 +225,28 @@ Ruby 3's new language constructs.
           seeing-is-believing-alignment 'file)))
 #+end_src
 
+** ruby-test
+
+Unbind conflicting =rspec-mode= functions.
+
+#+begin_src elisp
+(map! :map 'rspec-mode-map
+      :localleader
+      "t l" nil
+      "t t" nil)
+#+end_src
+
+Bind =ruby-test= functions.
+
+#+begin_src elisp
+(map! :map 'ruby-mode-map
+      :localleader
+      :n "t b" #'ruby-test-run
+      :n "t l" #'ruby-test-rerun
+      :n "t L" #'rspec-run-last-failed
+      :n "t t" #'ruby-test-run-at-point)
+#+end_src
+
 * yankee
 
 #+begin_src elisp
