@@ -68,6 +68,7 @@
 (disable-packages! minitest)
 
 (package! evil-rails)
+(package! ruby-factory)
 (package! ruby-test-mode)
 (package! seeing-is-believing)
 
