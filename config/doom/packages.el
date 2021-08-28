@@ -24,3 +24,5 @@
   :recipe (:host github
            :repo "jmromer/yankee.el"
            :files ("yankee.el")))
+
+(package! dash-at-point)

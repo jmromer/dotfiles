@@ -86,6 +86,25 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 (map! :n "-" #'dired-jump)
 #+end_src
 
+* documentation
+
+Register dash docsets with their associated modes.
+
+#+begin_src elisp
+(require 'dash-at-point)
+(map! :n "H" #'dash-at-point)
+#+end_src
+
+Un-define doom's Dash-related functions
+
+- TODO: Move upstream
+
+#+begin_src elisp
+(fmakunbound '+lookup:dash)
+(fmakunbound '+lookup/in-docsets)
+(fmakunbound '+lookup/in-all-docsets)
+#+end_src
+
 * evil
 
 ** hybrid vim/emacs keybindings
