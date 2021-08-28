@@ -8,21 +8,13 @@
 ;; API Demos:
 ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org
 
-;; editing
-(package! evil-matchit)
-
-;; ruby
 (disable-packages! minitest)
 
+(package! dash-at-point)
+(package! evil-matchit)
 (package! evil-rails)
 (package! ggtags)
 (package! ruby-factory)
 (package! ruby-test-mode)
 (package! seeing-is-believing)
-
-(package! yankee
-  :recipe (:host github
-           :repo "jmromer/yankee.el"
-           :files ("yankee.el")))
-
-(package! dash-at-point)
+(package! yankee :recipe (:host github :repo "jmromer/yankee.el" :files ("yankee.el")))
