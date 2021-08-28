@@ -198,20 +198,37 @@ Un-define doom's Dash-related functions. (TODO: Move upstream.)
 ** Time tracking
 
 #+begin_src elisp
-(defun git-clock-in ()
-  "Clock in with Git."
+(defun magit-clock-in ()
+  "Clock in with Magit."
   (interactive)
   (let ((subject-line (read-string "Task: ")))
     (magit-run-git-with-editor "clock-in" subject-line)))
 
-(defun git-clock-out ()
-  "Clock in with Git."
+(defun magit-clock-out ()
+  "Clock in with Magit."
   (interactive)
   (magit-run-git-with-editor "clock-out"))
 
 (after! magit
-  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" git-clock-in))
-  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" git-clock-out)))
+  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" magit-clock-in))
+  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" magit-clock-out)))
+#+end_src
+
+#+begin_src elisp
+(defun git-clock-in ()
+  "Clock in with Git."
+  (interactive)
+  (when-let ((subject-line (read-string "Task: ")))
+    (shell-command-to-string (format "git-clock-in %s" subject-line))))
+
+(defun git-clock-out ()
+  "Clock in with Git."
+  (interactive)
+  (shell-command-to-string (format "git add --all && git-clock-out")))
+
+(map!
+ "s-c" #'git-clock-in
+ "s-C" #'git-clock-out)
 #+end_src
 
 * org
