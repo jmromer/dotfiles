@@ -112,10 +112,8 @@ Un-define doom's Dash-related functions
 #+begin_src elisp
 (map!
  :map prog-mode-map
- :n "C-s" #'evil-delete-back-to-indentation
- :i "C-s" #'evil-delete-back-to-indentation
- :n "C-k" #'evil-delete-line
- :i "C-k" #'evil-delete-line)
+      :ni "C-s" #'evil-delete-back-to-indentation
+      :ni "C-k" #'evil-delete-line)
 #+end_src
 
 ** evil-matchit
@@ -254,8 +252,7 @@ Use tab to fold in prog modes.
 (map! :desc "toggle test/implementation"
       :map prog-mode-map
       :localleader
-      :n ","
-      #'projectile-toggle-between-implementation-and-test)
+      :n "," #'projectile-toggle-between-implementation-and-test)
 #+end_src
 
 * ruby
@@ -464,8 +461,7 @@ TODO: Define with text objects?
 (require 'yankee)
 
 (map! :desc "yank with annotation"
-      :n "g y" #'yankee-yank
-      :v "g y" #'yankee-yank)
+      :nv "g y" #'yankee-yank)
 #+end_src
 
 Set parameters for =copy-as-format=.
