@@ -41,8 +41,10 @@ Use =,= for the local leader key.
 ** super keys
 
 #+begin_src elisp
-(map! "s-k" #'bury-buffer)
-(map! "s-K" #'kill-current-buffer)
+(map!
+ "s-'" #'+vterm/toggle
+ "s-K" #'kill-current-buffer
+ "s-k" #'bury-buffer)
 #+end_src
 
 ** file paths
