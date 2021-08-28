@@ -53,29 +53,8 @@ Here are the three important ones:
 (add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start maximized
 #+end_src
 
-* word chars
 
-#+begin_src emacs-lisp
-(defun add-underscore-to-word-chars ()
-  "Adds underscore to the word chars syntax entry list."
-  (modify-syntax-entry ?_ "w"))
 
-(defun add-dash-to-word-chars ()
-  "Adds underscore to the word chars syntax entry list."
-  (modify-syntax-entry ?- "w"))
-
-(defun config/add-to-word-char-list ()
-  "Customize the word char list in prog and other modes."
-  (add-hook! emacs-lisp-mode #'add-dash-to-word-chars)
-  (add-hook! markdown-mode   #'add-underscore-to-word-chars)
-  (add-hook! org-mode        #'add-underscore-to-word-chars)
-  (add-hook! prog-mode       #'add-underscore-to-word-chars)
-  (add-hook! python-mode     #'add-underscore-to-word-chars)
-  (add-hook! restclient-mode #'add-underscore-to-word-chars)
-  (add-hook! text-mode       #'add-underscore-to-word-chars)
-  nil)
-
-(config/add-to-word-char-list)
 #+end_src
 
 * dired
@@ -454,6 +433,31 @@ Look for a controller spec if there's no request spec."
       :localleader
       :n "d b" #'ruby/toggle-breakpoint
       :n "d B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
+#+end_src
+
+* word chars
+
+#+begin_src emacs-lisp
+(defun add-underscore-to-word-chars ()
+  "Adds underscore to the word chars syntax entry list."
+  (modify-syntax-entry ?_ "w"))
+
+(defun add-dash-to-word-chars ()
+  "Adds underscore to the word chars syntax entry list."
+  (modify-syntax-entry ?- "w"))
+
+(defun config/add-to-word-char-list ()
+  "Customize the word char list in prog and other modes."
+  (add-hook! emacs-lisp-mode #'add-dash-to-word-chars)
+  (add-hook! markdown-mode   #'add-underscore-to-word-chars)
+  (add-hook! org-mode        #'add-underscore-to-word-chars)
+  (add-hook! prog-mode       #'add-underscore-to-word-chars)
+  (add-hook! python-mode     #'add-underscore-to-word-chars)
+  (add-hook! restclient-mode #'add-underscore-to-word-chars)
+  (add-hook! text-mode       #'add-underscore-to-word-chars)
+  nil)
+
+(config/add-to-word-char-list)
 #+end_src
 
 * workspaces
