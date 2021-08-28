@@ -110,8 +110,8 @@ Un-define doom's Dash-related functions
 ** hybrid vim/emacs keybindings
 
 #+begin_src elisp
-(map!
- :map prog-mode-map
+(map! :map (prog-mode-map text-mode-map)
+      :i  "C-d" #'evil-delete-char
       :ni "C-s" #'evil-delete-back-to-indentation
       :ni "C-k" #'evil-delete-line)
 #+end_src
