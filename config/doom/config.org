@@ -324,6 +324,17 @@ Unbind conflicting =rspec-mode= bindings.
 Bind =ruby-test= functions.
 
 #+begin_src elisp
+(global-unset-key (kbd "s-RET"))
+(global-unset-key (kbd "s-<return>"))
+(global-unset-key (kbd "s-S-RET"))
+(global-unset-key (kbd "s-S-<return>"))
+
+(map! :map ruby-mode-map
+      :ni "s-<return>"   #'ruby-test-run
+      :ni "s-RET"        #'ruby-test-run
+      :ni "s-S-<return>" #'ruby-test-run-rerun
+      :ni "s-S-RET"      #'ruby-test-run-rerun)
+
 (map! :map ruby-mode-map
       :localleader
       :n "t b" #'ruby-test-run
