@@ -425,6 +425,114 @@ Look for a controller spec if there's no request spec."
       :n "d B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
 #+end_src
 
+* webkit
+
+Reminders:
+
+- There's a long-standing bug whereby killing a browser buffer disables =ESC= until a restart. Bury browser buffers instead.
+- Use in-emacs browser sessions only for security-insensitive taaks (reading documentation, etc.)
+- NB: Watching [[https://github.com/akirakyle/emacs-webkit][emacs-webkit]]
+
+** browser-open keybindings
+
+#+begin_src elisp
+(map! :n "g F" #'browser-open-at-point)
+#+end_src
+
+** browser-open commands
+
+#+begin_src elisp
+(defun browser-open-at-point (use-new-session)
+  (interactive "P")
+  (if-let (url (browser-open--ensure-url
+                (browser-open--get-url-at-point)))
+      (browser-open use-new-session url)
+    (message (format "not a valid url"))))
+
+(defun browser-open (new-session &optional url)
+  "Open a web browser to a new url URL (prompt for it if not provided).
+If prefix arg NEW-SESSION is passed, create a new session."
+  (interactive "P")
+  (when-let* ((hist '("http://" "https://google.com" "https://github.com" "https://exercism.com"))
+              (addr (or url (read-from-minibuffer "url: " "https://" nil nil 'hist)))
+              (target (unless (string= addr "") addr)))
+    (message (format "Requesting %s ..." target))
+    (xwidget-webkit-browse-url target new-session)))
+
+(defun browser-open-in-new-session (&optional url)
+  "Open a web browser to a new url (prompt for it) in a new session."
+  (interactive)
+  (open-web-browser t url))
+#+end_src
+
+** browser-open functions
+
+#+begin_src elisp
+(defun browser-open--ensure-url (candidate-str)
+  (let* ((candidate-url (browser-open--ensure-scheme candidate-str))
+         (hostname (nth 2 (split-string candidate-url "/"))))
+    (when (string-match-p "\\." hostname)
+      candidate-url)))
+
+(defun browser-open--ensure-scheme (candidate-str)
+  (if (or (string-prefix-p "https://" candidate-str t)
+          (string-prefix-p "http://" candidate-str t))
+    candidate-str
+    (format "https://%s"
+            (replace-regexp-in-string
+             "^[^[:word:]]+" ""
+             candidate-str))))
+
+(defun browser-open--get-url-at-point ()
+  (save-excursion
+    (let* ((oldpoint (point)) (start (point)) (end (point))
+           (syntaxes "w_")
+           (not-syntaxes (concat "^" syntaxes)))
+      (skip-syntax-backward syntaxes) (setq start (point))
+      (goto-char oldpoint)
+      (skip-syntax-forward syntaxes) (setq end (point))
+      (when (and (eq start oldpoint)
+                 (eq end oldpoint))
+        ;; Look for preceding word in same line.
+        (skip-syntax-backward not-syntaxes (line-beginning-position))
+        (if (bolp)
+            ;; No preceding word in same line.
+            ;; Look for following word in same line.
+            (progn
+              (skip-syntax-forward not-syntaxes (line-end-position))
+              (setq start (point))
+              (skip-syntax-forward syntaxes)
+              (setq end (point)))
+          (setq end (point))
+          (skip-syntax-backward syntaxes)
+          (setq start (point))))
+      ;; If we found something nonempty, return it as a string.
+      (unless (= start end)
+         (buffer-substring-no-properties start end)))))
+#+end_src
+
+** xwidget-widget keybindings
+
+#+begin_src elisp
+(defun config/xwidget-webkit ()
+  "Configure xwidget keybindings."
+  (evil-define-key*
+    'normal xwidget-webkit-mode-map
+    "g"  nil
+    "gf" #'web-browser-open
+    "gF" #'web-browser-open-in-new-session
+    "j"  #'xwidget-webkit-scroll-up-line
+    "J"  #'xwidget-webkit-scroll-up
+    "k"  #'xwidget-webkit-scroll-down-line
+    "K"  #'xwidget-webkit-scroll-down
+    "r"  #'xwidget-webkit-reload
+    "y"  #'xwidget-webkit-copy-selection-as-kill
+    "Y"  #'xwidget-webkit-current-url-message-kill))
+
+(evil-set-initial-state 'xwidget-webkit-mode 'normal)
+(add-hook 'xwidget-webkit-mode-hook #'config/xwidget-webkit)
+#+end_src
+
 * word chars
 
 #+begin_src emacs-lisp
