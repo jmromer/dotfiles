@@ -587,6 +587,42 @@ If prefix arg NEW-SESSION is passed, create a new session."
  "s-}" #'+workspace/switch-right)
 #+end_src
 
+* yank-buffer-path-dwim
+
+Combines behavior from the following commands, unifying their interfaces with a =C-u= fallback.:
+
+- =+default/yank-buffer-path=
+- =+default/yank-buffer-path-relative-to-project=
+
+#+begin_src elisp
+(defun is-proj-root-p (name)
+  (or (file-directory-p (format "%s/.git" name))
+      (file-directory-p (format "%s/.projectile" name))))
+
+(defun yank-buffer-path-dwim (abspath-p)
+  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, uses `default-directory'.)
+Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
+Provide an absolute path if teh prefix argument ABSPATH-P is provided."
+  (interactive "P")
+  (let ((yanked-path
+        (if-let ((file-path buffer-file-name))
+            (let* ((proj-path (expand-file-name (locate-dominating-file file-path #'is-proj-root-p)))
+                   (disp-path (if abspath-p file-path
+                                (replace-regexp-in-string (concat "^" proj-path) "" file-path))))
+              disp-path)
+          (abbreviate-file-name default-directory))))
+    (progn
+      (kill-new yanked-path)
+      (message (format "Copied to clipboard: %s" yanked-path)))))
+#+end_src
+
+#+begin_src elisp
+(map! :desc "yank buffer path"
+      :leader
+      "f Y" nil
+      "f y" #'yank-buffer-path-dwim)
+#+end_src
+
 * yankee
 
 Set keybindings for visual mode.
