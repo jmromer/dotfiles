@@ -86,23 +86,14 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 (map! :n "-" #'dired-jump)
 #+end_src
 
-* documentation
 
-Register dash docsets with their associated modes.
 
 #+begin_src elisp
-(require 'dash-at-point)
-(map! :n "H" #'dash-at-point)
 #+end_src
 
-Un-define doom's Dash-related functions
 
-- TODO: Move upstream
 
 #+begin_src elisp
-(fmakunbound '+lookup:dash)
-(fmakunbound '+lookup/in-docsets)
-(fmakunbound '+lookup/in-all-docsets)
 #+end_src
 
 * evil
@@ -195,6 +186,29 @@ Use tab to fold in prog modes.
   (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
 
 (add-hook! prog-mode #'tab-to-fold-in-normal-state)
+#+end_src
+
+* lookup
+
+Register dash docsets with their associated modes.
+
+#+begin_src elisp
+(require 'dash-at-point)
+(map! :n "H" #'dash-at-point)
+#+end_src
+
+Use xwidgets to browse online search results online.
+
+#+begin_src elisp
+(setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
+#+end_src
+
+Un-define doom's Dash-related functions. (TODO: Move upstream.)
+
+#+begin_src elisp
+(fmakunbound '+lookup:dash)
+(fmakunbound '+lookup/in-docsets)
+(fmakunbound '+lookup/in-all-docsets)
 #+end_src
 
 * magit
