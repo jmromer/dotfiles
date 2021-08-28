@@ -141,6 +141,7 @@
 	# time tracking
 	cli      = clock-in
 	clo      = clock-out
+	cloe     = clock-out-with-editor
 
 	# checkout
 	co       = checkout
