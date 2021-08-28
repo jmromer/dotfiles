@@ -222,7 +222,7 @@ Use tab to fold in prog modes.
 
 #+begin_src elisp
 (map! :desc "toggle test/implementation"
-      :map 'prog-mode-map
+      :map prog-mode-map
       :localleader
       :n ","
       #'projectile-toggle-between-implementation-and-test)
@@ -294,7 +294,7 @@ Unbind conflicting =rspec-mode= bindings.
 (defun unbind-rspec-keybindings ()
   "Unbind rspec-mode bindings that need to be overriden at the major mode level."
   (interactive)
-  (map! :map 'rspec-mode-map
+  (map! :map rspec-mode-map
         :localleader
         "t l" nil
         "t t" nil))
@@ -305,7 +305,7 @@ Unbind conflicting =rspec-mode= bindings.
 Bind =ruby-test= functions.
 
 #+begin_src elisp
-(map! :map 'ruby-mode-map
+(map! :map ruby-mode-map
       :localleader
       :n "t b" #'ruby-test-run
       :n "t l" #'ruby-test-rerun
