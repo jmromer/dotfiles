@@ -88,6 +88,17 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 
 * evil
 
+** hybrid vim/emacs keybindings
+
+#+begin_src elisp
+(map!
+ :map prog-mode-map
+ :n "C-s" #'evil-delete-back-to-indentation
+ :i "C-s" #'evil-delete-back-to-indentation
+ :n "C-k" #'evil-delete-line
+ :i "C-k" #'evil-delete-line)
+#+end_src
+
 ** evil-matchit
 
 #+begin_src elisp
