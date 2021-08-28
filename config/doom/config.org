@@ -55,8 +55,10 @@ Here are the three important ones:
 
 * dired
 
+From the normal state, Enter dired in the CWD of the current buffer's file with =-=.
+
 #+begin_src elisp
-(map! :desc "Enter dired in the CWD of the current buffer's file." :n "-" #'dired-jump)
+(map! :n "-" #'dired-jump)
 #+end_src
 
 * evil
