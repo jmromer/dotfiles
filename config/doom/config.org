@@ -2,9 +2,7 @@
 
 * Notes
 
-You do not need to run 'doom sync' after modifying this file!
-
-Some additional useful functions/macros (see [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples):
+Useful functions/macros (see [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples):
 
 - =load!= for loading external *.el files relative to this one
 - =use-package!= for configuring packages
@@ -16,28 +14,7 @@ Some additional useful functions/macros (see [[https://github.com/hlissner/doom-
 
 * General
 
-Some functionality uses this to identify you, e.g. GPG configuration, email
-clients, file templates and snippets.
-
-#+begin_src elisp
-(setq user-full-name "Jake Romer"
-      user-mail-address "jake@jmromer.org")
-#+end_src
-
-Use =,= for the local leader key.
-
-#+begin_src elisp
-(setq doom-localleader-key ",")
-#+end_src
-
-File paths for Org documents, Deft notes, and etc.
-
-#+begin_src elisp
-(setq org-directory (concat (getenv "XDG_DATA_HOME") "/org"))
-(setq deft-directory (concat org-directory "/notes"))
-#+end_src
-
-* display
+** display
 
 Doom exposes five (optional) variables for controlling fonts in Doom.
 Here are the three important ones:
@@ -53,8 +30,31 @@ Here are the three important ones:
 (add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start maximized
 #+end_src
 
+** leader keys
 
+Use =,= for the local leader key.
 
+#+begin_src elisp
+(setq doom-localleader-key ",")
+#+end_src
+
+** file paths
+
+File paths for Org documents, Deft notes, and etc.
+
+#+begin_src elisp
+(setq org-directory (concat (getenv "XDG_DATA_HOME") "/org"))
+(setq deft-directory (concat org-directory "/notes"))
+#+end_src
+
+** identity
+
+Some functionality uses this to identify you, e.g. GPG configuration, email
+clients, file templates and snippets.
+
+#+begin_src elisp
+(setq user-full-name "Jake Romer"
+      user-mail-address "jake@jmromer.org")
 #+end_src
 
 * dired
@@ -63,16 +63,6 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 
 #+begin_src elisp
 (map! :n "-" #'dired-jump)
-#+end_src
-
-
-
-#+begin_src elisp
-#+end_src
-
-
-
-#+begin_src elisp
 #+end_src
 
 * evil
