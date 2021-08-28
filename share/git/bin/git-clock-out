@@ -13,11 +13,7 @@
 set -e
 
 usage() {
-    cat "$0" |
-        head -"$((LINENO - 4))" |
-        grep '^#' |
-        tail -n +2 |
-        cut -c 3-
+    cat "$0" | head -"$((LINENO - 4))" | grep '^#' | tail -n +2 | cut -c 3-
 }
 
 duration() {
@@ -73,5 +69,3 @@ ELAPSED: $(duration $CLOCK_SECS)
 
 TOTAL: $(duration $TOTAL_SECS)
 " >/dev/null
-
-git commit --amend
