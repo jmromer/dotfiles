@@ -37,6 +37,7 @@ setup :core_cli_tools do
   brew_install :watch
   brew_install :wdiff
   brew_install :wget
+  brew_install :wordnet
 end
 
 setup :gui_apps do
