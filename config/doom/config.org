@@ -207,7 +207,7 @@ Un-define doom's Dash-related functions. (TODO: Move upstream.)
 (defun magit-clock-out ()
   "Clock in with Magit."
   (interactive)
-  (magit-run-git-with-editor "clock-out"))
+  (magit-run-git-with-editor "clock-out-with-editor"))
 
 (after! magit
   (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" magit-clock-in))
