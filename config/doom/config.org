@@ -167,6 +167,30 @@ Use tab to fold in prog modes.
   (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" git-clock-out)))
 #+end_src
 
+* org
+
+#+begin_src elisp
+(setq org-structure-template-alist
+      '(
+        ("a" . "export ascii")
+        ("c" . "center")
+        ("C" . "comment")
+        ("e" . "example")
+        ("E" . "export")
+        ("h" . "export html")
+        ("l" . "export latex")
+        ("n" . "export notes")
+        ("q" . "quote")
+        ("s" . "src")
+        ("se" . "src elisp")
+        ("sj" . "src javascript")
+        ("sp" . "src python")
+        ("sr" . "src ruby")
+        ("sx" . "src elixir")
+        ("v" . "verse")
+        ))
+#+end_src
+
 * projectile
 
 #+begin_src elisp
