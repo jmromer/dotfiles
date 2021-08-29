@@ -136,6 +136,23 @@ Add refresh hooks for magit > 2.4.0.
   (add-hook! magit-post-refresh #'diff-hl-magit-post-refresh))
 #+end_src
 
+Small improvement to =diff-hl-show-hunk-copy-original-text=.
+
+TODO: Contribute upstream.
+
+#+begin_src elisp
+(after! diff-hl-show-hunk
+  (defun diff-hl-show-hunk-copy-original-text ()
+    "Extracts all the lines from BUFFER starting with '-' to the kill ring."
+    (interactive)
+    (if-let (original-content diff-hl-show-hunk--original-content)
+        (progn
+          (kill-new original-content)
+          (message "Original hunk content added to kill-ring")))
+    (message "Hunk is a new addition, no content to copy."))
+  nil)
+#+end_src
+
 Temporary patch to =diff-hl-show-hunk-hide= until [[https://github.com/dgutov/diff-hl/commit/d225def4a473a16ac994124e063695ef9cef3308][diff-hl@d225def4a]] is released.
 
 #+begin_src elisp
