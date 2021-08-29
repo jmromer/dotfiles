@@ -12,6 +12,7 @@
 - [[#dired][dired]]
 - [[#evil][evil]]
   - [[#hybrid-vimemacs-keybindings][hybrid vim/emacs keybindings]]
+  - [[#evil-unimpaired][evil-unimpaired]]
   - [[#evil-matchit][evil-matchit]]
   - [[#evil-sort][evil-sort]]
 - [[#folding][folding]]
@@ -182,6 +183,16 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
       :i  "C-d" #'evil-delete-char
       :ni "C-s" #'evil-delete-back-to-indentation
       :ni "C-k" #'evil-delete-line)
+#+end_src
+
+** evil-unimpaired
+
+#+begin_src elisp
+(evil-unimpaired)
+
+(map!
+ :n "[h" #'git-gutter:previous-hunk
+ :n "]h" #'git-gutter:next-hunk)
 #+end_src
 
 ** evil-matchit
