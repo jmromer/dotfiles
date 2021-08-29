@@ -23,11 +23,6 @@
 (package! seeing-is-believing)
 (package! yankee :recipe (:host github :repo "jmromer/yankee.el" :files ("yankee.el")))
 
-;; lisp
-;; ----
-;; https://github.com/eraserhd/parinfer-rust
-;; https://github.com/justinbarclay/parinfer-rust-mode
-
 ;; python
 ;; ------
 ;; elpy: https://github.com/jorgenschaefer/elpy
