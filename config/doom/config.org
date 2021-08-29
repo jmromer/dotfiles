@@ -12,6 +12,7 @@
 - [[#dired][dired]]
 - [[#evil][evil]]
   - [[#hybrid-vimemacs-keybindings][hybrid vim/emacs keybindings]]
+  - [[#evil-cleverparens][evil-cleverparens]]
   - [[#evil-unimpaired][evil-unimpaired]]
   - [[#evil-matchit][evil-matchit]]
   - [[#evil-sort][evil-sort]]
@@ -204,6 +205,13 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
       :i  "C-d" #'evil-delete-char
       :ni "C-s" #'evil-delete-back-to-indentation
       :ni "C-k" #'evil-delete-line)
+#+end_src
+
+** evil-cleverparens
+
+#+begin_src elisp
+(require 'evil-cleverparens)
+(add-hook! emacs-lisp-mode #'evil-cleverparens-mode)
 #+end_src
 
 ** evil-unimpaired
