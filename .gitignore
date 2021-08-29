@@ -76,6 +76,7 @@ share/vim/plugged/
 share/ipython/
 share/iterm2/
 share/delta/
+share/direnv/
 
 # high-churn config files
 config/iterm2/AppSupport
