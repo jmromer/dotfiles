@@ -199,13 +199,13 @@ Un-define doom's Dash-related functions. (TODO: Move upstream.)
 
 #+begin_src elisp
 (defun magit-clock-in ()
-  "Clock in with Magit."
+  "Clock in with Magit, reading a commit subject line from user input."
   (interactive)
   (let ((subject-line (read-string "Task: ")))
     (magit-run-git-with-editor "clock-in" subject-line)))
 
 (defun magit-clock-out ()
-  "Clock in with Magit."
+  "Clock out with Magit, opening the commit editor to finalize changes."
   (interactive)
   (magit-run-git-with-editor "clock-out-with-editor"))
 
@@ -216,13 +216,13 @@ Un-define doom's Dash-related functions. (TODO: Move upstream.)
 
 #+begin_src elisp
 (defun git-clock-in ()
-  "Clock in with Git."
+  "Clock in with Git, reading a commit subject line from user input."
   (interactive)
   (when-let ((subject-line (read-string "Task: ")))
     (shell-command-to-string (format "git-clock-in %s" subject-line))))
 
 (defun git-clock-out ()
-  "Clock in with Git."
+  "Clock out with Git, committing all changed and new files in the working tree."
   (interactive)
   (shell-command-to-string (format "git add --all && git-clock-out")))
 
@@ -617,9 +617,9 @@ Combines behavior from the following commands, unifying their interfaces with a 
       (file-directory-p (format "%s/.projectile" name))))
 
 (defun yank-buffer-path-dwim (abspath-p)
-  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, uses `default-directory'.)
+  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, use `default-directory'.)
 Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
-Provide an absolute path if teh prefix argument ABSPATH-P is provided."
+Provide an absolute path if the prefix argument ABSPATH-P is provided."
   (interactive "P")
   (let ((yanked-path
         (if-let ((file-path buffer-file-name))
