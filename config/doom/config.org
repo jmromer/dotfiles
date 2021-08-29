@@ -192,13 +192,15 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 ** evil-unimpaired
 
 #+begin_src elisp
-(evil-unimpaired)
+(after! evil-unimpaired
+  (evil-unimpaired))
 #+end_src
 
 ** evil-matchit
 
 #+begin_src elisp
-(global-evil-matchit-mode)
+(after! evil-matchit
+  (global-evil-matchit-mode))
 #+end_src
 
 ** evil-sort
