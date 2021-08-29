@@ -10,6 +10,7 @@
 
 (disable-packages! minitest)
 
+(package! command-log-mode)
 (package! dash-at-point)
 (package! evil-matchit)
 (package! evil-rails)
