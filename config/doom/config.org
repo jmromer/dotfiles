@@ -655,8 +655,10 @@ If prefix arg NEW-SESSION is passed, create a new session."
   (when-let* ((hist '("http://localhost:" "https://google.com"))
               (addr (or url (read-from-minibuffer "url: " "https://" nil nil 'hist)))
               (target (unless (string= addr "") addr)))
-    (message (format "Requesting %s ..." target))
-    (xwidget-webkit-browse-url target new-session)))
+    (progn
+      (message (format "Requesting %s ..." target))
+      (xwidget-webkit-browse-url target new-session)
+      (switch-to-buffer (xwidget-buffer (xwidget-webkit-current-session))))))
 
 (defun browser-open-in-new-session (&optional url)
   "Open a web browser to a new url (prompt for it) in a new session."
