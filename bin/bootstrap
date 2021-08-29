@@ -107,8 +107,13 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
+  # GNU Global (installs Exuberant ctags)
+  brew_install :direnv
+  brew_install :global
+
+  # Universal ctags (replaces Exuberant ctags)
   brew_tap "universal-ctags/universal-ctags"
-  brew_install :universal_ctags, options: :head
+  brew_install :universal_ctags, options: [:head, :force]
 
   brew_tap "homebrew/cask-versions"
   cask_install :iterm2_nightly
