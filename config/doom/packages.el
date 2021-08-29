@@ -19,6 +19,7 @@
 (package! evil-rails)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
 (package! ggtags)
+(package! gxref)
 (package! posframe)
 (package! ruby-factory)
 (package! ruby-test-mode)
