@@ -20,6 +20,7 @@
 - [[#folding][folding]]
 - [[#gtags][gtags]]
 - [[#lookup][lookup]]
+- [[#lsp][lsp]]
 - [[#magit][magit]]
 - [[#org][org]]
 - [[#projectile][projectile]]
@@ -387,6 +388,38 @@ TODO: Contribute upstream (check for the module inclusion flag).
 (fmakunbound '+lookup:dash)
 (fmakunbound '+lookup/in-docsets)
 (fmakunbound '+lookup/in-all-docsets)
+#+end_src
+
+* lsp
+
+#+begin_src elisp
+(after! (:all company lsp-mode)
+  (require 'company-lsp)
+  (push 'company-lsp company-backends))
+
+(after! lsp-mode
+  (use-package lsp-ui)
+  (require 'lsp-ui))
+#+end_src
+
+#+begin_src elisp
+(after! lsp-ui
+  (setq lsp-enable-file-watchers nil
+        lsp-keymap-prefix nil
+        lsp-idle-delay 0.500
+        lsp-prefer-capf t
+        lsp-ui-doc-alignment 'frame
+        lsp-ui-doc-delay 0.2
+        lsp-ui-doc-enable nil
+        lsp-ui-doc-header nil
+        lsp-ui-doc-include-signature t
+        lsp-ui-doc-position 'at-point
+        lsp-ui-doc-use-childframe t
+        lsp-ui-doc-use-webkit nil
+        lsp-ui-sideline-enable nil
+        lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-sideline-show-symbol t
+        read-process-output-max (* 1024 1024)))
 #+end_src
 
 * magit
@@ -945,4 +978,3 @@ TODO: Move into or document in yankee
              (split-string str ",")
              (yas/indented-newline)))
 #+end_src
-
