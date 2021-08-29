@@ -9,6 +9,7 @@
 ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org
 
 (disable-packages! minitest)
+(disable-packages! company-gtags)
 
 (package! command-log-mode)
 (package! dash-at-point)
@@ -16,7 +17,6 @@
 (package! evil-matchit)
 (package! evil-rails)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
-(package! ggtags)
 (package! posframe)
 (package! ruby-factory)
 (package! ruby-test-mode)
