@@ -15,6 +15,7 @@
 (package! evil-matchit)
 (package! evil-rails)
 (package! ggtags)
+(package! posframe)
 (package! ruby-factory)
 (package! ruby-test-mode)
 (package! seeing-is-believing)
