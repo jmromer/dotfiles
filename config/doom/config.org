@@ -216,6 +216,16 @@ NB: Consider [[https://github.com/syohex/lispyville][lispyville]] as an alternat
 (add-hook! emacs-lisp-mode #'evil-cleverparens-mode)
 #+end_src
 
+Disable little-used keybindings likely to conflict with other packages.
+
+#+begin_src elisp
+(after! evil-cleverparens
+  (map! :map evil-cleverparens-mode-map
+        :n "H" nil
+        :n "L" nil)
+  nil)
+#+end_src
+
 ** evil-unimpaired
 
 #+begin_src elisp
