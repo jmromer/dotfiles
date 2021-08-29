@@ -128,10 +128,10 @@ Use a posframe for displaying hunks.
   (setq diff-hl-show-hunk-function #'diff-hl-show-hunk-posframe))
 #+end_src
 
-Add refresh hooks for magit > 24.
+Add refresh hooks for magit > 2.4.0.
 
 #+begin_src elisp
-(after! diff-hl
+(after! (:all diff-hl magit)
   (add-hook! magit-pre-refresh #'diff-hl-magit-pre-refresh)
   (add-hook! magit-post-refresh #'diff-hl-magit-post-refresh))
 #+end_src
