@@ -13,6 +13,7 @@ alias d='dirs -v'        # show directory stack
 alias ls='exa'
 alias l='ls'
 alias la='ls -a'
+alias ll='ls -l'
 alias lla='ls -al'
 alias lt='exa --tree --level=3'
 alias pp='pretty-print-path'
