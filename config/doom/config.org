@@ -519,8 +519,7 @@ Reminders:
 #+begin_src elisp
 (defun browser-open-at-point (use-new-session)
   (interactive "P")
-  (if-let (url (browser-open--ensure-url
-                (browser-open--get-url-at-point)))
+  (if-let (url (browser-open--ensure-url (browser-open--get-url-at-point)))
       (browser-open use-new-session url)
     (message (format "not a valid url"))))
 
@@ -528,7 +527,7 @@ Reminders:
   "Open a web browser to a new url URL (prompt for it if not provided).
 If prefix arg NEW-SESSION is passed, create a new session."
   (interactive "P")
-  (when-let* ((hist '("http://" "https://google.com" "https://github.com" "https://exercism.com"))
+  (when-let* ((hist '("http://localhost:" "https://google.com"))
               (addr (or url (read-from-minibuffer "url: " "https://" nil nil 'hist)))
               (target (unless (string= addr "") addr)))
     (message (format "Requesting %s ..." target))
