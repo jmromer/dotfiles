@@ -210,6 +210,8 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 
 ** evil-cleverparens
 
+NB: Consider [[https://github.com/syohex/lispyville][lispyville]] as an alternative.
+
 #+begin_src elisp
 (require 'evil-cleverparens)
 (add-hook! emacs-lisp-mode #'evil-cleverparens-mode)
@@ -306,7 +308,7 @@ Use tab to fold in prog modes.
 
 * lookup
 
-Register dash docsets with their associated modes.
+Lookup Dash docs quickly from the normal state.
 
 #+begin_src elisp
 (require 'dash-at-point)
@@ -319,7 +321,9 @@ Use xwidgets to browse online search results online.
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 #+end_src
 
-Un-define doom's Dash-related functions. (TODO: Move upstream.)
+Un-define doom's Dash-related functions since they're not installed.
+
+TODO: Contribute upstream (check for the module inclusion flag).
 
 #+begin_src elisp
 (fmakunbound '+lookup:dash)
@@ -614,7 +618,7 @@ Enable strict smartparens mode wherever smartparens is enabled.
 Reminders:
 
 - There's a long-standing bug whereby killing a browser buffer disables =ESC= until a restart. Bury browser buffers instead.
-- Use in-emacs browser sessions only for security-insensitive taaks (reading documentation, etc.)
+- Use in-emacs browser sessions only for security-insensitive tasks (reading documentation, etc.)
 - NB: Watching [[https://github.com/akirakyle/emacs-webkit][emacs-webkit]]
 
 ** browser-open keybindings
