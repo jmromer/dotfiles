@@ -518,6 +518,9 @@ Reminders:
 
 #+begin_src elisp
 (defun browser-open-at-point (use-new-session)
+  "Open the url at the point. Use a new session if the prefix arg USE-NEW-SESSION is passed.
+Prepend a scheme (https) if the address under point is missing one.
+No-op if the symbol at point can't be interpreted as a URL."
   (interactive "P")
   (if-let (url (browser-open--ensure-url (browser-open--get-url-at-point)))
       (browser-open use-new-session url)
@@ -543,12 +546,16 @@ If prefix arg NEW-SESSION is passed, create a new session."
 
 #+begin_src elisp
 (defun browser-open--ensure-url (candidate-str)
+  "Ensure CANDIDATE-STR can be interpreted as a URL.
+Checking for a scheme (interpolating one if missing) and a hostname with a TLD.
+Return nil if the hostname is missing a TLD."
   (let* ((candidate-url (browser-open--ensure-scheme candidate-str))
          (hostname (nth 2 (split-string candidate-url "/"))))
     (when (string-match-p "\\." hostname)
       candidate-url)))
 
 (defun browser-open--ensure-scheme (candidate-str)
+  "Ensure CANDIDATE-STR is prefixed with a scheme, or return the string prepended with one"
   (if (or (string-prefix-p "https://" candidate-str t)
           (string-prefix-p "http://" candidate-str t))
     candidate-str
