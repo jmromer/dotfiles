@@ -363,6 +363,12 @@ TODO: Contribute upstream (check for the module inclusion flag).
 (map! :desc "Open magit" "s-g" #'magit-status)
 #+end_src
 
+Remove the git flow hook added by doom.
+
+#+begin_src elisp
+(remove-hook! magit-mode #'turn-on-magit-gitflow)
+#+end_src
+
 * org
 
 #+begin_src elisp
