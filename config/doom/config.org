@@ -112,10 +112,14 @@ Enable diff-highlight modes globally.
 
 #+begin_src elisp
 (after! diff-hl
-  (global-diff-hl-mode)
-  (global-diff-hl-show-hunk-mouse-mode)
-  (global-diff-hl-amend-mode))
+  (global-diff-hl-mode))
 #+end_src
+
+#+begin_src elisp
+(map!
+ :n "[h" #'diff-hl-show-hunk-previous
+ :n "]h" #'diff-hl-show-hunk-next)
+#+End_src
 
 Use a posframe for displaying hunks.
 
@@ -189,10 +193,6 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 
 #+begin_src elisp
 (evil-unimpaired)
-
-(map!
- :n "[h" #'git-gutter:previous-hunk
- :n "]h" #'git-gutter:next-hunk)
 #+end_src
 
 ** evil-matchit
