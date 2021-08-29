@@ -10,6 +10,7 @@
 
 (disable-packages! minitest)
 (disable-packages! company-gtags)
+(disable-packages! evil-snipe)
 
 (package! command-log-mode)
 (package! dash-at-point)
