@@ -18,6 +18,7 @@
   - [[#evil-matchit][evil-matchit]]
   - [[#evil-sort][evil-sort]]
 - [[#folding][folding]]
+- [[#gtags][gtags]]
 - [[#lookup][lookup]]
 - [[#magit][magit]]
 - [[#org][org]]
@@ -353,6 +354,15 @@ Use tab to fold in prog modes.
   (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
 
 (add-hook! prog-mode #'tab-to-fold-in-normal-state)
+#+end_src
+
+* gtags
+
+#+begin_src elisp
+(setq xref-backend-functions '(ggtags--xref-backend
+                               elisp--xref-backend
+                               gxref-xref-backend
+                               etags--xref-backend))
 #+end_src
 
 * lookup
