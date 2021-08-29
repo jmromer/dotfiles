@@ -18,7 +18,6 @@
 - [[#folding][folding]]
 - [[#lookup][lookup]]
 - [[#magit][magit]]
-  - [[#time-tracking][Time tracking]]
 - [[#org][org]]
 - [[#projectile][projectile]]
 - [[#ruby][ruby]]
@@ -29,6 +28,7 @@
   - [[#projectile-rails][projectile-rails]]
   - [[#seeing-is-believing][seeing-is-believing]]
   - [[#toggle-breakpoint][toggle-breakpoint]]
+- [[#time-tracking][time tracking]]
 - [[#webkit][webkit]]
   - [[#browser-open-keybindings][browser-open keybindings]]
   - [[#browser-open-commands][browser-open commands]]
@@ -305,42 +305,6 @@ Un-define doom's Dash-related functions. (TODO: Move upstream.)
 (map! :desc "Open magit" "s-g" #'magit-status)
 #+end_src
 
-** Time tracking
-
-#+begin_src elisp
-(defun magit-clock-in ()
-  "Clock in with Magit, reading a commit subject line from user input."
-  (interactive)
-  (let ((subject-line (read-string "Task: ")))
-    (magit-run-git-with-editor "clock-in" subject-line)))
-
-(defun magit-clock-out ()
-  "Clock out with Magit, opening the commit editor to finalize changes."
-  (interactive)
-  (magit-run-git-with-editor "clock-out-with-editor"))
-
-(after! magit
-  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" magit-clock-in))
-  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" magit-clock-out)))
-#+end_src
-
-#+begin_src elisp
-(defun git-clock-in ()
-  "Clock in with Git, reading a commit subject line from user input."
-  (interactive)
-  (when-let ((subject-line (read-string "Task: ")))
-    (shell-command-to-string (format "git-clock-in %s" subject-line))))
-
-(defun git-clock-out ()
-  "Clock out with Git, committing all changed and new files in the working tree."
-  (interactive)
-  (shell-command-to-string (format "git add --all && git-clock-out")))
-
-(map!
- "s-c" #'git-clock-in
- "s-C" #'git-clock-out)
-#+end_src
-
 * org
 
 #+begin_src elisp
@@ -570,6 +534,42 @@ Look for a controller spec if there's no request spec."
       :localleader
       :n "d b" #'ruby/toggle-breakpoint
       :n "d B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
+#+end_src
+
+* time tracking
+
+#+begin_src elisp
+(defun magit-clock-in ()
+  "Clock in with Magit, reading a commit subject line from user input."
+  (interactive)
+  (let ((subject-line (read-string "Task: ")))
+    (magit-run-git-with-editor "clock-in" subject-line)))
+
+(defun magit-clock-out ()
+  "Clock out with Magit, opening the commit editor to finalize changes."
+  (interactive)
+  (magit-run-git-with-editor "clock-out-with-editor"))
+
+(after! magit
+  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" magit-clock-in))
+  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" magit-clock-out)))
+#+end_src
+
+#+begin_src elisp
+(defun git-clock-in ()
+  "Clock in with Git, reading a commit subject line from user input."
+  (interactive)
+  (when-let ((subject-line (read-string "Task: ")))
+    (shell-command-to-string (format "git-clock-in %s" subject-line))))
+
+(defun git-clock-out ()
+  "Clock out with Git, committing all changed and new files in the working tree."
+  (interactive)
+  (shell-command-to-string (format "git add --all && git-clock-out")))
+
+(map!
+ "s-c" #'git-clock-in
+ "s-C" #'git-clock-out)
 #+end_src
 
 * webkit
