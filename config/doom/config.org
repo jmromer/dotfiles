@@ -11,6 +11,7 @@
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
 - [[#evil][evil]]
+  - [[#window-navigation][window navigation]]
   - [[#hybrid-vimemacs-keybindings][hybrid vim/emacs keybindings]]
   - [[#evil-cleverparens][evil-cleverparens]]
   - [[#evil-unimpaired][evil-unimpaired]]
@@ -198,6 +199,23 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 #+end_src
 
 * evil
+
+** window navigation
+
+Re-map keybindings to follow when splitting by default.
+
+#+begin_src elisp
+(map!
+ :leader
+ :desc "split below & follow"
+ "w s" #'+evil/window-split-and-follow
+ :desc "split below"
+ "w S" #'evil-window-split
+ :desc "split right & follow"
+ "w v" #'+evil/window-vsplit-and-follow
+ :desc "split right"
+ "w V" #'evil-window-vsplit)
+#+end_src
 
 ** hybrid vim/emacs keybindings
 
