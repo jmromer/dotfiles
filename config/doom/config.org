@@ -1,5 +1,43 @@
 #+TITLE: Emacs Config
 
+* Contents :TOC:
+- [[#notes][Notes]]
+- [[#general][General]]
+  - [[#display][display]]
+  - [[#leader-keys][leader keys]]
+  - [[#super-keys][super keys]]
+  - [[#file-paths][file paths]]
+  - [[#identity][identity]]
+- [[#dired][dired]]
+- [[#evil][evil]]
+  - [[#hybrid-vimemacs-keybindings][hybrid vim/emacs keybindings]]
+  - [[#evil-matchit][evil-matchit]]
+  - [[#evil-sort][evil-sort]]
+- [[#folding][folding]]
+- [[#lookup][lookup]]
+- [[#magit][magit]]
+  - [[#time-tracking][Time tracking]]
+- [[#org][org]]
+- [[#projectile][projectile]]
+- [[#ruby][ruby]]
+  - [[#evil-rails][evil-rails]]
+  - [[#format-all][format-all]]
+  - [[#ruby-factory][ruby-factory]]
+  - [[#ruby-test][ruby-test]]
+  - [[#projectile-rails][projectile-rails]]
+  - [[#seeing-is-believing][seeing-is-believing]]
+  - [[#toggle-breakpoint][toggle-breakpoint]]
+- [[#webkit][webkit]]
+  - [[#browser-open-keybindings][browser-open keybindings]]
+  - [[#browser-open-commands][browser-open commands]]
+  - [[#browser-open-functions][browser-open functions]]
+  - [[#xwidget-widget-keybindings][xwidget-widget keybindings]]
+- [[#word-chars][word chars]]
+- [[#workspaces][workspaces]]
+- [[#yank-buffer-path-dwim][yank-buffer-path-dwim]]
+- [[#yankee][yankee]]
+- [[#yasnippet][yasnippet]]
+
 * Notes
 
 Useful functions/macros (see [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples):
