@@ -213,7 +213,6 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 NB: Consider [[https://github.com/syohex/lispyville][lispyville]] as an alternative.
 
 #+begin_src elisp
-(require 'evil-cleverparens)
 (add-hook! emacs-lisp-mode #'evil-cleverparens-mode)
 #+end_src
 
@@ -311,7 +310,6 @@ Use tab to fold in prog modes.
 Lookup Dash docs quickly from the normal state.
 
 #+begin_src elisp
-(require 'dash-at-point)
 (map! :n "H" #'dash-at-point)
 #+end_src
 
@@ -377,7 +375,8 @@ TODO: Contribute upstream (check for the module inclusion flag).
 Ex commands for =projectile-rails=. Mainly here for =:AS= and =:AV=.
 
 #+begin_src elisp
-(require 'evil-rails)
+(after! projectile-rails
+  (require 'evil-rails))
 #+end_src
 
 ** format-all
