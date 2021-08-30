@@ -20,6 +20,7 @@
 (package! evil-matchit)
 (package! evil-rails)
 (package! evil-ruby-text-objects)
+(package! evil-string-inflection)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
 (package! ggtags)
 (package! gxref)
