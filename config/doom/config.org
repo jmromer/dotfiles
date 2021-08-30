@@ -14,6 +14,7 @@
   - [[#window-navigation][window navigation]]
   - [[#hybrid-evilemacs-keybindings][hybrid evil/emacs keybindings]]
   - [[#evil-cleverparens][evil-cleverparens]]
+  - [[#evil-iedit][evil-iedit]]
   - [[#evil-unimpaired][evil-unimpaired]]
   - [[#evil-matchit][evil-matchit]]
   - [[#evil-sort][evil-sort]]
@@ -278,6 +279,21 @@ Disable little-used keybindings likely to conflict with other packages.
         :n "H" nil
         :n "L" nil)
   nil)
+#+end_src
+
+** evil-iedit
+
+#+begin_src elisp
+(setq iedit-toggle-key-default nil)
+#+end_src
+
+#+begin_src elisp
+(after! evil
+  (require 'evil-iedit-state)
+  (map!
+   :leader
+   :n "s e ." #'evil-iedit-state/iedit-mode
+   :n "s e e" #'iedit-mode))
 #+end_src
 
 ** evil-unimpaired
