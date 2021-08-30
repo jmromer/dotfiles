@@ -388,10 +388,12 @@ Use tab to fold in prog modes.
 * gtags
 
 #+begin_src elisp
-(setq xref-backend-functions '(ggtags--xref-backend
-                               elisp--xref-backend
-                               gxref-xref-backend
-                               etags--xref-backend))
+(after! ggtags
+  (ggtags-mode)
+  (setq xref-backend-functions '(ggtags--xref-backend
+                                 elisp--xref-backend
+                                 gxref-xref-backend
+                                 etags--xref-backend)))
 #+end_src
 
 * lookup
