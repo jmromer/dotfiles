@@ -333,7 +333,7 @@ When called with a prefix argument DESC, sort in descending order."
   (evil-sort-inner 'bracket desc))
 #+end_src
 
-Add motions to normal state map.
+Add sort motions to normal state map.
 
 #+begin_src elisp
 (map! :desc "sort paragraph lines" :n "g s i p" #'evil-sort-inner-paragraph
@@ -850,7 +850,7 @@ Return nil if the hostname is missing a TLD."
     "Y"  #'xwidget-webkit-current-url-message-kill))
 
 (evil-set-initial-state 'xwidget-webkit-mode 'normal)
-(add-hook 'xwidget-webkit-mode-hook #'config/xwidget-webkit)
+(add-hook! xwidget-webkit-mode #'config/xwidget-webkit)
 #+end_src
 
 * word chars
