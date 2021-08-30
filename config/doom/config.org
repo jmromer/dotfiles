@@ -750,66 +750,49 @@ Reminders:
 - Use in-emacs browser sessions only for security-insensitive tasks (reading documentation, etc.)
 - NB: Watching [[https://github.com/akirakyle/emacs-webkit][emacs-webkit]]
 
+** xwwp
+
+#+begin_src elisp
+(require 'xwwp)
+#+end_src
+
 ** browser-open keybindings
 
 #+begin_src elisp
-(map! :n "g F" #'browser-open-at-point)
-(require 'xwwp)
+(map! :n "g F" #'browser-open-dwim)
 #+end_src
 
 ** browser-open commands
 
 #+begin_src elisp
-(defun browser-open-at-point (use-new-session)
-  "Open the url at the point. Use a new session if the prefix arg USE-NEW-SESSION is passed.
-Prepend a scheme (https) if the address under point is missing one.
-No-op if the symbol at point can't be interpreted as a URL."
-  (interactive "P")
-  (if-let (url (browser-open--ensure-url (browser-open--get-url-at-point)))
-      (browser-open use-new-session url)
-    (message (format "not a valid url"))))
+(defun browser-open-dwim (use-new-session)
+  "Open webkit and navigate to a destination in the precedence order described below.
+If given the prefix argument USE-NEW-SESSION, use a new session instead of re-using an existing webkit session.
 
-(defun browser-open (new-session &optional url)
-  "Open a web browser to a new url URL (prompt for it if not provided).
-If prefix arg NEW-SESSION is passed, create a new session."
-  (interactive "P")
-  (when-let* ((hist '("http://localhost:" "https://google.com"))
-              (addr (or url (read-from-minibuffer "url: " "https://" nil nil 'hist)))
-              (target (unless (string= addr "") addr)))
-    (progn
-      (message (format "Requesting %s ..." target))
-      (xwidget-webkit-browse-url target new-session)
-      (switch-to-buffer (xwidget-buffer (xwidget-webkit-current-session))))))
+Precedence order:
 
-(defun browser-open-in-new-session (&optional url)
-  "Open a web browser to a new url (prompt for it) in a new session."
-  (interactive)
-  (browser-open t url))
+1. With a region selected that resembles a URL, navigate to it.
+2. With a region selected that doesn't resemble a URL, perform a web search with the selected string.
+3. With the point on a contiguous string that resembles a URL, attempt to navigate to it.
+4. Finally, if none of the preceding apply, prompt the user to input a URL or search term."
+  (interactive "P")
+  (let* ((region-text (when (use-region-p)
+                        (buffer-substring (region-beginning) (region-end))))
+         (url-at-point (unless region-text
+                         (browser-open--ensure-url (browser-open--get-url-surrounding-point))))
+         (history '("localhost:" "google.com"))
+         (user-input (unless (or region-text url-at-point)
+                       (string-trim (read-from-minibuffer "goto: " nil nil nil 'history))))
+         (user-text (unless (string= "" user-input)
+                      user-input)))
+    (when-let ((target-str (or region-text url-at-point user-text)))
+        (xwwp target-str use-new-session))))
 #+end_src
 
 ** browser-open functions
 
 #+begin_src elisp
-(defun browser-open--ensure-url (candidate-str)
-  "Ensure CANDIDATE-STR can be interpreted as a URL.
-Checking for a scheme (interpolating one if missing) and a hostname with a TLD.
-Return nil if the hostname is missing a TLD."
-  (let* ((candidate-url (browser-open--ensure-scheme candidate-str))
-         (hostname (nth 2 (split-string candidate-url "/"))))
-    (when (string-match-p "\\." hostname)
-      candidate-url)))
-
-(defun browser-open--ensure-scheme (candidate-str)
-  "Ensure CANDIDATE-STR is prefixed with a scheme, or return the string prepended with one"
-  (if (or (string-prefix-p "https://" candidate-str t)
-          (string-prefix-p "http://" candidate-str t))
-    candidate-str
-    (format "https://%s"
-            (replace-regexp-in-string
-             "^[^[:word:]]+" ""
-             candidate-str))))
-
-(defun browser-open--get-url-at-point ()
+(defun browser-open--get-url-surrounding-point ()
   (save-excursion
     (let* ((oldpoint (point)) (start (point)) (end (point))
            (syntaxes "w_")
@@ -834,7 +817,27 @@ Return nil if the hostname is missing a TLD."
           (setq start (point))))
       ;; If we found something nonempty, return it as a string.
       (unless (= start end)
-         (buffer-substring-no-properties start end)))))
+        (buffer-substring-no-properties start end)))))
+#+end_src
+
+#+begin_src elisp
+(defun browser-open--ensure-url (candidate-str)
+  "Ensure CANDIDATE-STR can be interpreted as a URL.
+Checking for a scheme (interpolating one if missing) and a hostname with a TLD.
+Return nil if the hostname is missing a TLD."
+  (when candidate-str
+    (let* ((candidate-url (browser-open--ensure-scheme candidate-str))
+           (hostname (nth 2 (split-string candidate-url "/"))))
+      (when (string-match-p "\\." hostname)
+        candidate-url))))
+
+(defun browser-open--ensure-scheme (candidate-str)
+  "Ensure CANDIDATE-STR is prefixed with a scheme, or return the string prepended with one"
+  (when candidate-str
+    (if (or (string-prefix-p "https://" candidate-str t)
+            (string-prefix-p "http://" candidate-str t))
+        candidate-str
+      (format "https://%s" (replace-regexp-in-string "^[^[:word:]]+" "" candidate-str)))))
 #+end_src
 
 ** xwidget-widget keybindings
@@ -848,8 +851,7 @@ Return nil if the hostname is missing a TLD."
     "G"  #'xwidget-webkit-scroll-bottom
     "J"  #'xwidget-webkit-scroll-up-line
     "K"  #'xwidget-webkit-scroll-down-line
-    "gF" #'browser-open-in-new-session
-    "gf" #'browser-open
+    "gf" #'browser-open-dwim
     "gg" #'xwidget-webkit-scroll-top
     "h"  #'xwidget-webkit-back
     "j"  #'xwidget-webkit-scroll-up
