@@ -16,6 +16,7 @@
 (package! company-lsp)
 (package! dash-at-point)
 (package! evil-cleverparens)
+(package! evil-iedit-state)
 (package! evil-matchit)
 (package! evil-rails)
 (package! evil-ruby-text-objects)
