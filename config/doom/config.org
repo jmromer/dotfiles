@@ -17,7 +17,7 @@
   - [[#evil-unimpaired][evil-unimpaired]]
   - [[#evil-matchit][evil-matchit]]
   - [[#evil-sort][evil-sort]]
-- [[#evil-text-objects][evil text objects]]
+  - [[#evil-text-objects][evil text objects]]
 - [[#folding][folding]]
 - [[#gtags][gtags]]
 - [[#lookup][lookup]]
@@ -346,7 +346,7 @@ Add sort motions to normal state map.
       :desc "sort inside parens"   :n "g s i )" #'evil-sort-inner-paren)
 #+end_src
 
-* evil text objects
+** evil text objects
 
 #+begin_quote
 =(evil-define-text-object OBJECT (COUNT) DOC [[KEY VALUE]...] BODY...)=
