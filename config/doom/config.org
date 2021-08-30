@@ -77,6 +77,14 @@ Here are the three important ones:
 (add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start maximized
 #+end_src
 
+Enable hl-todo mode in certain text modes.
+
+#+begin_src elisp
+(after! hl-todo
+  (add-hook! markdown-mode #'hl-todo-mode)
+  (add-hook! org-mode #'hl-todo-mode))
+#+end_src
+
 ** leader keys
 
 Use =,= for the local leader key.
