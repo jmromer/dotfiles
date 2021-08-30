@@ -26,6 +26,7 @@
 (package! gxref)
 (package! posframe)
 (package! ruby-factory)
+(package! org-fancy-priorities)
 (package! ruby-test-mode)
 (package! seeing-is-believing)
 (package! xwwp :recipe (:host github :repo "canatella/xwwp"))
