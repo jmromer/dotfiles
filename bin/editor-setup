@@ -27,15 +27,16 @@ setup_golang() {
 }
 
 setup_ruby() {
-  while read -r package; do
-    gem install --update-sources "${package}"
-  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-ruby"
+  gem install \
+    --update-sources \
+    $(cat ${XDG_CONFIG_HOME}/asdf/default-libraries-ruby | tr '\n' ' ')
 }
 
 setup_system_ruby() {
-  while read -r package; do
-    gem install --user --update-sources "${package}"
-  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-ruby"
+  gem install \
+    --user \
+    --update-sources \
+    $(cat ${XDG_CONFIG_HOME}/asdf/default-libraries-ruby | tr '\n' ' ')
 }
 
 setup_javascript() {
