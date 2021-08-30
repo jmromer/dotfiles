@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Enumerable
+# group: definitions
+# key: enum
+# --
+include Enumerable
+
+def each
+  $1
+  yield if block_given?
+end
+
+def <=>(other)
+  $0
+end
