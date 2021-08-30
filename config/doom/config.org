@@ -27,6 +27,7 @@
 - [[#magit][magit]]
 - [[#org][org]]
   - [[#org-fancy-priorities][org-fancy-priorities]]
+  - [[#org-superstar][org-superstar]]
 - [[#projectile][projectile]]
 - [[#ruby][ruby]]
   - [[#evil-rails][evil-rails]]
@@ -557,6 +558,14 @@ Remove the git flow hook added by doom.
                                   (?B . "MED")
                                   (?C . "LOW")))
 #+end_src
+
+** org-superstar
+
+#+begin_src elisp
+(after! org
+  (add-hook! org-mode #'org-superstar-mode))
+#+end_src
+
 * projectile
 
 #+begin_src elisp
