@@ -26,6 +26,7 @@
 - [[#lsp][lsp]]
 - [[#magit][magit]]
 - [[#org][org]]
+  - [[#structure-templates][structure templates]]
   - [[#org-fancy-priorities][org-fancy-priorities]]
   - [[#org-superstar][org-superstar]]
 - [[#projectile][projectile]]
@@ -525,6 +526,10 @@ Remove the git flow hook added by doom.
 #+end_src
 
 * org
+
+TODO: Ensure spacing between sections
+
+** structure templates
 
 #+begin_src elisp
 (setq org-structure-template-alist
