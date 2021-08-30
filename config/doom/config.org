@@ -851,6 +851,7 @@ Return nil if the hostname is missing a TLD."
     "G"  #'xwidget-webkit-scroll-bottom
     "J"  #'xwidget-webkit-scroll-up-line
     "K"  #'xwidget-webkit-scroll-down-line
+    "f"  #'xwwp-follow-link
     "gf" #'browser-open-dwim
     "gg" #'xwidget-webkit-scroll-top
     "h"  #'xwidget-webkit-back
