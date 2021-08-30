@@ -26,6 +26,7 @@
 (package! ruby-factory)
 (package! ruby-test-mode)
 (package! seeing-is-believing)
+(package! xwwp :recipe (:host github :repo "canatella/xwwp"))
 (package! yankee :recipe (:host github :repo "jmromer/yankee.el" :files ("yankee.el")))
 
 ;; python
