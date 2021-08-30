@@ -21,7 +21,6 @@ setup :core_cli_tools do
   brew_install :fd
   brew_install :findutils
   brew_install :gawk
-  brew_install :gcc
   brew_install :git
   brew_install :gnu_indent
   brew_install :gnu_sed
@@ -31,13 +30,30 @@ setup :core_cli_tools do
   brew_install :gnutls
   brew_install :grep
   brew_install :less
-  brew_install :libgccjit
   brew_install :ripgrep
   brew_install :shellcheck
   brew_install :watch
   brew_install :wdiff
   brew_install :wget
   brew_install :wordnet
+end
+
+setup :build_tools do
+  brew_install :bzip2
+  brew_install :gcc, version: 9
+  brew_install :gcc, version: 10
+  brew_install :gcc
+  brew_install :gettext
+  brew_install :icu4c
+  brew_install :imagemagick
+  brew_install :libffi
+  brew_install :libgccjit
+  brew_install :libxml2
+  brew_install :llvm
+  brew_install :ncurses
+  brew_install :openssl
+  brew_install :readline
+  brew_install :zlib
 end
 
 setup :gui_apps do
