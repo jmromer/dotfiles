@@ -18,7 +18,7 @@ export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 # base directories to search for configuration files in addition to the $XDG_CONFIG_HOME base directory.
 export XDG_CONFIG_DIRS="/etc/xdg"
 
-export BUNDLE_CACHE_PATH="${XDG_CACHE_HOME}/bundler"
+export BUNDLE_DEFAULT_INSTALL_USES_PATH="${XDG_CACHE_HOME}/bundler"
 export DOOMDIR="${XDG_CONFIG_HOME}/doom"
 export GEMRC="${XDG_CONFIG_HOME}/gem/gemrc"
 export GNUPGHOME="${XDG_SECURE_DIR}/gnupg"
