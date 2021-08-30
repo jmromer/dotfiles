@@ -11,6 +11,7 @@
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
 - [[#evil][evil]]
+  - [[#state-messages][state messages]]
   - [[#window-navigation][window navigation]]
   - [[#hybrid-evilemacs-keybindings][hybrid evil/emacs keybindings]]
   - [[#evil-cleverparens][evil-cleverparens]]
@@ -216,6 +217,21 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 #+end_src
 
 * evil
+
+** state messages
+
+Silence state messages.
+
+#+begin_src elisp
+(setq
+ evil-emacs-state-message nil
+ evil-iedit-insert-state-message nil
+ evil-iedit-state-message nil
+ evil-insert-state-message nil
+ evil-motion-state-message nil
+ evil-replace-state-message nil
+ evil-visual-state-message nil)
+#+end_src
 
 ** window navigation
 
