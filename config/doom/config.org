@@ -273,7 +273,7 @@ Disable little-used keybindings likely to conflict with other packages.
 
 #+begin_src elisp
 (after! evil-unimpaired
-  (evil-unimpaired))
+  (evil-unimpaired-mode))
 #+end_src
 
 ** evil-matchit
