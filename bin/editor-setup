@@ -46,9 +46,10 @@ setup_javascript() {
 }
 
 setup_python() {
-  while read -r package; do
-    pip install --upgrade "${package}"
-  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-python"
+  pip install \
+      --upgrade \
+      pip \
+      $(cat "${XDG_CONFIG_HOME}/asdf/default-libraries-python" | tr '\n' ' ')
 }
 
 setup_mac() {
