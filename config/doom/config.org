@@ -839,12 +839,16 @@ Return nil if the hostname is missing a TLD."
   (evil-define-key*
     'normal xwidget-webkit-mode-map
     "g"  nil
-    "j"  #'xwidget-webkit-scroll-up-line
-    "J"  #'xwidget-webkit-scroll-up
-    "k"  #'xwidget-webkit-scroll-down-line
-    "K"  #'xwidget-webkit-scroll-down
+    "G"  #'xwidget-webkit-scroll-bottom
+    "J"  #'xwidget-webkit-scroll-up-line
+    "K"  #'xwidget-webkit-scroll-down-line
     "gF" #'browser-open-in-new-session
     "gf" #'browser-open
+    "gg" #'xwidget-webkit-scroll-top
+    "h"  #'xwidget-webkit-back
+    "j"  #'xwidget-webkit-scroll-up
+    "k"  #'xwidget-webkit-scroll-down
+    "l"  #'xwidget-webkit-forward
     "r"  #'xwidget-webkit-reload
     "y"  #'xwidget-webkit-copy-selection-as-kill
     "Y"  #'xwidget-webkit-current-url-message-kill))
