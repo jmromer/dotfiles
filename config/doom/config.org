@@ -17,6 +17,7 @@
   - [[#evil-unimpaired][evil-unimpaired]]
   - [[#evil-matchit][evil-matchit]]
   - [[#evil-sort][evil-sort]]
+- [[#evil-text-objects][evil text objects]]
 - [[#folding][folding]]
 - [[#gtags][gtags]]
 - [[#lookup][lookup]]
@@ -343,6 +344,31 @@ Add motions to normal state map.
       :desc "sort inside brackets" :n "g s i ]" #'evil-sort-inner-bracket
       :desc "sort inside parens"   :n "g s i (" #'evil-sort-inner-paren
       :desc "sort inside parens"   :n "g s i )" #'evil-sort-inner-paren)
+#+end_src
+
+* evil text objects
+
+#+begin_quote
+=(evil-define-text-object OBJECT (COUNT) DOC [[KEY VALUE]...] BODY...)=
+
+Define a text object command OBJECT.
+
+BODY should return a range (BEG END) to the right of point if COUNT is positive,
+and to the left of it if negative.
+
+Optional keyword arguments:
+
+- =:type= - determines how the range applies after an operator
+  (inclusive, line, block, and exclusive, or a self-defined
+  motion type).
+
+- =:extend-selection= - if non-nil (default), the text object always
+  enlarges the current selection.  Otherwise, it replaces the current
+  selection.
+#+end_quote
+
+#+begin_src elisp
+(add-hook! ruby-mode #'evil-ruby-text-objects-mode)
 #+end_src
 
 * folding
