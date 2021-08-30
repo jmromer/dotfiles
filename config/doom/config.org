@@ -26,6 +26,7 @@
 - [[#lsp][lsp]]
 - [[#magit][magit]]
 - [[#org][org]]
+  - [[#org-fancy-priorities][org-fancy-priorities]]
 - [[#projectile][projectile]]
 - [[#ruby][ruby]]
   - [[#evil-rails][evil-rails]]
@@ -546,6 +547,16 @@ Remove the git flow hook added by doom.
         ))
 #+end_src
 
+** org-fancy-priorities
+
+#+begin_src elisp
+(after! org
+  (add-hook! org-mode #'org-fancy-priorities-mode))
+
+(setq org-fancy-priorities-list '((?A . "HIGH")
+                                  (?B . "MED")
+                                  (?C . "LOW")))
+#+end_src
 * projectile
 
 #+begin_src elisp
