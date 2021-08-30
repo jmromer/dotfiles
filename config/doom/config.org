@@ -778,7 +778,7 @@ If prefix arg NEW-SESSION is passed, create a new session."
 (defun browser-open-in-new-session (&optional url)
   "Open a web browser to a new url (prompt for it) in a new session."
   (interactive)
-  (open-web-browser t url))
+  (browser-open t url))
 #+end_src
 
 ** browser-open functions
@@ -839,12 +839,12 @@ Return nil if the hostname is missing a TLD."
   (evil-define-key*
     'normal xwidget-webkit-mode-map
     "g"  nil
-    "gf" #'web-browser-open
-    "gF" #'web-browser-open-in-new-session
     "j"  #'xwidget-webkit-scroll-up-line
     "J"  #'xwidget-webkit-scroll-up
     "k"  #'xwidget-webkit-scroll-down-line
     "K"  #'xwidget-webkit-scroll-down
+    "gF" #'browser-open-in-new-session
+    "gf" #'browser-open
     "r"  #'xwidget-webkit-reload
     "y"  #'xwidget-webkit-copy-selection-as-kill
     "Y"  #'xwidget-webkit-current-url-message-kill))
