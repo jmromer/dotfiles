@@ -36,6 +36,7 @@
 - [[#smartparens][smartparens]]
 - [[#time-tracking][time tracking]]
 - [[#webkit][webkit]]
+  - [[#xwwp][xwwp]]
   - [[#browser-open-keybindings][browser-open keybindings]]
   - [[#browser-open-commands][browser-open commands]]
   - [[#browser-open-functions][browser-open functions]]
@@ -753,6 +754,7 @@ Reminders:
 
 #+begin_src elisp
 (map! :n "g F" #'browser-open-at-point)
+(require 'xwwp)
 #+end_src
 
 ** browser-open commands
