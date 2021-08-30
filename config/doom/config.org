@@ -32,6 +32,9 @@
   - [[#org-fancy-priorities][org-fancy-priorities]]
   - [[#org-superstar][org-superstar]]
 - [[#projectile][projectile]]
+- [[#python][python]]
+  - [[#projectile-1][projectile]]
+  - [[#pytest][pytest]]
 - [[#ruby][ruby]]
   - [[#evil-rails][evil-rails]]
   - [[#format-all][format-all]]
@@ -614,6 +617,70 @@ TODO: Ensure spacing between sections
       :localleader
       :n "," #'projectile-toggle-between-implementation-and-test)
 #+end_src
+
+* python
+
+** projectile
+
+Add Python project types: Pipenv, Poetry, Pytest
+
+#+begin_src elisp
+(after! projectile
+  (projectile-register-project-type 'python-pipenv
+                                    '("Pipfile")
+                                    :compile "pipenv run compile"
+                                    :test "pipenv run test"
+                                    :test-suffix "_test")
+
+  (projectile-register-project-type 'python-pytest
+                                    '(".pytest_cache")
+                                    :compile ""
+                                    :test "pytest"
+                                    :test-prefix "test_"
+                                    :test-suffix "_test")
+
+  (projectile-register-project-type 'python-poetry
+                                    '("pyproject.toml")
+                                    :compile ""
+                                    :test "poetry run pytest"
+                                    :test-prefix "test_"
+                                    :test-suffix "_test"))
+#+end_src
+
+** pytest
+
+#+begin_src elisp
+(global-unset-key (kbd "s-RET"))
+(global-unset-key (kbd "s-<return>"))
+(global-unset-key (kbd "s-S-RET"))
+(global-unset-key (kbd "s-S-<return>"))
+
+(map! :map python-mode-map
+      :ni "s-<return>"   #'python-pytest-file-dwim
+      :ni "s-RET"        #'python-pytest-file-dwim
+      :ni "s-S-<return>" #'python-pytest-repeat
+      :ni "s-S-RET"      #'python-pytest-repeat)
+
+(map! :map python-mode-map
+      :localleader
+      :n "t ." #'python-pytest-dispatch
+      :n "t b" #'python-pytest-file-dwim
+      :n "t c" #'kill-open-pytest-buffers
+      :n "t f" nil
+      :n "t F" nil
+      :n "t l" #'python-pytest-repeat
+      :n "t L" nil
+      :n "t t" #'python-pytest-function-dwim
+      :n "t T" nil)
+#+end_src
+
+#+begin_src elisp
+(defun kill-open-pytest-buffers ()
+  "docstring"
+  (interactive)
+  (kill-open-buffers-with-name-prefix "*pytest*"))
+#+end_src
+
 
 * ruby
 
