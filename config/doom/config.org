@@ -127,6 +127,12 @@ clients, file templates and snippets.
       user-mail-address "jake@jmromer.org")
 #+end_src
 
+#+begin_src elisp
+
+(setq authinfo-file (format "%s/config/authinfo.gpg" (getenv "XDG_SECURE_DIR"))
+      auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
+#+end_src
+
 * diff-hl
 
 Enable diff-highlight modes globally.
