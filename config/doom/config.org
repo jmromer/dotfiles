@@ -264,6 +264,8 @@ Disable little-used keybindings likely to conflict with other packages.
 #+begin_src elisp
 (after! evil-cleverparens
   (map! :map evil-cleverparens-mode-map
+        :n "K" nil
+        :n "S" nil
         :n "H" nil
         :n "L" nil)
   nil)
