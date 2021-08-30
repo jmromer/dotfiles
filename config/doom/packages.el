@@ -27,6 +27,7 @@
 (package! posframe)
 (package! ruby-factory)
 (package! org-fancy-priorities)
+(package! org-superstar)
 (package! ruby-test-mode)
 (package! seeing-is-believing)
 (package! xwwp :recipe (:host github :repo "canatella/xwwp"))
