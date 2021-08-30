@@ -116,7 +116,6 @@ build_flags_set() {
         RUBY_CONFIGURE_OPTS+=" --disable-libedit"
         RUBY_GC_MALLOC_LIMIT=60000000
         RUBY_GC_HEAP_FREE_SLOTS=200000
-        WARNFLAGS="-Wno-error=implicit-function-declaration"
         shift
         ;;
       c)
@@ -136,6 +135,8 @@ build_flags_set() {
         shift
         ;;
       "")
+        WARNFLAGS=" -Wno-error=implicit-function-declaration -Wno-expansion-to-defined"
+        CFLAGS+="${WARNFLAGS}"
         build_flags_export
         [ ! $quiet_mode ] && build_flags_inspect
         return
