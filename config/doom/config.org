@@ -23,6 +23,7 @@
   - [[#evil-text-objects][evil text objects]]
 - [[#folding][folding]]
 - [[#gtags][gtags]]
+- [[#kill-open-buffers-with-name-prefix][kill-open-buffers-with-name-prefix]]
 - [[#lookup][lookup]]
 - [[#lsp][lsp]]
 - [[#magit][magit]]
@@ -477,6 +478,18 @@ Use tab to fold in prog modes.
                                  elisp--xref-backend
                                  gxref-xref-backend
                                  etags--xref-backend)))
+#+end_src
+
+* kill-open-buffers-with-name-prefix
+
+#+begin_src elisp
+(defun kill-open-buffers-with-name-prefix (prefix)
+  (interactive)
+  (seq-do
+   #'kill-buffer
+   (seq-filter #'(lambda (buffer)
+                   (string-prefix-p prefix (buffer-name buffer)))
+               (buffer-list))))
 #+end_src
 
 * lookup
