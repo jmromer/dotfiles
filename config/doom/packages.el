@@ -13,6 +13,7 @@
 (disable-packages! evil-snipe)
 
 (package! command-log-mode)
+(package! company-box)
 (package! company-lsp)
 (package! dash-at-point)
 (package! evil-cleverparens)
