@@ -756,23 +756,28 @@ Dismiss pytest compilation buffers as one would expect to.
 Set descriptions for prefixes and commands to aid discoverability.
 
 #+begin_src elisp
-(map! :localleader
-      :map ruby-mode-map
-      "'"  nil
-      "h"  nil
-      "R"  nil
-      :map ruby-mode-map
-      :prefix ("'" . "robe")
-      :desc "start"         "'"  #'robe-start
-      :desc "doc"           "h"  #'robe-doc
-      :desc "rails-refresh" "r"  #'robe-rails-refresh
-      :map ruby-mode-map
-      :prefix ("s" . "send-to-repl")
-      :desc "definition"       "d"  #'ruby-send-definition
-      :desc "definition & go"  "D"  #'ruby-send-definition-and-go
-      :desc "region"           "r"  #'ruby-send-region
-      :desc "region & go"      "R"  #'ruby-send-region-and-go
-      :desc "switch to inf"    "i"  #'ruby-switch-to-inf)
+(defun set-ruby-keymaps ()
+  (map! :localleader
+        :map robe-mode-map
+        "'"  nil
+        "h"  nil
+        "R"  nil)
+
+  (map! :localleader
+        :map ruby-mode-map
+        :prefix ("'" . "robe")
+        :desc "start"         "'"  #'robe-start
+        :desc "doc"           "h"  #'robe-doc
+        :desc "rails-refresh" "r"  #'robe-rails-refresh
+        :map ruby-mode-map
+        :prefix ("s" . "send-to-repl")
+        :desc "definition"       "d"  #'ruby-send-definition
+        :desc "definition & go"  "D"  #'ruby-send-definition-and-go
+        :desc "region"           "r"  #'ruby-send-region
+        :desc "region & go"      "R"  #'ruby-send-region-and-go
+        :desc "switch to inf"    "i"  #'ruby-switch-to-inf))
+
+(add-hook! ruby-mode #'set-ruby-keymaps)
 #+end_src
 
 ** evil-rails
