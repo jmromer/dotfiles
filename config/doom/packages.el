@@ -28,6 +28,7 @@
 (package! ggtags)
 (package! gxref)
 (package! org-fancy-priorities)
+(package! org-journal)
 (package! org-superstar)
 (package! posframe)
 (package! ruby-factory)

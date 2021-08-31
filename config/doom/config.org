@@ -37,6 +37,7 @@
   - [[#agenda-files][agenda files]]
   - [[#structure-templates][structure templates]]
   - [[#org-fancy-priorities][org-fancy-priorities]]
+  - [[#org-journal][org-journal]]
   - [[#org-superstar][org-superstar]]
 - [[#projectile][projectile]]
 - [[#python][python]]
@@ -710,6 +711,35 @@ TODO: Ensure spacing between sections
 (setq org-fancy-priorities-list '((?A . "HIGH")
                                   (?B . "MED")
                                   (?C . "LOW")))
+#+end_src
+
+** org-journal
+
+https://github.com/bastibe/org-journal
+
+#+begin_src elisp
+(setq org-journal-date-format "%A, %B %d %Y"
+      org-journal-dir (format "%s/journal" (getenv "ORG_HOME"))
+      org-journal-file-format "%Y%m%d"
+      org-journal-file-type 'monthly
+      org-journal-find-file #'find-file)
+#+end_src
+
+#+begin_src elisp
+(defun org-journal-find-location ()
+  "Open today's journal entry."
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  ;; Position point on the journal's top-level heading so that org-capture
+  ;; will add the new entry as a child entry.
+  (goto-char (point-max)))
+
+(defun org-journal-today ()
+  "Open today's journal."
+  (interactive)
+  (org-journal-find-location)
+  (goto-char (point-max)))
 #+end_src
 
 ** org-superstar
