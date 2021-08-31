@@ -1,11 +1,17 @@
 autoflake
+black
 fastapi
 flake8
 importmagic
 ipdb
 ipython
+isort
 mypy
 pip
 poetry
+pyflakes
+pyright
+pytest
+python-language-server
 virtualenv
 yapf
