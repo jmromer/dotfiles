@@ -34,6 +34,7 @@
 - [[#projectile][projectile]]
 - [[#python][python]]
   - [[#projectile-1][projectile]]
+  - [[#pipenv][pipenv]]
   - [[#pyvenv][pyvenv]]
   - [[#pytest][pytest]]
 - [[#ruby][ruby]]
@@ -641,6 +642,22 @@ Add Python project types: Pipenv, Poetry, Pytest
                                     :test "poetry run pytest"
                                     :test-prefix "test_"
                                     :test-suffix "_test"))
+#+end_src
+
+** pipenv
+
+#+begin_src elisp
+(map! :map python-mode-map
+      :localleader
+      :desc "pipenv"      :n "e"     nil
+      :desc "activate"    :n "e a"   #'pipenv-activate
+      :desc "deactivate"  :n "e d"   #'pipenv-deactivate
+      :desc "install"     :n "e i"   #'pipenv-install
+      :desc "lock"        :n "e l"   #'pipenv-lock
+      :desc "open module" :n "e o"   #'pipenv-open
+      :desc "run"         :n "e r"   #'pipenv-run
+      :desc "shell"       :n "e s"   #'pipenv-shell
+      :desc "uninstall"   :n "e u"   #'pipenv-uninstall)
 #+end_src
 
 ** pyvenv
