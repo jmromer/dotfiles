@@ -112,7 +112,7 @@ Enable hl-todo mode in certain text modes.
 Use =,= for the local leader key.
 
 #+begin_src elisp
-(setq doom-localleader-key "s-,")
+(setq doom-localleader-key ",")
 #+end_src
 
 ** super keys
@@ -428,6 +428,10 @@ https://github.com/blorbx/evil-quickscope
 
 #+begin_src elisp
 (global-evil-quickscope-mode 1)
+
+(map!
+ :n "C-;" #'evil-repeat-find-char
+ :n "C-," #'evil-repeat-find-char-reverse)
 #+end_src
 
 ** evil-sort
@@ -676,7 +680,7 @@ TODO: Ensure spacing between sections
 ** agenda files
 
 #+begin_src elisp
-(map! "C-," #'org-cycle-agenda-files)
+(map! "s-," #'org-cycle-agenda-files)
 #+end_src
 
 ** structure templates
@@ -905,7 +909,7 @@ See `org-capture-templates' for more information."
 #+begin_src elisp
 (map! :map prog-mode-map
       :desc "toggle test/implementation"
-      :n "s-, s-," #'projectile-toggle-between-implementation-and-test)
+      :n ", ," #'projectile-toggle-between-implementation-and-test)
 #+end_src
 
 * python
