@@ -21,6 +21,7 @@
   - [[#evil-iedit][evil-iedit]]
   - [[#evil-unimpaired][evil-unimpaired]]
   - [[#evil-matchit][evil-matchit]]
+  - [[#evil-quickscope][evil-quickscope]]
   - [[#evil-sort][evil-sort]]
   - [[#evil-string-inflection][evil-string-inflection]]
   - [[#evil-text-objects][evil text objects]]
@@ -406,6 +407,12 @@ Disable little-used keybindings likely to conflict with other packages.
   (global-evil-matchit-mode))
 #+end_src
 
+** evil-quickscope
+
+#+begin_src elisp
+(global-evil-quickscope-mode 1)
+#+end_src
+
 ** evil-sort
 
 Define "inside" motion for: buffer, paragraphs, delimiters.
@@ -477,7 +484,6 @@ Use =g~= operator to cycle through inflection transformations.
 (after! evil
   (require 'evil-string-inflection))
 #+end_src
-
 
 ** evil text objects
 
