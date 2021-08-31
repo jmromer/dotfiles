@@ -648,15 +648,15 @@ Add Python project types: Pipenv, Poetry, Pytest
 #+begin_src elisp
 (map! :map python-mode-map
       :localleader
-      :desc "pipenv"      :n "e"     nil
-      :desc "activate"    :n "e a"   #'pipenv-activate
-      :desc "deactivate"  :n "e d"   #'pipenv-deactivate
-      :desc "install"     :n "e i"   #'pipenv-install
-      :desc "lock"        :n "e l"   #'pipenv-lock
-      :desc "open module" :n "e o"   #'pipenv-open
-      :desc "run"         :n "e r"   #'pipenv-run
-      :desc "shell"       :n "e s"   #'pipenv-shell
-      :desc "uninstall"   :n "e u"   #'pipenv-uninstall)
+      :prefix ("e" . "pipenv")
+      :desc "activate"    :n "a"   #'pipenv-activate
+      :desc "deactivate"  :n "d"   #'pipenv-deactivate
+      :desc "install"     :n "i"   #'pipenv-install
+      :desc "lock"        :n "l"   #'pipenv-lock
+      :desc "open module" :n "o"   #'pipenv-open
+      :desc "run"         :n "r"   #'pipenv-run
+      :desc "shell"       :n "s"   #'pipenv-shell
+      :desc "uninstall"   :n "u"   #'pipenv-uninstall)
 #+end_src
 
 ** pyvenv
