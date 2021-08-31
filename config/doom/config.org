@@ -106,10 +106,9 @@ Use =,= for the local leader key.
 ** super keys
 
 #+begin_src elisp
-(map!
- "s-'" #'+vterm/toggle
- "s-K" #'kill-current-buffer
- "s-k" #'bury-buffer)
+(map! "s-'" #'+vterm/toggle
+      "s-K" #'kill-current-buffer
+      "s-k" #'bury-buffer)
 #+end_src
 
 ** file paths
@@ -147,9 +146,8 @@ Enable diff-highlight modes globally.
 #+end_src
 
 #+begin_src elisp
-(map!
- :n "[h" #'diff-hl-show-hunk-previous
- :n "]h" #'diff-hl-show-hunk-next)
+(map! :n "[h" #'diff-hl-show-hunk-previous
+      :n "]h" #'diff-hl-show-hunk-next)
 #+End_src
 
 Use a posframe for displaying hunks.
@@ -233,14 +231,13 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 Silence state messages.
 
 #+begin_src elisp
-(setq
- evil-emacs-state-message nil
- evil-iedit-insert-state-message nil
- evil-iedit-state-message nil
- evil-insert-state-message nil
- evil-motion-state-message nil
- evil-replace-state-message nil
- evil-visual-state-message nil)
+(setq evil-emacs-state-message nil
+      evil-iedit-insert-state-message nil
+      evil-iedit-state-message nil
+      evil-insert-state-message nil
+      evil-motion-state-message nil
+      evil-replace-state-message nil
+      evil-visual-state-message nil)
 #+end_src
 
 ** window navigation
@@ -248,16 +245,15 @@ Silence state messages.
 Re-map keybindings to follow when splitting by default.
 
 #+begin_src elisp
-(map!
- :leader
- :desc "split below & follow"
- "w s" #'+evil/window-split-and-follow
- :desc "split below"
- "w S" #'evil-window-split
- :desc "split right & follow"
- "w v" #'+evil/window-vsplit-and-follow
- :desc "split right"
- "w V" #'evil-window-vsplit)
+(map! :leader
+      :desc "split below & follow"
+      "w s" #'+evil/window-split-and-follow
+      :desc "split below"
+      "w S" #'evil-window-split
+      :desc "split right & follow"
+      "w v" #'+evil/window-vsplit-and-follow
+      :desc "split right"
+      "w V" #'evil-window-vsplit)
 #+end_src
 
 ** hybrid evil/emacs keybindings
@@ -320,10 +316,9 @@ Disable little-used keybindings likely to conflict with other packages.
 #+begin_src elisp
 (after! evil
   (require 'evil-iedit-state)
-  (map!
-   :leader
-   :n "s e ." #'evil-iedit-state/iedit-mode
-   :n "s e e" #'iedit-mode))
+  (map! :leader
+        :n "s e ." #'evil-iedit-state/iedit-mode
+        :n "s e e" #'iedit-mode))
 #+end_src
 
 ** evil-unimpaired
@@ -722,10 +717,9 @@ Ruby 3's new language constructs.
 ** ruby-test
 
 #+begin_src elisp
-(setq
- ruby-test-rspec-options '("--backtrace" "--format progress" "--no-profile")
- ruby-test-plain-test-options '("--backtrace" "--format progress" "--no-profile")
- ruby-test-rails-test-options '("--backtrace" "--format progress" "--no-profile"))
+(setq ruby-test-rspec-options '("--backtrace" "--format progress" "--no-profile")
+      ruby-test-plain-test-options '("--backtrace" "--format progress" "--no-profile")
+      ruby-test-rails-test-options '("--backtrace" "--format progress" "--no-profile"))
 
 ;; Enable entering pry / irb in test runs.
 (add-hook! comint-mode #'evil-normal-state #'inf-ruby-auto-enter)
@@ -734,13 +728,12 @@ Ruby 3's new language constructs.
 rspec-mode options:
 
 #+begin_src elisp
-(setq
- rspec-autosave-buffer t
- rspec-command-options "--backtrace --format progress --no-profile"
- rspec-spec-command "rspec"
- rspec-use-bundler-when-possible t
- rspec-use-opts-file-when-available nil
- rspec-use-spring-when-possible nil)
+(setq rspec-autosave-buffer t
+      rspec-command-options "--backtrace --format progress --no-profile"
+      rspec-spec-command "rspec"
+      rspec-use-bundler-when-possible t
+      rspec-use-opts-file-when-available nil
+      rspec-use-spring-when-possible nil)
 #+end_src
 
 Unbind conflicting =rspec-mode= bindings.
@@ -1076,10 +1069,9 @@ Return nil if the hostname is missing a TLD."
 * workspaces
 
 #+begin_src elisp
-(map!
- "s-;" #'+workspace/other
- "s-{" #'+workspace/switch-left
- "s-}" #'+workspace/switch-right)
+(map! "s-;" #'+workspace/other
+      "s-{" #'+workspace/switch-left
+      "s-}" #'+workspace/switch-right)
 #+end_src
 
 * yank-buffer-path-dwim
