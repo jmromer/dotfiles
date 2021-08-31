@@ -20,6 +20,7 @@
 (package! evil-iedit-state)
 (package! evil-lion)
 (package! evil-matchit)
+(package! evil-quickscope)
 (package! evil-rails)
 (package! evil-ruby-text-objects)
 (package! evil-string-inflection)
