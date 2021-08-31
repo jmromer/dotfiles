@@ -9,6 +9,7 @@
   - [[#file-paths][file paths]]
   - [[#identity][identity]]
 - [[#completion][completion]]
+  - [[#company][company]]
   - [[#company-box][company-box]]
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
@@ -142,6 +143,26 @@ clients, file templates and snippets.
 #+end_src
 
 * completion
+
+** company
+
+Ensure yasnippet is included with all backends
+
+#+begin_src elisp
+(defun company-backend-with-yas (backends)
+  "Add :with company-yasnippet to company BACKENDS.
+Taken from https://github.com/syl20bnr/spacemacs/pull/179."
+  (if (and (listp backends)
+           (memq 'company-yasnippet backends))
+      backends
+    (append (if (consp backends)
+                backends
+              (list backends))
+            '(:with company-yasnippet))))
+
+(add-hook! company-mode
+  (setq company-backends (mapcar #'company-backend-with-yas company-backends)))
+#+end_src
 
 ** company-box
 
