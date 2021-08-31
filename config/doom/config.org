@@ -102,7 +102,7 @@ Enable hl-todo mode in certain text modes.
 Use =,= for the local leader key.
 
 #+begin_src elisp
-(setq doom-localleader-key ",")
+(setq doom-localleader-key "s-,")
 #+end_src
 
 ** super keys
@@ -611,7 +611,7 @@ TODO: Ensure spacing between sections
 #+begin_src elisp
 (map! :map prog-mode-map
       :desc "toggle test/implementation"
-      :n ", ," #'projectile-toggle-between-implementation-and-test)
+      :n "s-, s-," #'projectile-toggle-between-implementation-and-test)
 #+end_src
 
 * python
