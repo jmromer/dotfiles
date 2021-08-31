@@ -159,7 +159,8 @@ build_flags_set() {
         ;;
       optimize*)
         unset OPTFLAGS
-        level="${1/optimize/}"
+        local level="${1/optimize/}"
+
         if [[ -n "${level}" ]]; then
           # Optimization level 3 (max)
           # (NB: Can cause some builds to fail. Un-setting or lower can help.)
