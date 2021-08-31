@@ -1018,7 +1018,6 @@ Bind test-running keybindings.
       :desc "dispatch"    :n "." #'python-pytest-dispatch
       "F" nil
       "T" nil
-      "a" nil
       "f" nil
       "p" nil
       "r" nil)
