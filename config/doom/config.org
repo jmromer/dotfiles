@@ -31,6 +31,7 @@
 - [[#lsp][lsp]]
 - [[#magit][magit]]
 - [[#org][org]]
+  - [[#agenda-files][agenda files]]
   - [[#structure-templates][structure templates]]
   - [[#org-fancy-priorities][org-fancy-priorities]]
   - [[#org-superstar][org-superstar]]
@@ -631,6 +632,12 @@ Remove the git flow hook added by doom.
 * org
 
 TODO: Ensure spacing between sections
+
+** agenda files
+
+#+begin_src elisp
+(map! "C-," #'org-cycle-agenda-files)
+#+end_src
 
 ** structure templates
 
