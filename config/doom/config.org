@@ -247,16 +247,15 @@ Silence state messages.
 
 Re-map keybindings to follow when splitting by default.
 
+TODO: Sort out the descriptions for the remainder of the functions here.
+
 #+begin_src elisp
 (map! :leader
-      :desc "split below & follow"
-      "w s" #'+evil/window-split-and-follow
-      :desc "split below"
-      "w S" #'evil-window-split
-      :desc "split right & follow"
-      "w v" #'+evil/window-vsplit-and-follow
-      :desc "split right"
-      "w V" #'evil-window-vsplit)
+      :prefix ("w" . "window")
+      :desc "split below & follow"  "s"  #'+evil/window-split-and-follow
+      :desc "split below"           "S"  #'evil-window-split
+      :desc "split right & follow"  "v"  #'+evil/window-vsplit-and-follow
+      :desc "split right"           "V"  #'evil-window-vsplit)
 #+end_src
 
 ** hybrid evil/emacs keybindings
@@ -320,8 +319,9 @@ Disable little-used keybindings likely to conflict with other packages.
 (after! evil
   (require 'evil-iedit-state)
   (map! :leader
-        :n "s e ." #'evil-iedit-state/iedit-mode
-        :n "s e e" #'iedit-mode))
+        :prefix ("se". "iedit")
+        :n "." #'evil-iedit-state/iedit-mode
+        :n "e" #'iedit-mode))
 #+end_src
 
 ** evil-unimpaired
