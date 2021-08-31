@@ -815,13 +815,24 @@ Unbind conflicting =rspec-mode= bindings.
   (interactive)
   (map! :map rspec-mode-map
         :localleader
-        "t l" nil
-        "t t" nil))
+        :prefix "t"
+        "T" nil
+        "a" nil
+        "c" nil
+        "e" nil
+        "f" nil
+        "l" nil
+        "m" nil
+        "r" nil
+        "s" nil
+        "t" nil
+        "t" nil
+        "v" nil))
 
 (add-hook! rspec-mode #'unbind-rspec-keybindings)
 #+end_src
 
-Bind =ruby-test= functions.
+Bind Ruby testing commands.
 
 #+begin_src elisp
 (global-unset-key (kbd "s-RET"))
@@ -837,10 +848,12 @@ Bind =ruby-test= functions.
 
 (map! :map ruby-mode-map
       :localleader
-      :n "t b" #'ruby-test-run
-      :n "t l" #'ruby-test-rerun
-      :n "t L" #'rspec-run-last-failed
-      :n "t t" #'ruby-test-run-at-point)
+      :prefix ("t" . "test")
+      :desc "all"         :n "a" #'rspec-verify-all
+      :desc "buffer"      :n "b" #'ruby-test-run
+      :desc "last"        :n "l" #'ruby-test-rerun
+      :desc "last failed" :n "L" #'rspec-run-last-failed
+      :desc "single"      :n "t" #'ruby-test-run-at-point)
 #+end_src
 
 ** projectile-rails
@@ -939,8 +952,9 @@ Look for a controller spec if there's no request spec."
 
 (map! :mode 'ruby-mode
       :localleader
-      :n "d b" #'ruby/toggle-breakpoint
-      :n "d B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
+      :prefix ("d" . "debug")
+      :desc "binding.pry" :n "b" #'ruby/toggle-breakpoint
+      :desc "binding.pry (pipeline)" :n "B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
 #+end_src
 
 * smartparens
