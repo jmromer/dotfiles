@@ -982,7 +982,7 @@ If it can't, delegate to `pyvenv-activate', which will prompt for a path."
         (progn
           (message (format "activating virtualenv at %s" (abbreviate-file-name virtualenv)))
           (pyvenv-activate virtualenv))
-      (pyvenv-activate))))
+      (call-interactively #'pyvenv-activate))))
 #+end_src
 
 ** pytest
