@@ -34,6 +34,7 @@
 - [[#projectile][projectile]]
 - [[#python][python]]
   - [[#projectile-1][projectile]]
+  - [[#pyvenv][pyvenv]]
   - [[#pytest][pytest]]
 - [[#ruby][ruby]]
   - [[#evil-rails][evil-rails]]
@@ -640,6 +641,38 @@ Add Python project types: Pipenv, Poetry, Pytest
                                     :test "poetry run pytest"
                                     :test-prefix "test_"
                                     :test-suffix "_test"))
+#+end_src
+
+** pyvenv
+
+#+begin_src elisp
+(map! :map python-mode-map
+      :localleader
+      :desc "virtualenv"     :n "v"   nil
+      :desc "activate"       :n "v a" #'pyvenv-activate-venv-dwim
+      :desc "deactivate"     :n "v d" #'pyvenv-deactivate
+      :desc "restart python" :n "v r" #'pyvenv-restart-python)
+#+end_src
+
+#+begin_src elisp
+(defun pyvenv-activate-venv-dwim ()
+  "Activate the virtualenv at project root, if one can be found.
+If it can't, delegate to `pyvenv-activate', which will prompt for a path."
+  (interactive)
+  (let* ((proj-root (projectile-project-root))
+         (dir (when proj-root (concat proj-root "env/")))
+         (env (when (and dir (file-exists-p dir)) dir))
+         (dir (when proj-root (concat proj-root "venv/")))
+         (venv (when (and dir (file-exists-p dir)) dir))
+         (dir (when proj-root (concat proj-root ".env/")))
+         (denv (when (and dir (file-exists-p dir)) dir))
+         (dir (when proj-root (concat proj-root ".venv/")))
+         (dvenv (when (and dir (file-exists-p dir)) dir)))
+    (if-let ((virtualenv (or env venv denv dvenv)))
+        (progn
+          (message (format "activating virtualenv at %s" (abbreviate-file-name virtualenv)))
+          (pyvenv-activate virtualenv))
+      (pyvenv-activate))))
 #+end_src
 
 ** pytest
