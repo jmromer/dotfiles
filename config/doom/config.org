@@ -609,10 +609,9 @@ TODO: Ensure spacing between sections
 * projectile
 
 #+begin_src elisp
-(map! :desc "toggle test/implementation"
-      :map prog-mode-map
-      :localleader
-      :n "," #'projectile-toggle-between-implementation-and-test)
+(map! :map prog-mode-map
+      :desc "toggle test/implementation"
+      :n ", ," #'projectile-toggle-between-implementation-and-test)
 #+end_src
 
 * python
