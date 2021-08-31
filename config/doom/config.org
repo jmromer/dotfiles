@@ -912,9 +912,9 @@ Enable strict smartparens mode wherever smartparens is enabled.
   (interactive)
   (shell-command-to-string (format "git add --all && git-clock-out")))
 
-(map!
- "s-c" #'git-clock-in
- "s-C" #'git-clock-out)
+(map! :map prog-mode-map
+      "s-c" #'git-clock-in
+      "s-C" #'git-clock-out)
 #+end_src
 
 * webkit
