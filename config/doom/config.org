@@ -693,36 +693,58 @@ If it can't, delegate to `pyvenv-activate', which will prompt for a path."
 
 ** pytest
 
+Unbind conflicting keybindings.
+
 #+begin_src elisp
 (global-unset-key (kbd "s-RET"))
 (global-unset-key (kbd "s-<return>"))
 (global-unset-key (kbd "s-S-RET"))
 (global-unset-key (kbd "s-S-<return>"))
+#+end_src
 
+Bind test-running keybindings.
+
+#+begin_src elisp
 (map! :map python-mode-map
       :ni "s-<return>"   #'python-pytest-file-dwim
       :ni "s-RET"        #'python-pytest-file-dwim
       :ni "s-S-<return>" #'python-pytest-repeat
       :ni "s-S-RET"      #'python-pytest-repeat)
 
-(map! :map python-mode-map
+(map! :after python
+      :map python-mode-map
       :localleader
-      :n "t ." #'python-pytest-dispatch
-      :n "t b" #'python-pytest-file-dwim
-      :n "t c" #'kill-open-pytest-buffers
-      :n "t f" nil
-      :n "t F" nil
-      :n "t l" #'python-pytest-repeat
-      :n "t L" nil
-      :n "t t" #'python-pytest-function-dwim
-      :n "t T" nil)
+      :prefix ("t" . "pytest")
+      :desc "single"      :n "t" #'python-pytest-function-dwim
+      :desc "all"         :n "a" #'python-pytest
+      :desc "buffer"      :n "b" #'python-pytest-file-dwim
+      :desc "last"        :n "l" #'python-pytest-repeat
+      :desc "last failed" :n "L" #'python-pytest-last-failed
+      :desc "close"       :n "c" #'kill-open-pytest-buffers
+      :desc "dispatch"    :n "." #'python-pytest-dispatch
+      "F" nil
+      "T" nil
+      "a" nil
+      "f" nil
+      "p" nil
+      "r" nil)
 #+end_src
+
+kill any open pytest compilation buffers
 
 #+begin_src elisp
 (defun kill-open-pytest-buffers ()
   "Kill any open pytest compilation buffers."
   (interactive)
   (kill-open-buffers-with-name-prefix "*pytest*"))
+#+end_src
+
+Dismiss pytest compilation buffers as one would expect to.
+
+#+begin_src elisp
+(map! :map python-pytest-mode-map
+      "C-g" #'bury-buffer
+      "q"   #'bury-buffer)
 #+end_src
 
 
