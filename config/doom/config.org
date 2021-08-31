@@ -664,10 +664,10 @@ Add Python project types: Pipenv, Poetry, Pytest
 #+begin_src elisp
 (map! :map python-mode-map
       :localleader
-      :desc "virtualenv"     :n "v"   nil
-      :desc "activate"       :n "v a" #'pyvenv-activate-venv-dwim
-      :desc "deactivate"     :n "v d" #'pyvenv-deactivate
-      :desc "restart python" :n "v r" #'pyvenv-restart-python)
+      :prefix ("v" . "virtualenv")
+      :desc "activate"       :n "a" #'pyvenv-activate-venv-dwim
+      :desc "deactivate"     :n "d" #'pyvenv-deactivate
+      :desc "restart python" :n "r" #'pyvenv-restart-python)
 #+end_src
 
 #+begin_src elisp
