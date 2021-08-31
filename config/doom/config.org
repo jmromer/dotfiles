@@ -1237,8 +1237,8 @@ Bind Ruby testing commands.
 (map! :map ruby-mode-map
       :ni "s-<return>"   #'ruby-test-run
       :ni "s-RET"        #'ruby-test-run
-      :ni "s-S-<return>" #'ruby-test-run-rerun
-      :ni "s-S-RET"      #'ruby-test-run-rerun)
+      :ni "s-S-<return>" #'ruby-test-rerun
+      :ni "s-S-RET"      #'ruby-test-rerun)
 
 (map! :map ruby-mode-map
       :localleader
