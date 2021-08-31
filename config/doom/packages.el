@@ -30,6 +30,7 @@
 (package! org-fancy-priorities)
 (package! org-journal)
 (package! org-superstar)
+(package! ox-hugo)
 (package! posframe)
 (package! ruby-factory)
 (package! ruby-test-mode)
