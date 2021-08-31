@@ -264,7 +264,7 @@ Better parallels emacs's =C-k= (kill to end of line) and evil's =C= (change to e
 
 #+begin_src elisp
 (defun evil-change-back-to-indentation ()
-  "docstring"
+  "Delete the current line from the point back to indentation level and enter insert state."
   (interactive)
   (evil-delete-back-to-indentation)
   (evil-insert-state))
@@ -671,7 +671,7 @@ Add Python project types: Pipenv, Poetry, Pytest
 
 #+begin_src elisp
 (defun kill-open-pytest-buffers ()
-  "docstring"
+  "Kill any open pytest compilation buffers."
   (interactive)
   (kill-open-buffers-with-name-prefix "*pytest*"))
 #+end_src
