@@ -29,6 +29,8 @@
 - [[#gtags][gtags]]
 - [[#kill-open-buffers-with-name-prefix][kill-open-buffers-with-name-prefix]]
 - [[#lookup][lookup]]
+  - [[#web-searches][web searches]]
+  - [[#dash-at-point][dash-at-point]]
 - [[#lsp][lsp]]
 - [[#magit][magit]]
 - [[#org][org]]
@@ -138,8 +140,9 @@ clients, file templates and snippets.
       user-mail-address "jake@jmromer.org")
 #+end_src
 
-#+begin_src elisp
+Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][setup]] for using [[https://magit.vc/manual/forge/][forge]].
 
+#+begin_src elisp
 (setq authinfo-file (format "%s/config/authinfo.gpg" (getenv "XDG_SECURE_DIR"))
       auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
 #+end_src
@@ -147,6 +150,8 @@ clients, file templates and snippets.
 * completion
 
 ** company
+
+https://github.com/company-mode/company-mode
 
 Ensure yasnippet is included with all backends
 
@@ -210,7 +215,7 @@ Examples:
 
 * diff-hl
 
-Enable diff-highlight modes globally.
+Enable [[https://github.com/dgutov/diff-hl][diff-highlight]] modes globally.
 
 #+begin_src elisp
 (after! diff-hl
@@ -360,6 +365,8 @@ TODO: Fix org mode overriding these changes.
 
 ** evil-cleverparens
 
+https://github.com/luxbock/evil-cleverparens
+
 NB: Consider [[https://github.com/syohex/lispyville][lispyville]] as an alternative.
 
 #+begin_src elisp
@@ -380,6 +387,8 @@ Disable little-used keybindings likely to conflict with other packages.
 
 ** evil-iedit
 
+https://github.com/syl20bnr/evil-iedit-state
+
 #+begin_src elisp
 (setq iedit-toggle-key-default nil)
 #+end_src
@@ -395,6 +404,8 @@ Disable little-used keybindings likely to conflict with other packages.
 
 ** evil-unimpaired
 
+https://github.com/zmaas/evil-unimpaired
+
 #+begin_src elisp
 (after! evil-unimpaired
   (evil-unimpaired-mode))
@@ -402,12 +413,16 @@ Disable little-used keybindings likely to conflict with other packages.
 
 ** evil-matchit
 
+https://github.com/redguardtoo/evil-matchit
+
 #+begin_src elisp
 (after! evil-matchit
   (global-evil-matchit-mode))
 #+end_src
 
 ** evil-quickscope
+
+https://github.com/blorbx/evil-quickscope
 
 #+begin_src elisp
 (global-evil-quickscope-mode 1)
@@ -478,6 +493,8 @@ Add sort motions to normal state map.
 
 ** evil-string-inflection
 
+https://github.com/ninrod/evil-string-inflection
+
 Use =g~= operator to cycle through inflection transformations.
 
 #+begin_src elisp
@@ -546,6 +563,8 @@ Use tab to fold in prog modes.
 
 * gtags
 
+https://github.com/leoliu/ggtags
+
 #+begin_src elisp
 (after! ggtags
   (ggtags-mode)
@@ -569,16 +588,23 @@ Use tab to fold in prog modes.
 
 * lookup
 
-Lookup Dash docs quickly from the normal state.
-
-#+begin_src elisp
-(map! :n "H" #'dash-at-point)
-#+end_src
+** web searches
 
 Use xwidgets to browse online search results online.
 
 #+begin_src elisp
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
+#+end_src
+
+
+** dash-at-point
+
+https://github.com/stanaka/dash-at-point
+
+Lookup Dash docs quickly from the normal state.
+
+#+begin_src elisp
+(map! :n "H" #'dash-at-point)
 #+end_src
 
 Un-define doom's Dash-related functions since they're not installed.
@@ -592,6 +618,8 @@ TODO: Contribute upstream (check for the module inclusion flag).
 #+end_src
 
 * lsp
+
+https://emacs-lsp.github.io/lsp-mode
 
 #+begin_src elisp
 (after! (:all company lsp-mode)
@@ -625,6 +653,8 @@ TODO: Contribute upstream (check for the module inclusion flag).
 
 * magit
 
+https://magit.vc/manual/magit.html
+
 #+begin_src elisp
 (map! :desc "Open magit" "s-g" #'magit-status)
 #+end_src
@@ -636,6 +666,8 @@ Remove the git flow hook added by doom.
 #+end_src
 
 * org
+
+https://orgmode.org/manual
 
 TODO: Ensure spacing between sections
 
