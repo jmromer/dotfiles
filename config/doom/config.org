@@ -780,6 +780,72 @@ Set descriptions for prefixes and commands to aid discoverability.
 (add-hook! ruby-mode #'set-ruby-keymaps)
 #+end_src
 
+#+begin_src elisp
+;; clear projectile-rails's keybinds
+(defun set-rails-keymaps ()
+  (map! :localleader :map projectile-rails-mode-map "r" nil)
+  (map! :localleader
+        :map ruby-mode-map
+        :prefix ("r" . "rails")
+        :desc "model"                 "m"   #'projectile-rails-find-model
+        :desc "model (current)"       "M"   #'projectile-rails-find-current-model
+        :desc "controller"            "c"   #'projectile-rails-find-controller
+        :desc "controller (current)"  "C"   #'projectile-rails-find-current-controller
+        :desc "view"                  "v"   #'projectile-rails-find-view
+        :desc "view (current)"        "V"   #'projectile-rails-find-current-view
+        :desc "js"                    "j"   #'projectile-rails-find-javascript
+        :desc "js (current)"          "J"   #'projectile-rails-find-current-javascript
+        :desc "styles"                "s"   #'projectile-rails-find-stylesheet
+        :desc "styles (current)"      "S"   #'projectile-rails-find-current-stylesheet
+        :desc "helper"                "h"   #'projectile-rails-find-helper
+        :desc "helper (current)"      "H"   #'projectile-rails-find-current-helper
+        :desc "spec"                  "p"   #'projectile-rails-find-spec
+        :desc "spec (current)"        "P"   #'projectile-rails-find-current-spec
+        :desc "test"                  "t"   #'projectile-rails-find-test
+        :desc "test (current)"        "T"   #'projectile-rails-find-current-test
+        :desc "migration"             "n"   #'projectile-rails-find-migration
+        :desc "migration (current)"   "N"   #'projectile-rails-find-current-migration
+        :desc "fixture"               "u"   #'projectile-rails-find-fixture
+        :desc "fixture (current)"     "U"   #'projectile-rails-find-current-fixture
+        :desc "component"             "w"   #'projectile-rails-find-component
+        :desc "lib"                   "l"   #'projectile-rails-find-lib
+        :desc "feature"               "f"   #'projectile-rails-find-feature
+        :desc "initializer"           "i"   #'projectile-rails-find-initializer
+        :desc "log"                   "o"   #'projectile-rails-find-log
+        :desc "environemnt"           "e"   #'projectile-rails-find-environment
+        :desc "webpack"               "W"   #'projectile-rails-find-webpack
+        :desc "locale"                "a"   #'projectile-rails-find-locale
+        :desc "mailer"                "@"   #'projectile-rails-find-mailer
+        :desc "validator"             "!"   #'projectile-rails-find-validator
+        :desc "layout"                "y"   #'projectile-rails-find-layout
+        :desc "rake task"             "k"   #'projectile-rails-find-rake-task
+        :desc "job"                   "b"   #'projectile-rails-find-job
+        :desc "serializer"            "z"   #'projectile-rails-find-serializer
+        :desc "serializer (current)"  "Z"   #'projectile-rails-find-current-serializer
+        :desc "extract region"        "x"   #'projectile-rails-extract-region
+        :desc "goto file at point"    "RET" #'projectile-rails-goto-file-at-point
+
+        :prefix ("rr" . "run")
+        :desc "console"   "c" #'projectile-rails-console
+        :desc "server"    "s" #'projectile-rails-server
+        :desc "rake"      "r" #'projectile-rails-rake
+        :desc "generate"  "g" #'projectile-rails-generate
+        :desc "destroy"   "d" #'projectile-rails-destroy
+        :desc "dbconsole" "C" #'projectile-rails-dbconsole
+
+        :prefix ("rg" . "goto")
+        :desc "file-at-point" "f" #'projectile-rails-goto-file-at-point
+        :desc "gemfile"       "g" #'projectile-rails-goto-gemfile
+        :desc "routes"        "r" #'projectile-rails-goto-routes
+        :desc "schema"        "d" #'projectile-rails-goto-schema
+        :desc "seeds"         "s" #'projectile-rails-goto-seeds
+        :desc "spec helper"   "h" #'projectile-rails-goto-spec-helper
+        :desc "package"       "p" #'projectile-rails-goto-package
+        nil))
+
+(add-hook! ruby-mode #'set-rails-keymaps)
+#+end_src
+
 ** evil-rails
 
 Ex commands for =projectile-rails=. Mainly here for =:AS= and =:AV=.
