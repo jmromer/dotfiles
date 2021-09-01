@@ -115,6 +115,7 @@ setup :development_tools do
   brew_install :gh
   brew_install :git_delta
   brew_install :httpie, options: :head
+  brew_install :libvterm
   brew_install :source_highlight
   brew_install :tmux, options: :head
   brew_install :zsh
