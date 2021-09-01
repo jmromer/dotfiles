@@ -34,6 +34,7 @@
 - [[#lsp][lsp]]
 - [[#magit][magit]]
 - [[#markdown][markdown]]
+- [[#markdown-gfm-live-preview][markdown gfm live preview]]
 - [[#org][org]]
   - [[#agenda-files][agenda files]]
   - [[#structure-templates][structure templates]]
@@ -689,7 +690,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "edit code block" "'"  #'markdown-edit-code-block
         :desc "export"          "e"  #'markdown-export
         :desc "open"            "o"  #'markdown-open
-        :desc "preview"         "p"  #'markdown-preview
+        :desc "preview"         "p"  #'markdown-gfm-live-preview
         :prefix ("i" . "insert")
         :desc "header"          "h"  #'markdown-insert-header-setext-dwim
         :desc "header (atx)"    "H"  #'markdown-insert-header-dwim
@@ -727,6 +728,52 @@ Clear pre-installed keymaps and set cleaned up keymaps.
 
 (add-hook! markdown-mode #'set-markdown-keymaps)
 #+end_src
+
+* markdown gfm live preview
+
+- vmd mode requires atom shell
+- This approach uses pandoc and [[https://github.com/netguy204/imp.el][impatient-mode]]
+- TODO: This could be much better written using Node
+
+#+begin_src elisp
+(setq markdown-command "pandoc --to html5"
+      httpd-host "localhost"
+      httpd-port 7070)
+#+end_src
+
+#+begin_src elisp
+(setq markdown-gfm-live-preview--template-string
+      (file-to-string (format "%s/templates/markdown-gfm-live-preview.html" (getenv "DOOMDIR"))))
+
+(defun markdown-gfm-live-preview--filter (buffer)
+  (princ
+   (with-temp-buffer
+     (let ((tmp (buffer-name)))
+       (set-buffer buffer)
+       (set-buffer (markdown tmp))
+       (format markdown-gfm-live-preview--template-string (buffer-string)))) (current-buffer)))
+#+end_src
+
+#+begin_src elisp
+(defun markdown-gfm-live-preview (arg)
+  "Live-preview GitHub-Flavored Markdown in a WebKit browser.
+If prefix arg ARG is passed, use the default browser."
+  (interactive "P")
+  (let ((browse-url-browser-function (if arg #'browse-url-default-browser #'xwwp)))
+    (unless (process-status "httpd")
+      (httpd-start))
+    (impatient-mode 1)
+    (imp-set-user-filter #'markdown-gfm-live-preview--filter)
+    ;; works around a xwwp issue where the webkit buffer replaces the current buffer
+    (unless arg
+      (split-window-right)
+      (other-window 1))
+    (imp-visit-buffer)
+    ;; works around a xwwp issue where the cursor seems like it's stuck in the webkit buffer.
+    (unless arg
+      (bury-buffer))))
+#+end_src
+
 * org
 
 https://orgmode.org/manual
