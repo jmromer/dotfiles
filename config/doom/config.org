@@ -1,4 +1,7 @@
 #+TITLE: Emacs Config
+#+AUTHOR: Jacob Römer (jmromer)
+#+PROPERTY: header-args :emacs-lisp :tangle yes :comments link
+#+STARTUP: org-startup-folded: fold
 
 * Contents :TOC_1:
 - [[#notes][Notes]]
@@ -1274,7 +1277,6 @@ Dismiss pytest compilation buffers as one would expect to.
       "C-g" #'bury-buffer
       "q"   #'bury-buffer)
 #+end_src
-
 
 * ruby
 
