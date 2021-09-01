@@ -1436,7 +1436,7 @@ Precedence order:
                          (browser-open--ensure-url (browser-open--get-url-surrounding-point))))
          (history '("localhost:" "google.com"))
          (user-input (unless (or region-text url-at-point)
-                       (string-trim (read-from-minibuffer "goto: " nil nil nil 'history))))
+                       (string-trim (read-from-minibuffer "goto: " "localhost:" nil nil '(history . 1)))))
          (user-text (unless (string= "" user-input)
                       user-input)))
     (when-let ((target-str (or region-text url-at-point user-text)))
