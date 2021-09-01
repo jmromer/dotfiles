@@ -65,3 +65,6 @@
 ;; |                  |      sass-mode, less-css-mode        | vscode-html-languageserver-bin |
 ;; | purescript       | purescript-mode                      | purescript-language-server     |
 ;; | zig              | zig-mode                             | zls                            |
+
+;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/LAYERS.org#django
+;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/LAYERS.org#react
