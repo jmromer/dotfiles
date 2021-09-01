@@ -31,11 +31,9 @@ setup :core_cli_tools do
   brew_install :grep
   brew_install :less
   brew_install :ripgrep
-  brew_install :shellcheck
   brew_install :watch
   brew_install :wdiff
   brew_install :wget
-  brew_install :wordnet
 end
 
 setup :build_tools do
@@ -112,7 +110,6 @@ setup :development_tools do
   brew_install :awscli
   brew_install :bash
   brew_install :bat
-  brew_install :editorconfig
   brew_install :exa
   brew_install :fzf
   brew_install :gh
@@ -133,6 +130,14 @@ setup :development_tools do
 
   brew_tap "homebrew/cask-versions"
   cask_install :iterm2_nightly
+end
+
+setup :text_editing_cli_tools do
+  brew_install :shellcheck
+  brew_install :wordnet
+  brew_install :pandoc
+  brew_install :editorconfig
+  brew_install :tidy_html5
 end
 
 setup :mac_tools do
