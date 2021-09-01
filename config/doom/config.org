@@ -75,7 +75,30 @@ Set fonts. NB: =doom-variable-pitch-font= could use updating.
       doom-variable-pitch-font (font-spec :family "SF Mono" :size 16)
       doom-big-font (font-spec :family "SF Mono" :size 24)
       doom-theme 'doom-one
-      display-line-numbers-type 'relative)
+      display-line-numbers-type 'relative
+      fancy-splash-image nil
+      +doom-dashboard-ascii-banner-fn nil)
+#+end_src
+
+#+begin_src elisp
+(set-face-foreground 'doom-dashboard-footer-icon "#5B6268")
+(set-face-foreground 'doom-dashboard-footer "#5B6268")
+#+end_src
+
+#+begin_src elisp
+(defun doom-dashboard-widget-footer ()
+  (insert
+   "\n"
+   (+doom-dashboard--center
+    (- +doom-dashboard--width 2)
+    (with-temp-buffer
+      (insert-text-button (or (all-the-icons-fileicon "emacs" :face 'doom-dashboard-footer-icon :height 1.3 :v-adjust -0.15)
+                              (propertize "github" 'face 'doom-dashboard-footer))
+                          'action (lambda (_) (browse-url "https://github.com/hlissner/doom-emacs"))
+                          'follow-link t
+                          'help-echo "Doom Emacs")
+      (buffer-string)))
+   "\n"))
 #+end_src
 
 Start Emacs maximized.
