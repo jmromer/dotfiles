@@ -710,47 +710,51 @@ Clear pre-installed keymaps and set cleaned up keymaps.
   (defvar markdown-mode-map (make-sparse-keymap))
   (defvar markdown-mode-mouse-map (make-sparse-keymap))
 
-  (map! :localleader
-        :map markdown-mode-map
-        :desc "edit code block" "'"  #'markdown-edit-code-block
-        :desc "export"          "e"  #'markdown-export
-        :desc "open"            "o"  #'markdown-open
-        :desc "preview"         "p"  #'markdown-gfm-live-preview
+  (map! :map markdown-mode-map
+        :after markdown-mode
+        :localleader
+        :desc "edit code block" :n "'"  #'markdown-edit-code-block
+        :desc "export"          :n "e"  #'markdown-export
+        :desc "open"            :n "o"  #'markdown-open
+        :desc "live preview"    :n "p"  #'markdown-gfm-live-preview
+        :prefix ("h" . "header")
+        :desc "dwim"            :nv "h"  #'markdown-insert-header-setext-dwim
+        :desc "dwim (atx)"      :nv "H"  #'markdown-insert-header-dwim
+        :desc "h1"              :nv "1"  #'markdown-insert-header-setext-1
+        :desc "h2"              :nv "2"  #'markdown-insert-header-setext-2
+        :desc "h3"              :nv "3"  #'markdown-insert-header-atx-3
+        :desc "h4"              :nv "4"  #'markdown-insert-header-atx-4
+        :desc "h5"              :nv "5"  #'markdown-insert-header-atx-5
+        :desc "h6"              :nv "6"  #'markdown-insert-header-atx-6
         :prefix ("i" . "insert")
-        :desc "header"          "h"  #'markdown-insert-header-setext-dwim
-        :desc "header (atx)"    "H"  #'markdown-insert-header-dwim
-        :desc "header 1"        "1"  #'markdown-insert-header-setext-1
-        :desc "header 2"        "2"  #'markdown-insert-header-setext-2
-        :desc "header 3"        "3"  #'markdown-insert-header-atx-3
-        :desc "header 4"        "4"  #'markdown-insert-header-atx-4
-        :desc "header 5"        "5"  #'markdown-insert-header-atx-5
-        :desc "header 6"        "6"  #'markdown-insert-header-atx-6
-        :desc "bold"            "b"  #'markdown-insert-bold
-        :desc "code"            "c"  #'markdown-insert-code
-        :desc "code (gfm)"      "C"  #'markdown-insert-gfm-code-block
-        :desc "footnote"        "f"  #'markdown-insert-footnote
-        :desc "foldable block"  "F"  #'markdown-insert-foldable-block
-        :desc "italic"          "i"  #'markdown-insert-italic
-        :desc "kbd"             "k"  #'markdown-insert-kbd
-        :desc "link"            "l"  #'markdown-insert-link
-        :desc "pre"             "p"  #'markdown-insert-pre
-        :desc "pre block"       "P"  #'markdown-pre-region
-        :desc "quote"           "q"  #'markdown-insert-blockquote
-        :desc "quote block"     "Q"  #'markdown-blockquote-region
-        :desc "strikethrough"   "s"  #'markdown-insert-strike-through
-        :desc "table"           "t"  #'markdown-insert-table
-        :desc "wiki link"       "w"  #'markdown-insert-wiki-link
-        :desc "hr"              "-"  #'markdown-insert-hr
-        :desc "checkbox (gfm)"  "["  #'markdown-insert-gfm-checkbox
+        :desc "bold"              :nv "b"  #'markdown-insert-bold
+        :desc "code (gfm)"        :nv "c"  #'markdown-insert-gfm-code-block
+        :desc "code"              :nv "C"  #'markdown-insert-code
+        :desc "footnote"          :nv "f"  #'markdown-insert-footnote
+        :desc "foldable block"    :nv "F"  #'markdown-insert-foldable-block
+        :desc "italic"            :nv "i"  #'markdown-insert-italic
+        :desc "kbd"               :nv "k"  #'markdown-insert-kbd
+        :desc "link"              :nv "l"  #'markdown-insert-link
+        :desc "pre"               :nv "p"  #'markdown-insert-pre
+        :desc "pre block"         :nv "P"  #'markdown-pre-region
+        :desc "quote"             :nv "q"  #'markdown-insert-blockquote
+        :desc "quote block"       :nv "Q"  #'markdown-blockquote-region
+        :desc "strikethrough"     :nv "s"  #'markdown-insert-strike-through
+        :desc "table"             :nv "t"  #'markdown-insert-table
+        :desc "table of contents" :nv "T"  #'markdown-toc-generate-or-refresh-toc
+        :desc "wiki link"         :nv "w"  #'markdown-insert-wiki-link
+        :desc "hr"                :nv "-"  #'markdown-insert-hr
+        :desc "checkbox (gfm)"    :nv "["  #'markdown-insert-gfm-checkbox
         :prefix ("t" . "table")
-        :desc "sort lines"      "s"  #'markdown-table-sort-lines
-        :desc "convert region"  "v"  #'markdown-table-convert-region
-        :desc "transpose"       "t"  #'markdown-table-transpose
-        :desc "row delete"      "R"  #'markdown-table-delete-row
-        :desc "row insert"      "r"  #'markdown-table-insert-row
-        :desc "column delete"   "C"  #'markdown-table-delete-column
-        :desc "column insert"   "c"  #'markdown-table-insert-column))
+        :desc "sort lines"      :nv "s"  #'markdown-table-sort-lines
+        :desc "convert region"  :nv "v"  #'markdown-table-convert-region
+        :desc "transpose"       :n  "t"  #'markdown-table-transpose
+        :desc "row delete"      :n  "R"  #'markdown-table-delete-row
+        :desc "row insert"      :n  "r"  #'markdown-table-insert-row
+        :desc "column delete"   :n  "C"  #'markdown-table-delete-column
+        :desc "column insert"   :n  "c"  #'markdown-table-insert-column))
 
+(remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
 (add-hook! markdown-mode #'set-markdown-keymaps)
 #+end_src
 
