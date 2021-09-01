@@ -51,6 +51,7 @@
   - [[#evil-rails][evil-rails]]
   - [[#format-all][format-all]]
   - [[#ruby-factory][ruby-factory]]
+  - [[#rspec-mode][rspec-mode]]
   - [[#ruby-test][ruby-test]]
   - [[#projectile-rails][projectile-rails]]
   - [[#seeing-is-believing][seeing-is-believing]]
@@ -1179,16 +1180,9 @@ Ruby 3's new language constructs.
 (add-hook 'ruby-mode-hook #'ruby-factory-mode)
 #+end_src
 
-** ruby-test
+** rspec-mode
 
-#+begin_src elisp
-(setq ruby-test-rspec-options '("--backtrace" "--format progress" "--no-profile")
-      ruby-test-plain-test-options '("--backtrace" "--format progress" "--no-profile")
-      ruby-test-rails-test-options '("--backtrace" "--format progress" "--no-profile"))
-
-;; Enable entering pry / irb in test runs.
-(add-hook! comint-mode #'evil-normal-state #'inf-ruby-auto-enter)
-#+end_src
+https://github.com/pezra/rspec-mode
 
 rspec-mode options:
 
@@ -1201,7 +1195,18 @@ rspec-mode options:
       rspec-use-spring-when-possible nil)
 #+end_src
 
-Unbind conflicting =rspec-mode= bindings.
+Ensure test compilation buffers are selected and readonly.
+
+#+begin_src elisp
+(defun switch-to-rspec-compilation-buffer ()
+  "Switch to the RSpec compilation buffer."
+  (switch-to-buffer "*rspec-compilation*"))
+
+;; Enable pry in test runs
+(add-hook! compilation-filter #'inf-ruby-auto-enter #'evil-normal-state)
+#+end_src
+
+Unbind =rspec-mode= bindings that conflict with =ruby-test=.
 
 #+begin_src elisp
 (defun unbind-rspec-keybindings ()
@@ -1224,6 +1229,16 @@ Unbind conflicting =rspec-mode= bindings.
         "v" nil))
 
 (add-hook! rspec-mode #'unbind-rspec-keybindings)
+#+end_src
+
+** ruby-test
+
+https://github.com/ruby-test-mode/ruby-test-mode
+
+#+begin_src elisp
+(setq ruby-test-rspec-options '("--backtrace" "--format progress" "--no-profile")
+      ruby-test-plain-test-options '("--backtrace" "--format progress" "--no-profile")
+      ruby-test-rails-test-options '("--backtrace" "--format progress" "--no-profile"))
 #+end_src
 
 Bind Ruby testing commands.
