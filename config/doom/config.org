@@ -3,6 +3,7 @@
 * Contents :TOC:
 - [[#notes][Notes]]
 - [[#general][General]]
+  - [[#which-key][which-key]]
   - [[#display][display]]
   - [[#leader-keys][leader keys]]
   - [[#super-keys][super keys]]
@@ -86,6 +87,14 @@ Useful functions/macros (see [[https://github.com/hlissner/doom-emacs/blob/devel
 - =map!= for binding new keys
 
 * General
+
+** which-key
+
+Have =which-key= respond a little more aggressively (default: l.0)
+
+#+begin_src elisp
+(setq which-key-idle-delay 0.1)
+#+end_src
 
 ** display
 
