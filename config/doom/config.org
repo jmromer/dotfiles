@@ -8,6 +8,7 @@
   - [[#super-keys][super keys]]
   - [[#file-paths][file paths]]
   - [[#identity][identity]]
+- [[#utilities][Utilities]]
 - [[#completion][completion]]
   - [[#company][company]]
   - [[#company-box][company-box]]
@@ -120,6 +121,8 @@ Use =,= for the local leader key.
 
 ** super keys
 
+Some general purpose super-key keybindings.
+
 #+begin_src elisp
 (map! "s-'" #'+vterm/toggle
       "s-K" #'kill-current-buffer
@@ -131,8 +134,15 @@ Use =,= for the local leader key.
 File paths for Org documents, Deft notes, and etc.
 
 #+begin_src elisp
-(setq org-directory (concat (getenv "XDG_DATA_HOME") "/org"))
-(setq deft-directory (concat org-directory "/notes"))
+(setq org-directory (format "%s/org" (getenv "XDG_DATA_HOME"))
+      deft-directory (format "%s/notes" org-directory))
+#+end_src
+
+Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][setup]] for using [[https://magit.vc/manual/forge/][forge]].
+
+#+begin_src elisp
+(setq authinfo-file (format "%s/config/authinfo.gpg" (getenv "XDG_SECURE_DIR"))
+      auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
 #+end_src
 
 ** identity
@@ -145,11 +155,23 @@ clients, file templates and snippets.
       user-mail-address "jake@jmromer.org")
 #+end_src
 
-Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][setup]] for using [[https://magit.vc/manual/forge/][forge]].
+* Utilities
+
+Some general-purpose functions.
 
 #+begin_src elisp
-(setq authinfo-file (format "%s/config/authinfo.gpg" (getenv "XDG_SECURE_DIR"))
-      auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
+(defun file-to-string (filename)
+  "Read the contents of file FILENAME to a string."
+  (with-temp-buffer
+    (insert-file-contents filename)
+    (buffer-string)))
+#+end_src
+
+#+begin_src elisp
+(defun is-proj-root-p (filename)
+  "Is the given filename FILENAME a project root?"
+  (or (file-directory-p (format "%s/.git" filename))
+      (file-directory-p (format "%s/.projectile" filename))))
 #+end_src
 
 * completion
@@ -1683,10 +1705,6 @@ Combines behavior from the following commands, unifying their interfaces with a 
 - =+default/yank-buffer-path-relative-to-project=
 
 #+begin_src elisp
-(defun is-proj-root-p (name)
-  (or (file-directory-p (format "%s/.git" name))
-      (file-directory-p (format "%s/.projectile" name))))
-
 (defun yank-buffer-path-dwim (abspath-p)
   "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, use `default-directory'.)
 Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
