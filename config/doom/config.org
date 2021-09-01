@@ -353,12 +353,13 @@ Re-map keybindings to follow when splitting by default.
 TODO: Sort out the descriptions for the remainder of the functions here.
 
 #+begin_src elisp
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
 (map! :leader
       :prefix ("w" . "window")
-      :desc "split below & follow"  "s"  #'+evil/window-split-and-follow
-      :desc "split below"           "S"  #'evil-window-split
-      :desc "split right & follow"  "v"  #'+evil/window-vsplit-and-follow
-      :desc "split right"           "V"  #'evil-window-vsplit)
+      :desc "split below"  "s"  #'evil-window-split
+      :desc "split right"  "v"  #'evil-window-vsplit)
 #+end_src
 
 ** hybrid evil/emacs keybindings
