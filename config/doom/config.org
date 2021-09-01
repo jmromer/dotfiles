@@ -4,6 +4,7 @@
 - [[#notes][Notes]]
 - [[#general][General]]
   - [[#which-key][which-key]]
+  - [[#literate-config][literate config]]
   - [[#display][display]]
   - [[#leader-keys][leader keys]]
   - [[#super-keys][super keys]]
@@ -94,6 +95,23 @@ Have =which-key= respond a little more aggressively (default: l.0)
 
 #+begin_src elisp
 (setq which-key-idle-delay 0.1)
+#+end_src
+
+** literate config
+
+Don't tangle on save.
+
+#+begin_src elisp
+(remove-hook 'org-mode-hook #'+literate-enable-recompile-h)
+#+end_src
+
+Provide a command to trigger tangling manually. (Alternatively: issue =doom sync= from the command line.)
+
+#+begin_src elisp
+(defun tangle-config ()
+  "Tangle config.org to Emacs lisp."
+  (interactive)
+  (+literate-tangle-h))
 #+end_src
 
 ** display
