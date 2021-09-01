@@ -170,6 +170,64 @@ Some general-purpose functions.
                (buffer-list))))
 #+end_src
 
+** get-url-surrounding-point
+
+#+begin_src elisp
+(defun get-url-surrounding-point ()
+  (save-excursion
+    (let* ((oldpoint (point)) (start (point)) (end (point))
+           (syntaxes "w_")
+           (not-syntaxes (concat "^" syntaxes)))
+      (skip-syntax-backward syntaxes) (setq start (point))
+      (goto-char oldpoint)
+      (skip-syntax-forward syntaxes) (setq end (point))
+      (when (and (eq start oldpoint)
+                 (eq end oldpoint))
+        ;; Look for preceding word in same line.
+        (skip-syntax-backward not-syntaxes (line-beginning-position))
+        (if (bolp)
+            ;; No preceding word in same line.
+            ;; Look for following word in same line.
+            (progn
+              (skip-syntax-forward not-syntaxes (line-end-position))
+              (setq start (point))
+              (skip-syntax-forward syntaxes)
+              (setq end (point)))
+          (setq end (point))
+          (skip-syntax-backward syntaxes)
+          (setq start (point))))
+      ;; If we found something nonempty, return it as a string.
+      (unless (= start end)
+        (buffer-substring-no-properties start end)))))
+#+end_src
+
+** ensure-url
+
+#+begin_src elisp
+(defun ensure-url (candidate-str)
+  "Ensure CANDIDATE-STR can be interpreted as a URL.
+Checking for a scheme (interpolating one if missing) and a hostname with a TLD.
+Return nil if the hostname is missing a TLD."
+  (when candidate-str
+    (let* ((candidate-url (ensure-url-scheme candidate-str))
+           (hostname (nth 2 (split-string candidate-url "/"))))
+      (when (string-match-p "\\." hostname)
+        candidate-url))))
+
+#+end_src
+
+** ensure-url-scheme
+
+#+begin_src elisp
+(defun ensure-url-scheme (candidate-str)
+  "Ensure CANDIDATE-STR is prefixed with a scheme, or return the string prepended with one"
+  (when candidate-str
+    (if (or (string-prefix-p "https://" candidate-str t)
+            (string-prefix-p "http://" candidate-str t))
+        candidate-str
+      (format "https://%s" (replace-regexp-in-string "^[^[:word:]]+" "" candidate-str)))))
+#+end_src
+
 ** yank-buffer-path-dwim
 
 Combines behavior from the following commands, unifying their interfaces with a =C-u= fallback.:
@@ -1597,8 +1655,7 @@ Precedence order:
   (interactive "P")
   (let* ((region-text (when (use-region-p)
                         (buffer-substring (region-beginning) (region-end))))
-         (url-at-point (unless region-text
-                         (browser-open--ensure-url (browser-open--get-url-surrounding-point))))
+         (url-at-point (unless region-text (ensure-url (get-url-surrounding-point))))
          (history '("localhost:" "google.com"))
          (user-input (unless (or region-text url-at-point)
                        (string-trim (read-from-minibuffer "goto: " "localhost:" nil nil '(history . 1)))))
@@ -1606,57 +1663,6 @@ Precedence order:
                       user-input)))
     (when-let ((target-str (or region-text url-at-point user-text)))
         (xwwp target-str use-new-session))))
-#+end_src
-
-** browser-open functions
-
-#+begin_src elisp
-(defun browser-open--get-url-surrounding-point ()
-  (save-excursion
-    (let* ((oldpoint (point)) (start (point)) (end (point))
-           (syntaxes "w_")
-           (not-syntaxes (concat "^" syntaxes)))
-      (skip-syntax-backward syntaxes) (setq start (point))
-      (goto-char oldpoint)
-      (skip-syntax-forward syntaxes) (setq end (point))
-      (when (and (eq start oldpoint)
-                 (eq end oldpoint))
-        ;; Look for preceding word in same line.
-        (skip-syntax-backward not-syntaxes (line-beginning-position))
-        (if (bolp)
-            ;; No preceding word in same line.
-            ;; Look for following word in same line.
-            (progn
-              (skip-syntax-forward not-syntaxes (line-end-position))
-              (setq start (point))
-              (skip-syntax-forward syntaxes)
-              (setq end (point)))
-          (setq end (point))
-          (skip-syntax-backward syntaxes)
-          (setq start (point))))
-      ;; If we found something nonempty, return it as a string.
-      (unless (= start end)
-        (buffer-substring-no-properties start end)))))
-#+end_src
-
-#+begin_src elisp
-(defun browser-open--ensure-url (candidate-str)
-  "Ensure CANDIDATE-STR can be interpreted as a URL.
-Checking for a scheme (interpolating one if missing) and a hostname with a TLD.
-Return nil if the hostname is missing a TLD."
-  (when candidate-str
-    (let* ((candidate-url (browser-open--ensure-scheme candidate-str))
-           (hostname (nth 2 (split-string candidate-url "/"))))
-      (when (string-match-p "\\." hostname)
-        candidate-url))))
-
-(defun browser-open--ensure-scheme (candidate-str)
-  "Ensure CANDIDATE-STR is prefixed with a scheme, or return the string prepended with one"
-  (when candidate-str
-    (if (or (string-prefix-p "https://" candidate-str t)
-            (string-prefix-p "http://" candidate-str t))
-        candidate-str
-      (format "https://%s" (replace-regexp-in-string "^[^[:word:]]+" "" candidate-str)))))
 #+end_src
 
 ** xwidget-widget keybindings
