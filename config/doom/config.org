@@ -188,6 +188,8 @@ clients, file templates and snippets.
 
 Some general-purpose functions.
 
+** file-to-string
+
 #+begin_src elisp
 (defun file-to-string (filename)
   "Read the contents of file FILENAME to a string."
@@ -196,11 +198,57 @@ Some general-purpose functions.
     (buffer-string)))
 #+end_src
 
+** is-proj-root-p
+
 #+begin_src elisp
 (defun is-proj-root-p (filename)
   "Is the given filename FILENAME a project root?"
   (or (file-directory-p (format "%s/.git" filename))
       (file-directory-p (format "%s/.projectile" filename))))
+#+end_src
+
+** kill-open-buffers-with-name-prefix
+
+#+begin_src elisp
+(defun kill-open-buffers-with-name-prefix (prefix)
+  (interactive)
+  (seq-do
+   #'kill-buffer
+   (seq-filter #'(lambda (buffer)
+                   (string-prefix-p prefix (buffer-name buffer)))
+               (buffer-list))))
+#+end_src
+
+** yank-buffer-path-dwim
+
+Combines behavior from the following commands, unifying their interfaces with a =C-u= fallback.:
+
+- =+default/yank-buffer-path=
+- =+default/yank-buffer-path-relative-to-project=
+
+#+begin_src elisp
+(defun yank-buffer-path-dwim (abspath-p)
+  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, use `default-directory'.)
+Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
+Provide an absolute path if the prefix argument ABSPATH-P is provided."
+  (interactive "P")
+  (let ((yanked-path
+        (if-let ((file-path buffer-file-name))
+            (let* ((proj-path (expand-file-name (locate-dominating-file file-path #'is-proj-root-p)))
+                   (disp-path (if abspath-p file-path
+                                (replace-regexp-in-string (concat "^" proj-path) "" file-path))))
+              disp-path)
+          (abbreviate-file-name default-directory))))
+    (progn
+      (kill-new yanked-path)
+      (message (format "Copied to clipboard: %s" yanked-path)))))
+#+end_src
+
+#+begin_src elisp
+(map! :desc "yank buffer path"
+      :leader
+      "f Y" nil
+      "f y" #'yank-buffer-path-dwim)
 #+end_src
 
 * completion
@@ -633,18 +681,6 @@ https://github.com/leoliu/ggtags
                                  elisp--xref-backend
                                  gxref-xref-backend
                                  etags--xref-backend)))
-#+end_src
-
-* kill-open-buffers-with-name-prefix
-
-#+begin_src elisp
-(defun kill-open-buffers-with-name-prefix (prefix)
-  (interactive)
-  (seq-do
-   #'kill-buffer
-   (seq-filter #'(lambda (buffer)
-                   (string-prefix-p prefix (buffer-name buffer)))
-               (buffer-list))))
 #+end_src
 
 * lookup
@@ -1729,38 +1765,6 @@ Return nil if the hostname is missing a TLD."
 (map! "s-;" #'+workspace/other
       "s-{" #'+workspace/switch-left
       "s-}" #'+workspace/switch-right)
-#+end_src
-
-* yank-buffer-path-dwim
-
-Combines behavior from the following commands, unifying their interfaces with a =C-u= fallback.:
-
-- =+default/yank-buffer-path=
-- =+default/yank-buffer-path-relative-to-project=
-
-#+begin_src elisp
-(defun yank-buffer-path-dwim (abspath-p)
-  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, use `default-directory'.)
-Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
-Provide an absolute path if the prefix argument ABSPATH-P is provided."
-  (interactive "P")
-  (let ((yanked-path
-        (if-let ((file-path buffer-file-name))
-            (let* ((proj-path (expand-file-name (locate-dominating-file file-path #'is-proj-root-p)))
-                   (disp-path (if abspath-p file-path
-                                (replace-regexp-in-string (concat "^" proj-path) "" file-path))))
-              disp-path)
-          (abbreviate-file-name default-directory))))
-    (progn
-      (kill-new yanked-path)
-      (message (format "Copied to clipboard: %s" yanked-path)))))
-#+end_src
-
-#+begin_src elisp
-(map! :desc "yank buffer path"
-      :leader
-      "f Y" nil
-      "f y" #'yank-buffer-path-dwim)
 #+end_src
 
 * yankee
