@@ -56,13 +56,17 @@ Don't tangle on save.
 (remove-hook 'org-mode-hook #'+literate-enable-recompile-h)
 #+end_src
 
-Provide a command to trigger tangling manually. (Alternatively: issue =doom sync= from the command line.)
+Provide a command to trigger tangling manually.
 
 #+begin_src elisp
-(defun +config:tangle ()
-  "Tangle config.org to Emacs lisp."
-  (interactive)
-  (+literate-tangle-h))
+(defun +config:tangle (sync)
+  "Tangle config.org to Emacs lisp.
+Runs asynchronously by default. If prefix arg SYNC is provided, runs synchronously with pop-up buffer."
+  (interactive "P")
+  (if sync
+      (+literate-tangle-h)
+    (let ((cmd (format "org-tangle %s &" buffer-file-name)))
+      (call-process-shell-command cmd nil 0))))
 #+end_src
 
 ** display
