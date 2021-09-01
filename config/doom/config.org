@@ -89,18 +89,20 @@ Useful functions/macros (see [[https://github.com/hlissner/doom-emacs/blob/devel
 
 ** display
 
-Doom exposes five (optional) variables for controlling fonts in Doom.
-Here are the three important ones:
+Set fonts. NB: =doom-variable-pitch-font= could use updating.
 
 #+begin_src elisp
-;; `doom-big-font' -- used for `doom-big-font-mode': use this for presentations / streaming
 (setq doom-font (font-spec :family "SF Mono" :size 16 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "SF Mono" :size 16)
-      doom-big-font (font-spec :family "SF Mono" :size 24))
+      doom-big-font (font-spec :family "SF Mono" :size 24)
+      doom-theme 'doom-one
+      display-line-numbers-type 'relative)
+#+end_src
 
-(setq doom-theme 'doom-one)
-(setq display-line-numbers-type 'relative)
-(add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start maximized
+Start Emacs maximized.
+
+#+begin_src elisp
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
 Enable hl-todo mode in certain text modes.
