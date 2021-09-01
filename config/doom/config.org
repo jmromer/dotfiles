@@ -33,6 +33,7 @@
   - [[#dash-at-point][dash-at-point]]
 - [[#lsp][lsp]]
 - [[#magit][magit]]
+- [[#markdown][markdown]]
 - [[#org][org]]
   - [[#agenda-files][agenda files]]
   - [[#structure-templates][structure templates]]
@@ -672,6 +673,60 @@ Remove the git flow hook added by doom.
 (remove-hook! magit-mode #'turn-on-magit-gitflow)
 #+end_src
 
+* markdown
+
+Clear pre-installed keymaps and set cleaned up keymaps.
+
+#+begin_src elisp
+(defun set-markdown-keymaps ()
+  (defvar markdown-mode-style-map (make-sparse-keymap))
+  (defvar markdown-mode-command-map (make-sparse-keymap))
+  (defvar markdown-mode-map (make-sparse-keymap))
+  (defvar markdown-mode-mouse-map (make-sparse-keymap))
+
+  (map! :localleader
+        :map markdown-mode-map
+        :desc "edit code block" "'"  #'markdown-edit-code-block
+        :desc "export"          "e"  #'markdown-export
+        :desc "open"            "o"  #'markdown-open
+        :desc "preview"         "p"  #'markdown-preview
+        :prefix ("i" . "insert")
+        :desc "header"          "h"  #'markdown-insert-header-setext-dwim
+        :desc "header (atx)"    "H"  #'markdown-insert-header-dwim
+        :desc "header 1"        "1"  #'markdown-insert-header-setext-1
+        :desc "header 2"        "2"  #'markdown-insert-header-setext-2
+        :desc "header 3"        "3"  #'markdown-insert-header-atx-3
+        :desc "header 4"        "4"  #'markdown-insert-header-atx-4
+        :desc "header 5"        "5"  #'markdown-insert-header-atx-5
+        :desc "header 6"        "6"  #'markdown-insert-header-atx-6
+        :desc "bold"            "b"  #'markdown-insert-bold
+        :desc "code"            "c"  #'markdown-insert-code
+        :desc "code (gfm)"      "C"  #'markdown-insert-gfm-code-block
+        :desc "footnote"        "f"  #'markdown-insert-footnote
+        :desc "foldable block"  "F"  #'markdown-insert-foldable-block
+        :desc "italic"          "i"  #'markdown-insert-italic
+        :desc "kbd"             "k"  #'markdown-insert-kbd
+        :desc "link"            "l"  #'markdown-insert-link
+        :desc "pre"             "p"  #'markdown-insert-pre
+        :desc "pre block"       "P"  #'markdown-pre-region
+        :desc "quote"           "q"  #'markdown-insert-blockquote
+        :desc "quote block"     "Q"  #'markdown-blockquote-region
+        :desc "strikethrough"   "s"  #'markdown-insert-strike-through
+        :desc "table"           "t"  #'markdown-insert-table
+        :desc "wiki link"       "w"  #'markdown-insert-wiki-link
+        :desc "hr"              "-"  #'markdown-insert-hr
+        :desc "checkbox (gfm)"  "["  #'markdown-insert-gfm-checkbox
+        :prefix ("t" . "table")
+        :desc "sort lines"      "s"  #'markdown-table-sort-lines
+        :desc "convert region"  "v"  #'markdown-table-convert-region
+        :desc "transpose"       "t"  #'markdown-table-transpose
+        :desc "row delete"      "R"  #'markdown-table-delete-row
+        :desc "row insert"      "r"  #'markdown-table-insert-row
+        :desc "column delete"   "C"  #'markdown-table-delete-column
+        :desc "column insert"   "c"  #'markdown-table-insert-column))
+
+(add-hook! markdown-mode #'set-markdown-keymaps)
+#+end_src
 * org
 
 https://orgmode.org/manual
