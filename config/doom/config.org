@@ -412,7 +412,7 @@ https://github.com/zmaas/evil-unimpaired
 
 #+begin_src elisp
 (after! evil-unimpaired
-  (evil-unimpaired-mode))
+  (evil-unimpaired-mode 1))
 #+end_src
 
 ** evil-matchit
@@ -421,7 +421,7 @@ https://github.com/redguardtoo/evil-matchit
 
 #+begin_src elisp
 (after! evil-matchit
-  (global-evil-matchit-mode))
+  (global-evil-matchit-mode 1))
 #+end_src
 
 ** evil-quickscope
