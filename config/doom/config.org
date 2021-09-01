@@ -59,7 +59,7 @@ Don't tangle on save.
 Provide a command to trigger tangling manually. (Alternatively: issue =doom sync= from the command line.)
 
 #+begin_src elisp
-(defun tangle-config ()
+(defun +config:tangle ()
   "Tangle config.org to Emacs lisp."
   (interactive)
   (+literate-tangle-h))
@@ -213,7 +213,6 @@ Return nil if the hostname is missing a TLD."
            (hostname (nth 2 (split-string candidate-url "/"))))
       (when (string-match-p "\\." hostname)
         candidate-url))))
-
 #+end_src
 
 ** ensure-url-scheme
@@ -672,11 +671,11 @@ Optional keyword arguments:
 Use tab to fold in prog modes.
 
 #+begin_src elisp
-(defun tab-to-fold-in-normal-state ()
+(defun +config:tab-to-fold-in-normal-state ()
   "Bind toggle-fold function to the <tab> key."
   (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
 
-(add-hook! prog-mode #'tab-to-fold-in-normal-state)
+(add-hook! prog-mode #'+config:tab-to-fold-in-normal-state)
 #+end_src
 
 * gtags
@@ -776,7 +775,7 @@ Remove the git flow hook added by doom.
 Clear pre-installed keymaps and set cleaned up keymaps.
 
 #+begin_src elisp
-(defun set-markdown-keymaps ()
+(defun +config:keymaps:markdown ()
   (defvar markdown-mode-style-map (make-sparse-keymap))
   (defvar markdown-mode-command-map (make-sparse-keymap))
   (defvar markdown-mode-map (make-sparse-keymap))
@@ -827,7 +826,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "column insert"   :n  "c"  #'markdown-table-insert-column))
 
 (remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
-(add-hook! markdown-mode #'set-markdown-keymaps)
+(add-hook! markdown-mode #'+config:keymaps:markdown)
 #+end_src
 
 ** markdown gfm live preview
@@ -1256,7 +1255,7 @@ Dismiss pytest compilation buffers as one would expect to.
 Set descriptions for prefixes and commands to aid discoverability.
 
 #+begin_src elisp
-(defun set-ruby-keymaps ()
+(defun +config:keymaps:ruby ()
   (map! :localleader :map robe-mode-map "'"  nil "h"  nil "R"  nil)
   (map! :localleader :map rubocop-mode-map "f"  nil "F"  nil "p"  nil "P"  nil)
   (map! :localleader
@@ -1279,12 +1278,12 @@ Set descriptions for prefixes and commands to aid discoverability.
         :desc "region & go"          "R"  #'ruby-send-region-and-go
         :desc "switch to inf"        "i"  #'ruby-switch-to-inf))
 
-(add-hook! ruby-mode #'set-ruby-keymaps)
+(add-hook! ruby-mode #'+config:keymaps:ruby)
 #+end_src
 
 #+begin_src elisp
 ;; clear projectile-rails's keybinds
-(defun set-rails-keymaps ()
+(defun +config:keymaps:rails ()
   (map! :localleader :map projectile-rails-mode-map "r" nil)
   (map! :localleader
         :map ruby-mode-map
@@ -1345,7 +1344,7 @@ Set descriptions for prefixes and commands to aid discoverability.
         :desc "package"       "p" #'projectile-rails-goto-package
         nil))
 
-(add-hook! ruby-mode #'set-rails-keymaps)
+(add-hook! ruby-mode #'+config:keymaps:rails)
 #+end_src
 
 ** evil-rails
@@ -1398,14 +1397,9 @@ rspec-mode options:
       rspec-use-spring-when-possible t)
 #+end_src
 
-Ensure test compilation buffers are selected and readonly.
+Ensure test compilation buffers can run the interactive debugger.
 
 #+begin_src elisp
-(defun switch-to-rspec-compilation-buffer ()
-  "Switch to the RSpec compilation buffer."
-  (switch-to-buffer "*rspec-compilation*"))
-
-;; Enable pry in test runs
 (add-hook! compilation-filter #'inf-ruby-auto-enter #'evil-normal-state)
 #+end_src
 
@@ -1421,7 +1415,7 @@ Unbind conflicting globally set keybindings.
 Unbind =rspec-mode= bindings and re-bind.
 
 #+begin_src elisp
-(defun set-testing-keybindings ()
+(defun +config:keymaps:rspec ()
   (map! :map (rspec-mode-map rspec-verifiable-mode-map)
         :localleader
         :prefix "t"
@@ -1460,7 +1454,7 @@ Unbind =rspec-mode= bindings and re-bind.
         :desc "single (test)" :n "T" #'ruby-test-run-at-point
         :desc "yank command"  :n "y" #'rspec-yank-last-command))
 
-(add-hook! ruby-mode #'set-testing-keybindings)
+(add-hook! ruby-mode #'+config:keymaps:rspec)
 #+end_src
 
 ** ruby-test
@@ -1668,7 +1662,7 @@ Precedence order:
 ** xwidget-widget keybindings
 
 #+begin_src elisp
-(defun config/xwidget-webkit ()
+(defun +config:keymaps:xwidget-webkit ()
   "Configure xwidget keybindings."
   (evil-define-key*
     'normal xwidget-webkit-mode-map
@@ -1688,32 +1682,32 @@ Precedence order:
     "Y"  #'xwidget-webkit-current-url-message-kill))
 
 (evil-set-initial-state 'xwidget-webkit-mode 'normal)
-(add-hook! xwidget-webkit-mode #'config/xwidget-webkit)
+(add-hook! xwidget-webkit-mode #'+config:keymaps:xwidget-webkit)
 #+end_src
 
 * word chars
 
 #+begin_src emacs-lisp
-(defun add-underscore-to-word-chars ()
+(defun +config:add-underscore-to-word-chars ()
   "Adds underscore to the word chars syntax entry list."
   (modify-syntax-entry ?_ "w"))
 
-(defun add-dash-to-word-chars ()
+(defun +config:add-dash-to-word-chars ()
   "Adds underscore to the word chars syntax entry list."
   (modify-syntax-entry ?- "w"))
 
-(defun config/add-to-word-char-list ()
+(defun +config:add-to-word-char-list ()
   "Customize the word char list in prog and other modes."
-  (add-hook! emacs-lisp-mode #'add-dash-to-word-chars)
-  (add-hook! markdown-mode   #'add-underscore-to-word-chars)
-  (add-hook! org-mode        #'add-underscore-to-word-chars)
-  (add-hook! prog-mode       #'add-underscore-to-word-chars)
-  (add-hook! python-mode     #'add-underscore-to-word-chars)
-  (add-hook! restclient-mode #'add-underscore-to-word-chars)
-  (add-hook! text-mode       #'add-underscore-to-word-chars)
+  (add-hook! emacs-lisp-mode #'+config:add-dash-to-word-chars)
+  (add-hook! markdown-mode   #'+config:add-underscore-to-word-chars)
+  (add-hook! org-mode        #'+config:add-underscore-to-word-chars)
+  (add-hook! prog-mode       #'+config:add-underscore-to-word-chars)
+  (add-hook! python-mode     #'+config:add-underscore-to-word-chars)
+  (add-hook! restclient-mode #'+config:add-underscore-to-word-chars)
+  (add-hook! text-mode       #'+config:add-underscore-to-word-chars)
   nil)
 
-(config/add-to-word-char-list)
+(+config:add-to-word-char-list)
 #+end_src
 
 * workspaces
