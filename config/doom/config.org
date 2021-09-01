@@ -1246,8 +1246,8 @@ rspec-mode options:
       rspec-command-options "--backtrace --format progress --no-profile"
       rspec-spec-command "rspec"
       rspec-use-bundler-when-possible t
-      rspec-use-opts-file-when-available nil
-      rspec-use-spring-when-possible nil)
+      rspec-use-opts-file-when-available t
+      rspec-use-spring-when-possible t)
 #+end_src
 
 Ensure test compilation buffers are selected and readonly.
@@ -1261,19 +1261,28 @@ Ensure test compilation buffers are selected and readonly.
 (add-hook! compilation-filter #'inf-ruby-auto-enter #'evil-normal-state)
 #+end_src
 
-Unbind =rspec-mode= bindings that conflict with =ruby-test=.
+Unbind conflicting globally set keybindings.
 
 #+begin_src elisp
-(defun unbind-rspec-keybindings ()
-  "Unbind rspec-mode bindings that need to be overriden at the major mode level."
-  (interactive)
-  (map! :map rspec-mode-map
+(global-unset-key (kbd "s-RET"))
+(global-unset-key (kbd "s-<return>"))
+(global-unset-key (kbd "s-S-RET"))
+(global-unset-key (kbd "s-S-<return>"))
+#+end_src
+
+Unbind =rspec-mode= bindings and re-bind.
+
+#+begin_src elisp
+(defun set-testing-keybindings ()
+  (map! :map (rspec-mode-map rspec-verifiable-mode-map)
         :localleader
         :prefix "t"
+        "M" nil
         "T" nil
         "a" nil
         "c" nil
         "e" nil
+        "f" nil
         "f" nil
         "l" nil
         "m" nil
@@ -1281,9 +1290,29 @@ Unbind =rspec-mode= bindings that conflict with =ruby-test=.
         "s" nil
         "t" nil
         "t" nil
-        "v" nil))
+        "v" nil)
 
-(add-hook! rspec-mode #'unbind-rspec-keybindings)
+  (map! :map ruby-mode-map
+        :ni "s-<return>"   #'rspec-verify-single
+        :ni "s-RET"        #'rspec-verify-single
+        :ni "s-S-<return>" #'rspec-verify
+        :ni "s-S-RET"      #'rspec-verify)
+
+  (map! :map ruby-mode-map
+        :localleader
+        :prefix ("t" . "test")
+        :desc "all"           :n "a" #'rspec-verify-all
+        :desc "buffer"        :n "b" #'rspec-verify
+        :desc "buffer (test)" :n "B" #'ruby-test-run
+        :desc "method"        :n "m" #'rspec-verify-method
+        :desc "matching"      :n "M" #'rspec-verify-matching
+        :desc "last"          :n "l" #'rspec-run-last
+        :desc "last failed"   :n "L" #'rspec-run-last-failed
+        :desc "single"        :n "t" #'rspec-verify-single
+        :desc "single (test)" :n "T" #'ruby-test-run-at-point
+        :desc "yank command"  :n "y" #'rspec-yank-last-command))
+
+(add-hook! ruby-mode #'set-testing-keybindings)
 #+end_src
 
 ** ruby-test
@@ -1294,30 +1323,6 @@ https://github.com/ruby-test-mode/ruby-test-mode
 (setq ruby-test-rspec-options '("--backtrace" "--format progress" "--no-profile")
       ruby-test-plain-test-options '("--backtrace" "--format progress" "--no-profile")
       ruby-test-rails-test-options '("--backtrace" "--format progress" "--no-profile"))
-#+end_src
-
-Bind Ruby testing commands.
-
-#+begin_src elisp
-(global-unset-key (kbd "s-RET"))
-(global-unset-key (kbd "s-<return>"))
-(global-unset-key (kbd "s-S-RET"))
-(global-unset-key (kbd "s-S-<return>"))
-
-(map! :map ruby-mode-map
-      :ni "s-<return>"   #'ruby-test-run
-      :ni "s-RET"        #'ruby-test-run
-      :ni "s-S-<return>" #'ruby-test-rerun
-      :ni "s-S-RET"      #'ruby-test-rerun)
-
-(map! :map ruby-mode-map
-      :localleader
-      :prefix ("t" . "test")
-      :desc "all"         :n "a" #'rspec-verify-all
-      :desc "buffer"      :n "b" #'ruby-test-run
-      :desc "last"        :n "l" #'ruby-test-rerun
-      :desc "last failed" :n "L" #'rspec-run-last-failed
-      :desc "single"      :n "t" #'ruby-test-run-at-point)
 #+end_src
 
 ** projectile-rails
