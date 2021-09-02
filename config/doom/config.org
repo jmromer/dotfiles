@@ -3,10 +3,9 @@
 #+PROPERTY: header-args :emacs-lisp :tangle yes :comments link
 #+STARTUP: org-startup-folded: fold
 
-* Contents :TOC_1:
-- [[#notes][Notes]]
-- [[#general][General]]
-- [[#utilities][Utilities]]
+* +contents :TOC_1:
+- [[#general][+general]]
+- [[#utilities][+utilities]]
 - [[#completion][completion]]
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
@@ -30,19 +29,9 @@
 - [[#yankee][yankee]]
 - [[#yasnippet][yasnippet]]
 
-* Notes
+* +general
 
-Useful functions/macros (see [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples):
-
-- =load!= for loading external *.el files relative to this one
-- =use-package!= for configuring packages
-- =after!= for running code after a package has loaded
-- =add-load-path!= for adding directories to the =load-path=, relative to
-  this file. Emacs searches the =load-path= when you load packages with
-  =require= or =use-package=.
-- =map!= for binding new keys
-
-* General
+See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples.
 
 ** which-key
 
@@ -167,7 +156,7 @@ clients, file templates and snippets.
       user-mail-address "jake@jmromer.org")
 #+end_src
 
-* Utilities
+* +utilities
 
 Some general-purpose functions.
 
