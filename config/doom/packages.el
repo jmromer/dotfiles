@@ -31,6 +31,7 @@
 (package! impatient-mode :recipe (:host github :repo "skeeto/impatient-mode"))
 (package! org-fancy-priorities)
 (package! org-journal)
+(package! org-projectile)
 (package! org-superstar)
 (package! ox-hugo)
 (package! posframe)
