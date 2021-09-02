@@ -11,6 +11,7 @@
 (disable-packages! minitest)
 (disable-packages! company-gtags)
 (disable-packages! evil-snipe)
+(disable-packages! git-gutter)
 
 (package! command-log-mode)
 (package! company-box)
