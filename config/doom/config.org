@@ -125,7 +125,7 @@ Enable hl-todo mode in certain text modes.
 
 ** leader keys
 
-Use =,= for the local leader key.
+Use comma for the local leader key.
 
 #+begin_src elisp
 (setq doom-localleader-key ",")
