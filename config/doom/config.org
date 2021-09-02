@@ -20,6 +20,7 @@
 - [[#org][org]]
 - [[#projectile][projectile]]
 - [[#python][python]]
+- [[#react--web][react & web]]
 - [[#ruby][ruby]]
 - [[#smartparens][smartparens]]
 - [[#time-tracking][time tracking]]
@@ -1276,6 +1277,41 @@ Dismiss pytest compilation buffers as one would expect to.
 (map! :map python-pytest-mode-map
       "C-g" #'bury-buffer
       "q"   #'bury-buffer)
+#+end_src
+
+* react & web
+
+Use =rjsx-mode= for React and React-TypeScript files.
+
+#+begin_src elisp
+(setq auto-mode-alist
+      (assoc-delete-all
+       "\\.tsx\\'"
+       (assoc-delete-all
+        "\\.jsx\\'"
+        auto-mode-alist)))
+
+(add-to-list 'auto-mode-alist '("\\.\\(?:jsx\\|tsx\\)\\'" . rjsx-mode))
+#+end_src
+
+** Emmet
+
+Use =C-RET= to expand emmet tags.
+
+#+begin_src elisp
+(defun +config:keymaps:web ()
+  (map! :ni "C-<return>" #'emmet-expand-line))
+
+(add-hook! '(web-mode-hook rjsx-mode-hook) #'+config:keymaps:web)
+#+end_src
+
+Emmet should expand classes as =className= in JSX modes.
+
+#+begin_src elisp
+(defun +config:emmet-expand-jsx-classname ()
+  (setq emmet-expand-jsx-className? t))
+
+(add-hook! '(rjsx-mode-hook typescript-tsx-mode-hook) #'+config:emmet-expand-jsx-classname)
 #+end_src
 
 * ruby
