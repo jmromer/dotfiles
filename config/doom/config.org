@@ -130,22 +130,6 @@ Some general purpose super-key keybindings.
       "s-k" #'bury-buffer)
 #+end_src
 
-** file paths
-
-File paths for Org documents, Deft notes, and etc.
-
-#+begin_src elisp
-(setq org-directory (format "%s/org" (getenv "XDG_DATA_HOME"))
-      deft-directory (format "%s/notes" org-directory))
-#+end_src
-
-Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][setup]] for using [[https://magit.vc/manual/forge/][forge]].
-
-#+begin_src elisp
-(setq authinfo-file (format "%s/config/authinfo.gpg" (getenv "XDG_SECURE_DIR"))
-      auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
-#+end_src
-
 ** identity
 
 Some functionality uses this to identify you, e.g. GPG configuration, email
@@ -154,6 +138,15 @@ clients, file templates and snippets.
 #+begin_src elisp
 (setq user-full-name "Jake Romer"
       user-mail-address "jake@jmromer.org")
+#+end_src
+
+** credentials
+
+Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][setup]] for using [[https://magit.vc/manual/forge/][forge]].
+
+#+begin_src elisp
+(setq authinfo-file (format "%s/config/authinfo.gpg" (getenv "XDG_SECURE_DIR"))
+      auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
 #+end_src
 
 * +utilities
