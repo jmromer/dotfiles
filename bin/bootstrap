@@ -115,7 +115,6 @@ setup :development_tools do
   brew_install :gh
   brew_install :git_delta
   brew_install :httpie, options: :head
-  brew_install :libvterm
   brew_install :source_highlight
   brew_install :tmux, options: :head
   brew_install :zsh
@@ -136,6 +135,7 @@ end
 setup :text_editing_cli_tools do
   brew_install :shellcheck
   brew_install :wordnet
+  brew_install :libvterm
   brew_install :pandoc
   brew_install :editorconfig
   brew_install :tidy_html5
