@@ -49,6 +49,7 @@ source "${DOTFILES_DIR}/env/build.sh"
 source "${DOTFILES_DIR}/env/fzf.sh"
 source "${DOTFILES_DIR}/env/bundler.sh"
 source "${DOTFILES_DIR}/env/gpg.sh"
+source "${DOTFILES_DIR}/env/gtags.sh"
 
 # PATH setup
 # -----------------------------
