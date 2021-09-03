@@ -112,6 +112,18 @@ Enable hl-todo mode in certain text modes.
   (add-hook! org-mode #'hl-todo-mode))
 #+end_src
 
+** display: line numbers
+
+Disable line-numbering in org and markdown modes
+
+#+begin_src elisp
+(defun +config:display:disable-line-numbers ()
+  "Disable line numbers in the current buffer."
+  (setq-local display-line-numbers nil))
+
+(add-hook! '(org-mode-hook markdown-mode-hook) #'+config:display:disable-line-numbers)
+#+end_src
+
 ** leader keys
 
 Use comma for the local leader key.
