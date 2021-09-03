@@ -971,9 +971,44 @@ https://orgmode.org/manual
 TODO: Organize the default ones, they're a mess.
 
 #+begin_src elisp
-(map! :map org-mode-map
-      :localleader
-      :n "s" #'org-insert-structure-template)
+(after! org
+  (setq org-M-RET-may-split-line nil
+        org-insert-heading-respect-content nil)
+
+  (defun org-insert-heading-above ()
+    "Insert heading above the current one."
+    (interactive)
+    (progn
+      (org-up-element)
+      (move-beginning-of-line nil)
+      (org-insert-heading)
+      (evil-insert 1)))
+
+  (defun +config:keybindings:org-mode ()
+    (global-unset-key (kbd "s-RET"))
+    (global-unset-key (kbd "s-<return>"))
+    (map! :map evil-org-mode-map
+          :ni "s-<return>" nil
+          "s-RET" nil
+          "s-S-RET" nil
+          :ni "s-S-<return>" nil
+          "s-C-<return>" nil
+          :ni "s-C-<return>" nil
+          "s-C-RET" nil)
+
+    (map! :map org-mode-map
+          :ni "s-RET"        #'org-insert-heading-respect-content
+          :ni "s-<return>"   #'org-insert-heading-respect-content
+          :ni "s-S-RET"      #'org-insert-heading-above
+          :ni "s-S-<return>" #'org-insert-heading-above
+          :ni "s-C-RET"      #'org-insert-subheading
+          :ni "s-C-<return>" #'org-insert-subheading)
+
+    (map! :map org-mode-map
+          :localleader
+          :desc "insert template" :n "s" #'org-insert-structure-template))
+
+  (add-hook! 'org-mode-hook :append #'+config:keybindings:org-mode))
 #+end_src
 
 ** file paths
