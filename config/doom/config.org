@@ -294,10 +294,10 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 #+end_src
 
 #+begin_src elisp
-(map! :desc "yank buffer path"
-      :leader
-      "f Y" nil
-      "f y" #'yank-buffer-path-dwim)
+(map! :leader
+      (:prefix "f"
+       :desc "yank path (~relative)" "Y" #'+default/yank-buffer-path
+       :desc "yank path" "y" #'yank-buffer-path-dwim))
 #+end_src
 
 * completion
