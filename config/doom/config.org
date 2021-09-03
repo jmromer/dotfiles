@@ -731,6 +731,10 @@ https://github.com/leoliu/ggtags
                                  etags--xref-backend)))
 #+end_src
 
+#+begin_src elisp
+(setq projectile-tags-command "global -u")
+#+end_src
+
 * lookup
 
 ** web searches
