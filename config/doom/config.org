@@ -880,7 +880,12 @@ Clear pre-installed keymaps and set cleaned up keymaps.
 (defadvice markdown-preview (around markdown-preview activate)
   "Tell `markdown-preview' to run with xwwp unless prefix arg ARG is passed."
   (let ((browse-url-browser-function #'xwwp-browse-url-other-window))
-    ad-do-it))
+    (progn
+      ;; HACK: workaround for a xwwp bug that takes up current buffer.
+      ;; Still requires burying the buffer after it opens in this case.
+      (split-window-right)
+      (other-window 1)
+      ad-do-it)))
 #+end_src
 
 ** gfm-ish live preview
@@ -920,7 +925,19 @@ If prefix arg ARG is passed, use the default browser."
       (httpd-start))
     (impatient-mode 1)
     (imp-set-user-filter #'markdown-gfm-live-preview--filter)
-    (imp-visit-buffer)))
+
+    ;; HACK: workaround for a xwwp bug that takes up current buffer.
+    ;; (xwwp-browse-url-other-window should behave like find-file-other-window)
+    ;; Works well enough but does not handle pre-existing windows well.
+    (unless arg
+      (split-window-right)
+      (other-window 1))
+
+    (imp-visit-buffer)
+
+    ;; HACK: workaround for a xwwp bug that takes up current buffer.
+    (unless arg
+      (bury-buffer))))
 #+end_src
 
 ** gfm live-ish preview with grip
