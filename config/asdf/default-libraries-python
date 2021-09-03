@@ -14,4 +14,3 @@ pyright
 pytest
 python-language-server
 virtualenv
-yapf
