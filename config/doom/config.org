@@ -1021,6 +1021,8 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       deft-directory (format "%s/notes" org-directory))
 #+end_src
 
+TODO: Sort out this workflow
+
 #+begin_src elisp
 (after! org
   (setq org-agenda-files (list org-directory)
@@ -1029,7 +1031,92 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
         org-default-icebox-file (format "%s/icebox.org" org-directory)
         org-default-todos-file (format "%s/todos.org" org-directory)
         org-default-blog-file (format "%s/blog/blog.org" org-directory)
-        org-projectile-projects-directory (format "%s/projects" org-directory)))
+        org-projectile-projects-directory (format "%s/projects" org-directory))
+        ;; the following are relative to `org-directory`, unless absolute.
+        +org-capture-todo-file "todo.org"
+        +org-capture-changelog-file "changelog.org"
+        +org-capture-notes-file "notes.org"
+        +org-capture-journal-file "journal.org"
+        +org-capture-projects-file "projects.org")
+#+end_src
+
+** capture templates
+
+TODO: Sort these out
+
+#+begin_src elisp :tangle no
+(setq org-capture-templates
+      '(("t" "Personal todo" entry
+         (file+headline +org-capture-todo-file "Inbox")
+         "* [ ] %?\n%i\n%a" :prepend t)
+        ("n" "Personal notes" entry
+         (file+headline +org-capture-notes-file "Inbox")
+         "* %u %?\n%i\n%a" :prepend t)
+        ("j" "Journal" entry
+         (file+olp+datetree +org-capture-journal-file)
+         "* %U %?\n%i\n%a" :prepend t)
+
+        ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
+        ;; {todo,notes,changelog}.org file is found in a parent directory.
+        ;; Uses the basename from `+org-capture-todo-file',
+        ;; `+org-capture-changelog-file' and `+org-capture-notes-file'.
+        ("p" "Templates for projects")
+        ("pt" "Project-local todo" entry  ; {project-root}/todo.org
+         (file+headline +org-capture-project-todo-file "Inbox")
+         "* TODO %?\n%i\n%a" :prepend t)
+        ("pn" "Project-local notes" entry  ; {project-root}/notes.org
+         (file+headline +org-capture-project-notes-file "Inbox")
+         "* %U %?\n%i\n%a" :prepend t)
+        ("pc" "Project-local changelog" entry  ; {project-root}/changelog.org
+         (file+headline +org-capture-project-changelog-file "Unreleased")
+         "* %U %?\n%i\n%a" :prepend t)
+
+        ;; Will use {org-directory}/{+org-capture-projects-file} and store
+        ;; these under {ProjectName}/{Tasks,Notes,Changelog} headings. They
+        ;; support `:parents' to specify what headings to put them under, e.g.
+        ;; :parents ("Projects")
+        ("o" "Centralized templates for projects")
+        ("ot" "Project todo" entry
+         (function +org-capture-central-project-todo-file)
+         "* TODO %?\n %i\n %a"
+         :heading "Tasks"
+         :prepend nil)
+        ("on" "Project notes" entry
+         (function +org-capture-central-project-notes-file)
+         "* %U %?\n %i\n %a"
+         :heading "Notes"
+         :prepend t)
+        ("oc" "Project changelog" entry
+         (function +org-capture-central-project-changelog-file)
+         "* %U %?\n %i\n %a"
+         :heading "Changelog"
+         :prepend t)))
+
+(setq org-capture-templates
+      '(("t" "Todo (general)" entry (file+headline org-default-notes-file "Captures")
+         "** TODO %?\n%U" :empty-lines 0 :prepend t)
+        ("d" "Todo (for development environment)" entry (file+headline "dotfiles.org" "Captures")
+         "** TODO %?\n%U" :empty-lines 0 :prepend t)
+        ("p" "Todo (for a project)" entry (function org-projectile-project-capture)
+         "** TODO %?\n%U" :empty-lines 0 :prepend t)
+        ("s" "Standup" entry (file+datetree "STANDUP.org")
+         "*** Completed\n %?\n*** To do" :empty-lines 0 :jump-to-captured t :tree-type week)
+        ("c" "Blog: Commonplace" entry (file+headline "blog/commonplaces.org" "Commonplaces")
+         (function org-hugo-new-commonplace-capture-template) :empty-lines 1 :prepend t)
+        ("m" "Blog: Marginalia" entry (file+headline "blog/marginalia.org" "Marginalia")
+         (function org-hugo-new-marginalia-capture-template) :empty-lines 1 :prepend t)
+        ("n" "Blog: Notes" entry (file+headline "blog/notes.org" "Notes")
+         (function org-hugo-new-blog-capture-template) :empty-lines 1 :prepend t)
+        ("b" "Blog: New Post" entry (file+headline "blog/blog.org" "Blog")
+         (function org-hugo-new-blog-capture-template) :empty-lines 1 :prepend t)
+        ("h" "Journal: Health" entry (file+olp+datetree "HEALTH.org")
+         "**** [%<%l:%M %p>] %^{Entry} %^g" :immediate-finish t)
+        ("l" "Journal: Log entry" plain (function org-journal-find-location)
+         "[%<%l:%M %p>] %^{Entry}" :immediate-finish t :empty-lines 0)
+        ("r" "Reference" entry (file+headline org-default-backlog-file "Captures")
+         "** %?\n%a\n%U" :empty-lines 1)
+        ("v" "Paste from clipboard" entry (file+headline org-default-backlog-file "Captures")
+         "** %^{Title} %^G\n%?\n%c")))
 #+end_src
 
 ** variables
