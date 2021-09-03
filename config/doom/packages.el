@@ -33,6 +33,7 @@
 (package! org-fancy-priorities)
 (package! org-projectile)
 (package! org-superstar)
+(package! ox-gfm)
 (package! posframe)
 (package! ruby-factory)
 (package! ruby-test-mode)
