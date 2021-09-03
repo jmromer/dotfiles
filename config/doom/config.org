@@ -823,12 +823,13 @@ Clear pre-installed keymaps and set cleaned up keymaps.
   (defvar markdown-mode-mouse-map (make-sparse-keymap))
 
   (map! :map markdown-mode-map
-        :after markdown-mode
         :localleader
-        :desc "edit code block" :n "'"  #'markdown-edit-code-block
-        :desc "export"          :n "e"  #'markdown-export
-        :desc "open"            :n "o"  #'markdown-open
-        :desc "live preview"    :n "p"  #'markdown-gfm-live-preview
+        :desc "edit code block"     :n "'"  #'markdown-edit-code-block
+        :desc "export"              :n "e"  #'markdown-export
+        :desc "open"                :n "o"  #'markdown-open
+        :desc "live preview"        :n "l"  #'markdown-gfm-live-preview
+        :desc "live preview (grip)" :n "L"  #'grip-mode
+        :desc "preview"             :n "p"  #'markdown-preview
         :prefix ("h" . "header")
         :desc "dwim"            :nv "h"  #'markdown-insert-header-setext-dwim
         :desc "dwim (atx)"      :nv "H"  #'markdown-insert-header-dwim
@@ -866,15 +867,27 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "column delete"   :n  "C"  #'markdown-table-delete-column
         :desc "column insert"   :n  "c"  #'markdown-table-insert-column))
 
-(remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
-(add-hook! markdown-mode #'+config:keymaps:markdown)
+(after! markdown-mode
+  (remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
+  (add-hook! markdown-mode :append #'+config:keymaps:markdown))
 #+end_src
 
-** markdown gfm live preview
+** gfm-ish live-ish preview
 
-- vmd mode requires atom shell
-- This approach uses pandoc and [[https://github.com/netguy204/imp.el][impatient-mode]]
-- TODO: This could be much better written using Node
+#+begin_src elisp
+(defadvice markdown-preview (around markdown-preview activate)
+  "Tell `markdown-preview' to run with xwwp unless prefix arg ARG is passed."
+  (let ((browse-url-browser-function #'xwwp-browse-url-other-window))
+    ad-do-it))
+#+end_src
+
+** gfm-ish live preview
+
+Alternatives:
+
+- [[https://github.com/blak3mill3r/vmd-mode][vmd mode]] renders previews in an atom shell
+- [[https://github.com/seagle0128/grip-mode][grip mode]] (installed) provides truer rendering by using the GitHub API but defaults to only updating on save
+- This homespun approach uses pandoc and [[https://github.com/netguy204/imp.el][impatient-mode]] to provide true live previews without requiring GitHub API calls.
 
 #+begin_src elisp
 (setq markdown-command "pandoc --to html5"
@@ -900,19 +913,34 @@ Clear pre-installed keymaps and set cleaned up keymaps.
   "Live-preview GitHub-Flavored Markdown in a WebKit browser.
 If prefix arg ARG is passed, use the default browser."
   (interactive "P")
-  (let ((browse-url-browser-function (if arg #'browse-url-default-browser #'xwwp)))
+  (let ((browse-url-browser-function (if arg #'browse-url-default-browser #'xwwp-browse-url-other-window)))
     (unless (process-status "httpd")
       (httpd-start))
     (impatient-mode 1)
     (imp-set-user-filter #'markdown-gfm-live-preview--filter)
-    ;; works around a xwwp issue where the webkit buffer replaces the current buffer
-    (unless arg
-      (split-window-right)
-      (other-window 1))
-    (imp-visit-buffer)
-    ;; works around a xwwp issue where the cursor seems like it's stuck in the webkit buffer.
-    (unless arg
-      (bury-buffer))))
+    (imp-visit-buffer)))
+#+end_src
+
+** gfm live-ish preview with grip
+
+[[https://github.com/seagle0128/grip-mode][=grip-mode=]] uses [[https://github.com/joeyespo/grip][=grip=]] to provide true GFM using the GitHub API. Updates are
+limited to being on-save in order to avoid hitting the API rate limit.
+
+This approach also works with Org mode out of the box, though not consistently.
+
+#+begin_src elisp
+(setq grip-binary-path "grip"
+      grip-update-after-change nil
+      grip-preview-host "localhost"
+      grip-preview-use-webkit t)
+#+end_src
+
+#+begin_src elisp
+(require 'auth-source)
+
+(let ((credential (auth-source-user-and-password "api.github.com")))
+  (setq grip-github-user (car credential)
+        grip-github-password (cadr credential)))
 #+end_src
 
 * org
