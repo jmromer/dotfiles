@@ -13,8 +13,10 @@ alias d='dirs -v'        # show directory stack
 alias ls='exa'
 alias l='ls'
 alias la='ls -a'
+alias ld='ls -d .*'
 alias ll='ls -l'
 alias lla='ls -al'
+alias lld='ls -al -d .*'
 alias lt='exa --tree --level=3'
 alias pp='pretty-print-path'
 alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
