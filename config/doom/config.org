@@ -77,10 +77,21 @@ Set fonts. NB: =doom-variable-pitch-font= could use updating.
       +doom-dashboard-ascii-banner-fn nil)
 #+end_src
 
+Start Emacs maximized.
+
 #+begin_src elisp
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+#+end_src
+
+** display: doom dashboard
+
+#+begin_src elisp
+(setq +doom-dashboard-ascii-banner-fn nil)
 (set-face-foreground 'doom-dashboard-footer-icon "#5B6268")
 (set-face-foreground 'doom-dashboard-footer "#5B6268")
 #+end_src
+
+Override the widget footer function to replace the icon.
 
 #+begin_src elisp
 (defun doom-dashboard-widget-footer ()
@@ -98,11 +109,7 @@ Set fonts. NB: =doom-variable-pitch-font= could use updating.
    "\n"))
 #+end_src
 
-Start Emacs maximized.
-
-#+begin_src elisp
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-#+end_src
+** display: hl-todo
 
 Enable hl-todo mode in certain text modes.
 
