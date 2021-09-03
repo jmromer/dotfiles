@@ -966,43 +966,49 @@ This approach also works with Org mode out of the box, though not consistently.
 
 https://orgmode.org/manual
 
+
+** commands
+
+#+begin_src elisp
+(defun org-insert-heading-above ()
+  "Insert heading above the current one."
+  (interactive)
+  (progn
+    (org-up-element)
+    (move-beginning-of-line nil)
+    (org-insert-heading)
+    (evil-insert 1)))
+
+(defun org-insert-subheading-respect-content ()
+  "Insert subheading below the current section."
+  (interactive)
+  (progn
+    (org-next-visible-heading 1)
+    (move-beginning-of-line nil)
+    (org-insert-subheading nil)
+    (evil-insert 1)))
+#+end_src
+
 ** keybindings
 
-TODO: Organize the default ones, they're a mess.
+See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/org/config.el::1127][evil-org-mode]] and [[/Users/jmromer/.dotfiles/share/emacs/modules/lang/org/config.el::765][org-mode]] keybindings.
 
 #+begin_src elisp
 (after! org
   (setq org-M-RET-may-split-line nil
         org-insert-heading-respect-content nil)
 
-  (defun org-insert-heading-above ()
-    "Insert heading above the current one."
-    (interactive)
-    (progn
-      (org-up-element)
-      (move-beginning-of-line nil)
-      (org-insert-heading)
-      (evil-insert 1)))
-
   (defun +config:keybindings:org-mode ()
     (global-unset-key (kbd "s-RET"))
     (global-unset-key (kbd "s-<return>"))
-    (map! :map evil-org-mode-map
-          :ni "s-<return>" nil
-          "s-RET" nil
-          "s-S-RET" nil
-          :ni "s-S-<return>" nil
-          "s-C-<return>" nil
-          :ni "s-C-<return>" nil
-          "s-C-RET" nil)
 
-    (map! :map org-mode-map
+    (map! :map evil-org-mode-map
           :ni "s-RET"        #'org-insert-heading-respect-content
           :ni "s-<return>"   #'org-insert-heading-respect-content
           :ni "s-S-RET"      #'org-insert-heading-above
           :ni "s-S-<return>" #'org-insert-heading-above
-          :ni "s-C-RET"      #'org-insert-subheading
-          :ni "s-C-<return>" #'org-insert-subheading)
+          :ni "s-C-RET"      #'org-insert-subheading-respect-content
+          :ni "s-C-<return>" #'org-insert-subheading-respect-content)
 
     (map! :map org-mode-map
           :localleader
