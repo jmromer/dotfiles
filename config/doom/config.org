@@ -966,7 +966,6 @@ This approach also works with Org mode out of the box, though not consistently.
 
 https://orgmode.org/manual
 
-
 ** commands
 
 #+begin_src elisp

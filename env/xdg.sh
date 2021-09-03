@@ -20,6 +20,7 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 
 export BUNDLE_DEFAULT_INSTALL_USES_PATH="${XDG_CACHE_HOME}/bundler"
 export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundler"
+export CURLOPT_NETRC_FILE="${XDG_SECURE_DIR}/config/netrc"
 export DOOMDIR="${XDG_CONFIG_HOME}/doom"
 export GEMRC="${XDG_CONFIG_HOME}/gem/gemrc"
 export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem/spec"
