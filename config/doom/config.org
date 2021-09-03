@@ -817,7 +817,7 @@ Remove the git flow hook added by doom.
 Clear pre-installed keymaps and set cleaned up keymaps.
 
 #+begin_src elisp
-(defun +config:keymaps:markdown ()
+(defun +config:keybindings:markdown ()
   (defvar markdown-mode-style-map (make-sparse-keymap))
   (defvar markdown-mode-command-map (make-sparse-keymap))
   (defvar markdown-mode-map (make-sparse-keymap))
@@ -871,7 +871,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
 
 (after! markdown-mode
   (remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
-  (add-hook! markdown-mode :append #'+config:keymaps:markdown))
+  (add-hook! markdown-mode :append #'+config:keybindings:markdown))
 #+end_src
 
 ** gfm-ish live-ish preview
@@ -1449,10 +1449,10 @@ Use =rjsx-mode= for React and React-TypeScript files.
 Use =C-RET= to expand emmet tags.
 
 #+begin_src elisp
-(defun +config:keymaps:web ()
+(defun +config:keybindings:web ()
   (map! :ni "C-<return>" #'emmet-expand-line))
 
-(add-hook! '(web-mode-hook rjsx-mode-hook) #'+config:keymaps:web)
+(add-hook! '(web-mode-hook rjsx-mode-hook) #'+config:keybindings:web)
 #+end_src
 
 Emmet should expand classes as =className= in JSX modes.
@@ -1471,7 +1471,7 @@ Emmet should expand classes as =className= in JSX modes.
 Set descriptions for prefixes and commands to aid discoverability.
 
 #+begin_src elisp
-(defun +config:keymaps:ruby ()
+(defun +config:keybindings:ruby ()
   (map! :localleader :map robe-mode-map "'"  nil "h"  nil "R"  nil)
   (map! :localleader :map rubocop-mode-map "f"  nil "F"  nil "p"  nil "P"  nil)
   (map! :localleader
@@ -1494,12 +1494,12 @@ Set descriptions for prefixes and commands to aid discoverability.
         :desc "region & go"          "R"  #'ruby-send-region-and-go
         :desc "switch to inf"        "i"  #'ruby-switch-to-inf))
 
-(add-hook! ruby-mode #'+config:keymaps:ruby)
+(add-hook! ruby-mode #'+config:keybindings:ruby)
 #+end_src
 
 #+begin_src elisp
 ;; clear projectile-rails's keybinds
-(defun +config:keymaps:rails ()
+(defun +config:keybindings:rails ()
   (map! :localleader :map projectile-rails-mode-map "r" nil)
   (map! :localleader
         :map ruby-mode-map
@@ -1558,7 +1558,7 @@ Set descriptions for prefixes and commands to aid discoverability.
         :desc "package"       "p" #'projectile-rails-goto-package))
   nil)
 
-(add-hook! ruby-mode #'+config:keymaps:rails)
+(add-hook! ruby-mode #'+config:keybindings:rails)
 #+end_src
 
 ** evil-rails
@@ -1629,7 +1629,7 @@ Unbind conflicting globally set keybindings.
 Unbind =rspec-mode= bindings and re-bind.
 
 #+begin_src elisp
-(defun +config:keymaps:rspec ()
+(defun +config:keybindings:rspec ()
   (map! :map (rspec-mode-map rspec-verifiable-mode-map)
         :localleader
         :prefix "t"
@@ -1668,7 +1668,7 @@ Unbind =rspec-mode= bindings and re-bind.
         :desc "single (test)" :n "T" #'ruby-test-run-at-point
         :desc "yank command"  :n "y" #'rspec-yank-last-command))
 
-(add-hook! ruby-mode #'+config:keymaps:rspec)
+(add-hook! ruby-mode #'+config:keybindings:rspec)
 #+end_src
 
 ** ruby-test
@@ -1876,7 +1876,7 @@ Precedence order:
 ** xwidget-widget keybindings
 
 #+begin_src elisp
-(defun +config:keymaps:xwidget-webkit ()
+(defun +config:keybindings:xwidget-webkit ()
   "Configure xwidget keybindings."
   (evil-define-key*
     'normal xwidget-webkit-mode-map
@@ -1896,7 +1896,7 @@ Precedence order:
     "Y"  #'xwidget-webkit-current-url-message-kill))
 
 (evil-set-initial-state 'xwidget-webkit-mode 'normal)
-(add-hook! xwidget-webkit-mode #'+config:keymaps:xwidget-webkit)
+(add-hook! xwidget-webkit-mode #'+config:keybindings:xwidget-webkit)
 #+end_src
 
 * word chars
