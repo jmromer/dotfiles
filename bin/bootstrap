@@ -136,6 +136,7 @@ setup :text_editing_cli_tools do
   brew_install :editorconfig
   brew_install :grip
   brew_install :libvterm
+  brew_install :pygments
   brew_install :pandoc
   brew_install :shellcheck
   brew_install :tidy_html5
