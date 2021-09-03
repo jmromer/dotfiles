@@ -133,12 +133,13 @@ setup :development_tools do
 end
 
 setup :text_editing_cli_tools do
-  brew_install :shellcheck
-  brew_install :wordnet
+  brew_install :editorconfig
+  brew_install :grip
   brew_install :libvterm
   brew_install :pandoc
-  brew_install :editorconfig
+  brew_install :shellcheck
   brew_install :tidy_html5
+  brew_install :wordnet
 end
 
 setup :mac_tools do
