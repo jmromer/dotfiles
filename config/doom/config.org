@@ -83,6 +83,14 @@ Start Emacs maximized.
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
+Tell =ispell= to shut up.
+
+#+begin_src elisp
+(advice-add 'ispell-lookup-words :around
+            (lambda (orig &rest args)
+              (shut-up (apply orig args))))
+#+end_src
+
 ** display: doom dashboard
 
 #+begin_src elisp
