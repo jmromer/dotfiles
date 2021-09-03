@@ -949,6 +949,16 @@ This approach also works with Org mode out of the box, though not consistently.
 
 https://orgmode.org/manual
 
+** keybindings
+
+TODO: Organize the default ones, they're a mess.
+
+#+begin_src elisp
+(map! :map org-mode-map
+      :localleader
+      :n "s" #'org-insert-structure-template)
+#+end_src
+
 ** file paths
 
 File paths for Org documents, Deft notes, and etc. Note that modifying
