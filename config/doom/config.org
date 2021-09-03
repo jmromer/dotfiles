@@ -735,6 +735,25 @@ https://github.com/leoliu/ggtags
 (setq projectile-tags-command "global -u")
 #+end_src
 
+#+begin_src elisp
+(defun project-gtags-refresh (arg)
+  "Refresh the tags at project root, building tag files if in a project.
+If the prefix arg ARG is passed, delete the tags at project root."
+  (interactive "P")
+  (if-let ((ggtags-project-root (projectile-acquire-root)))
+      (if arg
+          (ggtags-delete-tags)
+        (if (file-exists-p (format "%s/GTAGS" ggtags-project-root))
+            (ggtags-update-tags t)
+          (ggtags-create-tags ggtags-project-root))))
+  (message "Could not find a project root."))
+
+(map! :leader
+      :prefix "p"
+      :desc "regenerate tags"
+      "G" #'project-gtags-refresh)
+#+end_src
+
 * lookup
 
 ** web searches
