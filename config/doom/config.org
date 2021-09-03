@@ -812,7 +812,7 @@ Remove the git flow hook added by doom.
 
 * markdown
 
-** keymaps
+** keybindings
 
 Clear pre-installed keymaps and set cleaned up keymaps.
 
