@@ -1011,7 +1011,26 @@ See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/
 
     (map! :map org-mode-map
           :localleader
-          :desc "insert template" :n "s" #'org-insert-structure-template))
+          :desc "update statistics cookies"  "#"  #'org-update-statistics-cookies
+          :desc "edit special"               "'"  #'org-edit-special
+          :desc "C-c *"                      "*"  #'org-ctrl-c-star
+          :desc "C-c -"                      "+"  #'org-ctrl-c-minus
+          :desc "switch buffer"              ","  #'org-switchb
+          :desc "goto heading"               "."  #'consult-org-heading
+          :desc "goto agenda item"           "/"  #'consult-org-agenda
+          :desc "archive subtree"            "A"  #'org-archive-subtree
+          :desc "export dispatch"            "e"  #'org-export-dispatch
+          :desc "footnote new"               "f"  #'org-footnote-new
+          :desc "toggle heading"             "h"  #'org-toggle-heading
+          :desc "toggle item"                "i"  #'org-toggle-item
+          :desc "id get create"              "I"  #'org-id-get-create
+          :desc "store link"                 "n"  #'org-store-link
+          :desc "set-property"               "o"  #'org-set-property
+          :desc "set-tags-command"           "q"  #'org-set-tags-command
+          :desc "todo"                       "t"  #'org-todo
+          :desc "todo list"                  "T"  #'org-todo-list
+          :desc "toggle checkbox"            "x"  #'org-toggle-checkbox
+          :desc "insert template"         :n "s" #'org-insert-structure-template))
 
   (add-hook! 'org-mode-hook :append #'+config:keybindings:org-mode))
 #+end_src
