@@ -8,10 +8,11 @@
 ;; API Demos:
 ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org
 
-(disable-packages! minitest)
-(disable-packages! company-gtags)
-(disable-packages! evil-snipe)
-(disable-packages! git-gutter)
+(disable-packages!
+ minitest
+ company-gtags
+ evil-snipe
+ git-gutter)
 
 (package! command-log-mode)
 (package! company-box :recipe (:host github :repo "jmromer/company-box"))
@@ -30,10 +31,8 @@
 (package! gxref)
 (package! impatient-mode :recipe (:host github :repo "skeeto/impatient-mode"))
 (package! org-fancy-priorities)
-(package! org-journal)
 (package! org-projectile)
 (package! org-superstar)
-(package! ox-hugo)
 (package! posframe)
 (package! ruby-factory)
 (package! ruby-test-mode)
