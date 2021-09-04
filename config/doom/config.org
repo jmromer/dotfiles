@@ -529,8 +529,15 @@ Enable some emacs chords in evil insert state:
 - =C-d= (delete char)
 
 #+begin_src elisp
-(map! :i  "C-d" #'evil-delete-char
-      :ni "C-k" #'evil-delete-line)
+(map! :i "C-d" #'evil-delete-char
+      :i "C-k" #'evil-delete-line)
+
+(defun +config:keybindings:hybrid ()
+  (map! :map (org-mode-map evil-org-mode-map)
+        :i "C-d" nil
+        :i "C-k" nil))
+
+(add-hook! org-mode :append #'+config:keybindings:hybrid)
 #+end_src
 
 ** evil-cleverparens
