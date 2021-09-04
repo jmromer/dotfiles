@@ -1102,23 +1102,17 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       deft-directory (format "%s/notes" org-directory))
 #+end_src
 
-TODO: Sort out this workflow
-
 #+begin_src elisp
 (after! org
   (setq org-agenda-files (list org-directory)
         org-archive-location (concat  org-directory "/archive/%s::")
-        org-default-notes-file (format "%s/inbox.org" org-directory)
-        org-default-icebox-file (format "%s/icebox.org" org-directory)
-        org-default-todos-file (format "%s/todos.org" org-directory)
-        org-default-blog-file (format "%s/blog/blog.org" org-directory)
-        org-projectile-projects-directory (format "%s/projects" org-directory))
-        ;; the following are relative to `org-directory`, unless absolute.
-        +org-capture-todo-file "todo.org"
+        org-default-notes-file (format "%s/notes.org" org-directory)
+        ;; the following are relative to `org-directory', unless absolute.
         +org-capture-changelog-file "changelog.org"
+        +org-capture-journal-file (format "%s/journal.org.gpg" org-directory)
         +org-capture-notes-file "notes.org"
-        +org-capture-journal-file "journal.org"
-        +org-capture-projects-file "projects.org")
+        +org-capture-projects-file "projects.org"
+        +org-capture-todo-file "todo.org"))
 #+end_src
 
 ** capture templates
