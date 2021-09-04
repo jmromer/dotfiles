@@ -1025,7 +1025,7 @@ https://orgmode.org/manual
   "Insert heading above the current one."
   (interactive)
   (progn
-    (org-up-element)
+    (org-back-to-heading)
     (move-beginning-of-line nil)
     (org-insert-heading)
     (evil-insert 1)))
