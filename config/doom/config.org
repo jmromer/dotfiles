@@ -787,7 +787,11 @@ https://github.com/stanaka/dash-at-point
 Lookup Dash docs quickly from the normal state.
 
 #+begin_src elisp
-(map! :n "H" #'dash-at-point)
+(map! :map (emacs-lisp-mode-map org-mode-map)
+      :nv "H" #'helpful-at-point)
+
+(map! :map prog-mode-map
+      :nv "H" #'dash-at-point)
 #+end_src
 
 Un-define doom's Dash-related functions since they're not installed.
