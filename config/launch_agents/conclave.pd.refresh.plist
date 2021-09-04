@@ -12,7 +12,12 @@
     <array>
       <string>/bin/zsh</string>
       <string>-c</string>
-      <string>${HOME}/.dotfiles/bin/pd --pd-refresh</string>
+      <string>
+        launchctl setenv XDG_CONFIG_HOME "${HOME}/.dotfiles/config";
+        launchctl setenv XDG_STATE_HOME "${HOME}/.dotfiles/state";
+        launchctl setenv ZDOTDIR "${HOME}/.dotfiles/config/zsh";
+        ${HOME}/.dotfiles/bin/pd --pd-refresh
+      </string>
     </array>
 
     <key>Nice</key>
