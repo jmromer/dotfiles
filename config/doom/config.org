@@ -1171,7 +1171,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-agenda-block-separator ""
       org-agenda-window-setup 'current-window
       org-blank-before-new-entry '((heading . auto) (plain-list-item . auto))
-      org-superstar-headline-bullets-list '("› ")
+      ;; org-superstar-headline-bullets-list '("› ")
       org-catch-invisible-edits 'show-and-error
       org-confirm-babel-evaluate nil
       org-cycle-separator-lines 2
