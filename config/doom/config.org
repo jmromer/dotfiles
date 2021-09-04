@@ -1001,7 +1001,14 @@ https://orgmode.org/manual
     (org-insert-heading)
     (evil-insert 1)))
 
-(defun org-insert-subheading-respect-content ()
+(defun org-insert-heading-below ()
+  "Insert subheading below the current section."
+  (interactive)
+  (progn
+    (org-insert-heading-respect-content nil)
+    (evil-insert 1)))
+
+(defun org-insert-subheading-below ()
   "Insert subheading below the current section."
   (interactive)
   (progn
@@ -1025,12 +1032,14 @@ See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/
     (global-unset-key (kbd "s-<return>"))
 
     (map! :map evil-org-mode-map
-          :ni "s-RET"        #'org-insert-heading-respect-content
-          :ni "s-<return>"   #'org-insert-heading-respect-content
+          :n  "C-j"          #'org-next-visible-heading
+          :n  "C-k"          #'org-previous-visible-heading
+          :ni "s-RET"        #'org-insert-heading-below
+          :ni "s-<return>"   #'org-insert-heading-below
           :ni "s-S-RET"      #'org-insert-heading-above
           :ni "s-S-<return>" #'org-insert-heading-above
-          :ni "s-C-RET"      #'org-insert-subheading-respect-content
-          :ni "s-C-<return>" #'org-insert-subheading-respect-content)
+          :ni "s-C-RET"      #'org-insert-subheading-below
+          :ni "s-C-<return>" #'org-insert-subheading-below)
 
     (map! :map org-mode-map
           :localleader
