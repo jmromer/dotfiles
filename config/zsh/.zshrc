@@ -75,12 +75,14 @@ git_color() {
       *'to be committed'* |\
       *'untracked files present'* |\
       *'no rastreados'* |\
+      *'archivos sin seguimiento'* |\
       *'a ser confirmados'*)
       echo -ne "$(color red)"
       ;;
     *'branch is ahead of'* |\
       *'have diverged'* |\
       *'rama está adelantada'* |\
+      *'rama está detrás de'* |\
       *'han divergido'*)
       echo -ne "$(color yellow)"
       ;;
