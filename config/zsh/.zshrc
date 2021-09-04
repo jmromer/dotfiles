@@ -18,8 +18,6 @@ alias ll='ls -l'
 alias lla='ls -al'
 alias lld='ls -al -d .*'
 alias lt='exa --tree --level=3'
-alias pp='pretty-print-path'
-alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
 
 #-------------------------------------------------------------
 # ALIASES: SAFEGUARDS
@@ -41,6 +39,13 @@ alias -g P='| less'   # send to pager
 #-------------------------------------------------------------
 alias cat=bat
 alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget/history"
+alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
+
+#-------------------------------------------------------------
+# ALIASES: misc
+#-------------------------------------------------------------
+alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"
+alias pp='pretty-print-path'
 
 #-------------------------------------------------------------
 # EDITOR / PAGER
