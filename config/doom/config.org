@@ -633,25 +633,25 @@ When called with a prefix argument DESC, sort in descending order."
   (interactive "P")
   (evil-sort-inner 'paragraph desc))
 
-(defun evil-sort-inner-buffer(desc)
+(defun evil-sort-inner-buffer (desc)
   "Sort inside the current buffer.
 When called with a prefix argument DESC, sort in descending order."
   (interactive "P")
   (evil-sort-inner 'buffer desc))
 
-(defun evil-sort-inner-curly(desc)
+(defun evil-sort-inner-curly (desc)
   "Sort inside the current curly braces.
 When called with a prefix argument DESC, sort in descending order."
   (interactive "P")
   (evil-sort-inner 'curly desc))
 
-(defun evil-sort-inner-paren(desc)
+(defun evil-sort-inner-paren (desc)
   "Sort inside the current parentheses.
 When called with a prefix argument DESC, sort in descending order."
   (interactive "P")
   (evil-sort-inner 'paren desc))
 
-(defun evil-sort-inner-bracket(desc)
+(defun evil-sort-inner-bracket (desc)
   "Sort inside the current parentheses.
 When called with a prefix argument DESC, sort in descending order."
   (interactive "P")
