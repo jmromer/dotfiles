@@ -2070,9 +2070,6 @@ Set keybindings for visual mode.
 
 #+begin_src elisp
 (require 'yankee)
-
-(map! :desc "yank with annotation"
-      :nv "g y" #'yankee-yank)
 #+end_src
 
 Set parameters for =copy-as-format=.
@@ -2080,6 +2077,44 @@ Set parameters for =copy-as-format=.
 #+begin_src elisp
 (setq copy-as-format-asciidoc-include-file-name t
       copy-as-format-default "github")
+#+end_src
+
+** perfidious-yanqui
+
+Add some yankee motions for evil mode.
+
+#+begin_src elisp
+(defun perfidious-yank-inner (textobj)
+  "docstring"
+  (interactive)
+  (let ((evil-textobj (intern (format "evil-inner-%s" textobj)))
+        (start-pos (point)))
+    (save-excursion
+      (let* ((bounds (call-interactively evil-textobj))
+             (beg (first bounds))
+             (end (second bounds)))
+        (progn
+          (evil-visual-char beg end)
+          (yankee-yank beg end))))
+    (goto-char start-pos)))
+
+(defun perfidious-yank-inner-paragraph ()
+  "Yank the current paragraph with annotations using `yankee-yank'."
+  (interactive)
+  (perfidious-yank-inner 'paragraph))
+
+(defun perfidious-yank-inner-buffer ()
+  "Yank the current buffer with annotations using `yankee-yank'."
+  (interactive)
+  (perfidious-yank-inner 'buffer))
+
+(after! yankee
+  (map! (:prefix "g"
+         :v "y" #'yankee-yank
+         :n "y" nil
+         (:prefix ("y" . "yanqui")
+          :desc "yanq paragraph"        :n "p" #'perfidious-yank-inner-paragraph
+          :desc "yanq buffer"           :n "b" #'perfidious-yank-inner-buffer))))
 #+end_src
 
 * yasnippet
