@@ -139,6 +139,23 @@ Disable line-numbering in org and markdown modes
 (add-hook! '(org-mode-hook markdown-mode-hook) #'+config:display:disable-line-numbers)
 #+end_src
 
+** scrolling
+
+#+begin_src elisp
+(defun scroll-other-window-up ()
+  "Scroll the other window up."
+  (interactive)
+  (scroll-other-window -3))
+
+(defun scroll-other-window-down ()
+  "Scroll the other window down."
+  (interactive)
+  (scroll-other-window 3))
+
+(map! "M-p" #'scroll-other-window-up)
+(map! "M-n" #'scroll-other-window-down)
+#+end_src
+
 ** leader keys
 
 Use comma for the local leader key.
