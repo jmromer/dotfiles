@@ -169,9 +169,13 @@ Use comma for the local leader key.
 Some general purpose super-key keybindings.
 
 #+begin_src elisp
-(map! "s-'" #'+vterm/toggle
-      "s-K" #'kill-current-buffer
-      "s-k" #'bury-buffer)
+   (map! "s-'" #'+vterm/toggle
+         "s-K" #'kill-current-buffer
+         "s-k" #'bury-buffer
+         "s-f" #'avy-goto-char-2
+         "s-F" #'avy-goto-char-timer
+         "s-n" #'org-capture
+  "<s-escape>" #'evil-escape)
 #+end_src
 
 ** identity
@@ -862,6 +866,10 @@ Clear pre-installed keymaps and set cleaned up keymaps.
   (defvar markdown-mode-command-map (make-sparse-keymap))
   (defvar markdown-mode-map (make-sparse-keymap))
   (defvar markdown-mode-mouse-map (make-sparse-keymap))
+
+  (map! :map markdown-mode-map
+        :ni "C-j" #'markdown-next-visible-heading
+        :ni "C-k" #'markdown-previous-visible-heading)
 
   (map! :map markdown-mode-map
         :localleader
