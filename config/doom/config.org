@@ -418,8 +418,6 @@ Add refresh hooks for magit > 2.4.0.
 
 Small improvement to =diff-hl-show-hunk-copy-original-text=.
 
-TODO: Contribute upstream.
-
 #+begin_src elisp
 (after! diff-hl-show-hunk
   (defun diff-hl-show-hunk-copy-original-text ()
@@ -495,8 +493,6 @@ Silence state messages.
 
 Re-map keybindings to follow when splitting by default.
 
-TODO: Sort out the descriptions for the remainder of the functions here.
-
 #+begin_src elisp
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
@@ -535,8 +531,6 @@ Enable some emacs chords in evil insert state:
 (map! :i  "C-d" #'evil-delete-char
       :ni "C-k" #'evil-delete-line)
 #+end_src
-
-TODO: Fix org mode overriding these changes.
 
 ** evil-cleverparens
 
@@ -797,8 +791,6 @@ Lookup Dash docs quickly from the normal state.
 #+end_src
 
 Un-define doom's Dash-related functions since they're not installed.
-
-TODO: Contribute upstream (check for the module inclusion flag).
 
 #+begin_src elisp
 (fmakunbound '+lookup:dash)
@@ -1291,8 +1283,6 @@ https://github.com/bastibe/org-journal
 
 Fixes an issue where tags are displayed in headlines
 
-TODO: submit upstream, check if still needed
-
 #+begin_src elisp
 (after! ox-hugo
   (defun org-hugo-headline (headline contents info)
@@ -1720,9 +1710,6 @@ Ruby 3's new language constructs.
 
 ** ruby-factory
 
-- TODO: Make =ruby-factory-switch-to-buffer= a toggle.
-- TODO: Refactor to use =(after! (:all yasnippet ruby-factory))= and =add-hook!=.
-
 #+begin_src elisp
 (require 'yasnippet)
 (require 'ruby-factory)
@@ -2069,8 +2056,6 @@ Precedence order:
 
 Set keybindings for visual mode.
 
-TODO: Define with text objects?
-
 #+begin_src elisp
 (require 'yankee)
 
@@ -2079,8 +2064,6 @@ TODO: Define with text objects?
 #+end_src
 
 Set parameters for =copy-as-format=.
-
-TODO: Move into or document in yankee
 
 #+begin_src elisp
 (setq copy-as-format-asciidoc-include-file-name t
