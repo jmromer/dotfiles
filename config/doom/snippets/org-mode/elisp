@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: elisp
-# key: elisp_
+# key: el
 # --
-#+begin_src emacs-lisp :tangle yes
+#+begin_src elisp
 $0
 #+end_src
