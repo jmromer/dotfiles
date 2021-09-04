@@ -1019,7 +1019,7 @@ https://orgmode.org/manual
     (evil-insert 1)))
 
 (defun org-insert-heading-below ()
-  "Insert subheading below the current section."
+  "Insert heading below the current section."
   (interactive)
   (progn
     (org-insert-heading-respect-content nil)
