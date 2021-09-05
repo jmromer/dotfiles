@@ -43,3 +43,6 @@
 [submodule "share/blogs/samizdat"]
 	path = share/blogs/samizdat
 	url = https://github.com/jmromer/samizdat.git
+[submodule "share/tmux/tmux-copycat"]
+	path = share/tmux/tmux-copycat
+	url = https://github.com/tmux-plugins/tmux-copycat
