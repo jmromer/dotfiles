@@ -154,6 +154,34 @@ Disable line-numbering in org and markdown modes
 (add-hook! '(org-mode-hook markdown-mode-hook) #'+config:display:disable-line-numbers)
 #+end_src
 
+** display: layout
+
+#+begin_src elisp
+(defun layout-main ()
+  (interactive)
+  (let ((w-main nil)
+        (w-top (selected-window))
+        (w-btm nil)
+        (b-main (dired-noselect (or (projectile-project-root) "~/.dotfiles")))
+        (b-top (find-file-noselect (format "%s/%s" (getenv "ORG_HOME") +org-capture-todo-file)))
+        (b-btm (get-buffer-create "*scratch*")))
+    (delete-other-windows)
+    (set-window-buffer w-top b-top)
+    (setq w-main
+          (window--display-buffer
+           b-main
+           (split-window w-top (/ (window-width) 4) 'left)
+           'window
+           '((display-buffer-mark-dedicated . t))))
+    (setq w-btm
+          (window--display-buffer
+           b-btm
+           (split-window w-top (* 2 (/ (window-height) 3)) 'below)
+           'window
+           '((display-buffer-mark-dedicated . t))))
+    (select-window w-main)))
+#+end_src
+
 ** scrolling
 
 #+begin_src elisp
