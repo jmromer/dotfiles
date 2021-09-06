@@ -96,7 +96,8 @@ git_color() {
       echo -ne "$(color green)"
       ;;
     *'Unmerged'* |\
-      *'no fusionadas'*)
+      *'no fusionadas'* |\
+      *'rebase interactivo en progreso'*)
       echo -ne "$(color violet)"
       ;;
     *)
