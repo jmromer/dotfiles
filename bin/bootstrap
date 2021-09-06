@@ -110,6 +110,7 @@ setup :development_tools do
   brew_install :awscli
   brew_install :bash
   brew_install :bat
+  brew_install :direnv
   brew_install :exa
   brew_install :fzf
   brew_install :gh
@@ -120,13 +121,13 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
-  # GNU Global (installs Exuberant ctags)
-  brew_install :direnv
-  brew_install :global
-
   # Universal ctags (replaces Exuberant ctags)
   brew_tap "universal-ctags/universal-ctags"
   brew_install :universal_ctags, options: [:head, :force]
+
+  # GNU Global (universal-ctags-compatible)
+  brew_tap "jmromer/global"
+  brew_install "jmromer/global/global"
 
   brew_tap "homebrew/cask-versions"
   cask_install :iterm2_nightly
@@ -141,6 +142,12 @@ setup :text_editing_cli_tools do
   brew_install :shellcheck
   brew_install :tidy_html5
   brew_install :wordnet
+end
+
+setup :neckbeard_relics do
+  brew_install :cowsay
+  brew_tap "jmromer/fortune-for-grownups"
+  brew_install :fortune_for_grownups, options: :build_from_source
 end
 
 setup :mac_tools do
