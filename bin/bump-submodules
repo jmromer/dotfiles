@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -e
 
 if [[ -z "${DOTFILES_DIR}" ]]; then
     echo "Error: DOTFILES_DIR env var not set."
@@ -11,11 +11,15 @@ DATE="$(date)"
 ORG_HOME="${DOTFILES_DIR}/share/org"
 
 # Commit any org dir changes
+echo "Syncing org changes..."
+
 cd "${ORG_HOME}"
 git add --all
 git commit -m "Update: ${DATE}"
 git pull --rebase
 git push origin
+
+echo "Syncing submodules..."
 
 cd "${DOTFILES_DIR}"
 git submodule foreach "git pull origin"
@@ -24,4 +28,9 @@ git submodule |
     awk '{ print $2 }' |
     xargs git add
 
+echo "Syncing dotfiles..."
+
 git commit -m "Submodule sync: ${DATE}"
+git push origin
+
+echo "Done."
