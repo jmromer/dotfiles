@@ -1,0 +1,1 @@
+export DOCKER_HIDE_LEGACY_COMMANDS=true
