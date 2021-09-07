@@ -8,12 +8,6 @@
 ;; API Demos:
 ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org
 
-(disable-packages!
- minitest
- company-gtags
- evil-snipe
- git-gutter)
-
 (package! command-log-mode)
 (package! company-box :recipe (:host github :repo "jmromer/company-box"))
 (package! company-lsp)
@@ -71,3 +65,9 @@
 
 ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/LAYERS.org#django
 ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/LAYERS.org#react
+
+(disable-packages! minitest)
+(disable-packages! company-gtags)
+(disable-packages! evil-snipe)
+(disable-packages! git-gutter)
+(disable-packages! git-gutter-fringe)
