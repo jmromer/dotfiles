@@ -20,6 +20,18 @@ alias lld='ls -al -d .*'
 alias lt='exa --tree --level=3'
 
 #-------------------------------------------------------------
+# ALIASES: XDG dir navigation
+#-------------------------------------------------------------
+alias ccache="cd ${XDG_CACHE_HOME}"
+alias cconfig="cd ${XDG_CONFIG_HOME}"
+alias cdata="cd ${XDG_DATA_HOME}"
+alias clocal="cd ${XDG_LOCALS_DIR}"
+alias corg="cd ${ORG_HOME}"
+alias crun="cd ${XDG_RUNTIME_DIR}"
+alias cstate="cd ${XDG_STATE_HOME}"
+alias cwork="cd ~/Work"
+
+#-------------------------------------------------------------
 # ALIASES: SAFEGUARDS
 #-------------------------------------------------------------
 alias rm='rm -i'  # confirm deletion
