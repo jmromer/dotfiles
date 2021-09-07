@@ -464,38 +464,38 @@ let g:indentLine_enabled = 0
 let g:used_javascript_libs = 'jquery,underscore,react,flux,requirejs'
 
 let g:lightline = {
-      \   'colorscheme': 'one',
-      \   'active': {
-        \     'left': [
-          \       [ 'mode', 'paste' ],
-          \       [ 'fugitive', 'filename' ]
-          \     ],
-          \     'right': [
-            \       [ 'syntastic', 'lineinfo' ],
-            \       [ 'percent' ],
-            \       [ 'fileformat', 'fileencoding', 'filetype' ]
-            \     ]
-            \   },
-            \   'component_function': {
-              \     'mode':         'LLMode',
-              \     'fugitive':     'LLFugitive',
-              \     'filename':     'LLFilename',
-              \     'readonly':     'LLReadonly',
-              \     'modified':     'LLModified',
-              \     'fileformat':   'LLFileFormat',
-              \     'fileencoding': 'LLFileEncoding',
-              \     'filetype':     'LLFileType'
-              \   },
-              \   'component_expand': {
-                \     'syntastic': 'SyntasticStatuslineFlag'
-                \   },
-                \   'component_type': {
-                  \     'syntastic': 'error'
-                  \   },
-                  \   'subseparator': {
-                    \     'left': '|', 'right': '|'
-                    \   }
-                    \ }
+\   'colorscheme': 'one',
+\   'active': {
+\     'left': [
+\       [ 'mode', 'paste' ],
+\       [ 'fugitive', 'filename' ]
+\     ],
+\     'right': [
+\       [ 'syntastic', 'lineinfo' ],
+\       [ 'percent' ],
+\       [ 'fileformat', 'fileencoding', 'filetype' ]
+\     ]
+\   },
+\   'component_function': {
+\     'mode':         'LLMode',
+\     'fugitive':     'LLFugitive',
+\     'filename':     'LLFilename',
+\     'readonly':     'LLReadonly',
+\     'modified':     'LLModified',
+\     'fileformat':   'LLFileFormat',
+\     'fileencoding': 'LLFileEncoding',
+\     'filetype':     'LLFileType'
+\   },
+\   'component_expand': {
+\     'syntastic': 'SyntasticStatuslineFlag'
+\   },
+\   'component_type': {
+\     'syntastic': 'error'
+\   },
+\   'subseparator': {
+\     'left': '|', 'right': '|'
+\   }
+\ }
 
 function! LLMode()
   let fname = expand('%:t')
@@ -588,4 +588,3 @@ let g:fzf_colors =
 if filereadable(expand('$DOTFILES_DIR/local/config/vim/vimrc'))
   source $DOTFILES_DIR/local/config/vim/vimrc
 endif
-

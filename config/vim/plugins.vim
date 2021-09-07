@@ -22,8 +22,8 @@ Plug 'tomtom/tcomment_vim'            " gcc / gc[ai][pim]
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'                  " git commit filetype settings, et al
-Plug 'tpope/vim-rsi'                  " readline bindings in insert mode
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rsi'                  " readline bindings in insert mode
 Plug 'tpope/vim-surround'             " surround text block with delimiters
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'              " enhancements to netrw
