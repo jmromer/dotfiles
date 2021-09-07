@@ -5,6 +5,7 @@ Plug 'Shougo/neco-vim'
 Plug 'wellle/tmux-complete.vim'
 
 Plug 'SirVer/ultisnips'               " snippets engine, integrates with YCM
+Plug 'axvr/org.vim'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-system-copy'    " cp
 Plug 'haya14busa/incsearch.vim'
