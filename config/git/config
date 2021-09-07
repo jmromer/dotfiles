@@ -20,6 +20,7 @@
 [core]
 	autocrlf = input
 	editor   = vim
+	excludesfile = ~/.dotfiles/config/git/ignore
 
 [color "diff"]
 	commit     = green
