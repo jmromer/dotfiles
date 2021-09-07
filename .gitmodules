@@ -1,48 +1,80 @@
 [submodule "share/asdf-manager"]
 	path = share/asdf-manager
 	url = https://github.com/asdf-vm/asdf.git
+	branch = master
+	update = rebase
 [submodule "share/zsh-syntax-highlighting"]
 	path = share/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	branch = master
+	update = rebase
 [submodule "share/zsh/zsh-syntax-highlighting"]
 	path = share/zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	branch = master
+	update = rebase
 [submodule "share/zsh/zsh-vim-mode"]
 	path = share/zsh/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode.git
+	branch = main
+	update = rebase
 [submodule "share/fzf"]
 	path = share/fzf
 	url = https://github.com/junegunn/fzf.git
+	branch = master
+	update = rebase
 [submodule "share/vim/vim-plug"]
 	path = share/vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+	branch = master
+	update = rebase
 [submodule "share/pd"]
 	path = share/pd
 	url = https://github.com/jmromer/pd.git
+	branch = master
+	update = rebase
 [submodule "share/tmux/tpm"]
 	path = share/tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
+	branch = master
+	update = rebase
 [submodule "share/tmux/tmux-yank"]
 	path = share/tmux/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
+	branch = master
+	update = rebase
 [submodule "share/emacs"]
 	path = share/emacs
 	url = https://github.com/hlissner/doom-emacs
+	branch = develop
+	update = rebase
 [submodule "share/tmux/tmux-prefix-highlight"]
 	path = share/tmux/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
+	branch = master
+	update = rebase
 [submodule "share/tmux/tmux-open"]
 	path = share/tmux/tmux-open
 	url = https://github.com/tmux-plugins/tmux-open.git
+	branch = master
+	update = rebase
 [submodule "share/org"]
 	path = share/org
 	url = https://github.com/jmromer/org.git
+	branch = master
+	update = rebase
 [submodule "share/blogs/conclave"]
 	path = share/blogs/conclave
 	url = https://github.com/jmromer/conclave.git
+	branch = master
+	update = rebase
 [submodule "share/blogs/samizdat"]
 	path = share/blogs/samizdat
 	url = https://github.com/jmromer/samizdat.git
+	branch = master
+	update = rebase
 [submodule "share/tmux/tmux-copycat"]
 	path = share/tmux/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat
+	branch = master
+	update = rebase
