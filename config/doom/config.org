@@ -1103,6 +1103,9 @@ See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/
     (global-unset-key (kbd "s-RET"))
     (global-unset-key (kbd "s-<return>"))
 
+    (map! :map org-mode-map
+          "s-r" #'avy-org-refile-as-child)
+
     (map! :map evil-org-mode-map
           :n  "C-j"          #'org-next-visible-heading
           :n  "C-k"          #'org-previous-visible-heading
