@@ -388,6 +388,17 @@ Taken from https://github.com/syl20bnr/spacemacs/pull/179."
   (setq company-backends (mapcar #'company-backend-with-yas company-backends)))
 #+end_src
 
+** company keybindings
+
+#+begin_src elisp
+(after! company
+  (map! :map company-active-map
+        :desc "find"           :i "C-f" #'company-search-candidates
+        :desc "helpdoc"        :i "C-h" #'company-show-doc-buffer
+        :desc "implementation" :i "C-i" #'company-show-location
+        :desc "rifle"          :i "C-r" #'company-filter-candidates))
+#+end_src
+
 ** company-box
 
 Enable [[https://github.com/sebastiencs/company-box][company-box]] to enhance company's visual cues.
@@ -401,34 +412,6 @@ Override some distracting default colors.
 #+begin_src elisp
 (setq company-box-backends-colors '())
 #+end_src
-
-#+begin_quote
-Each element has the form (BACKEND . COLOR)
-
-BACKEND is the backend's symbol for which the color applies
-COLOR can be a LIST or a STRING:
-
-- LIST:    A property list with the following keys:
-                :candidate  : Color to use on the candidate
-                :annotation : Color to use on the annotation
-                :icon       : Color to use on the icon. Does nothing if the
-                                icon is an image.
-                :all        : Replace (:candidate X :annotation X :icon X)
-           For those 4 attributes, values can be a face, a plist
-           or a string (a color)
-                :selected   : Color to use when the candidate is selected.
-           It can be a plist or a face, not a string.
-           It needs to define the background and foreground colors
-
-- STRING:  A color string which is used everywhere
-           (similar to (:all "red"))
-
-Examples:
-
-'((company-yasnippet . (:candidate "yellow" :annotation some-face))
-  (company-elisp . (:icon "yellow" :selected (:background "orange" :foreground "black")))
-  (company-dabbrev . "purple"))
-#+end_quote
 
 * diff-hl
 
