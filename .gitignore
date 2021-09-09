@@ -78,6 +78,7 @@ share/iterm2/
 share/delta/
 share/direnv/
 share/heroku/
+share/yarn/
 
 # high-churn config files
 config/iterm2/AppSupport
