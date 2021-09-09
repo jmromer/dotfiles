@@ -1199,24 +1199,26 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 ** variables
 
 #+begin_src elisp
-;; org-superstar-headline-bullets-list '("› ")
-
 (setq org-adapt-indentation t
       org-agenda-block-separator ""
+      org-agenda-start-with-log-mode t
       org-agenda-window-setup 'current-window
       org-blank-before-new-entry '((heading . auto) (plain-list-item . auto))
       org-catch-invisible-edits 'show-and-error
       org-confirm-babel-evaluate nil
       org-cycle-separator-lines 2
       org-edit-src-content-indentation 0
-      org-ellipsis " ▾ "
-      org-export-in-background t
+      org-ellipsis " ▾"
+      org-superstar-headline-bullets-list '("› " ?◉ ?○ ?✸ ?✿)
+      org-superstar-item-bullet-alist '((?* . ?⋆) (?+ . ?‣) (?- . ?•))
       org-fontify-done-headline t
       org-fontify-quote-and-verse-blocks t
       org-fontify-whole-heading-line t
       org-hide-emphasis-markers t
       org-image-actual-width 500
       org-list-use-circular-motion t
+      org-log-done 'time
+      org-log-into-drawer t
       org-outline-path-complete-in-steps nil
       org-pretty-entities t
       org-refile-allow-creating-parent-nodes 'confirm
