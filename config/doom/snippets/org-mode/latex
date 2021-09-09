@@ -2,6 +2,6 @@
 # name: latex
 # key: latex_
 # --
-#+BEGIN_LaTeX
+#+begin_latex
 $0
-#+END_LaTeX
+#+end_latex
