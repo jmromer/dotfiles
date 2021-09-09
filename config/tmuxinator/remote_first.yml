@@ -45,17 +45,13 @@ on_project_first_start: pg_start
 # attach: false
 
 windows:
-  - webpack:
-      layout: even-horizontal
-      panes:
-        - cd ~/Desktop/open-pro/open-pro-react && PORT=3009 npm start
-        - bin/webpack-dev-server
+  - webpack: bin/webpack-dev-server
   - server:
       layout: tiled
       panes:
         - bin/rails server --port 3000
         - sleep 4 && bin/docs
-        - redis-server
+        - redis-start
         - bin/sidekiq
   - specs: bin/rspec
   - console: bin/rails console
