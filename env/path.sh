@@ -11,6 +11,7 @@ if [[ -z "${HOMEBREW_PREFIX}" ]]; then
 fi
 
 PATH="${DOTFILES_DIR}/bin"
+PATH+=":./node_modules/.bin"
 
 PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
 PATH+=":${XDG_DATA_HOME}/asdf-manager/bin"
