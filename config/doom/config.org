@@ -1,7 +1,6 @@
-#+TITLE: Emacs Config
-#+AUTHOR: Jacob Römer (jmromer)
-#+PROPERTY: header-args :emacs-lisp :tangle yes :comments link
-#+STARTUP: org-startup-folded: fold
+#+title: Emacs Config
+#+author: Jacob Römer (jmromer)
+#+property: header-args :emacs-lisp :tangle yes :comments link
 
 * contents :TOC_1:
 - [[#general][+general]]
@@ -1224,6 +1223,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-src-tab-acts-natively t
       org-src-window-setup 'current-window
       org-startup-indented t
+      org-startup-folded 'overview
       org-tags-column 0)
 #+end_src
 
