@@ -27,6 +27,7 @@
 (package! org-fancy-priorities)
 (package! org-projectile)
 (package! org-superstar)
+(package! org-appear :recipe (:host github :repo "awth13/org-appear"))
 (package! ox-gfm)
 (package! posframe)
 (package! ruby-factory)

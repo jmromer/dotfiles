@@ -1272,6 +1272,20 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
                                   (?C . "LOW")))
 #+end_src
 
+** org-appear
+
+https://github.com/awth13/org-appear
+
+#+begin_src elisp
+(use-package! org-appear
+  :after org
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autolinks t
+        org-appear-autosubmarkers t))
+#+end_src
+
 ** org-journal
 
 https://github.com/bastibe/org-journal
