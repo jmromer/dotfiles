@@ -8,6 +8,6 @@
 -Dsun.java2d.xrender=True
 -Dsun.net.http.allowRestrictedHeaders=true
 -XX:-UseConcMarkSweepGC
--classpath/p launcher-second.jar
--Dawt.useSystemAAFontSettings=lcd_hrgb
+-classpath/p launcher-first.jar
+-Dawt.useSystemAAFontSettings=false
 -XX:MaxPermSize=256m
