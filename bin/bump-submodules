@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 if [[ -z "${DOTFILES_DIR}" ]]; then
     echo "Error: DOTFILES_DIR env var not set."
     exit 1
@@ -14,9 +12,10 @@ ORG_HOME="${DOTFILES_DIR}/share/org"
 echo "Syncing org changes..."
 
 cd "${ORG_HOME}"
+git pull --rebase --autostash
+git stash pop
 git add --all
 git commit -m "Update: ${DATE}"
-git pull --rebase
 git push origin
 
 echo "Syncing submodules..."
