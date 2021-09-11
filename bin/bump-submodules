@@ -7,6 +7,8 @@ fi
 
 DATE="$(date)"
 ORG_HOME="${DOTFILES_DIR}/share/org"
+BLOGS_HOME="${DOTFILES_DIR}/share/blogs"
+
 
 # Commit any org dir changes
 echo "Syncing org changes..."
@@ -17,6 +19,25 @@ git stash pop
 git add --all
 git commit -m "Update: ${DATE}"
 git push origin
+
+
+# Commit any blog dir changes
+echo "Syncing blog changes..."
+
+cd "${BLOGS_HOME}/samizdat"
+git pull --rebase --autostash
+git stash pop
+git add --all
+git commit -m "Update: ${DATE}"
+git push origin
+
+cd "${BLOGS_HOME}/conclave"
+git pull --rebase --autostash
+git stash pop
+git add --all
+git commit -m "Update: ${DATE}"
+git push origin
+
 
 echo "Syncing submodules..."
 
