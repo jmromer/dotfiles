@@ -5,7 +5,6 @@ set -x
 # Update Dotfiles
 # ---------------------
 (cd ~/.dotfiles && git pull --rebase --autostash)
-(cd ~/.dotfiles && git submodule foreach 'git pull origin')
 
 # Update Emacs config
 # ---------------------
