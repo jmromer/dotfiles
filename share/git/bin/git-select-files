@@ -8,5 +8,8 @@
 git status -s |
   fzf --multi --tiebreak=index --layout=reverse $1 \
       --preview-window=up:75% \
-      --preview='echo {} | sed "s/^[^\s]*\s//" | xargs bat --color=always 2>/dev/null' |
-  sed 's/^[^\s]*\s//'
+      --preview='echo {} | sed -E "s/^.{2}\s+//" | xargs bat --color=always 2>/dev/null' |
+      sed -E "s/^.{2}\s+//" |
+      sed -E "s/[\"]//g" |
+      sed -E "s/ /\ /"
+

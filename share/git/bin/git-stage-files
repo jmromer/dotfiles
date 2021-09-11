@@ -17,15 +17,14 @@ fi
 # fuzzy-select files
 files="$(git-select-files)"
 
-if [[ -z "$files" ]]; then
+if [[ -z "${files}" ]]; then
   exit 0
 fi
 
 IFS=$'\n'
 
-for file in $files; do
-  echo "git add $file"
-  git add "${file//[\"\']/}"
+for file in ${files}; do
+  git add "${file}"
 done
 
 git status -sb
