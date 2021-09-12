@@ -22,6 +22,7 @@
 - [[#ruby][ruby]]
 - [[#smartparens][smartparens]]
 - [[#time-tracking][time tracking]]
+- [[#typopunct][typopunct]]
 - [[#webkit][webkit]]
 - [[#word-chars][word chars]]
 - [[#workspaces][workspaces]]
@@ -2005,6 +2006,21 @@ Enable strict smartparens mode wherever smartparens is enabled.
 (map! :map prog-mode-map
       "s-c" #'git-clock-in
       "s-C" #'git-clock-out)
+#+end_src
+
+* typopunct
+
+https://www.emacswiki.org/emacs/TypographicalPunctuationMarks
+
+#+begin_src elisp
+(require 'typopunct)
+
+(defun +config:typopunct:enable ()
+  "Set up typopunct mode."
+  (typopunct-change-language 'english t)
+  (typopunct-mode 1))
+
+(add-hook! '(org-mode-hook markdown-mode-hook) #'+config:typopunct:enable)
 #+end_src
 
 * webkit
