@@ -1,6 +1,7 @@
 #+title: Emacs Config
 #+author: Jacob Römer (jmromer)
 #+property: header-args :emacs-lisp :tangle yes :comments link
+#+startup: org-startup-folded: fold
 
 * contents :TOC_1:
 - [[#general][+general]]
