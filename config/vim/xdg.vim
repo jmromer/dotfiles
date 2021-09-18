@@ -47,7 +47,7 @@ endif
 set directory=$XDG_CACHE_HOME/vim/swap
 set backupdir=$XDG_CACHE_HOME/vim/backup
 set undodir=$XDG_CACHE_HOME/vim/undo
-set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+set viminfofile=$XDG_CACHE_HOME/vim/viminfo
 
 let g:netrw_home=$XDG_CACHE_HOME . '/vim'
 
