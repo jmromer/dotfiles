@@ -20,3 +20,5 @@ vim +PlugInstall +PlugUpgrade +PlugUpdate +qall
 brew update
 brew upgrade
 brew cleanup
+
+bump-submodules
