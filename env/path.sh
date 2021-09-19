@@ -10,7 +10,9 @@ if [[ -z "${HOMEBREW_PREFIX}" ]]; then
   echo "WARNING: HOMEBREW_PREFIX env var is not set in ${0}"
 fi
 
-PATH="${DOTFILES_DIR}/bin"
+PATH="${XDG_LOCALS_DIR}/bin"
+PATH+=":${DOTFILES_DIR}/bin"
+PATH+=":${XDG_SECURE_DIR}/bin"
 PATH+=":./node_modules/.bin"
 
 PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
