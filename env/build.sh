@@ -47,7 +47,12 @@ build_flags_inspect() {
 
 build_flags_reset() {
   build_flags_unset
-  build_flags_set "$@"
+
+  if [ $# -eq 0 ]; then
+    build_flags_set --quietly --all
+  else
+    build_flags_set "$@"
+  fi
 }
 
 build_flags_set() {
@@ -55,6 +60,10 @@ build_flags_set() {
 
   while [ $# -gt -1 ]; do
     case "$1" in
+      --all)
+        set -- bzip2 g++-11 gcc-11 gettext icu4c imagemagick libffi libxml2 llvm ncurses no-warnings openssl optimize3 readline ruby xcrun zlib
+        shift
+        ;;
       bzip2)
         LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/bzip2/lib"
         CFLAGS+=" -I${HOMEBREW_PREFIX}/opt/bzip2/include"
@@ -188,22 +197,4 @@ build_flags_set() {
   done
 }
 
-build_flags_set \
-  --quietly \
-  bzip2 \
-  g++-11 \
-  gcc-11 \
-  gettext \
-  icu4c \
-  imagemagick \
-  libffi \
-  libxml2 \
-  llvm \
-  ncurses \
-  no-warnings \
-  openssl \
-  optimize3 \
-  readline \
-  ruby \
-  xcrun \
-  zlib
+build_flags_set --quietly --all
