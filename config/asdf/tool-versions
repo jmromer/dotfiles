@@ -6,7 +6,7 @@ python 3.9.6
 golang 1.17
 redis 6.2.5
 postgres 13.4
-java openjdk-16
+java openjdk-17
 tmux 3.2a
 rust 1.43.0
 mysql 8.0.24
