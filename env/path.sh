@@ -37,6 +37,7 @@ PATH+=":${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/gnutls/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/rg/bin"
+PATH+=":${HOMEBREW_PREFIX}/opt/openssl@3/bin"
 PATH+=":${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight"
 
 PATH+=":/usr/bin"
