@@ -184,7 +184,7 @@ build_flags_set() {
         shift
         ;;
       "")
-        CFLAGS+=" -std=c99"
+        CFLAGS+=" -std=c99 ${OPTFLAGS}"
         build_flags_export
         [ ! $quiet_mode ] && build_flags_inspect
         return
