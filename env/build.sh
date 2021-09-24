@@ -102,12 +102,12 @@ build_flags_set() {
         shift
         ;;
       openssl)
-        OPENSSL="openssl@1.1"
-        LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/openssl@1.1/lib"
-        CFLAGS+=" -I${HOMEBREW_PREFIX}/opt/openssl@1.1/include"
-        CPPFLAGS+=" -I${HOMEBREW_PREFIX}/opt/openssl@1.1/include"
-        PKG_CONFIG_PATH+=":${HOMEBREW_PREFIX}/opt/openssl@1.1/lib/pkgconfig"
-        RUBY_CONFIGURE_OPTS+=" --with-openssl-dir=${HOMEBREW_PREFIX}/opt/openssl@1.1"
+        OPENSSL="openssl@3"
+        LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/${OPENSSL}/lib"
+        CFLAGS+=" -I${HOMEBREW_PREFIX}/opt/${OPENSSL}/include"
+        CPPFLAGS+=" -I${HOMEBREW_PREFIX}/opt/${OPENSSL}/include"
+        PKG_CONFIG_PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL}/lib/pkgconfig"
+        RUBY_CONFIGURE_OPTS+=" --with-openssl-dir=${HOMEBREW_PREFIX}/opt/${OPENSSL}"
         shift
         ;;
       readline)
