@@ -86,6 +86,7 @@ setup :gui_apps do
   cask_install :tex_live_utility
   cask_install :thinkorswim
   cask_install :transmission
+  cask_install :vivaldi
   cask_install :vlc
   cask_install :zoom
 end
