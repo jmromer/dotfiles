@@ -601,9 +601,8 @@ https://github.com/syl20bnr/evil-iedit-state
 (after! evil
   (require 'evil-iedit-state)
   (map! :leader
-        :prefix ("se". "iedit")
-        :n "." #'evil-iedit-state/iedit-mode
-        :n "e" #'iedit-mode))
+        :prefix ("e". "edit")
+        :n "i" #'iedit-mode))
 #+end_src
 
 ** evil-unimpaired
