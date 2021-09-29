@@ -40,7 +40,7 @@ export ASDF_PYTHON_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-librar
 export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-golang"
 
 # extra config options for installs
-export POSTGRES_EXTRA_CONFIGURE_OPTIONS="--with-uuid=e2fs"
+export POSTGRES_EXTRA_CONFIGURE_OPTIONS="--with-uuid=e2fs --with-libxml"
 
 # build Node from source (no prebuilt Apple silicon binaries found for Node v15 and below)
 # example: asdf install nodejs ref:v14.5.0
