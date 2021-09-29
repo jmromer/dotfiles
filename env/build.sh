@@ -111,7 +111,7 @@ build_flags_set() {
         shift
         ;;
       openssl)
-        OPENSSL="openssl@3"
+        OPENSSL="openssl@1.1"
         LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/${OPENSSL}/lib"
         CFLAGS+=" -I${HOMEBREW_PREFIX}/opt/${OPENSSL}/include"
         CPPFLAGS+=" -I${HOMEBREW_PREFIX}/opt/${OPENSSL}/include"
