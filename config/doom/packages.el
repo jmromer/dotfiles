@@ -73,3 +73,5 @@
 (disable-packages! evil-snipe)
 (disable-packages! git-gutter)
 (disable-packages! git-gutter-fringe)
+
+(unpin! magit forge)
