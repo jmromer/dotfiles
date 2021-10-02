@@ -18,6 +18,8 @@ export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 # base directories to search for configuration files in addition to the $XDG_CONFIG_HOME base directory.
 export XDG_CONFIG_DIRS="/etc/xdg"
 
+export AWS_CONFIG_FILE="${XDG_SECURE_DIR}/config/aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="${XDG_SECURE_DIR}/config/aws/credentials"
 export BUNDLE_DEFAULT_INSTALL_USES_PATH="${XDG_CACHE_HOME}/bundler"
 export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundler"
 export CUPS_CACHEDIR="${XDG_CACHE_HOME}/cups"
