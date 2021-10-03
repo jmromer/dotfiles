@@ -1,0 +1,16 @@
+---
+name: within3-etl
+project_root: ~/Work/within3/fabric-data-pipeline
+on_project_first_start: pg_start
+startup_window: shell
+
+windows:
+- fabric: cd ../fabric-core && ./run all:couchbase
+- worker:
+    layout: even-horizontal
+    panes:
+      - (redis-start&) && bundle exec sidekiq --concurrency 5
+      - redis-cli
+- etl: bin/rails server
+- console: bin/rails console
+- shell: fortune
