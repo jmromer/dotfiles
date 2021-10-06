@@ -39,7 +39,7 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
 Have =which-key= respond a little more aggressively (default: l.0)
 
 #+begin_src elisp
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.5)
 #+end_src
 
 ** literate config
