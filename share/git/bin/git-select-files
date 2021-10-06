@@ -9,8 +9,8 @@ git status --short --porcelain |
   fzf --multi --tiebreak=index \
       --layout=reverse $1 \
       --preview-window=up:75% \
-      --preview="echo {} | sed -E 's/^\s*[[:alpha:]]\s*//' | xargs bat --color=always 2>/dev/null" |
-  sed -E "s/^\s*[[:alpha:]]\s*//" |
+      --preview="echo {} | sed -E 's/^\s*[[:alpha:]\?]*\s*//' | xargs bat --color=always 2>/dev/null" |
+  sed -E "s/^\s*[[:alpha:]\?]*\s*//" |
   sed -E "s/[\"]//g" |
   sed -E "s/ /\ /"
 
