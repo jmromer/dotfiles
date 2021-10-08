@@ -89,6 +89,7 @@ config/zsh/.zsh_history
 config/zsh/.zsh_sessions
 config/configstore/update-notifier-npm.json
 config/doom/config.el
+config/Webull\ Desktop
 
 # binaries
 bin/pd
