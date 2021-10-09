@@ -87,7 +87,8 @@ end
 def xcode_configure
   return if xcode_configured?
 
-  system("xcode-select --switch /Applications/Xcode.app")
+  puts("Enter your password to configure Xcode CLI tools.")
+  system("sudo xcode-select --switch /Applications/Xcode.app")
 end
 
 # Shell commands
