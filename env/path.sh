@@ -25,6 +25,8 @@ PATH+=":${XDG_DATA_HOME}/gem/ruby/3.0.0/bin"
 
 PATH+=":${HOMEBREW_PREFIX}/bin"
 PATH+=":${HOMEBREW_PREFIX}/sbin"
+
+PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/curl/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
@@ -38,6 +40,7 @@ PATH+=":${HOMEBREW_PREFIX}/opt/gnutls/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/rg/bin"
+
 PATH+=":${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight"
 
 PATH+=":/usr/bin"
