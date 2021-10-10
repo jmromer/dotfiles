@@ -5,11 +5,11 @@ on_project_first_start: pg_start
 startup_window: shell
 
 windows:
-- fabric: cd ../fabric-core && ./run all:couchbase
+  - fabric: cd ../fabric-core && ./run all:couchbase:redis
 - worker:
     layout: even-horizontal
     panes:
-      - (redis-start&) && bundle exec sidekiq --concurrency 5
+      - (redis-start 6380 &) && bundle exec sidekiq --concurrency 5
       - redis-cli
 - etl: bin/rails server
 - console: bin/rails console
