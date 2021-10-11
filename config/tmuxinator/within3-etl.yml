@@ -6,11 +6,12 @@ startup_window: shell
 
 windows:
   - fabric: cd ../fabric-core && ./run all:couchbase:redis
-- worker:
-    layout: even-horizontal
-    panes:
-      - (redis-start 6380 &) && bundle exec sidekiq --concurrency 5
-      - redis-cli
-- etl: bin/rails server
-- console: bin/rails console
-- shell: fortune
+  - worker:
+      layout: even-horizontal
+      pre_window: redis-start 6380 &
+      panes:
+        - bundle exec sidekiq --concurrency 5
+        - redis-cli
+  - etl: bin/rails server
+  - console: bin/rails console
+  - shell: fortune
