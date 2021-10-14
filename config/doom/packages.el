@@ -22,7 +22,7 @@
 (package! evil-string-inflection)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
 (package! ggtags :recipe (:host github :repo "leoliu/ggtags"))
-(package! gxref)
+(package! gxref :recipe (:host github :repo "dedi/gxref"))
 (package! impatient-mode :recipe (:host github :repo "skeeto/impatient-mode"))
 (package! org-fancy-priorities)
 (package! org-projectile)
