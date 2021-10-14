@@ -762,15 +762,21 @@ Use tab to fold in prog modes.
 
 * gtags
 
+** gxref
+
+#+begin_src elisp
+(setq xref-backend-functions '(elisp--xref-backend etags--xref-backend))
+(add-to-list 'xref-backend-functions #'gxref-xref-backend)
+#+end_src
+
+** ggtags
+
 https://github.com/leoliu/ggtags
 
 #+begin_src elisp
 (after! ggtags
   (ggtags-mode)
-  (setq xref-backend-functions '(ggtags--xref-backend
-                                 elisp--xref-backend
-                                 gxref-xref-backend
-                                 etags--xref-backend)))
+  (add-to-list 'xref-backend-functions #'ggtags-xref-backend))
 #+end_src
 
 #+begin_src elisp
