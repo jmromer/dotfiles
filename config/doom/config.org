@@ -710,24 +710,7 @@ Use =g~= operator to cycle through inflection transformations.
 
 ** evil text objects
 
-#+begin_quote
-=(evil-define-text-object OBJECT (COUNT) DOC [[KEY VALUE]...] BODY...)=
-
-Define a text object command OBJECT.
-
-BODY should return a range (BEG END) to the right of point if COUNT is positive,
-and to the left of it if negative.
-
-Optional keyword arguments:
-
-- =:type= - determines how the range applies after an operator
-  (inclusive, line, block, and exclusive, or a self-defined
-  motion type).
-
-- =:extend-selection= - if non-nil (default), the text object always
-  enlarges the current selection.  Otherwise, it replaces the current
-  selection.
-#+end_quote
+*** delimiters
 
 #+begin_src elisp
 (defmacro define-and-bind-text-object (key start-regex end-regex)
@@ -751,6 +734,16 @@ Optional keyword arguments:
 (define-and-bind-text-object "[" "\\[" "\\]")
 #+end_src
 
+*** evil-inner-buffer
+
+#+begin_src elisp
+(evil-define-text-object evil-inner-buffer (count &optional beg end type)
+  "Select inner buffer."
+  :type line
+  (evil-select-inner-object 'buffer beg end type count t))
+#+end_src
+
+*** ruby text objects
 #+begin_src elisp
 (add-hook! ruby-mode #'evil-ruby-text-objects-mode)
 #+end_src
