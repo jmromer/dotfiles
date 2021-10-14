@@ -1773,7 +1773,7 @@ Ruby 3's new language constructs.
 #+begin_src elisp
 (require 'yasnippet)
 (require 'ruby-factory)
-(add-hook 'ruby-mode-hook #'ruby-factory-mode)
+(add-hook! ruby-mode #'ruby-factory-mode)
 #+end_src
 
 ** rspec-mode
