@@ -787,8 +787,8 @@ If the prefix arg ARG is passed, delete the tags at project root."
           (ggtags-delete-tags)
         (if (file-exists-p (format "%s/GTAGS" ggtags-project-root))
             (ggtags-update-tags t)
-          (ggtags-create-tags ggtags-project-root))))
-  (message "Could not find a project root."))
+          (ggtags-create-tags ggtags-project-root)))
+    (message "Could not find a project root.")))
 
 (map! :leader
       :prefix "p"
