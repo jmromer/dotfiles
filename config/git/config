@@ -194,7 +194,7 @@
 	ri       = rebase-interactive
 	ra       = rebase --abort
 	rc       = rebase --continue
-	squash   = rebase -i origin/master
+	squash   = !sh -c 'git fetch && git rebase --ignore-date -i origin/${1:-master}' -
 	rmc      = remove-commit
 
 	# merging
