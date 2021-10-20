@@ -80,7 +80,7 @@
 [merge]
 	conflictstyle = diff3
 	ff            = no
-	tool          = vimdiff
+	tool          = vim_mergetool
 
 [mergetool]
 	keepBackup = false
@@ -88,6 +88,10 @@
 
 [mergetool "vimdiff"]
 	cmd = vimdiff
+
+[mergetool "vim_mergetool"]
+	cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+	trustExitCode = true
 
 [difftool]
 	prompt = false
