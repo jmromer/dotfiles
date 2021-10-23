@@ -143,6 +143,8 @@ if defined?(JazzFingers)
   end
 end
 
+Pry.config.theme = "railscasts"
+
 if %w[emacs dumb].include?(ENV["TERM"]) || !ENV["INSIDE_EMACS"].nil?
   Pry.config.auto_indent = false
   Pry.config.color = true
@@ -153,7 +155,6 @@ else
   Pry.config.auto_indent = true
   Pry.config.color = true
   Pry.config.pager = true
-  Pry.config.theme = "railscasts"
 end
 
 def timeit
