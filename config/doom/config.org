@@ -1842,7 +1842,7 @@ Unbind =rspec-mode= bindings and re-bind.
         :desc "buffer (test)" :n "B" #'ruby-test-run
         :desc "method"        :n "m" #'rspec-verify-method
         :desc "matching"      :n "M" #'rspec-verify-matching
-        :desc "last"          :n "l" #'rspec-run-last
+        :desc "last"          :n "l" #'rspec-rerun
         :desc "last failed"   :n "L" #'rspec-run-last-failed
         :desc "single"        :n "t" #'rspec-verify-single
         :desc "single (test)" :n "T" #'ruby-test-run-at-point
