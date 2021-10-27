@@ -10,7 +10,7 @@ windows:
       layout: even-horizontal
       pre_window: redis-start 6380 &
       panes:
-        - bundle exec sidekiq --concurrency 5
+        - universal: bundle exec sidekiq -q default -q callbacks -q extraction -q importation -q enrichment -q serialization -q verification -q loading -q normalization --concurrency 5
         - redis-cli
   - etl: bin/rails server
   - console: bin/rails console
