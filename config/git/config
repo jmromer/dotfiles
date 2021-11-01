@@ -39,7 +39,7 @@
 [diff]
 	line-numbers = true
 	renames      = true
-	tool         = vimdiff
+	tool         = vimdiff3
 
 [fetch]
 	prune = true
@@ -80,13 +80,11 @@
 [merge]
 	conflictstyle = diff3
 	ff            = no
+	tool          = vimdiff
 
 [mergetool]
 	keepBackup = false
 	prompt     = false
-
-[mergetool "vimdiff"]
-	cmd = vimdiff
 
 [difftool]
 	prompt = false
