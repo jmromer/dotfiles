@@ -22,28 +22,6 @@ source $XDG_CONFIG_HOME/vim/plugins.vim
 call plug#end()
 
 "--------------------------------------------------------------
-" vim-mergetool
-"--------------------------------------------------------------
-function s:on_mergetool_set_layout(split)
-  if a:split["layout"] ==# 'br,m'
-    if a:split["split"] ==# 'm'
-      set nodiff
-      set syntax=on
-      " resize 15
-    elseif a:split["split"] ==# 'b' || a:split["split"] ==# 'r'
-      set diff
-      set nospell
-      set syntax=off
-    endif
-  endif
-endfunction
-
-let g:mergetool_layout = 'br,m'
-let g:mergetool_prefer_revision = 'base'
-let g:MergetoolSetLayoutCallback = function('s:on_mergetool_set_layout')
-
-
-"--------------------------------------------------------------
 " netrw
 "--------------------------------------------------------------
 let g:netrw_liststyle = 4   " 4 lightweight, 3 tree
