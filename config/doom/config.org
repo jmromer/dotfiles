@@ -52,6 +52,8 @@ Don't tangle on save.
 
 Provide a command to trigger tangling manually.
 
+TODO: Fix this. Not working.
+
 #+begin_src elisp
 (defun +config:tangle (sync)
   "Tangle config.org to Emacs lisp.
@@ -94,7 +96,7 @@ Tell =ispell= to shut up.
 
 ** display: doom dashboard
 
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (defun +config:display:doom-dashboard-ascii-banner ()
   "Return a formatted ASCII banner for the dashboard."
   (let* ((banner (split-string (shell-command-to-string "fortune -so | cowsay") "\n"))
