@@ -1241,7 +1241,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 ** structure templates
 
 #+begin_src elisp
-(after! 'org
+(after! org
   (setq org-structure-template-alist
         '(
           ("a" . "export ascii")
