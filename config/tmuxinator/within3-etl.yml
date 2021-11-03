@@ -1,6 +1,6 @@
 ---
 name: within3-etl
-project_root: ~/Work/within3/fabric-data-pipeline
+project_root: ~/Work/within3/fabric-etl
 on_project_first_start: pg_start
 startup_window: shell
 
