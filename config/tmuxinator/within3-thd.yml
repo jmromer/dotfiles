@@ -1,0 +1,10 @@
+---
+name: within3-thd
+project_root: ~/Work/within3/fabric-thd
+on_project_first_start: pg_start
+startup_window: shell
+
+windows:
+  - thd: bin/rails server
+  - console: bin/rails console
+  - shell: fortune
