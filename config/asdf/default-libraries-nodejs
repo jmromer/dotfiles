@@ -8,5 +8,5 @@ react-native-cli
 typescript
 typescript-formatter
 typescript-language-server
-vscode-css-languageserver-bin
-vscode-html-languageserver-bin
+vscode-css-languageservice
+vscode-html-languageserver
