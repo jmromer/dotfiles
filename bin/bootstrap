@@ -85,6 +85,7 @@ setup :gui_apps do
   cask_install :telegram
   cask_install :tex_live_utility
   cask_install :thinkorswim
+  cask_install :tradingview
   cask_install :transmission
   cask_install :vivaldi
   cask_install :vlc
