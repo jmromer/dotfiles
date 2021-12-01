@@ -9,4 +9,4 @@ typescript
 typescript-formatter
 typescript-language-server
 vscode-css-languageservice
-vscode-html-languageserver
+vscode-html-languageserver-bin
