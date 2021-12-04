@@ -147,10 +147,11 @@ setup :text_editing_cli_tools do
   brew_install :wordnet
 end
 
-setup :neckbeard_relics do
+setup :miscellaneous_cli_tools do
   brew_install :cowsay
   brew_tap "jmromer/fortune-for-grownups"
   brew_install :fortune_for_grownups, options: :build_from_source
+  brew_install "yt-dlp/taps/yt-dlp"
 end
 
 setup :mac_tools do
