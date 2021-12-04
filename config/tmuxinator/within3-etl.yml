@@ -5,12 +5,12 @@ on_project_first_start: pg_start
 startup_window: shell
 
 windows:
-  - fabric: cd ../fabric-core && ./run all:couchbase:redis
+  - fabric: cd ../fabric-core && ./run all
   - worker:
       layout: even-horizontal
       panes:
         - kill "$(lsof -wnP -i tcp | grep 6380 | awk '{ print $2 }' | sort -u | head -1)" && redis-start 6380 &
-        - bundle exec sidekiq -q default -q callbacks -q extraction -q importation -q enrichment -q serialization -q verification -q loading -q normalization --concurrency 5
+        - bin/sidekiq -q default -q callbacks -q extraction -q importation -q enrichment -q serialization -q verification -q loading -q normalization --concurrency 5
   - etl: bin/rails server
   - console: bin/rails console
   - shell: fortune
