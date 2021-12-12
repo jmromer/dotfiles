@@ -21,4 +21,10 @@ brew update
 brew upgrade
 brew cleanup
 
+# Update Hosts file
+# --------------------------
+update-hosts
+
+# Update Submodules
+# --------------------------
 bump-submodules
