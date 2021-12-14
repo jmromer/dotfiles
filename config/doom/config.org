@@ -11,6 +11,7 @@
 - [[#dired][dired]]
 - [[#evil][evil]]
 - [[#folding][folding]]
+- [[#formatting][formatting]]
 - [[#gtags][gtags]]
 - [[#lookup][lookup]]
 - [[#lsp][lsp]]
@@ -760,6 +761,19 @@ Use tab to fold in prog modes.
   (evil-local-set-key 'normal (kbd "<tab>") #'evil-toggle-fold))
 
 (add-hook! prog-mode #'+config:tab-to-fold-in-normal-state)
+#+end_src
+
+* formatting
+
+#+begin_src elisp
+(setq +format-on-save-enabled-modes
+      '(not js2-mode
+            rjsx-mode
+            typescript-mode
+            emacs-lisp-mode  ; elisp's mechanisms are good enough
+            sql-mode         ; sqlformat is currently broken
+            tex-mode         ; latexindent is broken
+            latex-mode))
 #+end_src
 
 * gtags
