@@ -7,7 +7,11 @@ startup_window: shell
 windows:
   - fabric: export FABRIC_ETL_WEBHOOK_URL='http://host.docker.internal:3000/fabric/webhooks' && cd ../fabric-core && git pull && ./run all
   - thd: cd ../fabric-thd && git pull && bin/rails server
-  - sidekiq: kill "$(lsof -wnP -i tcp | grep 6380 | awk '{ print $2 }' | sort -u | head -1)" && (redis-start 6380) & bin/sidekiq -q default -q callbacks -q extraction -q importation -q enrichment -q serialization -q verification -q loading -q normalization --concurrency 5
+  - sidekiq:
+      layout: main-vertical
+      panes:
+        - kill "$(lsof -wnP -i tcp | grep 6380 | awk '{ print $2 }' | sort -u | head -1)" && redis-start 6380
+        - bin/sidekiq -q default -q callbacks -q extraction -q importation -q enrichment -q serialization -q verification -q loading -q normalization --concurrency 5
   - etl: bin/rails server
   - console: bin/rails console
   - shell: fortune
