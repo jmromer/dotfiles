@@ -142,19 +142,20 @@ kill_session_or_template() {
         kind="$(echo $entry | awk '{ print $1 }')"
         name="$(echo $entry | sed -E 's/(session|template)\s+(.+)$/\2/')"
 
-        printf "Terminating %s '%s'... " "$kind" "$name"
+        printf "Terminating %s '%s' " "$kind" "$name"
 
         if [[ "$kind" == 'session' ]]; then
-            if [[ "$name" =~ $templates ]]; then
+            if [[ "$templates" == *"$name"* ]]; then
+              printf "[tmuxinator stop %s] ... " "$name"
               tmuxinator stop "$name"
-              printf "done. [tmuxinator stop %s]\n" "$name"
             else
+              printf "[tmux kill-session -t %s] ... " "$name"
               tmux kill-session -t "$name"
-              printf "done. [tmux kill-session -t %s]\n" "$name"
             fi
+
+            printf "done.\n"
         elif [[ "$kind" == 'template' ]]; then
             tmuxinator delete "$name"
-            printf "done. [tmuxinator delete %s]\n" "$name"
         else
             printf "Unfamiliar selection: %s\n" "$entry"
         fi
