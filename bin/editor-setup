@@ -12,7 +12,6 @@
 #   editor-setup
 #   editor-setup py
 #   editor-setup rb py js
-#   editor-setup js mac py
 #   editor-setup all
 #
 
@@ -56,10 +55,6 @@ setup_python() {
       --upgrade \
       pip \
       $(cat "${XDG_CONFIG_HOME}/asdf/default-libraries-python" | tr '\n' ' ')
-}
-
-setup_mac() {
-  return
 }
 
 setup_emacs_plus() {
@@ -121,11 +116,6 @@ while [ $# -gt -1 ]; do
       'sysrb')
             message "Installing System Ruby Libraries"
             setup_system_ruby
-            shift
-            ;;
-        'mac')
-            message "Configuring Mac"
-            setup_mac
             shift
             ;;
         'emacs-plus')
