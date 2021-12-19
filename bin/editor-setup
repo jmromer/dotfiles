@@ -40,9 +40,15 @@ setup_system_ruby() {
 }
 
 setup_javascript() {
+  # reshim manually, because the nodejs plugin wraps npm for global installs
+  export ASDF_SKIP_RESHIM=1
+  npm install --update --global npm
+
   while read -r package; do
     npm install --update --global "${package}"
   done < "${XDG_CONFIG_HOME}/asdf/default-libraries-nodejs"
+
+  asdf reshim nodejs "$(asdf current nodejs | awk '{ print $2 }')"
 }
 
 setup_python() {
