@@ -1,17 +1,35 @@
 ---
 name: within3-etl
 project_root: ~/Work/within3/fabric-etl
-on_project_first_start: pg_start
 startup_window: shell
 
+on_project_first_start: |
+  kill-port 6380 3000 3010
+  (pg_start >/dev/null) &
+  (redis-start 6380 >/dev/null) &
+
+on_project_stop: |
+  (cd ../fabric-core && ./run killall) &
+  kill-port 6380 3000 3010
+
 windows:
-  - fabric: export FABRIC_ETL_WEBHOOK_URL='http://host.docker.internal:3000/fabric/webhooks' && cd ../fabric-core && git pull && ./run all
-  - thd: cd ../fabric-thd && git pull && bin/rails server
-  - sidekiq:
-      layout: main-vertical
-      panes:
-        - kill "$(lsof -wnP -i tcp | grep 6380 | awk '{ print $2 }' | sort -u | head -1)" && redis-start 6380
-        - bin/sidekiq -q default -q callbacks -q extraction -q importation -q enrichment -q serialization -q verification -q loading -q normalization --concurrency 5
+  - fabric: |
+      export FABRIC_ETL_WEBHOOK_URL='http://host.docker.internal:3000/fabric/webhooks'
+      cd ../fabric-core
+      git pull
+      ./run all
+
+  - thd: |
+      cd ../fabric-thd
+      git pull
+      bin/rails server
+
+  - sidekiq: |
+      bin/sidekiq --concurrency 5 \
+        -q default -q callbacks -q extraction -q importation \
+        -q enrichment -q serialization -q verification -q loading \
+        -q normalization
+
   - etl: bin/rails server
   - console: bin/rails console
   - shell: fortune
