@@ -31,5 +31,9 @@ windows:
         -q normalization
 
   - etl: bin/rails server
-  - console: bin/rails console
+
+  - console: |
+      export DISABLE_SPRING=1
+      bin/rails console
+
   - shell: fortune
