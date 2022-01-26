@@ -289,7 +289,7 @@ bindkey "^z"    ctrlz
 # string-based
 
 bindkey -s "^h" "cd\n" # cd with pd
-bindkey -s "^g" "mx\n" # jump around in tmux
+bindkey -s "^\]" "g cob\n" # change branches with pd
 
 # emacs mode
 
