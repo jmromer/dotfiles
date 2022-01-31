@@ -59,6 +59,7 @@ alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
 alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"
 alias pp='pretty-print-path'
 alias b=bundle
+alias fabcb='cbq -u Administrator -p acme999! -engine=http://127.0.0.1:8091/'
 
 #-------------------------------------------------------------
 # EDITOR / PAGER
