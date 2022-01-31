@@ -176,6 +176,7 @@
 	cms      = commit-squash
 	ca       = commit-amend
 	cap      = commit --no-verify --amend --no-edit
+	up       = !sh -c 'git fetch && git rebase --ignore-date origin/${1:-master}' -
 
 	# remotes: fetching, pushing, pulling
 	f        = fetch
