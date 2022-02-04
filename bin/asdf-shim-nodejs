@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -e
+
+binary="${1:-npm}"
+version="$(asdf current nodejs | awk '{ print $2 }')"
+shim_path="$(which "${binary}")"
+buffer="$(mktemp)"
+
+if [[ -z "${shim_path}" ]]; then
+  echo "${binary} is not a valid Node binary"
+  exit 1
+fi
+
+shebang_line="$(grep usr "${shim_path}")"
+curr_shims="$(grep asdf-plugin "${shim_path}")"
+exec_line="$(grep exec "${shim_path}")"
+
+if [[ ! "${curr_shims}" =~ nodejs ]]; then
+  echo "${binary} is not a valid nodejs binary"
+  exit 1
+fi
+
+if [[ "${curr_shims}" =~ ${version} ]]; then
+  echo "${binary} is already shimmed for Node ${version}"
+  exit 0
+fi
+
+cat << EOF >> $buffer
+${shebang_line}
+${curr_shims}
+# asdf-plugin: nodejs ${version}
+${exec_line}
+EOF
+
+mv "${buffer}" "${shim_path}"
+chmod u+x "${shim_path}"
