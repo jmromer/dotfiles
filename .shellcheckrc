@@ -1,0 +1,5 @@
+shell=bash
+external-sources=true
+
+disable=SC1091
+enable=require-variable-braces
