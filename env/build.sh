@@ -5,17 +5,17 @@ fi
 #-------------------------------------------------------------
 # Compilation flags
 #-------------------------------------------------------------
-BUILD_VARS='CC CXX CFLAGS CPPFLAGS LDFLAGS PKG_CONFIG_PATH RUBY_CONFIGURE_OPTS RUBY_GC_MALLOC_LIMIT RUBY_GC_HEAP_FREE_SLOTS WARNFLAGS OPTFLAGS'
+BUILD_VARS=("CC" "CXX" "CFLAGS" "CPPFLAGS" "LDFLAGS" "PKG_CONFIG_PATH" "RUBY_CONFIGURE_OPTS" "RUBY_GC_MALLOC_LIMIT" "RUBY_GC_HEAP_FREE_SLOTS" "WARNFLAGS" "OPTFLAGS")
 
 build_flags_unset() {
-  for var in $(echo "$BUILD_VARS"); do
-    unset "$var"
+  for var in "${BUILD_VARS[@]}"; do
+    unset "${var?}"
   done
 }
 
 build_flags_export() {
-  for var in $(echo "$BUILD_VARS"); do
-    export "$var"
+  for var in "${BUILD_VARS[@]}"; do
+    export "${var?}"
   done
 }
 
