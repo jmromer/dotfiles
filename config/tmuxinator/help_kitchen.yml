@@ -1,0 +1,21 @@
+---
+name: help_kitchen
+project_root: ~/Work/help_kitchen/helpkitchen
+startup_window: shell
+
+on_project_first_start: |
+  kill-port 3000 3010 6379
+  (pg_start --brew >/dev/null) &
+
+on_project_stop: |
+  kill-port 3000 3010 6379
+
+windows:
+- sinatra: cd ../hk_sinatra
+- rails:
+    layout: d466,255x19,0,0{65x19,0,0,0,189x19,66,0,2}
+    panes:
+      - yarn build --watch & yarn build:css --watch
+      - bin/rails server -p 3000
+- console: bin/rails console
+- shell: fortune
