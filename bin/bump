@@ -23,7 +23,7 @@ brew cleanup
 
 # Update Hosts file
 # --------------------------
-update-hosts
+[[ "${1}" == "--update-hosts" ]] && update-hosts
 
 # Update Submodules
 # --------------------------
