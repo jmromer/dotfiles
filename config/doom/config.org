@@ -10,6 +10,7 @@
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
 - [[#evil][evil]]
+- [[#flycheck][flycheck]]
 - [[#folding][folding]]
 - [[#formatting][formatting]]
 - [[#gtags][gtags]]
@@ -743,6 +744,41 @@ Use =g~= operator to cycle through inflection transformations.
 *** ruby text objects
 #+begin_src elisp
 (add-hook! ruby-mode #'evil-ruby-text-objects-mode)
+#+end_src
+
+* flycheck
+
+** Keybindings
+
+| Keybind | Description   |
+| ] e     | Next error    |
+| [ e     | Prevous error |
+
+#+begin_src elisp
+(map! :leader
+      :prefix ("e". "edit")
+      :desc "list errors"    :n "l" #'flycheck-list-errors
+      :desc "check buffer"   :n "c" #'flycheck-buffer
+      :desc "select checker" :n "s" #'flycheck-select-checker
+      :desc "flycheck setup" :n "v" #'flycheck-verify-setup)
+#+end_src
+
+** Disable LSP
+
+#+begin_src elisp
+(defun +config:flycheck-disable-lsp ()
+  (setq flycheck-disabled-checkers '(lsp)))
+(add-hook! prog-mode #'+config:flycheck-disable-lsp)
+(add-hook! text-mode #'+config:flycheck-disable-lsp)
+(add-hook! org-mode #'+config:flycheck-disable-lsp)
+#+end_src
+
+** Ruby
+
+#+begin_src elisp
+(defun +config:flycheck-set-checker-ruby ()
+  (flycheck-select-checker 'ruby-rubocop))
+(add-hook! ruby-mode #'+config:flycheck-set-checker-ruby)
 #+end_src
 
 * folding
