@@ -1,6 +1,6 @@
 #+title: Emacs Config
 #+author: Jacob Römer (jmromer)
-#+property: header-args :emacs-lisp :tangle yes :comments link
+#+property: header-args :elisp :tangle yes :comments link
 #+startup: org-startup-folded: fold
 
 * contents :TOC_1:
@@ -599,7 +599,7 @@ https://github.com/syl20bnr/evil-iedit-state
   (require 'evil-iedit-state)
   (map! :leader
         :prefix ("e". "edit")
-        :n "i" #'iedit-mode))
+        :desc "iedit" :n "i" #'iedit-mode))
 #+end_src
 
 ** evil-unimpaired
@@ -2112,7 +2112,7 @@ Precedence order:
 
 * word chars
 
-#+begin_src emacs-lisp
+#+begin_src elisp
 (defun +config:add-underscore-to-word-chars ()
   "Adds underscore to the word chars syntax entry list."
   (modify-syntax-entry ?_ "w"))
