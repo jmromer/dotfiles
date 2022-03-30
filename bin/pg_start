@@ -20,6 +20,7 @@ if [[ "${1}" == "--brew" ]]; then
   export PGDATA="/usr/local/var/postgres/"
   rm -f "${ASDF_DATA_DIR}/shims/psql"
   rm -f "${ASDF_DATA_DIR}/shims/pg_ctl"
+  rm -f "${ASDF_DATA_DIR}/shims/pg_dump"
   brew services start postgresql 2>/dev/null
 else
   printf "[pg_start] %s\n\n" "Starting ASDF Postgres"
