@@ -8,11 +8,13 @@ gem-browse
 gem-ctags
 hirb
 interactive_editor
+jazz_fingers
 rake
 rcodetools
 rspec
 rubocop
 rubygems-bundler
+rubygems-yardoc
 rufo
 seeing_is_believing
 solargraph
