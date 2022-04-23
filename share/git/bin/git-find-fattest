@@ -1,0 +1,1 @@
+../../git_diet/bin/find_fattest_objects.sh
