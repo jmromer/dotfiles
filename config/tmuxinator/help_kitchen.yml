@@ -4,11 +4,11 @@ project_root: ~/Work/help_kitchen/helpkitchen
 startup_window: shell
 
 on_project_first_start: |
-  kill-port 3000 3010 6379
+  kill-port 3000 3001 3010 6379
   (pg_start --brew >/dev/null) &
 
 on_project_stop: |
-  kill-port 3000 3010 6379
+  kill-port 3000 3001 3010 6379
 
 windows:
 - sidekiq:
@@ -23,7 +23,7 @@ windows:
     layout: d466,255x19,0,0{65x19,0,0,0,189x19,66,0,2}
     panes:
       - yarn build --watch & bin/rails tailwindcss:watch
-      - bin/rails server -p 3000
+      - bin/rails server -b 0.0.0.0 -p 3001
 
 - console: |
       export DISABLE_SPRING=1
