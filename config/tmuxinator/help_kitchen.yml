@@ -5,31 +5,23 @@ startup_window: shell
 
 on_project_first_start: |
   kill-port 3000 3001 3010 6379
-  (pg_start --brew >/dev/null) &
+  ../retool-onpremise/stop-local-trial
+  pg_start --brew >/dev/null
 
 on_project_stop: |
+  ../retool-onpremise/stop-local-trial
   kill-port 3000 3001 3010 6379
 
 windows:
-- sidekiq:
-    layout: even-horizontal
+- worker: redis-start 6379 & bin/sidekiq --config config/sidekiq.yml
+- rails: bin/rails server -b 0.0.0.0 -p 3001
+- assets:
+    layout: e426,255x19,0,0{39x19,0,0[39x9,0,0,28,39x9,0,10,29],215x19,40,0,27}
     panes:
-      - |
-        redis-start 6379 &
-        bin/sidekiq --config config/sidekiq.yml
-      - redis-cli -p 6379 -n 0
-
-- rails:
-    layout: d466,255x19,0,0{65x19,0,0,0,189x19,66,0,2}
-    panes:
-      - yarn build --watch & bin/rails tailwindcss:watch
-      - bin/rails server -b 0.0.0.0 -p 3001
-
+    - yarn build --watch
+    - yarn build:css --watch
+    - bin/rails tailwindcss:watch
 - console: |
       export DISABLE_SPRING=1
       bin/rails console
-
-- shell: |
-    cd ../retool-onpremise
-    ./local-trial
-    cd -
+- shell: ../retool-onpremise/local-trial
