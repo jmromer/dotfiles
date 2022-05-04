@@ -124,9 +124,27 @@ if defined?(JazzFingers)
     AmazingPrint.pry!
 
     def pp(obj, opts = {})
+      entry = Readline::HISTORY.reverse_each.find { _1.starts_with?('pp') }.split.last
       output = with_captured_stdout { ap(obj, { multiline: true }.merge(opts)) }
-      output_lines = output.split("\n").map { ["\e[0;30m#\e[0m", _1].join(" ") }
-      puts(output_lines.join("\n"))
+      pbcopy(entry, output)
+      ap(obj, { multiline: true }.merge(opts))
+    end
+
+    def pbcopy(entry, output)
+      commented_output =
+        output
+        .split("\n")
+        .map { ["\e[0;30m#\e[0m", _1].join(" ") }
+        .join("\n")
+
+      code_listing = <<~RB.chomp
+        ```rb
+        #{entry}
+
+        #{commented_output.gsub(/\e\[([;\d]+)?m/, '')}
+        ```
+      RB
+      IO.popen('pbcopy', 'w') { _1 << code_listing }
     end
   end
 
