@@ -8,6 +8,15 @@ updated_vim = File.join(ENV["HOMEBREW_PREFIX"], "bin/vim")
 minimalrc = File.join(ENV["XDG_CONFIG_HOME"], "vim/vimrc.minimal.vim")
 Pry.editor = "#{updated_vim} -u #{minimalrc}"
 
+def with_captured_stdout
+  original_stdout = $stdout  # capture previous value of $stdout
+  $stdout = StringIO.new     # assign a string buffer to $stdout
+  yield                      # perform the body of the user code
+  $stdout.string             # return the contents of the string buffer
+ensure
+  $stdout = original_stdout  # restore $stdout to its previous value
+end
+
 unless defined?(Rails) && Rails.env
   begin
     require "jazz_fingers"
@@ -76,9 +85,9 @@ if defined?(JazzFingers)
 
   PRINT_CONFIG = {
     indent: -2, # Number of spaces for indenting.
-    index: true, # Display array indices.
+    index: false, # Display array indices.
     html: false, # Use ANSI color codes rather than HTML.
-    multiline: true, # Display in multiple lines.
+    multiline: false, # Display in multiple lines.
     plain: false, # Use colors.
     raw: false, # Do not recursively format instance variables.
     sort_keys: false, # Do not sort hash keys.
@@ -113,6 +122,12 @@ if defined?(JazzFingers)
   if defined?(AmazingPrint)
     AmazingPrint.defaults = PRINT_CONFIG
     AmazingPrint.pry!
+
+    def pp(obj, opts = {})
+      output = with_captured_stdout { ap(obj, { multiline: true }.merge(opts)) }
+      output_lines = output.split("\n").map { ["\e[0;30m#\e[0m", _1].join(" ") }
+      puts(output_lines.join("\n"))
+    end
   end
 
   if defined?(AwesomePrint)
@@ -271,6 +286,10 @@ else
   Pry.config.auto_indent = true
   Pry.config.color = true
   Pry.config.pager = true
+  Pry::Prompt.add(:newline, 'Blank prompt after a newline.', Array.new(2)) do |_, _, _, sep|
+    format("\n")
+  end
+  Pry.config.prompt = Pry::Prompt[:newline]
 end
 
 def timeit
