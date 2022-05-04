@@ -286,10 +286,6 @@ else
   Pry.config.auto_indent = true
   Pry.config.color = true
   Pry.config.pager = true
-  Pry::Prompt.add(:newline, 'Blank prompt after a newline.', Array.new(2)) do |_, _, _, sep|
-    format("\n")
-  end
-  Pry.config.prompt = Pry::Prompt[:newline]
 end
 
 def timeit
