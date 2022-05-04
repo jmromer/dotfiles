@@ -63,7 +63,6 @@ Pry.commands.alias_command "!!", "disable-pry"
 Pry.commands.alias_command ".w", "whereami"
 Pry.commands.alias_command ".sh", "shell-mode"
 Pry.commands.alias_command ".ss", "show-source"
-Pry.commands.alias_command ".methods", "ls -m"
 
 if defined?(PryByebug)
   Pry.commands.alias_command ".c", "continue"
@@ -82,77 +81,78 @@ if defined?(JazzFingers)
     config.colored_prompt = true
     config.application_name = File.basename(ENV["PWD"]) unless defined?(Rails)
   end
+end
 
-  PRINT_CONFIG = {
-    indent: -2, # Number of spaces for indenting.
-    index: false, # Display array indices.
-    html: false, # Use ANSI color codes rather than HTML.
-    multiline: false, # Display in multiple lines.
-    plain: false, # Use colors.
-    raw: false, # Do not recursively format instance variables.
-    sort_keys: false, # Do not sort hash keys.
-    sort_vars: true, # Sort instance variables.
-    limit: false, # Limit arrays & hashes. Accepts bool or int.
-    ruby19_syntax: true, # Use Ruby 1.9 hash syntax in output.
-    class_name: :class, # Method called to report the instance class name. (e.g. :to_s)
-    object_id: true, # Show object id.
-    color: {
-      args: :whiteish,
-      array: :white,
-      bigdecimal: :blue,
-      class: :yellow,
-      date: :greenish,
-      falseclass: :red,
-      integer: :blue,
-      float: :blue,
-      hash: :whiteish,
-      keyword: :cyan,
-      method: :purpleish,
-      nilclass: :red,
-      rational: :blue,
-      string: :yellowish,
-      struct: :whiteish,
-      symbol: :cyanish,
-      time: :greenish,
-      trueclass: :green,
-      variable: :cyanish,
-    },
-  }
+PRINT_CONFIG = {
+  indent: -2, # Number of spaces for indenting.
+  index: false, # Display array indices.
+  html: false, # Use ANSI color codes rather than HTML.
+  multiline: false, # Display in multiple lines.
+  plain: false, # Use colors.
+  raw: false, # Do not recursively format instance variables.
+  sort_keys: false, # Do not sort hash keys.
+  sort_vars: true, # Sort instance variables.
+  limit: false, # Limit arrays & hashes. Accepts bool or int.
+  ruby19_syntax: true, # Use Ruby 1.9 hash syntax in output.
+  class_name: :class, # Method called to report the instance class name. (e.g. :to_s)
+  object_id: true, # Show object id.
+  color: {
+    args: :whiteish,
+    array: :white,
+    bigdecimal: :blue,
+    class: :yellow,
+    date: :greenish,
+    falseclass: :red,
+    integer: :blue,
+    float: :blue,
+    hash: :whiteish,
+    keyword: :cyan,
+    method: :purpleish,
+    nilclass: :red,
+    rational: :blue,
+    string: :yellowish,
+    struct: :whiteish,
+    symbol: :cyanish,
+    time: :greenish,
+    trueclass: :green,
+    variable: :cyanish,
+  },
+}
 
-  if defined?(AmazingPrint)
-    AmazingPrint.defaults = PRINT_CONFIG
-    AmazingPrint.pry!
+if defined?(AmazingPrint)
+  AmazingPrint.defaults = PRINT_CONFIG
+  AmazingPrint.pry!
 
-    def pp(obj, opts = {})
-      entry = Readline::HISTORY.reverse_each.find { _1.starts_with?('pp') }.split.last
-      output = with_captured_stdout { ap(obj, { multiline: true }.merge(opts)) }
-      pbcopy(entry, output)
-      ap(obj, { multiline: true }.merge(opts))
-    end
-
-    def pbcopy(entry, output)
-      commented_output =
-        output
-        .split("\n")
-        .map { ["\e[0;30m#\e[0m", _1].join(" ") }
-        .join("\n")
-
-      code_listing = <<~RB.chomp
-        ```rb
-        #{entry}
-
-        #{commented_output.gsub(/\e\[([;\d]+)?m/, '')}
-        ```
-      RB
-      IO.popen('pbcopy', 'w') { _1 << code_listing }
-    end
+  def pp(obj, opts = {})
+    entry = Readline::HISTORY.reverse_each.find { _1.starts_with?('pp') }.split.last
+    output = with_captured_stdout { ap(obj, { multiline: true }.merge(opts)) }
+    pbcopy(entry, output)
+    ap(obj, { multiline: true }.merge(opts))
   end
 
-  if defined?(AwesomePrint)
-    color = PRINT_CONFIG[:color].merge(args: :pale, hash: :pale, struct: :pale)
-    AwesomePrint.defaults = PRINT_CONFIG.merge(color: color)
-    AwesomePrint.pry!
+  def pbcopy(entry, output)
+    commented_output =
+      output
+      .split("\n")
+      .map { ["\e[0;30m#\e[0m", _1].join(" ") }
+      .join("\n")
+
+    code_listing = <<~RB.chomp
+      ```rb
+      #{entry}
+
+      #{commented_output.gsub(/\e\[([;\d]+)?m/, '')}
+      ```
+    RB
+    IO.popen('pbcopy', 'w') { _1 << code_listing }
   end
+end
+
+if defined?(AwesomePrint)
+  color = PRINT_CONFIG[:color].merge(args: :pale, hash: :pale, struct: :pale)
+  AwesomePrint.defaults = PRINT_CONFIG.merge(color: color)
+  AwesomePrint.pry!
+end
 
 # just to load necessary files
 CodeRay.scan("example", :ruby).term
