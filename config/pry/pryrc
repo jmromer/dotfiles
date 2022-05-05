@@ -99,17 +99,17 @@ PRINT_CONFIG = {
   color: {
     args: :whiteish,
     array: :white,
-    bigdecimal: :blue,
+    bigdecimal: :cyan,
     class: :yellow,
     date: :greenish,
     falseclass: :red,
-    integer: :blue,
-    float: :blue,
+    integer: :cyanish,
+    float: :cyan,
     hash: :whiteish,
     keyword: :cyan,
     method: :purpleish,
     nilclass: :red,
-    rational: :blue,
+    rational: :cyan,
     string: :yellowish,
     struct: :whiteish,
     symbol: :cyanish,
@@ -146,6 +146,10 @@ if defined?(AmazingPrint)
     RB
     IO.popen('pbcopy', 'w') { _1 << code_listing }
   end
+
+  if defined?(JazzFingers::AMAZING_PRINT)
+    JazzFingers::AMAZING_PRINT.merge!(PRINT_CONFIG)
+  end
 end
 
 if defined?(AwesomePrint)
@@ -158,6 +162,7 @@ end
 CodeRay.scan("example", :ruby).term
 
 # https://github.com/rubychan/coderay/blob/master/lib/coderay/encoders/terminal.rb
+# TODO: abstract away ansi codes and consistify
 TERM_TOKEN_COLORS = {
   debug: "\e[1;37;44m",
   # annotation: "\e[34m",
@@ -198,7 +203,7 @@ TERM_TOKEN_COLORS = {
   hex: "\e[1;36m",
   id: "\e[1;34m",
   include: "\e[31m",
-  integer: "\e[0;36m",
+  integer: "\e[0;33m",
   imaginary: "\e[1;34m",
   important: "\e[1;31m",
   key: {
@@ -277,8 +282,7 @@ if %w[emacs dumb].include?(ENV["TERM"]) || !ENV["INSIDE_EMACS"].nil?
     module Encoders
       # :nodoc:
       class Terminal < Encoder
-        TERM_TOKEN_COLORS
-          .each_pair { |key, value| TOKEN_COLORS[key] = value } # override built-in colors
+        TERM_TOKEN_COLORS.each_pair { |key, value| TOKEN_COLORS[key] = value } # override built-in colors
       end
     end
   end
