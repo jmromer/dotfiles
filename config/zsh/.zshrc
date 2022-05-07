@@ -389,3 +389,5 @@ fi
 [[ -f "${XDG_LOCALS_DIR}/config/zsh/zshrc" ]] && \
     . "${XDG_LOCALS_DIR}/config/zsh/zshrc"
 
+[[ -f "${XDG_LOCALS_DIR}/config/zsh/.iterm2_shell_integration.zsh" ]] && \
+    . "${XDG_LOCALS_DIR}/config/zsh/.iterm2_shell_integration.zsh"
