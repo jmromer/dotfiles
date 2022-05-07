@@ -38,10 +38,9 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
 
 ** which-key
 
-Have =which-key= respond a little more aggressively (default: l.0)
-
 #+begin_src elisp
-(setq which-key-idle-delay 0.5)
+(setq which-key-idle-delay 1
+      which-key-idle-secondary-delay 0.5)
 #+end_src
 
 ** literate config
