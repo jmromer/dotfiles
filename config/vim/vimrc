@@ -506,11 +506,11 @@ function! LLReadonly()
 endfunction
 
 function! LLFugitive()
-  if !exists('FugitiveHead')
+  if !exists('*FugitiveHead')
     return ''
   endif
 
-  let head = fugitive#head()
+  let head = FugitiveHead()
   return strlen(head) ? ' ' .head : ''
 endfunction
 
