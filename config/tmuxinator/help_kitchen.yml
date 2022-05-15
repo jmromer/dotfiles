@@ -24,4 +24,4 @@ windows:
 - console: |
       export DISABLE_SPRING=1
       bin/rails console
-- shell: ../retool-onpremise/local-trial
+- shell:
