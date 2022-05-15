@@ -506,7 +506,7 @@ function! LLReadonly()
 endfunction
 
 function! LLFugitive()
-  if !exists('*fugitive#head')
+  if !exists('FugitiveHead')
     return ''
   endif
 
