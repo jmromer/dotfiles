@@ -5,11 +5,9 @@ startup_window: shell
 
 on_project_first_start: |
   kill-port 3000 3001 3010 6379
-  ../retool-onpremise/stop-local-trial
   pg_start --brew >/dev/null
 
 on_project_stop: |
-  ../retool-onpremise/stop-local-trial
   kill-port 3000 3001 3010 6379
 
 windows:
