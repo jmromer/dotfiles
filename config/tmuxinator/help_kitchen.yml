@@ -6,6 +6,7 @@ startup_window: shell
 on_project_first_start: |
   kill-port 3000 3001 3010 6379
   pg_start --brew >/dev/null
+  bundle install && yarn
 
 on_project_stop: |
   kill-port 3000 3001 3010 6379
