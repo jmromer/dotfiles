@@ -12,6 +12,7 @@
 (package! company-box :recipe (:host github :repo "jmromer/company-box"))
 (package! company-lsp)
 (package! dash-at-point)
+(package! jest)
 (package! evil-cleverparens)
 (package! evil-iedit-state :recipe (:host github :repo "jmromer/evil-iedit-state"))
 (package! evil-lion)
