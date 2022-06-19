@@ -43,11 +43,6 @@
 	url = https://github.com/tmux-plugins/tmux-yank.git
 	branch = master
 	update = rebase
-[submodule "share/emacs"]
-	path = share/emacs
-	url = https://github.com/hlissner/doom-emacs
-	branch = develop
-	update = rebase
 [submodule "share/tmux/tmux-prefix-highlight"]
 	path = share/tmux/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
@@ -81,3 +76,6 @@
 [submodule "share/git_diet"]
 	path = share/git_diet
 	url = https://github.com/jmromer/git_diet.git
+[submodule "share/emacs"]
+	path = share/emacs
+	url = https://github.com/doomemacs/doomemacs.git
