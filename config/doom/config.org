@@ -1026,7 +1026,7 @@ Alternatives:
 
 #+begin_src elisp
 (setq markdown-gfm-live-preview--template-string
-      (file-to-string (format "%s/templates/markdown-gfm-live-preview.html" (getenv "DOOMDIR"))))
+      (file-to-string (format "%s/doom/templates/markdown-gfm-live-preview.html" (getenv "XDG_CONFIG_HOME"))))
 
 (defun markdown-gfm-live-preview--filter (buffer)
   (princ
