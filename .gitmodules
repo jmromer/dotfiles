@@ -1,7 +1,7 @@
 [submodule "share/asdf-manager"]
 	path = share/asdf-manager
 	url = https://github.com/asdf-vm/asdf.git
-	branch = master
+	branch = xdg-compatible
 	update = rebase
 [submodule "share/zsh-syntax-highlighting"]
 	path = share/zsh-syntax-highlighting
