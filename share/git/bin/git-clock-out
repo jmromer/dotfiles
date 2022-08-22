@@ -36,7 +36,7 @@ fi
 # Collect timestamps
 CLOCK_IN="$(git show HEAD | grep CLOCK-IN: | awk '{ print $2 }')"
 TIME_START="$(git show HEAD | grep START: | sed -E 's/.+START: //')"
-TIME_END="$(date +'%a,%e %b %Y %T %z')"
+TIME_END="$(date +'%a, %e %b %Y %T %z')"
 
 if [[ -z "${CLOCK_IN}" ]] || [[ -z "${TIME_START}" ]]; then
     echo "Error: No running clock. Did you forget to clock in?"
