@@ -238,6 +238,12 @@ Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][set
       auth-sources (list 'macos-keychain-generic 'macos-keychain-internet authinfo-file))
 #+end_src
 
+** local variables
+Allow remembering risky local variables.
+#+begin_src elisp
+(advice-add 'risky-local-variable-p :override #'ignore)
+#+end_src
+
 * +utilities
 
 Some general-purpose functions.
