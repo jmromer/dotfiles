@@ -239,7 +239,9 @@ Required [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][set
 #+end_src
 
 ** local variables
+
 Allow remembering risky local variables.
+
 #+begin_src elisp
 (advice-add 'risky-local-variable-p :override #'ignore)
 #+end_src
@@ -918,6 +920,36 @@ https://emacs-lsp.github.io/lsp-mode
         lsp-ui-sideline-ignore-duplicate t
         lsp-ui-sideline-show-symbol t
         read-process-output-max (* 1024 1024)))
+#+end_src
+
+Register client for web-mode
+
+#+begin_src elisp
+(after! lsp-mode
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection
+                     (lambda ()
+                       (cons (lsp-package-path 'html-language-server) lsp-html-server-command-args)))
+    :major-modes '(web-mode)
+    :priority -4
+    :completion-in-comments? t
+    :server-id 'html-ls
+    :initialized-fn (lambda (w)
+                      (with-lsp-workspace w
+                        (lsp--set-configuration
+                         (lsp-configuration-section "html"))))
+    :download-server-fn (lambda (_client callback error-callback _update?)
+                          (lsp-package-ensure
+                           'html-language-server callback
+                           error-callback))))
+  nil)
+(after! lsp-mode
+  (progn
+    (add-to-list 'lsp-language-id-configuration '(".*\\.html\\..+$" . "html"))
+    (add-to-list 'lsp-language-id-configuration '(".*\\.js\\..+$" . "javascript"))
+    (add-to-list 'lsp-language-id-configuration '(".*\\.css\\..+$" . "css"))
+    nil))
 #+end_src
 
 * magit
