@@ -17,6 +17,7 @@ vim +PlugInstall +PlugUpgrade +PlugUpdate +qall
 
 # Update Homebrew packages
 # --------------------------
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 brew update
 brew upgrade
 brew cleanup
