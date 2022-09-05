@@ -51,6 +51,7 @@ end
 after_bundle do
   # Generate spec/rails_helper.rb
   generate("rspec:install")
+  generate("bullet:install")
 
   # Prepend simplecov require to spec/rails_helper.rb
   rails_helper_lines = File.readlines("spec/rails_helper.rb")
@@ -75,13 +76,15 @@ after_bundle do
   run(<<~SH)
     curl -Ls "https://www.gitignore.io/api/ruby,rails,node,emacs,vim" >> .gitignore
 
+    yard config load_plugins true
+
     yarn add -D prettier-config-standard prettier-standard
 
     yarn format
 
     rufo **/*.rb
 
-    rubocop --auto-correct-all --fail-level F --display-only-fail-level-offenses
+    rubocop --autocorrect-all --fail-level F
 
     rubocop
   SH
