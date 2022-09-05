@@ -18,16 +18,13 @@ gem "pretender" # impersonate other users (https://github.com/ankane/pretender)
 gem "pundit" # authorization (https://github.com/varvet/pundit)
 gem "rack-timeout" # (https://github.com/heroku/rack-timeout)
 gem "receipts" # payments: invoice generation (https://github.com/excid3/receipts)
-gem "redis" # (https://github.com/redis/redis-rb)
 gem "rolify" # user roles (https://github.com/RolifyCommunity/rolify)
 gem "searchkick" # search (https://github.com/ankane/searchkick)
 gem "sendgrid-ruby" # email (https://github.com/sendgrid/sendgrid-ruby)
 gem "sidekiq" # background jobs (https://github.com/mperham/sidekiq)
 gem "sidekiq-cron" # cron-like jobs (https://github.com/ondrejbartas/sidekiq-cron)
-gem "sprockets-rails" # (https://github.com/rails/sprockets-rails)
 gem "stripe" # payments: stripe (https://github.com/stripe/stripe-ruby)
 gem "stripe_event" # payments: stripe webhook event handlers (https://github.com/integrallis/stripe_event)
-gem "tailwindcss-rails", "~> 0.3.3" # (https://github.com/rails/tailwindcss-rails)
 gem "terser" # (https://github.com/ahorek/terser-ruby)
 
 group :development do
@@ -44,6 +41,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "bullet" # (https://github.com/abexsoft/ruby-bullet)
   gem "factory_bot_rails" # (https://github.com/thoughtbot/factory_bot_rails)
   gem "faker" # (https://github.com/faker-ruby/faker)
   gem "jazz_fingers" # (https://github.com/plribeiro3000/jazz_fingers)

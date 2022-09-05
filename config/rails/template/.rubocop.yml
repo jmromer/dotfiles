@@ -38,10 +38,10 @@ Layout/SpaceInLambdaLiteral:
 Metrics/BlockLength:
   CountComments: false
   Max: 25
-  IgnoredMethods: ['describe', 'context', 'it']
+  AllowedMethods: ["describe", "context", "it"]
 
 Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: 'comma'
+  EnforcedStyleForMultiline: "comma"
 
 Style/AsciiComments:
   Enabled: false
