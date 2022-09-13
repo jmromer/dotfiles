@@ -173,6 +173,7 @@ setup :editors do
                  with_cocoa
                  with_imagemagick
                  with_modern_icon_purple
+                 with_native_comp
                  with_no_frame_refocus
                  with_pdumper
                  with_xwidgets
