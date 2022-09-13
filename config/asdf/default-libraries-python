@@ -7,7 +7,9 @@ ipdb
 ipython
 isort
 mypy
+nose
 pip
+pipenv
 poetry
 pyflakes
 pyright

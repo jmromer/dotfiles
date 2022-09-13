@@ -1,10 +1,12 @@
 babel-eslint
 bash-language-server
 create-react-app
+js-beautify
 marked
 npm
 prettier-standard
 react-native-cli
+stylelint
 typescript
 typescript-formatter
 typescript-language-server

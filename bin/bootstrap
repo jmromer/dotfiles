@@ -118,6 +118,7 @@ setup :development_tools do
   brew_install :gh
   brew_install :git_delta
   brew_install :httpie, options: :head
+  brew_install :pyenv
   brew_install :source_highlight
   brew_install :tmux, options: :head
   brew_install :zsh
@@ -142,6 +143,7 @@ setup :text_editing_cli_tools do
   brew_install :pygments
   brew_install :pandoc
   brew_install :shellcheck
+  brew_install :shfmt
   brew_install :tectonic
   brew_install :tidy_html5
   brew_install :wordnet
