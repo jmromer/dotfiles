@@ -1571,6 +1571,10 @@ See `org-capture-templates' for more information."
         ("~/.dotfiles/share" . 2)))
 #+end_src
 
+#+begin_src elisp
+(setq projectile-create-missing-test-files t)
+#+end_src
+
 * python
 
 ** projectile
