@@ -48,6 +48,7 @@ setup_javascript() {
   done < "${XDG_CONFIG_HOME}/asdf/default-libraries-nodejs"
 
   asdf reshim nodejs "$(asdf current nodejs | awk '{ print $2 }')"
+  asdf-shim-nodejs typescript-language-server
 }
 
 setup_python() {
