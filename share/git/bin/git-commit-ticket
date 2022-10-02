@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Commit with a message prefixed with a ticket number, assuming a branch named
+# with the same prefix.
+#
+# Usage:
+#   git commit-ticket [A brief commit message]
+
+ticket_number="$(git rev-parse --abbrev-ref HEAD | sed -E 's/(\w+-\w+)*.+/\1/')"
+ticket_number="${ticket_number^^}"
+
+if [[ -z "${ticket_number}" ]]; then
+  echo Error: "Could not parse a ticket number"
+  exit 1
+fi
+
+if [[ $# -gt 0 ]]; then
+  git commit-quick "[${ticket_number}] $*"
+else
+  git commit-quick "[${ticket_number}] "
+  git commit-amend
+fi
