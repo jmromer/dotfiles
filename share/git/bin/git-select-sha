@@ -12,6 +12,7 @@ set -e
 target_commit="$(
     git log --format=select --color=always |\
     fzf --ansi \
+        --exact \
         --multi \
         --no-sort \
         --reverse \
