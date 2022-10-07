@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((rspec-docker-command . "docker compose run --rm --use-aliases")
+   '((+format-with-lsp)
+     (rspec-docker-command . "docker compose run --rm --use-aliases")
      (rspec-docker-command . "run --rm --use-aliases")
      (rspec-docker-command . "BUNDLE_GEMFILE=Gemfile.host bin/machina")
      (rspec-spec-command . "bin/machina test")
@@ -18,7 +19,7 @@
      (rspec-spec-command . "machina test")
      (lsp-javascript-format-enable)
      (+format-on-save-enabled-modes quote
-                                    (not rjsx-mode))
+      (not rjsx-mode))
      (rubocop-check-command . "bundle exec rubocop --format emacs")
      (rubocop-format-command . "bundle exec rubocop --format emacs -x")
      (rubocop-autocorrect-command . "bundle exec rubocop --format emacs -a")
