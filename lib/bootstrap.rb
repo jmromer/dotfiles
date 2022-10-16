@@ -101,7 +101,6 @@ def install_launchagent(filename)
 end
 
 def install_quicklook_viewers
-  execho("xattr -d -r com.apple.quarantine ~/Library/QuickLook")
   execho("qlmanage -r")
 end
 
