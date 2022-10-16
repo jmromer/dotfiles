@@ -167,16 +167,28 @@ end
 setup :editors do
   brew_install :macvim, options: :head
 
-  brew_tap "daviderestivo/emacs-head"
-  brew_install :emacs_head,
-               version: 28,
+  # brew_tap "daviderestivo/emacs-head"
+  # brew_install :emacs_head,
+  #              version: 28,
+  #              options: %i[
+  #                with_cocoa
+  #                with_imagemagick
+  #                with_modern_icon_purple
+  #                with_native_comp
+  #                with_no_frame_refocus
+  #                with_pdumper
+  #                with_xwidgets
+  #              ]
+
+  brew_tap "d12frosted/emacs-plus"
+  brew_install :emacs_plus,
                options: %i[
-                 with_cocoa
+                 with_dbus
+                 with_debug
                  with_imagemagick
-                 with_modern_icon_purple
                  with_native_comp
                  with_no_frame_refocus
-                 with_pdumper
+                 with_no_titlebar_and_round_corners
                  with_xwidgets
                ]
 end
