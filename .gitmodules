@@ -76,6 +76,12 @@
 [submodule "share/git_diet"]
 	path = share/git_diet
 	url = https://github.com/jmromer/git_diet.git
-[submodule "share/emacs"]
-	path = share/emacs
-	url = https://github.com/doomemacs/doomemacs.git
+[submodule "share/doomemacs"]
+	path = share/doomemacs
+	url = https://github.com/doomemacs/doomemacs
+[submodule "share/spacemacs"]
+	path = share/spacemacs
+	url = https://github.com/syl20bnr/spacemacs
+[submodule "config/emacs"]
+	path = config/emacs
+	url = https://github.com/plexus/chemacs2.git
