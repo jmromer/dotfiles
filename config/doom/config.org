@@ -219,6 +219,23 @@ Some general purpose super-key keybindings.
   "<s-escape>" #'evil-escape)
 #+end_src
 
+Meta variants for terminal emacs:
+
+#+begin_src elisp
+(setq mac-right-option-modifier 'meta)
+(setq mac-option-modifier 'meta)
+#+end_src
+
+#+begin_src elisp
+   (map! "M-'" #'+vterm/toggle
+         "M-K" #'kill-current-buffer
+         "M-k" #'bury-buffer
+         "M-f" #'avy-goto-char-2
+         "M-F" #'avy-goto-char-timer
+         "M-n" #'org-capture
+  "<M-escape>" #'evil-escape)
+#+end_src
+
 ** identity
 
 Some functionality uses this to identify you, e.g. GPG configuration, email

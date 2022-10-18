@@ -92,6 +92,9 @@ config/configstore/update-notifier-npm.json
 config/doom/config.el
 config/Webull\ Desktop
 
+# symlinks to secure
+config/gem/credentials
+
 # binaries
 bin/pd
 
