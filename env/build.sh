@@ -61,7 +61,7 @@ build_flags_set() {
   while [ $# -gt -1 ]; do
     case "$1" in
       --all)
-        set -- bzip2 g++-11 gcc-11 gettext icu4c imagemagick libffi libxml2 llvm ncurses no-warnings openssl optimize3 readline ruby xcrun zlib
+        set -- bzip2 clang++ clang gettext icu4c imagemagick libffi libxml2 llvm ncurses no-warnings openssl optimize3 readline ruby xcrun zlib
         shift
         ;;
       bzip2)
