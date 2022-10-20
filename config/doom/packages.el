@@ -31,6 +31,7 @@
 (package! org-appear :recipe (:host github :repo "awth13/org-appear"))
 (package! ox-gfm)
 (package! posframe)
+(package! prettier-js)
 (package! ruby-factory)
 (package! ruby-test-mode)
 (package! seeing-is-believing)

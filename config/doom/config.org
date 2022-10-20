@@ -830,6 +830,18 @@ Use tab to fold in prog modes.
             latex-mode))
 #+end_src
 
+Disable LSP formatting
+
+#+begin_src elisp
+(setq +format-with-lsp nil)
+#+end_src
+
+Enable prettier-js
+
+#+begin_src elisp
+(require 'prettier-js)
+#+end_src
+
 * gtags
 
 ** gxref
