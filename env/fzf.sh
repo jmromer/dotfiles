@@ -5,6 +5,7 @@ fi
 export FZF_DIR="${XDG_DATA_HOME}/fzf"
 export FZF_DEFAULT_OPTS="
   --no-multi
+  --exact
   --tiebreak=index
   --color='bg:#1d1e20,bg+:#1d1e20,preview-bg:#1d1e20,border:#1d1e20'
   --bind='ctrl-f:preview-down'
