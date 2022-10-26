@@ -1,3 +1,6 @@
 debug: false
 skip_dirs:
   - ~/Library
+  - ~/Pictures
+  - ~/Music
+  - ~/Movies
