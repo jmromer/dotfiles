@@ -263,6 +263,12 @@ Allow remembering risky local variables.
 (advice-add 'risky-local-variable-p :override #'ignore)
 #+end_src
 
+** indentation
+
+#+begin_src elisp
+(setq-default standard-indent 2)
+#+end_src
+
 * +utilities
 
 Some general-purpose functions.
