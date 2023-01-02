@@ -49,6 +49,12 @@ Template.files.each do |template|
 end
 
 after_bundle do
+  # # Uncomment action_mailer so rspec installer doesn't fail
+  # lines = File.readlines("config/application.rb")
+  # line, index = lines.to_enum.with_index.find { |line, _i| line.include?("action_mailer/railtie") }
+  # lines[index] = line.sub("# ", "")
+  # File.open("config/application.rb", "w") { |file| file.puts(lines.join) }
+
   # Generate spec/rails_helper.rb
   generate("rspec:install")
   generate("bullet:install")
@@ -64,28 +70,28 @@ after_bundle do
     RUBY
   end
 
-  # Add entries to package.json
-  npm_config =
-    JSON.load_file("package.json").tap do |json|
-      json["license"] = "UNLICENSED"
-      json["scripts"] = { format: "prettier-standard --fix" }
-      json["prettier"] = "prettier-config-standard"
-    end
-  File.open("package.json", "w") { |file| JSON.dump(npm_config, file) }
+  # # Add entries to package.json
+  # npm_config =
+  #   JSON.load_file("package.json").tap do |json|
+  #     json["license"] = "UNLICENSED"
+  #     json["scripts"] = { format: "prettier-standard --fix" }
+  #     json["prettier"] = "prettier-config-standard"
+  #   end
+  # File.open("package.json", "w") { |file| JSON.dump(npm_config, file) }
 
-  run(<<~SH)
-    curl -Ls "https://www.gitignore.io/api/ruby,rails,node,emacs,vim" >> .gitignore
+  # run(<<~SH)
+  #   curl -Ls "https://www.gitignore.io/api/ruby,rails,node,emacs,vim" >> .gitignore
 
-    yard config load_plugins true
+  #   yard config load_plugins true
 
-    yarn add -D prettier-config-standard prettier-standard
+  #   yarn add -D prettier-config-standard prettier-standard
 
-    yarn format
+  #   yarn format
 
-    rufo **/*.rb
+  #   rufo **/*.rb
 
-    rubocop --autocorrect-all --fail-level F
+  #   rubocop --autocorrect-all --fail-level F
 
-    rubocop
-  SH
+  #   rubocop
+  # SH
 end

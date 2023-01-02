@@ -20,7 +20,6 @@ gem "rack-timeout" # (https://github.com/heroku/rack-timeout)
 gem "receipts" # payments: invoice generation (https://github.com/excid3/receipts)
 gem "rolify" # user roles (https://github.com/RolifyCommunity/rolify)
 gem "searchkick" # search (https://github.com/ankane/searchkick)
-gem "sendgrid-ruby" # email (https://github.com/sendgrid/sendgrid-ruby)
 gem "sidekiq" # background jobs (https://github.com/mperham/sidekiq)
 gem "sidekiq-cron" # cron-like jobs (https://github.com/ondrejbartas/sidekiq-cron)
 gem "stripe" # payments: stripe (https://github.com/stripe/stripe-ruby)
@@ -35,9 +34,6 @@ group :development do
   gem "org-ruby" # for yard server
   gem "rufo" # autoformatting (https://github.com/ruby-formatter/rufo)
   gem "spring-commands-rspec"
-  gem "webrick" # for yard server
-  gem "yard" # docs compilation and server (https://github.com/lsegal/yard)
-  gem "yard-activerecord" # (https://github.com/theodorton/yard-activerecord)
 end
 
 group :development, :test do
