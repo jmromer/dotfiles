@@ -4,6 +4,7 @@
 require_relative "../lib/bootstrap"
 
 ensure_xcode_is_set_up
+ensure_gpg_permissions_are_set_correctly
 
 setup :xdg_base_directory_environment do
   install_launchagent "env.xdg"

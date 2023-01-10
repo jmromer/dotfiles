@@ -119,6 +119,11 @@ def command_exists?(command)
   system("command -v #{command} >/dev/null 2>&1")
 end
 
+def ensure_gpg_permissions_are_set_correctly
+  system "chmod 600 ${XDG_SECURE_DIR}/gnupg/*"
+  system "chmod 700 ${XDG_SECURE_DIR}/gnupg"
+end
+
 
 # Homebrew-related commands
 # -------------------------
