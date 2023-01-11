@@ -64,6 +64,15 @@ def flagified(str)
   "--#{dashified str}"
 end
 
+def machine_is?(machine_type)
+  arch = `uname -ps`
+  case machine_type
+  when :apple_silicon then arch.match?(/^Darwin arm/)
+  when :mac, :intel_silicon then arch.match?(/^Darwin/)
+  when :linux then arch.match?(/^Linux/)
+  end
+end
+
 # Xcode-related
 # -------------
 
@@ -124,6 +133,13 @@ def ensure_gpg_permissions_are_set_correctly
   system "chmod 700 ${XDG_SECURE_DIR}/gnupg"
 end
 
+def ensure_locals_are_created
+  system "mkdir -p ${XDG_LOCALS_DIR}/bin"
+  system "mkdir -p ${XDG_LOCALS_DIR}/config"
+  return unless machine_is?(:mac)
+
+  system "ln -sf ${HOMEBREW_PREFIX}/bin/pinentry-mac ${XDG_LOCALS_DIR}/bin/"
+end
 
 # Homebrew-related commands
 # -------------------------
