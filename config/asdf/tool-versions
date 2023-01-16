@@ -12,6 +12,6 @@ rust 1.43.0
 mysql 8.0.26
 sqlite 3.34.1
 spark 3.1.2
-gohugo 0.87.0
+gohugo 0.109.0
 yarn 1.22.11
 awscli 2.9.15
