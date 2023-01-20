@@ -58,10 +58,12 @@ end
 
 setup :gui_apps do
   cask_install "1password"
+  cask_install :amethyst
   cask_install :appcleaner
   cask_install :authy
   cask_install :bettertouchtool
   cask_install :brave_browser
+  cask_install :choosy
   cask_install :dash
   cask_install :discord
   cask_install :divvy
