@@ -25,6 +25,7 @@ setup :core_cli_tools do
   brew_install :gawk
   brew_install :git
   brew_install :gnu_indent
+  brew_install :git_lfs
   brew_install :gnu_sed
   brew_install :gnu_tar
   brew_install :gnu_which
