@@ -50,7 +50,6 @@ PATH+=":/usr/sbin"
 PATH+=":/sbin"
 
 PATH+=":/Library/TeX/texbin"
-PATH+=":/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin"
 export PATH
 
 # Prefer BSD uname, becuase it reports m1 arch as 'arm'
