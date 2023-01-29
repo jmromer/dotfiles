@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 
 # Build p/d binary in local bin directory
 # Generate initial project catalog file
