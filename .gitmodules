@@ -3,11 +3,6 @@
 	url = https://github.com/jmromer/asdf.git
 	branch = xdg-compatible
 	update = rebase
-[submodule "share/zsh-syntax-highlighting"]
-	path = share/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-	branch = master
-	update = rebase
 [submodule "share/zsh/zsh-syntax-highlighting"]
 	path = share/zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -75,13 +70,21 @@
 	update = rebase
 [submodule "share/git_diet"]
 	path = share/git_diet
+	branch = master
 	url = https://github.com/jmromer/git_diet.git
+	update = rebase
 [submodule "share/doomemacs"]
 	path = share/doomemacs
+	branch = master
 	url = https://github.com/doomemacs/doomemacs
+	update = rebase
 [submodule "share/spacemacs"]
 	path = share/spacemacs
 	url = https://github.com/syl20bnr/spacemacs
+	branch = develop
+	update = rebase
 [submodule "config/emacs"]
 	path = config/emacs
 	url = https://github.com/plexus/chemacs2.git
+	branch = main
+	update = rebase
