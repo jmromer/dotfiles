@@ -1,0 +1,4 @@
+# See https://docs.rubocop.org/rubocop/configuration
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
