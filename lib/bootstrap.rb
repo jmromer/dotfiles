@@ -130,16 +130,16 @@ def command_exists?(command)
 end
 
 def ensure_gpg_permissions_are_set_correctly
-  system "chmod 600 ${XDG_SECURE_DIR}/gnupg/*"
-  system "chmod 700 ${XDG_SECURE_DIR}/gnupg"
+  system(ENVIRONMENT, "chmod 600 ${XDG_SECURE_DIR}/gnupg/*")
+  system(ENVIRONMENT, "chmod 700 ${XDG_SECURE_DIR}/gnupg")
 end
 
 def ensure_locals_are_created
-  system "mkdir -p ${XDG_LOCALS_DIR}/bin"
-  system "mkdir -p ${XDG_LOCALS_DIR}/config"
+  system(ENVIRONMENT, "mkdir -p ${XDG_LOCALS_DIR}/bin")
+  system(ENVIRONMENT, "mkdir -p ${XDG_LOCALS_DIR}/config")
   return unless machine_is?(:mac)
 
-  system "ln -sf ${HOMEBREW_PREFIX}/bin/pinentry-mac ${XDG_LOCALS_DIR}/bin/"
+  system(ENVIRONMENT, "ln -sf ${HOMEBREW_PREFIX}/bin/pinentry-mac ${XDG_LOCALS_DIR}/bin/")
 end
 
 # Homebrew-related commands
@@ -202,12 +202,12 @@ end
 def asdf_plugins
   @asdf_plugins ||=
     File
-      .readlines("#{DOTFILES_DIR}/config/asdf/tool-versions")
-      .map(&:split)
-      .map(&:first)
-      .map(&:to_sym)
-      .to_set
-      .freeze
+    .readlines("#{DOTFILES_DIR}/config/asdf/tool-versions")
+    .map(&:split)
+    .map(&:first)
+    .map(&:to_sym)
+    .to_set
+    .freeze
 end
 
 def asdf_install(plugin)
@@ -230,36 +230,32 @@ end
 # ----------
 if (IN_DEBUG_MODE = ARGV.delete("--debug").to_s.eql?("--debug"))
   puts "-*- Running in debug mode -*-"
-  def execho(*args); system(*args); end
+  def execho(*args); system(ENVIRONMENT, *args); end
   def system(*args); puts(*args); true; end
 end
-
 
 # Constants
 # ---------
 
-DOTFILES_DIR = File.expand_path("~/.dotfiles")
+DOTFILES_DIR = File.dirname(File.dirname(__FILE__))
 
 ENVIRONMENT =
-  %x[
-    zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|ASDF_|PATH)'"]
-    .strip
-   .split("\n")
-   .map { |line| line.split("=") }
-   .push(["HOMEBREW_NO_INSTALL_CLEANUP", "true"])
-   .sort_by(&:first)
-   .to_h
-   .freeze
-   .tap { |env| puts "-" * 60, env.map { |e| e.join("=") }, "-" * 60 if IN_DEBUG_MODE }
+  `zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|ASDF_|PATH)'"`
+  .strip
+  .split("\n")
+  .map { |line| line.split("=") }
+  .push(["HOMEBREW_NO_INSTALL_CLEANUP", true.to_s])
+  .push(["DOTFILES_DIR", DOTFILES_DIR])
+  .sort_by(&:first)
+  .to_h
+  .freeze
+  .tap { |env| puts "-" * 60, env.map { |e| e.join("=") }, "-" * 60 if IN_DEBUG_MODE }
 
 BREW_INSTALLED_FORMULAS =
-  %x[brew list -1 --formula 2>/dev/null]
-    .strip.split("\n").to_set.freeze
+  `brew list -1 --formula 2>/dev/null`.strip.split("\n").to_set.freeze
 
 BREW_INSTALLED_CASKS =
-  %x[brew list -1 --cask 2>/dev/null]
-    .strip.split("\n").to_set.freeze
+  `brew list -1 --cask 2>/dev/null`.strip.split("\n").to_set.freeze
 
 BREW_INSTALLED_TAPS =
-  %x[brew tap 2>/dev/null]
-    .strip.split("\n").to_set.freeze
+  `brew tap 2>/dev/null`.strip.split("\n").to_set.freeze
