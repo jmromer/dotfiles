@@ -389,9 +389,11 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 
 #+begin_src elisp
 (map! :leader
-      (:prefix "f"
-       :desc "yank path (~relative)" "Y" #'+default/yank-buffer-path
-       :desc "yank path" "y" #'yank-buffer-path-dwim))
+      :prefix "f"
+      :desc "yank path (~relative)"
+            "Y" #'+default/yank-buffer-path
+      :desc "yank path"
+            "y" #'yank-buffer-path-dwim)
 #+end_src
 
 * completion
@@ -1355,6 +1357,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 
 #+begin_src elisp
 (map! "s-," #'org-cycle-agenda-files)
+(map! :map org-mode-map "C-'" nil)
 #+end_src
 
 ** structure templates
