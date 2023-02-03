@@ -2,6 +2,8 @@
 
 # Flipper (feature-flagging) configuration
 
+return unless defined?(Flipper) && defined?(Redis)
+
 Flipper.configure do |config|
   config.adapter { Flipper::Adapters::Redis.new(Redis.new) }
 end

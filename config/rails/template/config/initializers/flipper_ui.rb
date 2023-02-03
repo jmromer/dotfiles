@@ -2,6 +2,8 @@
 
 # Flipper UI configuration
 
+return unless defined?(Flipper::UI)
+
 Flipper::UI.configure do |config|
   # descriptions loaded from YAML file or database (postgres, mysql, etc)
   # return has to be hash of {String key => String description}

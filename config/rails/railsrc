@@ -1,5 +1,5 @@
 --css=tailwind
 --database=postgresql
+--javascript=importmap
 --skip-git
 --skip-test
---template=~/.dotfiles/config/rails/template.rb

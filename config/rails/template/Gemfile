@@ -1,31 +1,3 @@
-# frozen_string_literal: true
-
-# rails docs: https://api.rubyonrails.org
-
-gem "administrate" # admin dashboards (https://github.com/thoughtbot/administrate)
-gem "aws-sdk-s3" # upload to S3 directly (https://github.com/aws/aws-sdk-ruby)
-gem "devise" # authentication (https://github.com/heartcombo/devise)
-gem "discard" # soft deletes for ActiveRecord (https://github.com/jhawthorn/discard)
-gem "draper" # (https://github.com/arjes/draper)
-gem "flipper" # feature flagging (https://github.com/jnunemaker/flipper)
-gem "flipper-redis" # (https://github.com/jnunemaker/flipper/blob/master/docs/redis/README.md)
-gem "flipper-ui" # (https://github.com/jnunemaker/flipper/blob/master/docs/ui/README.md)
-gem "image_processing" # (https://github.com/janko/image_processing)
-gem "kaminari" # (https://github.com/kaminari/kaminari)
-gem "mini_magick" # (https://github.com/minimagick/minimagick)
-gem "pay" # payments: abstraction layer (https://github.com/pay-rails/pay)
-gem "pretender" # impersonate other users (https://github.com/ankane/pretender)
-gem "pundit" # authorization (https://github.com/varvet/pundit)
-gem "rack-timeout" # (https://github.com/heroku/rack-timeout)
-gem "receipts" # payments: invoice generation (https://github.com/excid3/receipts)
-gem "rolify" # user roles (https://github.com/RolifyCommunity/rolify)
-gem "searchkick" # search (https://github.com/ankane/searchkick)
-gem "sidekiq" # background jobs (https://github.com/mperham/sidekiq)
-gem "sidekiq-cron" # cron-like jobs (https://github.com/ondrejbartas/sidekiq-cron)
-gem "stripe" # payments: stripe (https://github.com/stripe/stripe-ruby)
-gem "stripe_event" # payments: stripe webhook event handlers (https://github.com/integrallis/stripe_event)
-gem "terser" # (https://github.com/ahorek/terser-ruby)
-
 group :development do
   gem "better_errors" # (https://github.com/BetterErrors/better_errors)
   gem "binding_of_caller"
@@ -65,3 +37,31 @@ group :test do
   gem "shoulda-matchers" # (https://github.com/thoughtbot/shoulda-matchers)
   gem "simplecov", require: false # (https://github.com/simplecov-ruby/simplecov)
 end
+
+=begin
+# useful libraries
+
+gem "administrate" # admin dashboards (https://github.com/thoughtbot/administrate)
+gem "aws-sdk-s3" # upload to S3 directly (https://github.com/aws/aws-sdk-ruby)
+gem "devise" # authentication (https://github.com/heartcombo/devise)
+gem "discard" # soft deletes for ActiveRecord (https://github.com/jhawthorn/discard)
+gem "draper" # (https://github.com/arjes/draper)
+gem "flipper" # feature flagging (https://github.com/jnunemaker/flipper)
+gem "flipper-redis" # (https://github.com/jnunemaker/flipper/blob/master/docs/redis/README.md)
+gem "flipper-ui" # (https://github.com/jnunemaker/flipper/blob/master/docs/ui/README.md)
+gem "image_processing" # (https://github.com/janko/image_processing)
+gem "kaminari" # (https://github.com/kaminari/kaminari)
+gem "mini_magick" # (https://github.com/minimagick/minimagick)
+gem "pay" # payments: abstraction layer (https://github.com/pay-rails/pay)
+gem "pretender" # impersonate other users (https://github.com/ankane/pretender)
+gem "pundit" # authorization (https://github.com/varvet/pundit)
+gem "rack-timeout" # (https://github.com/heroku/rack-timeout)
+gem "receipts" # payments: invoice generation (https://github.com/excid3/receipts)
+gem "rolify" # user roles (https://github.com/RolifyCommunity/rolify)
+gem "searchkick" # search (https://github.com/ankane/searchkick)
+gem "sidekiq" # background jobs (https://github.com/mperham/sidekiq)
+gem "sidekiq-cron" # cron-like jobs (https://github.com/ondrejbartas/sidekiq-cron)
+gem "stripe" # payments: stripe (https://github.com/stripe/stripe-ruby)
+gem "stripe_event" # payments: stripe webhook event handlers (https://github.com/integrallis/stripe_event)
+gem "terser" # (https://github.com/ahorek/terser-ruby)
+=end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return unless defined?(Flipper)
+
 RSpec.configure do |config|
   config.before do
     # Reset feature-flipping between examples
