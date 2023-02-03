@@ -198,9 +198,11 @@ setup :editors do
 end
 
 setup :asdf_plugins do
-  setup(:ruby)   { asdf_install(:ruby)   }
-  setup(:python) { asdf_install(:python) }
   setup(:nodejs) { asdf_install(:nodejs) }
+  setup(:postgres) { asdf_install(:postgres) }
+  setup(:python) { asdf_install(:python) }
+  setup(:redis) { asdf_install(:redis) }
+  setup(:ruby) { asdf_install(:ruby) }
 end
 
 setup :doom_config do
