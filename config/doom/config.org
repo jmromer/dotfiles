@@ -2176,7 +2176,7 @@ https://www.emacswiki.org/emacs/TypographicalPunctuationMarks
   (typopunct-change-language 'english t)
   (typopunct-mode 1))
 
-(add-hook! '(org-mode-hook markdown-mode-hook) #'+config:typopunct:enable)
+;; (add-hook! '(org-mode-hook markdown-mode-hook) #'+config:typopunct:enable)
 #+end_src
 
 * webkit
