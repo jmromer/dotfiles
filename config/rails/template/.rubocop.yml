@@ -8,6 +8,10 @@ AllCops:
   TargetRailsVersion: 6.1
   NewCops: enable
 
+Layout/LineLength:
+  Exclude:
+    - Gemfile
+
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
@@ -39,6 +43,8 @@ Metrics/BlockLength:
   CountComments: false
   Max: 25
   AllowedMethods: ["describe", "context", "it"]
+  Exclude:
+    - "config/**/*"
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: "comma"

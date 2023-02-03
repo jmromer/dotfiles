@@ -27,6 +27,17 @@ class Template
   end
 end
 
+# Clean up Gemfile
+lines = File.readlines("Gemfile")
+gemfile = lines.each_with_index.with_object([]) do |(line, i), acc|
+  next acc << line unless line.match?(/^(?:# |\s+)*gem/)
+  followed_by_blank = lines[i.next].strip.empty?
+  followed_by_comment = lines[i.next.next]&.match?(/^\s*#/)
+  lines.delete_at(i.next) if followed_by_blank && followed_by_comment
+  acc << "#{line.chomp} #{acc.pop}"
+end
+File.open("Gemfile", "w") { |f| f.puts(gemfile) }
+
 # Add gems to Gemfile
 File.open("Gemfile", "a") do |file|
   file.puts Template.new("Gemfile").contents
@@ -41,26 +52,31 @@ end
 #
 # - Add gem configuration initializers
 # - RSpec configuration files
-# - Procfile for Heroku
+# - Procfile
 # - dotfiles
-#
 Template.files.each do |template|
   file(template.relative_path, template.contents)
 end
 
 after_bundle do
-  # # Uncomment action_mailer so rspec installer doesn't fail
-  # lines = File.readlines("config/application.rb")
-  # line, index = lines.to_enum.with_index.find { |line, _i| line.include?("action_mailer/railtie") }
-  # lines[index] = line.sub("# ", "")
-  # File.open("config/application.rb", "w") { |file| file.puts(lines.join) }
-
   # Generate spec/rails_helper.rb
   generate("rspec:install")
   generate("bullet:install")
 
   # Prepend simplecov require to spec/rails_helper.rb
   rails_helper_lines = File.readlines("spec/rails_helper.rb")
+
+  idx = rails_helper_lines.find_index { _1.match?(/Dir.+spec.+support/) }
+  rails_helper_lines[idx] = <<~RB.squish
+    Dir[Rails.root.join("spec/support/**/*.rb")].each { require(_1) }
+  RB
+
+  idx = rails_helper_lines.find_index { _1.match?(/config.fixture_path = /) }
+  config, = rails_helper_lines[idx].split(" = ")
+  rails_helper_lines[idx] = <<~RB.squish
+    #{config} = Rails.root.join("spec/fixtures")
+  RB
+
   File.open("spec/rails_helper.rb", "w") do |file|
     file.puts(<<~RUBY)
       # require simplecov before anything else
@@ -70,28 +86,9 @@ after_bundle do
     RUBY
   end
 
-  # # Add entries to package.json
-  # npm_config =
-  #   JSON.load_file("package.json").tap do |json|
-  #     json["license"] = "UNLICENSED"
-  #     json["scripts"] = { format: "prettier-standard --fix" }
-  #     json["prettier"] = "prettier-config-standard"
-  #   end
-  # File.open("package.json", "w") { |file| JSON.dump(npm_config, file) }
-
-  # run(<<~SH)
-  #   curl -Ls "https://www.gitignore.io/api/ruby,rails,node,emacs,vim" >> .gitignore
-
-  #   yard config load_plugins true
-
-  #   yarn add -D prettier-config-standard prettier-standard
-
-  #   yarn format
-
-  #   rufo **/*.rb
-
-  #   rubocop --autocorrect-all --fail-level F
-
-  #   rubocop
-  # SH
+  run(<<~SH)
+    rufo **/*.rb
+    rubocop --autocorrect-all --fail-level F
+    rubocop
+  SH
 end
