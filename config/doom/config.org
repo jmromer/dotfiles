@@ -1439,6 +1439,18 @@ https://github.com/bastibe/org-journal
   (goto-char (point-max)))
 #+end_src
 
+** org-projectile
+
+#+begin_src elisp
+(setq org-projectile-projects-file
+      (format "%s/projects.org" (getenv "ORG_HOME")))
+
+(map! :leader
+      :prefix "p"
+      :desc "new project todo"
+            "n" #'org-projectile-capture-for-current-project)
+#+end_src
+
 ** org-superstar
 
 #+begin_src elisp
