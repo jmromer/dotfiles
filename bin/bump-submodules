@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ -z "${DOTFILES_DIR}" ]]; then
-    echo "Error: DOTFILES_DIR env var not set."
-    exit 1
+  echo "Error: DOTFILES_DIR env var not set."
+  exit 1
 fi
 
 DATE="$(date +'%d %b %Y')"
@@ -43,14 +43,11 @@ echo "Syncing submodules..."
 
 cd "${DOTFILES_DIR}"
 git submodule foreach "git pull origin"
-
-git submodule |
-    awk '{ print $2 }' |
-    xargs git add
+gi submodule | awk '{ print $2 }' | xargs git add
 
 echo "Syncing dotfiles..."
 
-git commit -m "[submodules] Sync ${DATE}"
+git commit -m "[submodule] Sync ${DATE}"
 git push origin
 
 echo "Done."
