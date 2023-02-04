@@ -5,7 +5,7 @@ if [[ -z "${DOTFILES_DIR}" ]]; then
     exit 1
 fi
 
-DATE="$(date)"
+DATE="$(date +'%d %b %Y')"
 ORG_HOME="${DOTFILES_DIR}/share/org"
 BLOGS_HOME="${DOTFILES_DIR}/share/blogs"
 
@@ -50,7 +50,7 @@ git submodule |
 
 echo "Syncing dotfiles..."
 
-git commit -m "Submodule sync: ${DATE}"
+git commit -m "[submodules] Sync ${DATE}"
 git push origin
 
 echo "Done."
