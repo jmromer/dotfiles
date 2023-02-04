@@ -60,6 +60,7 @@ end
 
 setup :gui_apps do
   cask_install "1password"
+  cask_install :airtable
   cask_install :amethyst
   cask_install :appcleaner
   cask_install :authy
@@ -71,6 +72,7 @@ setup :gui_apps do
   cask_install :divvy
   cask_install :docker
   cask_install :dropbox
+  cask_install :figma
   cask_install :keyboard_maestro
   cask_install :keycastr
   cask_install :latexit
@@ -89,8 +91,8 @@ setup :gui_apps do
   cask_install :spotify
   cask_install :sqlpro_studio
   cask_install :telegram
-  cask_install :tuple
   cask_install :transmission
+  cask_install :tuple
   cask_install :vivaldi
   cask_install :vlc
   cask_install :zoom
