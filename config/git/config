@@ -172,7 +172,7 @@
 
 	# committing
 	cm       = commit-quick
-	cmt      = commit-ticket
+	cmt      = commit-tagged
 	cmf      = commit-fixup
 	cmm      = commit-quick-force
 	cms      = commit-squash
