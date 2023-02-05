@@ -401,6 +401,20 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 
 * completion
 
+** copilot
+
+Accept completion from GitHub Copilot and fallback to company
+
+#+begin_src elisp
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+         ("C-<tab>" . 'copilot-accept-completion-by-word)
+         :map copilot-completion-map
+         ("<tab>" . 'copilot-accept-completion)
+         ("TAB" . 'copilot-accept-completion)))
+#+end_src
+
 ** company
 
 https://github.com/company-mode/company-mode

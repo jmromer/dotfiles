@@ -11,6 +11,7 @@
 (package! command-log-mode)
 (package! company-box :recipe (:host github :repo "jmromer/company-box"))
 (package! company-lsp)
+(package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! dash-at-point)
 (package! jest)
 (package! evil-cleverparens)
