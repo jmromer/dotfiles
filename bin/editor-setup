@@ -36,6 +36,7 @@ setup_system_ruby() {
     --user \
     --update-sources \
     $(cat ${XDG_CONFIG_HOME}/asdf/default-libraries-ruby | tr '\n' ' ')
+  gem specific_install -l https://github.com/JoshCheek/seeing_is_believing
 }
 
 setup_javascript() {
