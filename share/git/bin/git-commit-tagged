@@ -20,9 +20,12 @@ usage() {
   cat "$0" | grep '^#' | tail -n +4 | cut -c 3-
 }
 
-tag="$(git rev-parse --abbrev-ref HEAD | sed -E 's/(\w+-\d+)*.+/\1/')"
-tag="${tag^^}"
-message="$*"
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$branch" =~ ^[a-zA-Z]+-[0-9]+- ]]; then
+  tag="$(echo $branch | sed -E 's/(^[a-zA-Z]+-[0-9]+)-.+/\1/')"
+  tag="${tag^^}"
+  message="$*"
+fi
 
 if [[ -z "${tag}" ]] && [[ $# -eq 0 ]]; then
   echo "Error: Could not infer a tag and none was provided."
@@ -32,7 +35,7 @@ fi
 
 if [[ -z "${tag}" ]]; then
   tag="${1,,}"
-  message="${@:2}"
+  message="${2^} ${@:3}"
 fi
 
 if [[ -z "${message}" ]]; then
