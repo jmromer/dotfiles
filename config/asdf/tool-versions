@@ -1,11 +1,11 @@
 ruby 3.2.0
 nodejs 19.4.0
-elixir 1.12.1-otp-24
+elixir 1.14.3-otp-25
 erlang 24.0.2
 python 3.11.1
 golang 1.17
 redis 6.2.5
-postgres 13.4
+postgres 15.1
 java openjdk-17
 tmux 3.2a
 rust 1.43.0
