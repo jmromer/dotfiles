@@ -43,7 +43,7 @@ echo "Syncing submodules..."
 
 cd "${DOTFILES_DIR}"
 git submodule foreach "git pull origin"
-gi submodule | awk '{ print $2 }' | xargs git add
+git submodule | awk '{ print $2 }' | xargs git add
 
 echo "Syncing dotfiles..."
 
