@@ -42,5 +42,5 @@ if [[ -z "${message}" ]]; then
   git commit-quick "[${tag}] "
   git commit-amend
 else
-  git commit-quick "[${tag}] ${message}"
+  git commit-quick "[${tag}] ${message^}"
 fi
