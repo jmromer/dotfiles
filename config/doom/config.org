@@ -17,6 +17,8 @@
 - [[#lookup][lookup]]
 - [[#lsp][lsp]]
 - [[#magit][magit]]
+- [[#magit-time-tracking][magit: time tracking]]
+- [[#magit-tagged-commits][magit: tagged commits]]
 - [[#markdown][markdown]]
 - [[#org][org]]
 - [[#projectile][projectile]]
@@ -24,7 +26,6 @@
 - [[#react--web][react & web]]
 - [[#ruby][ruby]]
 - [[#smartparens][smartparens]]
-- [[#time-tracking][time tracking]]
 - [[#typopunct][typopunct]]
 - [[#webkit][webkit]]
 - [[#word-chars][word chars]]
@@ -1021,6 +1022,54 @@ Remove the git flow hook added by doom.
 (remove-hook! magit-mode #'turn-on-magit-gitflow)
 #+end_src
 
+* magit: time tracking
+
+#+begin_src elisp
+(defun magit-clock-in ()
+  "Clock in with Magit, reading a commit subject line from user input."
+  (interactive)
+  (let ((subject-line (read-string "Task: ")))
+    (magit-run-git-with-editor "clock-in" subject-line)))
+
+(defun magit-clock-out ()
+  "Clock out with Magit, opening the commit editor to finalize changes."
+  (interactive)
+  (magit-run-git-with-editor "clock-out-with-editor"))
+
+(after! magit
+  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" magit-clock-in))
+  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" magit-clock-out)))
+#+end_src
+
+#+begin_src elisp
+(defun git-clock-in ()
+  "Clock in with Git, reading a commit subject line from user input."
+  (interactive)
+  (when-let ((subject-line (read-string "Task: ")))
+    (shell-command-to-string (format "git-clock-in %s" subject-line))))
+
+(defun git-clock-out ()
+  "Clock out with Git, committing all changed and new files in the working tree."
+  (interactive)
+  (shell-command-to-string (format "git add --all && git-clock-out")))
+
+(map! :map prog-mode-map
+      "s-c" #'git-clock-in
+      "s-C" #'git-clock-out)
+#+end_src
+
+* magit: tagged commits
+
+#+begin_src elisp
+(defun magit-commit-tagged ()
+  "Clock in with Magit, reading a commit subject line from user input."
+  (interactive)
+  (let ((subject-line (read-string "Message: ")))
+    (magit-run-git-with-editor "commit-tagged" (split-string subject-line))))
+
+(after! magit
+  (transient-insert-suffix 'magit-commit "c" '("t" "Tagged" magit-commit-tagged)))
+#+end_src
 * markdown
 
 ** keybindings
@@ -2140,42 +2189,6 @@ Enable strict smartparens mode wherever smartparens is enabled.
 #+begin_src elisp
 (after! smartparens
   (turn-on-smartparens-strict-mode))
-#+end_src
-
-* time tracking
-
-#+begin_src elisp
-(defun magit-clock-in ()
-  "Clock in with Magit, reading a commit subject line from user input."
-  (interactive)
-  (let ((subject-line (read-string "Task: ")))
-    (magit-run-git-with-editor "clock-in" subject-line)))
-
-(defun magit-clock-out ()
-  "Clock out with Magit, opening the commit editor to finalize changes."
-  (interactive)
-  (magit-run-git-with-editor "clock-out-with-editor"))
-
-(after! magit
-  (transient-insert-suffix 'magit-commit "c" '("i" "Clock In" magit-clock-in))
-  (transient-insert-suffix 'magit-commit "c" '("o" "Clock Out" magit-clock-out)))
-#+end_src
-
-#+begin_src elisp
-(defun git-clock-in ()
-  "Clock in with Git, reading a commit subject line from user input."
-  (interactive)
-  (when-let ((subject-line (read-string "Task: ")))
-    (shell-command-to-string (format "git-clock-in %s" subject-line))))
-
-(defun git-clock-out ()
-  "Clock out with Git, committing all changed and new files in the working tree."
-  (interactive)
-  (shell-command-to-string (format "git add --all && git-clock-out")))
-
-(map! :map prog-mode-map
-      "s-c" #'git-clock-in
-      "s-C" #'git-clock-out)
 #+end_src
 
 * typopunct
