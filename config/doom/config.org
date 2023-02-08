@@ -66,9 +66,9 @@ Set fonts. NB: =doom-variable-pitch-font= could use updating.
 
 #+begin_src elisp
 (setq frame-title-format '("%b")
-      doom-font (font-spec :family "SF Mono" :size 16 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "SF Mono" :size 16)
-      doom-big-font (font-spec :family "SF Mono" :size 24)
+      doom-font (font-spec :family "Monaco" :size 16 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Monaco" :size 16)
+      doom-big-font (font-spec :family "Monaco" :size 24)
       doom-theme 'doom-one
       display-line-numbers-type 'relative
       fancy-splash-image nil
