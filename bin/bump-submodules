@@ -9,7 +9,6 @@ DATE="$(date +'%d %b %Y')"
 ORG_HOME="${DOTFILES_DIR}/share/org"
 BLOGS_HOME="${DOTFILES_DIR}/share/blogs"
 
-
 # Commit any org dir changes
 echo "Syncing org changes..."
 
@@ -19,7 +18,6 @@ git stash pop
 git add --all
 git commit -m "Update: ${DATE}"
 git push origin
-
 
 # Commit any blog dir changes
 echo "Syncing blog changes..."
@@ -38,11 +36,11 @@ git add --all
 git commit -m "Update: ${DATE}"
 git push origin
 
-
 echo "Syncing submodules..."
 
 cd "${DOTFILES_DIR}"
-git submodule foreach "git pull origin"
+git submodule sync --recursive
+git submodule update --remote --recursive
 git submodule | awk '{ print $2 }' | xargs git add
 
 echo "Syncing dotfiles..."
