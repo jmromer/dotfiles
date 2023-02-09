@@ -165,12 +165,18 @@ export DIRSTACKSIZE=10
 #-------------------------------------------------------------
 # HISTORY SETTINGS
 #-------------------------------------------------------------
-setopt hist_ignore_all_dups inc_append_history
-export HISTCONTROL=ignoreboth   # Ignore spaces and duplicates
-export HISTIGNORE="??:&:pwd:cd*:h:..*:l:ll:ll?:q:c:l:g"
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY
+
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
-export HISTSIZE=4096
-export SAVEHIST=4096
+export HISTSIZE=1000
+export SAVEHIST=1000
 
 #-------------------------------------------------------------
 # Zsh Plugins (load last)
