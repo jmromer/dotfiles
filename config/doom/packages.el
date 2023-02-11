@@ -9,7 +9,7 @@
 ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org
 
 (package! command-log-mode)
-(package! company-box :recipe (:host github :repo "jmromer/company-box"))
+(package! company-box)
 (package! company-lsp)
 (package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! dash-at-point)
