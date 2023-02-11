@@ -392,12 +392,33 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 #+end_src
 
 #+begin_src elisp
+;; TODO: Combine with `yank-buffer-path-dwim'
+(defun yank-buffer-path-with-line-dwim (abspath-p)
+  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, use `default-directory'.)
+Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
+Provide an absolute path if the prefix argument ABSPATH-P is provided."
+  (interactive "P")
+  (let* ((yanked-path
+          (if-let ((file-path buffer-file-name))
+              (let* ((proj-path (expand-file-name (locate-dominating-file file-path #'is-proj-root-p)))
+                     (disp-path (if abspath-p file-path
+                                  (replace-regexp-in-string (concat "^" proj-path) "" file-path))))
+                disp-path)
+            (abbreviate-file-name default-directory)))
+         (path-with-num (format "%s:%s" yanked-path (line-number-at-pos))))
+    (progn
+      (kill-new path-with-num)
+      (message (format "Copied to clipboard: %s" path-with-num)))))
+#+end_src
+
+#+begin_src elisp
+(map! :leader :prefix "f" "y" nil)
 (map! :leader
       :prefix "f"
-      :desc "yank path (~relative)"
-            "Y" #'+default/yank-buffer-path
-      :desc "yank path"
-            "y" #'yank-buffer-path-dwim)
+      (:prefix ("y" . "yank")
+       :desc "path"             "y" #'yank-buffer-path-dwim
+       :desc "path (~relative)" "Y" #'+default/yank-buffer-path
+       :desc "path+line"        "l" #'yank-buffer-path-with-line-dwim))
 #+end_src
 
 * completion
