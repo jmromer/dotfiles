@@ -40,7 +40,7 @@ echo "Syncing submodules..."
 
 cd "${DOTFILES_DIR}"
 git submodule sync --recursive
-git submodule update --remote --recursive
+git submodule update --recursive
 git submodule | awk '{ print $2 }' | xargs git add
 
 echo "Syncing dotfiles..."
