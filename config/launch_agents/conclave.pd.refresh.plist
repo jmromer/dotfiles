@@ -30,7 +30,7 @@
     <false />
 
     <key>StartInterval</key>
-    <integer>900</integer>
+    <integer>3600</integer>
 
     <key>StandardOutPath</key>
     <string>/tmp/conclave.pd.refresh.out</string>
