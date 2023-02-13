@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "fileutils"
+
+BLACKLIST =
+  File
+  .readlines("#{ENV.fetch('XDG_CONFIG_HOME')}/dotfiles-cleanup/ignore")
+  .map(&:chomp)
+  .to_set
+  .freeze
+
+deletions = []
+%w[.config .state .local .emacs.d]
+  .each { |dir| deletions.concat Dir.glob("#{Dir.home}/#{dir}/**/*") }
+  .each { |dir| FileUtils.rm_rf(dir) }
+
+puts("Deleted:", deletions.map { |f| f.sub(Dir.home, "~") })
