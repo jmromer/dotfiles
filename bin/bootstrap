@@ -67,19 +67,16 @@ setup :gui_apps do
   cask_install :bettertouchtool
   cask_install :brave_browser
   cask_install :dash
-  cask_install :discord
   cask_install :divvy
   cask_install :docker
   cask_install :dropbox
   cask_install :figma
   cask_install :keyboard_maestro
   cask_install :keycastr
-  cask_install :latexit
   cask_install :launchbar
   cask_install :launchcontrol
   cask_install :launchpad_manager
   cask_install :name_mangler
-  cask_install :nvalt
   cask_install :pandora
   cask_install :protonmail_bridge
   cask_install :protonvpn
