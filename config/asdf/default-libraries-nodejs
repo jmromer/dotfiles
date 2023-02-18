@@ -11,5 +11,7 @@ typescript
 typescript-formatter
 typescript-language-server
 vscode-css-languageserver-bin
+vscode-css-languageservice
 vscode-html-languageserver-bin
+vscode-html-languageservice
 vscode-langservers-extracted
