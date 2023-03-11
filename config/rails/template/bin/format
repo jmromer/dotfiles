@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+rufo .
+
+prettier-standard
+
+rubocop --autocorrect-all
+
+rubocop

@@ -2,8 +2,9 @@
 
 require "json"
 
+# Template files access
 class Template
-  TEMPLATE_DIR = File.join(ENV["XDG_CONFIG_HOME"], "rails/template")
+  TEMPLATE_DIR = File.join(ENV.fetch("XDG_CONFIG_HOME"), "rails/template")
 
   attr_accessor :directory, :relative_path, :absolute_path, :basename
 
@@ -31,6 +32,7 @@ end
 lines = File.readlines("Gemfile")
 gemfile = lines.each_with_index.with_object([]) do |(line, i), acc|
   next acc << line unless line.match?(/^(?:# |\s+)*gem/)
+
   followed_by_blank = lines[i.next].strip.empty?
   followed_by_comment = lines[i.next.next]&.match?(/^\s*#/)
   lines.delete_at(i.next) if followed_by_blank && followed_by_comment
@@ -43,10 +45,16 @@ File.open("Gemfile", "a") do |file|
   file.puts Template.new("Gemfile").contents
 end
 
-# Add docs generation step to setup script (edit manually)
-File.open("bin/setup", "a") do |file|
-  file.puts 'puts "\n== Building documentation =="', 'system! "yard gems"'
+# Add steps to setup script
+lines = File.readlines("bin/setup")
+setup = lines.each_with_index.with_object([]) do |(line, i), acc|
+  next acc << line unless line.match?(/Preparing database/)
+
+  acc << '  system! "pg_start"'
+  acc << '  system("createuser -U postgres -s $USER 2>/dev/null")'
+  acc << lines.delete_at(i.next)
 end
+File.open("bin/setup", "w") { |f| f.puts(setup) }
 
 # Add template config files
 #
@@ -61,7 +69,7 @@ end
 after_bundle do
   # Generate spec/rails_helper.rb
   generate("rspec:install")
-  generate("bullet:install")
+  run("yes | bin/rails generate bullet:install")
 
   # Prepend simplecov require to spec/rails_helper.rb
   rails_helper_lines = File.readlines("spec/rails_helper.rb")
@@ -86,9 +94,13 @@ after_bundle do
     RUBY
   end
 
-  run(<<~SH)
-    rufo **/*.rb
-    rubocop --autocorrect-all --fail-level F
-    rubocop
-  SH
+  run("bin/setup")
+  run("bundle lock --add-platform ruby x86_64-linux x86_64-darwin-22 arm64-darwin-22")
+  run("bin/format")
+
+  git :init
+  git add: "."
+  git commit: "-m 'Initial commit'"
+
+  run("bin/dev")
 end
