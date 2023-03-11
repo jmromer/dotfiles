@@ -3,9 +3,7 @@ group :development do
   gem "binding_of_caller"
   gem "bundler-gtags", github: "jmromer/bundler-gtags" # (https://github.com/kayhide/bundler-gtags)
   gem "letter_opener"
-  gem "org-ruby" # for yard server
   gem "rufo" # autoformatting (https://github.com/ruby-formatter/rufo)
-  gem "spring-commands-rspec"
 end
 
 group :development, :test do
