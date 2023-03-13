@@ -1,1 +1,1 @@
-excludes [db/schema.rb]
+excludes [db/schema.rb,flipper_ui.rb]

@@ -1,15 +1,20 @@
 require:
+  - rubocop-capybara
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-performance
 
 AllCops:
   TargetRubyVersion: 3.0
   TargetRailsVersion: 6.1
   NewCops: enable
   Exclude:
-    - db/schema.rb
-    - node_modules
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'bin/bundle'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/setup'
 
 Layout/LineLength:
   Exclude:
