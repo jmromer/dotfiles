@@ -8,8 +8,7 @@ Flipper::UI.configure do |config|
   # descriptions loaded from YAML file or database (postgres, mysql, etc)
   # return has to be hash of {String key => String description}
   config.descriptions_source = lambda { |keys|
-    # TODO: Add FeatureFlag builder
-    # TODO: Add FeatureFlaggable mixin
+    # TODO: Add FeatureFlag builder, FeatureFlaggable mixin
   }
 
   # Disable TSwift greeting video
