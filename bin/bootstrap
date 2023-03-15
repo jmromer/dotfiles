@@ -117,6 +117,7 @@ setup :development_tools do
   brew_install :direnv
   brew_install :exa
   brew_install :fzf
+  brew_install :flyctl
   brew_install :gh
   brew_install :git_delta
   brew_install :httpie, options: :head
