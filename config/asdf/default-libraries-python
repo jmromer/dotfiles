@@ -8,6 +8,7 @@ ipython
 isort
 mypy
 nose
+openai
 pip
 pipenv
 poetry
