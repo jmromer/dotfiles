@@ -60,6 +60,8 @@ alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"
 alias pp='pretty-print-path'
 alias b=bundle
 alias fabcb='cbq -u Administrator -p acme999! -engine=http://127.0.0.1:8091/'
+alias vi='vim -U $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'
+alias vin='vim -U NONE'
 
 #-------------------------------------------------------------
 # EDITOR / PAGER
