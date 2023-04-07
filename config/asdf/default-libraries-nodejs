@@ -2,6 +2,7 @@ babel-eslint
 bash-language-server
 create-react-app
 js-beautify
+live-server
 marked
 npm
 prettier-standard
