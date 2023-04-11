@@ -49,6 +49,7 @@ PATH+=":/bin"
 PATH+=":/usr/sbin"
 PATH+=":/sbin"
 
+PATH+=":${HOME}/.docker/bin"
 PATH+=":/Library/TeX/texbin"
 export PATH
 
