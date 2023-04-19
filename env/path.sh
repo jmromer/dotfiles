@@ -29,6 +29,7 @@ PATH+=":${HOMEBREW_PREFIX}/sbin"
 
 PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
+PATH+=":${HOMEBREW_PREFIX}/opt/bison/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/curl/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/gettext/bin"

@@ -61,7 +61,11 @@ build_flags_set() {
   while [ $# -gt -1 ]; do
     case "$1" in
       --all)
-        set -- bzip2 clang++ clang gettext icu4c imagemagick libffi libxml2 llvm ncurses no-warnings openssl optimize3 readline ruby xcrun zlib
+        set -- bison bzip2 clang++ clang gettext icu4c imagemagick libffi libxml2 llvm ncurses no-warnings openssl optimize3 readline ruby xcrun zlib
+        shift
+        ;;
+      bison)
+        LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/bison/lib"
         shift
         ;;
       bzip2)
