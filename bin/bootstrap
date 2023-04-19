@@ -39,6 +39,13 @@ setup :core_cli_tools do
   brew_install :wget
 end
 
+setup :github do
+  brew_install :bison
+  brew_install :flock
+  brew_install :jemalloc
+  brew_install :pgrep
+end
+
 setup :build_tools do
   brew_install :bzip2
   brew_install :cmake
