@@ -134,6 +134,9 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
+  brew_tap "romkatv/gitstatus"
+  brew_install :gitstatus
+
   # Universal ctags (replaces Exuberant ctags)
   brew_tap "universal-ctags/universal-ctags"
   brew_install :universal_ctags, options: [:head, :force]
