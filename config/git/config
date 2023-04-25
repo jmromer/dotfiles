@@ -214,7 +214,7 @@
 	hdiff    = hg -U1
 	hfiles   = hg --format=medium --stat
 	hg       = log --format=brief --abbrev-commit
-	hh       = --no-pager hg -n 15
+	hh       = !git --no-pager hg -n 15
 	hm       = hg --merge
 	hnm      = hg --no-merges --show-linear-break
 	hsince   = !sh -c 'git hg --since=$1' -
