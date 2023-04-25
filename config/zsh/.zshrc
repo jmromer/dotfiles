@@ -147,6 +147,53 @@ git_branch() {
   fi
 }
 
+# VCS_STATUS_COMMIT=c000eddcff0fb38df2d0137efe24d9d2d900f209
+# VCS_STATUS_COMMITS_AHEAD=0
+# VCS_STATUS_COMMITS_BEHIND=0
+# VCS_STATUS_HAS_CONFLICTED=0
+# VCS_STATUS_HAS_STAGED=0
+# VCS_STATUS_HAS_UNSTAGED=1
+# VCS_STATUS_HAS_UNTRACKED=1
+# VCS_STATUS_NUM_ASSUME_UNCHANGED=0
+# VCS_STATUS_NUM_CONFLICTED=0
+# VCS_STATUS_NUM_STAGED=0
+# VCS_STATUS_NUM_UNSTAGED=1
+# VCS_STATUS_NUM_SKIP_WORKTREE=0
+# VCS_STATUS_NUM_STAGED_NEW=0
+# VCS_STATUS_NUM_STAGED_DELETED=0
+# VCS_STATUS_NUM_UNSTAGED_DELETED=0
+# VCS_STATUS_NUM_UNTRACKED=1
+# VCS_STATUS_PUSH_COMMITS_AHEAD=0
+# VCS_STATUS_PUSH_COMMITS_BEHIND=0
+# VCS_STATUS_COMMIT_SUMMARY
+gitstatus_prompt() {
+  PROMPT=$'\n'
+  PROMPT+="$(color blue)%c "
+
+  if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+    if (( VCS_STATUS_HAS_CONFLICTED )); then
+      PROMPT+="$(color violet)"
+    elif (( VCS_STATUS_HAS_STAGED )) ||
+         (( VCS_STATUS_HAS_UNSTAGED )) ||
+         (( VCS_STATUS_HAS_UNTRACKED ));
+    then
+      PROMPT+="$(color red)"
+    elif (( VCS_STATUS_COMMITS_AHEAD )) ||
+         (( VCS_STATUS_COMMITS_BEHIND )) ||
+         (( VCS_STATUS_PUSH_COMMITS_AHEAD )) ||
+         (( VCS_STATUS_PUSH_COMMITS_BEHIND ));
+    then
+      PROMPT+="$(color yellow)"
+    else
+      PROMPT+="$(color green)"
+    fi
+    PROMPT+="${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT:0:10}}//\%/%%} "  # escape %
+  fi
+
+  PROMPT+="$(color reset)%# "
+  setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
+}
+
 #-------------------------------------------------------------
 # ZSH
 #-------------------------------------------------------------
@@ -354,10 +401,17 @@ color() {
 #-------------------------------------------------------------
 setopt prompt_subst       # enables command substitution
 
-PS1=$'\n$(color blue)%c ' # basename of pwd after a newline
-PS1+='$(git_branch)'      # current branch or commit name, with color
-PS1+='$(color reset)%# '  # reset color, add %
-export PS1
+if [[ -f "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh" ]]; then
+    source "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh"
+    gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd gitstatus_prompt
+else
+  PS1=$'\n$(color blue)%c ' # basename of pwd after a newline
+  PS1+='$(git_branch)'      # current branch or commit name, with color
+  PS1+='$(color reset)%# '  # reset color, add %
+  export PS1
+fi
 
 #-------------------------------------------------------------
 # COMMAND COMPLETION
