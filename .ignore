@@ -9,3 +9,4 @@
 /share/heroku/
 /share/yarn/
 /share/tilt-dev/
+!/config/zsh/*
