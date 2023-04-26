@@ -6,6 +6,7 @@
 * contents :TOC_1:
 - [[#general][+general]]
 - [[#utilities][+utilities]]
+- [[#codespaces][codespaces]]
 - [[#completion][completion]]
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
@@ -419,6 +420,19 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
        :desc "path"             "y" #'yank-buffer-path-dwim
        :desc "path (~relative)" "Y" #'+default/yank-buffer-path
        :desc "path+line"        "l" #'yank-buffer-path-with-line-dwim))
+#+end_src
+
+* codespaces
+
+Omit unused version control systems to reduce latency.
+
+#+begin_src elisp
+(setq vc-handled-backends '(Git))
+#+end_src
+
+#+begin_src elisp
+(require 'codespaces)
+(codespaces-setup)
 #+end_src
 
 * completion
