@@ -1,10 +1,8 @@
 git_protocol: https
-
 # What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
 editor: vim
 prompt: enabled
 pager: less
-
 aliases:
     co: pr checkout
     br: browse
