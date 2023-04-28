@@ -59,7 +59,6 @@ alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
 alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"
 alias pp='pretty-print-path'
 alias b=bundle
-alias fabcb='cbq -u Administrator -p acme999! -engine=http://127.0.0.1:8091/'
 alias vi='vim -U $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'
 alias vin='vim -U NONE'
 
@@ -76,13 +75,13 @@ export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '
 # FUNCTIONS
 #-------------------------------------------------------------
 # create dir $1 and cd into it, creating subdirectories as necessary
-md() {
-  directory_name="${*// /-}"
-  mkdir -p "$directory_name"
-  cd "$directory_name" || return
+function md() {
+  local directory_name="${*// /-}"
+  \mkdir -p "$directory_name"
+  \cd "$directory_name" || return
 }
 
-diff() {
+function diff() {
     [[ -n "${1}" ]] && [[ -n "${2}" ]] || return
     "${HOMEBREW_PREFIX}/bin/diff" -u "${1}" "${2}" | delta
 }
@@ -90,7 +89,7 @@ diff() {
 #-------------------------------------------------------------
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
-git_color() {
+function git_color() {
   case "$git_status" in
     *'not staged'* |\
       *'to be committed'* |\
@@ -122,7 +121,7 @@ git_color() {
   esac
 }
 
-git_branch() {
+function git_branch() {
   git_status="$(\git status 2> /dev/null)"
   local is_on_branch='^(On branch|En la rama) ([^[:space:]]+)'
   local is_on_commit='HEAD (detached at|desacoplada en) ([^[:space:]]+)'
@@ -166,7 +165,7 @@ git_branch() {
 # VCS_STATUS_PUSH_COMMITS_AHEAD=0
 # VCS_STATUS_PUSH_COMMITS_BEHIND=0
 # VCS_STATUS_COMMIT_SUMMARY
-gitstatus_prompt() {
+function gitstatus_prompt() {
   PROMPT=$'\n'
   PROMPT+="$(color blue)%c "
 
@@ -241,7 +240,7 @@ fi
 # CURSOR POSITIONING
 #-------------------------------------------------------------
 # Position cursor after ARG[0] (for argument/flag entry)
-after-first-word() {
+function after-first-word() {
     zle beginning-of-line
     zle forward-word
 }
@@ -292,7 +291,7 @@ zle -N up-line-or-beginning-search
 # Use ctrl-z as a toggle
 #-------------------------------------------------------------
 
-ctrlz() {
+function ctrlz() {
     if [[ $#BUFFER -eq 0 ]]; then
         fg >/dev/null 2>&1 && zle redisplay
     else
@@ -305,7 +304,7 @@ zle -N ctrlz
 #-------------------------------------------------------------
 # Use cd with pd
 #-------------------------------------------------------------
-cd() {
+function cd() {
     if type pd >/dev/null; then
       builtin cd "$(pd "$1")" || return
     else
@@ -318,7 +317,7 @@ cd() {
 #-------------------------------------------------------------
 # Use FZF to set versions with ASDF
 #-------------------------------------------------------------
-asdf-fzf() {
+function asdf-fzf() {
     BUFFER=$(asdf-select)
     zle end-of-line
 }
@@ -384,7 +383,7 @@ bindkey -s '\eOB' '\e[B'
 #-------------------------------------------------------------
 autoload -U colors && colors
 
-color() {
+function color() {
     # shellcheck disable=SC2154
     [[ $1 == 'red'    ]] && printf "%s" "%{${fg_no_bold[red]}%}"
     [[ $1 == 'yellow' ]] && printf "%s" "%{${fg_no_bold[yellow]}%}"
