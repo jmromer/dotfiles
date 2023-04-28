@@ -1,0 +1,210 @@
+[url "https://github.com/"]
+	insteadOf = git@github.com:
+
+[credential]
+	helper = cache
+
+[safe]
+	directory = *
+
+[user]
+	name  = Jake Romer
+	email = jake@jmromer.org
+
+[branch]
+	autosetuprebase = always
+
+[color]
+	ui = true
+
+[core]
+	autocrlf = input
+	editor   = vim
+
+[color "diff"]
+	commit     = green
+	meta       = yellow
+	frag       = cyan
+	old        = red
+	new        = green
+	whitespace = red reverse
+
+[color "diff-highlight"]
+	oldNormal    = red
+	oldHighlight = red 52
+	newNormal    = green
+	newHighlight = green 22
+
+[diff]
+	line-numbers = true
+	renames      = true
+	tool         = vimdiff3
+
+[fetch]
+	prune = true
+
+[init]
+	defaultBranch = master
+
+[interactive]
+	singlekey  = true
+	diffFilter  = delta --color-only
+
+[log]
+	date = short
+
+[merge]
+	conflictstyle = diff3
+	ff            = no
+	tool          = vimdiff
+
+[mergetool]
+	keepBackup = false
+	prompt     = false
+
+[difftool]
+	prompt = false
+
+[diff]
+	tool = vimdiff
+
+[pager]
+	diff   = delta
+	log    = delta
+	stash  = delta
+	reflog = delta
+	show   = delta
+
+[delta]
+	plus-style   = "syntax #012800"
+	minus-style  = "syntax #340001"
+	navigate     = true
+	line-numbers = true
+	side-by-side = true
+
+[pretty]
+	brief    = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset%Cgreen%>>(11)%cd%Creset %C(yellow)%+D%Creset"
+	select   = "%Cred%h%Creset %C(bold)%<(50,trunc)%s%Creset %Cgreen%>>(20)%D%Creset"
+	extended = "%Cred%h%Creset %C(bold)%<(100,trunc)%s%Creset %Cgreen%>>(40)%D%Creset"
+
+[push]
+	default = simple
+
+[pull]
+	rebase  = true
+
+[rerere]
+	enabled = true
+
+[rebase]
+	autosquash = true
+
+[alias]
+	# plumbing
+	i        = init
+	ig       = ignore
+	bh       = bisect-helper
+	sf       = select-files
+	cp       = cherry-pick
+
+	# time tracking
+	cli      = clock-in
+	clo      = clock-out
+	cloe     = clock-out-with-editor
+
+	# checkout
+	co       = checkout
+	cob      = checkout-branch
+	coba     = checkout-branch --all
+	coc      = checkout-commit
+	cours    = checkout --ours
+	ctheirs  = checkout --theirs
+
+	# sha selection
+	sha      = select-sha
+	ahs      = select-sha-reversed
+	shacp    = !sh -c 'git select-sha | pbcopy'
+	ahscp    = !sh -c 'git select-sha-reversed | pbcopy'
+
+	# branch management
+	b        = branch -vv
+	bc       = create-branch-with-remote
+	bcl      = create-branch
+	bcc      = create-branch-continuation
+	bd       = delete-branch
+	bdf      = branch -D
+	bdo      = clear-deleted-branches
+
+	# staging files
+	a        = stage-files
+	aa       = add --all
+	ap       = add --patch
+
+	# committing
+	cm       = commit-quick
+	cmt      = commit-tagged
+	cmf      = commit-fixup
+	cmm      = commit-quick-force
+	cms      = commit-squash
+	ca       = commit-amend
+	cap      = commit --no-verify --amend --no-edit
+	up       = !sh -c 'git fetch && git rebase --ignore-date origin/${1:-master}' -
+
+	# remotes: fetching, pushing, pulling
+	f        = fetch
+	p        = push
+	pf       = push --force-with-lease
+	pls      = pull --autostash
+	po       = push origin
+	pu       = push -u
+	rem      = remote -v
+
+	# rebasing
+	r        = rebase --ignore-date
+	ri       = rebase-interactive
+	ra       = rebase --abort
+	rc       = rebase --continue
+	squash   = !sh -c 'git fetch && git rebase --ignore-date -i origin/${1:-master}' -
+	rmc      = remove-commit
+
+	# merging
+	m        = merge
+	ma       = merge --abort
+	mc       = merge --continue
+	mt       = mergetool
+
+	# diffing
+	d        = diff
+	ds       = diff --staged
+	dh       = diff --histogram
+
+	# log / history
+	h        = log --format=brief --abbrev-commit --graph
+	hb       = hg HEAD --not origin/master
+	hdiff    = hg -U1
+	hfiles   = hg --format=medium --stat
+	hg       = log --format=brief --abbrev-commit
+	hh       = !git --no-pager hg -n 15
+	hm       = hg --merge
+	hnm      = hg --no-merges --show-linear-break
+	hsince   = !sh -c 'git hg --since=$1' -
+	hstat    = hg --stat
+	lg       = log --grep
+	lgr      = log --walk-reflogs --grep
+	lp       = log --patch
+	lpr      = log --patch -G
+	lps      = log --patch -S
+
+	# stashing
+	s        = stash
+	sc       = stash clear
+	sa       = !sh -c 'git stash apply stash@{$1}' -
+	sd       = !sh -c 'git stash drop stash@{$1}' -
+	ss       = !sh -c 'git show stash@{$1}' -
+	su       = stash --include-untracked
+	sl       = stash list
+	sp       = stash pop
+
+	# patch packaging
+	typeof   = cat-file -t
+	dump     = cat-file -p

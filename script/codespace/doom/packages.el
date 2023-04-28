@@ -1,0 +1,1 @@
+../../../config/doom/packages.el

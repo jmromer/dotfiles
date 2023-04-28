@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -x
+
+# Install homebrew dependencies
+# -----------------------------
+brew install bat exa fzf git-delta
+brew install romkatv/gitstatus/gitstatus
+
+# Install pd
+# ----------
+mkdir -p ~/.state/pd
+touch ~/.state/pd/history
+cd ~/.pd && go build && go install && cd -
+
+exec zsh
