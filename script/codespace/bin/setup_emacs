@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+export DOTFILES_DIR=~/.dotfiles
+export CODESPACE_CONFIG="${DOTFILES_DIR}/script/codespace"
+export DOOMDIR="${CODESPACE_CONFIG}/doom"
+
+brew install ripgrep fd emacs
+
+# Install emacs config
+# ---------------------
+doom=~/.config/emacs/bin/doom
+
+yes | $doom install
+$doom sync

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -x
+
+export DOTFILES_DIR=~/.dotfiles
+export CODESPACE_CONFIG="${DOTFILES_DIR}/script/codespace"
+
+# Clone dotfiles directory
+# ------------------------
+git clone https://github.com/jmromer/dotfiles.git ${DOTFILES_DIR}
+git clone https://github.com/jmromer/pd.git ~/.pd
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+
+# Install config files
+# --------------------
+ln -sf ${CODESPACE_CONFIG}/zshrc ~/.zshrc
+ln -sf ${CODESPACE_CONFIG}/gitconfig ~/.gitconfig
+
+echo "alias strap=${CODESPACE_CONFIG}/bin/strap" >> ~/.bashrc

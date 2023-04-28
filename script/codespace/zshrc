@@ -1,0 +1,387 @@
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
+
+# Example aliases
+DISABLE_AUTO_UPDATE=true
+DISABLE_UPDATE_PROMPT=true
+export GITHUB_PATH=/workspaces/github
+export LAUNCH_PATH=/workspaces/actions/launch
+export SKYRISE_PATH=/workspaces/actions/actions-dotnet/src
+alias start-actions='/workspaces/github/script/actions/start-actions'
+alias stop-actions='/workspaces/github/script/actions/stop-actions'
+alias skyrise='cd /workspaces/actions/actions-dotnet/src && ./init.sh'
+alias shallow-clone='/workspaces/github/script/dx/shallow-clone'
+alias shallow-checkout='/workspaces/github/script/dx/shallow-checkout'
+alias shallow-pull='/workspaces/github/script/dx/shallow-pull'
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(rbenv init -)"
+
+# ========== PATH ================
+
+PATH=${HOME}/.dotfiles/bin
+PATH+=:${HOME}/.dotfiles/share/git/bin
+PATH+=:${HOME}/.dotfiles/script/codespace/bin
+PATH+=:${HOME}/.local/bin
+PATH+=:${HOME}/.rbenv/shims
+PATH+=:${HOME}/.config/emacs/bin
+PATH+=:${HOME}/go/bin
+PATH+=:${HOMEBREW_PREFIX}/bin
+PATH+=:${HOMEBREW_PREFIX}/sbin
+PATH+=:/usr/lib/go-1.19/bin
+PATH+=:/usr/local/sbin
+PATH+=:/usr/local/bin
+PATH+=:/usr/sbin
+PATH+=:/usr/bin
+PATH+=:/sbin
+PATH+=:/bin
+PATH+=:/workspaces/github/bin
+PATH+=:/workspaces/github/vendor/node
+PATH+=:/workspaces/actions/actions-codespaces/script
+PATH+=:/workspaces/insights-dataplatform/.dotnet
+PATH+=:/workspaces/actions/actions-dotnet/.dotnet
+PATH+=:/workspaces/actions/actions-dotnet/src/script/autopath
+export PATH
+
+# ========== PROMPT ================
+#-------------------------------------------------------------
+# COLORS
+#-------------------------------------------------------------
+autoload -U colors && colors
+
+function color() {
+    # shellcheck disable=SC2154
+    [[ $1 == 'red'    ]] && printf "%s" "%{${fg_no_bold[red]}%}"
+    [[ $1 == 'yellow' ]] && printf "%s" "%{${fg_no_bold[yellow]}%}"
+    [[ $1 == 'green'  ]] && printf "%s" "%{${fg_no_bold[green]}%}"
+    [[ $1 == 'violet' ]] && printf "%s" "%{${fg_no_bold[magenta]}%}"
+    [[ $1 == 'blue'   ]] && printf "%s" "%{${fg_no_bold[blue]}%}"
+    [[ $1 == 'white'  ]] && printf "%s" "%{${fg_no_bold[white]}%}"
+    # shellcheck disable=SC2154
+    [[ $1 == 'reset'  ]] && printf "%s" "%{${reset_color}%}"
+}
+
+function gitstatus_prompt() {
+  PROMPT=$'\n'
+  PROMPT+="$(color blue)%c$(color reset) "
+
+  if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+    if (( VCS_STATUS_HAS_CONFLICTED )); then
+      PROMPT+="$(color violet)"
+    elif (( VCS_STATUS_HAS_STAGED )) ||
+         (( VCS_STATUS_HAS_UNSTAGED )) ||
+         (( VCS_STATUS_HAS_UNTRACKED ));
+    then
+      PROMPT+="$(color red)"
+    elif (( VCS_STATUS_COMMITS_AHEAD )) ||
+         (( VCS_STATUS_COMMITS_BEHIND )) ||
+         (( VCS_STATUS_PUSH_COMMITS_AHEAD )) ||
+         (( VCS_STATUS_PUSH_COMMITS_BEHIND ));
+    then
+      PROMPT+="$(color yellow)"
+    else
+      PROMPT+="$(color green)"
+    fi
+    PROMPT+="${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT:0:10}}//\%/%%} "  # escape %
+  fi
+
+  PROMPT+="$(color reset)%# "
+  setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
+}
+
+function git_ref() {
+  local root="$(git rev-parse --show-toplevel 2>/dev/null)"
+  [[ -z "$root" ]] && return
+
+  local ref="$(cat ${root}/.git/HEAD | sed -E 's/ref:.+\///')"
+  echo -n " ${ref:0:20}"
+}
+
+#-------------------------------------------------------------
+# PROMPT WITH SHORT PWD, COLORIZED GIT INFO
+#-------------------------------------------------------------
+setopt prompt_subst       # enables command substitution
+
+if [[ -f "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh" ]]; then
+    source "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh"
+    gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd gitstatus_prompt
+else
+  PS1=$'$(color blue)%c$(color reset)$(git_ref) %# '
+  export PS1
+fi
+
+# ========== Customizations ================
+
+#-------------------------------------------------------------
+# ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
+#-------------------------------------------------------------
+alias ..='\cd ..; l'     # go to parent dir and list contents
+alias ...='\cd ../..; l' # go to grandparent dir and list contents
+alias mkdir='mkdir -p'   # create subdirectories as necessary
+alias h='history'        # show history
+alias d='dirs -v'        # show directory stack
+alias ls='exa'
+alias l='ls'
+alias la='ls -a'
+alias ld='ls -d .*'
+alias ll='ls -l'
+alias lla='ls -al'
+alias lld='ls -al -d .*'
+alias lt='exa --tree --level=3'
+
+#-------------------------------------------------------------
+# ALIASES: SAFEGUARDS
+#-------------------------------------------------------------
+alias rm='rm -i'  # confirm deletion
+alias mv='mv -i'  # confirm move if overwriting existing file
+alias cp='cp -i'  # confirm copy if overwriting existing file
+alias ln='ln -iv' # display error if link exists; link verbosely
+
+#-------------------------------------------------------------
+# ALIASES: Postfix
+#-------------------------------------------------------------
+alias -g G='| grep --line-number --context=1' # grep w/ context
+alias -g P='| less'   # send to pager
+
+#-------------------------------------------------------------
+# ALIASES: highlighting, xdg
+#-------------------------------------------------------------
+alias cat=bat
+alias pp='pretty-print-path'
+
+#-------------------------------------------------------------
+# EDITOR / PAGER
+#-------------------------------------------------------------
+export EDITOR="vim"
+export PAGER="less"
+export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '
+
+export DOTFILES_DIR=~/.dotfiles
+export CODESPACE_CONFIG="${DOTFILES_DIR}/script/codespace"
+export DOOMDIR="${CODESPACE_CONFIG}/doom"
+
+#-------------------------------------------------------------
+# FUNCTIONS
+#-------------------------------------------------------------
+# create dir $1 and cd into it, creating subdirectories as necessary
+function md() {
+  local directory_name="${*// /-}"
+  \mkdir -p "$directory_name"
+  \cd "$directory_name" || return
+}
+
+function diff() {
+    [[ -n "${1}" ]] && [[ -n "${2}" ]] || return
+    "${HOMEBREW_PREFIX}/bin/diff" -u "${1}" "${2}" | delta
+}
+
+#-------------------------------------------------------------
+# ZSH
+#-------------------------------------------------------------
+# GENERAL
+#-------------------------------------------------------------
+setopt extendedglob # Enable extended globbing
+unsetopt nomatch    # Allow [ or ] wherever you want
+autoload -U zmv     # rename files like zmv '(*).txt' '$1.html'
+
+
+#-------------------------------------------------------------
+# DIRECTORY STACK  (see http://j.mp/1lOiWio)
+#-------------------------------------------------------------
+setopt autocd autopushd pushd_minus pushd_silent
+setopt pushd_to_home cdable_vars pushd_ignore_dups
+export DIRSTACKSIZE=10
+
+#-------------------------------------------------------------
+# HISTORY SETTINGS
+#-------------------------------------------------------------
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY
+
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"
+export HISTSIZE=1000
+export SAVEHIST=1000
+
+#-------------------------------------------------------------
+# CURSOR POSITIONING
+#-------------------------------------------------------------
+# Position cursor after ARG[0] (for argument/flag entry)
+after-first-word() {
+    zle beginning-of-line
+    zle forward-word
+}
+
+zle -N after-first-word
+
+#-------------------------------------------------------------
+# vi / emacs modes
+#-------------------------------------------------------------
+if [[ -z "$INSIDE_EMACS" ]]; then
+    # Change cursor shape for different vi modes.
+    zle-keymap-select() {
+        if [[ ${KEYMAP} == vicmd ]] ||
+            [[ $1 = 'block' ]]; then
+            echo -ne '\e[1 q'
+        elif [[ ${KEYMAP} == main ]] ||
+                [[ ${KEYMAP} == viins ]] ||
+                [[ ${KEYMAP} = '' ]] ||
+                [[ $1 = 'beam' ]]; then
+            echo -ne '\e[5 q'
+        fi
+    }
+
+    zle -N zle-keymap-select
+
+    # no lag after pressing ESC to enter normal mode
+    export KEYTIMEOUT=5
+
+    # set vi keybindings
+    bindkey -v
+
+    echo -ne '\e[5 q' # Use beam shape cursor on startup.
+    preexec() { echo -ne '\e[5 q'; } # Use beam shape cursor for each new prompt.
+fi
+
+#-------------------------------------------------------------
+# HISTORY SEARCH
+#-------------------------------------------------------------
+# back-i-search should begin with the current word
+setopt complete_in_word
+
+autoload -U down-line-or-beginning-search
+autoload -U up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+
+#-------------------------------------------------------------
+# Use ctrl-z as a toggle
+#-------------------------------------------------------------
+
+ctrlz() {
+    if [[ $#BUFFER -eq 0 ]]; then
+        fg >/dev/null 2>&1 && zle redisplay
+    else
+        zle push-input
+    fi
+}
+
+zle -N ctrlz
+
+
+#-------------------------------------------------------------
+# Use cd with pd
+#-------------------------------------------------------------
+function cd() {
+    if type pd >/dev/null; then
+      builtin cd "$(pd "$1")" || return
+    else
+      echo "warning: p/d not installed"
+      builtin cd "$@" || return
+    fi
+}
+
+
+#-------------------------------------------------------------
+# Use FZF to set versions with ASDF
+#-------------------------------------------------------------
+asdf-fzf() {
+    BUFFER=$(asdf-select)
+    zle end-of-line
+}
+
+zle -N asdf-fzf
+
+#-------------------------------------------------------------
+# KEY MAPS
+#-------------------------------------------------------------
+# zle defs
+
+zle -N fzf-file-widget
+zle -N prefix-2
+
+# all modes
+
+bindkey "^[[3"  prefix-2         # ensure delete backwards deletes
+bindkey "^[[3~" delete-char      # ensure delete forwards deletes
+bindkey "^\\"   asdf-fzf
+bindkey "^t"    fzf-file-widget  # invoke FZF file finder
+bindkey "^x"    after-first-word # move cursor to flag-insert position
+bindkey "^z"    ctrlz
+
+# string-based
+
+bindkey -s "^h" "cd\n" # cd with pd
+bindkey -s "^\]" "g cob\n" # change branches with pd
+
+# emacs mode
+
+bindkey -M emacs '^y' accept-and-hold
+bindkey -M emacs '^o' push-line-or-edit
+
+# vi insert mode
+
+bindkey -M viins '^a' beginning-of-line
+bindkey -M viins '^b' backward-char
+bindkey -M viins '^d' delete-char
+bindkey -M viins '^e' end-of-line
+bindkey -M viins '^f' forward-char
+bindkey -M viins '^k' kill-line
+bindkey -M viins '^n' down-line-or-beginning-search
+bindkey -M viins '^o' push-line-or-edit  # stash command, issue another, restore stash
+bindkey -M viins '^p' up-line-or-beginning-search
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M viins '^y' accept-and-hold    # issue the command, but keep it at the prompt
+
+# vi command mode
+
+bindkey -M vicmd '^n' down-line-or-beginning-search
+bindkey -M vicmd '^p' up-line-or-beginning-search
+bindkey -M vicmd '^r' history-incremental-search-backward
+
+# arrow keys trigger history searching
+
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
+bindkey -s '\eOA' '\e[A'
+bindkey -s '\eOB' '\e[B'
+
+
+#-------------------------------------------------------------
+# COMMAND COMPLETION
+#-------------------------------------------------------------
+# shellcheck disable=SC2206
+fpath=(
+  ${BREW_PREFIX}/share/zsh/site-functions
+  ${BREW_PREFIX}/share/zsh-completions
+  ${ASDF_DIR}/completions
+  ${ZDOTDIR}/completions
+  $fpath
+)
+
+autoload -Uz compinit
+compinit
+
+compdef g=git
+
+#-------------------------------------------------------------
+# AUTOCOMPLETION
+#-------------------------------------------------------------
+
+if [[ -d "${HOMEBREW_PREFIX}/opt/fzf/shell" ]]; then
+  . "${HOMEBREW_PREFIX}/opt/fzf/shell/completion.zsh"
+  . "${HOMEBREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
+fi
