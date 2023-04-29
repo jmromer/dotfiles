@@ -167,7 +167,7 @@ function git_branch() {
 # VCS_STATUS_COMMIT_SUMMARY
 function gitstatus_prompt() {
   PROMPT=$'\n'
-  PROMPT+="$(color blue)%c "
+  PROMPT+="$(color blue)%c$(color reset) "
 
   if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
     if (( VCS_STATUS_HAS_CONFLICTED )); then
@@ -406,7 +406,7 @@ if [[ -f "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh" ]]; then
     autoload -Uz add-zsh-hook
     add-zsh-hook precmd gitstatus_prompt
 else
-  PS1=$'\n$(color blue)%c ' # basename of pwd after a newline
+  PS1=$'\n$(color blue)%c$(color reset) ' # basename of pwd after a newline
   PS1+='$(git_branch)'      # current branch or commit name, with color
   PS1+='$(color reset)%# '  # reset color, add %
   export PS1
