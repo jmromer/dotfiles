@@ -14,17 +14,35 @@ if [[ -n "$1" ]]; then
   exit 0
 fi
 
-# fuzzy-select files
-files="$(git-select-files)"
-
+files="$(git diff --name-only)"
 if [[ -z "${files}" ]]; then
+  echo "No unstaged files"
+  exit 0
+fi
+
+# fuzzy-select files
+gitroot="$(git rev-parse --show-toplevel)"
+selection=$(
+  echo "${files}" |
+    fzf \
+      --multi \
+      --tiebreak=index \
+      --layout=reverse \
+      $1 \
+      --preview-window='bottom,85%,~1,nowrap' \
+      --preview="echo {} | sed \"s@^@${gitroot}/@\" | xargs git diff | delta 2>/dev/null"
+)
+
+if [[ -z "${selection}" ]]; then
   exit 0
 fi
 
 IFS=$'\n'
 
-for file in ${files}; do
-  git add "${file}"
+\cd "${gitroot}"
+for selected_file in "${selection}"; do
+  git add "${selected_file}"
 done
+\cd - >/dev/null
 
 git status -sb
