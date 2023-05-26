@@ -12,8 +12,17 @@ BLACKLIST =
   .freeze
 
 deletions = []
+
 %w[.config .state .local .emacs.d]
-  .each { |dir| deletions.concat Dir.glob("#{Dir.home}/#{dir}/**/*") }
+  .map { |dir| [Dir.home, dir].join("/") }
+  .select { |dir| File.directory?(dir) }
+  .each { |dir| deletions.concat([dir], Dir.glob("#{dir}/**/*"))}
   .each { |dir| FileUtils.rm_rf(dir) }
 
-puts("Deleted:", deletions.map { |f| f.sub(Dir.home, "~") })
+deletions.map! { |deletion| deletion.sub(Dir.home, "~") }
+
+if deletions.any?
+  puts("Deleted:", deletions)
+else
+  puts("No deletable files found. No deletions.")
+end
