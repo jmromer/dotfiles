@@ -83,6 +83,7 @@ setup :gui_apps do
   cask_install :launchbar
   cask_install :launchcontrol
   cask_install :launchpad_manager
+  cask_install :mark_text
   cask_install :name_mangler
   cask_install :pandora
   cask_install :protonmail_bridge
