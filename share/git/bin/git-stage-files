@@ -40,9 +40,9 @@ fi
 IFS=$'\n'
 
 \cd "${gitroot}"
-for selected_file in "${selection}"; do
-  git add "${selected_file}"
-done
+
+git add ${selection}
+
 \cd - >/dev/null
 
 git status -sb
