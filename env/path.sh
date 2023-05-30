@@ -14,7 +14,6 @@ PATH="${XDG_LOCALS_DIR}/bin"
 PATH+=":${DOTFILES_DIR}/bin"
 PATH+=":${XDG_SECURE_DIR}/bin"
 PATH+=":./node_modules/.bin"
-PATH+=":/usr/local/bin" # some binaries use /usr/local/bin on Apple silicon
 
 PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
 PATH+=":${XDG_DATA_HOME}/asdf-manager/bin"
@@ -26,6 +25,7 @@ PATH+=":${XDG_DATA_HOME}/gem/ruby/3.0.0/bin"
 
 PATH+=":${HOMEBREW_PREFIX}/bin"
 PATH+=":${HOMEBREW_PREFIX}/sbin"
+PATH+=":/usr/local/bin" # some binaries use /usr/local/bin on Apple silicon
 
 PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
