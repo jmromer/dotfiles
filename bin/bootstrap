@@ -219,10 +219,11 @@ setup :pd_tool do
   script_install :pd
 end
 
-setup :samizdat do
+setup :writing_projects, default: false do
   asdf_install :gohugo
-  install_launchagent "samizdat.deploy"
-  install_launchagent "samizdat.serve"
+  setup(:org) { setup_writing(:org) }
+  setup(:samizdat) { setup_writing(:samizdat) }
+  setup(:conclave) { setup_writing(:conclave) }
 end
 
 perform :cleanups do
