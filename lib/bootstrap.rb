@@ -12,8 +12,13 @@ def prompt_and_wait(prompt)
   loop { break if get_yes_no("Continue?") }
 end
 
-def setup(group_name)
-  gated_prompt("Set up", group_name) { yield if block_given? }
+def setup(group_name, default: true)
+  gated_prompt("Set up", group_name, default: default) { yield if block_given? }
+end
+
+def setup_writing(project)
+  FileUtils.mkdir_p(File.expand_path("~/Writing2/#{project}"))
+  execho("git clone https://github.com/jmromer/#{project}.git ~/Writing2/#{project}")
 end
 
 def configure(group_name)
@@ -24,24 +29,26 @@ def perform(group_name)
   gated_prompt("Perform", group_name) { yield if block_given? }
 end
 
-def gated_prompt(message, group_name)
+def gated_prompt(message, group_name, default: true)
   prompt = "#{message} #{humanized group_name}?"
   puts "\n", prompt, "-" * prompt.length
 
-  if get_yes_no
+  if get_yes_no(default: default)
     yield if block_given?
   else
     puts "Skipping."
   end
 end
 
-def get_yes_no(prompt = "")
+def get_yes_no(prompt = "", default: true)
+  options = default ? "[Y/n]: " : "[y/N]: "
   loop do
-    print [prompt, "[Y/n]: "].reject(&:empty?).join(" ")
+    print [prompt, options].reject(&:empty?).join(" ")
 
     case gets.to_s.strip
-    when /^(yes|y)$/i, "" then return true
+    when /^(yes|y)$/i then return true
     when /^(no|n)$/i then return false
+    when "" then return default
     end
   end
 rescue Interrupt
@@ -49,7 +56,6 @@ rescue Interrupt
 end
 
 def execho(command)
-  puts(command)
   system(ENVIRONMENT, command)
 end
 
