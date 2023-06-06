@@ -48,21 +48,6 @@
 	url = https://github.com/tmux-plugins/tmux-open.git
 	branch = master
 	update = rebase
-[submodule "share/org"]
-	path = share/org
-	url = https://github.com/jmromer/org.git
-	branch = master
-	update = rebase
-[submodule "share/blogs/conclave"]
-	path = share/blogs/conclave
-	url = https://github.com/jmromer/conclave.git
-	branch = master
-	update = rebase
-[submodule "share/blogs/samizdat"]
-	path = share/blogs/samizdat
-	url = https://github.com/jmromer/samizdat.git
-	branch = master
-	update = rebase
 [submodule "share/tmux/tmux-copycat"]
 	path = share/tmux/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat
