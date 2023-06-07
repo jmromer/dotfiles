@@ -83,6 +83,7 @@ share/tilt-dev/
 
 # high-churn config files
 config/iterm2/AppSupport
+config/jupyter/migrated
 config/karabiner/automatic_backups
 config/zsh/.zcompcache
 config/zsh/.zcompdump
