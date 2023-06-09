@@ -1,0 +1,14 @@
+{
+  "load_extensions": {
+    "nbextensions/vim_binding": true,
+    "nbextensions_configurator/config_menu/main": true,
+    "contrib_nbextensions_help_item/main": true,
+    "spellchecker/main": false,
+    "code_prettify/autopep8": true,
+    "code_prettify/code_prettify": true,
+    "collapsible_headings/main": true,
+    "table_beautifier/main": true,
+    "toc2/main": true,
+    "vim_binding/vim_binding": true
+  }
+}
