@@ -89,6 +89,7 @@ config/zsh/.zcompcache
 config/zsh/.zcompdump
 config/zsh/.zsh_history
 config/zsh/.zsh_sessions
+config/docker/*
 config/zsh/.iterm2*
 config/configstore/update-notifier-npm.json
 config/doom/config.el
