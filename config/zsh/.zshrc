@@ -221,8 +221,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
 
+# HISTFILE set in env/xdg.sh
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"
-export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export HISTSIZE=1000
 export SAVEHIST=1000
 
