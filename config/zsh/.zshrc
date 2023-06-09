@@ -1,4 +1,6 @@
-# shellcheck disable=SC1090
+#!/usr/bin/env bash
+
+# shellcheck disable=SC1090,SC2139
 # SC1090: Can't follow non-constant source.
 #         Use a directive to specify location.
 
@@ -18,18 +20,6 @@ alias ll='ls -l'
 alias lla='ls -al'
 alias lld='ls -al -d .*'
 alias lt='exa --tree --level=3'
-
-#-------------------------------------------------------------
-# ALIASES: XDG dir navigation
-#-------------------------------------------------------------
-alias ccache="cd ${XDG_CACHE_HOME}"
-alias cconfig="cd ${XDG_CONFIG_HOME}"
-alias cdata="cd ${XDG_DATA_HOME}"
-alias clocal="cd ${XDG_LOCALS_DIR}"
-alias corg="cd ${ORG_HOME}"
-alias crun="cd ${XDG_RUNTIME_DIR}"
-alias cstate="cd ${XDG_STATE_HOME}"
-alias cwork="cd ~/Work"
 
 #-------------------------------------------------------------
 # ALIASES: SAFEGUARDS
@@ -75,13 +65,13 @@ export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '
 # FUNCTIONS
 #-------------------------------------------------------------
 # create dir $1 and cd into it, creating subdirectories as necessary
-function md() {
+md() {
   local directory_name="${*// /-}"
-  \mkdir -p "$directory_name"
-  \cd "$directory_name" || return
+  \mkdir -p "${directory_name}"
+  \cd "${directory_name}" || return
 }
 
-function diff() {
+diff() {
     [[ -n "${1}" ]] && [[ -n "${2}" ]] || return
     "${HOMEBREW_PREFIX}/bin/diff" -u "${1}" "${2}" | delta
 }
@@ -89,8 +79,8 @@ function diff() {
 #-------------------------------------------------------------
 # COLORIZED GIT PROMPT
 #-------------------------------------------------------------
-function git_color() {
-  case "$git_status" in
+git_color() {
+  case "${git_status}" in
     *'not staged'* |\
       *'to be committed'* |\
       *'untracked files present'* |\
@@ -121,7 +111,7 @@ function git_color() {
   esac
 }
 
-function git_branch() {
+git_branch() {
   git_status="$(\git status 2> /dev/null)"
   local is_on_branch='^(On branch|En la rama) ([^[:space:]]+)'
   local is_on_commit='HEAD (detached at|desacoplada en) ([^[:space:]]+)'
@@ -129,17 +119,17 @@ function git_branch() {
   local branch
   local commit
 
-  if [[ $git_status =~ $is_on_branch ]]; then
+  if [[ ${git_status} =~ ${is_on_branch} ]]; then
     branch=${BASH_REMATCH[2]:-${match[2]}} # bash/zsh portable
-    if [[ $git_status =~ "(Unmerged paths|no fusionadas)" ]]; then
+    if [[ ${git_status} =~ (Unmerged paths|no fusionadas) ]]; then
       git_color && echo -n "merging into ${branch} "
     else
       git_color && echo -n "${branch} "
     fi
-  elif [[ $git_status =~ $is_on_commit ]]; then
+  elif [[ ${git_status} =~ ${is_on_commit} ]]; then
     commit=${BASH_REMATCH[2]:-${match[2]}}
     git_color && echo -n "${commit} "
-  elif [[ $git_status =~ $is_rebasing ]]; then
+  elif [[ ${git_status} =~ ${is_rebasing} ]]; then
     branch=${BASH_REMATCH[2]:-${match[2]}}
     commit=${BASH_REMATCH[4]:-${match[4]}}
     git_color && echo -n "rebasing ${branch} onto ${commit} "
@@ -165,11 +155,11 @@ function git_branch() {
 # VCS_STATUS_PUSH_COMMITS_AHEAD=0
 # VCS_STATUS_PUSH_COMMITS_BEHIND=0
 # VCS_STATUS_COMMIT_SUMMARY
-function gitstatus_prompt() {
+gitstatus_prompt() {
   PROMPT=$'\n'
   PROMPT+="$(color blue)%c$(color reset) "
 
-  if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+  if gitstatus_query MY && [[ ${VCS_STATUS_RESULT} == ok-sync ]]; then
     if (( VCS_STATUS_HAS_CONFLICTED )); then
       PROMPT+="$(color violet)"
     elif (( VCS_STATUS_HAS_STAGED )) ||
@@ -186,7 +176,9 @@ function gitstatus_prompt() {
     else
       PROMPT+="$(color green)"
     fi
-    PROMPT+="${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT:0:10}}//\%/%%} "  # escape %
+    local hash="${VCS_STATUS_COMMIT:0:10}"
+    local branch="${VCS_STATUS_LOCAL_BRANCH:-@${hash}}"
+    PROMPT+="${branch//\%/%%} "  # escape %
   fi
 
   PROMPT+="$(color reset)%# "
@@ -213,34 +205,36 @@ export DIRSTACKSIZE=10
 #-------------------------------------------------------------
 # HISTORY SETTINGS
 #-------------------------------------------------------------
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_SAVE_NO_DUPS
-setopt INC_APPEND_HISTORY
-
 # HISTFILE set in env/xdg.sh
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"
 export HISTSIZE=1000
 export SAVEHIST=1000
 
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY             # Share history between all sessions.
+
 #-------------------------------------------------------------
 # Zsh Plugins (load last)
 #-------------------------------------------------------------
 
-if [[ -z "$INSIDE_EMACS" ]]; then
-    . "$XDG_DATA_HOME/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+if [[ -z "${INSIDE_EMACS}" ]]; then
+    . "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 fi
 
-. "$XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+. "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 #-------------------------------------------------------------
 # CURSOR POSITIONING
 #-------------------------------------------------------------
 # Position cursor after ARG[0] (for argument/flag entry)
-function after-first-word() {
+after-first-word() {
     zle beginning-of-line
     zle forward-word
 }
@@ -250,7 +244,7 @@ zle -N after-first-word
 #-------------------------------------------------------------
 # vi / emacs modes
 #-------------------------------------------------------------
-if [[ -z "$INSIDE_EMACS" ]]; then
+if [[ -z "${INSIDE_EMACS}" ]]; then
     # Change cursor shape for different vi modes.
     zle-keymap-select() {
         if [[ ${KEYMAP} == vicmd ]] ||
@@ -291,7 +285,7 @@ zle -N up-line-or-beginning-search
 # Use ctrl-z as a toggle
 #-------------------------------------------------------------
 
-function ctrlz() {
+ctrlz() {
     if [[ $#BUFFER -eq 0 ]]; then
         fg >/dev/null 2>&1 && zle redisplay
     else
@@ -304,7 +298,7 @@ zle -N ctrlz
 #-------------------------------------------------------------
 # Use cd with pd
 #-------------------------------------------------------------
-function cd() {
+cd() {
     if type pd >/dev/null; then
       builtin cd "$(pd "$1")" || return
     else
@@ -317,7 +311,7 @@ function cd() {
 #-------------------------------------------------------------
 # Use FZF to set versions with ASDF
 #-------------------------------------------------------------
-function asdf-fzf() {
+asdf-fzf() {
     BUFFER=$(asdf-select)
     zle end-of-line
 }
@@ -383,7 +377,7 @@ bindkey -s '\eOB' '\e[B'
 #-------------------------------------------------------------
 autoload -U colors && colors
 
-function color() {
+color() {
     # shellcheck disable=SC2154
     [[ $1 == 'red'    ]] && printf "%s" "%{${fg_no_bold[red]}%}"
     [[ $1 == 'yellow' ]] && printf "%s" "%{${fg_no_bold[yellow]}%}"
@@ -421,7 +415,7 @@ fpath=(
   ${BREW_PREFIX}/share/zsh-completions
   ${ASDF_DIR}/completions
   ${ZDOTDIR}/completions
-  $fpath
+  ${fpath}
 )
 
 autoload -Uz compinit
