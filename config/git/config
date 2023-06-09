@@ -144,6 +144,7 @@
 
 	# checkout
 	co       = checkout
+	co-      = !"git checkout -- $(git select-files) && git status --short"
 	cob      = checkout-branch
 	coba     = checkout-branch --all
 	coc      = checkout-commit
