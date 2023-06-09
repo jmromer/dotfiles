@@ -151,7 +151,6 @@ setup :text_editing_cli_tools do
   brew_install :pygments
   brew_install :pandoc
   brew_install :shellcheck
-  brew_install :shfmt
   brew_install :tectonic
   brew_install :tidy_html5
   brew_install :wordnet
