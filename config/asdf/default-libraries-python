@@ -6,6 +6,8 @@ importmagic
 ipdb
 ipython
 isort
+jupyter
+jupyter_contrib_nbextensions
 mypy
 nose
 openai
