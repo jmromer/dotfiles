@@ -17,8 +17,8 @@ def setup(group_name, default: true)
 end
 
 def setup_writing(project)
-  FileUtils.mkdir_p(File.expand_path("~/Writing2/#{project}"))
-  execho("git clone https://github.com/jmromer/#{project}.git ~/Writing2/#{project}")
+  FileUtils.mkdir_p(File.expand_path("~/Writing/#{project}"))
+  execho("git clone https://github.com/jmromer/#{project}.git ~/Writing/#{project}")
 end
 
 def configure(group_name)
