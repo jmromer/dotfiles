@@ -1,12 +1,10 @@
 .cloud66
 .cups
-.docker
 .docker-sync-global.yml
 .dotfiles
 .dropbox
 .DS_Store
 .emacs-profile
-.gem
 .netrc
 .spacemacs
 .spacemacs.env
