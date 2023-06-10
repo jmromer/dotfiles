@@ -42,8 +42,6 @@ end
 setup :build_tools do
   brew_install :bzip2
   brew_install :cmake
-  brew_install :gcc, version: 9
-  brew_install :gcc, version: 10
   brew_install :gcc
   brew_install :gettext
   brew_install :icu4c
