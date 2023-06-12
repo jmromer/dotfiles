@@ -1,6 +1,6 @@
 {
   "load_extensions": {
-    "nbextensions/vim_binding": true,
+    "nbextensions/vim_binding": false,
     "nbextensions_configurator/config_menu/main": true,
     "contrib_nbextensions_help_item/main": true,
     "spellchecker/main": false,
@@ -8,7 +8,39 @@
     "code_prettify/code_prettify": true,
     "collapsible_headings/main": true,
     "table_beautifier/main": true,
-    "toc2/main": true,
-    "vim_binding/vim_binding": true
+    "toc2/main": false,
+    "vim_binding/vim_binding": true,
+    "keyboard_shortcut_editor/main": true,
+    "execution_dependencies/execution_dependencies": true,
+    "hinterland/hinterland": true,
+    "codefolding/main": true,
+    "comment-uncomment/main": true,
+    "code_prettify/isort": true,
+    "varInspector/main": true,
+    "freeze/main": false
+  },
+  "collapsible_headings": {
+    "add_all_cells_button": true,
+    "show_section_brackets": true,
+    "shortcuts": {
+      "collapse_all": "z,m",
+      "uncollapse_all": "z,a"
+    }
+  },
+  "toc2": {
+    "toc_cell": false
+  },
+  "Notebook": {
+    "Header": true,
+    "Toolbar": true
+  },
+  "keys": {
+    "command": {
+      "bind": {
+        "m": "jupyter-notebook:change-cell-to-markdown",
+        "r": "jupyter-notebook:change-cell-to-raw",
+        "c": "jupyter-notebook:change-cell-to-code"
+      }
+    }
   }
 }
