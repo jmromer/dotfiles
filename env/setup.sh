@@ -61,4 +61,3 @@ source "${DOTFILES_DIR}/env/rails.sh"
 # PATH setup
 # -----------------------------
 source "${DOTFILES_DIR}/env/path.sh"
-

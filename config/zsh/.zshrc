@@ -205,7 +205,7 @@ export DIRSTACKSIZE=10
 #-------------------------------------------------------------
 # HISTORY SETTINGS
 #-------------------------------------------------------------
-# HISTFILE set in env/xdg.sh
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"
 export HISTSIZE=1000
 export SAVEHIST=1000
