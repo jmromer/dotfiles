@@ -80,6 +80,7 @@ share/direnv/
 share/heroku/
 share/yarn/
 share/tilt-dev/
+share/CMakeTools/
 
 # high-churn config files
 config/iterm2/AppSupport
