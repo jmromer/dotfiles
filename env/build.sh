@@ -188,7 +188,8 @@ build_flags_set() {
         shift
         ;;
       "")
-        CFLAGS+=" ${OPTFLAGS}"
+        CFLAGS+=" ${OPTFLAGS} ${WARNFLAGS}"
+        CPPFLAGS+=" ${OPTFLAGS} ${WARNFLAGS}"
         build_flags_export
         [ ! $quiet_mode ] && build_flags_inspect
         return
