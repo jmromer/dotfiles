@@ -24,6 +24,8 @@ fi
 
 builtin cd ${XDG_DATA_HOME}/pd
 
+asdf install golang
+
 go get
 
 go build -o ${DOTFILES_DIR}/bin/pd main.go
