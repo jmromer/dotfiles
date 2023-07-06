@@ -18,6 +18,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-hugefile'
 Plug 'ntpeters/vim-better-whitespace' " detect and highlight bad whitespace
 Plug 'pbrisbin/vim-mkdir'             " create subdirectories as needed
+Plug 'rhysd/vim-healthcheck'
 Plug 'tomtom/tcomment_vim'            " gcc / gc[ai][pim]
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
