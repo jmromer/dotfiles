@@ -65,6 +65,7 @@ setup :gui_apps do
   cask_install :bettertouchtool
   cask_install :brave_browser
   cask_install :dash
+  cask_install :discord
   cask_install :divvy
   cask_install :docker
   cask_install :dropbox
@@ -171,7 +172,7 @@ setup :mac_tools do
 end
 
 setup :editors do
-  brew_install :macvim, options: :head
+  brew_install :macvim
 
   # brew_tap "daviderestivo/emacs-head"
   # brew_install :emacs_head,
