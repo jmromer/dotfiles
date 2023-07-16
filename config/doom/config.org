@@ -1352,7 +1352,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 ~org-directory~ must happen /before/ =org= has loaded.
 
 #+begin_src elisp
-(setq org-directory (format "%s/org" (getenv "XDG_DATA_HOME"))
+(setq org-directory (getenv "ORG_HOME")
       deft-directory (format "%s/notes" org-directory))
 #+end_src
 
