@@ -1719,10 +1719,11 @@ See `org-capture-templates' for more information."
 
 #+begin_src elisp
 (setq projectile-project-search-path
-      '(("~/Work" . 1)
+      '(("~/.dotfiles/share" . 2)
         ("~/Projects" . 1)
         ("~/Resources" . 1)
-        ("~/.dotfiles/share" . 2)))
+        ("~/Work" . 2)
+        ("~/Writing" . 2)))
 #+end_src
 
 #+begin_src elisp
