@@ -1746,9 +1746,9 @@ Add Python project types: Pipenv, Poetry, Pytest
 
   (projectile-register-project-type 'python-pytest
                                     '(".pytest_cache")
-                                    :compile ""
+                                    :compile "pytest"
                                     :test "pytest"
-                                    :test-prefix "tests"
+                                    :test-prefix "test_"
                                     :test-suffix "_test")
 
   (projectile-register-project-type 'python-poetry
