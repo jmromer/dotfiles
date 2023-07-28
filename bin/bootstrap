@@ -159,8 +159,6 @@ end
 setup :miscellaneous_cli_tools do
   brew_install :cowsay
   brew_install :defaultbrowser
-  brew_tap "jmromer/fortune-for-grownups"
-  brew_install :fortune_for_grownups, options: :build_from_source
   brew_tap "yt-dlp/taps"
   brew_install :yt_dlp
 end
