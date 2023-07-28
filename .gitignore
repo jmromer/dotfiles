@@ -69,40 +69,46 @@ state
 
 # xdg: data directories
 
+share/CMakeTools/
 share/anaconda
 share/asdf-versions
-share/gem/
-share/npm/
-share/vim/plugged/
-share/ipython/
-share/iterm2/
 share/delta/
 share/direnv/
+share/gem/
 share/heroku/
-share/yarn/
+share/ipython/
+share/iterm2/
+share/npm/
 share/tilt-dev/
-share/CMakeTools/
+share/vim/plugged/
+share/yarn/
 
-# high-churn config files
+# high-churn config files,
+# state files miscategorized as config
+
+config/Webull\ Desktop
+config/configstore/update-notifier-gatsby-cli.json
+config/configstore/update-notifier-npm.json
+config/docker/*
+config/doom/config.el
+config/gatsby/
 config/github-copilot/versions.json
 config/irb/irb_history
 config/iterm2/AppSupport
 config/jupyter/migrated
 config/karabiner/automatic_backups
+config/zsh/.iterm2*
 config/zsh/.zcompcache
 config/zsh/.zcompdump
 config/zsh/.zsh_history
 config/zsh/.zsh_sessions
-config/docker/*
-config/zsh/.iterm2*
-config/configstore/update-notifier-npm.json
-config/doom/config.el
-config/Webull\ Desktop
 
 # symlinks to secure
+
 config/gem/credentials
 
 # binaries
+
 bin/pd
 
 # keep
