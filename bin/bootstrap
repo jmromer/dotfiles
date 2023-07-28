@@ -69,6 +69,7 @@ setup :gui_apps do
   cask_install :docker
   cask_install :dropbox
   cask_install :figma
+  cask_install :httpie
   cask_install :keyboard_maestro
   cask_install :keycastr
   cask_install :launchbar
@@ -119,7 +120,7 @@ setup :development_tools do
   brew_install :flyctl
   brew_install :gh
   brew_install :git_delta
-  brew_install :httpie, options: :head
+  brew_install :httpie
   brew_install :pyenv
   brew_install :source_highlight
   brew_install :tmux, options: :head
