@@ -61,9 +61,9 @@
        ;; multiple-cursors   ; editing in many places at once
        ;; objed              ; text object editing for the innocent
        ;; parinfer           ; turn lisp into python, sort of
-       ;; rotate-text        ; cycle region at point between text candidates
+       rotate-text           ; cycle region at point between text candidates
        snippets              ; my elves. They type so I don't have to
-       ;; word-wrap          ; soft wrapping with language-aware indent
+       word-wrap             ; soft wrapping with language-aware indent
 
        :emacs
        dired                 ; making dired pretty [functional]
@@ -80,8 +80,8 @@
 
        :checkers
        syntax                ; tasing you for every semicolon you forget
-       ;; (spell +flyspell)  ; tasing you for misspelling mispelling
-       ;; grammar            ; tasing grammar mistake every you make
+       (spell +flyspell)     ; tasing you for misspelling mispelling
+       grammar               ; tasing grammar mistake every you make
 
        :tools
        ;; ansible
@@ -95,13 +95,13 @@
        (lookup +dictionary +offline) ; navigate your code and its documentation
        lsp                   ; M-x vscode
        (magit +forge)        ; a git porcelain for Emacs
-       ;; make               ; run make tasks from Emacs
+       make                  ; run make tasks from Emacs
        ;; pass               ; password manager for nerds
        pdf                   ; pdf enhancements
        ;; prodigy            ; FIXME managing external services & code builders
        rgb                   ; creating color strings
        ;; taskrunner         ; taskrunner for all your projects
-       ;; terraform          ; infrastructure as code
+       terraform             ; infrastructure as code
        tree-sitter
        ;; tmux               ; an API for interacting with tmux
        ;; upload             ; map local to remote projects via ssh/ftp
@@ -141,7 +141,7 @@
        (javascript +lsp)     ; all(hope(abandon(ye(who(enter(here))))))
        ;; julia              ; a better, faster MATLAB
        ;; kotlin             ; a better, slicker Java(Script)
-       ;; latex              ; writing papers in Emacs has never been so fun
+       latex                 ; writing papers in Emacs has never been so fun
        ;; lean               ; for folks with too much to prove
        ;; ledger             ; be audit you can be
        ;; lua                ; one-based indices? one-based indices
