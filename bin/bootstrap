@@ -194,7 +194,6 @@ setup :editors do
                  with_imagemagick
                  with_native_comp
                  with_no_frame_refocus
-                 with_no_titlebar_and_round_corners
                  with_xwidgets
                ]
 end
