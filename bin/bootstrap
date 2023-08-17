@@ -44,6 +44,7 @@ setup :build_tools do
   brew_install :cmake
   brew_install :gcc
   brew_install :gettext
+  brew_install :glslang
   brew_install :icu4c
   brew_install :imagemagick
   brew_install :libffi
@@ -54,6 +55,7 @@ setup :build_tools do
   brew_install :openssl, version: 1.1
   brew_install :openssl, version: 3
   brew_install :readline
+  brew_install :rtags
   brew_install :zlib
 end
 
