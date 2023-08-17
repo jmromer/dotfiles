@@ -77,10 +77,11 @@ Set fonts. NB: =doom-variable-pitch-font= could use updating.
       +doom-dashboard-ascii-banner-fn nil)
 #+end_src
 
-Start Emacs maximized.
+Start Emacs maximized, use no titlebar with rounded corners.
 
 #+begin_src elisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(undecorated-round . t))
 #+end_src
 
 Tell =ispell= to shut up.
