@@ -40,6 +40,7 @@ PATH+=":${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/gnutls/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
+PATH+=":${HOMEBREW_PREFIX}/opt/llvm/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/rg/bin"
 
