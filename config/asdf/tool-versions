@@ -3,7 +3,7 @@ nodejs 19.4.0
 elixir 1.14.3-otp-25
 erlang 25.3
 python 3.11.1
-golang 1.20.2
+golang 1.21.0
 redis 6.2.5
 postgres 15.1
 java openjdk-17
