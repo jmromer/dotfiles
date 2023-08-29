@@ -56,6 +56,7 @@ rescue Interrupt
 end
 
 def execho(command)
+  puts(command)
   system(ENVIRONMENT, command)
 end
 
