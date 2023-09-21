@@ -1,6 +1,7 @@
 babel-eslint
 bash-language-server
 create-react-app
+dockerfile-language-server-nodejs
 js-beautify
 live-server
 marked
