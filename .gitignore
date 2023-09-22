@@ -80,6 +80,7 @@ share/ipython/
 share/iterm2/
 share/npm/
 share/pry/
+share/pyenv/
 share/tilt-dev/
 share/vim/plugged/
 share/yarn/
