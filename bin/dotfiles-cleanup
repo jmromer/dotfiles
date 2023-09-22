@@ -13,7 +13,24 @@ BLACKLIST =
 
 deletions = []
 
-%w[.config .state .local .cache .emacs.d .viminfo .yarnrc .zsh_history .python_history .gem .hex]
+blacklist = <<~STR.strip.split("\n")
+
+.cache
+.config
+.emacs.d
+.gem
+.hex
+.local
+.python_history
+.rubies
+.state
+.viminfo
+.yarnrc
+.zsh_history
+
+STR
+
+blacklist
   .map { |dir| [Dir.home, dir].join("/") }
   .select { |dir| File.directory?(dir) }
   .each { |dir| deletions.concat([dir], Dir.glob("#{dir}/**/*"))}
