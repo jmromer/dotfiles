@@ -50,6 +50,7 @@ flycheck_*.el
 
 
 ### Rails ###
+.db/
 *.rbc
 capybara-*.html
 .rspec
