@@ -1,12 +1,3 @@
-/share/asdf-versions
-/share/gem/
-/share/npm/
-/share/vim/plugged/
-/share/ipython/
-/share/iterm2/
-/share/delta/
-/share/direnv/
-/share/heroku/
-/share/yarn/
-/share/tilt-dev/
 !/config/zsh/*
+!/share/git/*
+/share/*
