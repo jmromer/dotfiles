@@ -112,7 +112,7 @@ after_bundle do
 
   run("bin/setup")
   run("bundle lock --add-platform ruby x86_64-linux x86_64-darwin-22 arm64-darwin-22")
-  run("bin/format")
+  system("bin/format")
 
   git :init
   git add: "."
