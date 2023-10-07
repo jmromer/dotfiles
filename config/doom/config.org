@@ -2003,19 +2003,12 @@ Ex commands for =projectile-rails=. Mainly here for =:AS= and =:AV=.
   (require 'evil-rails))
 #+end_src
 
-** format-all
+** apheleia
 
-Disable autoformatting in ruby temporarily until =rufo= is updated to format
-Ruby 3's new language constructs.
+Disable autoformatting until we can figure out what the hell is going on.
 
 #+begin_src elisp
-(setq +format-on-save-enabled-modes
-      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-            sql-mode         ; sqlformat is currently broken
-            tex-mode         ; latexindent is broken
-            latex-mode
-            org-msg-edit-mode
-            ruby-mode))
+(apheleia-global-mode -1)
 #+end_src
 
 ** ruby-factory
