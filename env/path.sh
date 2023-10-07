@@ -17,6 +17,7 @@ PATH+=":./node_modules/.bin"
 
 PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
 PATH+=":${XDG_DATA_HOME}/asdf-manager/bin"
+PATH+=":${GEM_HOME}/bin"
 PATH+=":${XDG_DATA_HOME}/fzf/bin"
 PATH+=":${XDG_DATA_HOME}/git/bin"
 PATH+=":${XDG_DATA_HOME}/doomemacs/bin"
