@@ -3,8 +3,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(safe-local-variable-values
-   '((+format-with-lsp)
+   '((apheleia-global-mode . -1)
+     (apheleia-global-mode)
+     (+format-with-lsp)
      (rspec-docker-command . "docker compose run --rm --use-aliases")
      (rspec-docker-command . "run --rm --use-aliases")
      (rspec-use-opts-file-when-available)
