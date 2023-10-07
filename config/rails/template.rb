@@ -50,7 +50,23 @@ lines = File.readlines("bin/setup")
 setup = lines.each_with_index.with_object([]) do |(line, i), acc|
   next acc << line unless line.match?(/Preparing database/)
 
-  acc << '  system! "pg_start"'
+  db_path = ".db"
+  db_init = <<~STR.strip.split("\n").map { "  #{_1}" }
+    unless File.exist?("#{db_path}")
+      puts "Initializing database..."
+      system! "pg_ctl init -D #{db_path}"
+    end
+  STR
+  acc.concat(db_init.push("\n"))
+
+  db_start = <<~STR.strip.split("\n").map { "  #{_1}" }
+    puts "Starting database server..."
+    system "killall postgres"
+    system "pg_ctl -D #{db_path} -l #{db_path}/log start"
+    sleep 2
+  STR
+  acc.concat(db_start.push("\n"))
+
   acc << '  system("createuser -U postgres -s $USER 2>/dev/null")'
   acc << lines.delete_at(i.next)
 end
