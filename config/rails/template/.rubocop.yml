@@ -10,12 +10,13 @@ AllCops:
   TargetRailsVersion: 6.1
   NewCops: enable
   Exclude:
-    - 'db/schema.rb'
-    - 'node_modules/**/*'
     - 'bin/bundle'
     - 'bin/rails'
     - 'bin/rake'
     - 'bin/setup'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
 
 Layout/LineLength:
   Exclude:
