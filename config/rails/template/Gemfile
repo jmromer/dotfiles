@@ -9,6 +9,7 @@ end
 
 group :development, :test do
   gem "bullet" # (https://github.com/abexsoft/ruby-bullet)
+  gem "dotenv-rails" # (https://github.com/bkeepers/dotenv)
   gem "factory_bot_rails" # (https://github.com/thoughtbot/factory_bot_rails)
   gem "faker" # (https://github.com/faker-ruby/faker)
   gem "jazz_fingers" # (https://github.com/plribeiro3000/jazz_fingers)
