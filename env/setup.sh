@@ -55,6 +55,7 @@ source "${DOTFILES_DIR}/env/fzf.sh"
 source "${DOTFILES_DIR}/env/golang.sh"
 source "${DOTFILES_DIR}/env/gpg.sh"
 source "${DOTFILES_DIR}/env/gtags.sh"
+source "${DOTFILES_DIR}/env/kubernetes.sh"
 source "${DOTFILES_DIR}/env/python.sh"
 source "${DOTFILES_DIR}/env/rails.sh"
 
