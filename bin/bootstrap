@@ -132,6 +132,9 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
+  brew_tap "heroku/brew"
+  brew_install :heroku
+
   brew_tap "romkatv/gitstatus"
   brew_install :gitstatus
 
