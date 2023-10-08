@@ -20,6 +20,7 @@ setup :core_cli_tools do
   brew_install :coreutils
   brew_install :curl
   brew_install :diffutils
+  brew_install :docker_compose
   brew_install :fd
   brew_install :findutils
   brew_install :gawk
