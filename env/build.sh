@@ -5,7 +5,7 @@ fi
 #-------------------------------------------------------------
 # Compilation flags
 #-------------------------------------------------------------
-export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+export SDKROOT="$(xcrun -sdk macosx --show-sdk-path)"
 
 BUILD_VARS=("CC" "CXX" "CFLAGS" "CPPFLAGS" "LDFLAGS" "PKG_CONFIG_PATH" "RUBY_CONFIGURE_OPTS" "RUBY_GC_MALLOC_LIMIT" "RUBY_GC_HEAP_FREE_SLOTS" "WARNFLAGS" "OPTFLAGS")
 
