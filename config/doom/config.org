@@ -393,36 +393,19 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
 Provide an absolute path if the prefix argument ABSPATH-P is provided."
   (interactive "P")
-  (let ((yanked-path
-        (if-let ((file-path buffer-file-name))
-            (let* ((proj-path (expand-file-name (locate-dominating-file file-path #'is-proj-root-p)))
-                   (disp-path (if abspath-p file-path
-                                (replace-regexp-in-string (concat "^" proj-path) "" file-path))))
-              disp-path)
-          (abbreviate-file-name default-directory))))
-    (progn
-      (kill-new yanked-path)
-      (message (format "Copied to clipboard: %s" yanked-path)))))
+  (yank-with-echo (buffer-path-dwim abspath-p)))
 #+end_src
 
 #+begin_src elisp
-;; TODO: Combine with `yank-buffer-path-dwim'
 (defun yank-buffer-path-with-line-dwim (abspath-p)
-  "Yank the path of the current buffer's file. (If `buffer-file-name' isn't set, use `default-directory'.)
+  "Yank the path of the current buffer's file, along with line number of the point's current position.
+(If `buffer-file-name' isn't set, use `default-directory'.)
 Abbreviate the path: If in a project, relative to project root; otherwise to the tilde-abbreviated user root.
 Provide an absolute path if the prefix argument ABSPATH-P is provided."
   (interactive "P")
-  (let* ((yanked-path
-          (if-let ((file-path buffer-file-name))
-              (let* ((proj-path (expand-file-name (locate-dominating-file file-path #'is-proj-root-p)))
-                     (disp-path (if abspath-p file-path
-                                  (replace-regexp-in-string (concat "^" proj-path) "" file-path))))
-                disp-path)
-            (abbreviate-file-name default-directory)))
+  (let* ((yanked-path (buffer-path-dwim abspath-p))
          (path-with-num (format "%s:%s" yanked-path (line-number-at-pos))))
-    (progn
-      (kill-new path-with-num)
-      (message (format "Copied to clipboard: %s" path-with-num)))))
+    (yank-with-echo path-with-num)))
 #+end_src
 
 #+begin_src elisp
@@ -433,6 +416,16 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
        :desc "path"             "y" #'yank-buffer-path-dwim
        :desc "path (~relative)" "Y" #'+default/yank-buffer-path
        :desc "path+line"        "l" #'yank-buffer-path-with-line-dwim))
+#+end_src
+
+** yank-with-echo
+
+#+begin_src elisp
+(defun yank-with-echo (yanked &optional echo)
+  (progn
+    (kill-new yanked)
+    (if echo (message echo)
+      (message (format "Copied to clipboard: %s" yanked)))))
 #+end_src
 
 * codespaces
@@ -548,11 +541,8 @@ Small improvement to =diff-hl-show-hunk-copy-original-text=.
     "Extracts all the lines from BUFFER starting with '-' to the kill ring."
     (interactive)
     (if-let (original-content diff-hl-show-hunk--original-content)
-        (progn
-          (kill-new original-content)
-          (message "Original hunk content added to kill-ring")))
-    (message "Hunk is a new addition, no content to copy."))
-  nil)
+        (yank-with-echo original-content "Original hunk content added to kill-ring"))
+    (message "Hunk is a new addition, no content to copy.")))
 #+end_src
 
 Temporary patch to =diff-hl-show-hunk-hide= until [[https://github.com/dgutov/diff-hl/commit/d225def4a473a16ac994124e063695ef9cef3308][diff-hl@d225def4a]] is released.
