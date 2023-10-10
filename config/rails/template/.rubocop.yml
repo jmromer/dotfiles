@@ -6,8 +6,8 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.0
-  TargetRailsVersion: 6.1
+  TargetRubyVersion: 3.2
+  TargetRailsVersion: 7.0
   NewCops: enable
   Exclude:
     - 'bin/bundle'
@@ -50,12 +50,25 @@ Layout/SpaceInsideHashLiteralBraces:
 Layout/SpaceInLambdaLiteral:
   EnforcedStyle: require_space
 
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/BlockLength:
   CountComments: false
   Max: 25
   AllowedMethods: ["describe", "context", "it"]
   Exclude:
     - "config/**/*"
+    - "app/admin/**/*"
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/Capybara/FeatureMethods:
+  Enabled: false
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: "comma"
