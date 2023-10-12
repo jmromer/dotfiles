@@ -319,10 +319,15 @@ zle -N ctrlz
 #-------------------------------------------------------------
 cd() {
     if type pd >/dev/null; then
-      builtin cd "$(pd "$1")" || return
+      target="$(pd "$1")"
     else
-      echo "warning: p/d not installed"
-      builtin cd "$@" || return
+      target="${@}"
+    fi
+
+    if [[ -d "${target}" ]]; then
+      builtin cd "${target}"
+    else
+      echo "Directory Not Found: ${target//$HOME/~}"
     fi
 }
 
