@@ -1,0 +1,12 @@
+.cache
+.config
+.emacs.d
+.gem
+.hex
+.local
+.python_history
+.rubies
+.state
+.viminfo
+.yarnrc
+.zsh_history

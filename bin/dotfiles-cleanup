@@ -4,42 +4,55 @@
 
 require "fileutils"
 
-BLACKLIST =
+CONFIRMED_KEEP =
   File
-  .readlines("#{ENV.fetch('XDG_CONFIG_HOME')}/dotfiles-cleanup/ignore")
+  .readlines("#{ENV.fetch('XDG_CONFIG_HOME')}/dotfiles-cleanup/keep")
   .map(&:chomp)
-  .to_set
   .freeze
 
-deletions = []
+CONFIRMED_DELETE =
+  File
+  .readlines("#{ENV.fetch('XDG_CONFIG_HOME')}/dotfiles-cleanup/delete")
+  .to_set(&:chomp)
+  .freeze
 
-blacklist = <<~STR.strip.split("\n")
+DOTFILES =
+  Dir
+  .children(Dir.home)
+  .select { |file| file.start_with?(".") }
+  .difference(CONFIRMED_KEEP)
+  .freeze
 
-.cache
-.config
-.emacs.d
-.gem
-.hex
-.local
-.python_history
-.rubies
-.state
-.viminfo
-.yarnrc
-.zsh_history
+to_delete, to_confirm =
+  DOTFILES
+  .partition { |file| CONFIRMED_DELETE.include?(file) }
+  .freeze
 
-STR
-
-blacklist
-  .map { |dir| [Dir.home, dir].join("/") }
-  .select { |dir| File.directory?(dir) }
-  .each { |dir| deletions.concat([dir], Dir.glob("#{dir}/**/*"))}
-  .each { |dir| FileUtils.rm_rf(dir) }
-
-deletions.map! { |deletion| deletion.sub(Dir.home, "~") }
-
-if deletions.any?
-  puts("Deleted:", deletions)
-else
-  puts("No deletable files found. No deletions.")
+def delete_and_record(directories, deletions = [])
+  directories
+    .map { |dir| "#{Dir.home}/#{dir}" }
+    .select { |dir| File.directory?(dir) }
+    .select { |dir| block_given? ? yield(dir) : true }
+    .each { |dir| deletions.concat([dir], Dir.glob("#{dir}/**/*")) }
+    .each { |dir| FileUtils.rm_rf(dir) }
+  deletions
 end
+
+deletions = delete_and_record(to_delete)
+deletions = delete_and_record(to_confirm, deletions) do |dir|
+  printf("Delete #{dir}? [y/N]: ")
+  %w[y yes].include?(gets&.chomp&.downcase)
+end
+
+untouched, deleted =
+  deletions
+  .map { _1.sub(Dir.home, "~") }
+  .partition { File.exist?(_1) }
+
+if deletions.empty?
+  puts("No deletable files found. No deletions.")
+else
+  puts("Deleted #{deleted.size} directories and files:", deleted)
+end
+
+puts("Failed to delete #{untouched.size} directories and files:", untouched) if untouched.any?
