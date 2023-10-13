@@ -44,7 +44,7 @@ select-language-version() {
         local others=$(echo "$all" | grep -Ev '^[[:digit:]]')
         echo $core_versions $others | fzf --cycle
     else
-        asdf list "$lang" | fzf --tac --cycle
+        asdf list "$lang" | fzf --tac --cycle | sed -E 's/^\s*\*//'
     fi
 }
 
