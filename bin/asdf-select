@@ -25,20 +25,26 @@ select-subcommand() {
 select-language() {
     if [[ "$1" == plugin-add ]]; then
         asdf plugin list all | awk '{ print $1 }' | fzf
+    elif [[ "$1" == plugin-update ]]; then
+        echo "--all" $(asdf plugin list) | tr ' ' '\n' | awk '{ print $1 }' | fzf
     elif [[ "$1" == "with-all" ]]; then
-        echo all $(asdf plugin list) | tr ' ' '\n' | fzf
+        echo "" $(asdf plugin list) | tr ' ' '\n' | fzf
     else
         asdf plugin list | fzf
     fi
 }
 
 select-language-version() {
-    [[ -z "$2" ]] && exit 0
+    local lang="$2"
+    [[ -z "$lang" ]] && exit 0
 
     if [[ "$1" == install ]]; then
-        asdf list all "$2" | fzf --tac --cycle
+        local all=$(asdf list all "$lang")
+        local core_versions=$(echo "$all" | grep -E  '^[[:digit:]]' | sort -r)
+        local others=$(echo "$all" | grep -Ev '^[[:digit:]]')
+        echo $core_versions $others | fzf --cycle
     else
-        asdf list "$2" | fzf --tac --cycle
+        asdf list "$lang" | fzf --tac --cycle
     fi
 }
 
