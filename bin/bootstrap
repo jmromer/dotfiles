@@ -153,6 +153,7 @@ end
 setup :text_editing_cli_tools do
   brew_install :editorconfig
   brew_install :grip
+  brew_install :ispell
   brew_install :libvterm
   brew_install :pygments
   brew_install :pandoc
