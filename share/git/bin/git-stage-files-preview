@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+FILE="$1"
+
+if [[ ! -f "${FILE}" ]]; then
+  echo '[deleted]'
+  git --no-pager diff --color=always -- "${FILE}"
+  exit 0
+fi
+
+if ! git ls-files --error-unmatch "${FILE}" &>/dev/null; then
+  echo "[new file]"
+  bat --color=always "${FILE}"
+fi
+
+git --no-pager diff --color=always -- "${FILE}"
