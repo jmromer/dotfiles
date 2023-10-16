@@ -14,7 +14,7 @@ if [[ -n "$1" ]]; then
   exit 0
 fi
 
-files="$(git status --porcelain | grep -E '^.[M\?]' | awk '{print $2}')"
+files="$(git status --porcelain | grep -E '^.[MD\?]' | awk '{print $2}')"
 if [[ -z "${files}" ]]; then
   echo "No unstaged files"
   exit 0
@@ -29,8 +29,8 @@ selection=$(
       --tiebreak=index \
       --layout=reverse \
       $1 \
-      --preview-window='right,85%,~1,nowrap' \
-      --preview="echo {} | sed \"s@^@${gitroot}/@\" | xargs git diff | delta 2>/dev/null"
+      --preview-window='right,70%' \
+      --preview="echo {} | sed \"s@^@${gitroot}/@\" | xargs git-stage-files-preview"
 )
 
 if [[ -z "${selection}" ]]; then
