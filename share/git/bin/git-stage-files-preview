@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-FILE="$1"
+path=$(echo $1 | sed "s@^@${gitroot}/@")
+FILE="$path/$2"
+
 
 if [[ ! -f "${FILE}" ]]; then
   echo '[deleted]'

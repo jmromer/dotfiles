@@ -14,7 +14,14 @@ if [[ -n "$1" ]]; then
   exit 0
 fi
 
-files="$(git status --porcelain | grep -E '^.[MD\?]' | awk '{print $2}')"
+files="$(
+  git status --porcelain            |
+    grep -E '^.[MD\?]'              |
+    sed -E 's/.{2}\s\"?(.+)\"?/\1/' |
+    tr -d '"'                       |
+    sed -E 's/ /\\ /g'
+)"
+
 if [[ -z "${files}" ]]; then
   echo "No unstaged files"
   exit 0
@@ -30,7 +37,7 @@ selection=$(
       --layout=reverse \
       $1 \
       --preview-window='right,70%' \
-      --preview="echo {} | sed \"s@^@${gitroot}/@\" | xargs git-stage-files-preview"
+      --preview="echo {} | xargs git-stage-files-preview '$gitroot'"
 )
 
 if [[ -z "${selection}" ]]; then
