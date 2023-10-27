@@ -70,20 +70,28 @@ state
 # xdg: data directories
 
 share/CMakeTools/
-share/anaconda
-share/asdf-versions
+share/anaconda/
+share/asdf*
 share/delta/
 share/direnv/
+share/doomemacs/
+share/fzf
 share/gem/
+share/git_diet/
 share/heroku/
 share/ipython/
 share/iterm2/
 share/npm/
+share/pd/
 share/pry/
 share/pyenv/
+share/spacemacs/
 share/tilt-dev/
+share/tmux/
+share/vim/
 share/vim/plugged/
 share/yarn/
+share/zsh/
 
 # high-churn config files,
 # state files miscategorized as config
