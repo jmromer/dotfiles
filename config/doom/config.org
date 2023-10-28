@@ -15,6 +15,7 @@
 - [[#folding][folding]]
 - [[#formatting][formatting]]
 - [[#gtags][gtags]]
+- [[#latex][latex]]
 - [[#lookup][lookup]]
 - [[#lsp][lsp]]
 - [[#magit][magit]]
@@ -966,6 +967,32 @@ If the prefix arg ARG is passed, delete the tags at project root."
       :prefix "p"
       :desc "regenerate tags"
       "G" #'project-gtags-refresh)
+#+end_src
+
+* latex
+
+#+begin_src elisp
+(defun +compile-pdflatex-pset ()
+  (interactive)
+  (let* ((default-directory (concat (projectile-project-root) "psets"))
+         (history (mapcar #'file-name-sans-extension (directory-files default-directory nil "\.tex$")))
+         (file-name (string-trim (read-from-minibuffer "problem set: " "pset1" nil nil '(history . 1)))))
+    (progn
+      (message (format "Compiling %s.tex..." file-name))
+      (call-process-shell-command (format "pdflatex %s.tex" file-name)))))
+#+end_src
+
+#+begin_src elisp
+(map! :map LaTeX-mode-map "s-C-t" #'+compile-pdflatex-pset)
+#+end_src
+
+#+begin_src elisp
+(after! LaTeX-mode
+  (add-to-list 'TeX-command-list
+               '("pdfTex (pset)"
+                 "(+compile-pdflatex-pset)"
+                 TeX-run-function nil t
+                 :help "Compile the current problem set")))
 #+end_src
 
 * lookup
