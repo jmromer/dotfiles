@@ -275,6 +275,25 @@ Allow remembering risky local variables.
 (setq-default standard-indent 2)
 #+end_src
 
+** word counts
+
+#+begin_src elisp
+(setq doom-modeline-continuous-word-count-modes
+      '(markdown-mode gfm-mode org-mode fundamental-mode))
+#+end_src
+
+#+begin_src elisp
+(defun +enable-continuous-word-count ()
+  (interactive)
+  (if (member major-mode doom-modeline-continuous-word-count-modes)
+      (setq doom-modeline-enable-word-count (not doom-modeline-enable-word-count))
+    (error (format "`%s' not in `doom-modeline-continuous-word-count-modes'" major-mode))))
+
+(map! :leader
+      :prefix "t"
+      :desc "word count" "w" #'+enable-continuous-word-count)
+#+end_src
+
 * +utilities
 
 Some general-purpose functions.
