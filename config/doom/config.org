@@ -290,9 +290,7 @@ Allow remembering risky local variables.
       (setq doom-modeline-enable-word-count (not doom-modeline-enable-word-count))
     (error (format "`%s' not in `doom-modeline-continuous-word-count-modes'" major-mode))))
 
-(map! :leader
-      :prefix "t"
-      :desc "word count" "w" #'+enable-continuous-word-count)
+(map! :leader :prefix "t" :desc "Word count" "W" #'+enable-continuous-word-count)
 #+end_src
 
 * +utilities
