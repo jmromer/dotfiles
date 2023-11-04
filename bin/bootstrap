@@ -68,7 +68,7 @@ setup :gui_apps do
   cask_install :authy
   cask_install :bettertouchtool
   cask_install :brave_browser
-  cask_install :dash
+  cask_install :dash6
   cask_install :discord
   cask_install :docker
   cask_install :dropbox
