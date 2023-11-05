@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "fileutils"
+require "colorize"
 
 def require_with_catch(library_name)
   require library_name
@@ -51,15 +52,15 @@ def configure_irb_prompt
       {
         PROMPT_I: "» ".red,
         PROMPT_C: "» ",
-        PROMPT_S: "%l ".yellowish,
-        RETURN: ["=>".blueish, "%s\n"].join(" "),
+        PROMPT_S: "%l ".yellow,
+        RETURN: ["=>".blue, "%s\n"].join(" ")
       }
     else
       {
         PROMPT_I: "» ",
         PROMPT_C: "» ",
         PROMPT_S: "%l ",
-        RETURN: ["=>", "%s\n"].join(" "),
+        RETURN: ["=>", "%s\n"].join(" ")
       }
     end
   IRB.conf[:AUTO_INDENT] = true
@@ -84,6 +85,7 @@ rescue Exception
   warn "Could not load: #{rc_path}. Error: #{$!.message}"
 end
 
+# :nodoc:
 class Object
   def method_list
     ancestor_methods =
@@ -96,17 +98,16 @@ class Object
         Object.new.public_methods
       end
 
-    (self.public_methods - ancestor_methods).sort
+    (public_methods - ancestor_methods).sort
   end
 end
-
 
 require_with_catch("ostruct")
 require_with_catch("irb/completion")
 require_with_catch("interactive_editor")
 require_with_catch("amazing_print") do
   AmazingPrint.defaults = PRINT_CONFIG
-  alias pp ap
+  alias pp ap # rubocop:disable Style/Alias
 end
 
 configure_irb_prompt
