@@ -22,7 +22,7 @@ if command -v /usr/sbin/sysctl >/dev/null; then
   MACHINE_CORES=$(echo "$(/usr/sbin/sysctl -n hw.ncpu) - 1" | bc)
 
   IN_ROSETTA="$(/usr/sbin/sysctl -in sysctl.proc_translated)"
-  if [ "${IN_ROSETTA}" -eq "1" ]; then
+  if [ "${IN_ROSETTA:-0}" -eq "1" ]; then
     MACHINE="apple"
     HOMEBREW_PREFIX="/opt/homebrew"
   fi
