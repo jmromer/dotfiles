@@ -2157,29 +2157,44 @@ https://github.com/ruby-test-mode/ruby-test-mode
 Enable projectile-rails to find either a controller spec or request spec file as the alternate for a controller implementation file.
 
 #+begin_src elisp
+(defun rails--parse-project-file ()
+  "Parse the current buffer's path and return a list of filename components."
+  (let ((path (buffer-path-dwim)))
+    (if (string-match (rx (group (or "app" "spec")) "/"
+                          (group (1+ word)) "/"
+                          (group (1+ anything))
+                          (or "_spec.rb" ".rb"))
+                      path)
+        (let ((dir (match-string 1 path))
+              (subdir (match-string 2 path))
+              (file (replace-regexp-in-string "_spec$" "" (match-string 3 path))))
+          (list `(dir . ,dir) `(subdir . ,subdir) `(file . ,file))))))
+#+end_src
+
+#+begin_src elisp
+(defun rails--test-file (test-file)
+  "Choose the correct test-file given TEST-FILE for the current Rails project.
+Look for a request spec if there's no controller spec."
+  (if (or (string-match-p "controllers" test-file) (string-match-p "requests" test-file))
+      (if (file-exists-p (concat (projectile-project-root) test-file))
+          test-file
+        (replace-regexp-in-string "controllers?" "requests" test-file))
+    test-file))
+#+end_src
+
+#+begin_src elisp
 (defun rails--find-related-file (path)
-  "Toggle between controller implementation at PATH and its request spec.
-Look for a controller spec if there's no request spec."
-  (if (string-match
-       (rx (group (or "app" "spec"))
-           (group "/" (or "controllers" "requests"))
-           (group "/" (1+ anything))
-           (group (or "_controller" "_requests"))
-           (group (or ".rb" "_spec.rb")))
-       path)
-      (let ((dir (match-string 1 path))
-            (subdir (match-string 2 path))
-            (file-name (match-string 3 path)))
-        (let ((implementation (concat "app/controllers" file-name "_controller.rb"))
-              (request-spec (concat "spec/requests" file-name "_requests_spec.rb"))
-              (controller-spec (concat "spec/controllers" file-name "_controller_spec.rb")))
-          (if (equal dir "spec")
-              (list :impl implementation)
-            (list :test (if (file-exists-p (concat (projectile-project-root) request-spec))
-                            request-spec
-                          controller-spec)
-                  :request-spec request-spec
-                  :controller-spec controller-spec))))))
+  "Toggle between controller implementation at PATH and its request spec."
+  (let* ((comps (rails--parse-project-file))
+         (dir (alist-get 'dir comps))
+         (subdir (alist-get 'subdir comps))
+         (file (alist-get 'file comps)))
+    (if (equal dir "spec")
+        (list :impl (if (string-match-p "requests" subdir)
+                        (format "app/controllers/%s.rb"
+                                (replace-regexp-in-string "_requests$" "_controller" file))
+                      (format "app/%s/%s.rb" subdir file)))
+        (list :test (rails--test-file (format "spec/%s/%s_spec.rb" subdir file))))))
 #+end_src
 
 #+begin_src elisp
