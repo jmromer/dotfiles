@@ -6,7 +6,6 @@
 * contents :TOC_1:
 - [[#general][+general]]
 - [[#utilities][+utilities]]
-- [[#codespaces][codespaces]]
 - [[#completion][completion]]
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
@@ -444,19 +443,6 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
     (kill-new yanked)
     (if echo (message echo)
       (message (format "Copied to clipboard: %s" yanked)))))
-#+end_src
-
-* codespaces
-
-Omit unused version control systems to reduce latency.
-
-#+begin_src elisp
-(setq vc-handled-backends '(Git))
-#+end_src
-
-#+begin_src elisp
-(require 'codespaces)
-(codespaces-setup)
 #+end_src
 
 * completion

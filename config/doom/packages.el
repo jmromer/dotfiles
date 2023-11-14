@@ -8,7 +8,6 @@
 ;; API Demos:
 ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org
 
-(package! codespaces)
 (package! command-log-mode)
 (package! company-box)
 (package! company-lsp)
