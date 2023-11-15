@@ -1,7 +1,5 @@
 autoflake
-black
 fastapi
-flake8
 importmagic
 ipdb
 ipython
@@ -20,4 +18,5 @@ pyright
 pytest
 python-language-server
 rstfmt
+ruff
 virtualenv
