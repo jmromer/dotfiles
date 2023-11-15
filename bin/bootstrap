@@ -124,6 +124,7 @@ setup :development_tools do
   brew_install :flyctl
   brew_install :gh
   brew_install :git_delta
+  brew_install :global
   brew_install :httpie
   brew_install :pyenv
   brew_install :source_highlight
@@ -137,14 +138,6 @@ setup :development_tools do
 
   brew_tap "romkatv/gitstatus"
   brew_install :gitstatus
-
-  # Universal ctags (replaces Exuberant ctags)
-  brew_tap "universal-ctags/universal-ctags"
-  brew_install :universal_ctags, options: [:head, :force]
-
-  # GNU Global (universal-ctags-compatible)
-  brew_tap "jmromer/global"
-  brew_install "jmromer/global/global"
 
   brew_tap "homebrew/cask-versions"
   cask_install :iterm2_nightly
