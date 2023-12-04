@@ -19,7 +19,7 @@ files="$(
     grep -E '^.[MD\?]'              |
     sed -E 's/.{2}\s\"?(.+)\"?/\1/' |
     tr -d '"'                       |
-    sed -E 's/ /\\ /g'
+    sed -E 's/[\s[]]/\\ /g'
 )"
 
 if [[ -z "${files}" ]]; then
