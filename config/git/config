@@ -191,8 +191,14 @@
 	ri       = rebase-interactive
 	ra       = rebase --abort
 	rc       = rebase --continue
+	rim      = rebase --ignore-date master
 	squash   = !sh -c 'git fetch && git rebase --ignore-date -i origin/${1:-master}' -
 	rmc      = remove-commit
+
+	# resetting / reverting
+	resf  = !sh -c 'git reset $(git select-files)'
+	colf  = !sh -c 'git checkout -- $(git select-files)'
+	revf  = !sh -c 'files=$(git select-files) && git reset ${files} >/dev/null && git checkout -- ${files}'
 
 	# merging
 	m        = merge
