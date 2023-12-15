@@ -1,0 +1,31 @@
+---
+name: tcl-app
+project_root: "~/Work/thatcleanlife/thatcleanlife-app"
+startup_window: shell
+
+on_project_first_start: |
+  kill-port 6379 5001 3000
+  (pg_start >/dev/null) &
+  (redis-start 6379 >/dev/null) &
+
+on_project_stop: |
+  kill-port 6379 5001 3000
+
+windows:
+- rails:
+    panes:
+    - bin/rails server
+- sidekiq:
+    layout: even-horizontal
+    panes:
+    - bin/sidekiq -C config/sidekiq.yml
+    - cd ../thatcleanlife-nutrition-api && bin/rails server
+- console:
+    panes:
+    - bin/rails console
+- tests:
+    panes:
+    - bin/test_run
+- shell:
+    panes:
+    - fortune
