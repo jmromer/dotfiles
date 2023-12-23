@@ -99,19 +99,18 @@ setup :gui_apps do
 end
 
 setup :quick_look_viewers do
-  cask_install :jupyter_notebook_viewer
-  cask_install :qlcolorcode
-  cask_install :qlimagesize
-  cask_install :qlmarkdown
-  cask_install :qlprettypatch
-  cask_install :qlstephen
-  cask_install :qlvideo
-  cask_install :quicklook_csv
-  cask_install :quicklook_json
-  cask_install :quicklookase
-  cask_install :suspicious_package
-  cask_install :webpquicklook
-  install_quicklook_viewers
+  cask_install :jupyter_notebook_viewer, options: :no_quarantine
+  cask_install :qlmarkdown, options: :no_quarantine
+  cask_install :qlprettypatch, options: :no_quarantine
+  cask_install :qlstephen, options: :no_quarantine
+  cask_install :qlvideo, options: :no_quarantine
+  cask_install :quicklook_csv, options: :no_quarantine
+  cask_install :quicklook_json, options: :no_quarantine
+  cask_install :quicklookase, options: :no_quarantine
+  cask_install :suspicious_package, options: :no_quarantine
+  cask_install :syntax_highlight, options: :no_quarantine
+  cask_install :webpquicklook, options: :no_quarantine
+  reset_quicklookd
 end
 
 setup :development_tools do

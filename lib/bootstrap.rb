@@ -118,7 +118,7 @@ def install_launchagent(filename)
   execho("launchctl load ~/Library/LaunchAgents/#{filename}.plist")
 end
 
-def install_quicklook_viewers
+def reset_quicklookd
   execho("qlmanage -r")
 end
 
