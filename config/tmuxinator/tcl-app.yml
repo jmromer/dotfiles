@@ -4,12 +4,11 @@ project_root: "~/Work/thatcleanlife/thatcleanlife-app"
 startup_window: shell
 
 on_project_first_start: |
-  kill-port 6379 5001 3000
-  (pg_start >/dev/null) &
-  (redis-start 6379 >/dev/null) &
+  kill-port 6379 5001 3000 5432
+  sleep 1
 
 on_project_stop: |
-  kill-port 6379 5001 3000
+  kill-port 6379 5001 3000 5432
 
 windows:
 - rails:
@@ -18,7 +17,7 @@ windows:
 - sidekiq:
     layout: even-horizontal
     panes:
-    - bin/sidekiq -C config/sidekiq.yml
+    - bin/db start && bin/sidekiq -C config/sidekiq.yml
     - cd ../thatcleanlife-nutrition-api && bin/rails server
 - console:
     panes:
