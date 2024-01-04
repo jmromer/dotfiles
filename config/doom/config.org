@@ -2360,6 +2360,10 @@ Precedence order:
 * word chars
 
 #+begin_src elisp
+(defun +config:add-dot-to-word-chars ()
+  "Adds underscore to the word chars syntax entry list."
+  (modify-syntax-entry ?. "w"))
+
 (defun +config:add-underscore-to-word-chars ()
   "Adds underscore to the word chars syntax entry list."
   (modify-syntax-entry ?_ "w"))
@@ -2371,6 +2375,8 @@ Precedence order:
 (defun +config:add-to-word-char-list ()
   "Customize the word char list in prog and other modes."
   (add-hook! emacs-lisp-mode #'+config:add-dash-to-word-chars)
+  (add-hook! coffee-mode     #'+config:add-underscore-to-word-chars)
+  (add-hook! coffee-mode     #'+config:add-dash-to-word-chars)
   (add-hook! markdown-mode   #'+config:add-underscore-to-word-chars)
   (add-hook! org-mode        #'+config:add-underscore-to-word-chars)
   (add-hook! prog-mode       #'+config:add-underscore-to-word-chars)
