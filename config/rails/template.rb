@@ -90,16 +90,24 @@ after_bundle do
   # Prepend simplecov require to spec/rails_helper.rb
   rails_helper_lines = File.readlines("spec/rails_helper.rb")
 
-  idx = rails_helper_lines.find_index { _1.match?(/Dir.+spec.+support/) }
-  rails_helper_lines[idx] = <<~RB.strip
-    Dir[Rails.root.join("spec/support/**/*.rb")].each { require(_1) }
-  RB
+  idx = rails_helper_lines.find_index { _1.match?(/.+spec.+support/) }
+  if idx.nil?
+    puts "WARNING: spec/support/ not found in spec/rails_helper.rb"
+  else
+    rails_helper_lines[idx] = <<~RB.strip
+      Dir[Rails.root.join("spec/support/**/*.rb")].each { require(_1) }
+    RB
+  end
 
   idx = rails_helper_lines.find_index { _1.match?(/config.fixture_path = /) }
-  config, = rails_helper_lines[idx].split(" = ")
-  rails_helper_lines[idx] = <<~RB.strip
-    #{config} = Rails.root.join("spec/fixtures")
-  RB
+  if idx.nil?
+    puts "WARNING: config.fixture_path not found in spec/rails_helper.rb"
+  else
+    config, = rails_helper_lines[idx].split(" = ")
+    rails_helper_lines[idx] = <<~RB.strip
+      #{config} = Rails.root.join("spec/fixtures")
+    RB
+  end
 
   File.open("spec/rails_helper.rb", "w") do |file|
     file.puts(<<~RUBY)
