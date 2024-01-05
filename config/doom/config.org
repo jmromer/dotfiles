@@ -33,6 +33,7 @@
 - [[#workspaces][workspaces]]
 - [[#yankee][yankee]]
 - [[#yasnippet][yasnippet]]
+- [[#hacks][hacks]]
 
 * +general
 
@@ -2255,12 +2256,6 @@ Look for a request spec if there's no controller spec."
       :desc "binding.pry (pipeline)" :n "B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
 #+end_src
 
-** TEMP: Disable breaking hook
-
-#+begin_src elisp
-(remove-hook! ruby-mode #'+ruby-init-robe-mode-maybe-h)
-#+end_src
-
 * smartparens
 
 Enable strict smartparens mode wherever smartparens is enabled.
@@ -2507,4 +2502,24 @@ Add some yankee motions for evil mode.
   (mapconcat 'yas/to-field-assignment
              (split-string str ",")
              (yas/indented-newline)))
+#+end_src
+
+* hacks
+
+TEMP: Restore missing org-eldoc function invoked when evaluating region
+
+#+begin_src elisp
+(defun org-eldoc-get-src-lang ()
+  "Return value of lang for the current block if in block body and nil otherwise."
+  (let ((element (save-match-data (org-element-at-point))))
+    (and (eq (org-element-type element) 'src-block)
+    (>= (line-beginning-position)
+        (org-element-property :post-affiliated element))
+    (<=
+     (line-end-position)
+     (org-with-wide-buffer
+      (goto-char (org-element-property :end element))
+      (skip-chars-backward " \t\n")
+      (line-end-position)))
+    (org-element-property :language element))))
 #+end_src
