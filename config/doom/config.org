@@ -1756,7 +1756,7 @@ See `org-capture-templates' for more information."
 (setq projectile-project-search-path
       '(("~/.dotfiles/share" . 2)
         ("~/Projects" . 1)
-        ("~/Resources" . 1)
+        ("~/Courses" . 2)
         ("~/Work" . 2)
         ("~/Writing" . 2)))
 #+end_src
