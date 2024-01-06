@@ -10,7 +10,7 @@ nodejs 20.8.0
 postgres 15.1
 python 3.11.1
 redis 6.2.5
-ruby 3.2.2
+ruby 3.3.0
 rust 1.43.0
 spark 3.1.2
 sqlite 3.34.1
