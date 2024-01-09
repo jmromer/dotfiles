@@ -2375,6 +2375,7 @@ Precedence order:
   (add-hook! markdown-mode   #'+config:add-underscore-to-word-chars)
   (add-hook! org-mode        #'+config:add-underscore-to-word-chars)
   (add-hook! prog-mode       #'+config:add-underscore-to-word-chars)
+  (add-hook! prog-mode       #'+config:add-dash-to-word-chars)
   (add-hook! python-mode     #'+config:add-underscore-to-word-chars)
   (add-hook! restclient-mode #'+config:add-underscore-to-word-chars)
   (add-hook! text-mode       #'+config:add-underscore-to-word-chars)
