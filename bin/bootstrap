@@ -73,6 +73,8 @@ setup :gui_apps do
   cask_install :docker
   cask_install :dropbox
   cask_install :figma
+  cask_install :firefox
+  cask_install :google_chrome
   cask_install :httpie
   cask_install :keyboard_maestro
   cask_install :keycastr
