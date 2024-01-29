@@ -72,7 +72,6 @@ setup :gui_apps do
   cask_install :discord
   cask_install :docker
   cask_install :dropbox
-  cask_install :figma
   cask_install :firefox
   cask_install :google_chrome
   cask_install :httpie
@@ -84,6 +83,7 @@ setup :gui_apps do
   cask_install :mark_text
   cask_install :name_mangler
   cask_install :pandora
+  cask_install :pdfsam_basic
   cask_install :protonmail_bridge
   cask_install :protonvpn
   cask_install :responsively
