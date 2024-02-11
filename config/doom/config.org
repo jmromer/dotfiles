@@ -2249,11 +2249,30 @@ Look for a request spec if there's no controller spec."
           (insert "\n")
           (indent-according-to-mode))))))
 
+(defun python/toggle-breakpoint ()
+  "Add a break point and highlight it."
+  (interactive)
+  (when (eq major-mode 'python-mode)
+    (let ((trace "breakpoint()")
+          (line (thing-at-point 'line)))
+      (if (and line (string-match trace line))
+          (kill-whole-line)
+        (progn
+          (back-to-indentation)
+          (indent-according-to-mode)
+          (insert trace)
+          (indent-according-to-mode))))))
+
 (map! :mode 'ruby-mode
       :localleader
       :prefix ("d" . "debug")
       :desc "binding.pry" :n "b" #'ruby/toggle-breakpoint
       :desc "binding.pry (pipeline)" :n "B" #'(lambda () (interactive) (ruby/toggle-breakpoint t)))
+
+(map! :mode 'python-mode
+      :localleader
+      :prefix ("d" . "debug")
+      :desc "insert breakpoint" :n "b" #'python/toggle-breakpoint)
 #+end_src
 
 * smartparens
