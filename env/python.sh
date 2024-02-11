@@ -1,3 +1,4 @@
+export PYTHONBREAKPOINT=ipdb.set_trace
 export PYTHONDONTWRITEBYTECODE=1
 
 # Activate virtualenv if running python from within vim in a virtualenv
