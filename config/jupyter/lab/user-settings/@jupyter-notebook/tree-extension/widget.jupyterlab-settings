@@ -1,0 +1,71 @@
+{
+    "toolbar": [
+        {
+            "name": "fileAction-placeholder",
+            "command": "",
+            "disabled": false,
+            "rank": 0
+        },
+        {
+            "name": "fileAction-open",
+            "command": "",
+            "disabled": false,
+            "rank": 1
+        },
+        {
+            "name": "fileAction-download",
+            "command": "",
+            "disabled": false,
+            "rank": 2
+        },
+        {
+            "name": "fileAction-rename",
+            "command": "",
+            "disabled": false,
+            "rank": 3
+        },
+        {
+            "name": "fileAction-duplicate",
+            "command": "",
+            "disabled": false,
+            "rank": 4
+        },
+        {
+            "name": "fileAction-delete",
+            "command": "",
+            "disabled": false,
+            "rank": 5
+        },
+        {
+            "name": "spacer",
+            "command": "",
+            "disabled": false,
+            "type": "spacer",
+            "rank": 900
+        },
+        {
+            "name": "fileNameSearcher",
+            "command": "",
+            "disabled": true,
+            "rank": 950
+        },
+        {
+            "name": "new-dropdown",
+            "command": "",
+            "disabled": false,
+            "rank": 1000
+        },
+        {
+            "name": "uploader",
+            "command": "",
+            "disabled": false,
+            "rank": 1010
+        },
+        {
+            "name": "refresh",
+            "command": "filebrowser:refresh",
+            "disabled": false,
+            "rank": 1020
+        }
+    ]
+}

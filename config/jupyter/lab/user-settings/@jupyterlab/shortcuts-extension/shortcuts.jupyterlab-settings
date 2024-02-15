@@ -1,0 +1,1323 @@
+{
+    "shortcuts": [
+        {
+            "command": "application:activate-next-tab",
+            "keys": [
+                "Ctrl Shift ]"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "application:activate-next-tab-bar",
+            "keys": [
+                "Ctrl Shift ."
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "application:activate-previous-tab",
+            "keys": [
+                "Ctrl Shift ["
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "application:activate-previous-tab-bar",
+            "keys": [
+                "Ctrl Shift ,"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "application:close",
+            "keys": [
+                "Alt W"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Activity",
+            "args": {}
+        },
+        {
+            "command": "application:toggle-left-area",
+            "keys": [
+                "Accel B"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "application:toggle-mode",
+            "keys": [
+                "Accel Shift D"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "application:toggle-right-area",
+            "keys": [
+                "Accel J"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "apputils:activate-command-palette",
+            "keys": [
+                "Accel Shift C"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "apputils:display-shortcuts",
+            "keys": [
+                "Accel Shift H"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "completer:invoke-console",
+            "keys": [
+                "Tab"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-CodeConsole-promptCell .jp-mod-completer-enabled",
+            "args": {}
+        },
+        {
+            "command": "completer:invoke-file",
+            "keys": [
+                "Tab"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-FileEditor .jp-mod-completer-enabled",
+            "args": {}
+        },
+        {
+            "command": "completer:invoke-notebook",
+            "keys": [
+                "Tab"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode .jp-mod-completer-enabled",
+            "args": {}
+        },
+        {
+            "command": "console:linebreak",
+            "keys": [
+                "Accel Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-CodeConsole[data-jp-interaction-mode='terminal'] .jp-CodeConsole-promptCell",
+            "args": {}
+        },
+        {
+            "command": "console:run-forced",
+            "keys": [
+                "Shift Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-CodeConsole[data-jp-interaction-mode='notebook'] .jp-CodeConsole-promptCell",
+            "args": {}
+        },
+        {
+            "command": "console:run-forced",
+            "keys": [
+                "Shift Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-CodeConsole[data-jp-interaction-mode='terminal'] .jp-CodeConsole-promptCell",
+            "args": {}
+        },
+        {
+            "command": "console:run-unforced",
+            "keys": [
+                "Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-CodeConsole[data-jp-interaction-mode='terminal'] .jp-CodeConsole-promptCell",
+            "args": {}
+        },
+        {
+            "command": "debugger:continue",
+            "keys": [
+                "F9"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "debugger:next",
+            "keys": [
+                "F10"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "debugger:show-panel",
+            "keys": [
+                "Accel Shift E"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "debugger:stepIn",
+            "keys": [
+                "F11"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "debugger:stepOut",
+            "keys": [
+                "Shift F11"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "debugger:terminate",
+            "keys": [
+                "Shift F9"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "docmanager:save",
+            "keys": [
+                "Accel S"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "docmanager:save-as",
+            "keys": [
+                "Accel Shift S"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "documentsearch:end",
+            "keys": [
+                "Escape"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-mod-search-active",
+            "args": {}
+        },
+        {
+            "command": "documentsearch:highlightNext",
+            "keys": [
+                "Accel G"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-mod-searchable",
+            "args": {}
+        },
+        {
+            "command": "documentsearch:highlightPrevious",
+            "keys": [
+                "Accel Shift G"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-mod-searchable",
+            "args": {}
+        },
+        {
+            "command": "documentsearch:start",
+            "keys": [
+                "Accel F"
+            ],
+            "winKeys": [],
+            "macKeys": [
+                ""
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-mod-searchable",
+            "args": {}
+        },
+        {
+            "command": "documentsearch:toggleSearchInSelection",
+            "keys": [
+                "Alt L"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-mod-search-active",
+            "args": {}
+        },
+        {
+            "command": "editmenu:redo",
+            "keys": [
+                "Accel Shift Z"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "[data-jp-undoer]",
+            "args": {}
+        },
+        {
+            "command": "editmenu:undo",
+            "keys": [
+                "Accel Z"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "[data-jp-undoer]",
+            "args": {}
+        },
+        {
+            "command": "extensionmanager:show-panel",
+            "keys": [
+                "Accel Shift X"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:copy",
+            "keys": [
+                "Accel C"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:cut",
+            "keys": [
+                "Accel X"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:delete",
+            "keys": [
+                "Delete"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:duplicate",
+            "keys": [
+                "Accel D"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:go-up",
+            "keys": [
+                "Backspace"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing:focus",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:go-up",
+            "keys": [
+                "Backspace"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:paste",
+            "keys": [
+                "Accel V"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filebrowser:rename",
+            "keys": [
+                "F2"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-DirListing-content .jp-DirListing-itemText",
+            "args": {}
+        },
+        {
+            "command": "filemenu:close-and-cleanup",
+            "keys": [
+                "Ctrl Shift Q"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Activity",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:flip-horizontal",
+            "keys": [
+                "H"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:flip-vertical",
+            "keys": [
+                "V"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:invert-colors",
+            "keys": [
+                "I"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:reset-image",
+            "keys": [
+                "0"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:rotate-clockwise",
+            "keys": [
+                "]"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:rotate-counterclockwise",
+            "keys": [
+                "["
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:zoom-in",
+            "keys": [
+                "="
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "imageviewer:zoom-out",
+            "keys": [
+                "-"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-ImageViewer",
+            "args": {}
+        },
+        {
+            "command": "kernelmenu:interrupt",
+            "keys": [
+                "I",
+                "I"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "[data-jp-kernel-user] :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "kernelmenu:restart",
+            "keys": [
+                "0",
+                "0"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "[data-jp-kernel-user] :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:access-next-history-entry",
+            "keys": [
+                "Alt ArrowDown"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:access-previous-history-entry",
+            "keys": [
+                "Alt ArrowUp"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-code",
+            "keys": [
+                "Y"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-heading-1",
+            "keys": [
+                "1"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-heading-2",
+            "keys": [
+                "2"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-heading-3",
+            "keys": [
+                "3"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-heading-4",
+            "keys": [
+                "4"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-heading-5",
+            "keys": [
+                "5"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-heading-6",
+            "keys": [
+                "6"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-markdown",
+            "keys": [
+                "M"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:change-cell-to-raw",
+            "keys": [
+                "R"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:collapse-all-headings",
+            "keys": [
+                "Ctrl Shift ArrowLeft"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:copy-cell",
+            "keys": [
+                "C"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:cut-cell",
+            "keys": [
+                "X"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:delete-cell",
+            "keys": [
+                "D",
+                "D"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:enter-command-mode",
+            "keys": [
+                "Escape"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:enter-command-mode",
+            "keys": [
+                "Ctrl M"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:enter-edit-mode",
+            "keys": [
+                "Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode .jp-Cell:focus",
+            "args": {}
+        },
+        {
+            "command": "notebook:expand-all-headings",
+            "keys": [
+                "Ctrl Shift ArrowRight"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:extend-marked-cells-above",
+            "keys": [
+                "Shift ArrowUp"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:extend-marked-cells-above",
+            "keys": [
+                "Shift K"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:extend-marked-cells-below",
+            "keys": [
+                "Shift ArrowDown"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:extend-marked-cells-below",
+            "keys": [
+                "Shift J"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:extend-marked-cells-bottom",
+            "keys": [
+                "Shift End"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:extend-marked-cells-top",
+            "keys": [
+                "Shift Home"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:insert-cell-above",
+            "keys": [
+                "A"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:insert-cell-below",
+            "keys": [
+                "B"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:insert-heading-above",
+            "keys": [
+                "Shift A"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:insert-heading-below",
+            "keys": [
+                "Shift B"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:merge-cell-above",
+            "keys": [
+                "Ctrl Backspace"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:merge-cell-below",
+            "keys": [
+                "Ctrl Shift M"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:merge-cells",
+            "keys": [
+                "Shift M"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cell-down",
+            "keys": [
+                "Ctrl Shift ArrowDown"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cell-up",
+            "keys": [
+                "Ctrl Shift ArrowUp"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cursor-down",
+            "keys": [
+                "ArrowDown"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cursor-down",
+            "keys": [
+                "J"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cursor-heading-above-or-collapse",
+            "keys": [
+                "ArrowLeft"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cursor-heading-below-or-expand",
+            "keys": [
+                "ArrowRight"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cursor-up",
+            "keys": [
+                "ArrowUp"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:move-cursor-up",
+            "keys": [
+                "K"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:paste-cell-below",
+            "keys": [
+                "V"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:redo-cell-action",
+            "keys": [
+                "Shift Z"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell",
+            "keys": [],
+            "winKeys": [],
+            "macKeys": [
+                "Ctrl Enter"
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell",
+            "keys": [],
+            "winKeys": [],
+            "macKeys": [
+                "Ctrl Enter"
+            ],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell",
+            "keys": [
+                "Accel Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell",
+            "keys": [
+                "Accel Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell-and-insert-below",
+            "keys": [
+                "Alt Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell-and-insert-below",
+            "keys": [
+                "Alt Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell-and-select-next",
+            "keys": [
+                "Shift Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:select-all",
+            "keys": [
+                "Accel A"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:split-cell-at-cursor",
+            "keys": [
+                "Ctrl Shift -"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:toggle-render-side-by-side-current",
+            "keys": [
+                "Shift R"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "notebook:undo-cell-action",
+            "keys": [
+                "Z"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        },
+        {
+            "command": "runmenu:run",
+            "keys": [
+                "Shift Enter"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "[data-jp-code-runner]",
+            "args": {}
+        },
+        {
+            "command": "running:show-panel",
+            "keys": [
+                "Accel Shift B"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "settingeditor:open",
+            "keys": [
+                "Accel ,"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "settingeditor:save",
+            "keys": [
+                "Accel S"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-SettingEditor",
+            "args": {}
+        },
+        {
+            "command": "tabsmenu:activate-previously-used-tab",
+            "keys": [
+                "Accel Shift '"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "toc:show-panel",
+            "keys": [
+                "Accel Shift K"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body",
+            "args": {}
+        },
+        {
+            "command": "tooltip:dismiss",
+            "keys": [
+                "Escape"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body.jp-mod-tooltip .jp-Notebook",
+            "args": {}
+        },
+        {
+            "command": "tooltip:dismiss",
+            "keys": [
+                "Escape"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": "body.jp-mod-tooltip .jp-CodeConsole-promptCell",
+            "args": {}
+        },
+        {
+            "command": "tooltip:launch-console",
+            "keys": [
+                "Shift Tab"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-CodeConsole-promptCell .jp-InputArea-editor:not(.jp-mod-has-primary-selection):not(.jp-mod-in-leading-whitespace)",
+            "args": {}
+        },
+        {
+            "command": "tooltip:launch-notebook",
+            "keys": [
+                "Shift Tab"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-editMode .jp-InputArea-editor:not(.jp-mod-has-primary-selection):not(.jp-mod-in-leading-whitespace):not(.jp-mod-completer-active)",
+            "args": {}
+        },
+        {
+            "command": "viewmenu:line-numbering",
+            "keys": [
+                "Shift L"
+            ],
+            "winKeys": [],
+            "macKeys": [],
+            "linuxKeys": [],
+            "selector": ".jp-Notebook.jp-mod-commandMode :focus:not(:read-write)",
+            "args": {}
+        }
+    ]
+}
