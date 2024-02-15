@@ -1,0 +1,29 @@
+{
+    "toolbar": [
+        {
+            "name": "widgetTitle",
+            "command": "",
+            "disabled": false,
+            "rank": 10
+        },
+        {
+            "name": "checkpoint",
+            "command": "",
+            "disabled": false,
+            "rank": 20
+        },
+        {
+            "name": "spacer",
+            "command": "",
+            "disabled": false,
+            "type": "spacer",
+            "rank": 50
+        },
+        {
+            "name": "kernelLogo",
+            "command": "",
+            "disabled": false,
+            "rank": 110
+        }
+    ]
+}
