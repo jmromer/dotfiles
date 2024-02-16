@@ -2044,10 +2044,10 @@ Ex commands for =projectile-rails=. Mainly here for =:AS= and =:AV=.
 
 ** apheleia
 
-Disable autoformatting until we can figure out what the hell is going on.
+Disable autoformatting with apheleia until we can figure out what the hell is going on.
 
 #+begin_src elisp
-(apheleia-global-mode 1)
+(apheleia-global-mode -1)
 (setq-hook! 'ruby-mode-hook +format-with 'rubocop)
 #+end_src
 
