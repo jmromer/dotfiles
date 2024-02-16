@@ -1765,6 +1765,10 @@ See `org-capture-templates' for more information."
 (setq projectile-create-missing-test-files t)
 #+end_src
 
+#+begin_src elisp
+(setq projectile-switch-project-action #'projectile-dired)
+#+end_src
+
 * python
 
 ** projectile
