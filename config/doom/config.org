@@ -2405,10 +2405,21 @@ Precedence order:
 
 * workspaces
 
-#+begin_src elisp
-(map! "s-;" #'+workspace/other
+Disabled. The buffer-centric mode of working is superior anyway.
+
+#+begin_src elisp :tangle no
+(map! "s-R" #'+workspace/rename
+      "s-T" #'+workspace/new
+      "s-W" #'+workspace/delete
+      "s-;" #'+workspace/other
       "s-{" #'+workspace/switch-left
       "s-}" #'+workspace/switch-right)
+#+end_src
+
+#+begin_src elisp :tangle no
+(setq +workspaces-main "org"
+      +workspaces-switch-project-function #'projectile-switch-project
+      +workspaces-on-switch-project-behavior nil)
 #+end_src
 
 * yankee
