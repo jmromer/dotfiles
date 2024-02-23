@@ -2541,6 +2541,13 @@ Add some yankee motions for evil mode.
 
 * hacks
 
+Fix new line indentation in CoffeeScript
+
+#+begin_src elisp
+(setq coffee-tab-width 2
+      coffee-indent-like-python-mode t)
+#+end_src
+
 TEMP: Restore missing org-eldoc function invoked when evaluating region
 
 #+begin_src elisp
