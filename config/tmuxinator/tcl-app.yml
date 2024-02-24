@@ -17,14 +17,18 @@ windows:
 - sidekiq:
     layout: even-horizontal
     panes:
-    - bin/db start && bin/sidekiq -C config/sidekiq.yml
-    - cd ../thatcleanlife-nutrition-api && bin/rails server
+      - sidekiq:
+        - bin/db start
+        - bin/sidekiq -C config/sidekiq.yml
+      - nutrition-api:
+        - cd ../thatcleanlife-nutrition-api
+        - bin/rails server
 - console:
     panes:
     - bin/rails console
 - tests:
     panes:
-    - bin/test_run
+    - echo bin/test_run
 - shell:
     panes:
     - fortune
