@@ -6,3 +6,4 @@ pager: less
 aliases:
     co: pr checkout
     br: browse
+version: "1"
