@@ -1861,8 +1861,8 @@ Bind test-running keybindings.
 
 #+begin_src elisp
 (map! :map python-mode-map
-      :ni "s-<return>"   #'python-pytest-file-dwim
-      :ni "s-RET"        #'python-pytest-file-dwim
+      :ni "s-<return>"   #'python-pytest-file
+      :ni "s-RET"        #'python-pytest-file
       :ni "s-S-<return>" #'python-pytest-repeat
       :ni "s-S-RET"      #'python-pytest-repeat)
 
@@ -1873,13 +1873,13 @@ Bind test-running keybindings.
       :desc "single"      :n "t" #'python-pytest-function-dwim
       :desc "all"         :n "a" #'python-pytest
       :desc "buffer"      :n "b" #'python-pytest-file-dwim
+      :desc "file"        :n "f" #'python-pytest-file
       :desc "last"        :n "l" #'python-pytest-repeat
       :desc "last failed" :n "L" #'python-pytest-last-failed
       :desc "close"       :n "c" #'kill-open-pytest-buffers
       :desc "dispatch"    :n "." #'python-pytest-dispatch
       "F" nil
       "T" nil
-      "f" nil
       "p" nil
       "r" nil)
 #+end_src
