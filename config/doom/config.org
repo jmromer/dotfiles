@@ -1863,6 +1863,8 @@ Bind test-running keybindings.
 (map! :map python-mode-map
       :ni "s-<return>"   #'python-pytest-file
       :ni "s-RET"        #'python-pytest-file
+      :ni "s-C-<return>" #'python-pytest-window-delete
+      :ni "s-C-RET"      #'python-pytest-window-delete
       :ni "s-S-<return>" #'python-pytest-repeat
       :ni "s-S-RET"      #'python-pytest-repeat)
 
@@ -1876,7 +1878,7 @@ Bind test-running keybindings.
       :desc "file"        :n "f" #'python-pytest-file
       :desc "last"        :n "l" #'python-pytest-repeat
       :desc "last failed" :n "L" #'python-pytest-last-failed
-      :desc "close"       :n "c" #'kill-open-pytest-buffers
+      :desc "close"       :n "c" #'python-pytest-window-delete
       :desc "dispatch"    :n "." #'python-pytest-dispatch
       "F" nil
       "T" nil
@@ -1887,18 +1889,18 @@ Bind test-running keybindings.
 kill any open pytest compilation buffers
 
 #+begin_src elisp
-(defun kill-open-pytest-buffers ()
-  "Kill any open pytest compilation buffers."
+(defun window-with-name-prefix-delete (prefix)
+  "Delete the first matching window with the given name PREFIX."
+  (delete-window
+   (get-buffer-window
+    (seq-find
+     #'(lambda (buffer) (string-prefix-p prefix (buffer-name buffer)))
+     (buffer-list)))))
+
+(defun python-pytest-window-delete ()
+  "Delete the pytest compilation windows."
   (interactive)
-  (kill-open-buffers-with-name-prefix "*pytest*"))
-#+end_src
-
-Dismiss pytest compilation buffers as one would expect to.
-
-#+begin_src elisp
-(map! :map python-pytest-mode-map
-      "C-g" #'bury-buffer
-      "q"   #'bury-buffer)
+  (window-with-name-prefix-delete "*pytest*"))
 #+end_src
 
 * react & web
