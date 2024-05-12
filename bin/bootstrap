@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative "../lib/bootstrap"
+require_relative '../lib/bootstrap'
 
 ensure_xcode_is_set_up
 ensure_gpg_permissions_are_set_correctly
 ensure_locals_are_created
 
 setup :xdg_base_directory_environment do
-  install_launchagent "env.xdg"
+  install_launchagent 'env.xdg'
 end
 
 setup :homebrew do
@@ -61,7 +61,7 @@ setup :build_tools do
 end
 
 setup :gui_apps do
-  cask_install "1password"
+  cask_install '1password'
   cask_install :airtable
   cask_install :amethyst
   cask_install :appcleaner
@@ -120,7 +120,7 @@ setup :development_tools do
   brew_install :bash
   brew_install :bat
   brew_install :direnv
-  brew_install :exa
+  brew_install :eza
   brew_install :fzf
   brew_install :flyctl
   brew_install :gh
@@ -134,13 +134,13 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
-  brew_tap "heroku/brew"
+  brew_tap 'heroku/brew'
   brew_install :heroku
 
-  brew_tap "romkatv/gitstatus"
+  brew_tap 'romkatv/gitstatus'
   brew_install :gitstatus
 
-  brew_tap "homebrew/cask-versions"
+  brew_tap 'homebrew/cask-versions'
   cask_install :iterm2_nightly
 end
 
@@ -160,7 +160,7 @@ end
 setup :miscellaneous_cli_tools do
   brew_install :cowsay
   brew_install :defaultbrowser
-  brew_tap "yt-dlp/taps"
+  brew_tap 'yt-dlp/taps'
   brew_install :yt_dlp
 end
 
@@ -174,7 +174,7 @@ end
 setup :editors do
   brew_install :macvim
 
-  brew_tap "d12frosted/emacs-plus"
+  brew_tap 'd12frosted/emacs-plus'
   brew_install :emacs_plus,
                options: %i[
                  with_dbus
@@ -200,7 +200,7 @@ end
 
 setup :pd_tool do
   asdf_install :golang
-  install_launchagent "conclave.pd.refresh"
+  install_launchagent 'conclave.pd.refresh'
   script_install :pd
 end
 
