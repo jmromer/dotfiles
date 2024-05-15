@@ -4,7 +4,7 @@ erlang 25.3
 gohugo 0.109.0
 golang 1.21.0
 gradle 8.4
-java openjdk-21
+java openjdk-22.0.1
 mysql 8.0.26
 nodejs 20.8.0
 postgres 15.1
