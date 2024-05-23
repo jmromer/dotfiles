@@ -964,7 +964,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
          (file-name (string-trim (read-from-minibuffer "problem set: " "pset1" nil nil '(history . 1)))))
     (progn
       (message (format "Compiling %s.tex..." file-name))
-      (call-process-shell-command (format "pdflatex %s.tex" file-name)))))
+      (call-process-shell-command (format "xelatex %s.tex" file-name)))))
 #+end_src
 
 #+begin_src elisp
