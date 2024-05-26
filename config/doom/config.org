@@ -961,7 +961,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
   (interactive)
   (let* ((default-directory (concat (projectile-project-root) "psets"))
          (history (mapcar #'file-name-sans-extension (directory-files default-directory nil "\.tex$")))
-         (file-name (string-trim (read-from-minibuffer "problem set: " "pset1" nil nil '(history . 1)))))
+         (file-name (string-trim (read-from-minibuffer "problem set: " "pset1" nil nil history))))
     (progn
       (message (format "Compiling %s.tex..." file-name))
       (call-process-shell-command (format "xelatex %s.tex" file-name)))))
