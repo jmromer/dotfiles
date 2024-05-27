@@ -957,18 +957,28 @@ If the prefix arg ARG is passed, delete the tags at project root."
 * latex
 
 #+begin_src elisp
-(defun +compile-pdflatex-pset ()
+(defun +compile-latex-doc ()
   (interactive)
-  (let* ((default-directory (concat (projectile-project-root) "psets"))
+  (let* ((docs-dir-name "docs")
+         (target-file-base (nth 1 (reverse (file-name-split default-directory))))
+         (default-directory (concat (projectile-project-root) docs-dir-name))
+         (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
          (history (mapcar #'file-name-sans-extension (directory-files default-directory nil "\.tex$")))
-         (file-name (string-trim (read-from-minibuffer "problem set: " "pset1" nil nil history))))
+         (file-name
+          (if (file-exists-p (format "%s.tex" target-file-base))
+              target-file-base
+            (string-trim (read-from-minibuffer "document: " target-file-base nil nil 'history)))))
     (progn
       (message (format "Compiling %s.tex..." file-name))
       (call-process-shell-command (format "xelatex %s.tex" file-name)))))
 #+end_src
 
 #+begin_src elisp
-(map! :map LaTeX-mode-map "s-C-t" #'+compile-pdflatex-pset)
+(map! :map LaTeX-mode-map
+      :ni "C-RET" #'+compile-latex-doc
+      :ni "C-<return>" #'+compile-latex-doc
+      :ni "s-RET" #'+compile-latex-doc
+      :ni "s-<return>" #'+compile-latex-doc)
 #+end_src
 
 #+begin_src elisp
