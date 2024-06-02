@@ -68,13 +68,14 @@ setup :gui_apps do
   cask_install :authy
   cask_install :bettertouchtool
   cask_install :brave_browser
-  cask_install :dash6
+  cask_install :dash, version: 6
   cask_install :discord
   cask_install :docker
   cask_install :dropbox
   cask_install :firefox
   cask_install :google_chrome
   cask_install :httpie
+  cask_install :iterm2, version: :nightly
   cask_install :keyboard_maestro
   cask_install :keycastr
   cask_install :launchbar
@@ -139,9 +140,6 @@ setup :development_tools do
 
   brew_tap 'romkatv/gitstatus'
   brew_install :gitstatus
-
-  brew_tap 'homebrew/cask-versions'
-  cask_install :iterm2_nightly
 end
 
 setup :text_editing_cli_tools do
