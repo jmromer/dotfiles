@@ -550,40 +550,6 @@ Small improvement to =diff-hl-show-hunk-copy-original-text=.
     (message "Hunk is a new addition, no content to copy.")))
 #+end_src
 
-Temporary patch to =diff-hl-show-hunk-hide= until [[https://github.com/dgutov/diff-hl/commit/d225def4a473a16ac994124e063695ef9cef3308][diff-hl@d225def4a]] is released.
-
-#+begin_src elisp
-(after! diff-hl-show-hunk
-  (defun diff-hl-show-hunk-hide ()
-    "Hide the current shown hunk."
-    (interactive)
-    (if (and diff-hl-show-hunk--original-window (window-live-p diff-hl-show-hunk--original-window))
-        (select-window diff-hl-show-hunk--original-window))
-    (setq diff-hl-show-hunk--original-window nil)
-    (if (buffer-live-p diff-hl-show-hunk--original-buffer)
-        (switch-to-buffer diff-hl-show-hunk--original-buffer))
-    (setq diff-hl-show-hunk--original-buffer nil)
-    (with-current-buffer (get-buffer-create diff-hl-show-hunk-buffer-name)
-      (read-only-mode -1)
-      (erase-buffer))
-    ;; --------------------------------------------
-    (when (get-buffer diff-hl-show-hunk-buffer-name)      ;; diff: check for buffer existence
-      (bury-buffer diff-hl-show-hunk-buffer-name))
-    (when (get-buffer diff-hl-show-hunk-diff-buffer-name) ;; diff: check for buffer existence
-      (bury-buffer diff-hl-show-hunk-diff-buffer-name))
-    ;; --------------------------------------------
-    (when diff-hl-show-hunk--hide-function
-      (let ((hidefunc diff-hl-show-hunk--hide-function))
-        (setq diff-hl-show-hunk--hide-function nil)
-        (funcall hidefunc)))
-    (when diff-hl-show-hunk--original-overlay
-      (diff-hl-show-hunk--goto-hunk-overlay diff-hl-show-hunk--original-overlay))
-    (when diff-hl-show-hunk--original-overlay
-      (delete-overlay diff-hl-show-hunk--original-overlay))
-    (setq diff-hl-show-hunk--original-overlay nil))
-  nil)
-#+end_src
-
 * dired
 
 From the normal state, Enter dired in the CWD of the current buffer's file with =-=.
