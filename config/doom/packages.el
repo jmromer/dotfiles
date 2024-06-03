@@ -15,7 +15,7 @@
 (package! dash-at-point)
 (package! jest)
 (package! evil-cleverparens)
-(package! evil-iedit-state :recipe (:host github :repo "jmromer/evil-iedit-state"))
+(package! evil-iedit-state)
 (package! evil-lion)
 (package! evil-matchit)
 (package! evil-quickscope)
