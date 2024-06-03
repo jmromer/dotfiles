@@ -558,6 +558,12 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 (map! :n "-" #'dired-jump)
 #+end_src
 
+#+begin_src elisp
+(map! :map dired-mode-map
+      :localleader
+      :n "," #'casual-dired-tmenu)
+#+end_src
+
 * evil
 
 ** state messages
