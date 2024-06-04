@@ -1734,6 +1734,17 @@ See `org-capture-templates' for more information."
       :n ", ," #'projectile-toggle-between-implementation-and-test)
 #+end_src
 
+Default to searching projects with an invalidated cache.
+
+#+begin_src elisp
+(map! :leader
+      :prefix "p"
+      :desc "find file in project"
+      :n "f" #'(lambda () (interactive) (projectile-find-file-dwim t))
+      :desc "find file in project (with cache)"
+      :n "F" #'projectile-find-file-dwim)
+#+end_src
+
 #+begin_src elisp
 (setq projectile-project-search-path
       '(("~/.dotfiles/share" . 2)
