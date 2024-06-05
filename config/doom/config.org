@@ -927,6 +927,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
 #+end_src
 
 * latex
+** Compilation (notes / psets)
 
 #+begin_src elisp
 (defun +compile-latex-doc ()
@@ -945,15 +946,32 @@ If the prefix arg ARG is passed, delete the tags at project root."
       (call-process-shell-command (format "xelatex %s.tex" file-name)))))
 #+end_src
 
-#+begin_src elisp
-(map! :map LaTeX-mode-map
-      :ni "C-RET" #'+compile-latex-doc
-      :ni "C-<return>" #'+compile-latex-doc
-      :ni "s-RET" #'+compile-latex-doc
-      :ni "s-<return>" #'+compile-latex-doc)
-#+end_src
+** Open (notes / psets)
 
 #+begin_src elisp
+(defun +open-latex-doc ()
+  (interactive)
+  (let* ((docs-dir-name "docs")
+         (target-file-base (nth 1 (reverse (file-name-split default-directory))))
+         (default-directory (concat (projectile-project-root) docs-dir-name))
+         (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
+         (history (mapcar #'file-name-sans-extension (directory-files default-directory nil "\.pdf")))
+         (file-name
+          (if (file-exists-p (format "%s.pdf" target-file-base))
+              target-file-base
+            (string-trim (read-from-minibuffer "open doc: " target-file-base nil nil 'history)))))
+    (progn
+      (call-process-shell-command (format "open -a Skim.app %s.pdf" file-name)))))
+#+end_src
+
+** Keybindings
+
+#+begin_src elisp
+(map! :map LaTeX-mode-map
+      :ni "C-RET" #'+open-latex-doc
+      :ni "C-<return>" #'+open-latex-doc
+      :ni "s-RET" #'+compile-latex-doc
+      :ni "s-<return>" #'+compile-latex-doc)
 #+end_src
 
 * lookup
