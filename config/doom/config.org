@@ -2383,7 +2383,15 @@ Precedence order:
 
 * word chars
 
+Enable superword mode globally
+
 #+begin_src elisp
+(global-superword-mode)
+#+end_src
+
+Disabled:
+
+#+begin_src elisp :tangle no
 (defun +config:add-dot-to-word-chars ()
   "Adds underscore to the word chars syntax entry list."
   (modify-syntax-entry ?. "w"))
