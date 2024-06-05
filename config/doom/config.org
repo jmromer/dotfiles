@@ -954,13 +954,6 @@ If the prefix arg ARG is passed, delete the tags at project root."
 #+end_src
 
 #+begin_src elisp
-(defun +add-TeX-command-list-entries ()
-  (interactive)
-  (add-to-list 'TeX-command-list
-               '("pdfLaTeX (pset)" "(+compile-pdflatex-pset)"
-                 TeX-run-function nil t
-                 :help "Compile the current problem set")))
-(add-hook! LaTeX-mode #'+add-TeX-command-list-entries)
 #+end_src
 
 * lookup
