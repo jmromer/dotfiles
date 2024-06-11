@@ -967,7 +967,31 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ** Keybindings
 
 #+begin_src elisp
+(defun +LaTeX-wrap-in-cmd (cmd)
+  (interactive)
+  (let ((selected-text (string-trim (buffer-substring (mark) (point)))))
+    (progn
+      (kill-region (mark) (point))
+      (insert (format "\\%s{%s}" cmd selected-text)))))
+
+(defun +LaTeX-make-bold ()
+  (interactive)
+  (+LaTeX-wrap-in-cmd "textbf"))
+
+(defun +LaTeX-make-italic ()
+  (interactive)
+  (+LaTeX-wrap-in-cmd "textit"))
+
+(defun +LaTeX-make-underlined ()
+  (interactive)
+  (+LaTeX-wrap-in-cmd "underline"))
+#+end_src
+
+#+begin_src elisp
 (map! :map LaTeX-mode-map
+      :nv "s-b" #'+LaTeX-make-bold
+      :nv "s-i" #'+LaTeX-make-italic
+      :nv "s-u" #'+LaTeX-make-underlined
       :ni "C-RET" #'+open-latex-doc
       :ni "C-<return>" #'+open-latex-doc
       :ni "s-RET" #'+compile-latex-doc
