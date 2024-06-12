@@ -245,6 +245,7 @@ end
 # ---------
 
 DOTFILES_DIR = File.dirname(File.dirname(__FILE__))
+HOMEBREW_PREFIX = `brew --prefix`.chomp
 
 ENVIRONMENT =
   `zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|ASDF_|PATH)'"`
@@ -252,6 +253,7 @@ ENVIRONMENT =
   .split("\n")
   .map { |line| line.split("=") }
   .push(["HOMEBREW_NO_INSTALL_CLEANUP", true.to_s])
+  .push(["HOMEBREW_PREFIX", HOMEBREW_PREFIX])
   .push(["DOTFILES_DIR", DOTFILES_DIR])
   .sort_by(&:first)
   .to_h
