@@ -147,6 +147,7 @@ def ensure_locals_are_created
   return unless machine_is?(:mac)
 
   system(ENVIRONMENT, "ln -sf ${HOMEBREW_PREFIX}/bin/pinentry-mac ${XDG_LOCALS_DIR}/bin/")
+  system(ENVIRONMENT, "ln -sf ${XDG_CONFIG_HOME}/asdf/tool-versions ${HOME}/.tool-versions")
 end
 
 # Homebrew-related commands
