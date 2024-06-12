@@ -180,8 +180,8 @@ def brew_install(package, version: nil, options: [])
   end
 end
 
-def cask_install(package_name, options: [])
-  brew_install(package_name, options: [:cask, *options])
+def cask_install(package_name, version: nil, options: [])
+  brew_install(package_name, version: version, options: [:cask, *options])
 end
 
 def brew_cleanup
