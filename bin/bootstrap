@@ -63,7 +63,6 @@ end
 setup :gui_apps do
   cask_install '1password'
   cask_install :airtable
-  cask_install :amethyst
   cask_install :appcleaner
   cask_install :authy
   cask_install :bettertouchtool
@@ -74,18 +73,20 @@ setup :gui_apps do
   cask_install :dropbox
   cask_install :firefox
   cask_install :google_chrome
+  cask_install :google_drive
   cask_install :httpie
   cask_install :iterm2, version: :nightly
   cask_install :keyboard_maestro
   cask_install :keycastr
+  cask_install :latexit
   cask_install :launchbar
   cask_install :launchcontrol
   cask_install :launchpad_manager
   cask_install :mark_text
   cask_install :name_mangler
+  cask_install :onedrive
   cask_install :pandora
   cask_install :pdfsam_basic
-  cask_install :protonmail_bridge
   cask_install :protonvpn
   cask_install :responsively
   cask_install :screenflow
@@ -95,7 +96,6 @@ setup :gui_apps do
   cask_install :sqlpro_studio
   cask_install :telegram
   cask_install :transmission
-  cask_install :tuple
   cask_install :vivaldi
   cask_install :vlc
   cask_install :zoom
