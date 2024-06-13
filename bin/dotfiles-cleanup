@@ -28,7 +28,17 @@ to_delete, to_confirm =
   .partition { |file| CONFIRMED_DELETE.include?(file) }
   .freeze
 
-def delete_and_record(directories, deletions = [])
+def delete_and_record_files(files, deletions = [])
+  files
+    .map { |f| "#{Dir.home}/#{f}" }
+    .select { |f| File.file?(f) }
+    .select { |f| block_given? ? yield(f) : true }
+    .each { |f| deletions.push(f) }
+    .each { |f| FileUtils.rm_rf(f) }
+  deletions
+end
+
+def delete_and_record_dirs(directories, deletions = [])
   directories
     .map { |dir| "#{Dir.home}/#{dir}" }
     .select { |dir| File.directory?(dir) }
@@ -38,8 +48,14 @@ def delete_and_record(directories, deletions = [])
   deletions
 end
 
-deletions = delete_and_record(to_delete)
-deletions = delete_and_record(to_confirm, deletions) do |dir|
+deletions = delete_and_record_files(to_delete)
+deletions = delete_and_record_files(to_confirm, deletions) do |dir|
+  printf("Delete #{dir}? [y/N]: ")
+  %w[y yes].include?(gets&.chomp&.downcase)
+end
+
+deletions = delete_and_record_dirs(to_delete, deletions)
+deletions = delete_and_record_dirs(to_confirm, deletions) do |dir|
   printf("Delete #{dir}? [y/N]: ")
   %w[y yes].include?(gets&.chomp&.downcase)
 end

@@ -13,4 +13,5 @@
 .spacemacs
 .spacemacs.env
 .ssh
+.tool-versions
 .vscode
