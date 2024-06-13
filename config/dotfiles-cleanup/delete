@@ -1,11 +1,15 @@
 .cache
 .config
+.cpan
 .emacs.d
 .gem
 .hex
+.lesshst
 .local
 .python_history
 .rubies
+.share
+.sockets
 .state
 .viminfo
 .yarnrc
