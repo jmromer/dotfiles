@@ -34,6 +34,7 @@ setup :core_cli_tools do
   brew_install :gnutls
   brew_install :grep
   brew_install :less
+  brew_install :mas
   brew_install :ripgrep
   brew_install :watch
   brew_install :wdiff
