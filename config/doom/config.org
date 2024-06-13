@@ -942,6 +942,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
               target-file-base
             (string-trim (read-from-minibuffer "document: " target-file-base nil nil 'history)))))
     (progn
+      (save-buffer)
       (message (format "Compiling %s.tex..." file-name))
       (call-process-shell-command (format "xelatex %s.tex" file-name)))))
 #+end_src
