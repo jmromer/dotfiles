@@ -961,9 +961,10 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ** Compilation (notes / psets)
 
 #+begin_src elisp
-(defun +compile-latex-doc ()
+(defun +save-and-compile-latex-doc ()
   (interactive)
-  (let* ((docs-dir-name "docs")
+  (let* ((shell-command-prompt-show-cwd t)
+         (docs-dir-name "docs")
          (target-file-base (nth 1 (reverse (file-name-split default-directory))))
          (default-directory (concat (projectile-project-root) docs-dir-name))
          (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
@@ -974,8 +975,10 @@ If the prefix arg ARG is passed, delete the tags at project root."
             (string-trim (read-from-minibuffer "document: " target-file-base nil nil 'history)))))
     (progn
       (save-buffer)
-      (message (format "Compiling %s.tex..." file-name))
-      (call-process-shell-command (format "xelatex %s.tex" file-name)))))
+      (+async-shell-command-below
+       (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex"
+               file-name
+               file-name)))))
 #+end_src
 
 ** Open (notes / psets)
@@ -1026,8 +1029,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
       :nv "s-u" #'+LaTeX-make-underlined
       :ni "C-RET" #'+open-latex-doc
       :ni "C-<return>" #'+open-latex-doc
-      :ni "s-RET" #'+compile-latex-doc
-      :ni "s-<return>" #'+compile-latex-doc)
+      :ni "s-s" #'+save-and-compile-latex-doc)
 #+end_src
 
 * lookup
