@@ -297,6 +297,37 @@ Allow remembering risky local variables.
 
 Some general-purpose functions.
 
+** +async-shell-command-below
+
+#+begin_src elisp
+(defun +async-shell-command-below (command &optional buffer-name proportion)
+  "Execute COMMAND, displaying output in buffer (optionally named BUFFER-NAME),
+which that takes up PROPORTION of the frame height (default: 0.1).
+Dismiss the buffer and window on success, or switch focus to it on failure."
+  (let ((buffer-name (or buffer-name "*Async Shell Command*"))
+        (proportion (or proportion 0.1))
+        (window-min-height 1))
+    (with-current-buffer (get-buffer-create buffer-name)
+      (setq truncate-lines t))
+    (let ((output-window (split-window (selected-window) (floor (* (- 1 proportion) (window-total-height))) 'below)))
+      (set-window-buffer output-window buffer-name)
+      (set-window-text-height output-window (floor (* proportion (frame-height)))))
+    (async-shell-command command buffer-name)
+    (set-process-sentinel (get-buffer-process buffer-name)
+                          (lambda (process event)
+                            (let* ((buffer (process-buffer process))
+                                   (window (get-buffer-window buffer)))
+                              (if (string= event "finished\n")
+                                  (progn
+                                    (when (window-live-p window)
+                                      (delete-window window))
+                                    (kill-buffer buffer))
+                                (when (process-live-p process)
+                                  (interrupt-process process))
+                                (when (window-live-p window)
+                                  (select-window window))))))))
+#+end_src
+
 ** file-to-string
 
 #+begin_src elisp
