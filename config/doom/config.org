@@ -980,48 +980,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
 #+end_src
 
 * latex
-** Compilation (notes / psets)
-
-#+begin_src elisp
-(defun +save-and-compile-latex-doc ()
-  (interactive)
-  (let* ((shell-command-prompt-show-cwd t)
-         (docs-dir-name "docs")
-         (target-file-base (nth 1 (reverse (file-name-split default-directory))))
-         (default-directory (concat (projectile-project-root) docs-dir-name))
-         (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
-         (history (mapcar #'file-name-sans-extension (directory-files default-directory nil "\.tex$")))
-         (file-name
-          (if (file-exists-p (format "%s.tex" target-file-base))
-              target-file-base
-            (string-trim (read-from-minibuffer "document: " target-file-base nil nil 'history)))))
-    (progn
-      (save-buffer)
-      (+async-shell-command-below
-       (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex"
-               file-name
-               file-name)))))
-#+end_src
-
-** Open (notes / psets)
-
-#+begin_src elisp
-(defun +open-latex-doc ()
-  (interactive)
-  (let* ((docs-dir-name "docs")
-         (target-file-base (nth 1 (reverse (file-name-split default-directory))))
-         (default-directory (concat (projectile-project-root) docs-dir-name))
-         (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
-         (history (mapcar #'file-name-sans-extension (directory-files default-directory nil "\.pdf")))
-         (file-name
-          (if (file-exists-p (format "%s.pdf" target-file-base))
-              target-file-base
-            (string-trim (read-from-minibuffer "open doc: " target-file-base nil nil 'history)))))
-    (progn
-      (call-process-shell-command (format "open -a Skim.app %s.pdf" file-name)))))
-#+end_src
-
-** Keybindings
+** Formatting
 
 #+begin_src elisp
 (defun +LaTeX-wrap-in-cmd (cmd)
@@ -1044,14 +1003,85 @@ If the prefix arg ARG is passed, delete the tags at project root."
   (+LaTeX-wrap-in-cmd "underline"))
 #+end_src
 
+** Keybindings
+
 #+begin_src elisp
 (map! :map LaTeX-mode-map
       :nv "s-b" #'+LaTeX-make-bold
       :nv "s-i" #'+LaTeX-make-italic
       :nv "s-u" #'+LaTeX-make-underlined
-      :ni "C-RET" #'+open-latex-doc
-      :ni "C-<return>" #'+open-latex-doc
+      :ni "s-<return>" #'+open-latex-doc
+      :ni "s-S-<return>" #'+open-latex-doc-in-skim
       :ni "s-s" #'+save-and-compile-latex-doc)
+#+end_src
+
+** PDF auto-revert
+
+#+begin_src elisp
+(defun refresh-pdf-buffer-display ()
+  "Refresh the display of the PDF buffer."
+  (when (and (eq major-mode 'pdf-view-mode)
+             (not (eq (current-buffer) (window-buffer (selected-window)))))
+    (pdf-view-revert-buffer nil t)))
+
+(defun auto-revert-mode-pdf-view-refresh ()
+  "Enable auto-revert-mode and refresh display for PDF buffers."
+  (add-hook 'auto-revert-hook 'refresh-pdf-buffer-display nil t))
+
+(setq auto-revert-interval 1)
+(setq auto-revert-verbose nil)
+
+(add-hook! pdf-view-mode #'auto-revert-mode-pdf-view-refresh)
+(add-hook! pdf-view-mode #'auto-revert-mode)
+#+end_src
+
+** Notes and Problem Sets
+*** Find associated document
+
+#+begin_src elisp
+(defun +find-associated-latex-doc (&optional filetype docs-dir-name)
+  (interactive)
+  (let* ((filetype (or filetype "tex"))
+         (docs-dir-name (or docs-dir-name "docs"))
+         (target-file-base (nth 1 (reverse (file-name-split default-directory))))
+         (default-directory (concat (projectile-project-root) docs-dir-name))
+         (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
+         (history (mapcar #'file-name-sans-extension (directory-files default-directory nil (format "\.%s" filetype)))))
+    (if (file-exists-p (format "%s.%s" target-file-base filetype))
+                        target-file-base
+                      (string-trim (read-from-minibuffer "open doc: " target-file-base nil nil 'history)))))
+#+end_src
+
+*** Compile
+
+#+begin_src elisp
+(defun +save-and-compile-latex-doc ()
+  (interactive)
+  (let ((shell-command-prompt-show-cwd t)
+        (file-name (+find-associated-latex-doc))
+        (default-directory (concat (projectile-project-root) "docs")))
+    (progn
+      (save-buffer)
+      (+async-shell-command-below
+       (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex" file-name file-name)))))
+#+end_src
+
+*** Open
+
+#+begin_src elisp
+(defun +open-latex-doc (arg)
+  (interactive "P")
+  (let ((file-name (+find-associated-latex-doc "pdf"))
+        (default-directory (concat (projectile-project-root) "docs")))
+    (if arg
+        (call-process-shell-command (format "open -a Skim.app %s.pdf" file-name))
+      (+open-file-in-new-buffer-right (format "%s.pdf" file-name)))))
+#+end_src
+
+#+begin_src elisp
+(defun +open-latex-doc-in-skim ()
+  (interactive)
+  (+open-latex-doc t))
 #+end_src
 
 * lookup
