@@ -328,6 +328,28 @@ Dismiss the buffer and window on success, or switch focus to it on failure."
                                   (select-window window))))))))
 #+end_src
 
+** +open-file-in-new-buffer-right
+
+#+begin_src elisp
+(defun +open-file-in-new-buffer-right (filename)
+  "Open a PDF file in a new buffer to the right of the current buffer, or reload if already open."
+  (interactive "fOpen PDF file: ")
+  (let ((buffer (get-file-buffer filename))
+        (window (get-buffer-window filename)))
+    (if buffer
+        (if window
+            (select-window window)
+          (progn
+            (split-window-right)
+            (other-window 1)
+            (switch-to-buffer buffer)
+            (revert-buffer :ignore-auto :noconfirm)))
+      (progn
+        (split-window-right)
+        (other-window 1)
+        (find-file filename)))))
+#+end_src
+
 ** file-to-string
 
 #+begin_src elisp
