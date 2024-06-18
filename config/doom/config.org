@@ -1063,7 +1063,9 @@ If the prefix arg ARG is passed, delete the tags at project root."
     (progn
       (save-buffer)
       (+async-shell-command-below
-       (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex" file-name file-name)))))
+       (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex" file-name file-name)
+       nil
+       0.05))))
 #+end_src
 
 *** Open
