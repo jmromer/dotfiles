@@ -246,7 +246,7 @@ end
 # ---------
 
 DOTFILES_DIR = File.dirname(File.dirname(__FILE__))
-HOMEBREW_PREFIX = `brew --prefix`.chomp
+HOMEBREW_PREFIX = '/opt/homebrew'
 
 ENVIRONMENT =
   `zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|ASDF_|PATH)'"`
