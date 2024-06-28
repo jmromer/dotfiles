@@ -64,7 +64,6 @@ setup :gui_apps do
   cask_install '1password'
   cask_install :airtable
   cask_install :appcleaner
-  cask_install :authy
   cask_install :bettertouchtool
   cask_install :brave_browser
   cask_install :dash, version: 6
