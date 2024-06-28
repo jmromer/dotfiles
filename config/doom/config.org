@@ -85,6 +85,19 @@ Start Emacs maximized, use no titlebar with rounded corners.
 (add-to-list 'default-frame-alist '(undecorated-round . t))
 #+end_src
 
+Toggle light/dark theme based on the current OS setting.
+
+#+begin_src elisp
+(defun +set-preferred-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme 'doom-oksolar-light t))
+    ('dark (load-theme 'doom-one t))))
+
+(add-hook 'ns-system-appearance-change-functions #'+set-preferred-theme)
+#+end_src
+
 Tell =ispell= to shut up.
 
 #+begin_src elisp
