@@ -76,7 +76,6 @@ setup :gui_apps do
   cask_install :google_drive
   cask_install :httpie
   cask_install :iterm2, version: :nightly
-  cask_install :keyboard_maestro
   cask_install :keycastr
   cask_install :latexit
   cask_install :launchbar
