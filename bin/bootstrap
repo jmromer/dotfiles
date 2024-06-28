@@ -54,7 +54,6 @@ setup :build_tools do
   brew_install :libxml2
   brew_install :llvm
   brew_install :ncurses
-  brew_install :openssl, version: 1.1
   brew_install :openssl, version: 3
   brew_install :readline
   brew_install :rtags
@@ -157,7 +156,6 @@ setup :text_editing_cli_tools do
 end
 
 setup :miscellaneous_cli_tools do
-  brew_install :cowsay
   brew_install :defaultbrowser
   brew_tap 'yt-dlp/taps'
   brew_install :yt_dlp
