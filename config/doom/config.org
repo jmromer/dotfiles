@@ -1027,9 +1027,10 @@ If the prefix arg ARG is passed, delete the tags at project root."
       :nv "s-b" #'+LaTeX-make-bold
       :nv "s-i" #'+LaTeX-make-italic
       :nv "s-u" #'+LaTeX-make-underlined
-      :ni "s-<return>" #'+open-latex-doc
-      :ni "s-S-<return>" #'+open-latex-doc-in-skim
-      :ni "s-s" #'+save-and-compile-latex-doc)
+      :ni "s-c" #'+LaTeX-build-cleanup
+      :ni "s-<return>" #'+LaTeX-open-doc
+      :ni "s-S-<return>" #'+LaTeX-open-doc-with-skim
+      :ni "s-s" #'+LaTeX-save-and-compile)
 #+end_src
 
 ** PDF auto-revert
@@ -1056,51 +1057,64 @@ If the prefix arg ARG is passed, delete the tags at project root."
 *** Find associated document
 
 #+begin_src elisp
-(defun +find-associated-latex-doc (&optional filetype docs-dir-name)
+(defun +LaTeX-find-associated-doc (&optional filetype)
+  "If not at the project root, take the main doc's name from the current directory.
+Otherwise, assume the current file is the main doc."
   (interactive)
   (let* ((filetype (or filetype "tex"))
-         (docs-dir-name (or docs-dir-name "docs"))
-         (target-file-base (nth 1 (reverse (file-name-split default-directory))))
-         (default-directory (concat (projectile-project-root) docs-dir-name))
-         (target-file-base (if (string= target-file-base docs-dir-name) (file-name-base) target-file-base))
-         (history (mapcar #'file-name-sans-extension (directory-files default-directory nil (format "\.%s" filetype)))))
-    (if (file-exists-p (format "%s.%s" target-file-base filetype))
-                        target-file-base
-                      (string-trim (read-from-minibuffer "open doc: " target-file-base nil nil 'history)))))
+         (proj-root (projectile-project-root))
+         (at-proj-root (string= default-directory proj-root))
+         (doc-name (if (not at-proj-root)
+                       (nth 1 (reverse (file-name-split default-directory)))
+                     (file-name-base)))
+         (history (mapcar #'file-name-sans-extension (directory-files proj-root nil (format "\.%s" filetype)))))
+    (if (not (file-exists-p (format "%s/%s.%s" proj-root doc-name filetype)))
+        (string-trim (read-from-minibuffer "file: " doc-name nil nil 'history))
+      doc-name)))
 #+end_src
 
-*** Compile
+*** Compile TeX
 
 #+begin_src elisp
-(defun +save-and-compile-latex-doc ()
+(defun +LaTeX-save-and-compile ()
   (interactive)
-  (let ((shell-command-prompt-show-cwd t)
-        (file-name (+find-associated-latex-doc))
-        (default-directory (concat (projectile-project-root) "docs")))
-    (progn
+  (if (not (string= "tex" (file-name-extension (buffer-file-name))))
       (save-buffer)
-      (+async-shell-command-below
-       (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex" file-name file-name)
-       nil
-       0.25))))
+    (let* ((shell-command-prompt-show-cwd t)
+           (file-name (+LaTeX-find-associated-doc))
+           (default-directory (projectile-project-root))
+           (command (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex" file-name)))
+      (progn
+        (save-buffer)
+        (+async-shell-command-below command nil 0.3)))))
 #+end_src
 
-*** Open
+*** Clean up build artifacts
 
 #+begin_src elisp
-(defun +open-latex-doc (arg)
+(defun +LaTeX-build-cleanup ()
+  "Remove all aux, log, and out files in the project."
+  (interactive)
+  (let ((default-directory (projectile-project-root)))
+    (+async-shell-command-below "rm -f *.{aux,log,out}" nil 0.3)))
+#+end_src
+
+*** Open PDF
+
+#+begin_src elisp
+(defun +LaTeX-open-doc (arg)
   (interactive "P")
-  (let ((file-name (+find-associated-latex-doc "pdf"))
-        (default-directory (concat (projectile-project-root) "docs")))
+  (let ((file-name (+LaTeX-find-associated-doc "pdf"))
+        (default-directory (projectile-project-root)))
     (if arg
         (call-process-shell-command (format "open -a Skim.app %s.pdf" file-name))
       (+open-file-in-new-buffer-right (format "%s.pdf" file-name)))))
 #+end_src
 
 #+begin_src elisp
-(defun +open-latex-doc-in-skim ()
+(defun +LaTeX-open-with-skim ()
   (interactive)
-  (+open-latex-doc t))
+  (+LaTeX-open-doc t))
 #+end_src
 
 * lookup
