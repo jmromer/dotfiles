@@ -12,7 +12,7 @@
 (package! command-log-mode)
 (package! company-box)
 (package! company-lsp)
-(package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(package! copilot :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 (package! dash-at-point)
 (package! jest)
 (package! evil-cleverparens)
