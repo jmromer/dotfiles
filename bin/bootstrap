@@ -69,7 +69,6 @@ setup :gui_apps do
   cask_install :dash, version: 6
   cask_install :discord
   cask_install :docker
-  cask_install :dropbox
   cask_install :firefox
   cask_install :google_chrome
   cask_install :google_drive

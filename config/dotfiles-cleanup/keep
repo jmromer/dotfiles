@@ -6,7 +6,6 @@
 .docker
 .docker-sync-global.yml
 .dotfiles
-.dropbox
 .emacs-profile
 .kube
 .netrc
