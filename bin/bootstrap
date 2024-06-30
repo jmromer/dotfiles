@@ -64,6 +64,7 @@ setup :gui_apps do
   cask_install "1password"
   cask_install :airtable
   cask_install :appcleaner
+  cask_install :betterdisplay
   cask_install :bettertouchtool
   cask_install :brave_browser
   cask_install :dash, version: 6
@@ -85,6 +86,8 @@ setup :gui_apps do
   cask_install :pandora
   cask_install :pdfsam_basic
   cask_install :protonvpn
+  cask_install :raindropio
+  cask_install :rectangle_pro
   cask_install :responsively
   cask_install :screenflow
   cask_install :skim
@@ -92,6 +95,7 @@ setup :gui_apps do
   cask_install :spotify
   cask_install :sqlpro_studio
   cask_install :telegram
+  cask_install :tex_live_utility
   cask_install :transmission
   cask_install :vivaldi
   cask_install :vlc
