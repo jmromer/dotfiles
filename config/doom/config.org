@@ -518,34 +518,14 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 
 Accept completion from GitHub Copilot and fallback to company
 
-#+begin_src elisp :tangle yes
+#+begin_src elisp
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-              ("<return>" . 'copilot-accept-completion)
-              ("RET" . 'copilot-accept-completion)
-              ("C-RET" . 'copilot-accept-completion-by-word)
-              ("C-<return>" . 'copilot-accept-completion-by-word)))
-
-;; If pressing tab to complete sometimes doesn't work you might want to bind
-;; completion to another key or try:
-(after! (evil copilot)
-  ;; Define the custom function that either accepts the completion or does the
-  ;; default behavior
-  (defun +copilot-select-or-default ()
-    (interactive)
-    (if (and (bound-and-true-p copilot-mode))
-        (copilot-accept-completion)
-      (evil-insert 1)))
-  (map! :i "<return>" #'+copilot-select-or-default))
-#+end_src
-
-Sample keybindings:
-
-#+begin_src elisp :tangle no
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
+              ;; ("<return>" . 'copilot-accept-completion)
+              ;; ("RET" . 'copilot-accept-completion)
+              ;; ("C-RET" . 'copilot-accept-completion-by-word)
+              ;; ("C-<return>" . 'copilot-accept-completion-by-word)
               ("<tab>" . 'copilot-accept-completion)
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
@@ -555,16 +535,13 @@ Sample keybindings:
 ;; completion to another key or try:
 (after! (evil copilot)
   ;; Define the custom function that either accepts the completion or does the default behavior
-  (defun my/copilot-tab-or-default ()
+  (defun +copilot-select-or-default ()
     (interactive)
-    (if (and (bound-and-true-p copilot-mode)
-             ;; Add any other conditions to check for active copilot suggestions, if necessary
-             )
+    ;; Add any other conditions to check for active copilot suggestions, if necessary
+    (if (and (bound-and-true-p copilot-mode))
         (copilot-accept-completion)
-      (evil-insert 1))) ; Default action to insert a tab. Adjust as needed.
-
-  ;; Bind the custom function to <tab> in Evil's insert state
-  (evil-define-key 'insert 'global (kbd "<tab>") 'my/copilot-tab-or-default))
+      (evil-insert 1))) ;; Default action to insert a tab
+  (map! :i "<tab>" #'+copilot-select-or-default))
 #+end_src
 
 Strongly recommend to enable childframe option in company module
