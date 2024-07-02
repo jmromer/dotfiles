@@ -25,6 +25,7 @@ PATH+=":${XDG_DATA_HOME}/npm/bin"
 # PATH+=":${XDG_DATA_HOME}/gem/ruby/3.0.0/bin"
 
 PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
+PATH+=":${HOMEBREW_PREFIX}/opt/libpq/bin"
 PATH+=":${HOMEBREW_PREFIX}/bin"
 PATH+=":${HOMEBREW_PREFIX}/sbin"
 PATH+=":/usr/local/bin" # some binaries use /usr/local/bin on Apple silicon
