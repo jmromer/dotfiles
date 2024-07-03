@@ -1,5 +1,13 @@
 --css=tailwind
 --database=postgresql
 --javascript=importmap
+--skip-action-mailbox
+--skip-action-mailer
+--skip-action-text
+--skip-active-job
+--skip-active-storage
+--skip-decrypted-diffs
+--skip-docker
 --skip-git
+--skip-keeps
 --skip-test
