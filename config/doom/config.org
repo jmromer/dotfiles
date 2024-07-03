@@ -1048,7 +1048,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
       :nv "s-u" #'+LaTeX-make-underlined
       :ni "s-c" #'+LaTeX-build-cleanup
       :ni "s-<return>" #'+LaTeX-open-doc
-      :ni "s-S-<return>" #'+LaTeX-open-doc-with-skim
+      :ni "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
       :ni "s-s" #'+LaTeX-save-and-compile)
 #+end_src
 
