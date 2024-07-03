@@ -1909,7 +1909,7 @@ See `org-capture-templates' for more information."
 
 Default to searching projects with an invalidated cache.
 
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (map! :leader
       :prefix "p"
       :desc "find file in project"
