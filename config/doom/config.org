@@ -1899,6 +1899,14 @@ See `org-capture-templates' for more information."
                  "\n"))))
 #+end_src
 
+** avy
+
+#+begin_src elisp
+(use-package! avy
+  :after org
+  :hook (org-mode . avy-setup-default))
+#+end_src
+
 * projectile
 
 #+begin_src elisp
