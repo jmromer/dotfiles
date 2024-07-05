@@ -533,15 +533,15 @@ Accept completion from GitHub Copilot and fallback to company
 
 ;; If pressing tab to complete sometimes doesn't work you might want to bind
 ;; completion to another key or try:
-(after! (evil copilot)
-  ;; Define the custom function that either accepts the completion or does the default behavior
-  (defun +copilot-select-or-default ()
-    (interactive)
-    ;; Add any other conditions to check for active copilot suggestions, if necessary
-    (if (and (bound-and-true-p copilot-mode))
-        (copilot-accept-completion)
-      (evil-insert 1))) ;; Default action to insert a tab
-  (map! :i "<tab>" #'+copilot-select-or-default))
+;; (after! (evil copilot)
+;;   ;; Define the custom function that either accepts the completion or does the default behavior
+;;   (defun +copilot-select-or-default ()
+;;     (interactive)
+;;     ;; Add any other conditions to check for active copilot suggestions, if necessary
+;;     (if (and (bound-and-true-p copilot-mode))
+;;         (copilot-accept-completion)
+;;       (evil-insert 1))) ;; Default action to insert a tab
+;;   (map! :i "<tab>" #'+copilot-select-or-default))
 #+end_src
 
 Strongly recommend to enable childframe option in company module
