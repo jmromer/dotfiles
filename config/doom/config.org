@@ -2220,11 +2220,14 @@ Ex commands for =projectile-rails=. Mainly here for =:AS= and =:AV=.
 
 ** apheleia
 
-Disable autoformatting with apheleia until we can figure out what the hell is going on.
+Disable autoformatting with apheleia.
 
 #+begin_src elisp
 (apheleia-global-mode -1)
+(add-to-list '+format-on-save-disabled-modes 'ruby-mode)
+(add-to-list '+format-on-save-disabled-modes 'web-mode)
 (setq-hook! 'ruby-mode-hook +format-with 'rubocop)
+(setq-hook! 'web-mode-hook apheleia-inhibit t)
 #+end_src
 
 ** ruby-factory
