@@ -2585,9 +2585,7 @@ Disabled:
 
 * workspaces
 
-Disabled. The buffer-centric mode of working is superior anyway.
-
-#+begin_src elisp :tangle no
+#+begin_src elisp :tangle yes
 (map! "s-R" #'+workspace/rename
       "s-T" #'+workspace/new
       "s-W" #'+workspace/delete
