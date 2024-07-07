@@ -318,13 +318,15 @@ zle -N ctrlz
 # Use cd with pd
 #-------------------------------------------------------------
 cd() {
+    # pd is installed, use it to resolve the target
     if type pd >/dev/null; then
       target="$(pd "$1")"
     else
       target="${@}"
     fi
 
-    if [[ -d "${target}" ]]; then
+    # if the target is a directory or begins with a '-', delegate to builtin cd
+    if [[ "${target}" == -* ]] || [[ -d "${target}" ]]; then
       builtin cd "${target}"
     else
       echo "Directory Not Found: ${target//$HOME/~}"
