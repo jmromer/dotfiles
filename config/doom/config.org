@@ -1039,6 +1039,22 @@ If the prefix arg ARG is passed, delete the tags at project root."
     (activate-mark)))
 #+end_src
 
+#+begin_src elisp
+(defun +LaTex-wrap-in-math-mode ()
+  "If in evil normal state, wrap the current WORD in math mode.
+If in an evil visual state, wrap the current selection in math mode."
+  (interactive)
+  (let* ((selected-text
+          (if (evil-visual-state-p)
+              (string-trim (buffer-substring (mark) (point)))
+            (progn
+              (select-around-point-to-whitespace)
+              (string-trim (buffer-substring (mark) (point))))))
+         (wrapped-text (format "\\(%s\\)" selected-text)))
+    (progn
+      (kill-region (mark) (point))
+      (insert wrapped-text))))
+
 (defun +LaTeX-wrap-in-cmd (cmd)
   (interactive)
   (let ((selected-text (string-trim (buffer-substring (mark) (point)))))
@@ -1066,6 +1082,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
       :nv "s-b" #'+LaTeX-make-bold
       :nv "s-i" #'+LaTeX-make-italic
       :nv "s-u" #'+LaTeX-make-underlined
+      :nv "C-m" #'+LaTex-wrap-in-math-mode
       :ni "s-c" #'+LaTeX-build-cleanup
       :ni "s-<return>" #'+LaTeX-open-doc
       :ni "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
