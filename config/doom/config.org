@@ -1160,7 +1160,7 @@ If in an evil visual state, wrap the current selection in math mode."
       :nv  "s-b" #'+LaTeX-make-bold
       :nv  "s-i" #'+LaTeX-make-italic
       :nv  "s-u" #'+LaTeX-make-underlined
-      :nvi "C-m" #'+LaTeX-wrap-in-math-mode
+      :nvi "C-l" #'+LaTeX-math-mode
       :ni  "s-c" #'+LaTeX-build-cleanup
       :ni  "s-<return>" #'+LaTeX-open-doc
       :ni  "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
