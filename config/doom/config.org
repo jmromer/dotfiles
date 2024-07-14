@@ -1059,16 +1059,21 @@ If the prefix arg ARG is passed, delete the tags at project root."
   "If in evil normal state, wrap the current WORD in math mode.
 If in an evil visual state, wrap the current selection in math mode."
   (interactive)
-  (let* ((selected-text
-          (if (evil-visual-state-p)
-              (string-trim (buffer-substring (mark) (point)))
-            (progn
-              (select-around-point-to-whitespace)
-              (string-trim (buffer-substring (mark) (point))))))
-         (wrapped-text (format "\\(%s\\)" selected-text)))
-    (progn
-      (kill-region (mark) (point))
-      (insert wrapped-text))))
+  (if (or (point-on-empty-line-p)
+          (looking-at-p "\\s-"))
+      (progn
+        (insert "\\(  \\)")
+        (goto-char (- (point) 3)))
+    (let* ((selected-text
+            (if (evil-visual-state-p)
+                (string-trim (buffer-substring (mark) (point)))
+              (progn
+                (select-around-point-to-whitespace-or-delimiters)
+                (string-trim (buffer-substring (mark) (point))))))
+           (wrapped-text (format "\\(%s\\)" selected-text)))
+      (progn
+        (kill-region (mark) (point))
+        (insert wrapped-text)))))
 
 (defun +LaTeX-wrap-in-cmd (cmd)
   (interactive)
