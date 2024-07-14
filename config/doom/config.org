@@ -1076,7 +1076,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
 #+end_src
 
 #+begin_src elisp
-(defun +LaTex-wrap-in-math-mode ()
+(defun +LaTeX-wrap-in-math-mode ()
   "If in evil normal state, wrap the current WORD in math mode.
 If in an evil visual state, wrap the current selection in math mode."
   (interactive)
@@ -1140,7 +1140,7 @@ If in an evil visual state, wrap the current selection in math mode."
       :nv  "s-b" #'+LaTeX-make-bold
       :nv  "s-i" #'+LaTeX-make-italic
       :nv  "s-u" #'+LaTeX-make-underlined
-      :nvi "C-m" #'+LaTex-wrap-in-math-mode
+      :nvi "C-m" #'+LaTeX-wrap-in-math-mode
       :ni  "s-c" #'+LaTeX-build-cleanup
       :ni  "s-<return>" #'+LaTeX-open-doc
       :ni  "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
