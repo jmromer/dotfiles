@@ -1019,6 +1019,15 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ** Formatting
 
 #+begin_src elisp
+(defun point-on-empty-line-p ()
+  "Return t if the point is on an empty line, nil otherwise."
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (looking-at-p "^[[:space:]]*$")))
+#+end_src
+
+#+begin_src elisp
 (defun select-around-point-to-whitespace-or-delimiters ()
   "Select characters around the current point up to whitespace in both directions."
   (interactive)
