@@ -1099,14 +1099,14 @@ If in an evil visual state, wrap the current selection in math mode."
 
 #+begin_src elisp
 (map! :map LaTeX-mode-map
-      :nv "s-b" #'+LaTeX-make-bold
-      :nv "s-i" #'+LaTeX-make-italic
-      :nv "s-u" #'+LaTeX-make-underlined
-      :nv "C-m" #'+LaTex-wrap-in-math-mode
-      :ni "s-c" #'+LaTeX-build-cleanup
-      :ni "s-<return>" #'+LaTeX-open-doc
-      :ni "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
-      :ni "s-s" #'+LaTeX-save-and-compile)
+      :nv  "s-b" #'+LaTeX-make-bold
+      :nv  "s-i" #'+LaTeX-make-italic
+      :nv  "s-u" #'+LaTeX-make-underlined
+      :nvi "C-m" #'+LaTex-wrap-in-math-mode
+      :ni  "s-c" #'+LaTeX-build-cleanup
+      :ni  "s-<return>" #'+LaTeX-open-doc
+      :ni  "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
+      :ni  "s-s" #'+LaTeX-save-and-compile)
 #+end_src
 
 ** PDF auto-revert
