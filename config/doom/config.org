@@ -1094,6 +1094,23 @@ If in an evil visual state, wrap the current selection in math mode."
   (interactive)
   (+LaTeX-wrap-in-cmd "underline"))
 #+end_src
+** Utilities
+
+#+begin_src elisp
+(defun +LaTeX-evaluate-selection ()
+  "Evaluate the selected expression numerically, converting LaTeX to
+  mathematical operators as needed."
+  (interactive)
+  (let* ((selected-text (string-trim (buffer-substring (mark) (point))))
+         (replaced-text (replace-regexp-in-string "\\\\frac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" selected-text))
+         (replaced-text (replace-regexp-in-string "\\\\dfrac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" replaced-text))
+         (replaced-text (replace-regexp-in-string "\\\\sfrac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" replaced-text))
+         (replaced-text (replace-regexp-in-string "\\\\cdot" "*" replaced-text))
+         (result (calc-eval replaced-text)))
+    (progn
+      (kill-region (mark) (point))
+      (insert (format "%s" result)))))
+#+end_src
 
 ** Keybindings
 
