@@ -1019,20 +1019,26 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ** Formatting
 
 #+begin_src elisp
-(defun select-around-point-to-whitespace ()
+(defun select-around-point-to-whitespace-or-delimiters ()
   "Select characters around the current point up to whitespace in both directions."
   (interactive)
   (let ((start (point))
         (end (point)))
     ;; Move start backward to the first whitespace or beginning of the buffer
-    (while (and (not (bobp)) (not (looking-back "\\s-")))
+    (while (and (not (bobp))
+                (not (looking-back "\\s-"))
+                (not (looking-back "[,;.]")))
       (backward-char))
     (setq start (point))
+
     ;; Move end forward to the first whitespace or end of the buffer
     (goto-char end)
-    (while (and (not (eobp)) (not (looking-at "\\s-")))
+    (while (and (not (eobp))
+                (not (looking-at "\\s-"))
+                (not (looking-at "[,;.]")))
       (forward-char))
     (setq end (point))
+
     ;; Select the region
     (set-mark start)
     (goto-char end)
