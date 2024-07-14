@@ -306,6 +306,27 @@ Allow remembering risky local variables.
 (map! :leader :prefix "t" :desc "Word count" "W" #'+enable-continuous-word-count)
 #+end_src
 
+** open config workspace
+
+#+begin_src elisp
+(defun +open-dotfiles ()
+  "Create a new workspace, switch to it, then open the DOTFILES_DIR in dired."
+  (interactive)
+  (progn
+    (+workspace/new "dotfiles")
+    (+workspace/switch-to-final)
+    (find-file (getenv "DOTFILES_DIR"))))
+#+end_src
+
+** tmux-ish keybindings
+
+#+begin_src elisp
+(map! "C-h" #'projectile-switch-project
+      "C-a m" #'+open-dotfiles
+      "C-a -" #'evil-window-split
+      "C-a \\" #'evil-window-vsplit)
+#+end_src
+
 * +utilities
 
 Some general-purpose functions.
