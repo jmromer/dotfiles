@@ -51,6 +51,7 @@ alias pp='pretty-print-path'
 alias b=bundle
 alias vi='vim -U $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'
 alias vin='vim -U NONE'
+alias vim=nvim
 
 #-------------------------------------------------------------
 # EDITOR / PAGER
