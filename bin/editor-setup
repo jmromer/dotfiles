@@ -11,7 +11,7 @@
 # Examples:
 #   editor-setup
 #   editor-setup py
-#   editor-setup rb py js
+#   editor-setup rb py js perl
 #   editor-setup all
 #
 
@@ -23,6 +23,12 @@ setup_golang() {
   while read -r package; do
     go get -u -v "${package}"
   done < "${XDG_CONFIG_HOME}/asdf/default-libraries-golang"
+}
+
+setup_perl() {
+  while read -r package; do
+    cpanm -n "${package}"
+  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-perl"
 }
 
 setup_ruby() {
@@ -103,6 +109,11 @@ while [ $# -gt -1 ]; do
         'js')
             message "Installing JavaScript Libraries"
             setup_javascript
+            shift
+            ;;
+        'perl')
+            message "Installing Perl Libraries"
+            setup_perl
             shift
             ;;
         'py')

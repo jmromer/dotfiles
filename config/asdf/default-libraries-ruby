@@ -9,6 +9,7 @@ gem-ctags
 hirb
 interactive_editor
 jazz_fingers
+neovim
 rake
 rcodetools
 rspec
