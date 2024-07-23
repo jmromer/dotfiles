@@ -1093,6 +1093,7 @@ If in an evil visual state, wrap the current selection in math mode."
          (replaced-text (replace-regexp-in-string "\\\\cdot" "*" replaced-text))
          (result (calc-eval replaced-text)))
     (progn
+      (message (format "Evaluating: %s = %s" replaced-text result))
       (kill-region (mark) (point))
       (insert (format "%s" result)))))
 #+end_src
