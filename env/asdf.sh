@@ -36,9 +36,10 @@ export ASDF_CONCURRENCY="${MACHINE_CORES}"
 
 # Default libraries locations
 export ASDF_GEM_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-ruby"
-export ASDF_NPM_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-nodejs"
-export ASDF_PYTHON_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-python"
 export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-golang"
+export ASDF_NPM_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-nodejs"
+export ASDF_PERL_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-perl"
+export ASDF_PYTHON_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-libraries-python"
 
 # extra config options for installs
 export POSTGRES_EXTRA_CONFIGURE_OPTIONS="--with-uuid=e2fs --with-libxml"

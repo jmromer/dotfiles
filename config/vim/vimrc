@@ -248,6 +248,10 @@ set timeoutlen=500 ttimeoutlen=10
 " Preserve words when breaking lines
 set linebreak
 
+"--------------------------------------------------------------
+" NeoVim
+"--------------------------------------------------------------
+let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/asdf-versions/shims/perl'
 
 "--------------------------------------------------------------
 " Convenience Bindings
