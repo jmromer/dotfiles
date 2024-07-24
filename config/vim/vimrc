@@ -252,6 +252,8 @@ set linebreak
 " NeoVim
 "--------------------------------------------------------------
 let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/asdf-versions/shims/perl'
+set viminfo=%,<100,'10,/50,:100,h,f0,c,n~/.vim/viminfo'
+
 
 "--------------------------------------------------------------
 " Convenience Bindings
