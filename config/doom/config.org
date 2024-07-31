@@ -1202,9 +1202,15 @@ Otherwise, assume the current file is the main doc."
          (doc-name (if (not at-proj-root)
                        (nth 1 (reverse (file-name-split default-directory)))
                      (file-name-base)))
-         (history (mapcar #'file-name-sans-extension (directory-files proj-root nil (format "\.%s" filetype)))))
+         (history
+          (mapcar #'file-name-sans-extension
+                  (cl-remove-if-not
+                   (lambda (fn) (message fn) (string-suffix-p ".tex" fn))
+                   (directory-files proj-root nil (format "\.%s" filetype)))))
+         (first (car history))
+         (rest (cdr history)))
     (if (not (file-exists-p (format "%s/%s.%s" proj-root doc-name filetype)))
-        (string-trim (read-from-minibuffer "file: " doc-name nil nil 'history))
+        (string-trim (read-from-minibuffer "file: " first nil nil 'rest))
       doc-name)))
 #+end_src
 
