@@ -62,7 +62,6 @@ end
 
 setup :gui_apps do
   cask_install "1password"
-  cask_install :airtable
   cask_install :appcleaner
   cask_install :betterdisplay
   cask_install :bettertouchtool
