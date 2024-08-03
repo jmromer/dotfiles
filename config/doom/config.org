@@ -1205,7 +1205,7 @@ Otherwise, assume the current file is the main doc."
          (history
           (mapcar #'file-name-sans-extension
                   (cl-remove-if-not
-                   (lambda (fn) (message fn) (string-suffix-p ".tex" fn))
+                   (lambda (fn) (message fn) (string-suffix-p (format ".%s" filetype) fn))
                    (directory-files proj-root nil (format "\.%s" filetype)))))
          (first (car history))
          (rest (cdr history)))
