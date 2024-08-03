@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: SI Boltzmann's constant
-# key: sikb              
+# key: si-kb
 # --
 \SI{1.381e-23}{\J\per\K}

@@ -1,6 +1,7 @@
-# key: align
+# -*- mode: snippet -*-
 # name: align
+# key: ali
 # --
 \begin{align*}
-  $0
+    ${0}
 \end{align*}
