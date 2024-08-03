@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: boxed
+# key: bx
+# --
+\boxed{${1}}$0
