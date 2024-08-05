@@ -2,4 +2,4 @@
 # name: frac
 # key: frac
 # --
-\frac{${1:numerator}}{${2:denominator}}$0
+\frac{${1}}{${2}}$0
