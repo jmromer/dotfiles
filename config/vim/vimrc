@@ -15,6 +15,17 @@ set runtimepath+=$VIM,$VIMRUNTIME
 runtime xdg.vim
 
 "--------------------------------------------------------------
+" NeoVim
+"--------------------------------------------------------------
+let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/asdf-versions/shims/perl'
+
+if !has('nvim')
+  set viminfofile=~/.dotfiles/cache/vim/viminfo
+else
+  set viminfofile=~/.dotfiles/cache/vim/nviminfo
+endif
+
+"--------------------------------------------------------------
 " Load Plugins
 "--------------------------------------------------------------
 call plug#begin('$XDG_DATA_HOME/vim/plugged')
@@ -247,13 +258,6 @@ set timeoutlen=500 ttimeoutlen=10
 
 " Preserve words when breaking lines
 set linebreak
-
-"--------------------------------------------------------------
-" NeoVim
-"--------------------------------------------------------------
-let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/asdf-versions/shims/perl'
-set viminfo=%,<100,'10,/50,:100,h,f0,c,n~/.vim/viminfo'
-
 
 "--------------------------------------------------------------
 " Convenience Bindings
@@ -581,3 +585,4 @@ let g:fzf_colors =
 if filereadable(expand('$DOTFILES_DIR/local/config/vim/vimrc'))
   source $DOTFILES_DIR/local/config/vim/vimrc
 endif
+
