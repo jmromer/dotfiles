@@ -2,4 +2,4 @@
 # name: Right-sized parentheses
 # key: (
 # --
-\L( $1 \R$0
+\L( $0 \R
