@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: table
+# key: tab
+# --
+\begin{table}[H]
+    \centering{}
+    \begin{center}
+        \begin{tabular}{${3:lcl}}
+            \toprule
+            $0 & 0 & 0 \tabularnewline %
+            \midrule
+            0 & 0 & 0 \tabularnewline %
+            \bottomrule
+        \end{tabular}
+        \caption{$1 \protect\label{tab:$2}}
+        \par%
+    \end{center}
+\end{table}

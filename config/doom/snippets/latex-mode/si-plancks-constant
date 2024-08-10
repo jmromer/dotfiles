@@ -2,4 +2,4 @@
 # name: SI Planck's constant
 # key: si-h
 # --
-\SI{6.626e-34}{\joule\second}
+\SI{6.626e-34}{\J\s}

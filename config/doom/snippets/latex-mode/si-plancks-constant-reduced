@@ -2,4 +2,4 @@
 # name: SI Planck's constant reduced
 # key: si-hbar
 # --
-\SI{1.055e-34}{\joule\second}$0
+\SI{1.055e-34}{\J\s}$0
