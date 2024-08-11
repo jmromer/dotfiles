@@ -1045,7 +1045,8 @@ If the prefix arg ARG is passed, delete the tags at project root."
   "If in evil normal state, wrap the current WORD in math mode.
 If in an evil visual state, wrap the current selection in math mode."
   (interactive "P")
-  (if (point-on-empty-line-p)
+  (if (or (point-on-empty-line-p)
+          (evil-insert-state-p))
       (if displaymode-p
           (progn
             (insert "\\[\n\n\\]")
