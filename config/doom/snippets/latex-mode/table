@@ -3,16 +3,16 @@
 # key: tab
 # --
 \begin{table}[H]
-    \centering{}
-    \begin{center}
-        \begin{tabular}{${3:lcl}}
-            \toprule
-            $0 & 0 & 0 \tabularnewline %
-            \midrule
-            0 & 0 & 0 \tabularnewline %
-            \bottomrule
-        \end{tabular}
-        \caption{$1 \protect\label{tab:$2}}
-        \par%
-    \end{center}
+	\centering{}
+	\begin{center}
+		\begin{tabular}{lcl}
+			\toprule
+			$0  & 0 & 0 \tabularnewline%
+			\midrule
+			0 & 0 & 0 \tabularnewline%
+			\bottomrule
+		\end{tabular}
+		\caption{$1 \protect\label{tab:$2}}
+		\par%
+	\end{center}
 \end{table}
