@@ -1119,7 +1119,7 @@ If in an evil visual state, wrap the current selection in math mode."
         (end (point)))
     ;; Move start backward to the first whitespace or beginning of the buffer
     (while (and (not (bobp))
-                (not (looking-back "\\s-"))
+                (not (looking-back "\\s-\\|\n"))
                 (not (looking-back "[,;.]")))
       (backward-char))
     (setq start (point))
@@ -1127,7 +1127,7 @@ If in an evil visual state, wrap the current selection in math mode."
     ;; Move end forward to the first whitespace or end of the buffer
     (goto-char end)
     (while (and (not (eobp))
-                (not (looking-at "\\s-"))
+                (not (looking-at "\\s-\\|\n"))
                 (not (looking-at "[,;.]")))
       (forward-char))
     (setq end (point))
