@@ -1045,12 +1045,11 @@ If the prefix arg ARG is passed, delete the tags at project root."
   "If in evil normal state, wrap the current WORD in math mode.
 If in an evil visual state, wrap the current selection in math mode."
   (interactive)
-  (if (or (point-on-empty-line-p)
-          (looking-at-p "\\s-"))
+  (if (point-on-empty-line-p)
       (progn
         (insert "\\(  \\)")
         (goto-char (- (point) 3))
-        (evil-insert))
+        (evil-insert 1))
     (let* ((selected-text
             (if (evil-visual-state-p)
                 (string-trim (buffer-substring (mark) (point)))
@@ -1106,7 +1105,7 @@ If in an evil visual state, wrap the current selection in math mode."
   (interactive)
   (save-excursion
     (beginning-of-line)
-    (looking-at-p "^[[:space:]]*$")))
+    (looking-at-p "^\\s-*$")))
 #+end_src
 
 *** make selection between whitespace/delimiters
