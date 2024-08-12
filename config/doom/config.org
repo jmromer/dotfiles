@@ -1035,7 +1035,8 @@ If the prefix arg ARG is passed, delete the tags at project root."
 * latex
 ** Configuration
 #+begin_src elisp
-(setq font-latex-fontify-script nil)
+(setq font-latex-fontify-script nil
+      tex-fontify-script nil)
 #+end_src
 
 ** Formatting
