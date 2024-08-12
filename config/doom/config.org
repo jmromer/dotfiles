@@ -1085,6 +1085,20 @@ If in an evil visual state, wrap the current selection in math mode."
 (defun +LaTeX-make-underlined ()
   (interactive)
   (+LaTeX-wrap-in-cmd "underline"))
+
+(defun +LaTeX-in-SI-units ()
+  "Format the selected text with SI units in the buffer."
+  (interactive)
+  (let* ((selection (buffer-substring-no-properties (region-beginning) (region-end)))
+         (split-pos (string-match " " selection)))
+    (let ((formatted-string
+           (if split-pos
+               (let ((value (substring selection 0 split-pos))
+                     (unit (substring selection (1+ split-pos))))
+                 (format "\\SI{%s}{\\%s}" value unit))
+             (format "\\SI{}{\\%s}" selection))))
+      (delete-region (region-beginning) (region-end))
+      (insert formatted-string))))
 #+end_src
 
 ** Utilities
