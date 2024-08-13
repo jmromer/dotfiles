@@ -1145,7 +1145,7 @@ If in an evil visual state, wrap the current selection in math mode."
     ;; Move start backward to the first whitespace or beginning of the buffer
     (while (and (not (bobp))
                 (not (looking-back "\\s-\\|\n"))
-                (not (looking-back "[,;.]")))
+                (not (looking-back "[,;=]")))
       (backward-char))
     (setq start (point))
 
