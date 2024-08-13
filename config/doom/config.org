@@ -1111,10 +1111,11 @@ If in an evil visual state, wrap the current selection in math mode."
   mathematical operators as needed."
   (interactive)
   (let* ((selected-text (string-trim (buffer-substring (mark) (point))))
-         (replaced-text (replace-regexp-in-string "\\\\frac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" selected-text))
+         (replaced-text (replace-regexp-in-string "\\\\cdot" "*" selected-text))
+         (replaced-text (replace-regexp-in-string "\\\\SI{\\([^}]+\\)}{}" "\\1" replaced-text))
+         (replaced-text (replace-regexp-in-string "\\\\frac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" replaced-text))
          (replaced-text (replace-regexp-in-string "\\\\dfrac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" replaced-text))
          (replaced-text (replace-regexp-in-string "\\\\sfrac{\\([^}]+\\)}{\\([^}]+\\)}" "(\\1/\\2)" replaced-text))
-         (replaced-text (replace-regexp-in-string "\\\\cdot" "*" replaced-text))
          (result (calc-eval replaced-text)))
     (progn
       (message (format "Evaluating: %s = %s" replaced-text result))
