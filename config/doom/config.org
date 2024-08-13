@@ -1086,6 +1086,10 @@ If in an evil visual state, wrap the current selection in math mode."
   (interactive)
   (+LaTeX-wrap-in-cmd "underline"))
 
+(defun +LaTeX-boxed ()
+  (interactive)
+  (+LaTeX-wrap-in-cmd "boxed"))
+
 (defun +LaTeX-in-SI-units ()
   "Format the selected text with SI units in the buffer."
   (interactive)
