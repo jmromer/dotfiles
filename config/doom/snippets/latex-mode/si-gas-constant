@@ -2,4 +2,4 @@
 # name: SI Universal Gas Constant
 # key: si-rgas
 # --
-\SI{8.3145}{\joule/{\mole\kelvin}}
+\SI{8.3145}{\J/\mol\K}
