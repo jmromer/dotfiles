@@ -131,6 +131,7 @@ setup :development_tools do
   brew_install :httpie
   brew_install :pyenv
   brew_install :source_highlight
+  brew_install :texlab
   brew_install :tmux
   brew_install :xdg_ninja
   brew_install :zsh
