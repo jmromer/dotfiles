@@ -226,8 +226,8 @@ Use comma for the local leader key.
 Some general purpose super-key keybindings.
 
 #+begin_src elisp
-   (map! "s-'"  #'+vterm/toggle
-         "s-\"" #'vterm-other-window
+   (map! "s-'"  #'vterm-other-window
+         "s-\"" #'+vterm/toggle
          "s-K"  #'kill-current-buffer
          "s-k"  #'bury-buffer
          "s-f"  #'avy-goto-char-2
@@ -245,8 +245,8 @@ Meta variants for terminal emacs:
 #+end_src
 
 #+begin_src elisp
-   (map! "M-'"  #'+vterm/toggle
-         "M-\"" #'vterm-other-window
+   (map! "M-'"  #'vterm-other-window
+         "M-\"" #'+vterm/toggle
          "M-K"  #'kill-current-buffer
          "M-k"  #'bury-buffer
          "M-f"  #'avy-goto-char-2
