@@ -12,7 +12,7 @@ alias ...='\cd ../..; l' # go to grandparent dir and list contents
 alias mkdir='mkdir -p'   # create subdirectories as necessary
 alias h='history'        # show history
 alias dirs='dirs -v'     # show directory stack
-alias ls='eza'
+alias ls='eza --group-directories-first --time-style=long-iso --classify'
 alias l='ls'
 alias la='ls -a'
 alias ld='ls -d .*'
