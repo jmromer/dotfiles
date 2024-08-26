@@ -24,6 +24,7 @@
 (package! evil-ruby-text-objects)
 (package! evil-string-inflection)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
+(package! exercism)
 (package! ggtags :recipe (:host github :repo "leoliu/ggtags"))
 (package! gxref :recipe (:host github :repo "dedi/gxref"))
 (package! impatient-mode :recipe (:host github :repo "skeeto/impatient-mode"))
