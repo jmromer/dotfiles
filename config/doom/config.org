@@ -10,6 +10,7 @@
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
 - [[#evil][evil]]
+- [[#exercism][exercism]]
 - [[#flycheck][flycheck]]
 - [[#folding][folding]]
 - [[#formatting][formatting]]
@@ -928,6 +929,35 @@ Use =g~= operator to cycle through inflection transformations.
 *** ruby text objects
 #+begin_src elisp
 (add-hook! ruby-mode #'evil-ruby-text-objects-mode)
+#+end_src
+
+* exercism
+
+#+begin_src elisp
+(require 'exercism)
+#+end_src
+
+#+begin_src elisp
+(setq exercism--config-path (format "%s/exercism/user.json" (getenv "XDG_CONFIG_HOME")))
+(defun exercism--configure (api-token)
+  "Configure excerism with API-TOKEN."
+  (setq exercism--api-token api-token)
+  (exercism--run-shell-command (concat (shell-quote-argument exercism-executable)
+                                       " configure"
+                                       " --token " (shell-quote-argument exercism--api-token))
+                               (lambda (result) (message "[exercism] configure: %s" result)
+                                 ;; {
+                                 ;;   "apibaseurl": "https://api.exercism.io/v1",
+                                 ;;   "token": "d4bfe622-92e1-4d36-a0ae-788712e03946",
+                                 ;;   "workspace": "/Users/raf/Exercism"
+                                 ;; }
+                                 (let* ((user-config-path (expand-file-name exercism--config-path))
+                                       (user-config-str (exercism--file-to-string user-config-path))
+                                       (user-config (json-parse-string user-config-str
+                                                                       :object-type 'alist
+                                                                       :array-type 'list))
+                                       (workspace (alist-get 'workspace user-config)))
+                                   (setq exercism--workspace workspace)))))
 #+end_src
 
 * flycheck
