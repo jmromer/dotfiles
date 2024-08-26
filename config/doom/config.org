@@ -227,15 +227,16 @@ Use comma for the local leader key.
 Some general purpose super-key keybindings.
 
 #+begin_src elisp
-(map!    "s-'"  #'vterm-other-window
-         "s-\"" #'+vterm/toggle
-         "s-K"  #'kill-current-buffer
-         "s-k"  #'bury-buffer
-         "s-f"  #'avy-goto-char-2
-         "s-F"  #'avy-goto-char-timer
-         "s-n"  #'org-capture
-         "s-N"  #'org-projectile-project-todo-completing-read
-  "<s-escape>"  #'evil-escape)
+(map! :desc "pwd vterm"     "s-'"   #'vterm-other-window
+      :desc "project vterm" "s-\""  #'+vterm/toggle
+      :desc "full vterm"    "s-C-'" #'(lambda () (interactive) (+vterm/here t))
+         "s-K"   #'kill-current-buffer
+         "s-k"   #'bury-buffer
+         "s-f"   #'avy-goto-char-2
+         "s-F"   #'avy-goto-char-timer
+         "s-n"   #'org-capture
+         "s-N"   #'org-projectile-project-todo-completing-read
+  "<s-escape>"   #'evil-escape)
 #+end_src
 
 #+begin_src elisp
@@ -250,15 +251,16 @@ Meta variants for terminal emacs:
 #+end_src
 
 #+begin_src elisp
-   (map! "M-'"  #'vterm-other-window
-         "M-\"" #'+vterm/toggle
-         "M-K"  #'kill-current-buffer
-         "M-k"  #'bury-buffer
-         "M-f"  #'avy-goto-char-2
-         "M-F"  #'avy-goto-char-timer
-         "M-n"  #'org-capture
-         "M-N"  #'org-projectile-project-todo-completing-read
-  "<M-escape>"  #'evil-escape)
+   (map! :desc "pwd vterm"     "M-'"   #'vterm-other-window
+         :desc "project vterm" "M-\""  #'+vterm/toggle
+         :desc "full vterm"    "M-C-'" #'(lambda () (interactive) (+vterm/here t))
+         "M-K"   #'kill-current-buffer
+         "M-k"   #'bury-buffer
+         "M-f"   #'avy-goto-char-2
+         "M-F"   #'avy-goto-char-timer
+         "M-n"   #'org-capture
+         "M-N"   #'org-projectile-project-todo-completing-read
+  "<M-escape>"   #'evil-escape)
 #+end_src
 
 ** identity
