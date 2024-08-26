@@ -23,6 +23,8 @@ open_emacs_client() {
     --create-frame \
     --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))" \
     "$@"
+
+  bring_emacs_to_front
 }
 
 # Function to check if Emacs has any open windows
