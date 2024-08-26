@@ -569,6 +569,14 @@ Accept completion from GitHub Copilot and fallback to company
 ;;   (map! :i "<tab>" #'+copilot-select-or-default))
 #+end_src
 
+Silence warnings when an indentation offset can't be inferred.
+
+#+begin_src elisp
+;; ⛔ Warning (copilot): copilot--infer-indentation-offset found no
+;;   mode-specific indentation offset.
+(setq copilot-indent-offset-warning-disable t)
+#+end_src
+
 Strongly recommend to enable childframe option in company module
 =((company +childframe))= to prevent overlay conflict.
 
