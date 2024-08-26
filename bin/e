@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+emacsclient \
+    --no-wait \
+    --create-frame \
+    --alternate-editor "" \
+    --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))" \
+    "${1:-"$(pwd)"}"
