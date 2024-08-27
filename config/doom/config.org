@@ -1308,7 +1308,7 @@ Otherwise, assume the current file is the main doc."
     (let* ((shell-command-prompt-show-cwd t)
            (file-name (+LaTeX-find-associated-doc))
            (default-directory (projectile-project-root))
-           (command (format "xelatex -interaction=nonstopmode -halt-on-error %s.tex" file-name)))
+           (command (format "xelatex -shell-escape -interaction=nonstopmode -halt-on-error %s.tex" file-name)))
       (progn
         (save-buffer)
         (+async-shell-command-below command nil 0.3)))))
