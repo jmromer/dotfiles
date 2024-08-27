@@ -1314,7 +1314,7 @@ Otherwise, assume the current file is the main doc."
            (command (format "xelatex -shell-escape -interaction=nonstopmode -halt-on-error %s.tex" file-name)))
       (progn
         (save-buffer)
-        (+async-shell-command-below command nil 0.3)))))
+        (+async-shell-command-below command nil 0.05)))))
 #+end_src
 
 *** Clean up build artifacts
