@@ -366,7 +366,10 @@ Dismiss the buffer and window on success, or switch focus to it on failure."
                                 (when (process-live-p process)
                                   (interrupt-process process))
                                 (when (window-live-p window)
-                                  (select-window window))))))))
+                                  (progn
+                                    (select-window window)
+                                    (enlarge-window 15)
+                                    (recenter -1)))))))))
 #+end_src
 
 ** +open-file-in-new-buffer-right
