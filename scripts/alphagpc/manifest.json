@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "alphagpc",
+  "version": "1.0",
+  "description": "alphagpc",
+  "content_scripts": [
+    {
+      "matches": ["https://www.coursera.org/learn/*/lecture/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": []
+}
