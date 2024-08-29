@@ -2667,6 +2667,12 @@ Look for a request spec if there's no controller spec."
       :desc "insert breakpoint" :n "b" #'python/toggle-breakpoint)
 #+end_src
 
+** ruby-refactor
+
+#+begin_src elisp
+(setq ruby-refactor-add-parens t)
+#+end_src
+
 * smartparens
 
 Enable strict smartparens mode wherever smartparens is enabled.
