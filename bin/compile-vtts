@@ -19,6 +19,14 @@ def format_vtt_md_entry(file)
   "```\n#{vtt_lines.join("\n")}\n```"
 end
 
+def parse_header(lines)
+  lines
+    .sub(".vtt", "")
+    .gsub("_", " ")
+    .sub(/^([[:alnum:].]+)[-\s](.+)/, "\\1<+>\\2")
+    .split("<+>")
+end
+
 def parse_compiled_file(file)
   File.read(file).split(/^#\s/).reject(&:empty?).map do |section|
     header, *contents = section.split("\n")
@@ -41,13 +49,9 @@ if File.exist?(TRANSCRIPTS_FILE) && !FORCE_RECOMPILE
 else
   puts "> #{VTT_FILES.size} VTT files found. Compiling."
   VTT_FILES.each do |file|
-    num, header =
-    file
-      .sub(".vtt", "")
-      .gsub("_", " ")
-      .sub(/^([[:alnum:].]+)[-\s](.+)/, "\\1<+>\\2")
-      .split("<+>")
-    TRANSCRIPTS[num] = Section.new(num.to_i, header, format_vtt_md_entry(file))
+    section_num, header = parse_header(lines)
+    TRANSCRIPTS[section_num] =
+      Section.new(section_num, header, format_vtt_md_entry(file))
   end
 end
 
@@ -61,9 +65,10 @@ end
 
 printf "Writing to %s...", TRANSCRIPTS_FILE
 File.open(TRANSCRIPTS_FILE, "w+") do |file|
-  TRANSCRIPTS.each do |num, transcript|
+  TRANSCRIPTS.each do |section_num, transcript|
+    summary = SUMMARIES[section_num]&.body
     file.puts("# #{num}. #{transcript.header}\n\n")
-    file.puts("## Summary\n\n#{summaries[num].body}\n\n") if SUMMARIES[num]
+    file.puts("## Summary\n\n#{summary}\n\n") if summary
     file.puts("## Transcript\n\n#{transcript.body}\n\n")
   end
 end
