@@ -1,13 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-TRANSCRIPTS = "#{File.basename(Dir.pwd)}-transcripts.md"
-SUMMARIES = "#{File.basename(Dir.pwd)}-summaries.md"
-
 Section = Struct.new(:number, :header, :body)
 
-transcripts = {}
-summaries = {}
+FORCE_RECOMPILE = ARGV.include?("--force")
+TRANSCRIPTS_FILE = "#{File.basename(Dir.pwd)}-transcripts.md"
+SUMMARIES_FILE = "#{File.basename(Dir.pwd)}-summaries.md"
+VTT_FILES = Dir.glob("*.vtt")
+TRANSCRIPTS = {}
+SUMMARIES = {}
 
 def format_vtt_md_entry(file)
   lines = File.read(file).split(/^[[:digit:]]+$/).map(&:strip).slice(1..)
@@ -18,34 +19,53 @@ def format_vtt_md_entry(file)
   "```\n#{vtt_lines.join("\n")}\n```"
 end
 
-# get names of all vtt files in the current directory
-Dir.glob("*.vtt").map do |file|
-  num, header =
+def parse_compiled_file(file)
+  File.read(file).split(/^#\s/).reject(&:empty?).map do |section|
+    header, *contents = section.split("\n")
+    contents.reject!(&:empty?)
+    contents.shift if contents.first.start_with?("## ")
+    section_num, *header = header.split(". ")
+    Section.new(section_num, header.join(" "), contents.join("\n").strip)
+  end
+end
+
+puts "Checking for transcripts file at #{TRANSCRIPTS_FILE}..."
+if VTT_FILES.empty? && !File.exist?(TRANSCRIPTS_FILE)
+  puts "> Found no VTT files and no existing transcript file. Quitting."
+  exit(1)
+end
+
+if File.exist?(TRANSCRIPTS_FILE) && !FORCE_RECOMPILE
+  puts "> Compiled transcripts file found. Reading."
+  parse_compiled_file(TRANSCRIPTS_FILE).each { TRANSCRIPTS[_1.number] = _1 }
+else
+  puts "> #{VTT_FILES.size} VTT files found. Compiling."
+  VTT_FILES.each do |file|
+    num, header =
     file
       .sub(".vtt", "")
       .gsub("_", " ")
       .sub(/^([[:alnum:].]+)[-\s](.+)/, "\\1<+>\\2")
       .split("<+>")
-
-  transcripts[num] = Section.new(num.to_i, header, format_vtt_md_entry(file))
-end
-
-if File.exist?(SUMMARIES)
-  File.read(SUMMARIES).split(/^#\s/).reject(&:empty?).each do |section|
-    header, *body = section.split("\n")
-    section_num = header.split(". ").first
-    summaries[section_num] = Section.new(section_num, header, body.join("\n").strip)
+    TRANSCRIPTS[num] = Section.new(num.to_i, header, format_vtt_md_entry(file))
   end
 end
 
-File.open(TRANSCRIPTS, "w+") do |file|
-  transcripts.each do |num, transcript|
+puts "Checking for summaries file at #{SUMMARIES_FILE}..."
+if File.exist?(SUMMARIES_FILE)
+  puts "> Summaries file found. Reading."
+  parse_compiled_file(SUMMARIES_FILE).each { SUMMARIES[_1.number] = _1 }
+else
+  puts "> No summaries file found. Skipping."
+end
+
+printf "Writing to %s...", TRANSCRIPTS_FILE
+File.open(TRANSCRIPTS_FILE, "w+") do |file|
+  TRANSCRIPTS.each do |num, transcript|
     file.puts("# #{num}. #{transcript.header}\n\n")
-
-    if summaries[num]
-      file.puts("## Summary\n\n#{summaries[num].body}\n\n")
-    end
-
+    file.puts("## Summary\n\n#{summaries[num].body}\n\n") if SUMMARIES[num]
     file.puts("## Transcript\n\n#{transcript.body}\n\n")
   end
 end
+
+printf "done.\n"
