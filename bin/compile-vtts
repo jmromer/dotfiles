@@ -49,7 +49,7 @@ if File.exist?(TRANSCRIPTS_FILE) && !FORCE_RECOMPILE
 else
   puts "> #{VTT_FILES.size} VTT files found. Compiling."
   VTT_FILES.each do |file|
-    section_num, header = parse_header(lines)
+    section_num, header = parse_header(file)
     TRANSCRIPTS[section_num] =
       Section.new(section_num, header, format_vtt_md_entry(file))
   end
@@ -67,7 +67,7 @@ printf "Writing to %s...", TRANSCRIPTS_FILE
 File.open(TRANSCRIPTS_FILE, "w+") do |file|
   TRANSCRIPTS.each do |section_num, transcript|
     summary = SUMMARIES[section_num]&.body
-    file.puts("# #{num}. #{transcript.header}\n\n")
+    file.puts("# #{section_num} #{transcript.header}\n\n")
     file.puts("## Summary\n\n#{summary}\n\n") if summary
     file.puts("## Transcript\n\n#{transcript.body}\n\n")
   end
