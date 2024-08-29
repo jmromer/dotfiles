@@ -24,16 +24,16 @@ Dir.glob("*.vtt").map do |file|
     file
       .sub(".vtt", "")
       .gsub("_", " ")
-      .sub(/^([[:digit:]]+)-(.+)/, "\\1<+>\\2")
+      .sub(/^([[:alnum:].]+)[-\s](.+)/, "\\1<+>\\2")
       .split("<+>")
 
-  transcripts[num.to_i] = Section.new(num.to_i, header, format_vtt_md_entry(file))
+  transcripts[num] = Section.new(num.to_i, header, format_vtt_md_entry(file))
 end
 
 if File.exist?(SUMMARIES)
   File.read(SUMMARIES).split(/^#\s/).reject(&:empty?).each do |section|
     header, *body = section.split("\n")
-    section_num = header.split(".").first.to_i
+    section_num = header.split(". ").first
     summaries[section_num] = Section.new(section_num, header, body.join("\n").strip)
   end
 end
