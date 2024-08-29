@@ -1,42 +1,70 @@
 #!/bin/bash
 
 # Path to your Emacs application
-emacs_app="/opt/homebrew/bin/emacs"
-emacsclient="/opt/homebrew/bin/emacsclient"
+EMACS="/opt/homebrew/bin/emacs"
+EMACS_CLIENT="/opt/homebrew/bin/emacsclient"
 
-open_emacs_client() {
-  # Check if the Emacs server is running
-  if ! pgrep -x "Emacs" > /dev/null; then
-    echo "Starting Emacs server..."
-    $emacs_app --daemon
+# Path should match `server-socket-dir` in emacs config
+SERVER_SOCKET_PATH="${XDG_RUNTIME_DIR}/emacs/server"
+DEBUG="1"
+
+debug() {
+  [[ -z "${DEBUG}" ]] && return
+  echo "[EMACS] ${1}"
+  syslog -s -l notice "[EMACS] ${1}"
+}
+
+main() {
+  if [ -S "${SERVER_SOCKET_PATH}" ]; then
+    debug "Emacs server socket found at ${SERVER_SOCKET_PATH}"
+  else
+    debug "Emacs server socket not found at ${SERVER_SOCKET_PATH}"
+    if pgrep -x "Emacs" > /dev/null; then
+      debug "An Emacs process appears to be running."
+    fi
+    debug "Emacs server starting now."
+    ${EMACS} --daemon
   fi
 
-  if [ "$(emacs_has_open_windows)" = "true" ]; then
-    bring_emacs_to_front
-    exit 0
+  debug "Checking for open windows..."
+  result=$(emacs_has_open_windows)
+  if [[ "${result}" == "true" ]]; then
+    debug "Emacs has an open window on this desktop. Foregrounding it now."
+  elif [[ "${result}" == "false" ]]; then
+    debug "None found. Starting an Emacs client instance."
+    start_emacs_client
+  else
+    debug "Unexpected output: ${result}"
   fi
-
-  # Use emacsclient to open the file
-  # $emacsclient -c -n "$@"
-  $emacsclient \
-    --no-wait \
-    --create-frame \
-    --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))" \
-    "$@"
 
   bring_emacs_to_front
 }
 
+start_emacs_client() {
+  # Use emacsclient to open the file
+  # $emacsclient -c -n "$@"
+  ${EMACS_CLIENT} \
+    --no-wait \
+    --create-frame \
+    --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))" \
+    "$@"
+  }
+
 # Function to check if Emacs has any open windows
 emacs_has_open_windows() {
-    osascript <<EOF
+  osascript <<EOF
       tell application "System Events"
         if (name of processes) does not contain "Emacs" then
           return false
         end if
         tell application process "Emacs"
-          return (count of windows) > 0
+          if (count of windows) > 0
+            return true
+          else
+            return false
+          end if
         end tell
+        return -1
       end tell
 EOF
 }
@@ -51,5 +79,5 @@ bring_emacs_to_front() {
 EOF
 }
 
-open_emacs_client
+main
 
