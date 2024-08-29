@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+TRANSCRIPTS = "#{File.basename(Dir.pwd)}-transcripts.md"
+SUMMARIES = "#{File.basename(Dir.pwd)}-summaries.md"
+
+Section = Struct.new(:number, :header, :body)
+
+transcripts = {}
+summaries = {}
+
+def format_vtt_md_entry(file)
+  lines = File.read(file).split(/^[[:digit:]]+$/).map(&:strip).slice(1..)
+  vtt_lines = lines.map do |line|
+    timestamp, speech = line.split(/\.[[:digit:]]{3}\s-->.+\n/)
+    [timestamp, speech.gsub("\n", " ")].join(" ")
+  end
+  "```\n#{vtt_lines.join("\n")}\n```"
+end
+
+# get names of all vtt files in the current directory
+Dir.glob("*.vtt").map do |file|
+  num, header =
+    file
+      .sub(".vtt", "")
+      .gsub("_", " ")
+      .sub(/^([[:digit:]]+)-(.+)/, "\\1<+>\\2")
+      .split("<+>")
+
+  transcripts[num.to_i] = Section.new(num.to_i, header, format_vtt_md_entry(file))
+end
+
+if File.exist?(SUMMARIES)
+  File.read(SUMMARIES).split(/^#\s/).reject(&:empty?).each do |section|
+    header, *body = section.split("\n")
+    section_num = header.split(".").first.to_i
+    summaries[section_num] = Section.new(section_num, header, body.join("\n").strip)
+  end
+end
+
+File.open(TRANSCRIPTS, "w+") do |file|
+  transcripts.each do |num, transcript|
+    file.puts("# #{num}. #{transcript.header}\n\n")
+
+    if summaries[num]
+      file.puts("## Summary\n\n#{summaries[num].body}\n\n")
+    end
+
+    file.puts("## Transcript\n\n#{transcript.body}\n\n")
+  end
+end
