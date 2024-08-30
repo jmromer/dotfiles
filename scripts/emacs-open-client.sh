@@ -35,6 +35,7 @@ main() {
     start_emacs_client
   else
     debug "Unexpected output: ${result}"
+    start_emacs_client
   fi
 
   bring_emacs_to_front
