@@ -109,8 +109,7 @@ config/iterm2/AppSupport
 config/jupyter/migrated
 config/karabiner/automatic_backups
 config/rstudio
-config/wireshark/recent
-config/wireshark/recent_common
+config/wireshark
 config/zsh/.iterm2*
 config/zsh/.zcompcache
 config/zsh/.zcompdump
