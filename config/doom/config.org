@@ -325,6 +325,15 @@ Allow remembering risky local variables.
     (find-file (getenv "DOTFILES_DIR"))))
 #+end_src
 
+** startup workspace
+
+#+begin_src elisp
+(defun +open-org-todos ()
+  "Open the main Org mode file in the main workspace."
+  (find-file (format "%s/%s" (getenv "ORG_HOME") +org-capture-todo-file)))
+(add-hook 'emacs-startup-hook #'+open-org-todos)
+#+end_src
+
 ** tmux-ish keybindings
 
 #+begin_src elisp
