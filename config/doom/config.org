@@ -1098,6 +1098,14 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ** Formatting
 
 #+begin_src elisp
+(add-hook! LaTeX-mode
+  ;; disable cdlatex mode in LaTeX-mode
+  (cdlatex-mode -1)
+  ;; enable apheleia mode in LaTeX-mode
+  (apheleia-mode +1))
+#+end_src
+
+#+begin_src elisp
 (defun +LaTeX-math-mode (displaymode-p)
   "If in evil normal state, wrap the current WORD in math mode.
 If in an evil visual state, wrap the current selection in math mode."
