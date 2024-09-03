@@ -1098,10 +1098,8 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ** Formatting
 
 #+begin_src elisp
-(add-hook! LaTeX-mode
-  ;; disable cdlatex mode in LaTeX-mode
-  (cdlatex-mode -1)
-  ;; enable apheleia mode in LaTeX-mode
+;; enable apheleia mode in LaTeX-mode
+(add-hook! latex-mode
   (apheleia-mode +1))
 #+end_src
 
@@ -1360,6 +1358,12 @@ Otherwise, assume the current file is the main doc."
 (defun +LaTeX-open-with-skim ()
   (interactive)
   (+LaTeX-open-doc t))
+#+end_src
+
+** xenops
+
+#+begin_src elisp
+(add-hook! LaTeX-mode #'xenops-mode)
 #+end_src
 
 * lookup

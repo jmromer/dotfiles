@@ -23,6 +23,7 @@
 (package! evil-rails)
 (package! evil-ruby-text-objects)
 (package! evil-string-inflection)
+(package! evil-tex)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
 (package! exercism)
 (package! ggtags :recipe (:host github :repo "leoliu/ggtags"))
@@ -41,6 +42,7 @@
 (package! seeing-is-believing)
 (package! typopunct)
 (package! vimrc-mode)
+(package! xenops)
 (package! xwwp :recipe (:host github :repo "canatella/xwwp"))
 (package! yankee :recipe (:host github :repo "jmromer/yankee.el" :files ("yankee.el")))
 
