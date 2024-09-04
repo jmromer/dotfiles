@@ -4,9 +4,11 @@
 Section = Struct.new(:number, :header, :body)
 
 FORCE_RECOMPILE = ARGV.include?("--force")
-TRANSCRIPTS_FILE = "#{File.basename(Dir.pwd)}-transcripts.md"
+COMPILE_FMT = ARGV.include?("--txt") ? "txt" : "vtt"
+
+TRANSCRIPTS_FILE = "#{File.basename(Dir.pwd)}-#{COMPILE_FMT}.md"
 SUMMARIES_FILE = "#{File.basename(Dir.pwd)}-summaries.md"
-VTT_FILES = Dir.glob("*.vtt")
+TRANSCRIPT_FILES = Dir.glob("*.#{COMPILE_FMT}")
 TRANSCRIPTS = {}
 SUMMARIES = {}
 
@@ -19,11 +21,25 @@ def format_vtt_md_entry(file)
   "```\n#{vtt_lines.join("\n")}\n```"
 end
 
+def format_txt_md_entry(file)
+  lines = File.read(file).gsub(". ", ".\n").gsub("? ", "?\n")
+  "```\n#{lines}\n```"
+end
+
+def parse_transcript(filename)
+  if COMPILE_FMT == "vtt"
+    format_vtt_md_entry(filename)
+  else
+    format_txt_md_entry(filename)
+  end
+end
+
 def parse_header(lines)
   lines
-    .sub(".vtt", "")
+    .sub(".#{COMPILE_FMT}", "")
     .gsub("_", " ")
-    .sub(/^([[:alnum:].]+)[-\s](.+)/, "\\1<+>\\2")
+    .sub(/^([[:alnum:].-]+)[\s](.+)/, "\\1<+>\\2")
+    .tap { |result| p result}
     .split("<+>")
 end
 
@@ -38,8 +54,8 @@ def parse_compiled_file(file)
 end
 
 puts "Checking for transcripts file at #{TRANSCRIPTS_FILE}..."
-if VTT_FILES.empty? && !File.exist?(TRANSCRIPTS_FILE)
-  puts "> Found no VTT files and no existing transcript file. Quitting."
+if TRANSCRIPT_FILES.empty? && !File.exist?(TRANSCRIPTS_FILE)
+  puts "> Found no transcript files and no existing transcript file. Quitting."
   exit(1)
 end
 
@@ -47,11 +63,12 @@ if File.exist?(TRANSCRIPTS_FILE) && !FORCE_RECOMPILE
   puts "> Compiled transcripts file found. Reading."
   parse_compiled_file(TRANSCRIPTS_FILE).each { TRANSCRIPTS[_1.number] = _1 }
 else
-  puts "> #{VTT_FILES.size} VTT files found. Compiling."
-  VTT_FILES.each do |file|
-    section_num, header = parse_header(file)
-    TRANSCRIPTS[section_num] =
-      Section.new(section_num, header, format_vtt_md_entry(file))
+  puts "> #{TRANSCRIPT_FILES.size} #{COMPILE_FMT} files found. Compiling."
+  TRANSCRIPT_FILES.each do |filename|
+    section_num, header = parse_header(filename)
+    entry = parse_transcript(filename)
+
+    TRANSCRIPTS[section_num] = Section.new(section_num, header, entry)
   end
 end
 
