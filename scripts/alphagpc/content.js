@@ -39,12 +39,14 @@ function handleClick(e) {
   const mp4 = links.filter((e) => /mp4/i.test(e.innerText))[0];
   const pdf = links.filter((e) => /pdf/i.test(e.innerText))[0];
   const vtt = links.filter((e) => /vtt/i.test(e.innerText))[0];
+  const txt = links.filter((e) => /txt/i.test(e.innerText))[0];
 
   let command = [];
   const filename = title.replace(/[\/:]/g, "_");
   mp4 && command.push('wget -O "' + filename + '.mp4" "' + mp4.href + '"');
   pdf && command.push('wget -O "' + filename + '.pdf" "' + pdf.href + '"');
   vtt && command.push('wget -O "' + filename + '.vtt" "' + vtt.href + '"');
+  txt && command.push('wget -O "' + filename + '.txt" "' + txt.href + '"');
   command = command.join("\n");
 
   navigator.clipboard.writeText(command);
