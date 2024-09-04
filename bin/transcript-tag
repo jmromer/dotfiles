@@ -23,7 +23,7 @@ TARGET_FILE = ARGV.last == "--safe" ? "v2-#{SOURCE_FILE}" : SOURCE_FILE
 Section = Struct.new(:number, :name, :transcript)
 
 def section(h_section, transcript_section)
-  secnum, secname = h_section.scan(/# ([[:alnum:]\.]+) (.+)/)[0]
+  secnum, secname = h_section.scan(/# ([[:alnum:].-]+) (.+)/)[0]
   _, *transcript_lines, _ = transcript_section.split("\n")
   transcript_lines.map! do |line|
     timestamp, line = line.scan(/^([[:digit:]:]+) (.+)$/)[0]
@@ -42,7 +42,7 @@ sections =
 File.open(TARGET_FILE, "w+") do |f|
   sections.each do |section|
     entry = [
-      "# #{section.number} #{section.name}",
+      "# #{section.number.chomp('.')}. #{section.name}",
       # "## Summary",
       # section.summary,
       "## Transcript",
