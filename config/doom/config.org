@@ -2161,6 +2161,7 @@ Default to searching projects with an invalidated cache.
       '(("~/.dotfiles/share" . 2)
         ("~/Projects" . 1)
         ("~/Courses" . 2)
+        ("~/iCloud/Courses" . 2)
         ("~/Work" . 2)
         ("~/Writing" . 2)))
 #+end_src
