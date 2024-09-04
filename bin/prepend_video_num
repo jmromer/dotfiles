@@ -2,32 +2,49 @@
 # frozen_string_literal: true
 
 SOURCE_FILE = ARGV.first
+TARGET_FILE = ARGV.last == "--safe" ? "v2-#{SOURCE_FILE}" : SOURCE_FILE
 
-Section = Struct.new(:number, :name, :summary, :transcript)
+# Section = Struct.new(:number, :name, :summary, :transcript)
+#
+# def section(h_section, summary, transcript_section)
+#   secnum, secname = h_section.scan(/# ([[:alnum:]\.]+) (.+)/)[0]
+#   _, *transcript_lines, _ = transcript_section.split("\n")
+#   transcript_lines.map! do |line|
+#     timestamp, line = line.scan(/^([[:digit:]:]+) (.+)$/)[0]
+#     timestamp = timestamp.split(":")[1..].join(":")
+#     "#{secnum.chomp('.')}-#{timestamp} #{line}"
+#   end
+#   Section.new(secnum, secname, summary, transcript_lines.join("\n"))
+# end
 
-def section(h_section, summary, transcript_section)
+# .each_slice(5)
+# .map { |a, _, c, _, e| section(a, c, e) }
+
+Section = Struct.new(:number, :name, :transcript)
+
+def section(h_section, transcript_section)
   secnum, secname = h_section.scan(/# ([[:alnum:]\.]+) (.+)/)[0]
   _, *transcript_lines, _ = transcript_section.split("\n")
   transcript_lines.map! do |line|
     timestamp, line = line.scan(/^([[:digit:]:]+) (.+)$/)[0]
-    timestamp = timestamp.split(":")[1..].join(":")
-    "#{secnum.chomp('.')}-#{timestamp} #{line}"
+    min_sec = timestamp.split(":")[1..].join(":")
+    "[#{secnum.chomp('.')}] #{min_sec} #{line}"
   end
-  Section.new(secnum, secname, summary, transcript_lines.join("\n"))
+  Section.new(secnum, secname, transcript_lines.join("\n"))
 end
 
 sections =
   File.read(SOURCE_FILE)
   .split("\n\n")
-  .each_slice(5)
-  .map { |a, _, c, _, e| section(a, c, e) }
+  .each_slice(3)
+  .map { |section, _, transcript| section(section, transcript) }
 
-File.open("#{SOURCE_FILE}-v2.md", "w+") do |f|
+File.open(TARGET_FILE, "w+") do |f|
   sections.each do |section|
     entry = [
       "# #{section.number} #{section.name}",
-      "## Summary",
-      section.summary,
+      # "## Summary",
+      # section.summary,
       "## Transcript",
       "```\n#{section.transcript}\n```",
     ]
