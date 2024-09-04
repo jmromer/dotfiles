@@ -1,7 +1,11 @@
+ant 1.10.3
 elixir 1.17.2-otp-27
 erlang 27.0.1
 gohugo 0.109.0
 golang 1.22.3
+gradle 8.0.2
+java openjdk-18
+maven 3.8.8
 nodejs 22.1.0
 perl 5.40.0
 postgres 16.3
