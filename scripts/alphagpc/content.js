@@ -22,13 +22,19 @@ const createIndex = () => {
 function handleClick(e) {
   const titleIndex = createIndex();
 
+  const WEEKNUM = document
+    .querySelector('[data-track-component="item_nav_week_number"]')
+    .textContent.split(" ")
+    .at(1)
+    .padStart(2, "0");
+
   let title = e.target.innerText;
   if (!/^\d+.+/.test(title)) {
     console.log(`[INFO] Title does not start with a sequence number.`);
     console.log(`[INFO] Checking index for: '${title}'`);
     if (titleIndex.has(title)) {
       console.log("[INFO] Found matching title in index.");
-      title = `${titleIndex.get(title)}. ${title}`;
+      title = `${WEEKNUM}-${titleIndex.get(title)}. ${title}`;
     } else {
       console.log("[WARNING] Matching title not found in index");
     }
@@ -42,7 +48,7 @@ function handleClick(e) {
   const txt = links.filter((e) => /txt/i.test(e.innerText))[0];
 
   let command = [];
-  const filename = title.replace(/[\/:]/g, "_");
+  const filename = title.replace(/\//g, "-").replace(/:/g, " -");
   mp4 && command.push('wget -O "' + filename + '.mp4" "' + mp4.href + '"');
   pdf && command.push('wget -O "' + filename + '.pdf" "' + pdf.href + '"');
   vtt && command.push('wget -O "' + filename + '.vtt" "' + vtt.href + '"');
@@ -64,14 +70,14 @@ const toggleDownloads = () => {
 window.addEventListener("load", () => {
   console.log("alphagpc ready.");
   toggleDownloads();
-  document.querySelector("h1").addEventListener("click", handleClick);
-  document.querySelector("h1").setAttribute("style", "cursor: pointer;");
+  document.querySelector("h1")?.addEventListener("click", handleClick);
+  document.querySelector("h1")?.setAttribute("style", "cursor: pointer;");
 });
 
 const observer = new MutationObserver((_mutations) => {
   console.log("DOM mutation detected");
   toggleDownloads();
-  document.querySelector("h1").addEventListener("click", handleClick);
-  document.querySelector("h1").setAttribute("style", "cursor: pointer;");
+  document.querySelector("h1")?.addEventListener("click", handleClick);
+  document.querySelector("h1")?.setAttribute("style", "cursor: pointer;");
 });
 observer.observe(document.body, { childList: true, subtree: true });
