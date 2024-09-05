@@ -1360,11 +1360,6 @@ Otherwise, assume the current file is the main doc."
   (+LaTeX-open-doc t))
 #+end_src
 
-** xenops
-
-#+begin_src elisp
-(add-hook! LaTeX-mode #'xenops-mode)
-#+end_src
 
 * lookup
 
