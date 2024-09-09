@@ -1363,7 +1363,6 @@ Otherwise, assume the current file is the main doc."
   (+LaTeX-open-doc t))
 #+end_src
 
-
 * lookup
 
 ** web searches
