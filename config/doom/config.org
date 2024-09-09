@@ -1101,6 +1101,9 @@ If the prefix arg ARG is passed, delete the tags at project root."
 ;; enable apheleia mode in LaTeX-mode
 (add-hook! latex-mode
   (apheleia-mode +1))
+
+(add-hook! LaTeX-mode
+  (apheleia-mode +1))
 #+end_src
 
 #+begin_src elisp
