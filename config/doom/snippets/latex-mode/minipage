@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: minipage
+# key: mini
+# condition: t
+# --
+	\begin{minipage}[t]{0.50\textwidth}
+		\vspace*{0mm}
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+		dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+		sunt in culpa qui officia deserunt mollit anim id est laborum.
+	\end{minipage}
+	\begin{minipage}[t]{0.50\textwidth}
+		\vspace*{-5mm}
+		\centering
+		\includegraphics[width=0.9\textwidth]{problemsets/media/HS3.33.png}
+		\captionof{figure}{}
+		\label{fig:___}
+	\end{minipage}
