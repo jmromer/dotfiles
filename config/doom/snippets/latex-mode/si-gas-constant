@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: SI Universal Gas Constant
+# name: SI Universal Gas constant
 # key: si-rgas
 # --
 \SI{8.3145}{\J/\mol\K}

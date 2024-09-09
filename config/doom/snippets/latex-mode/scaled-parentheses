@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Right-sized parentheses
-# key: (
-# --
-\L( $0 \R
