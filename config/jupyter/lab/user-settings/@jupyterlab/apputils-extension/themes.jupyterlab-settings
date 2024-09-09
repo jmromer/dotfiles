@@ -4,9 +4,20 @@
     // Theme manager settings.
     // *************************************
 
+    // Adaptive Theme
+    // Synchronize visual styling theme with system settings
+    "adaptive-theme": true,
+
+    // Theme CSS Overrides
+    // Override theme CSS variables by setting key-value pairs here
+    "overrides": {
+        "ui-font-size1": "15px",
+        "content-font-size1": "15px"
+    },
+
     // Selected Theme
     // Application-level visual styling theme. Ignored when Adaptive Theme is enabled.
-    "theme": "JupyterLab Dark",
+    "theme": "JupyterLab Light",
 
     // Scrollbar Theming
     // Enable/disable styling of the application scrollbars
