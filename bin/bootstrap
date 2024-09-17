@@ -62,7 +62,7 @@ end
 
 setup :gui_apps do
   cask_install "1password"
-  cask_install "4k-video-downloaderplus"
+  cask_install "4k-video-downloader+"
   cask_install :appcleaner
   cask_install :betterdisplay
   cask_install :bettertouchtool
