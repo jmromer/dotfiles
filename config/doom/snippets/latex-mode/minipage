@@ -4,7 +4,7 @@
 # condition: t
 # --
 	\begin{minipage}[t]{0.50\textwidth}
-		\vspace*{0mm}
+		\vspace*{-2ex}
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -13,7 +13,7 @@
 		sunt in culpa qui officia deserunt mollit anim id est laborum.
 	\end{minipage}
 	\begin{minipage}[t]{0.50\textwidth}
-		\vspace*{-5mm}
+		\vspace*{-5ex}
 		\centering
 		\includegraphics[width=0.9\textwidth]{problemsets/media/HS3.33.png}
 		\captionof{figure}{}
