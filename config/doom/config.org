@@ -40,13 +40,18 @@
 
 See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples.
 
+** confirm-kill-emacs
+
+#+begin_src elisp
+(setq confirm-kill-emacs nil)
+#+end_src
+
 ** which-key
 
 #+begin_src elisp
 (setq which-key-idle-delay 1
       which-key-idle-secondary-delay 0.5)
 #+end_src
-
 ** literate config
 
 Don't tangle on save.
