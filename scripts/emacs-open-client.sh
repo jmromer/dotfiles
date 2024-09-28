@@ -15,7 +15,22 @@ debug() {
 }
 
 main() {
-  if [ -S "${SERVER_SOCKET_PATH}" ]; then
+  debug "Checking for server socket at ${SERVER_SOCKET_PATH}"
+  socket_found="$(find "${SERVER_SOCKET_PATH}" -type s 2>/dev/null)"
+
+  debug "Checking for open windows..."
+  open_windows=$(emacs_has_open_windows)
+
+  if [ -n "${socket_found}" && "${open_windows}" == "false" ]; then
+    debug "Emacs server socket found but there no open windows. Starting Emacs server and client."
+    rm -f "${SERVER_SOCKET_PATH}"
+    ${EMACS} --daemon
+    sleep 1
+    start_emacs_client
+    exit 0
+  fi
+
+  if [ -n "${socket_found}" ]; then
     debug "Emacs server socket found at ${SERVER_SOCKET_PATH}"
   else
     debug "Emacs server socket not found at ${SERVER_SOCKET_PATH}"
@@ -26,15 +41,13 @@ main() {
     ${EMACS} --daemon
   fi
 
-  debug "Checking for open windows..."
-  result=$(emacs_has_open_windows)
-  if [[ "${result}" == "true" ]]; then
+  if [[ "${open_windows}" == "true" ]]; then
     debug "Emacs has an open window on this desktop. Foregrounding it now."
-  elif [[ "${result}" == "false" ]]; then
+  elif [[ "${open_windows}" == "false" ]]; then
     debug "None found. Starting an Emacs client instance."
     start_emacs_client
   else
-    debug "Unexpected output: ${result}"
+    debug "Unexpected output: ${open_windows}"
     start_emacs_client
   fi
 
