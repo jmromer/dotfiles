@@ -42,7 +42,7 @@ function handleClick(e) {
 
   const videoDownloadsCSS = 'a[data-track-page="focused_lex_video_item"]';
   const links = Array.from(document.querySelectorAll(videoDownloadsCSS));
-  const mp4 = links.filter((e) => /mp4/i.test(e.innerText))[0];
+  const mp4 = links.filter((e) => /mp4/i.test(e.innerText))[1];
   const pdf = links.filter((e) => /pdf/i.test(e.innerText))[0];
   const vtt = links.filter((e) => /vtt/i.test(e.innerText))[0];
   const txt = links.filter((e) => /txt/i.test(e.innerText))[0];
