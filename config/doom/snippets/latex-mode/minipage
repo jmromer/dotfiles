@@ -15,7 +15,7 @@
 	\begin{minipage}[t]{0.50\textwidth}
 		\vspace*{-5ex}
 		\centering
-		\includegraphics[width=0.9\textwidth]{problemsets/media/HS3.33.png}
+		\includegraphics[width=0.9\textwidth]{problems/media/$1.png}
 		\captionof{figure}{}
 		\label{fig:___}
 	\end{minipage}
