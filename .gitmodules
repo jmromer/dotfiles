@@ -1,8 +1,3 @@
-[submodule "share/asdf-manager"]
-	path = share/asdf-manager
-	url = https://github.com/jmromer/asdf.git
-	branch = xdg-compatible
-	update = rebase
 [submodule "share/zsh/zsh-syntax-highlighting"]
 	path = share/zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
