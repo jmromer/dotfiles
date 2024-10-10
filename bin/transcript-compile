@@ -8,6 +8,7 @@ COMPILE_FMT = ARGV.include?("--txt") ? "txt" : "vtt"
 
 TRANSCRIPTS_FILE = "#{File.basename(Dir.pwd)}-#{COMPILE_FMT}.md"
 SUMMARIES_FILE = "#{File.basename(Dir.pwd)}-summaries.md"
+SUMMARY_FILE = "#{File.basename(Dir.pwd)}-summary.md"
 TRANSCRIPT_FILES = Dir.glob("*.#{COMPILE_FMT}")
 TRANSCRIPTS = {}
 SUMMARIES = {}
@@ -45,11 +46,16 @@ end
 
 def parse_compiled_file(file)
   File.read(file).split(/^#\s/).reject(&:empty?).map do |section|
-    header, *contents = section.split("\n")
-    contents.reject!(&:empty?)
-    contents.shift if contents.first.start_with?("## ")
+    header, *contents = section.split(/^##\s/).reject(&:empty?)
+
+    contents = contents.first
     section_num, *header = header.split(". ")
-    Section.new(section_num, header.join(" "), contents.join("\n").strip)
+    heading = header.join(". ")
+
+    contents = contents.split("\n")
+    contents.shift
+    contents.shift while contents.first&.empty?
+    Section.new(section_num, heading, contents.join("\n").strip)
   end
 end
 
@@ -76,6 +82,9 @@ puts "Checking for summaries file at #{SUMMARIES_FILE}..."
 if File.exist?(SUMMARIES_FILE)
   puts "> Summaries file found. Reading."
   parse_compiled_file(SUMMARIES_FILE).each { SUMMARIES[_1.number] = _1 }
+elsif File.exist?(SUMMARY_FILE)
+  puts "> Summary file found. Reading."
+  parse_compiled_file(SUMMARY_FILE).each { SUMMARIES[_1.number] = _1 }
 else
   puts "> No summaries file found. Skipping."
 end
@@ -84,7 +93,7 @@ printf "Writing to %s...", TRANSCRIPTS_FILE
 File.open(TRANSCRIPTS_FILE, "w+") do |file|
   TRANSCRIPTS.each do |section_num, transcript|
     summary = SUMMARIES[section_num]&.body
-    file.puts("# #{section_num} #{transcript.header}\n\n")
+    file.puts("# #{section_num.chomp('.')}. #{transcript.header}\n\n")
     file.puts("## Summary\n\n#{summary}\n\n") if summary
     file.puts("## Transcript\n\n#{transcript.body}\n\n")
   end
