@@ -1266,7 +1266,7 @@ If in an evil visual state, wrap the current selection in math mode."
 ** Keybindings
 
 #+begin_src elisp
-(map! :map LaTeX-mode-map
+(map! :map (LaTeX-mode-map latex-mode-map)
       :nv  "s-b" #'+LaTeX-make-bold
       :nv  "s-i" #'+LaTeX-make-italic
       :nv  "s-u" #'+LaTeX-make-underlined
