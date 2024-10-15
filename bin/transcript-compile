@@ -4,40 +4,25 @@
 Section = Struct.new(:number, :header, :body)
 
 FORCE_RECOMPILE = ARGV.include?("--force")
-COMPILE_FMT = ARGV.include?("--txt") ? "txt" : "vtt"
+# COMPILE_FMT = ARGV.include?("--txt") ? "txt" : "vtt"
 
-TRANSCRIPTS_FILE = "#{File.basename(Dir.pwd)}-#{COMPILE_FMT}.md"
-SUMMARIES_FILE = "#{File.basename(Dir.pwd)}-summaries.md"
-SUMMARY_FILE = "#{File.basename(Dir.pwd)}-summary.md"
-TRANSCRIPT_FILES = Dir.glob("*.#{COMPILE_FMT}")
-TRANSCRIPTS = {}
-SUMMARIES = {}
-
-def format_vtt_md_entry(file)
-  lines = File.read(file).split(/^[[:digit:]]+$/).map(&:strip).slice(1..)
-  vtt_lines = lines.map do |line|
-    timestamp, speech = line.split(/\.[[:digit:]]{3}\s-->.+\n/)
-    [timestamp, speech.gsub("\n", " ")].join(" ")
-  end
-  "```\n#{vtt_lines.join("\n")}\n```"
-end
-
-def format_txt_md_entry(file)
-  lines = File.read(file).gsub(". ", ".\n").gsub("? ", "?\n")
-  "```\n#{lines}\n```"
-end
-
-def parse_transcript(filename)
-  if COMPILE_FMT == "vtt"
-    format_vtt_md_entry(filename)
+def parse_transcript(filename, format: "vtt")
+  if format == "vtt"
+    lines = File.read(filename).split(/^[[:digit:]]+$/).map(&:strip).slice(1..)
+    vtt_lines = lines.map do |line|
+      timestamp, speech = line.split(/\.[[:digit:]]{3}\s-->.+\n/)
+      [timestamp, speech.gsub("\n", " ")].join(" ")
+    end
+    "```\n#{vtt_lines.join("\n")}\n```"
   else
-    format_txt_md_entry(filename)
+    lines = File.read(filename).gsub(". ", ".\n").gsub("? ", "?\n")
+    "```\n#{lines}\n```"
   end
 end
 
-def parse_header(lines)
+def parse_header(lines, format:)
   lines
-    .sub(".#{COMPILE_FMT}", "")
+    .sub(".#{format}", "")
     .gsub("_", " ")
     .sub(/^([[:alnum:].-]+)[\s](.+)/, "\\1<+>\\2")
     .tap { |result| p result}
@@ -59,44 +44,56 @@ def parse_compiled_file(file)
   end
 end
 
-puts "Checking for transcripts file at #{TRANSCRIPTS_FILE}..."
-if TRANSCRIPT_FILES.empty? && !File.exist?(TRANSCRIPTS_FILE)
-  puts "> Found no transcript files and no existing transcript file. Quitting."
-  exit(1)
-end
+def main(format:)
+  transcripts_file = "#{File.basename(Dir.pwd)}-#{format}.md"
+  summaries_file = "#{File.basename(Dir.pwd)}-summaries.md"
+  summary_file = "#{File.basename(Dir.pwd)}-summary.md"
+  transcript_files = Dir.glob("*.#{format}")
+  transcripts = {}
+  summaries = {}
 
-if File.exist?(TRANSCRIPTS_FILE) && !FORCE_RECOMPILE
-  puts "> Compiled transcripts file found. Reading."
-  parse_compiled_file(TRANSCRIPTS_FILE).each { TRANSCRIPTS[_1.number] = _1 }
-else
-  puts "> #{TRANSCRIPT_FILES.size} #{COMPILE_FMT} files found. Compiling."
-  TRANSCRIPT_FILES.each do |filename|
-    section_num, header = parse_header(filename)
-    entry = parse_transcript(filename)
-
-    TRANSCRIPTS[section_num] = Section.new(section_num, header, entry)
+  puts "Checking for transcripts file at #{transcripts_file}..."
+  if transcript_files.empty? && !File.exist?(transcripts_file)
+    puts "> Found no transcript files and no existing transcript file. Quitting."
+    exit(1)
   end
-end
 
-puts "Checking for summaries file at #{SUMMARIES_FILE}..."
-if File.exist?(SUMMARIES_FILE)
-  puts "> Summaries file found. Reading."
-  parse_compiled_file(SUMMARIES_FILE).each { SUMMARIES[_1.number] = _1 }
-elsif File.exist?(SUMMARY_FILE)
-  puts "> Summary file found. Reading."
-  parse_compiled_file(SUMMARY_FILE).each { SUMMARIES[_1.number] = _1 }
-else
-  puts "> No summaries file found. Skipping."
-end
+  if File.exist?(transcripts_file) && !FORCE_RECOMPILE
+    puts "> Compiled transcripts file found. Reading."
+    parse_compiled_file(transcripts_file).each { transcripts[_1.number] = _1 }
+  else
+    puts "> #{transcript_files.size} #{format} files found. Compiling."
+    transcript_files.each do |filename|
+      section_num, header = parse_header(filename, format: format)
+      entry = parse_transcript(filename, format: format)
 
-printf "Writing to %s...", TRANSCRIPTS_FILE
-File.open(TRANSCRIPTS_FILE, "w+") do |file|
-  TRANSCRIPTS.each do |section_num, transcript|
-    summary = SUMMARIES[section_num]&.body
-    file.puts("# #{section_num.chomp('.')}. #{transcript.header}\n\n")
-    file.puts("## Summary\n\n#{summary}\n\n") if summary
-    file.puts("## Transcript\n\n#{transcript.body}\n\n")
+      transcripts[section_num] = Section.new(section_num, header, entry)
+    end
   end
+
+  puts "Checking for summaries file at #{summaries_file}..."
+  if File.exist?(summaries_file)
+    puts "> Summaries file found. Reading."
+    parse_compiled_file(summaries_file).each { summaries[_1.number] = _1 }
+  elsif File.exist?(summary_file)
+    puts "> Summary file found. Reading."
+    parse_compiled_file(summary_file).each { summaries[_1.number] = _1 }
+  else
+    puts "> No summaries file found. Skipping."
+  end
+
+  printf "Writing to %s...", transcripts_file
+  File.open(transcripts_file, "w+") do |file|
+    transcripts.each do |section_num, transcript|
+      summary = summaries[section_num]&.body
+      file.puts("# #{section_num.chomp('.')}. #{transcript.header}\n\n")
+      file.puts("## Summary\n\n#{summary}\n\n") if summary
+      file.puts("## Transcript\n\n#{transcript.body}\n\n")
+    end
+  end
+
+  printf "done.\n"
 end
 
-printf "done.\n"
+main(format: "vtt")
+main(format: "txt")
