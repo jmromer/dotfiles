@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-SOURCE_FILE = ARGV.first
+SOURCE_FILE = "#{Dir.pwd.split('/').last}-vtt.md".freeze
 TARGET_FILE = ARGV.last == "--safe" ? "v2-#{SOURCE_FILE}" : SOURCE_FILE
 
 # Section = Struct.new(:number, :name, :summary, :transcript)
@@ -34,10 +34,11 @@ def section(h_section, transcript_section)
 end
 
 sections =
-  File.read(SOURCE_FILE)
-  .split("\n\n")
-  .each_slice(3)
-  .map { |section, _, transcript| section(section, transcript) }
+  File
+    .read(SOURCE_FILE)
+    .split(/\n{2,}/)
+    .each_slice(3)
+    .map { |section, _, transcript| section(section, transcript) }
 
 File.open(TARGET_FILE, "w+") do |f|
   sections.each do |section|
