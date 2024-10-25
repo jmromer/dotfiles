@@ -6,7 +6,6 @@ ipython
 isort
 jedi
 jupyter
-jupyter_contrib_nbextensions
 mypy
 neovim
 nose
