@@ -449,6 +449,7 @@ autoload -Uz compinit
 compinit
 
 compdef g=git
+setopt complete_aliases
 
 
 #-------------------------------------------------------------
