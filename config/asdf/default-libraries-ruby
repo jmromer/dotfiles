@@ -2,6 +2,7 @@ amazing_print
 benchmark-ips
 bundler
 bundler-gtags
+colorize
 debug
 fastri
 gem-browse
