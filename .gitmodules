@@ -48,11 +48,6 @@
 	url = https://github.com/tmux-plugins/tmux-copycat
 	branch = master
 	update = rebase
-[submodule "share/git_diet"]
-	path = share/git_diet
-	branch = master
-	url = https://github.com/jmromer/git_diet.git
-	update = rebase
 [submodule "share/doomemacs"]
 	path = share/doomemacs
 	branch = master
