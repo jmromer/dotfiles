@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -x
+
+transcript-compile --txt
+transcript-compile --vtt
+transcript-tag week*-vtt.md
+
+mkdir transcripts
+mv *.txt *.vtt transcripts
+
+zip -r transcripts.zip transcripts
+
+rm -rf transcripts
