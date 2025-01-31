@@ -4,7 +4,6 @@
 Section = Struct.new(:number, :header, :body)
 
 FORCE_RECOMPILE = ARGV.include?("--force")
-# COMPILE_FMT = ARGV.include?("--txt") ? "txt" : "vtt"
 
 def parse_transcript(filename, format: "vtt")
   if format == "vtt"
@@ -46,11 +45,8 @@ end
 
 def main(format:)
   transcripts_file = "#{File.basename(Dir.pwd)}-#{format}.md"
-  summaries_file = "#{File.basename(Dir.pwd)}-summaries.md"
-  summary_file = "#{File.basename(Dir.pwd)}-summary.md"
   transcript_files = Dir.glob("*.#{format}")
   transcripts = {}
-  summaries = {}
 
   puts "Checking for transcripts file at #{transcripts_file}..."
   if transcript_files.empty? && !File.exist?(transcripts_file)
@@ -71,23 +67,10 @@ def main(format:)
     end
   end
 
-  puts "Checking for summaries file at #{summaries_file}..."
-  if File.exist?(summaries_file)
-    puts "> Summaries file found. Reading."
-    parse_compiled_file(summaries_file).each { summaries[_1.number] = _1 }
-  elsif File.exist?(summary_file)
-    puts "> Summary file found. Reading."
-    parse_compiled_file(summary_file).each { summaries[_1.number] = _1 }
-  else
-    puts "> No summaries file found. Skipping."
-  end
-
   printf "Writing to %s...", transcripts_file
   File.open(transcripts_file, "w+") do |file|
     transcripts.each do |section_num, transcript|
-      summary = summaries[section_num]&.body
       file.puts("# #{section_num.chomp('.')}. #{transcript.header}\n\n")
-      file.puts("## Summary\n\n#{summary}\n\n") if summary
       file.puts("## Transcript\n\n#{transcript.body}\n\n")
     end
   end

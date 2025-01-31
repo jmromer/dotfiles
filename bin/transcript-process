@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
-set -x
+echo "Compiling transcripts..."
+transcript-compile
 
-transcript-compile --txt
-transcript-compile --vtt
+echo "Tagging transcripts..."
 transcript-tag week*-vtt.md
 
-mkdir transcripts
-mv *.txt *.vtt transcripts
+echo "Zipping transcripts..."
+zip transcripts.zip *.vtt *.txt
+rm -f *.vtt *.txt
 
-zip -r transcripts.zip transcripts
-
-rm -rf transcripts
+if [[ -n *-summary.md ]]; then
+  echo "Appending summaries to compiled transcript..."
+  transcript-summarize
+  zip transcripts.zip week*-txt.md week*-vtt.md week*-summary.md
+  rm -f week*-txt.md week*-vtt.md week*-summary.md
+fi
