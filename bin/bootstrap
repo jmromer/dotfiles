@@ -178,13 +178,13 @@ end
 
 setup :editors do
   brew_install :macvim
+  brew_install :neovim
   cask_install :visual_studio_code
 
   brew_tap "d12frosted/emacs-plus"
   brew_install :emacs_plus,
                options: %i[
                  with_dbus
-                 with_debug
                  with_imagemagick
                  with_native_comp
                  with_no_frame_refocus
