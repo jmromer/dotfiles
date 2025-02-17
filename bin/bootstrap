@@ -67,6 +67,8 @@ setup :gui_apps do
   cask_install :betterdisplay
   cask_install :bettertouchtool
   cask_install :brave_browser
+  cask_install :chatgpt
+  cask_install :claude
   cask_install :coderunner
   cask_install :dash, version: 6
   cask_install :discord
@@ -82,6 +84,7 @@ setup :gui_apps do
   cask_install :launchcontrol
   cask_install :launchpad_manager
   cask_install :licecap
+  cask_install :lm_studio
   cask_install :mark_text
   cask_install :name_mangler
   cask_install :onedrive
