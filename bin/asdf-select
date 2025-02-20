@@ -40,7 +40,7 @@ select-language-version() {
 
     if [[ "$1" == install ]]; then
         local all=$(asdf list all "$lang")
-        local core_versions=$(echo "$all" | grep -E  '^[[:digit:]]' | sort -r)
+        local core_versions=$(echo "$all" | grep -E  '^[[:digit:]]' | sort -rg)
         local others=$(echo "$all" | grep -Ev '^[[:digit:]]')
         echo $core_versions $others | fzf --cycle
     else
