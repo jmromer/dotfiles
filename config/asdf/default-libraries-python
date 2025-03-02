@@ -1,4 +1,5 @@
 autoflake
+autopep8
 fastapi
 importmagic
 ipdb
@@ -6,6 +7,7 @@ ipython
 isort
 jedi
 jupyter
+mccabe
 mypy
 neovim
 nose
@@ -13,10 +15,15 @@ openai
 pip
 pipenv
 poetry
+pycodestyle
+pydocstyle
 pyflakes
+pyflakes
+pylint
 pyright
 pytest
 python-language-server
+rope
 rstfmt
 ruff
 virtualenv
