@@ -48,10 +48,8 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
 
 ** select-enable-clipboard
 
-Don't pollute the system clipboard
-
 #+begin_src elisp
-(setq select-enable-clipboard nil)
+(setq select-enable-clipboard t)
 #+end_src
 
 ** which-key
