@@ -83,7 +83,7 @@ if has('gui_running')
   set transparency=1        " enable transparency
   set lines=50 columns=80   " size of window
   set guifont=JuliaMono:h16
-  colorscheme 'spacemacs'
+  colorscheme spacemacs
 endif
 
 set background=dark
