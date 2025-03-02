@@ -189,8 +189,7 @@ setup :editors do
                options: %i[
                  with_dbus
                  with_imagemagick
-                 with_native_comp
-                 with_no_frame_refocus
+                 with_compress_install
                  with_xwidgets
                ]
 end
