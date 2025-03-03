@@ -43,10 +43,10 @@ function generateDownloadCommand(e) {
 
   let command = [];
   const filename = title.replace(/\//g, "-").replace(/:/g, " -");
-  mp4 && command.push('wget -O "' + filename + '.mp4" "' + mp4.href + '"');
-  pdf && command.push('wget -O "' + filename + '.pdf" "' + pdf.href + '"');
-  vtt && command.push('wget -O "' + filename + '.vtt" "' + vtt.href + '"');
-  txt && command.push('wget -O "' + filename + '.txt" "' + txt.href + '"');
+  mp4 && command.push('wget -qO "' + filename + '.mp4" "' + mp4.href + '" &');
+  pdf && command.push('wget -qO "' + filename + '.pdf" "' + pdf.href + '" &');
+  vtt && command.push('wget -qO "' + filename + '.vtt" "' + vtt.href + '" &');
+  txt && command.push('wget -qO "' + filename + '.txt" "' + txt.href + '" &');
 
   return command.join("\n");
 }
