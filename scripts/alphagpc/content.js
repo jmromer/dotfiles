@@ -1,11 +1,6 @@
 console.log("alphagpc loading...");
 
 const createIndex = () => {
-  // ensure all lessons are expanded
-  document
-    .querySelectorAll("h2.lesson-name button[aria-expanded='false']")
-    .forEach((e) => e.click());
-
   // get all lesson title elements
   const navItems = document
     .querySelector(".item-tools-and-content-container")
@@ -19,9 +14,8 @@ const createIndex = () => {
   return new Map(sequenceNumToItem);
 };
 
-function handleClick(e) {
+function generateDownloadCommand(e) {
   const titleIndex = createIndex();
-
   const WEEKNUM = document
     .querySelector('[data-track-component="item_nav_week_number"]')
     .textContent.split(" ")
@@ -53,15 +47,30 @@ function handleClick(e) {
   pdf && command.push('wget -O "' + filename + '.pdf" "' + pdf.href + '"');
   vtt && command.push('wget -O "' + filename + '.vtt" "' + vtt.href + '"');
   txt && command.push('wget -O "' + filename + '.txt" "' + txt.href + '"');
-  command = command.join("\n");
 
-  navigator.clipboard.writeText(command);
-  console.log(command);
+  return command.join("\n");
+}
+
+function handleClick(e) {
+  // ensure all lessons are expanded
+  document
+    .querySelectorAll("h2.lesson-name button[aria-expanded='false']")
+    .forEach((e) => e.click());
+
+  const observer = new MutationObserver((mutations, obs) => {
+    console.log("DOM has been updated after all clicks.");
+
+    const command = generateDownloadCommand(e);
+    navigator.clipboard.writeText(command);
+    console.log(command);
+
+    obs.disconnect(); // Stop observing after first batch of changes
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 }
 
 const toggleDownloads = () => {
-  const section =
-    'button[data-track-component="focused_lex_lecture_tabs_download"]';
+  const section = 'button[data-testid="lecture-downloads-tab"]';
   const downloadSection = document.querySelector(section);
   if (downloadSection) downloadSection.click();
 };
