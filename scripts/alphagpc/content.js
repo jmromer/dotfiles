@@ -1,4 +1,6 @@
-console.log("alphagpc loading...");
+const DEBUG = false;
+
+DEBUG && console.log("alphagpc loading...");
 
 const createIndex = () => {
   // get all lesson title elements
@@ -24,13 +26,13 @@ function generateDownloadCommand(e) {
 
   let title = e.target.innerText;
   if (!/^\d+.+/.test(title)) {
-    console.log(`[INFO] Title does not start with a sequence number.`);
-    console.log(`[INFO] Checking index for: '${title}'`);
+    DEBUG && console.log(`[INFO] Title does not start with a sequence number.`);
+    DEBUG && console.log(`[INFO] Checking index for: '${title}'`);
     if (titleIndex.has(title)) {
-      console.log("[INFO] Found matching title in index.");
+      DEBUG && console.log("[INFO] Found matching title in index.");
       title = `${WEEKNUM}-${titleIndex.get(title)}. ${title}`;
     } else {
-      console.log("[WARNING] Matching title not found in index");
+      DEBUG && console.log("[WARNING] Matching title not found in index");
     }
   }
 
@@ -95,7 +97,7 @@ window.addEventListener("load", () => {
 });
 
 const observer = new MutationObserver((_mutations) => {
-  console.log("DOM mutation detected");
+  DEBUG && console.log("DOM mutation detected");
   toggleDownloads();
   document.querySelector("h1")?.addEventListener("click", handleClick);
   document.querySelector("h1")?.setAttribute("style", "cursor: pointer;");
