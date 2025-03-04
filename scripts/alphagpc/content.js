@@ -57,12 +57,23 @@ function handleClick(e) {
     .querySelectorAll("h2.lesson-name button[aria-expanded='false']")
     .forEach((e) => e.click());
 
-  const observer = new MutationObserver((mutations, obs) => {
-    console.log("DOM has been updated after all clicks.");
+  const observer = new MutationObserver(async (mutations, obs) => {
+    DEBUG && console.log("DOM has been updated after all clicks.");
 
+    // Replace or append to clipboard with generated commands
+    const clipboardText = await navigator.clipboard.readText();
     const command = generateDownloadCommand(e);
-    navigator.clipboard.writeText(command);
-    console.log(command);
+    const script = /wget/.test(clipboardText)
+      ? [clipboardText, command].join("\n")
+      : command;
+    navigator.clipboard.writeText(script);
+    console.log(script);
+
+    // Advance to next page
+    const nextButton = document.querySelector('button[aria-label="Next Item"]');
+    if (nextButton) {
+      nextButton.click();
+    }
 
     obs.disconnect(); // Stop observing after first batch of changes
   });
