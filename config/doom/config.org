@@ -1014,13 +1014,6 @@ Use =g~= operator to cycle through inflection transformations.
 (add-hook! org-mode #'+config:flycheck-disable-lsp)
 #+end_src
 
-** Ruby
-
-#+begin_src elisp
-(defun +config:flycheck-set-checker-ruby ()
-  (flycheck-select-checker 'ruby-rubocop))
-(add-hook! ruby-mode #'+config:flycheck-set-checker-ruby)
-#+end_src
 
 * folding
 
@@ -2711,6 +2704,14 @@ Look for a request spec if there's no controller spec."
 
 #+begin_src elisp
 (setq ruby-refactor-add-parens t)
+#+end_src
+
+** flycheck
+
+#+begin_src elisp
+(defun +config:flycheck-set-checker-ruby ()
+  (flycheck-select-checker 'ruby-rubocop))
+(add-hook! ruby-mode #'+config:flycheck-set-checker-ruby)
 #+end_src
 
 * rust
