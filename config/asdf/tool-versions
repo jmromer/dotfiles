@@ -12,4 +12,4 @@ postgres 17.3
 python 3.11.10
 redis 7.2.5
 ruby 3.3.6
-rust 1.43.0
+rust 1.85.0
