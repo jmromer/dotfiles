@@ -27,7 +27,9 @@
 - [[#python][python]]
 - [[#react--web][react & web]]
 - [[#ruby][ruby]]
+- [[#rust][rust]]
 - [[#smartparens][smartparens]]
+- [[#treesitter][treesitter]]
 - [[#typopunct][typopunct]]
 - [[#webkit][webkit]]
 - [[#word-chars][word chars]]
@@ -2711,6 +2713,20 @@ Look for a request spec if there's no controller spec."
 (setq ruby-refactor-add-parens t)
 #+end_src
 
+* rust
+
+Use tree-sitter.
+#+begin_src elisp
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
+#+end_src
+
+Use =rustc= for syntax checking.
+#+begin_src elisp
+(defun +config:flycheck-set-checker-rust ()
+  (flycheck-select-checker 'rust))
+(add-hook! rust-ts-mode #'+config:flycheck-set-checker-rust)
+#+end_src
+
 * smartparens
 
 Enable strict smartparens mode wherever smartparens is enabled.
@@ -2718,6 +2734,17 @@ Enable strict smartparens mode wherever smartparens is enabled.
 #+begin_src elisp
 (after! smartparens
   (turn-on-smartparens-strict-mode))
+#+end_src
+
+* treesitter
+
+#+begin_src elisp
+(after! treesit
+  (setq treesit-language-source-alist
+        '((rust "https://github.com/tree-sitter/tree-sitter-rust" nil "src")
+          (c      "https://github.com/tree-sitter/tree-sitter-c" nil "src")
+          (cpp    "https://github.com/tree-sitter/tree-sitter-cpp" nil "src")
+          (r    "https://github.com/r-lib/tree-sitter-r" nil "src"))))
 #+end_src
 
 * typopunct
