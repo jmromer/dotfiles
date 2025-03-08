@@ -6,6 +6,7 @@
 * contents :TOC_1:
 - [[#general][+general]]
 - [[#utilities][+utilities]]
+- [[#aider][aider]]
 - [[#completion][completion]]
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
@@ -565,6 +566,12 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
       (message (format "Copied to clipboard: %s" yanked)))))
 #+end_src
 
+* aider
+#+begin_src elisp
+(use-package aider
+  :config
+  (setq aider-args '("--model"  "gpt-4o" "--weak-model" "o3-mini")))
+#+end_src
 * completion
 
 ** copilot
@@ -1013,7 +1020,6 @@ Use =g~= operator to cycle through inflection transformations.
 (add-hook! text-mode #'+config:flycheck-disable-lsp)
 (add-hook! org-mode #'+config:flycheck-disable-lsp)
 #+end_src
-
 
 * folding
 
