@@ -2904,7 +2904,7 @@ Examples: 'workspace' -> 'workspace:1', 'workspace:1' -> 'workspace:2'"
     result))
 #+end_src
 
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (defun +workspace/clone ()
   "Clone the current workspace (naming it similarly)
 and insert the new workspace immediately to the right of the current one."
@@ -2923,6 +2923,113 @@ and insert the new workspace immediately to the right of the current one."
       (+workspace-switch curr-name)
       (+workspace/switch-right 1))))
 #+end_src
+
+#+begin_src elisp
+(defun +workspace/clone ()
+  "Clone the current workspace, naming it with the next available sequential index.
+If started from an indexed workspace (e.g., 'name:5'), fills in gaps from 1 upward.
+Creates 'name:1' if it doesn't exist yet and places it to the left.
+Only creates the next higher index if all lower indices exist."
+  (interactive)
+  (let* ((curr-name (+workspace-current-name))
+         ;; Extract base name and current index (if any)
+         (curr-has-index (string-match "\\(.*\\):\\([0-9]+\\)$" curr-name))
+         (base-name (if curr-has-index
+                        (match-string 1 curr-name)
+                      curr-name))
+         (curr-index (when curr-has-index
+                       (string-to-number (match-string 2 curr-name))))
+         (names (+workspace-list-names))
+         ;; Find all workspaces with the same base name and extract their indices
+         (indices (delq nil
+                        (mapcar (lambda (name)
+                                  (when (string-match (concat (regexp-quote base-name) ":\\([0-9]+\\)$") name)
+                                    (string-to-number (match-string 1 name))))
+                                names)))
+         ;; Sort indices to find gaps
+         (sorted-indices (sort indices #'<))
+
+         ;; Find the next sequential gap starting from 1, regardless of current index
+         (next-index (let ((expected 1))
+                       (while (member expected sorted-indices)
+                         (setq expected (1+ expected)))
+                       expected))
+
+         ;; If all sequential indices from 1 up to current max exist, then use the next number
+         (highest-index (if sorted-indices (apply #'max sorted-indices) 0))
+         (next-index (if (and (= next-index (1+ highest-index))
+                              (= (length sorted-indices) highest-index))
+                         (1+ highest-index)
+                       next-index))
+
+         ;; New workspace name with the next available index
+         (next-name (format "%s:%d" base-name next-index))
+
+         ;; Find the indices immediately before and after our new index
+         (index-before (cl-loop for idx in sorted-indices
+                                when (< idx next-index)
+                                collect idx into before-indices
+                                finally return (if before-indices
+                                                   (apply #'max before-indices)
+                                                 nil)))
+         (index-after (cl-loop for idx in sorted-indices
+                               when (> idx next-index)
+                               return idx
+                               finally return nil))
+
+         ;; Get workspace names for positioning
+         (workspace-before (cond
+                            (index-before (format "%s:%d" base-name index-before))
+                            ((= next-index 1) base-name) ; If creating index 1, position after base
+                            (t nil)))
+         (workspace-after (and index-after (format "%s:%d" base-name index-after)))
+
+         ;; Find positions in the workspace list
+         (before-pos (and workspace-before (cl-position workspace-before names :test #'equal)))
+         (after-pos (and workspace-after (cl-position workspace-after names :test #'equal))))
+
+    ;; Create the new workspace
+    (+workspace/new next-name t)
+
+    ;; Determine where to insert the new workspace
+    (let* ((updated-names (+workspace-list-names))
+           (new-pos (cl-position next-name updated-names :test #'equal)))
+      (cond
+       ;; If there's a workspace after where this should go, position before it
+       (after-pos
+        (let ((target-pos after-pos)
+              (current-pos new-pos))
+          (when (> current-pos target-pos)
+            ;; We need to move the workspace left
+            (+workspace/swap-left (- current-pos target-pos)))))
+
+       ;; If there's a workspace before where this should go, position after it
+       (before-pos
+        (let ((target-pos (1+ before-pos))
+              (current-pos new-pos))
+          (cond
+           ((> current-pos target-pos)
+            ;; Need to move left
+            (+workspace/swap-left (- current-pos target-pos)))
+           ((< current-pos target-pos)
+            ;; Need to move right
+            (+workspace/swap-right (- target-pos current-pos))))))
+
+       ;; If this is the first indexed workspace, place it after the base workspace
+       (t
+        (let ((base-pos (cl-position base-name updated-names :test #'equal)))
+          (when base-pos
+            (let ((target-pos (1+ base-pos))
+                  (current-pos new-pos))
+              (when (> current-pos target-pos)
+                (+workspace/swap-left (- current-pos target-pos))))))))
+
+      ;; Keep the focus on the new workspace
+      (+workspace-switch next-name))
+    (+workspace/display)))
+
+#+end_src
+
 
 #+begin_src elisp
 (setq +workspaces-main "org"
