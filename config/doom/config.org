@@ -3030,10 +3030,31 @@ Only creates the next higher index if all lower indices exist."
 
 #+end_src
 
+#+begin_src elisp
+(defun +name-workspace-open-project-dired (project)
+  "Switch to a project and open dired, while setting a custom workspace name."
+  (interactive)
+  (let* ((proj-root (doom-project-root project))
+         (raw-name (file-name-nondirectory (directory-file-name proj-root)))
+         (proj-name (string-trim raw-name "^[[:punct:]]+" "[[:punct:]]+$"))
+         (new-name (cond ((string-match-p "-" proj-name)
+                          (car (split-string proj-name "-")))
+                         ((string-match-p " " proj-name)
+                          (downcase (mapconcat (lambda (s) (substring s 0 1))
+                                               (split-string proj-name " ")
+                                               "")))
+                         (t proj-name))))
+    (dired proj-root)
+    (+workspace/rename new-name)))
+
+(setq +workspaces-switch-project-function #'+name-workspace-open-project-dired)
+#+end_src
+
+#+RESULTS:
+: +name-workspace-open-project-dired
 
 #+begin_src elisp
 (setq +workspaces-main "org"
-      +workspaces-switch-project-function #'projectile-switch-project
       +workspaces-on-switch-project-behavior 'non-empty)
 #+end_src
 
