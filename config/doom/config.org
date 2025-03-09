@@ -2880,10 +2880,11 @@ Precedence order:
 #+begin_src elisp
 (map! "s-t" #'+workspace/clone
       "s-T" #'+workspace/new
-      "s-w" #'+workspace/kill
       "s-;" #'+workspace/other
       "s-{" #'+workspace/switch-left
       "s-}" #'+workspace/switch-right)
+
+(map! :n "C-d" #'+workspace/kill)
 #+end_src
 
 #+begin_src elisp
@@ -3049,9 +3050,6 @@ Only creates the next higher index if all lower indices exist."
 
 (setq +workspaces-switch-project-function #'+name-workspace-open-project-dired)
 #+end_src
-
-#+RESULTS:
-: +name-workspace-open-project-dired
 
 #+begin_src elisp
 (setq +workspaces-main "org"
