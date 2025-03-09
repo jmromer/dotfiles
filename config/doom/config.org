@@ -1556,8 +1556,6 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "edit code block"     :n "'"  #'markdown-edit-code-block
         :desc "export"              :n "e"  #'markdown-export
         :desc "open"                :n "o"  #'markdown-open
-        :desc "live preview"        :n "l"  #'markdown-gfm-live-preview
-        :desc "live preview (grip)" :n "L"  #'grip-mode
         :desc "preview"             :n "p"  #'markdown-preview
        (:prefix ("h" . "header")
         :desc "dwim"                :nv "h"  #'markdown-insert-header-setext-dwim
@@ -1602,93 +1600,28 @@ Clear pre-installed keymaps and set cleaned up keymaps.
   (add-hook! markdown-mode :append #'+config:keybindings:markdown))
 #+end_src
 
-** gfm-ish live-ish preview
+** =markdown-preview=: gfm-ish live-ish preview
 
 #+begin_src elisp
-(defadvice markdown-preview (around markdown-preview activate)
-  "Tell `markdown-preview' to run with xwwp unless prefix arg ARG is passed."
-  (let ((browse-url-browser-function #'xwwp-browse-url-other-window))
-    (progn
-      ;; HACK: workaround for a xwwp bug that takes up current buffer.
-      ;; Still requires burying the buffer after it opens in this case.
-      (split-window-right)
-      (other-window 1)
-      ad-do-it)))
-#+end_src
-
-** gfm-ish live preview
-
-Alternatives:
-
-- [[https://github.com/blak3mill3r/vmd-mode][vmd mode]] renders previews in an atom shell
-- [[https://github.com/seagle0128/grip-mode][grip mode]] (installed) provides truer rendering by using the GitHub API but defaults to only updating on save
-- This homespun approach uses pandoc and [[https://github.com/netguy204/imp.el][impatient-mode]] to provide true live previews without requiring GitHub API calls.
-
-#+begin_src elisp
-(setq markdown-command "pandoc --to html5"
-      httpd-host "localhost"
-      httpd-port 7070)
+(defun xwwp-browse-url (url &optional new-session)
+  "Ask xwidget-webkit to browse URL.
+NEW-SESSION specifies whether to create a new xwidget-webkit session.
+Interactively, URL defaults to the string looking like a url around point."
+  (interactive (progn
+                 (require 'browse-url)
+                 (browse-url-interactive-arg "xwidget-webkit URL: " (xwidget-webkit-current-url))))
+  (or (featurep 'xwidget-internal)
+      (user-error "Your Emacs was not compiled with xwidgets support"))
+  (when (stringp url)
+    (if new-session
+        (xwidget-webkit-new-session url)
+      (xwidget-webkit-goto-url url))))
 #+end_src
 
 #+begin_src elisp
-(setq markdown-gfm-live-preview--template-string
-      (file-to-string (format "%s/doom/templates/markdown-gfm-live-preview.html" (getenv "XDG_CONFIG_HOME"))))
-
-(defun markdown-gfm-live-preview--filter (buffer)
-  (princ
-   (with-temp-buffer
-     (let ((tmp (buffer-name)))
-       (set-buffer buffer)
-       (set-buffer (markdown tmp))
-       (format markdown-gfm-live-preview--template-string (buffer-string)))) (current-buffer)))
+(setq browse-url-browser-function #'xwwp-browse-url)
 #+end_src
 
-#+begin_src elisp
-(defun markdown-gfm-live-preview (arg)
-  "Live-preview GitHub-Flavored Markdown in a WebKit browser.
-If prefix arg ARG is passed, use the default browser."
-  (interactive "P")
-  (let ((browse-url-browser-function (if arg #'browse-url-default-browser #'xwwp-browse-url-other-window)))
-    (unless (process-status "httpd")
-      (httpd-start))
-    (impatient-mode 1)
-    (imp-set-user-filter #'markdown-gfm-live-preview--filter)
-
-    ;; HACK: workaround for a xwwp bug that takes up current buffer.
-    ;; (xwwp-browse-url-other-window should behave like find-file-other-window)
-    ;; Works well enough but does not handle pre-existing windows well.
-    (unless arg
-      (split-window-right)
-      (other-window 1))
-
-    (imp-visit-buffer)
-
-    ;; HACK: workaround for a xwwp bug that takes up current buffer.
-    (unless arg
-      (bury-buffer))))
-#+end_src
-
-** gfm live-ish preview with grip
-
-[[https://github.com/seagle0128/grip-mode][=grip-mode=]] uses [[https://github.com/joeyespo/grip][=grip=]] to provide true GFM using the GitHub API. Updates are
-limited to being on-save in order to avoid hitting the API rate limit.
-
-This approach also works with Org mode out of the box, though not consistently.
-
-#+begin_src elisp
-(setq grip-binary-path "grip"
-      grip-update-after-change nil
-      grip-preview-host "localhost"
-      grip-preview-use-webkit t)
-#+end_src
-
-#+begin_src elisp
-(require 'auth-source)
-
-(let ((credential (auth-source-user-and-password "api.github.com")))
-  (setq grip-github-user (car credential)
-        grip-github-password (cadr credential)))
-#+end_src
 
 * org
 
