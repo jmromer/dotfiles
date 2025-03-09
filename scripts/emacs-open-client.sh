@@ -30,6 +30,11 @@ main(){
 
  if [ -n "${socket_found}" ]; then
    debug "Emacs server socket found at ${SERVER_SOCKET_PATH}"
+   if ! pgrep -x "Emacs" > /dev/null; then
+     debug "No Emacs process appears to be running."
+   fi
+   debug "Emacs server starting now."
+   ${EMACS} --daemon
  else
    debug "Emacs server socket not found at ${SERVER_SOCKET_PATH}"
    if pgrep -x "Emacs" > /dev/null; then
