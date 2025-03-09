@@ -2886,6 +2886,44 @@ Precedence order:
       "s-}" #'+workspace/switch-right)
 #+end_src
 
+#+begin_src elisp
+(defun +workspace--increment-name (text)
+  "Transform workspace names by adding or incrementing a numeric suffix.
+Examples: 'workspace' -> 'workspace:1', 'workspace:1' -> 'workspace:2'"
+  (interactive "sEnter workspace text: ")
+  (let ((result
+         (if (string-match "\\(.*\\):\\([0-9]+\\)$" text)
+             ;; If text ends with :number, increment the number
+             (let* ((base (match-string 1 text))
+                    (num (string-to-number (match-string 2 text))))
+               (format "%s:%d" base (1+ num)))
+           ;; If no number exists, add :1
+           (format "%s:1" text))))
+    (when (called-interactively-p 'interactive)
+      (message "%s" result))
+    result))
+#+end_src
+
+#+begin_src elisp
+(defun +workspace/clone ()
+  "Clone the current workspace (naming it similarly)
+and insert the new workspace immediately to the right of the current one."
+  (interactive)
+  (let* ((curr-name (+workspace-current-name))
+         (next-name (+workspace--increment-name curr-name)))
+    ;; Create the new workspace; assume it becomes the current workspace.
+    (+workspace/new next-name t)
+    (let* ((names (+workspace-list-names))
+           (orig-index (cl-position curr-name names :test #'equal))
+           (new-index (cl-position next-name names :test #'equal))
+           (swap-count (- new-index (1+ orig-index))))
+      (when (> swap-count 0)
+        ;; Swap left the new workspace by the required count.
+        (+workspace/swap-left swap-count))
+      (+workspace-switch curr-name)
+      (+workspace/switch-right 1))))
+#+end_src
+
 #+begin_src elisp :tangle no
 (setq +workspaces-main "org"
       +workspaces-switch-project-function #'projectile-switch-project
