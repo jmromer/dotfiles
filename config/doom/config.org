@@ -1519,6 +1519,11 @@ Remove the git flow hook added by doom.
 #+end_src
 * markdown
 
+** gfm-mode
+Default to github-flavored markdown
+#+begin_src elisp
+(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+#+end_src
 ** keybindings
 
 Clear pre-installed keymaps and set cleaned up keymaps.
