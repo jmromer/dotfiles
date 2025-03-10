@@ -353,6 +353,22 @@ Allow remembering risky local variables.
       "C-a \\" #'evil-window-vsplit)
 #+end_src
 
+** recent buffers toggling
+
+#+begin_src elisp
+(defun +buffer/other ()
+  "Switch to most recent buffer. Repeated calls toggle back and forth between the most recent two buffers."
+  (interactive)
+  (let ((current (current-buffer))
+        (buflist (buffer-list)))
+    ;; Remove current buffer from the list
+    (setq buflist (delq current buflist))
+    ;; Switch to the first buffer in the list (most recently used)
+    (switch-to-buffer (car buflist))))
+
+(global-set-key (kbd "s-`") '+buffer/other)
+#+end_src
+
 * +utilities
 
 Some general-purpose functions.
