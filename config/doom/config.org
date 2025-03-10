@@ -1588,7 +1588,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
   (add-hook! markdown-mode :append #'+config:keybindings:markdown))
 #+end_src
 
-** =markdown-preview=: gfm-ish live-ish preview
+** =markdown-preview=: gfm-ish preview
 
 #+begin_src elisp
 (defun xwwp-browse-url (url &optional new-session)
@@ -1610,6 +1610,186 @@ Interactively, URL defaults to the string looking like a url around point."
 (setq browse-url-browser-function #'xwwp-browse-url)
 #+end_src
 
+** =markdown-preview-gfm=: gfm preview with mathjax
+
+#+begin_src elisp
+(defun +preprocess-markdown-for-mathjax (markdown-text)
+  "Preprocess markdown text to ensure LaTeX delimiters work with MathJax."
+  (let ((text markdown-text))
+    ;; Replace \[ and \] with \\[ and \\]
+    (setq text (replace-regexp-in-string "\\\\\\[" "\\\\\\\\[" text))
+    (setq text (replace-regexp-in-string "\\\\\\]" "\\\\\\\\]" text))
+    ;; Replace \( and \) with \\( and \\)
+    (setq text (replace-regexp-in-string "\\\\(" "\\\\\\\\(" text))
+    (setq text (replace-regexp-in-string "\\\\)" "\\\\\\\\)" text))
+    text))
+
+(defun +markdown-preview-gfm ()
+  "Preview the current markdown file with GitHub-flavored markdown and MathJax."
+  (interactive)
+  (let* ((filename (buffer-file-name))
+         (markdown-content (buffer-string))
+         (preview-file (concat temporary-file-directory "markdown-preview.html"))
+         ;; Pre-process the markdown content
+         (processed-content (+preprocess-markdown-for-mathjax markdown-content))
+         ;; Use pandoc to convert markdown to HTML with GitHub styling
+         (html-content
+          (with-temp-buffer
+            (insert processed-content)
+            (shell-command-on-region (point-min) (point-max)
+                                    "pandoc -f markdown -t html --mathjax"
+                                    (current-buffer) t)
+            (buffer-string)))
+         ;; Full HTML document with MathJax
+         (full-html
+          (concat "<!DOCTYPE html>
+<html>
+<head>
+<meta charset=\"utf-8\">
+<title>Markdown Preview</title>
+<style>
+body {
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  max-width: 980px;
+  margin: 0 auto;
+}
+pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow: auto; }
+code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+table { border-collapse: collapse; }
+table th, table td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+table tr:nth-child(2n) { background-color: #f6f8fa; }
+blockquote { color: #6a737d; border-left: 4px solid #dfe2e5; padding-left: 16px; margin-left: 0; }
+</style>
+<!-- MathJax -->
+<script type=\"text/javascript\" async
+  src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML\">
+</script>
+<script type=\"text/x-mathjax-config\">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\\\(','\\\\)']],
+    displayMath: [['$$','$$'], ['\\\\[','\\\\]']],
+    processEscapes: true
+  },
+  TeX: {
+    equationNumbers: { autoNumber: 'AMS' }
+  }
+});
+</script>
+</head>
+<body>
+" html-content "
+</body>
+</html>")))
+    ;; Write the HTML to a temporary file
+    (with-temp-file preview-file
+      (insert full-html))
+    ;; Open the file in xwidget-webkit
+    (xwwp-browse-url (concat "file://" preview-file))))
+
+;; Bind the function to a key
+(after! markdown-mode
+  (map! :map markdown-mode-map
+        :localleader
+        :desc "Preview GFM & MathJax" "p" #'+markdown-preview-gfm
+        :desc "markdown-preview" "P" #'markdown-preview))
+#+end_src
+
+#+begin_src elisp
+;; Define the enhanced HTML template with MathJax 3
+(defvar my-markdown-preview-gfm-template-mathjax3
+  "<!DOCTYPE html>
+<html>
+<head>
+<meta charset=\"utf-8\">
+<title>Markdown Preview</title>
+<style>
+%s
+body {
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  max-width: 980px;
+  margin: 0 auto;
+}
+pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow: auto; }
+code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+table { border-collapse: collapse; }
+table th, table td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+table tr:nth-child(2n) { background-color: #f6f8fa; }
+blockquote { color: #6a737d; border-left: 4px solid #dfe2e5; padding-left: 16px; margin-left: 0; }
+</style>
+<!-- MathJax 3 -->
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+    displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+<script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js\"></script>
+<!-- Marked.js for GitHub-flavored markdown -->
+<script src=\"https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js\"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the raw markdown content
+  var rawMarkdown = document.getElementById('raw-markdown').textContent;
+
+  // Configure marked for GitHub-flavored markdown
+  marked.setOptions({
+    gfm: true,
+    breaks: true,
+    tables: true,
+    smartLists: true,
+    headerIds: true,
+    escape: false  // Disable escaping to preserve LaTeX expressions
+  });
+
+  // Render the markdown
+  document.getElementById('content').innerHTML = marked.parse(rawMarkdown);
+});
+</script>
+</head>
+<body>
+<div id=\"content\"></div>
+<script type=\"text/plain\" id=\"raw-markdown\" style=\"display: none;\">
+%s
+</script>
+</body>
+</html>"
+  "Template using MathJax 3 with GitHub-flavored markdown.")
+
+;; Function to use the MathJax 3 template
+(defun my-markdown-preview-gfm-mathjax3 ()
+  "Preview the current markdown file with GitHub-flavored markdown and MathJax 3."
+  (interactive)
+  (let* ((filename (buffer-file-name))
+         (markdown-content (buffer-string))
+         (preview-file (concat temporary-file-directory "markdown-preview.html"))
+         (html-template (format my-markdown-preview-gfm-template-mathjax3
+                                ""
+                                markdown-content)))
+    ;; Write the HTML to a temporary file
+    (with-temp-file preview-file
+      (insert html-template))
+    ;; Open the file in xwidget-webkit
+    (xwwp-browse-url (concat "file://" preview-file))))
+
+;; Bind the function to a key
+(after! markdown-mode
+  (map! :map markdown-mode-map
+        :localleader
+        :desc "Preview with GFM (MathJax 3)" "M" #'my-markdown-preview-gfm-mathjax3))
+
+#+end_src
 * org
 
 https://orgmode.org/manual
