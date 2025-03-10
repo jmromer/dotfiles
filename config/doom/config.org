@@ -2835,6 +2835,12 @@ Open a new draft buffer.
   (switch-to-buffer (get-buffer-create "*draft*")))
 #+end_src
 
+Open on an empty buffer in the main workspace.
+
+#+begin_src elisp
+(after! persp-mode
+  (setq persp-emacsclient-init-frame-behaviour-override "main") ;; Ensure clients attach to the "main" workspace
+  (setq persp-set-last-persp-for-new-frames t)) ;; Keep last workspace for new frames
 #+end_src
 
 ** configuration
