@@ -2756,15 +2756,11 @@ Precedence order:
   (evil-define-key*
     'normal xwidget-webkit-mode-map
     "g"  nil
-    "G"  #'xwidget-webkit-scroll-bottom
-    "J"  #'xwidget-webkit-scroll-up-line
-    "K"  #'xwidget-webkit-scroll-down-line
     "f"  #'xwwp-follow-link
     "gf" #'browser-open-dwim
     "gg" #'xwidget-webkit-scroll-top
+    "G"  #'xwidget-webkit-scroll-bottom
     "h"  #'xwidget-webkit-back
-    "j"  #'xwidget-webkit-scroll-up
-    "k"  #'xwidget-webkit-scroll-down
     "l"  #'xwidget-webkit-forward
     "r"  #'xwidget-webkit-reload
     "y"  #'xwidget-webkit-copy-selection-as-kill
@@ -2772,6 +2768,27 @@ Precedence order:
 
 (evil-set-initial-state 'xwidget-webkit-mode 'normal)
 (add-hook! xwidget-webkit-mode #'+config:keybindings:xwidget-webkit)
+#+end_src
+
+** smooth scrolling
+
+#+begin_src elisp
+(after! xwidget
+  (defun +xwidget-webkit-smooth-scroll-down ()
+    "Smooth scroll down in webkit."
+    (interactive)
+    (xwidget-webkit-execute-script (xwidget-webkit-current-session)
+                                   "window.scrollBy({top: 30, behavior: 'smooth'});"))
+
+  (defun +xwidget-webkit-smooth-scroll-up ()
+    "Smooth scroll up in webkit."
+    (interactive)
+    (xwidget-webkit-execute-script (xwidget-webkit-current-session)
+                                   "window.scrollBy({top: -30, behavior: 'smooth'});"))
+
+  (map! :map xwidget-webkit-mode-map
+        :n "j" #'+xwidget-webkit-smooth-scroll-down
+        :n "k" #'+xwidget-webkit-smooth-scroll-up))
 #+end_src
 
 * word chars
