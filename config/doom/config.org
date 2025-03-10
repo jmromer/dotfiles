@@ -2812,10 +2812,14 @@ Open on main org todo doc.
 (add-hook 'emacs-startup-hook #'+open-org-todos)
 #+end_src
 
-Open on a blank buffer.
+Open a new draft buffer.
 
 #+begin_src elisp
-(add-hook 'emacs-startup-hook #'evil-buffer-new)
+(defun +new-draft-buffer ()
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*draft*")))
+#+end_src
+
 #+end_src
 
 ** configuration
