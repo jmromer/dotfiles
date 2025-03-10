@@ -2825,8 +2825,7 @@ Open a new draft buffer.
 ** configuration
 
 #+begin_src elisp
-(setq +workspaces-main "org"
-      +workspaces-on-switch-project-behavior 'non-empty)
+(setq +workspaces-on-switch-project-behavior 'non-empty)
 #+end_src
 
 ** keybindings
