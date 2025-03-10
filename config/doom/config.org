@@ -100,10 +100,9 @@ Use the project name for the frame title, if available, otherwise the buffer nam
            (buffer-name)))))
 #+end_src
 
-Start Emacs maximized, use no titlebar with rounded corners.
+Start Emacs maximized.
 #+begin_src elisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(undecorated-round . t))
 #+end_src
 
 Toggle light/dark theme based on the current OS setting.
