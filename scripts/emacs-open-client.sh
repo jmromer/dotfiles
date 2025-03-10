@@ -18,7 +18,9 @@ while [ $timeout -gt 0 ]; do
   fi
 done
 
-emacsclient --create-frame --no-wait --socket-name="$server_socket_path"
+emacsclient --create-frame --no-wait \
+  --socket-name="$server_socket_path" \
+  --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))" \
 
 # bring_emacs_to_front
 osascript <<EOF
