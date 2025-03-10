@@ -1661,6 +1661,9 @@ MathJax = {
 };
 </script>
 <script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js\"></script>
+
+<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css\">
+<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js\"></script>
 </head>
 <body>
 <textarea id=\"source\" style=\"display: none;\">")
@@ -1682,8 +1685,11 @@ marked.setOptions({
   smartLists: true,
   smartypants: true,
   xhtml: false,
-  highlight: function(code) {
-    return code;
+  highlight: function(code, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      return hljs.highlight(code, { language: lang }).value;
+    }
+    return hljs.highlightAuto(code).value;
   }
 });
 
@@ -1721,6 +1727,8 @@ function renderMarkdown() {
 // Render the markdown
 renderMarkdown();
 </script>
+
+<script>hljs.highlightAll();</script>
 </body>
 </html>"))
 
