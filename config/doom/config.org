@@ -152,15 +152,15 @@ Override the widget footer function to replace the icon.
 
 #+begin_src elisp
 (add-to-list '+doom-dashboard-menu-sections
-             '("Open Terminal"
+             '("Open terminal emulator"
                :icon (nerd-icons-octicon "nf-oct-terminal" :face 'doom-dashboard-menu-title)
                :action +vterm/here))
 (add-to-list '+doom-dashboard-menu-sections
-             '("Switch to Scratch"
+             '("Switch to scratch buffer"
                :icon (nerd-icons-octicon "nf-oct-pencil" :face 'doom-dashboard-menu-title)
                :action doom/switch-to-scratch-buffer))
 (add-to-list '+doom-dashboard-menu-sections
-             '("Open Empty Buffer"
+             '("Open empty buffer"
                :icon (nerd-icons-octicon "nf-oct-file" :face 'doom-dashboard-menu-title)
                :action evil-buffer-new))
 #+end_src
