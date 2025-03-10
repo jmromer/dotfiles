@@ -2819,11 +2819,19 @@ Precedence order:
 
 ** startup workspace
 
-#+begin_src elisp
+Open on main org todo doc.
+
+#+begin_src elisp :tangle no
 (defun +open-org-todos ()
   "Open the main Org mode file in the main workspace."
   (find-file (format "%s/%s" (getenv "ORG_HOME") +org-capture-todo-file)))
 (add-hook 'emacs-startup-hook #'+open-org-todos)
+#+end_src
+
+Open on a blank buffer.
+
+#+begin_src elisp
+(add-hook 'emacs-startup-hook #'evil-buffer-new)
 #+end_src
 
 ** configuration
