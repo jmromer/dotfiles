@@ -81,10 +81,8 @@ Provide a command to trigger tangling manually.
 ** display
 
 Set fonts. NB: =doom-variable-pitch-font= could use updating.
-
 #+begin_src elisp
-(setq frame-title-format '("%b")
-      doom-font (font-spec :family "Monaco" :size 16)
+(setq doom-font (font-spec :family "Monaco" :size 16)
       doom-variable-pitch-font (font-spec :family "Monaco" :size 16)
       doom-big-font (font-spec :family "Monaco" :size 24)
       doom-theme 'doom-one
@@ -93,8 +91,16 @@ Set fonts. NB: =doom-variable-pitch-font= could use updating.
       +doom-dashboard-ascii-banner-fn nil)
 #+end_src
 
-Start Emacs maximized, use no titlebar with rounded corners.
+Use the project name for the frame title, if available, otherwise the buffer name.
+#+begin_src elisp
+(setq frame-title-format
+      '((:eval
+         (if (projectile-project-p)
+             (format "%s" (projectile-project-name))
+           (buffer-name)))))
+#+end_src
 
+Start Emacs maximized, use no titlebar with rounded corners.
 #+begin_src elisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(undecorated-round . t))
