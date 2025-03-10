@@ -2841,7 +2841,6 @@ Precedence order:
       "s-;" #'+workspace/other
       "s-{" #'+workspace/switch-left
       "s-}" #'+workspace/switch-right)
-(map! :n "C-d" #'+workspace/kill)
 #+end_src
 
 ** new tab behavior
@@ -2997,6 +2996,20 @@ When switching to a project, abbreviate the workspace name.
 (setq +workspaces-switch-project-function #'+name-workspace-open-project-dired)
 #+end_src
 
+#+end_src
+
+** =+workspace/kill= behavior
+
+When killing a workspace, consistently move to the one on the immediate left.
+
+#+begin_src elisp
+(after! persp-mode
+  (defadvice! +workspace/kill-and-shift-left (orig-fn &rest args)
+    "Move to the workspace on the left after deleting the current one."
+    :around #'+workspace/kill
+    (let ((name (+workspace-current-name)))
+      (+workspace/switch-left 1)
+      (funcall orig-fn name))))
 #+end_src
 
 * yankee
