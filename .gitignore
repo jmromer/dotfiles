@@ -100,9 +100,11 @@ config/Exercism
 config/Webull\ Desktop
 config/configstore/update-notifier-gatsby-cli.json
 config/configstore/update-notifier-npm.json
+config/cups/
 config/docker/*
 config/doom/config.el
 config/gatsby/
+config/glow/
 config/github-copilot/versions.json
 config/irb/irb_history
 config/iterm2/AppSupport
