@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+# rubocop:disable Layout/EmptyLinesAroundBlockBody
 require_relative "../lib/bootstrap"
 
 ensure_xcode_is_set_up
@@ -15,7 +16,33 @@ setup :homebrew do
   install_homebrew
 end
 
+# rubocop:disable Layout/ArgumentAlignment
+setup :emacs do
+  brew_tap "d12frosted/emacs-plus"
+  brew_install :emacs_plus,
+    options: %i[with_dbus with_imagemagick with_compress_install with_xwidgets]
+end
+# rubocop:enable Layout/ArgumentAlignment
+
+setup :editors do
+
+  brew_install :macvim
+  brew_install :neovim
+  cask_install :visual_studio_code
+
+end
+
+setup :mac_tools do
+
+  brew_install :pinentry_mac
+  brew_install :osxutils
+  brew_install :reattach_to_user_namespace
+  cask_install :karabiner_elements
+
+end
+
 setup :core_cli_tools do
+
   brew_install :binutils
   brew_install :coreutils
   brew_install :curl
@@ -39,9 +66,11 @@ setup :core_cli_tools do
   brew_install :watch
   brew_install :wdiff
   brew_install :wget
+
 end
 
 setup :build_tools do
+
   brew_install :bzip2
   brew_install :cmake
   brew_install :gcc
@@ -58,17 +87,17 @@ setup :build_tools do
   brew_install :readline
   brew_install :rtags
   brew_install :zlib
+
 end
 
 setup :gui_apps do
-  cask_install "1password"
+
   cask_install "4k-video-downloader+"
+  cask_install :alfred
   cask_install :appcleaner
   cask_install :betterdisplay
   cask_install :bettertouchtool
   cask_install :brave_browser
-  cask_install :chatgpt
-  cask_install :claude
   cask_install :coderunner
   cask_install :dash, version: 6
   cask_install :discord
@@ -78,9 +107,9 @@ setup :gui_apps do
   cask_install :google_drive
   cask_install :httpie
   cask_install :iterm2, version: :nightly
+  cask_install :itermai
   cask_install :keycastr
   cask_install :latexit
-  cask_install :launchbar
   cask_install :launchcontrol
   cask_install :launchpad_manager
   cask_install :licecap
@@ -89,13 +118,13 @@ setup :gui_apps do
   cask_install :onedrive
   cask_install :pandora
   cask_install :pdfsam_basic
-  cask_install :protonvpn
   cask_install :raindropio
   cask_install :rectangle_pro
   cask_install :responsively
   cask_install :screenflow
   cask_install :skim
   cask_install :slack
+  cask_install :speechify
   cask_install :spotify
   cask_install :sqlpro_studio
   cask_install :telegram
@@ -104,9 +133,11 @@ setup :gui_apps do
   cask_install :vivaldi
   cask_install :vlc
   cask_install :zoom
+
 end
 
 setup :quick_look_viewers do
+
   cask_install :jupyter_notebook_viewer, options: :no_quarantine
   cask_install :qlmarkdown, options: :no_quarantine
   cask_install :qlprettypatch, options: :no_quarantine
@@ -118,17 +149,19 @@ setup :quick_look_viewers do
   cask_install :suspicious_package, options: :no_quarantine
   cask_install :syntax_highlight, options: :no_quarantine
   cask_install :webpquicklook, options: :no_quarantine
+
   reset_quicklookd
 end
 
 setup :development_tools do
+
   brew_install :awscli
   brew_install :bash
   brew_install :bat
   brew_install :direnv
+  brew_install :extract_url
   brew_install :eza
   brew_install :fzf
-  brew_install :flyctl
   brew_install :gh
   brew_install :git_delta
   brew_install :global
@@ -149,19 +182,22 @@ setup :development_tools do
 end
 
 setup :text_editing_cli_tools do
+
   brew_install :editorconfig
   brew_install :grip
   brew_install :ispell
   brew_install :libvterm
-  brew_install :pygments
   brew_install :pandoc
+  brew_install :pygments
   brew_install :shellcheck
   brew_install :tectonic
   brew_install :tidy_html5
   brew_install :wordnet
+
 end
 
 setup :miscellaneous_cli_tools do
+
   brew_install :defaultbrowser
   brew_install :exercism
   brew_install :llm
@@ -169,28 +205,6 @@ setup :miscellaneous_cli_tools do
 
   brew_tap "yt-dlp/taps"
   brew_install :yt_dlp
-end
-
-setup :mac_tools do
-  brew_install :pinentry_mac
-  brew_install :osxutils
-  brew_install :reattach_to_user_namespace
-  cask_install :karabiner_elements
-end
-
-setup :editors do
-  brew_install :macvim
-  brew_install :neovim
-  cask_install :visual_studio_code
-
-  brew_tap "d12frosted/emacs-plus"
-  brew_install :emacs_plus,
-               options: %i[
-                 with_dbus
-                 with_imagemagick
-                 with_compress_install
-                 with_xwidgets
-               ]
 end
 
 setup :asdf_plugins do
@@ -224,3 +238,4 @@ perform :cleanups do
 end
 
 puts "\n\nThat's it! Restart and run the customization script."
+# rubocop:enable Layout/EmptyLinesAroundBlockBody
