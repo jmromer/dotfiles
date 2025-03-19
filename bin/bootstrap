@@ -93,7 +93,6 @@ end
 setup :gui_apps do
 
   cask_install "4k-video-downloader+"
-  cask_install :alfred
   cask_install :appcleaner
   cask_install :betterdisplay
   cask_install :bettertouchtool
@@ -110,6 +109,7 @@ setup :gui_apps do
   cask_install :itermai
   cask_install :keycastr
   cask_install :latexit
+  cask_install :launchbar
   cask_install :launchcontrol
   cask_install :launchpad_manager
   cask_install :licecap
