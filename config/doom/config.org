@@ -582,7 +582,16 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
 #+begin_src elisp
 (use-package aider
   :config
-  (setq aider-args '("--model"  "gpt-4o" "--weak-model" "o3-mini")))
+  (setq aider-args
+        '(
+          "--model"  "gpt-4o"
+          "--weak-model" "o3-mini"
+          "--no-auto-commits"
+          "--no-attribute-author"
+          "--no-attribute-committer"
+          "--no-attribute-commit-message-author"
+          "--no-attribute-commit-message-committer"
+          )))
 #+end_src
 * completion
 
