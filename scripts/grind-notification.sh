@@ -25,6 +25,10 @@ NOTIFICATION_MESSAGE="Problems Completed: $TOTAL_PROBLEMS\nDue for Review: $DUE_
 # log execution time
 echo "$(date) : $DUE_PROBLEMS / $TOTAL_PROBLEMS"
 
+if [ "$DUE_PROBLEMS" -eq 0 ]; then
+  exit 0
+fi
+
 # Send notification using macOS notification system with proper escaping
 osascript <<EOF
 display notification "$NOTIFICATION_MESSAGE" with title "Grind Status"
