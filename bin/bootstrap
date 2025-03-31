@@ -9,7 +9,7 @@ ensure_gpg_permissions_are_set_correctly
 ensure_locals_are_created
 
 setup :xdg_base_directory_environment do
-  install_launchagent "env.xdg"
+  install_launchagent "com.tensorconclave.xdg"
 end
 
 setup :homebrew do
@@ -221,7 +221,7 @@ end
 
 setup :pd_tool do
   asdf_install :golang
-  install_launchagent "conclave.pd.refresh"
+  install_launchagent "com.tensorconclave.pd"
   script_install :pd
 end
 

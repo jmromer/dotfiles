@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>KeepAlive</key>
-	<true/>
+	<false/>
 	<key>Label</key>
-	<string>com.jmromer.anotes</string>
+	<string>com.tensorconclave.notes</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/opt/homebrew/bin/node</string>
@@ -15,9 +15,9 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/com.jmromer.anotes.err.log</string>
+	<string>/tmp/com.tensorconclave.notes.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/com.jmromer.anotes.out.log</string>
+	<string>/tmp/com.tensorconclave.notes.out</string>
 	<key>WorkingDirectory</key>
 	<string>/Users/jmromer/Projects/AcademicNotes</string>
 </dict>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.user.grindstatus</string>
+	<string>com.tensorconclave.grindstatus</string>
 	<key>Program</key>
 	<string>/bin/zsh</string>
 	<key>ProgramArguments</key>
@@ -15,9 +15,9 @@
 	<key>RunAtLoad</key>
 	<false/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/com.user.grindstatus.err</string>
+	<string>/tmp/com.tensorconclave.grindstatus.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/com.user.grindstatus.out</string>
+	<string>/tmp/com.tensorconclave.grindstatus.out</string>
 	<key>StartCalendarInterval</key>
 	<array>
 		<dict>
