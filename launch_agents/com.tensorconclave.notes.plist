@@ -19,6 +19,6 @@
 	<key>StandardOutPath</key>
 	<string>/tmp/com.tensorconclave.notes.out</string>
 	<key>WorkingDirectory</key>
-	<string>/Users/jmromer/Projects/AcademicNotes</string>
+	<string>/Users/jmromer/Writing/AcademicNotes</string>
 </dict>
 </plist>
