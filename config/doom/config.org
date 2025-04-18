@@ -2209,6 +2209,26 @@ See `org-capture-templates' for more information."
                  "\n"))))
 #+end_src
 
+*** +org-hugo-export-all
+
+#+begin_src elisp
+;;;###autoload
+(defun +org-hugo-export-all (&optional dir)
+  "Export every Hugo-ready subtree in all .org files under DIR."
+  (let ((dir    (expand-file-name (or dir default-directory)))
+        (files  (directory-files-recursively dir "\\.org$")))
+    (dolist (f files)
+      (with-temp-buffer
+        (insert-file-contents f)
+        (org-mode)
+        (message "→ %s" f)
+        (org-element-map (org-element-parse-buffer) 'headline
+          (lambda (hl)
+            (when (org-element-property :EXPORT_FILE_NAME hl)
+              (goto-char (org-element-property :begin hl))
+              (org-hugo-export-wim-to-md t))))))))
+#+end_src
+
 ** avy
 
 #+begin_src elisp
