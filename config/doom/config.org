@@ -2811,7 +2811,8 @@ Enable strict smartparens mode wherever smartparens is enabled.
 
 #+begin_src elisp
 (after! smartparens
-  (turn-on-smartparens-strict-mode))
+  (setq smartparens-global-mode nil
+        smartparens-global-strict-mode nil))
 #+end_src
 
 * treesitter
