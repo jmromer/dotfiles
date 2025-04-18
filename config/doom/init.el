@@ -19,8 +19,8 @@
  ;; (flags))
 
  :completion
- ;; (company +childframe) ; TODO: Enable instead of others?
- (corfu +dabbrev +icons)
+ ;; (company +childframe)
+ (corfu +dabbrev +icons +orderless)
  ;; ivy
  (vertico +icons)
 
@@ -30,12 +30,11 @@
  doom-dashboard
  hl-todo
  indent-guides
- ;; modeline   ; TODO: keep? snazzy, Atom-inspired modeline, plus API
+ modeline
  ophints
  (popup +all +defaults)
  treemacs
  (vc-gutter +pretty)
- ;; vi-tilde-fringe   ; TODO: drop? fringe tildes to mark beyond EOB
  workspaces
 
  :editor
@@ -48,9 +47,8 @@
  snippets
 
  :emacs
- (dired +dirvish +icons)
+ (dired +dirvish)
  electric
- ;; ibuffer ;; TODO: drop??
  undo
  vc
 
@@ -60,7 +58,7 @@
 
  :checkers
  (syntax +childframe)
- spell ;; TODO: +flyspell?
+ spell
 
  :tools
  ;;(debugger +lsp)
@@ -88,7 +86,7 @@
  (graphql +lsp)
  (haskell +lsp)
  janet
- (java +meghanada) ;; TODO: +lsp?
+ (java +lsp)
  (javascript +lsp)
  json
  ;;julia
