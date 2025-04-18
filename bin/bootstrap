@@ -229,7 +229,7 @@ end
 setup :writing_projects, default: false do
   asdf_install :gohugo
   setup(:org) { setup_writing(:org) }
-  setup(:samizdat) { setup_writing(:samizdat) }
+  setup(:logos) { setup_writing(:logos) }
   setup(:conclave) { setup_writing(:conclave) }
 end
 
