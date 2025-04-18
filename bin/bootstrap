@@ -52,8 +52,8 @@ setup :core_cli_tools do
   brew_install :findutils
   brew_install :gawk
   brew_install :git
-  brew_install :gnu_indent
   brew_install :git_lfs
+  brew_install :gnu_indent
   brew_install :gnu_sed
   brew_install :gnu_tar
   brew_install :gnu_which
@@ -62,6 +62,7 @@ setup :core_cli_tools do
   brew_install :grep
   brew_install :less
   brew_install :mas
+  brew_install :parallel
   brew_install :ripgrep
   brew_install :watch
   brew_install :wdiff
