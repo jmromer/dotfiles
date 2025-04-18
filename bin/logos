@@ -2,11 +2,11 @@
 
 set -e
 
-cd "${HOME}/Writing/samizdat"
+cd "${HOME}/Writing/logos"
 
 if [[ "$1" == "deploy" ]]; then
-  rm -f /tmp/samizdat.deploy.*
-  touch /tmp/samizdat.deploy.{out,err}
+  rm -f /tmp/com.tensorconclave.notes_deploy.*
+  touch /tmp/com.tensorconclave.notes_deploy.{out,err}
   printf "\n[Deploy: %s]\n " "$(date)"
 
   if ./bin/deploy; then
@@ -19,8 +19,8 @@ if [[ "$1" == "deploy" ]]; then
 fi
 
 if [[ "$1" == "serve" ]]; then
-  rm -f /tmp/samizdat.serve.*
-  touch /tmp/samizdat.serve.{out,err}
+  rm -f /tmp/com.tensorconclave.notes_serve.*
+  touch /tmp/com.tensorconclave.notes_serve.{out,err}
 
   # hugo server --buildDrafts --watch
   ./bin/serve
