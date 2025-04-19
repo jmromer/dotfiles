@@ -31,24 +31,37 @@
  hl-todo
  indent-guides
  modeline
+ nav-flash
  ophints
  (popup +all +defaults)
+ smooth-scroll
  treemacs
  (vc-gutter +pretty)
+ vi-tilde-fringe
+ (window-select +numbers +switch-window)
  workspaces
+ zen
 
  :editor
  (evil +everywhere)
  file-templates
  fold
  format ;; TODO: +onsave?
+ ;; god
+ ;; lispy
  multiple-cursors
+ objed
+ parinfer
  rotate-text
  snippets
+ word-wrap
 
  :emacs
  (dired +dirvish)
  electric
+ ;; eww
+ (ibuffer +icons)
+ ;; tramp
  undo
  vc
 
@@ -61,19 +74,24 @@
  spell
 
  :tools
- ;;(debugger +lsp)
+ ;; biblio
+ (debugger +lsp)
  direnv
+ (docker +lsp)
  editorconfig
  (eval +overlay)
  (lookup +docsets +dictionary)
- lsp
- (magit +childframe +forge)
+ (lsp +peek)
+ (magit +forge)
+ make
  pdf
+ (terraform +lsp)
  tree-sitter
  ;;upload
 
  :os
- tty
+ (tty +osc)
+ macos
 
  :lang
  beancount
