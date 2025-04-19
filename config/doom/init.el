@@ -31,7 +31,7 @@
  hl-todo
  indent-guides
  modeline
- nav-flash
+ ;; nav-flash
  ophints
  (popup +all +defaults)
  smooth-scroll
@@ -50,7 +50,7 @@
  ;; god
  ;; lispy
  multiple-cursors
- objed
+ (objed +manual)
  parinfer
  rotate-text
  snippets
@@ -74,7 +74,7 @@
  spell
 
  :tools
- ;; biblio
+ biblio
  (debugger +lsp)
  direnv
  (docker +lsp)
