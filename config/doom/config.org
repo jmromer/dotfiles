@@ -1884,13 +1884,13 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
            "* %U %?\n%i\n%a" :prepend t)
 
           ("b" "Blog Entries")
-          ("bb" "New Post" entry (file+headline "blog/blog.org" "Blog")
+          ("bp" "Project" entry (file+headline "blog/projects.org" "Projects")
            (function org-hugo-new-blog-capture-template) :empty-lines 1 :prepend t)
           ("bc" "Commonplace" entry (file+headline "blog/commonplaces.org" "Commonplaces")
            (function org-hugo-new-commonplace-capture-template) :empty-lines 1 :prepend t)
           ("bm" "Marginalia" entry (file+headline "blog/marginalia.org" "Marginalia")
            (function org-hugo-new-marginalia-capture-template) :empty-lines 1 :prepend t)
-          ("bn" "Notes" entry (file+headline "blog/notes.org" "Notes")
+          ("bn" "Notes" entry (file+headline "blog/notebook.org" "Notes")
            (function org-hugo-new-blog-capture-template) :empty-lines 1 :prepend t)
 
           ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
@@ -1978,9 +1978,11 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
           ("q" . "quote")
           ("s" . "src")
           ("se" . "src elisp")
-          ("sj" . "src javascript")
+          ("sj" . "src jsx")
           ("sp" . "src python")
           ("sr" . "src ruby")
+          ("ss" . "src shell")
+          ("st" . "src tsx")
           ("sx" . "src elixir")
           ("v" . "verse")
           )))
@@ -2146,15 +2148,15 @@ See `org-capture-templates' for more information."
   (save-match-data
     (let ((date (format-time-string "%Y-%m-%d" (current-time)))
           (timestamp (hugo-timestamp))
-          (title (read-from-minibuffer "Title: " "New Post"))
-          (location (read-from-minibuffer "Location: " "New York")))
+          (title (read-from-minibuffer "Project: " ""))
+          (summary (read-from-minibuffer "Summary: " "")))
       (mapconcat #'identity
                  `(
                    ,(concat "* DRAFT " title)
                    ":PROPERTIES:"
                    ,(concat ":EXPORT_FILE_NAME: " date "-" (org-hugo-slug title))
                    ,(concat ":EXPORT_DATE: " timestamp)
-                   ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :location " location)
+                   ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true :summary " summary)
                    ":END:"
                    "%?\n")
                  "\n"))))
@@ -2163,12 +2165,14 @@ See `org-capture-templates' for more information."
   "Return `org-capture' template string for new Hugo marginalia post.
 See `org-capture-templates' for more information."
   (save-match-data
-    (let ((timestamp (hugo-timestamp)))
+    (let ((timestamp (hugo-timestamp))
+          (date (format-time-string "%Y-%m-%d" (current-time)))
+          (title (read-from-minibuffer "Description: " "")))
       (mapconcat #'identity
                  `(
                    ,(concat "* " timestamp)
                    ":PROPERTIES:"
-                   ,(concat ":EXPORT_FILE_NAME: " (org-hugo-slug timestamp))
+                   ,(concat ":EXPORT_FILE_NAME: " date "-" (org-hugo-slug title))
                    ,(concat ":EXPORT_DATE: " timestamp)
                    ":END:"
                    "%?\n")
@@ -2224,7 +2228,7 @@ See `org-capture-templates' for more information."
         (message "→ %s" f)
         (org-element-map (org-element-parse-buffer) 'headline
           (lambda (hl)
-            (when (org-element-property :EXPORT_FILE_NAME hl)
+            (when (org-element-property :EXPORT_DATE hl)
               (goto-char (org-element-property :begin hl))
               (org-hugo-export-wim-to-md t))))))))
 #+end_src
