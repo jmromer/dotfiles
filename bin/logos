@@ -9,7 +9,7 @@ if [[ "$1" == "deploy" ]]; then
   touch /tmp/com.tensorconclave.notes_deploy.{out,err}
   printf "\n[Deploy: %s]\n " "$(date)"
 
-  if ./bin/deploy; then
+  if ./bin/deploy "$2"; then
     printf "\nDeployed.\n"
     exit 0
   else
@@ -23,5 +23,5 @@ if [[ "$1" == "serve" ]]; then
   touch /tmp/com.tensorconclave.notes_serve.{out,err}
 
   # hugo server --buildDrafts --watch
-  ./bin/serve
+  ./bin/serve "$2"
 fi
