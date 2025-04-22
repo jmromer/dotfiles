@@ -740,6 +740,14 @@ From the normal state, Enter dired in the CWD of the current buffer's file with 
 
 * evil
 
+** cursor mode indicators
+
+#+begin_src elisp
+(setq evil-normal-state-cursor '(box "light blue")
+      evil-insert-state-cursor '(bar "medium sea green")
+      evil-visual-state-cursor '(hollow "orange"))
+#+end_src
+
 ** state messages
 
 Silence state messages.
