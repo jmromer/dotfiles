@@ -2170,7 +2170,7 @@ See `org-capture-templates' for more information."
           (title (read-from-minibuffer "Description: " "")))
       (mapconcat #'identity
                  `(
-                   ,(concat "* " timestamp)
+                   ,(concat "* " title)
                    ":PROPERTIES:"
                    ,(concat ":EXPORT_FILE_NAME: " date "-" (org-hugo-slug title))
                    ,(concat ":EXPORT_DATE: " timestamp)
