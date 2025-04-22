@@ -263,9 +263,9 @@ Some general purpose super-key keybindings.
       :desc "full vterm"    "s-C-'" #'(lambda () (interactive) (+vterm/here t))
          "s-K"   #'kill-current-buffer
          "s-k"   #'bury-buffer
-         "s-f"   #'avy-goto-char-2
          "s-F"   #'avy-goto-char-timer
-         "s-N"   #'org-projectile-project-todo-completing-read
+         "s-f"   #'avy-goto-char-2
+         "s-N"   #'org-projectile-capture-for-current-project
          "s-n"   #'+org-capture/open-frame
   "<s-escape>"   #'evil-escape)
 #+end_src
