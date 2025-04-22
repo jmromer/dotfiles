@@ -1981,7 +1981,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
           ("sj" . "src jsx")
           ("sp" . "src python")
           ("sr" . "src ruby")
-          ("ss" . "src shell")
+          ("ss" . "src bash")
           ("st" . "src tsx")
           ("sx" . "src elixir")
           ("v" . "verse")
