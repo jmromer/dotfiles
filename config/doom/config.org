@@ -2199,13 +2199,15 @@ See `org-capture-templates' for more information."
                    ,(concat ":EXPORT_DATE: " timestamp)
                    ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true :summary " summary)
                    ":END:"
-                   "%?\n"
-                   "*** The New Hotness"
-                   "*** Key Insight"
-                   "*** How It Works"
-                   "*** Results"
-                   "*** The Backstory"
-                   "*** Why It Matters")
+                   "#+begin_cite"
+                   "%?"
+                   "#+end_cite"
+                   "** The New Hotness"
+                   "** Key Insight"
+                   "** How It Works"
+                   "** Results"
+                   "** The Backstory"
+                   "** Why It Matters")
                  "\n"))))
 #+end_src
 
