@@ -2204,10 +2204,11 @@ See `org-capture-templates' for more information."
                    ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true :summary " summary)
                    ":END:"
                    "%?\n"
-                   "*** What's New"
+                   "*** The New Hotness"
                    "*** Key Insight"
                    "*** How It Works"
                    "*** Results"
+                   "*** The Backstory"
                    "*** Why It Matters")
                  "\n"))))
 #+end_src
