@@ -1892,6 +1892,8 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
            (function org-hugo-new-marginalia-capture-template) :empty-lines 1 :prepend t)
           ("bn" "Notes" entry (file+headline "blog/notebook.org" "Notes")
            (function org-hugo-new-project-capture-template) :empty-lines 1 :prepend t)
+          ("bs" "Article Summary" entry (file+headline "blog/notebook.org" "Notes")
+           (function org-hugo-new-summary-capture-template) :empty-lines 1 :prepend t)
 
           ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
           ;; {todo,notes,changelog}.org file is found in a parent directory.
@@ -2159,6 +2161,31 @@ See `org-capture-templates' for more information."
                    ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true :summary " summary)
                    ":END:"
                    "%?\n")
+                 "\n"))))
+
+
+(defun org-hugo-new-summary-capture-template ()
+  "Return `org-capture' template string for new Hugo blog post.
+See `org-capture-templates' for more information."
+  (save-match-data
+    (let ((date (format-time-string "%Y-%m-%d" (current-time)))
+          (timestamp (hugo-timestamp))
+          (title (read-from-minibuffer "Title: " ""))
+          (summary (read-from-minibuffer "Summary: " "")))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* DRAFT " title)
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " date "-" (org-hugo-slug title))
+                   ,(concat ":EXPORT_DATE: " timestamp)
+                   ,(concat ":EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true :summary " summary)
+                   ":END:"
+                   "%?\n"
+                   "*** What's New"
+                   "*** Key Insight"
+                   "*** How It Works"
+                   "*** Results"
+                   "*** Why It Matters")
                  "\n"))))
 
 (defun org-hugo-new-marginalia-capture-template ()
