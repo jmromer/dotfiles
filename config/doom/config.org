@@ -265,8 +265,8 @@ Some general purpose super-key keybindings.
          "s-k"   #'bury-buffer
          "s-f"   #'avy-goto-char-2
          "s-F"   #'avy-goto-char-timer
-         "s-n"   #'org-capture
          "s-N"   #'org-projectile-project-todo-completing-read
+         "s-n"   #'+org-capture/open-frame
   "<s-escape>"   #'evil-escape)
 #+end_src
 
@@ -1870,6 +1870,15 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 #+end_src
 
 ** capture templates
+
+#+begin_src elisp
+(after! org
+ (setq +org-capture-frame-parameters
+       '((name . "org-capture")
+         (fullscreen . fullboth)
+         (transient . t)
+         (menu-bar-lines . 1))))
+#+end_src
 
 #+begin_src elisp
 (after! org
