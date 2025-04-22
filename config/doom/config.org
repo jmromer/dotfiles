@@ -1885,13 +1885,13 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 
           ("b" "Blog Entries")
           ("bp" "Project" entry (file+headline "blog/projects.org" "Projects")
-           (function org-hugo-new-blog-capture-template) :empty-lines 1 :prepend t)
+           (function org-hugo-new-project-capture-template) :empty-lines 1 :prepend t)
           ("bc" "Commonplace" entry (file+headline "blog/commonplaces.org" "Commonplaces")
            (function org-hugo-new-commonplace-capture-template) :empty-lines 1 :prepend t)
           ("bm" "Marginalia" entry (file+headline "blog/marginalia.org" "Marginalia")
            (function org-hugo-new-marginalia-capture-template) :empty-lines 1 :prepend t)
           ("bn" "Notes" entry (file+headline "blog/notebook.org" "Notes")
-           (function org-hugo-new-blog-capture-template) :empty-lines 1 :prepend t)
+           (function org-hugo-new-project-capture-template) :empty-lines 1 :prepend t)
 
           ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
           ;; {todo,notes,changelog}.org file is found in a parent directory.
@@ -2142,7 +2142,7 @@ a communication channel."
    ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))
     (format-time-string "%z"))))
 
-(defun org-hugo-new-blog-capture-template ()
+(defun org-hugo-new-project-capture-template ()
   "Return `org-capture' template string for new Hugo blog post.
 See `org-capture-templates' for more information."
   (save-match-data
