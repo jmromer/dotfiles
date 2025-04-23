@@ -71,7 +71,7 @@
 	diffFilter  = delta --color-only
 
 [log]
-	date = short
+	date = iso
 
 [merge]
 	conflictstyle = diff3
