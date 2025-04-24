@@ -578,6 +578,29 @@ Provide an absolute path if the prefix argument ABSPATH-P is provided."
       (message (format "Copied to clipboard: %s" yanked)))))
 #+end_src
 
+** +logos-deploy
+
+#+begin_src elisp
+(defun +logos-deploy ()
+  "Deploy the logos project with a timestamped commit message.
+Prompts for an optional commit message suffix."
+  (interactive)
+  (let* ((default-directory (expand-file-name "~/Writing/logos/"))
+         (timestamp (format-time-string "%Y-%m-%d %H:%M"))
+         (suffix (read-string "Optional commit message: "))
+         (full-message (if (string-empty-p suffix)
+                           (format "Update %s" timestamp)
+                         (format "Update %s (%s)" timestamp suffix)))
+         (command (mapconcat
+                   #'identity
+                   (list "git add ."
+                         (format "git commit -m \"%s\"" full-message)
+                         "bin/deploy")
+                   " && ")))
+    (message "Deploying with commit message: %s" full-message)
+    (compile command)))
+#+end_src
+
 * aider
 #+begin_src elisp
 (use-package aider
