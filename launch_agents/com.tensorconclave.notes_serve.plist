@@ -12,7 +12,7 @@
 	<array>
 		<string>/bin/zsh</string>
 		<string>-c</string>
-		<string>${DOTFILES_DIR}/bin/logos serve --regenerate</string>
+		<string>${DOTFILES_DIR}/bin/logos serve</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

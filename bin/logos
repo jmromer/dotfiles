@@ -2,7 +2,23 @@
 
 set -e
 
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+RESET="\033[0m"
+CONTENT_DIR="content"
+
 cd "${HOME}/Writing/logos"
+
+if [[ "$1" == "build" ]]; then
+  echo -e "Resetting content directory... "
+  rm -rf "${CONTENT_DIR}"
+  printf "${GREEN}done${RESET}\n"
+
+  echo -e "Generating Markdown from Org files... "
+  bin/generate
+  printf "${GREEN}done${RESET}\n"
+  exit 0
+fi
 
 if [[ "$1" == "deploy" ]]; then
   rm -f /tmp/com.tensorconclave.notes_deploy.*
@@ -10,18 +26,24 @@ if [[ "$1" == "deploy" ]]; then
   printf "\n[Deploy: %s]\n " "$(date)"
 
   if ./bin/deploy "$2"; then
-    printf "\nDeployed.\n"
+    printf "\n${GREEN}Deployed.${RESET}\n"
     exit 0
   else
-    printf "\nError.\n"
+    printf "\n${RED}Error.${RESET}\n"
     exit 1
   fi
+fi
+
+if [[ "$1" == "reload" ]] || [[ -z "$1" ]]; then
+  printf "Restarting launch agent... "
+  agent=~/Library/LaunchAgents/com.tensorconclave.notes_serve.plist
+  launchctl unload $agent
+  launchctl load $agent
+  printf "${GREEN}done${RESET}\n"
 fi
 
 if [[ "$1" == "serve" ]]; then
   rm -f /tmp/com.tensorconclave.notes_serve.*
   touch /tmp/com.tensorconclave.notes_serve.{out,err}
-
-  # hugo server --buildDrafts --watch
   ./bin/serve "$2"
 fi
