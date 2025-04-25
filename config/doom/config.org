@@ -917,8 +917,8 @@ TEXTOBJ should be a symbol corresponding to `x' in the `evil-inner-x' functions.
         (start-pos (point)))
     (save-excursion
       (let* ((bounds (call-interactively evil-textobj))
-             (beg (first bounds))
-             (end (second bounds)))
+             (beg (cl-first bounds))
+             (end (cl-second bounds)))
         (sort-lines desc beg end)))
     (goto-char start-pos)))
 
@@ -1376,8 +1376,8 @@ Otherwise, assume the current file is the main doc."
                   (cl-remove-if-not
                    (lambda (fn) (message fn) (string-suffix-p (format ".%s" filetype) fn))
                    (directory-files proj-root nil (format "\.%s" filetype)))))
-         (first (car history))
-         (rest (cdr history)))
+         (cl-first (car history))
+         (cl-rest (cdr history)))
     (if (not (file-exists-p (format "%s/%s.%s" proj-root doc-name filetype)))
         (string-trim (read-from-minibuffer "file: " first nil nil 'rest))
       doc-name)))
@@ -3321,8 +3321,8 @@ Add some yankee motions for evil mode.
         (start-pos (point)))
     (save-excursion
       (let* ((bounds (call-interactively evil-textobj))
-             (beg (first bounds))
-             (end (second bounds)))
+             (beg (cl-first bounds))
+             (end (cl-second bounds)))
         (progn
           (evil-visual-char beg end)
           (yankee-yank beg end))))
