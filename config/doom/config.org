@@ -369,6 +369,13 @@ Allow remembering risky local variables.
 (global-set-key (kbd "s-`") '+buffer/other)
 #+end_src
 
+** word wrapping
+
+#+begin_src elisp
+(setq +word-wrap-fill-style 'soft)
+(+global-word-wrap-mode)
+#+end_src
+
 * +utilities
 
 Some general-purpose functions.
