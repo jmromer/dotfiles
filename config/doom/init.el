@@ -112,7 +112,7 @@
  ;;(lua +fennel)
  markdown
  ;; nix
- (org +dragndrop +roam2 +appear +noter +hugo +journal)
+ (org +dragndrop +roam2 +appear +noter +hugo +journal +pretty)
  ;;php
  ;;plantuml
  (python +lsp +pyright +pyenv +poetry)
