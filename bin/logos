@@ -9,7 +9,7 @@
 #   deploy [--regenerate] : deploy site
 #   serve  [--regenerate] : serve site locally
 #   logs   [--deploy]     : view logs
-#   build                 : regenerate content
+#   rebuild               : regenerate content
 #   help                  : this message
 
 set -e
@@ -79,8 +79,9 @@ tail_logs() {
 cd "${HOME}/Writing/logos"
 
 case "${SUBCOMMAND}" in
-  build)
+  rebuild)
     regenerate_content
+    reload_launch_agent
     ;;
   deploy)
     deploy_site "${FLAG}"
