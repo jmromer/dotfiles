@@ -1984,8 +1984,6 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-cycle-separator-lines 2
       org-edit-src-content-indentation 0
       org-ellipsis " ▾"
-      org-superstar-headline-bullets-list '("› " ?◉ ?○ ?✸ ?✿)
-      org-superstar-item-bullet-alist '((?* . ?⋆) (?+ . ?‣) (?- . ?•))
       org-fontify-done-headline t
       org-fontify-quote-and-verse-blocks t
       org-fontify-whole-heading-line t
@@ -2035,17 +2033,6 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
           ("sx" . "src elixir")
           ("v" . "verse")
           )))
-#+end_src
-
-** org-fancy-priorities
-
-#+begin_src elisp
-(after! org
-  (add-hook! org-mode #'org-fancy-priorities-mode))
-
-(setq org-fancy-priorities-list '((?A . "HIGH")
-                                  (?B . "MED")
-                                  (?C . "LOW")))
 #+end_src
 
 ** org-appear
@@ -2103,13 +2090,6 @@ https://github.com/bastibe/org-journal
             "n" #'org-projectile-capture-for-current-project
       :desc "new project todo (select)"
             "N" #'org-projectile-project-todo-completing-read)
-#+end_src
-
-** org-superstar
-
-#+begin_src elisp
-(after! org
-  (add-hook! org-mode #'org-superstar-mode))
 #+end_src
 
 ** ox-hugo
