@@ -96,7 +96,7 @@ share/zsh/
 # high-churn config files,
 # state files miscategorized as config
 
-config/Exercism
+config/exercism
 config/Webull\ Desktop
 config/configstore/update-notifier-gatsby-cli.json
 config/configstore/update-notifier-npm.json
