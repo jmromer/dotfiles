@@ -1385,7 +1385,7 @@ Otherwise, assume the current file is the main doc."
          (cl-first (car history))
          (cl-rest (cdr history)))
     (if (not (file-exists-p (format "%s/%s.%s" proj-root doc-name filetype)))
-        (string-trim (read-from-minibuffer "file: " first nil nil 'rest))
+        (string-trim (read-from-minibuffer "file: " cl-first nil nil 'rest))
       doc-name)))
 #+end_src
 
