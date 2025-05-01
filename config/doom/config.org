@@ -374,7 +374,7 @@ Allow remembering risky local variables.
 #+begin_src elisp
 (setq +word-wrap-fill-style 'soft)
 
-(dolist (mode '(dired-mode minibuffer-mode completion-list-mode))
+(dolist (mode '(dired-mode minibuffer-mode completion-list-mode vterm-mode))
   (add-to-list '+word-wrap-disabled-modes mode))
 
 (+global-word-wrap-mode)
