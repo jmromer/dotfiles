@@ -1043,11 +1043,6 @@ Use =g~= operator to cycle through inflection transformations.
                                        " configure"
                                        " --token " (shell-quote-argument exercism--api-token))
                                (lambda (result) (message "[exercism] configure: %s" result)
-                                 ;; {
-                                 ;;   "apibaseurl": "https://api.exercism.io/v1",
-                                 ;;   "token": "d4bfe622-92e1-4d36-a0ae-788712e03946",
-                                 ;;   "workspace": "/Users/raf/Exercism"
-                                 ;; }
                                  (let* ((user-config-path (expand-file-name exercism--config-path))
                                        (user-config-str (exercism--file-to-string user-config-path))
                                        (user-config (json-parse-string user-config-str
