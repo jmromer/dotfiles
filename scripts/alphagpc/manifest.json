@@ -7,6 +7,14 @@
     {
       "matches": ["https://www.coursera.org/learn/*/lecture/*"],
       "js": ["content.js"]
+    },
+    {
+      "matches": ["https://www.coursera.org/learn/*/attempt"],
+      "js": ["quizzes.js"]
+    },
+    {
+      "matches": ["https://www.coursera.org/learn/*/home/assignments"],
+      "js": ["assignments.js"]
     }
   ],
   "permissions": []
