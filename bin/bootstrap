@@ -28,6 +28,7 @@ setup :editors do
 
   brew_install :macvim
   brew_install :neovim
+  cask_install :marked
   cask_install :visual_studio_code
 
 end
