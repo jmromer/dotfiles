@@ -61,6 +61,8 @@ setup :core_cli_tools do
   brew_install :gnupg
   brew_install :gnutls
   brew_install :grep
+  brew_install :jo
+  brew_install :jq
   brew_install :less
   brew_install :mas
   brew_install :parallel
