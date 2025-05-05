@@ -7,6 +7,7 @@
 - [[#general][+general]]
 - [[#utilities][+utilities]]
 - [[#aider][aider]]
+- [[#copilots][copilots]]
 - [[#completion][completion]]
 - [[#diff-hl][diff-hl]]
 - [[#dired][dired]]
@@ -627,36 +628,16 @@ Prompts for an optional commit message suffix."
           "--no-attribute-commit-message-committer"
           )))
 #+end_src
-* completion
+* copilots
 
-** copilot
+** gh-copilot
 
 Accept completion from GitHub Copilot and fallback to company
 
 #+begin_src elisp
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ;; ("<return>" . 'copilot-accept-completion)
-              ;; ("RET" . 'copilot-accept-completion)
-              ;; ("C-RET" . 'copilot-accept-completion-by-word)
-              ;; ("C-<return>" . 'copilot-accept-completion-by-word)
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
-
-;; If pressing tab to complete sometimes doesn't work you might want to bind
-;; completion to another key or try:
-;; (after! (evil copilot)
-;;   ;; Define the custom function that either accepts the completion or does the default behavior
-;;   (defun +copilot-select-or-default ()
-;;     (interactive)
-;;     ;; Add any other conditions to check for active copilot suggestions, if necessary
-;;     (if (and (bound-and-true-p copilot-mode))
-;;         (copilot-accept-completion)
-;;       (evil-insert 1))) ;; Default action to insert a tab
-;;   (map! :i "<tab>" #'+copilot-select-or-default))
+(map! :map copilot-completion-map
+      "<tab>" #'copilot-accept-completion
+      "TAB"   #'copilot-accept-completion)
 #+end_src
 
 Silence warnings when an indentation offset can't be inferred.
