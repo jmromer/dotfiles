@@ -15,6 +15,7 @@
 (package! company-box)
 (package! company-lsp)
 (package! copilot :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+(package! copilot-chat :recipe (:host github :repo "chep/copilot-chat.el" :files ("*.el")))
 (package! dash-at-point)
 (package! jest)
 (package! evil-cleverparens)
