@@ -19,7 +19,7 @@
  ;; (flags))
 
  :completion
- (company +childframe +tng)
+ (company +childframe)
  ;; (corfu +dabbrev +icons +orderless)
  ;; ivy
  (vertico +icons)
