@@ -636,8 +636,8 @@ Accept completion from GitHub Copilot and fallback to company
 
 #+begin_src elisp
 (map! :map copilot-completion-map
-      "<tab>" #'copilot-accept-completion
-      "TAB"   #'copilot-accept-completion)
+      "<return>" #'copilot-accept-completion
+      "RET"   #'copilot-accept-completion)
 #+end_src
 
 Silence warnings when an indentation offset can't be inferred.
@@ -657,22 +657,22 @@ Strongly recommend to enable childframe option in company module
 
 https://github.com/company-mode/company-mode
 
-Ensure yasnippet is included with all backends
-
 #+begin_src elisp
-(defun company-backend-with-yas (backends)
-  "Add :with company-yasnippet to company BACKENDS.
-Taken from https://github.com/syl20bnr/spacemacs/pull/179."
-  (if (and (listp backends)
-           (memq 'company-yasnippet backends))
-      backends
-    (append (if (consp backends)
-                backends
-              (list backends))
-            '(:with company-yasnippet))))
-
-(add-hook! company-mode
-  (setq company-backends (mapcar #'company-backend-with-yas company-backends)))
+(after! company
+  (setq +company-backend-alist
+        '((text-mode
+           (company-dabbrev :with company-yasnippet)
+           (:separate company-ispell))
+          (prog-mode
+           (company-capf    :with company-yasnippet)
+           company-files
+           (company-dabbrev-code :separate)
+           company-keywords
+           company-dabbrev)
+          (conf-mode
+           company-capf
+           company-dabbrev-code
+           company-yasnippet))))
 #+end_src
 
 ** company keybindings
