@@ -675,17 +675,16 @@ https://github.com/company-mode/company-mode
            company-yasnippet))))
 #+end_src
 
-** company keybindings
+*** keybindings
 
 #+begin_src elisp
 (after! company
   (map! :map company-active-map
-        :desc "find"           :i "C-f" #'company-search-candidates
-        :desc "helpdoc"        :i "C-h" #'company-show-doc-buffer
-        :desc "implementation" :i "C-i" #'company-show-location
-        :desc "rifle"          :i "C-r" #'company-filter-candidates))
+        :desc "filter"         "C-f" #'company-filter-candidates
+        :desc "helpdoc"        "C-h" #'company-show-doc-buffer
+        :desc "implementation" "C-i" #'company-show-location
+        :desc "search"         "C-s" #'company-search-candidates))
 #+end_src
-
 
 * diff-hl
 
