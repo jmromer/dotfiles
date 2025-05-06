@@ -651,6 +651,8 @@ Silence warnings when an indentation offset can't be inferred.
 Strongly recommend to enable childframe option in company module
 =((company +childframe))= to prevent overlay conflict.
 
+* completion
+
 ** company
 
 https://github.com/company-mode/company-mode
@@ -684,19 +686,6 @@ Taken from https://github.com/syl20bnr/spacemacs/pull/179."
         :desc "rifle"          :i "C-r" #'company-filter-candidates))
 #+end_src
 
-** company-box
-
-Enable [[https://github.com/sebastiencs/company-box][company-box]] to enhance company's visual cues.
-
-#+begin_src elisp
-(add-hook! company-mode #'company-box-mode)
-#+end_src
-
-Override some distracting default colors.
-
-#+begin_src elisp
-(setq company-box-backends-colors '())
-#+end_src
 
 * diff-hl
 
