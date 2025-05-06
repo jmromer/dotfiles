@@ -38,7 +38,6 @@
 (package! ox-gfm)
 (package! posframe)
 (package! prettier-js)
-(package! ruby-factory)
 (package! ruby-refactor)
 (package! ruby-test-mode)
 (package! seeing-is-believing)

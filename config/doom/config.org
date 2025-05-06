@@ -2620,14 +2620,6 @@ Disable autoformatting with apheleia.
 (setq-hook! 'web-mode-hook apheleia-inhibit t)
 #+end_src
 
-** ruby-factory
-
-#+begin_src elisp
-(require 'yasnippet)
-(require 'ruby-factory)
-(add-hook! ruby-mode #'ruby-factory-mode)
-#+end_src
-
 ** rspec-mode
 
 https://github.com/pezra/rspec-mode
