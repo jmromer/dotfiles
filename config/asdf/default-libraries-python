@@ -1,5 +1,6 @@
 autoflake
 autopep8
+cookiecutter
 fastapi
 importmagic
 ipdb
