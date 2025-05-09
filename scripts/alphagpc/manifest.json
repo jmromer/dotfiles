@@ -5,11 +5,15 @@
   "description": "alphagpc",
   "content_scripts": [
     {
-      "matches": ["https://www.coursera.org/learn/*/lecture/*"],
+      "matches": ["https://www.coursera.org/learn/**/*/lecture/*"],
       "js": ["content.js"]
     },
     {
-      "matches": ["https://www.coursera.org/learn/*/attempt"],
+      "matches": ["https://www.coursera.org/learn/**/*/attempt"],
+      "js": ["quizzes.js"]
+    },
+    {
+      "matches": ["https://www.coursera.org/learn/**/*/view-submission"],
       "js": ["quizzes.js"]
     },
     {
