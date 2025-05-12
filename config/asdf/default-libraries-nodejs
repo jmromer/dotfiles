@@ -1,7 +1,6 @@
 babel-eslint
 bash-language-server
 create-next-app
-react-scaffolder
 dockerfile-language-server-nodejs
 js-beautify
 live-server
@@ -10,6 +9,7 @@ neovim
 npm
 prettier-standard
 react-native-cli
+react-scaffolder
 stylelint
 typescript
 typescript-formatter
