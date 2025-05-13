@@ -5,7 +5,7 @@
   "description": "alphagpc",
   "content_scripts": [
     {
-      "matches": ["https://www.coursera.org/learn/**/*/lecture/*"],
+      "matches": ["https://www.coursera.org/learn/*/lecture/*"],
       "js": ["content.js"]
     },
     {
