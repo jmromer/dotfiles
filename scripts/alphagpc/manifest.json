@@ -19,6 +19,10 @@
     {
       "matches": ["https://www.coursera.org/learn/*/home/assignments"],
       "js": ["assignments.js"]
+    },
+    {
+      "matches": ["https://canvas.liberty.edu/courses/*/modules"],
+      "js": ["parser-canvas.js"]
     }
   ],
   "permissions": []
