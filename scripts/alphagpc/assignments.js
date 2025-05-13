@@ -4,6 +4,9 @@ function gradeTableToAssignmentCSV() {
       '[data-e2e="courseNavigation"] h2',
     ).textContent;
     if (title.includes(":")) return title.split(":")[0];
+    if (title.includes(".")) return title.split(".")[0];
+    if ((/^\w+\d+\s+/).test(title)) return title.split(" ")[0];
+    if ((/^\w+\s\d+\s+/).test(title)) return title.split(" ").slice(0, 2).join(" ");
     return title
       .split(" ")
       .map((w) => w[0])
