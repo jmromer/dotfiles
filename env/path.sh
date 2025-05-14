@@ -63,3 +63,7 @@ export PATH
 if [[ -d "${HOMEBREW_PREFIX}/bin" ]]; then
   ln -sf /usr/bin/uname "${HOMEBREW_PREFIX}/bin/uname"
 fi
+
+for mandir in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do
+  export MANPATH="$mandir:$MANPATH"
+done
