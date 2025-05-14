@@ -1,113 +1,134 @@
-const COURSE_SELECTOR = ".module__short-name";
-const MODULE_SELECTOR = ".context_module[aria-label*=Week]";
-const ITEM_SELECTOR = ".with-completion-requirements";
-const TITLE_SELECTOR = ".module-item-title";
-const SCHEDULE_ITEM_SELECTOR = ".ig-info:has(.points_possible_display) .module-item-title";
-const DETAILS_SELECTOR = ".ig-details";
+// ==========================
+// Constants
+// ==========================
+const SELECTORS = {
+  COURSE: ".module__short-name",
+  MODULE: ".context_module[aria-label*=Week]",
+  ITEM: ".with-completion-requirements",
+  TITLE: ".module-item-title",
+  SCHEDULE_ITEM: ".ig-info:has(.points_possible_display) .module-item-title",
+  DETAILS: ".ig-details",
+  COLLAPSED_MODULE: "#context_modules .collapsed_module",
+};
 
+// ==========================
+// DOM Utilities
+// ==========================
+const queryText = (selector, base = document) =>
+  base.querySelector(selector)?.textContent.trim() || "";
+
+const querySelectorAllAsArray = (selector, base = document) =>
+  Array.from(base.querySelectorAll(selector));
+
+const firstLine = (text) => text.split("\n")[0];
+
+const scrollToTop = () =>
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+const writeToClipboard = (text) => navigator.clipboard.writeText(text);
+
+// ==========================
+// Course & Module Info
+// ==========================
 function getCourseCode() {
-  const course = document
-    .querySelector(COURSE_SELECTOR)
-    .textContent.split("_")[0];
-  return course.split(/(?<=\D+)(?=\d+)/).join(" ");
-}
-
-function getScheduleAssignments(moduleEl) {
-  const modules = [...moduleEl.querySelectorAll(SCHEDULE_ITEM_SELECTOR)];
-  return modules
-    .map((e) => e.textContent.trim().split("\n")[0])
-    .filter((e) => !/Watch:/.test(e))
-    .map((e) => e.split(":")[0])
-    .join(", ");
-}
-
-function getSchedule() {
-  const modules = Array.from(document.querySelectorAll(MODULE_SELECTOR));
-  return modules.map((m) => {
-    const weekNum = getWeekNumber(m);
-    const topic = m.textContent.trim().split(/\s-\s|\n/)[1];
-    return [weekNum, topic, getScheduleAssignments(m)].join("\t");
-  });
+  const raw = queryText(SELECTORS.COURSE);
+  const base = raw.split("_")[0];
+  return base.split(/(?<=\D+)(?=\d+)/).join(" ");
 }
 
 function getWeekNumber(moduleEl) {
-  const header = moduleEl.textContent.trim().split(" - ")[0];
-  const number = new Map(
-    [...header.matchAll(/(Module|Week) (\d+)/g)].map((e) => e.slice(1, 3)),
-  );
-  const weekNum = number.get("Week");
-  return +weekNum - 1;
+  const header = queryText(SELECTORS.MODULE, moduleEl).split(" - ")[0];
+  const match = [...header.matchAll(/(Module|Week) (\d+)/g)];
+  const weekMap = new Map(match.map((m) => m.slice(1, 3)));
+  return Number(weekMap.get("Week")) - 1;
+}
+
+// ==========================
+// Assignment Parsing
+// ==========================
+function parseDueDate(itemEl) {
+  const raw = firstLine(queryText(SELECTORS.DETAILS, itemEl));
+  const date = new Date(Date.parse(raw));
+  return isNaN(date) ? "" : date.toISOString().split("T")[0];
 }
 
 function formatTitle(itemEl) {
-  const title = itemEl
-    .querySelector(TITLE_SELECTOR)
-    .textContent.trim()
-    .split("\n")[0];
+  const title = firstLine(queryText(SELECTORS.TITLE, itemEl));
   return title.replace(/ Assignment$/, "");
-}
-
-function parseDueDate(itemEl) {
-  const textLine = itemEl
-    .querySelector(DETAILS_SELECTOR)
-    .textContent.trim()
-    .split("\n")[0];
-  const ms = Date.parse(textLine);
-  if (isNaN(ms)) return "";
-  return new Date(ms).toISOString().split("T")[0];
 }
 
 function getAssignments() {
   const courseCode = getCourseCode();
-  const modules = Array.from(document.querySelectorAll(MODULE_SELECTOR));
+  const modules = querySelectorAllAsArray(SELECTORS.MODULE);
 
   return modules.flatMap((moduleEl) => {
-    const weekNum = getWeekNumber(moduleEl);
-    const items = Array.from(moduleEl.querySelectorAll(ITEM_SELECTOR));
-    const entries = items.map((itemEl) => [parseDueDate(itemEl), formatTitle(itemEl)]);
+    const week = getWeekNumber(moduleEl);
+    const items = querySelectorAllAsArray(SELECTORS.ITEM, moduleEl);
+    const entries = items.map((el) => [parseDueDate(el), formatTitle(el)]);
 
-    // Course	Week	Available	Due EOD		Assignment
-    return entries.map(([date, title], _, all) => {
-      const dueDate = date || all.map((e) => e[0]).filter((e) => e).toSorted()[0];
-      return `${courseCode}\t${weekNum}\t\t${dueDate}\t\t${title}`;
+    return entries.map(([due, title], _, all) => {
+      const fallbackDate = all.map(([d]) => d).find((d) => d) || "";
+      return `${courseCode}\t${week}\t\t${due || fallbackDate}\t\t${title}`;
     });
   });
 }
 
-function expandAll() {
-  const collapsed = document.getElementById("context_modules").querySelectorAll('.collapsed_module');
-  for (const module of collapsed) {
-    module.querySelector(".collapse_module_link").click();
-  }
+// ==========================
+// Schedule Parsing
+// ==========================
+function getScheduleAssignments(moduleEl) {
+  return querySelectorAllAsArray(SELECTORS.SCHEDULE_ITEM, moduleEl)
+    .map((el) => firstLine(el.textContent.trim()))
+    .filter((t) => !/Watch:/.test(t))
+    .map((t) => t.split(":")[0])
+    .join(", ");
 }
 
-function parseAssignments() {
-  expandAll()
-  const assignments = getAssignments().join("\n");
-  navigator.clipboard.writeText(assignments);
-  console.log(assignments);
-  setInterval(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, 1000);
+function getSchedule() {
+  return querySelectorAllAsArray(SELECTORS.MODULE).map((moduleEl) => {
+    const week = getWeekNumber(moduleEl);
+    const topic = queryText(SELECTORS.MODULE, moduleEl).split(/\s-\s|\n/)[1];
+    const assignments = getScheduleAssignments(moduleEl);
+    return [week, topic, assignments].join("\t");
+  });
+}
+
+// ==========================
+// Expand & Copy Actions
+// ==========================
+function expandAllModules() {
+  querySelectorAllAsArray(SELECTORS.COLLAPSED_MODULE).forEach((module) => {
+    module.querySelector(".collapse_module_link")?.click();
+  });
+}
+
+function handleCopy(callback) {
+  expandAllModules();
+  const text = callback().join("\n");
+  writeToClipboard(text);
+  console.log(text);
+  setInterval(scrollToTop, 1000);
 }
 
 function parseSchedule() {
-  expandAll()
-  const schedule = getSchedule().join("\n");
-  navigator.clipboard.writeText(schedule);
-  console.log(schedule);
-  setInterval(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, 1000);
+  handleCopy(getSchedule);
 }
 
-const buttons = `
-<button id="copy-schedule" class="" type="button">
-  <span class="cds-button-label">Copy Schedule</span>
-</button>
-<button id="copy-assignments" class="" type="button">
-  <span class="cds-button-label">Copy Assignments</span>
-</button>`;
-document.getElementsByTagName("h1")[0]?.insertAdjacentHTML("afterEnd", buttons);
-document.getElementById("copy-schedule")?.addEventListener("click", parseSchedule);
-document.getElementById("copy-assignments")?.addEventListener("click", parseAssignments);
+function parseAssignments() {
+  handleCopy(getAssignments);
+}
+
+// ==========================
+// UI Setup
+// ==========================
+function injectButtons() {
+  const html = `
+    <button id="copy-schedule" type="button"><span class="cds-button-label">Copy Schedule</span></button>
+    <button id="copy-assignments" type="button"><span class="cds-button-label">Copy Assignments</span></button>
+  `;
+  document.querySelector("h1")?.insertAdjacentHTML("afterEnd", html);
+  document.getElementById("copy-schedule")?.addEventListener("click", parseSchedule);
+  document.getElementById("copy-assignments")?.addEventListener("click", parseAssignments);
+}
+
+injectButtons();
