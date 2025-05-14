@@ -1301,17 +1301,22 @@ If in an evil visual state, wrap the current selection in math mode."
 
 #+begin_src elisp
 (map! :map (LaTeX-mode-map latex-mode-map)
-      :nv  "s-b" #'+LaTeX-make-bold
-      :nv  "s-i" #'+LaTeX-make-italic
-      :nv  "s-u" #'+LaTeX-make-underlined
-      :nvi "C-l" #'+LaTeX-math-mode
-      :nvi "C-S-l" #'(lambda () (interactive) (+LaTeX-math-mode t))
-      :ni  "s-c" #'+LaTeX-build-cleanup
-      :ni  "s-<return>" #'+LaTeX-open-doc
-      :ni  "s-S-<return>" #'(lambda () (interactive) (+LaTeX-open-doc t))
-      :ni  "s-s" #'+LaTeX-save-and-compile)
+      :desc "make bold"           :nv  "s-b" #'+LaTeX-make-bold
+      :desc "make italic"         :nv  "s-i" #'+LaTeX-make-italic
+      :desc "make underlined"     :nv  "s-u" #'+LaTeX-make-underlined
+      :desc "make math (inline)"  :nvi "C-l" #'+LaTeX-math-mode
+      :desc "make math (display)" :nvi "C-S-l" #'(lambda () (interactive) (+LaTeX-math-mode t)))
 #+end_src
 
+#+begin_src elisp
+(map! :map (LaTeX-mode-map latex-mode-map)
+      :localleader
+      (:prefix (",", "assignments")
+       :desc "save and compile" :ni  "c" #'+LaTeX-save-and-compile
+       :desc "clean artifacts"  :ni  "C" #'+LaTeX-build-cleanup
+       :desc "open in Skim"     :ni  "o" #'+LaTeX-open-with-skim
+       :desc "open in Emacs"    :ni  "O" #'+LaTeX-open-doc))
+#+end_src
 ** PDF auto-revert
 
 #+begin_src elisp
