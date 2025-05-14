@@ -5,19 +5,23 @@
 #   logos [subcommand (default: reload)]
 #
 # Subcommands:
-#   reload                : reload launch agent
+#   stop                  : kill the server
+#   reload [--regenerate] : reload launch agent
 #   deploy [--regenerate] : deploy site
 #   serve  [--regenerate] : serve site locally
-#   logs   [--deploy]     : view logs
-#   rebuild               : regenerate content
+#   logs   [--deploy]     : view logs (by default, for the serve launch agent)
 #   help                  : this message
 
 set -e
 
 GREEN="\033[0;32m"
 RED="\033[0;31m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
 RESET="\033[0m"
 CONTENT_DIR="content"
+
+SERVE_AGENT=~/Library/LaunchAgents/com.tensorconclave.notes_serve.plist
 
 SUBCOMMAND=${1:-reload}
 FLAG=${2}
@@ -51,15 +55,26 @@ deploy_site() {
 
 reload_launch_agent() {
   printf "Reloading launch agent... "
-  agent=~/Library/LaunchAgents/com.tensorconclave.notes_serve.plist
   # check if agent is loaded
   if launchctl list | grep -q "com.tensorconclave.notes_serve"; then
     printf "unloading... "
-    launchctl unload $agent
+    launchctl unload $SERVE_AGENT
   fi
     printf "loading... "
-  launchctl load $agent
+  launchctl load $SERVE_AGENT
   printf "${GREEN}done${RESET}\n"
+}
+
+stop_launch_agent() {
+  printf "Stopping launch agent... "
+  # check if agent is loaded
+  if launchctl list | grep -q "com.tensorconclave.notes_serve"; then
+    printf "unloading... "
+    launchctl unload $SERVE_AGENT
+    printf "${GREEN}%s${RESET}.\n" "done"
+  else
+    printf "${YELLOW}%s${RESET}.\n" "agent not running"
+  fi
 }
 
 serve_site_locally() {
@@ -79,10 +94,6 @@ tail_logs() {
 cd "${HOME}/Writing/logos"
 
 case "${SUBCOMMAND}" in
-  rebuild)
-    regenerate_content
-    reload_launch_agent
-    ;;
   deploy)
     deploy_site "${FLAG}"
     ;;
@@ -90,7 +101,11 @@ case "${SUBCOMMAND}" in
     serve_site_locally "${FLAG}"
     ;;
   reload)
+    [[ "$FLAG" == "--regenerate" ]] && regenerate_content
     reload_launch_agent
+    ;;
+  stop)
+    stop_launch_agent
     ;;
   help)
     usage
