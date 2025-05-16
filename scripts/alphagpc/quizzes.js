@@ -1,5 +1,4 @@
-function parseQuestionBlockToOrg(selector) {
-  const container = document.querySelector(selector);
+function parseQuestionBlockToOrg(container) {
   if (!container) return '';
 
   // Get question number
@@ -38,17 +37,17 @@ function parseQuestionBlockToOrg(selector) {
   postTableText = postTablePara.map(p => p.textContent.trim()).join('\n\n');
 
   // Get MCQ choices if any
-  const choices = Array.from(container.querySelectorAll('[data-testid="cml-viewer"] ul li, [data-testid="cml-viewer"] ol li'));
-  const orgChoices = choices.map(choice => `- [ ] ${choice.textContent.trim()}`).join('\n');
+  const choices = answerChoices(container)
 
   // Combine all parts
-  return `** ${questionNumber}. ${preamble}\n\n${orgTable}\n\n${postTableText}\n\n${orgChoices}`;
+  const question = [preamble, orgTable, postTableText, choices].filter(e => e.length).join("\n\n");
+  return `** ${questionNumber}. ${question}\n`;
 }
 
 function questionText(questionNode, index) {
   const [first, ...rest] = questionNode.querySelectorAll("p");
   const question = first.textContent.split(/\.Question \d+/).join(". ");
-  const lines = [`\n** ${index + 1}. ${question}`];
+  const lines = [`** ${index + 1}. ${question}`];
   if (rest.length) {
     let body = rest.map((e) => e.textContent).join("\n");
     lines.push(`\n${body}`);
@@ -65,17 +64,17 @@ function answerChoices(questionNode) {
     .map((o, i) => `- [ ] ${letters[i]}. ${o.textContent}`)
     .join("\n");
 
-  const lines = `\n${options}`;
   if (type === "checkbox") {
-    return ["\nSelect all that apply:", lines].join("\n");
+    return ["Select all that apply:", options].join("\n");
   }
-  return lines;
+  return options;
 }
 
 function quizToOrgMode() {
-  const questions = [...document.querySelectorAll("[data-testid=legend]")]
-    .map((e, i) => `${questionText(e, i)}\n${answerChoices(e)}`)
-    .join("\n");
+  const questions =
+        [...document.querySelectorAll("[data-testid=legend]")]
+        .map((e, i) => parseQuestionBlockToOrg(e))
+        .join("\n");
   navigator.clipboard.writeText(questions);
   console.log(questions);
 }
