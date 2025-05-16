@@ -1,99 +1,101 @@
-function parseQuestionBlockToOrg(container) {
-  if (!container) return '';
+/**
+ * Convert a single question block into an Org-mode formatted string.
+ * @param {Element} questionBlock
+ * @returns {string}
+ */
+function formatQuestionToOrg(questionBlock) {
+  if (!questionBlock) return '';
 
-  // Get question number
-  const questionNumber = container.querySelector('h3 span')?.textContent.trim();
+  const num = questionBlock.querySelector('h3 span')?.textContent.trim();
+  const paragraphs = questionBlock.querySelectorAll('[data-testid="cml-viewer"] > p');
+  const intro = paragraphs[0]?.textContent.trim() || '';
 
-  // Get the question prompt before the table
-  const paragraphs = container.querySelectorAll('[data-testid="cml-viewer"] > p');
-  let preamble = '';
-  if (paragraphs.length > 0) {
-    preamble = paragraphs[0].textContent.trim();
-  }
-
-  // Get the table and convert to Org mode
-  const tableEl = container.querySelector('table');
+  // Convert HTML table to Org table
+  const tableEl = questionBlock.querySelector('table');
   let orgTable = '';
   if (tableEl) {
-    const rows = Array.from(tableEl.querySelectorAll('tr'));
-    const tableLines = rows.map((row, rowIndex) => {
-      const cells = Array.from(row.querySelectorAll('td, th'));
-      const values = cells.map(cell => cell.textContent.trim());
-      return `| ${values.join(' | ')} |`;
+    const rows = Array.from(tableEl.rows);
+    const lines = rows.map(r => {
+      const cells = Array.from(r.cells).map(c => c.textContent.trim());
+      return `| ${cells.join(' | ')} |`;
     });
-
-    if (tableLines.length > 1) {
-      const colCount = tableLines[0].split('|').length - 2;
-      const separator = `|${'----------------+'.repeat(colCount).slice(0, -1)}|`;
-      tableLines.splice(1, 0, separator);
+    if (lines.length > 1) {
+      const colCount = rows[0].cells.length;
+      // e.g. |---+---+---|
+      const sep = '|' + Array(colCount).fill('---+').join('').slice(0, -1) + '|';
+      lines.splice(1, 0, sep);
     }
-
-    orgTable = tableLines.join('\n');
+    orgTable = lines.join('\n');
   }
 
-  // Get question continuation (after table)
-  let postTableText = '';
-  const postTablePara = Array.from(container.querySelectorAll('[data-testid="cml-viewer"] > p')).slice(1);
-  postTableText = postTablePara.map(p => p.textContent.trim()).join('\n\n');
+  // Any paragraphs after the table
+  const continuation = Array.from(paragraphs)
+    .slice(1)
+    .map(p => p.textContent.trim())
+    .join('\n\n');
 
-  // Get MCQ choices if any
-  const choices = answerChoices(container)
+  // Multiple-choice options
+  const choices = extractAnswerChoices(questionBlock);
 
-  // Combine all parts
-  const question = [preamble, orgTable, postTableText, choices].filter(e => e.length).join("\n\n");
-  return `** ${questionNumber}. ${question}\n`;
+  return [
+    `** ${num}. ${intro}`,
+    orgTable,
+    continuation,
+    choices
+  ].filter(Boolean).join('\n\n') + '\n';
 }
 
-function questionText(questionNode, index) {
-  const [first, ...rest] = questionNode.querySelectorAll("p");
-  const question = first.textContent.split(/\.Question \d+/).join(". ");
-  const lines = [`** ${index + 1}. ${question}`];
-  if (rest.length) {
-    let body = rest.map((e) => e.textContent).join("\n");
-    lines.push(`\n${body}`);
+/**
+ * Grab and format MCQ options from the question block.
+ * @param {Element} questionBlock
+ * @returns {string}
+ */
+function extractAnswerChoices(questionBlock) {
+  const optionEls = questionBlock.parentNode.querySelectorAll('.rc-Option');
+  if (!optionEls.length) return '';
+
+  const isMulti = optionEls[0].querySelector('input')?.type === 'checkbox';
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const list = Array.from(optionEls)
+    .map((opt, i) => `- [ ] ${letters[i]}. ${opt.textContent.trim()}`)
+    .join('\n');
+
+  return isMulti
+    ? `Select all that apply:\n${list}`
+    : list;
+}
+
+/**
+ * Collect all questions on the page, convert to Org, copy to clipboard and log.
+ */
+function exportQuizAsOrg() {
+  const blocks = document.querySelectorAll('[data-testid=legend]');
+  const doc = Array.from(blocks)
+    .map(formatQuestionToOrg)
+    .join('\n');
+  navigator.clipboard.writeText(doc);
+  console.log(doc);
+}
+
+/** Insert the “Copy as Org Doc” button and wire up its click. */
+function insertCopyButton() {
+  const btnHtml = `
+    <button id="copy-org" class="css-1qi5els" type="button">Copy as Org Doc</button>`;
+  const headerEl = document.querySelector('[data-testid="header-left"] h1');
+  if (headerEl && !document.getElementById('copy-org')) {
+    headerEl.insertAdjacentHTML('afterend', btnHtml);
+    document.getElementById('copy-org')
+      .addEventListener('click', exportQuizAsOrg);
   }
-  return lines.join("\n");
 }
 
-function answerChoices(questionNode) {
-  const letters = "ABCDEFGHIJKLMNOPQ".split("");
-  const container = questionNode.parentNode;
-  const optionNodes = container.querySelectorAll(".rc-Option");
-  const type = optionNodes[0].querySelector("input").type;
-  const options = [...optionNodes]
-    .map((o, i) => `- [ ] ${letters[i]}. ${o.textContent}`)
-    .join("\n");
-
-  if (type === "checkbox") {
-    return ["Select all that apply:", options].join("\n");
-  }
-  return options;
-}
-
-function quizToOrgMode() {
-  const questions =
-        [...document.querySelectorAll("[data-testid=legend]")]
-        .map((e, i) => parseQuestionBlockToOrg(e))
-        .join("\n");
-  navigator.clipboard.writeText(questions);
-  console.log(questions);
-}
-
-const button = `<button
-  id="copy-org"
-  class="cds-105 cds-button-disableElevation cds-button-primary css-1qi5els" type="button">
-  <span class="cds-button-label">
-    Copy as Org Doc
-  </span>
-</button>`;
-
-let count = 0;
-const observer = new MutationObserver((_mutations) => {
-  if (count++ > 10 || document.getElementById("copy-org")) return;
-  const header = document.querySelector('[data-testid="header-left"] h1');
-  header?.insertAdjacentHTML("afterend", button);
-  document.getElementById("copy-org")?.addEventListener("click", (e) => {
-    quizToOrgMode();
+// Watch for when the header appears, then add the button once and disconnect.
+(function setupButtonObserver() {
+  const observer = new MutationObserver(() => {
+    insertCopyButton();
+    if (document.getElementById('copy-org')) {
+      observer.disconnect();
+    }
   });
-});
-observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
