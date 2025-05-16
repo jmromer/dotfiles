@@ -113,7 +113,7 @@ Toggle light/dark theme based on the current OS setting.
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'doom-oksolar-light t))
+    ('light (load-theme 'doom-one-light t))
     ('dark (load-theme 'doom-one t))))
 
 (add-hook 'ns-system-appearance-change-functions #'+set-preferred-theme)
