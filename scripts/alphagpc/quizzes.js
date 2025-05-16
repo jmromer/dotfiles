@@ -1,35 +1,81 @@
+function parseQuestionBlockToOrg(selector) {
+  const container = document.querySelector(selector);
+  if (!container) return '';
+
+  // Get question number
+  const questionNumber = container.querySelector('h3 span')?.textContent.trim();
+
+  // Get the question prompt before the table
+  const paragraphs = container.querySelectorAll('[data-testid="cml-viewer"] > p');
+  let preamble = '';
+  if (paragraphs.length > 0) {
+    preamble = paragraphs[0].textContent.trim();
+  }
+
+  // Get the table and convert to Org mode
+  const tableEl = container.querySelector('table');
+  let orgTable = '';
+  if (tableEl) {
+    const rows = Array.from(tableEl.querySelectorAll('tr'));
+    const tableLines = rows.map((row, rowIndex) => {
+      const cells = Array.from(row.querySelectorAll('td, th'));
+      const values = cells.map(cell => cell.textContent.trim());
+      return `| ${values.join(' | ')} |`;
+    });
+
+    if (tableLines.length > 1) {
+      const colCount = tableLines[0].split('|').length - 2;
+      const separator = `|${'----------------+'.repeat(colCount).slice(0, -1)}|`;
+      tableLines.splice(1, 0, separator);
+    }
+
+    orgTable = tableLines.join('\n');
+  }
+
+  // Get question continuation (after table)
+  let postTableText = '';
+  const postTablePara = Array.from(container.querySelectorAll('[data-testid="cml-viewer"] > p')).slice(1);
+  postTableText = postTablePara.map(p => p.textContent.trim()).join('\n\n');
+
+  // Get MCQ choices if any
+  const choices = Array.from(container.querySelectorAll('[data-testid="cml-viewer"] ul li, [data-testid="cml-viewer"] ol li'));
+  const orgChoices = choices.map(choice => `- [ ] ${choice.textContent.trim()}`).join('\n');
+
+  // Combine all parts
+  return `** ${questionNumber}. ${preamble}\n\n${orgTable}\n\n${postTableText}\n\n${orgChoices}`;
+}
+
+function questionText(questionNode, index) {
+  const [first, ...rest] = questionNode.querySelectorAll("p");
+  const question = first.textContent.split(/\.Question \d+/).join(". ");
+  const lines = [`\n** ${index + 1}. ${question}`];
+  if (rest.length) {
+    let body = rest.map((e) => e.textContent).join("\n");
+    lines.push(`\n${body}`);
+  }
+  return lines.join("\n");
+}
+
+function answerChoices(questionNode) {
+  const letters = "ABCDEFGHIJKLMNOPQ".split("");
+  const container = questionNode.parentNode;
+  const optionNodes = container.querySelectorAll(".rc-Option");
+  const type = optionNodes[0].querySelector("input").type;
+  const options = [...optionNodes]
+    .map((o, i) => `- [ ] ${letters[i]}. ${o.textContent}`)
+    .join("\n");
+
+  const lines = `\n${options}`;
+  if (type === "checkbox") {
+    return ["\nSelect all that apply:", lines].join("\n");
+  }
+  return lines;
+}
+
 function quizToOrgMode() {
-  function questionText(questionNode, index) {
-    const [first, ...rest] = questionNode.querySelectorAll("p");
-    const question = first.textContent.split(/\.Question \d+/).join(". ");
-    const lines = [`\n** ${index + 1}. ${question}`];
-    if (rest.length) {
-      let body = rest.map((e) => e.textContent).join("\n");
-      lines.push(`\n${body}`);
-    }
-    return lines.join("\n");
-  }
-
-  function answerChoices(questionNode) {
-    const letters = "ABCDEFGHIJKLMNOPQ".split("");
-    const container = questionNode.parentNode;
-    const optionNodes = container.querySelectorAll(".rc-Option");
-    const type = optionNodes[0].querySelector("input").type;
-    const options = [...optionNodes]
-      .map((o, i) => `- [ ] ${letters[i]}. ${o.textContent}`)
-      .join("\n");
-
-    const lines = `\n${options}`;
-    if (type === "checkbox") {
-      return ["\nSelect all that apply:", lines].join("\n");
-    }
-    return lines;
-  }
-
   const questions = [...document.querySelectorAll("[data-testid=legend]")]
     .map((e, i) => `${questionText(e, i)}\n${answerChoices(e)}`)
     .join("\n");
-
   navigator.clipboard.writeText(questions);
   console.log(questions);
 }
