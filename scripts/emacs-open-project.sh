@@ -20,13 +20,14 @@ done
 
 # if the timeout has been exhausted and still no socket, alert and exit
 if [ ! -S "$server_socket_path" ] && [ $timeout -eq 0 ]; then
-  osascript <<EOF
-    display dialog "Failed to start Emacs daemon within timeout period."
-    buttons {"OK"}
-    default button "OK"
-    with icon stop with title "Emacs Startup Error"
+osascript <<EOF
+display dialog "Failed to start Emacs daemon within timeout period." ¬
+    buttons {"OK"} ¬
+    default button "OK" ¬
+    with icon stop ¬
+    with title "Emacs Startup Error"
 EOF
-  exit 1
+exit 1
 fi
 
 # --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))"
