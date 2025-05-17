@@ -1922,7 +1922,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-confirm-babel-evaluate nil
       org-cycle-separator-lines 2
       org-edit-src-content-indentation 0
-      org-ellipsis " ▾"
+      ;; org-ellipsis " ▾"
       org-fontify-done-headline t
       org-fontify-quote-and-verse-blocks t
       org-fontify-whole-heading-line t
