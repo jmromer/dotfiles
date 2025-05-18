@@ -1,4 +1,4 @@
-function gradeTableToAssignmentCSV() {
+function gradeTableToAssignmentTSV() {
   function getCourseCode() {
     const title = document.querySelector(
       '[data-e2e="courseNavigation"] h2',
@@ -41,9 +41,8 @@ function gradeTableToAssignmentCSV() {
       null, // date available
       dueDate.toLocaleDateString(),
       null, // checkbox
-      title,
-      href,
-    ].join(",");
+      `=HYPERLINK("${href}", "${title}")`
+    ].join("\t");
     entries.push(entry);
   });
 
@@ -51,21 +50,21 @@ function gradeTableToAssignmentCSV() {
   console.log(entries.join("\n"));
 }
 
-const button = `<button id="copy-csv"
+const button = `<button id="copy-tsv"
   class="cds-105 cds-button-disableElevation cds-button-primary css-1qi5els" type="button">
   <span class="cds-button-label">
-    Copy Assignments CSV
+    Copy Assignments TSV
   </span>
 </button>`;
 
 let count = 0;
 const observer = new MutationObserver((_mutations) => {
-  if (count++ > 10 || document.getElementById("copy-csv")) return;
+  if (count++ > 10 || document.getElementById("copy-tsv")) return;
   document
     .getElementsByTagName("h1")[0]
     ?.insertAdjacentHTML("afterend", button);
-  document.getElementById("copy-csv")?.addEventListener("click", (e) => {
-    gradeTableToAssignmentCSV();
+  document.getElementById("copy-tsv")?.addEventListener("click", (e) => {
+    gradeTableToAssignmentTSV();
   });
 });
 observer.observe(document.body, { childList: true, subtree: true });
