@@ -5,8 +5,9 @@ function gradeTableToAssignmentTSV() {
     ).textContent;
     if (title.includes(":")) return title.split(":")[0];
     if (title.includes(".")) return title.split(".")[0];
-    if ((/^\w+\d+\s+/).test(title)) return title.split(" ")[0];
-    if ((/^\w+\s\d+\s+/).test(title)) return title.split(" ").slice(0, 2).join(" ");
+    if (/^\w+\d+\s+/.test(title)) return title.split(" ")[0];
+    if (/^\w+\s\d+\s+/.test(title))
+      return title.split(" ").slice(0, 2).join(" ");
     return title
       .split(" ")
       .map((w) => w[0])
@@ -41,7 +42,7 @@ function gradeTableToAssignmentTSV() {
       null, // date available
       dueDate.toLocaleDateString(),
       null, // checkbox
-      `=HYPERLINK("${href}", "${title}")`
+      `=HYPERLINK("${href}", "${title}")`,
     ].join("\t");
     entries.push(entry);
   });
@@ -50,21 +51,18 @@ function gradeTableToAssignmentTSV() {
   console.log(entries.join("\n"));
 }
 
-const button = `<button id="copy-tsv"
-  class="cds-105 cds-button-disableElevation cds-button-primary css-1qi5els" type="button">
-  <span class="cds-button-label">
-    Copy Assignments TSV
-  </span>
-</button>`;
+function addButtonAssignments() {
+  const button = `<button id="copy-tsv"
+                     class="cds-105 cds-button-disableElevation cds-button-primary css-1qi5els" type="button">
+                      <span class="cds-button-label">Copy Assignments TSV</span>
+                    </button>`;
+  if (document.getElementById("copy-tsv")) return;
 
-let count = 0;
-const observer = new MutationObserver((_mutations) => {
-  if (count++ > 10 || document.getElementById("copy-tsv")) return;
   document
     .getElementsByTagName("h1")[0]
     ?.insertAdjacentHTML("afterend", button);
+
   document.getElementById("copy-tsv")?.addEventListener("click", (e) => {
     gradeTableToAssignmentTSV();
   });
-});
-observer.observe(document.body, { childList: true, subtree: true });
+}

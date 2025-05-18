@@ -5,24 +5,17 @@
   "description": "alphagpc",
   "content_scripts": [
     {
-      "matches": ["https://www.coursera.org/learn/*/lecture/*"],
-      "js": ["content.js"]
-    },
-    {
-      "matches": ["https://www.coursera.org/learn/**/*/attempt"],
-      "js": ["quizzes.js"]
-    },
-    {
-      "matches": ["https://www.coursera.org/learn/**/*/view-submission"],
-      "js": ["quizzes.js"]
-    },
-    {
-      "matches": ["https://www.coursera.org/learn/*/home/assignments"],
-      "js": ["assignments.js"]
+      "matches": ["https://www.coursera.org/learn/*"],
+      "js": [
+        "coursera-content.js",
+        "coursera-quizzes.js",
+        "coursera-assignments.js",
+        "coursera-observer.js"
+      ]
     },
     {
       "matches": ["https://canvas.liberty.edu/courses/*/modules"],
-      "js": ["parser-canvas.js"]
+      "js": ["canvas-parser.js"]
     }
   ],
   "permissions": []
