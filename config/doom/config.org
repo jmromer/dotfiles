@@ -2031,6 +2031,23 @@ https://github.com/bastibe/org-journal
             "N" #'org-projectile-project-todo-completing-read)
 #+end_src
 
+** org-babel
+
+#+begin_src elisp
+(org-babel-do-load-languages
+    'org-babel-load-languages
+    '((mermaid . t)
+      (scheme . t)
+      (dot . t)
+      (emacs-lisp . t)))
+#+end_src
+
+** ob-mermaid
+
+#+begin_src elisp
+(setq ob-mermaid-cli-path "mmdc")
+#+end_src
+
 ** ox-hugo
 
 - https://ox-hugo.scripter.co

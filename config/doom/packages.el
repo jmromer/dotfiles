@@ -24,6 +24,7 @@
 (package! gxref :recipe (:host github :repo "dedi/gxref"))
 (package! impatient-mode :recipe (:host github :repo "skeeto/impatient-mode"))
 (package! jest)
+(package! ob-mermaid)
 (package! org-appear :recipe (:host github :repo "awth13/org-appear"))
 (package! org-fancy-priorities)
 (package! org-projectile)
