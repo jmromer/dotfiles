@@ -1,7 +1,3 @@
-const DEBUG = false;
-
-DEBUG && console.log("alphagpc loading...");
-
 const createIndex = () => {
   // get all lesson title elements
   const navItems = document
@@ -24,7 +20,13 @@ function generateDownloadCommand(e) {
     .at(1)
     .padStart(2, "0");
 
-  let title = e.target.innerText;
+  const button = e.target;
+  const header = button.previousElementSibling;
+  if (header?.tagName !== "H1") {
+    throw new Error("Could not find header");
+  }
+
+  let title = header.innerText;
   if (!/^\d+.+/.test(title)) {
     DEBUG && console.log(`[INFO] Title does not start with a sequence number.`);
     DEBUG && console.log(`[INFO] Checking index for: '${title}'`);
@@ -69,7 +71,6 @@ function handleClick(e) {
       ? [clipboardText, command].join("\n")
       : command;
     navigator.clipboard.writeText(script);
-    console.log(script);
 
     // Advance to next page
     const nextButton = document.querySelector('button[aria-label="Next Item"]');
@@ -88,18 +89,17 @@ const toggleDownloads = () => {
   if (downloadSection) downloadSection.click();
 };
 
-// TODO: prevent duplicate event listeners
-window.addEventListener("load", () => {
-  console.log("alphagpc ready.");
-  toggleDownloads();
-  document.querySelector("h1")?.addEventListener("click", handleClick);
-  document.querySelector("h1")?.setAttribute("style", "cursor: pointer;");
-});
-
-const observer = new MutationObserver((_mutations) => {
-  DEBUG && console.log("DOM mutation detected");
-  toggleDownloads();
-  document.querySelector("h1")?.addEventListener("click", handleClick);
-  document.querySelector("h1")?.setAttribute("style", "cursor: pointer;");
-});
-observer.observe(document.body, { childList: true, subtree: true });
+function addButtonContent() {
+    toggleDownloads();
+    const btnHtml = `
+      <button id="download-content" class="css-1qi5els" type="button">
+        Download
+      </button>`;
+    const headerEl = document.querySelector('h1');
+    if (headerEl && !document.getElementById("download-content")) {
+      headerEl.insertAdjacentHTML("afterend", btnHtml);
+      document
+        .getElementById("download-content")
+        .addEventListener("click", handleClick);
+    }
+}

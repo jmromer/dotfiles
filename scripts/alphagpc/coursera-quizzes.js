@@ -85,8 +85,8 @@ function exportQuizAsOrg() {
   console.log(doc);
 }
 
-/** Insert the “Copy as Org Doc” button and wire up its click. */
-function insertCopyButton() {
+/** Insert the "Copy as Org Doc" button and wire up its click. */
+function addButtonQuiz() {
   const btnHtml = `
     <button id="copy-org" class="css-1qi5els" type="button">Copy as Org Doc</button>`;
   const headerEl = document.querySelector('[data-testid="header-left"] h1');
@@ -97,14 +97,3 @@ function insertCopyButton() {
       .addEventListener("click", exportQuizAsOrg);
   }
 }
-
-// Watch for when the header appears, then add the button once and disconnect.
-(function setupButtonObserver() {
-  const observer = new MutationObserver(() => {
-    insertCopyButton();
-    if (document.getElementById("copy-org")) {
-      observer.disconnect();
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-})();
