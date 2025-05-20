@@ -69,3 +69,6 @@
 [submodule "codespaces"]
 	path = codespaces
 	url = https://github.com/jmromer/codespaces.git
+[submodule "share/tmux/tmux-urlview"]
+	path = share/tmux/tmux-urlview
+	url = https://github.com/tmux-plugins/tmux-urlview

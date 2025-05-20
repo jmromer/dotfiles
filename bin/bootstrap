@@ -163,7 +163,7 @@ setup :development_tools do
   brew_install :bash
   brew_install :bat
   brew_install :direnv
-  brew_install :extract_url
+  brew_install :extract_url #TODO:Fix
   brew_install :eza
   brew_install :fzf
   brew_install :gh
