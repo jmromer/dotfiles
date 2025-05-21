@@ -170,7 +170,9 @@ def brew_tap(tap_name)
 end
 
 def brew_install(package, version: nil, options: [])
-  package_name = dashified(version ? "#{package}@#{version}" : package)
+  package_name = version ? "#{package}@#{version}" : package
+  package_name = dashified(package_name) if package.is_a?(Symbol)
+
   flags = Array(options).map { |option| flagified option }.join(" ")
   is_cask = Array(options).include?(:cask)
 
