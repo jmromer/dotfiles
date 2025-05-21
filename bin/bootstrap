@@ -137,6 +137,7 @@ setup :gui_apps do
   cask_install :vivaldi
   cask_install :vlc
   cask_install :zoom
+  cask_install :zotero
 
 end
 
