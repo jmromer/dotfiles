@@ -27,6 +27,7 @@ emacsclient \
   --quiet \
   --create-frame \
   --no-wait \
-  --alternate-editor ''
+  --alternate-editor '' \
+  --frame-parameters "((left . 0.75) (top . 0) (width . 0.4) (fullscreen . fullheight))"
 
 bring_emacs_to_front
