@@ -96,16 +96,17 @@ share/zsh/
 # high-churn config files,
 # state files miscategorized as config
 
-config/exercism
 config/Webull\ Desktop
+config/colima
 config/configstore/update-notifier-gatsby-cli.json
 config/configstore/update-notifier-npm.json
 config/cups/
 config/docker/*
 config/doom/config.el
+config/exercism
 config/gatsby/
-config/glow/
 config/github-copilot/versions.json
+config/glow/
 config/irb/irb_history
 config/iterm2/AppSupport
 config/jupyter/migrated

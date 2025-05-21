@@ -45,9 +45,11 @@ end
 setup :core_cli_tools do
 
   brew_install :binutils
+  brew_install :colima
   brew_install :coreutils
   brew_install :curl
   brew_install :diffutils
+  brew_install :docker
   brew_install :docker_compose
   brew_install :fd
   brew_install :findutils
@@ -104,7 +106,6 @@ setup :gui_apps do
   cask_install :coderunner
   cask_install :dash, version: 6
   cask_install :discord
-  cask_install :docker
   cask_install :firefox
   cask_install :google_chrome
   cask_install :google_drive
