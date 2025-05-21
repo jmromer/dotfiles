@@ -4,4 +4,4 @@ if [ -n "${INSIDE_EMACS}" ]; then
   unset PRINT_COVERAGE
 fi
 
-export ORG_HOME="${HOME}/Writing/org"
+export ORG_HOME="${HOME}/Org"
