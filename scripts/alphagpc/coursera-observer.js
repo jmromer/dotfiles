@@ -5,19 +5,39 @@ const CONTENT_REGEX = /learn\/.+\/lecture\/.+/;
 const QUIZ_REGEX = /(attempt$|view-submission$|view-feedback$)/;
 const ASSIGNMENTS_REGEX = /assignments$/;
 
-window.addEventListener("load", () => {
-  console.log("alphagpc ready.");
+function setObserver() {
+  const maxRuns = 20;
+  const runCounts = new Map(); // Track runs per pathname
+
   const observer = new MutationObserver((_mutations) => {
-    if (CONTENT_REGEX.test(location.pathname)) {
+    DEBUG && console.log("MutationObserver triggered");
+
+    const path = location.pathname;
+    const count = runCounts.get(path) || 0;
+
+    if (count >= maxRuns) {
+      DEBUG && console.log(`Max run limit (${maxRuns}) reached for ${path}`);
+      return;
+    }
+
+    runCounts.set(path, count + 1);
+
+    if (CONTENT_REGEX.test(path)) {
       DEBUG && console.log("Content page detected");
       addButtonContent();
-    } else if (QUIZ_REGEX.test(location.pathname)) {
+    } else if (QUIZ_REGEX.test(path)) {
       DEBUG && console.log("Quiz page detected");
       addButtonQuiz();
-    } else if (ASSIGNMENTS_REGEX.test(location.pathname)) {
+    } else if (ASSIGNMENTS_REGEX.test(path)) {
       DEBUG && console.log("Assignments page detected");
       addButtonAssignments();
     }
   });
+
   observer.observe(document.body, { childList: true, subtree: true });
+}
+
+window.addEventListener("load", () => {
+  console.log("alphagpc ready.");
+  setObserver();
 });
