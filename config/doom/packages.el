@@ -1,6 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 
-(package! aider :recipe (:host github :repo "tninja/aider.el" :files ("aider*.el")))
+;; (package! aider :recipe (:host github :repo "tninja/aider.el" :files ("aider*.el")))
 (package! casual)
 (package! centered-window)
 (package! command-log-mode)

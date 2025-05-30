@@ -614,7 +614,7 @@ Prompts for an optional commit message suffix."
 #+end_src
 
 * aider
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (use-package aider
   :config
   (setq aider-args
