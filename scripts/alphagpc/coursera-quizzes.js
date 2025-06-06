@@ -18,8 +18,10 @@ function formatQuestionToOrg(questionBlock) {
 
   // 3) Convert each node to Org-mode text
   const contentLines = contentEls.map((el) =>
-    el.tagName === "TABLE" ? convertTableToOrg(el) : el.textContent.trim(),
-  );
+    el.tagName === "TABLE"
+      ? convertTableToOrg(el)
+      : convertParagraphToOrg(el)
+  ).map(x => x.trim()).filter(Boolean);
 
   // 4) First line → intro, rest → body
   const intro = contentLines.shift() || "";
@@ -30,8 +32,32 @@ function formatQuestionToOrg(questionBlock) {
 
   // 6) Assemble
   return (
-    [`** ${num}. ${intro}`, body, choices].filter(Boolean).join("\n\n") + "\n"
+    [
+      `*** Question ${num}`,
+      intro,
+      body,
+      choices,
+    ].filter(Boolean).join("\n\n") + "\n"
   );
+}
+
+
+/**
+ * Convert an HTML <p> element into an Org-mode string.
+ * @param {HTMLParagraphElement} paraEl
+ * @returns {string}
+ */
+function convertParagraphToOrg(paraEl) {
+  const spans = Array.from(paraEl.children)
+  const lines = spans.map((span) => {
+    if (span.dataset?.pendo == "math-block"){
+      const math = span.querySelector('math annotation').textContent.trim();
+      return `\$${math}\$`;
+    } else {
+      return span.textContent.trim();
+    }
+  });
+  return lines.join(" ");
 }
 
 /**
