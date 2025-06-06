@@ -57,7 +57,7 @@ function convertParagraphToOrg(paraEl) {
       return span.textContent.trim();
     }
   });
-  return lines.join(" ");
+  return lines.filter(Boolean).join(" ");
 }
 
 /**
@@ -94,9 +94,11 @@ function extractAnswerChoices(questionBlock) {
 
   const isMulti = optionEls[0].querySelector("input")?.type === "checkbox";
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const list = Array.from(optionEls)
-    .map((opt, i) => `- [ ] ${letters[i]}. ${opt.textContent.trim()}`)
-    .join("\n");
+  const list =
+    [...optionEls]
+        .map((opt) => [...opt.querySelectorAll("p > .rc-CML p")].map(p => convertParagraphToOrg(p)).join(""))
+        .map((choice, i) => `- [ ] ${letters[i]}. ${choice}`)
+        .join("\n");
 
   return isMulti ? `Select all that apply:\n\n${list}` : list;
 }
