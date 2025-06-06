@@ -72,7 +72,7 @@ function extractAnswerChoices(questionBlock) {
     .map((opt, i) => `- [ ] ${letters[i]}. ${opt.textContent.trim()}`)
     .join("\n");
 
-  return isMulti ? `Select all that apply:\n${list}` : list;
+  return isMulti ? `Select all that apply:\n\n${list}` : list;
 }
 
 /**
