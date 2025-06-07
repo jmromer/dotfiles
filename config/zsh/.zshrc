@@ -72,6 +72,13 @@ md() {
   \cd "${directory_name}" || return
 }
 
+mkbin() {
+  local file="${DOTFILES_DIR}/bin/${1}"
+  touch "$file"
+  chmod u+x "$file"
+  e "$file"
+}
+
 diff() {
     [[ -n "${1}" ]] && [[ -n "${2}" ]] || return
     "${HOMEBREW_PREFIX}/bin/diff" -u "${1}" "${2}" | delta
