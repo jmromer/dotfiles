@@ -35,9 +35,10 @@ end
 
 setup :mac_tools do
 
-  brew_install :pinentry_mac
   brew_install :osxutils
+  brew_install :pinentry_mac
   brew_install :reattach_to_user_namespace
+  brew_install :trash
   cask_install :karabiner_elements
 
 end
