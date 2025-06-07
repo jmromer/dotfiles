@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# mvln
+#
+# Move a target file or directory to a given destination directory,
+# then symlink to it from its original location.
+#
+# Usage:
+#
+#   mvln <TARGET_FILE_OR_DIR> <DESTINATION_DIR>
+
+TARGET="$(readlink -f "${1}")"
+TARGET_PATH="$(dirname -- "${TARGET}")"
+TARGET_NAME="$(basename -- "${TARGET}")"
+DESTINATION="$(readlink -f "${2}")"
+
+echo "Target: ${TARGET}"
+echo "Destination: ${DESTINATION}"
+
+printf "Moving... "
+mv "${TARGET}" "${DESTINATION}"
+
+printf "Linking... "
+ln -s "${DESTINATION}/${TARGET_NAME}" "${TARGET_PATH}"
+
+printf "done.\n"
