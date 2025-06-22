@@ -1134,6 +1134,10 @@ If the prefix arg ARG is passed, delete the tags at project root."
       tex-fontify-script nil)
 #+end_src
 
+#+begin_src elisp
+(setq TeX-electric-sub-and-superscript nil)
+#+end_src
+
 ** Formatting
 
 #+begin_src elisp
