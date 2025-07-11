@@ -1932,6 +1932,8 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-fontify-whole-heading-line t
       org-hide-emphasis-markers t
       org-image-actual-width 500
+      org-latex-compiler "xelatex"
+      org-latex-packages-alist '(("" "tikz") ("" "amsmath") ("" "amssymb"))
       org-list-use-circular-motion t
       org-log-done 'time
       org-log-into-drawer t
