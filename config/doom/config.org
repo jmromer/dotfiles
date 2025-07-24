@@ -1938,7 +1938,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-log-done 'time
       org-log-into-drawer t
       org-outline-path-complete-in-steps nil
-      org-pretty-entities t
+      org-pretty-entities nil
       org-refile-allow-creating-parent-nodes 'confirm
       org-refile-use-outline-path 'file
       org-src-ask-before-returning-to-edit-buffer nil
