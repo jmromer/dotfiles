@@ -12,5 +12,5 @@ perl 5.40.0
 postgres 17.3
 python 3.11.10
 redis 7.2.5
-ruby 3.3.6
+ruby 3.4.5
 rust 1.85.0
