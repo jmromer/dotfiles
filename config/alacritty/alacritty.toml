@@ -6,10 +6,10 @@ program = "/bin/zsh"
 args = ["-l", "-c", "zellij"]
 
 [font]
-size = 20
-normal = { family = "Cascadia Code", style = "Regular" }
-bold = { family = "Cascadia Code", style = "Bold" }
-italic = { family = "Cascadia Code", style = "Italic" }
+size = 18
+normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
+bold = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold" }
+italic = { family = "CaskaydiaCove Nerd Font Mono", style = "Italic" }
 
 [window]
 padding.x = 16
