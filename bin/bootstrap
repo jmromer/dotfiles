@@ -29,7 +29,9 @@ setup :editors do
   brew_install :macvim
   brew_install :neovim
   cask_install :marked
+  cask_install :obsidian
   cask_install :visual_studio_code
+  cask_install :zed
 
 end
 
@@ -100,6 +102,7 @@ end
 
 setup :gui_apps do
 
+  cask_install :alacritty
   cask_install :appcleaner
   cask_install :betterdisplay
   cask_install :bettertouchtool
@@ -152,22 +155,25 @@ end
 
 setup :development_tools do
 
+  brew_install "extract_url"
   brew_install :awscli
   brew_install :bash
   brew_install :bat
+  brew_install :btop
   brew_install :direnv
-  brew_install "extract_url"
   brew_install :eza
   brew_install :fzf
   brew_install :gh
   brew_install :git_delta
   brew_install :global
   brew_install :httpie
+  brew_install :mise
   brew_install :pyenv
   brew_install :source_highlight
   brew_install :texlab
   brew_install :tmux
   brew_install :xdg_ninja
+  brew_install :zellij
   brew_install :zsh
   brew_install :zsh_completions
 
