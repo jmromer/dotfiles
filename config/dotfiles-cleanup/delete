@@ -13,6 +13,7 @@
 .local
 .matplotlib
 .openjfx
+.parallel
 .python_history
 .rubies
 .sambox.cache
