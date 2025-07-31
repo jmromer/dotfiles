@@ -20,7 +20,7 @@ path="$(
       --bind 'ctrl-f:preview-down' \
       --bind 'ctrl-b:preview-up' \
       --header="[find:${1}]" \
-      --preview='exa -a1 --color=always {+2} 2>/dev/null' |
+      --preview='eza -a1 --color=always {+2} 2>/dev/null' |
     awk '{ print $2 }'
 )"
 
@@ -31,7 +31,7 @@ if [[ ! -d "$path" ]]; then
 fi
 
 selection="$(
-  exa -a1 --color=always "$path" |
+  eza -a1 --color=always "$path" |
   eval "fzf \
   --ansi \
   --no-sort \
