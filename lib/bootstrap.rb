@@ -147,7 +147,6 @@ def ensure_locals_are_created
   return unless machine_is?(:mac)
 
   system(ENVIRONMENT, "ln -sf ${HOMEBREW_PREFIX}/bin/pinentry-mac ${XDG_LOCALS_DIR}/bin/")
-  system(ENVIRONMENT, "ln -sf ${XDG_CONFIG_HOME}/asdf/tool-versions ${HOME}/.tool-versions")
 end
 
 # Homebrew-related commands
@@ -206,29 +205,6 @@ def brew_installed?(name, type: :formula)
   end
 end
 
-# ASDF-related commands
-# ---------------------
-
-def asdf_plugins
-  @asdf_plugins ||=
-    File
-    .readlines("#{DOTFILES_DIR}/config/asdf/tool-versions")
-    .map(&:split)
-    .map(&:first)
-    .map(&:to_sym)
-    .to_set
-    .freeze
-end
-
-def asdf_install(plugin)
-  if asdf_plugins.include?(plugin)
-    execho("asdf plugin-add #{plugin}")
-    execho("asdf install #{plugin}")
-  else
-    puts "No global version set for #{plugin}. Skipping."
-  end
-end
-
 # Help
 # ----------
 if ARGV.delete("--help").to_s.eql?("--help")
@@ -251,7 +227,7 @@ DOTFILES_DIR = File.dirname(File.dirname(__FILE__))
 HOMEBREW_PREFIX = '/opt/homebrew'
 
 ENVIRONMENT =
-  `zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|ASDF_|PATH)'"`
+  `zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|MISE_|PATH)'"`
   .strip
   .split("\n")
   .map { |line| line.split("=") }

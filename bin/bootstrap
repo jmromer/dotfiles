@@ -210,30 +210,20 @@ setup :miscellaneous_cli_tools do
   brew_install :yt_dlp
 end
 
-setup :asdf_plugins do
-  setup(:nodejs) { asdf_install(:nodejs) }
-  setup(:postgres) { asdf_install(:postgres) }
-  setup(:python) { asdf_install(:python) }
-  setup(:redis) { asdf_install(:redis) }
-  setup(:ruby) { asdf_install(:ruby) }
-end
-
 setup :doom_config do
   script_install :doom
 end
 
-setup :pd_tool do
-  asdf_install :golang
-  install_launchagent "com.tensorconclave.pd"
-  script_install :pd
-end
+# setup :pd_tool do
+#   install_launchagent "com.tensorconclave.pd"
+#   script_install :pd
+# end
 
-setup :writing_projects, default: false do
-  asdf_install :gohugo
-  setup(:org) { setup_writing(:org) }
-  setup(:logos) { setup_writing(:logos) }
-  setup(:conclave) { setup_writing(:conclave) }
-end
+# setup :writing_projects, default: false do
+#   setup(:org) { setup_writing(:org) }
+#   setup(:logos) { setup_writing(:logos) }
+#   setup(:conclave) { setup_writing(:conclave) }
+# end
 
 perform :cleanups do
   brew_cleanup

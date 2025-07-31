@@ -17,7 +17,7 @@ runtime xdg.vim
 "--------------------------------------------------------------
 " NeoVim
 "--------------------------------------------------------------
-let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/asdf-versions/shims/perl'
+let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/mise/shims/perl'
 
 if !has('nvim')
   set viminfofile=~/.dotfiles/cache/vim/viminfo

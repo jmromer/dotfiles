@@ -71,7 +71,7 @@ state
 
 share/CMakeTools/
 share/anaconda/
-share/asdf*
+share/mise/
 share/delta/
 share/direnv/
 share/doomemacs/

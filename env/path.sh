@@ -1,28 +1,17 @@
-if [[ -z "${DOTFILES_DIR}" ]]; then
-  echo "WARNING: DOTFILES_DIR env var is not set in ${0}"
-fi
-
-if [[ -z "${XDG_DATA_HOME}" ]]; then
-  echo "WARNING: XDG_DATA_HOME env var is not set in ${0}"
-fi
-
-if [[ -z "${HOMEBREW_PREFIX}" ]]; then
-  echo "WARNING: HOMEBREW_PREFIX env var is not set in ${0}"
-fi
+[[ -z "${DOTFILES_DIR}" ]]    && echo "WARNING: DOTFILES_DIR is not set in ${0}"
+[[ -z "${XDG_DATA_HOME}" ]]   && echo "WARNING: XDG_DATA_HOME is not set in ${0}"
+[[ -z "${HOMEBREW_PREFIX}" ]] && echo "WARNING: HOMEBREW_PREFIX is not set in ${0}"
 
 PATH="${XDG_LOCALS_DIR}/bin"
 PATH+=":${DOTFILES_DIR}/bin"
 PATH+=":${XDG_SECURE_DIR}/bin"
 PATH+=":./node_modules/.bin"
 
-PATH+=":${XDG_DATA_HOME}/asdf-versions/shims"
-PATH+=":${XDG_DATA_HOME}/asdf-manager/bin"
-# PATH+=":${GEM_HOME}/bin"
+PATH+=":${XDG_DATA_HOME}/mise/shims"
 PATH+=":${XDG_DATA_HOME}/fzf/bin"
 PATH+=":${XDG_DATA_HOME}/git/bin"
 PATH+=":${XDG_DATA_HOME}/doomemacs/bin"
 PATH+=":${XDG_DATA_HOME}/npm/bin"
-# PATH+=":${XDG_DATA_HOME}/gem/ruby/3.0.0/bin"
 
 PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/libpq/bin"
@@ -30,7 +19,6 @@ PATH+=":${HOMEBREW_PREFIX}/bin"
 PATH+=":${HOMEBREW_PREFIX}/sbin"
 PATH+=":/usr/local/bin" # some binaries use /usr/local/bin on Apple silicon
 
-# PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/bison/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/curl/bin"
@@ -43,7 +31,6 @@ PATH+=":${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/gnutls/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
-# PATH+=":${HOMEBREW_PREFIX}/opt/llvm/bin"
 PATH+=":${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
 PATH+=":${HOMEBREW_PREFIX}/opt/rg/bin"
 

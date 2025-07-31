@@ -343,16 +343,6 @@ cd() {
 
 
 #-------------------------------------------------------------
-# Use FZF to set versions with ASDF
-#-------------------------------------------------------------
-asdf-fzf() {
-    BUFFER=$(asdf-select)
-    zle end-of-line
-}
-
-zle -N asdf-fzf
-
-#-------------------------------------------------------------
 # KEY MAPS
 #-------------------------------------------------------------
 # zle defs
@@ -362,9 +352,9 @@ zle -N prefix-2
 
 # all modes
 
+# bindkey "^\\" [unused]
 bindkey "^[[3"  prefix-2         # ensure delete backwards deletes
 bindkey "^[[3~" delete-char      # ensure delete forwards deletes
-bindkey "^\\"   asdf-fzf
 bindkey "^t"    fzf-file-widget  # invoke FZF file finder
 bindkey "^x"    after-first-word # move cursor to flag-insert position
 bindkey "^z"    ctrlz
@@ -447,7 +437,6 @@ fi
 fpath=(
   ${BREW_PREFIX}/share/zsh/site-functions
   ${BREW_PREFIX}/share/zsh-completions
-  ${ASDF_DIR}/completions
   ${ZDOTDIR}/completions
   ${fpath}
 )
@@ -467,7 +456,6 @@ if [[ -d "${XDG_DATA_HOME}/fzf/shell" ]]; then
   . "${XDG_DATA_HOME}/fzf/shell/completion.zsh"
   . "${XDG_DATA_HOME}/fzf/shell/key-bindings.zsh"
 fi
-
 
 #-------------------------------------------------------------
 # SECURE / LOCALS
