@@ -1,11 +1,11 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Build p/d binary in local bin directory
 # Generate initial project catalog file
 
 set -ex
 
-source "${ASDF_DIR}/asdf.sh"
+eval "$(mise activate bash)"
 
 if [[ -z "$(command -v go)" ]]; then
   echo "Warning: go executable not found. Skipping p/d installation."
@@ -24,7 +24,7 @@ fi
 
 builtin cd ${XDG_DATA_HOME}/pd
 
-asdf install golang
+mise use -g golang
 
 go get
 

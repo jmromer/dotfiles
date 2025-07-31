@@ -22,47 +22,42 @@ setup_golang() {
   export CC=gcc-10 CXX=g++-10
   while read -r package; do
     go get -u -v "${package}"
-  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-golang"
+  done < "${XDG_CONFIG_HOME}/mise/default-libraries-golang"
 }
 
 setup_perl() {
   while read -r package; do
     cpanm -n "${package}"
-  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-perl"
+  done < "${XDG_CONFIG_HOME}/mise/default-libraries-perl"
 }
 
 setup_ruby() {
   gem install \
     --update-sources \
-    $(cat ${XDG_CONFIG_HOME}/asdf/default-libraries-ruby | tr '\n' ' ')
+    $(cat ${XDG_CONFIG_HOME}/mise/default-libraries-ruby | tr '\n' ' ')
 }
 
 setup_system_ruby() {
   gem install \
     --user \
     --update-sources \
-    $(cat ${XDG_CONFIG_HOME}/asdf/default-libraries-ruby | tr '\n' ' ')
+    $(cat ${XDG_CONFIG_HOME}/mise/default-libraries-ruby | tr '\n' ' ')
   gem specific_install -l https://github.com/JoshCheek/seeing_is_believing
 }
 
 setup_javascript() {
-  # reshim manually, because the nodejs plugin wraps npm for global installs
-  export ASDF_SKIP_RESHIM=1
   npm install --update --global npm
 
   while read -r package; do
     npm install --update --global "${package}"
-  done < "${XDG_CONFIG_HOME}/asdf/default-libraries-nodejs"
-
-  asdf reshim nodejs "$(asdf current nodejs | awk '{ print $2 }')"
-  asdf-shim-nodejs typescript-language-server
+  done < "${XDG_CONFIG_HOME}/mise/default-libraries-nodejs"
 }
 
 setup_python() {
   pip install \
       --upgrade \
       pip \
-      $(cat "${XDG_CONFIG_HOME}/asdf/default-libraries-python" | tr '\n' ' ')
+      $(cat "${XDG_CONFIG_HOME}/mise/default-libraries-python" | tr '\n' ' ')
 }
 
 setup_emacs_plus() {

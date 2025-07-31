@@ -45,20 +45,19 @@ source "${DOTFILES_DIR}/env/xdg.sh"
 # Environment setup
 # -----------------------------
 
-source "${DOTFILES_DIR}/env/asdf.sh"
 source "${DOTFILES_DIR}/env/build.sh"
 source "${DOTFILES_DIR}/env/bundler.sh"
 source "${DOTFILES_DIR}/env/docker.sh"
 source "${DOTFILES_DIR}/env/emacs.sh"
 source "${DOTFILES_DIR}/env/erlang.sh"
 source "${DOTFILES_DIR}/env/fzf.sh"
-source "${DOTFILES_DIR}/env/golang.sh"
 source "${DOTFILES_DIR}/env/gpg.sh"
 source "${DOTFILES_DIR}/env/gtags.sh"
 source "${DOTFILES_DIR}/env/kubernetes.sh"
 source "${DOTFILES_DIR}/env/mac.sh"
 source "${DOTFILES_DIR}/env/python.sh"
 source "${DOTFILES_DIR}/env/rails.sh"
+source "${DOTFILES_DIR}/env/versions.sh"
 
 # PATH setup
 # -----------------------------
