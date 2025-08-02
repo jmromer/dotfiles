@@ -71,9 +71,11 @@
 
  :checkers
  (syntax +childframe)
- spell
+ (spell +flyspell)
+ grammar
 
  :tools
+ ;;ansible
  biblio
  (debugger +lsp)
  direnv
@@ -95,16 +97,16 @@
 
  :lang
  beancount
- cc
+ (cc +lsp)
  ;;common-lisp
  emacs-lisp
  elixir
- (gdscript +lsp)
+ ;; (gdscript +lsp)
  (go +lsp)
- (graphql +lsp)
+ ;; (graphql +lsp)
  (haskell +lsp)
- janet
- (java +lsp)
+ ;; janet
+ ;; (java +lsp)
  (javascript +lsp)
  json
  ;;julia
@@ -119,8 +121,8 @@
  rest
  (ruby +rails)
  (rust +lsp)
- (scheme +guile)
- (sh +powershell +lsp)
+ ;; (scheme +guile)
+ (sh +lsp)
  (web +lsp)
  yaml
  ;;(zig +lsp)
