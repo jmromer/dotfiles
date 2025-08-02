@@ -12,7 +12,6 @@ keybinds clear-defaults=true {
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "locked"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
         bind "h" { MoveFocus "left"; }
-        bind "i" { TogglePanePinned; SwitchToMode "locked"; }
         bind "j" { MoveFocus "down"; }
         bind "k" { MoveFocus "up"; }
         bind "l" { MoveFocus "right"; }
@@ -105,13 +104,6 @@ keybinds clear-defaults=true {
         bind "w" { SearchToggleOption "Wrap"; }
     }
     session {
-        bind "a" {
-            LaunchOrFocusPlugin "zellij:about" {
-                floating true
-                move_to_focused_tab true
-            }
-            SwitchToMode "locked"
-        }
         bind "c" {
             LaunchOrFocusPlugin "configuration" {
                 floating true
@@ -251,7 +243,7 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-// theme "dracula"
+theme "tokyo-night"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -270,7 +262,7 @@ default_mode "locked"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "compact"
+default_layout "compact"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
@@ -281,7 +273,7 @@ default_mode "locked"
 // (Requires restart)
 // 
 // theme_dir "/tmp"
-
+ 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
 // potentially interfere with copying text.
@@ -313,7 +305,7 @@ default_mode "locked"
 //   - detach (Default)
 //   - quit
 // 
-// on_force_close "quit"
+on_force_close "quit"
  
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -334,7 +326,7 @@ default_mode "locked"
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 // 
-// copy_command "pbcopy"
+copy_command "pbcopy"
  
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
@@ -426,7 +418,7 @@ default_mode "locked"
 // Whether to show tips on startup
 // Default: true
 // 
-// show_startup_tips false
+show_startup_tips false
  
 // Whether to show release notes on first version run
 // Default: true
