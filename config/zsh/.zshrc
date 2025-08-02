@@ -164,8 +164,7 @@ git_branch() {
 # VCS_STATUS_PUSH_COMMITS_BEHIND=0
 # VCS_STATUS_COMMIT_SUMMARY
 gitstatus_prompt() {
-  PROMPT=$'\n'
-  PROMPT+="$(color blue)%c$(color reset) "
+  PROMPT="$(color blue)%c$(color reset) "
 
   if gitstatus_query MY && [[ ${VCS_STATUS_RESULT} == ok-sync ]]; then
     if (( VCS_STATUS_HAS_CONFLICTED )); then
@@ -231,12 +230,16 @@ setopt SHARE_HISTORY             # Share history between all sessions.
 #-------------------------------------------------------------
 # Zsh Plugins (load last)
 #-------------------------------------------------------------
+# To avoid conflicts, load these plugins in the following order if you use them:
+# - zsh-autosuggestions
+# - zsh-syntax-highlighting
+# - zsh-vim-mode
+. "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 if [[ -z "${INSIDE_EMACS}" ]]; then
-    . "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+  . "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 fi
 
-. "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 #-------------------------------------------------------------
 # CURSOR POSITIONING
@@ -276,6 +279,29 @@ if [[ -z "${INSIDE_EMACS}" ]]; then
 
     echo -ne '\e[5 q' # Use beam shape cursor on startup.
     preexec() { echo -ne '\e[5 q'; } # Use beam shape cursor for each new prompt.
+fi
+
+# ------------------------
+# yank to system clipboard
+# ------------------------
+if [[ -z "${INSIDE_EMACS}" ]]; then
+  function vi-yank-to-clipboard() {
+      zle vi-yank
+      echo -n "$CUTBUFFER" | pbcopy >/dev/null 2>&1
+      zle reset-prompt
+  }
+  zle -N vi-yank-to-clipboard
+
+  function vi-yank-eol-to-clipboard() {
+      zle vi-yank-eol
+      echo -n "$CUTBUFFER" | pbcopy >/dev/null 2>&1
+      zle reset-prompt
+  }
+  zle -N vi-yank-eol-to-clipboard
+
+  bindkey -M vicmd 'y' vi-yank-to-clipboard
+  bindkey -M visual 'y' vi-yank-to-clipboard
+  bindkey -M vicmd 'Y' vi-yank-eol-to-clipboard
 fi
 
 #-------------------------------------------------------------
@@ -405,11 +431,21 @@ if [[ -f "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh" ]]; then
     autoload -Uz add-zsh-hook
     add-zsh-hook precmd gitstatus_prompt
 else
-  PS1=$'\n$(color blue)%c$(color reset) ' # basename of pwd after a newline
+  PS1=$'$(color blue)%c$(color reset) ' # basename of pwd after a newline
   PS1+='$(git_branch)'      # current branch or commit name, with color
   PS1+='$(color reset)%# '  # reset color, add %
   export PS1
 fi
+
+#-------------------------------------------------------------
+# Set terminal title dynamically (zellij displays in ribbon)
+#-------------------------------------------------------------
+function set_title() {
+  print -Pn "\e]0;%~$(git_branch)\a"
+}
+
+# Hook the title update to run before each prompt
+precmd_functions+=(set_title)
 
 #-------------------------------------------------------------
 # COMMAND COMPLETION
