@@ -62,11 +62,11 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
 (setq which-key-idle-delay 1
       which-key-idle-secondary-delay 0.5)
 #+end_src
+
 ** literate config
 
-Don't tangle on save.
-
-#+begin_src elisp
+#+begin_src elisp :tangle no
+;; Don't tangle on save.
 (remove-hook 'org-mode-hook #'+literate-enable-recompile-h)
 #+end_src
 
@@ -81,11 +81,10 @@ Provide a command to trigger tangling manually.
 
 ** display
 
-Set fonts. NB: =doom-variable-pitch-font= could use updating.
 #+begin_src elisp
-(setq doom-font (font-spec :family "Monaco" :size 16)
-      doom-variable-pitch-font (font-spec :family "Monaco" :size 16)
-      doom-big-font (font-spec :family "Monaco" :size 24)
+(setq doom-font (font-spec :family "Fira Code" :size 18)
+      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 20)
+      doom-big-font (font-spec :family "Fira Code" :size 24)
       doom-theme 'doom-one
       display-line-numbers-type 'relative
       fancy-splash-image nil
@@ -101,8 +100,13 @@ Use the project name for the frame title, if available, otherwise the buffer nam
            (buffer-name)))))
 #+end_src
 
-Start Emacs maximized.
+Hide the title bar
 #+begin_src elisp
+(add-to-list 'default-frame-alist '(undecorated . t))
+#+end_src
+
+#+begin_src elisp :tangle no
+;; Start Emacs maximized.
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
@@ -268,7 +272,10 @@ Some general purpose super-key keybindings.
          "s-f"   #'avy-goto-char-2
          "s-N"   #'org-projectile-capture-for-current-project
          "s-n"   #'+org-capture/open-frame
-  "<s-escape>"   #'evil-escape)
+         "s-s"   #'save-buffer
+         "s-w"   #'+workspace/close-window-or-workspace
+         "s-,"   #'+open-dotfiles
+         "<s-escape>"   #'evil-escape)
 #+end_src
 
 #+begin_src elisp
@@ -348,9 +355,9 @@ Allow remembering risky local variables.
 ** tmux-ish keybindings
 
 #+begin_src elisp
-(map! "C-h" #'projectile-switch-project
-      "C-a m" #'+open-dotfiles
-      "C-a -" #'evil-window-split
+(map! "C-h"    #'projectile-switch-project
+      "C-a ,"  #'+open-dotfiles
+      "C-a -"  #'evil-window-split
       "C-a \\" #'evil-window-vsplit)
 #+end_src
 
@@ -1750,6 +1757,12 @@ renderMarkdown();
 
 https://orgmode.org/manual
 
+** configuration
+
+#+begin_src elisp
+(add-hook! org-mode #'mixed-pitch-mode)
+#+end_src
+
 ** commands
 
 #+begin_src elisp
@@ -1953,7 +1966,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 ** agenda files
 
 #+begin_src elisp
-(map! "s-," #'org-cycle-agenda-files)
+(map! "s-C-," #'org-cycle-agenda-files)
 (map! :map org-mode-map "C-'" nil)
 #+end_src
 
