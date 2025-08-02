@@ -1,77 +1,118 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
+# Table of Contents
+# -----------------
+# 1. Shellcheck Directives
+# 2. Aliases
+#    2.1 File Management and Navigation
+#    2.2 Safeguards
+#    2.3 Postfix (Suffix Aliases)
+#    2.4 Highlighting and XDG Compliance
+#    2.5 Miscellaneous
+# 3. Environment Variables
+#    3.1 Editor and Pager
+# 4. Functions
+#    4.1 Directory Creation and Navigation
+#    4.2 File Creation
+#    4.3 Diff Utility
+#    4.4 Git Prompt Helpers
+# 5. Zsh Options and Settings
+#    5.1 General Options
+#    5.2 Directory Stack
+#    5.3 History Settings
+# 6. Plugins
+# 7. Cursor and Mode Configurations
+#    7.1 Cursor Positioning
+#    7.2 Vi/Emacs Modes and Cursor Shapes
+#    7.3 Yank to Clipboard in Vi Mode
+# 8. Custom Widgets and Behaviors
+#    8.1 History Search
+#    8.2 Ctrl-Z Toggle
+#    8.3 Custom CD with PD
+# 9. Key Bindings
+# 10. Colors and Prompt
+#     10.1 Color Helper
+#     10.2 Prompt Configuration
+#     10.3 Terminal Title
+# 11. Completions and Autocompletion
+# 12. Secure and Local Configurations
+
+# 1. Shellcheck Directives
+# ------------------------
+# These disable specific warnings for non-constant sourcing and alias expansions.
 # shellcheck disable=SC1090,SC2139
-# SC1090: Can't follow non-constant source.
-#         Use a directive to specify location.
+# SC1090: Can't follow non-constant source. Use a directive to specify location.
 
-#-------------------------------------------------------------
-# ALIASES: FILE MANAGEMENT, SHELL NAVIGATION
-#-------------------------------------------------------------
-alias ..='\cd ..; l'     # go to parent dir and list contents
-alias ...='\cd ../..; l' # go to grandparent dir and list contents
-alias mkdir='mkdir -p'   # create subdirectories as necessary
-alias h='history'        # show history
-alias dirs='dirs -v'     # show directory stack
-alias ls='eza --group-directories-first --time-style=long-iso --classify'
-alias l='ls'
-alias la='ls -a'
-alias ld='ls -d .*'
-alias ll='ls -l'
-alias lla='ls -al'
-alias lld='ls -al -d .*'
-alias lt='eza --tree --level=3'
+# 2. Aliases
+# ----------
+# Aliases are grouped by category for easier maintenance. They enhance common commands
+# with safety features, modern alternatives (e.g., eza for ls, bat for cat), and shortcuts.
 
-#-------------------------------------------------------------
-# ALIASES: SAFEGUARDS
-#-------------------------------------------------------------
-alias rm='rm -i'  # confirm deletion
-alias mv='mv -i'  # confirm move if overwriting existing file
-alias cp='cp -i'  # confirm copy if overwriting existing file
-alias ln='ln -iv' # display error if link exists; link verbosely
+# 2.1 File Management and Navigation
+alias ..='cd ..; l'         # Go to parent directory and list contents
+alias ...='cd ../..; l'     # Go to grandparent directory and list contents
+alias mkdir='mkdir -p'      # Create directories recursively
+alias h='history'           # Show command history
+alias dirs='dirs -v'        # Show directory stack with indices
+alias ls='eza --group-directories-first --time-style=long-iso --classify'  # Modern ls replacement with grouping and classification
+alias l='ls'                # Short alias for ls
+alias la='ls -a'            # List all files (including hidden)
+alias ld='ls -d .*'         # List hidden directories only
+alias ll='ls -l'            # Long listing
+alias lla='ls -al'          # Long listing including hidden
+alias lld='ls -al -d .*'    # Long listing of hidden files/directories
+alias lt='eza --tree --level=3'  # Tree view up to 3 levels
 
-#-------------------------------------------------------------
-# ALIASES: Postfix
-#-------------------------------------------------------------
-alias -g G='| grep --line-number --context=1' # grep w/ context
-alias -g C="| pbcopy" # copy to clipboard
-alias -g P='| less'   # send to pager
+# 2.2 Safeguards
+alias rm='rm -i'            # Prompt before deletion
+alias mv='mv -i'            # Prompt before overwriting on move
+alias cp='cp -i'            # Prompt before overwriting on copy
+alias ln='ln -iv'           # Verbose linking with error if link exists
 
-#-------------------------------------------------------------
-# ALIASES: highlighting, xdg
-#-------------------------------------------------------------
-alias cat=bat
-alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget/history"
-alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"
+# 2.3 Postfix (Suffix Aliases)
+# These are global aliases (-g) that can be appended to any command for piping.
+alias -g G='| grep --line-number --context=1'  # Grep with line numbers and 1 line of context
+alias -g C='| pbcopy'       # Copy output to clipboard
+alias -g P='| less'         # Pipe to pager
 
-#-------------------------------------------------------------
-# ALIASES: misc
-#-------------------------------------------------------------
-alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"
-alias pp='pretty-print-path'
-alias b=bundle
-alias vi='vim -U $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'
-alias vin='vim -U NONE'
-alias vim=nvim
+# 2.4 Highlighting and XDG Compliance
+alias cat='bat'             # Syntax-highlighted cat alternative
+alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget/history"  # Use XDG cache for wget history
+alias bash="bash --init-file ${XDG_CONFIG_HOME}/bash/bashrc"  # Load XDG-compliant bashrc
 
-#-------------------------------------------------------------
-# EDITOR / PAGER
-#-------------------------------------------------------------
-export EDITOR="vim"
-export PAGER="less"
-export LESSOPEN="| src-hilite-lesspipe.sh %s"
-export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '
+# 2.5 Miscellaneous
+alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"  # Re-sign Xcode
+alias pp='pretty-print-path'  # Pretty-print PATH variable
+alias b='bundle'              # Shortcut for bundle (Ruby)
 
+alias vi='\vim -U $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'  # Vim with minimal config
+alias vin='\vim -U NONE'     # Vim with no config
+alias vim='nvim'             # Alias vim to neovim
 
-#-------------------------------------------------------------
-# FUNCTIONS
-#-------------------------------------------------------------
-# create dir $1 and cd into it, creating subdirectories as necessary
+# 3. Environment Variables
+# ------------------------
+# Set defaults for editor, pager, and less behavior.
+
+# 3.1 Editor and Pager
+export EDITOR="nvim"         # Default editor
+export PAGER="less"          # Default pager
+export LESSOPEN="| src-hilite-lesspipe.sh %s"  # Syntax highlighting for less
+export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '  # Less options: no init, raw chars, quit if one screen
+
+# 4. Functions
+# ------------
+# Custom functions for common tasks, git status parsing, and prompt building.
+
+# 4.1 Directory Creation and Navigation
+# Create a directory (replacing spaces with hyphens) and cd into it.
 md() {
   local directory_name="${*// /-}"
-  \mkdir -p "${directory_name}"
-  \cd "${directory_name}" || return
+  mkdir -p "${directory_name}"
+  cd "${directory_name}" || return
 }
 
+# 4.2 File Creation
+# Create an executable bin file, make it executable, and open in editor.
 mkbin() {
   local file="${DOTFILES_DIR}/bin/${1}"
   touch "$file"
@@ -79,38 +120,32 @@ mkbin() {
   e "$file"
 }
 
+# 4.3 Diff Utility
+# Colorized diff using delta.
 diff() {
-    [[ -n "${1}" ]] && [[ -n "${2}" ]] || return
-    "${HOMEBREW_PREFIX}/bin/diff" -u "${1}" "${2}" | delta
+  [[ -n "${1}" ]] && [[ -n "${2}" ]] || return
+  "${HOMEBREW_PREFIX}/bin/diff" -u "${1}" "${2}" | delta
 }
 
-#-------------------------------------------------------------
-# COLORIZED GIT PROMPT
-#-------------------------------------------------------------
+# 4.4 Git Prompt Helpers
+#
+# These parse git status for color and branch info, supporting English and
+# Spanish outputs for localization.
 git_color() {
+  git_status="$(git status 2> /dev/null)"
   case "${git_status}" in
-    *'not staged'* |\
-      *'to be committed'* |\
-      *'untracked files present'* |\
-      *'no rastreados'* |\
-      *'archivos sin seguimiento'* |\
-      *'a ser confirmados'*)
+    *'not staged'* | *'to be committed'* | *'untracked files present'* |\
+    *'no rastreados'* | *'archivos sin seguimiento'* | *'a ser confirmados'*)
       echo -ne "$(color red)"
       ;;
-    *'branch is ahead of'* |\
-      *'have diverged'* |\
-      *'rama está adelantada'* |\
-      *'rama está detrás de'* |\
-      *'han divergido'*)
+    *'branch is ahead of'* | *'have diverged'* |\
+    *'rama está adelantada'* | *'rama está detrás de'* | *'han divergido'*)
       echo -ne "$(color yellow)"
       ;;
-    *working\ *\ clean* |\
-      *'está limpio'*)
+    *'working '*' clean'* | *'está limpio'*)
       echo -ne "$(color green)"
       ;;
-    *'Unmerged'* |\
-      *'no fusionadas'* |\
-      *'rebase interactivo en progreso'*)
+    *'Unmerged'* | *'no fusionadas'* | *'rebase interactivo en progreso'*)
       echo -ne "$(color violet)"
       ;;
     *)
@@ -120,7 +155,7 @@ git_color() {
 }
 
 git_branch() {
-  git_status="$(\git status 2> /dev/null)"
+  git_status="$(git status 2> /dev/null)"
   local is_on_branch='^(On branch|En la rama) ([^[:space:]]+)'
   local is_on_commit='HEAD (detached at|desacoplada en) ([^[:space:]]+)'
   local is_rebasing="(rebasing branch|rebase de la rama) '([^[:space:]]+)' (on|sobre) '([^[:space:]]+)'"
@@ -128,41 +163,22 @@ git_branch() {
   local commit
 
   if [[ ${git_status} =~ ${is_on_branch} ]]; then
-    branch=${BASH_REMATCH[2]:-${match[2]}} # bash/zsh portable
+    branch=${match[2]:-${BASH_REMATCH[2]}}  # Zsh/bash portable
     if [[ ${git_status} =~ (Unmerged paths|no fusionadas) ]]; then
       git_color && echo -n "merging into ${branch} "
     else
       git_color && echo -n "${branch} "
     fi
   elif [[ ${git_status} =~ ${is_on_commit} ]]; then
-    commit=${BASH_REMATCH[2]:-${match[2]}}
+    commit=${match[2]:-${BASH_REMATCH[2]}}
     git_color && echo -n "${commit} "
   elif [[ ${git_status} =~ ${is_rebasing} ]]; then
-    branch=${BASH_REMATCH[2]:-${match[2]}}
-    commit=${BASH_REMATCH[4]:-${match[4]}}
+    branch=${match[2]:-${BASH_REMATCH[2]}}
+    commit=${match[4]:-${BASH_REMATCH[4]}}
     git_color && echo -n "rebasing ${branch} onto ${commit} "
   fi
 }
 
-# VCS_STATUS_COMMIT=c000eddcff0fb38df2d0137efe24d9d2d900f209
-# VCS_STATUS_COMMITS_AHEAD=0
-# VCS_STATUS_COMMITS_BEHIND=0
-# VCS_STATUS_HAS_CONFLICTED=0
-# VCS_STATUS_HAS_STAGED=0
-# VCS_STATUS_HAS_UNSTAGED=1
-# VCS_STATUS_HAS_UNTRACKED=1
-# VCS_STATUS_NUM_ASSUME_UNCHANGED=0
-# VCS_STATUS_NUM_CONFLICTED=0
-# VCS_STATUS_NUM_STAGED=0
-# VCS_STATUS_NUM_UNSTAGED=1
-# VCS_STATUS_NUM_SKIP_WORKTREE=0
-# VCS_STATUS_NUM_STAGED_NEW=0
-# VCS_STATUS_NUM_STAGED_DELETED=0
-# VCS_STATUS_NUM_UNSTAGED_DELETED=0
-# VCS_STATUS_NUM_UNTRACKED=1
-# VCS_STATUS_PUSH_COMMITS_AHEAD=0
-# VCS_STATUS_PUSH_COMMITS_BEHIND=0
-# VCS_STATUS_COMMIT_SUMMARY
 gitstatus_prompt() {
   PROMPT="$(color blue)%c$(color reset) "
 
@@ -185,117 +201,99 @@ gitstatus_prompt() {
     fi
     local hash="${VCS_STATUS_COMMIT:0:10}"
     local branch="${VCS_STATUS_LOCAL_BRANCH:-@${hash}}"
-    PROMPT+="${branch//\%/%%} "  # escape %
+    PROMPT+="${branch//\%/%%} "  # Escape %
   fi
 
   PROMPT+="$(color reset)%# "
-  setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
+  setopt no_prompt_{bang,subst} prompt_percent  # Enable/disable correct prompt expansions
 }
 
-#-------------------------------------------------------------
-# ZSH
-#-------------------------------------------------------------
-# GENERAL
-#-------------------------------------------------------------
-setopt extendedglob # Enable extended globbing
-unsetopt nomatch    # Allow [ or ] wherever you want
-autoload -U zmv     # rename files like zmv '(*).txt' '$1.html'
+# 5. Zsh Options and Settings
+# ---------------------------
+# Configure Zsh behaviors for globbing, directories, and history.
 
+# 5.1 General Options
+setopt extendedglob         # Enable extended globbing patterns
+unsetopt nomatch            # Allow unmatched [ or ] in patterns
+autoload -U zmv             # Load zmv for batch renaming (e.g., zmv '(*).txt' '$1.html')
 
-#-------------------------------------------------------------
-# DIRECTORY STACK  (see http://j.mp/1lOiWio)
-#-------------------------------------------------------------
-setopt autocd autopushd pushd_minus pushd_silent
-setopt pushd_to_home cdable_vars pushd_ignore_dups
-export DIRSTACKSIZE=10
+# 5.2 Directory Stack
+setopt autocd autopushd pushd_minus pushd_silent  # Auto-cd, push dirs, swap +/-, silent pushd
+setopt pushd_to_home cdable_vars pushd_ignore_dups  # Push ~ on empty, vars as dirs, ignore dups
+export DIRSTACKSIZE=10      # Limit directory stack size
 
-#-------------------------------------------------------------
-# HISTORY SETTINGS
-#-------------------------------------------------------------
-export HISTFILE="${XDG_STATE_HOME}/zsh/history"
-export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"
-export HISTSIZE=1000
-export SAVEHIST=1000
+# 5.3 History Settings
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"  # History file location (XDG compliant)
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd|h|l|lla|lld|g|g d|g co)"  # Ignore common commands
+export HISTSIZE=1000        # In-memory history size
+export SAVEHIST=1000        # Saved history size
 
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY             # Share history between all sessions.
+setopt EXTENDED_HISTORY       # Save timestamp and duration
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicates first
+setopt HIST_FIND_NO_DUPS      # Don't show duplicates in search
+setopt HIST_IGNORE_ALL_DUPS   # Delete old duplicates
+setopt HIST_IGNORE_DUPS       # Ignore immediate duplicates
+setopt HIST_IGNORE_SPACE      # Ignore lines starting with space
+setopt HIST_SAVE_NO_DUPS      # Don't save duplicates
+setopt INC_APPEND_HISTORY     # Append incrementally
+setopt SHARE_HISTORY          # Share history across sessions
 
-#-------------------------------------------------------------
-# Zsh Plugins (load last)
-#-------------------------------------------------------------
-# To avoid conflicts, load these plugins in the following order if you use them:
+# 6. Plugins
+# ----------
+# To avoid conflicts, these plugins should be loaded in the given order:
 # - zsh-autosuggestions
 # - zsh-syntax-highlighting
 # - zsh-vim-mode
-. "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 if [[ -z "${INSIDE_EMACS}" ]]; then
-  . "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+  source "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 fi
 
+# 7. Cursor and Mode Configurations
+# ---------------------------------
+# Manage cursor position, shapes, and vi/emacs modes.
 
-#-------------------------------------------------------------
-# CURSOR POSITIONING
-#-------------------------------------------------------------
-# Position cursor after ARG[0] (for argument/flag entry)
+# 7.1 Cursor Positioning
+# Widget to move cursor after the first word (e.g., for inserting flags).
 after-first-word() {
-    zle beginning-of-line
-    zle forward-word
+  zle beginning-of-line
+  zle forward-word
 }
-
 zle -N after-first-word
 
-#-------------------------------------------------------------
-# vi / emacs modes
-#-------------------------------------------------------------
+# 7.2 Vi/Emacs Modes and Cursor Shapes
 if [[ -z "${INSIDE_EMACS}" ]]; then
-    # Change cursor shape for different vi modes.
-    zle-keymap-select() {
-        if [[ ${KEYMAP} == vicmd ]] ||
-            [[ $1 = 'block' ]]; then
-            echo -ne '\e[1 q'
-        elif [[ ${KEYMAP} == main ]] ||
-                [[ ${KEYMAP} == viins ]] ||
-                [[ ${KEYMAP} = '' ]] ||
-                [[ $1 = 'beam' ]]; then
-            echo -ne '\e[5 q'
-        fi
-    }
+  # Change cursor shape based on vi mode.
+  zle-keymap-select() {
+    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+      echo -ne '\e[1 q'  # Block cursor for command mode
+    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+      echo -ne '\e[5 q'  # Beam cursor for insert mode
+    fi
+  }
+  zle -N zle-keymap-select
 
-    zle -N zle-keymap-select
+  export KEYTIMEOUT=5  # Low lag for ESC to normal mode
+  bindkey -v           # Vi keybindings
 
-    # no lag after pressing ESC to enter normal mode
-    export KEYTIMEOUT=5
-
-    # set vi keybindings
-    bindkey -v
-
-    echo -ne '\e[5 q' # Use beam shape cursor on startup.
-    preexec() { echo -ne '\e[5 q'; } # Use beam shape cursor for each new prompt.
+  echo -ne '\e[5 q'    # Beam cursor on startup
+  preexec() { echo -ne '\e[5 q'; }  # Beam cursor for new prompts
 fi
 
-# ------------------------
-# yank to system clipboard
-# ------------------------
+# 7.3 Yank to Clipboard in Vi Mode
 if [[ -z "${INSIDE_EMACS}" ]]; then
-  function vi-yank-to-clipboard() {
-      zle vi-yank
-      echo -n "$CUTBUFFER" | pbcopy >/dev/null 2>&1
-      zle reset-prompt
+  vi-yank-to-clipboard() {
+    zle vi-yank
+    echo -n "$CUTBUFFER" | pbcopy >/dev/null 2>&1
+    zle reset-prompt
   }
   zle -N vi-yank-to-clipboard
 
-  function vi-yank-eol-to-clipboard() {
-      zle vi-yank-eol
-      echo -n "$CUTBUFFER" | pbcopy >/dev/null 2>&1
-      zle reset-prompt
+  vi-yank-eol-to-clipboard() {
+    zle vi-yank-eol
+    echo -n "$CUTBUFFER" | pbcopy >/dev/null 2>&1
+    zle reset-prompt
   }
   zle -N vi-yank-eol-to-clipboard
 
@@ -304,80 +302,69 @@ if [[ -z "${INSIDE_EMACS}" ]]; then
   bindkey -M vicmd 'Y' vi-yank-eol-to-clipboard
 fi
 
-#-------------------------------------------------------------
-# HISTORY SEARCH
-#-------------------------------------------------------------
-# back-i-search should begin with the current word
-setopt complete_in_word
+# 8. Custom Widgets and Behaviors
+# -------------------------------
+# Enhance history, job control, and cd.
 
+# 8.1 History Search
+setopt complete_in_word     # Complete from cursor position
 autoload -U down-line-or-beginning-search
 autoload -U up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 
-#-------------------------------------------------------------
-# Use ctrl-z as a toggle
-#-------------------------------------------------------------
-
+# 8.2 Ctrl-Z Toggle
+# Toggle between suspending and resuming jobs with Ctrl-Z.
 ctrlz() {
-    if [[ $#BUFFER -eq 0 ]]; then
-        fg >/dev/null 2>&1 && zle redisplay
-    else
-        zle push-input
-    fi
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg >/dev/null 2>&1 && zle redisplay
+  else
+    zle push-input
+  fi
 }
-
 zle -N ctrlz
 
-#-------------------------------------------------------------
-# Use cd with pd
-#-------------------------------------------------------------
+# 8.3 Custom CD with PD
+# Use pd if available for path resolution; fallback to builtin cd.
 cd() {
-    # pd is installed, use it to resolve the target
-    if type pd >/dev/null; then
-      target="$(pd "$1")"
-    else
-      target="${@}"
-    fi
+  local target
+  if type pd >/dev/null; then
+    target="$(pd "$1")"
+  else
+    target="${@}"
+  fi
 
-    # if the target is a directory or begins with a '-', delegate to builtin cd
-    if [[ "${target}" == -* ]] || [[ -d "${target}" ]]; then
-      builtin cd "${target}"
-    else
-      echo "Directory Not Found: ${target//$HOME/~}"
-    fi
+  if [[ "${target}" == -* ]] || [[ -d "${target}" ]]; then
+    builtin cd "${target}"
+  else
+    echo "Directory Not Found: ${target//$HOME/~}"
+  fi
 }
 
+# 9. Key Bindings
+# ---------------
+# Define key bindings across modes. Includes FZF integration and history navigation.
 
-#-------------------------------------------------------------
-# KEY MAPS
-#-------------------------------------------------------------
-# zle defs
-
+# ZLE Definitions (placeholders; assume fzf-file-widget and prefix-2 are defined elsewhere)
 zle -N fzf-file-widget
 zle -N prefix-2
 
-# all modes
+# All Modes
+bindkey "^[[3"  prefix-2         # Delete backwards
+bindkey "^[[3~" delete-char      # Delete forwards
+bindkey "^t"    fzf-file-widget  # FZF file finder
+bindkey "^x"    after-first-word # Move to after first word
+bindkey "^z"    ctrlz            # Ctrl-Z toggle
 
-# bindkey "^\\" [unused]
-bindkey "^[[3"  prefix-2         # ensure delete backwards deletes
-bindkey "^[[3~" delete-char      # ensure delete forwards deletes
-bindkey "^t"    fzf-file-widget  # invoke FZF file finder
-bindkey "^x"    after-first-word # move cursor to flag-insert position
-bindkey "^z"    ctrlz
+# String-Based (macros)
+bindkey -s "^h" "cd\n"           # CD with PD
+bindkey -s "^\]" "g cob\n"       # Git change branch
 
-# string-based
-
-bindkey -s "^h" "cd\n" # cd with pd
-bindkey -s "^\]" "g cob\n" # change branches with pd
-
-# emacs mode
-
+# Emacs Mode
 bindkey -M emacs '^y' accept-and-hold
 bindkey -M emacs '^o' push-line-or-edit
 
-# vi insert mode
-
+# Vi Insert Mode
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^b' backward-char
 bindkey -M viins '^d' delete-char
@@ -385,71 +372,67 @@ bindkey -M viins '^e' end-of-line
 bindkey -M viins '^f' forward-char
 bindkey -M viins '^k' kill-line
 bindkey -M viins '^n' down-line-or-beginning-search
-bindkey -M viins '^o' push-line-or-edit  # stash command, issue another, restore stash
+bindkey -M viins '^o' push-line-or-edit
 bindkey -M viins '^p' up-line-or-beginning-search
 bindkey -M viins '^r' history-incremental-search-backward
-bindkey -M viins '^y' accept-and-hold    # issue the command, but keep it at the prompt
+bindkey -M viins '^y' accept-and-hold
 
-# vi command mode
-
+# Vi Command Mode
 bindkey -M vicmd '^n' down-line-or-beginning-search
 bindkey -M vicmd '^p' up-line-or-beginning-search
 bindkey -M vicmd '^r' history-incremental-search-backward
 
-# arrow keys trigger history searching
-
+# Arrow Keys for History Search
 bindkey '\e[A' up-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 bindkey -s '\eOA' '\e[A'
 bindkey -s '\eOB' '\e[B'
 
-#-------------------------------------------------------------
-# COLORS
-#-------------------------------------------------------------
-autoload -U colors && colors
+# 10. Colors and Prompt
+# ---------------------
+# Load colors and set up a dynamic prompt with git info.
 
+# 10.1 Color Helper
+autoload -U colors && colors
 color() {
-    # shellcheck disable=SC2154
-    [[ $1 == 'red'    ]] && printf "%s" "%{${fg_no_bold[red]}%}"
-    [[ $1 == 'yellow' ]] && printf "%s" "%{${fg_no_bold[yellow]}%}"
-    [[ $1 == 'green'  ]] && printf "%s" "%{${fg_no_bold[green]}%}"
-    [[ $1 == 'violet' ]] && printf "%s" "%{${fg_no_bold[magenta]}%}"
-    [[ $1 == 'blue'   ]] && printf "%s" "%{${fg_no_bold[blue]}%}"
-    [[ $1 == 'white'  ]] && printf "%s" "%{${fg_no_bold[white]}%}"
-    # shellcheck disable=SC2154
-    [[ $1 == 'reset'  ]] && printf "%s" "%{${reset_color}%}"
+  case $1 in
+    red)    printf "%s" "%{${fg_no_bold[red]}%}" ;;
+    yellow) printf "%s" "%{${fg_no_bold[yellow]}%}" ;;
+    green)  printf "%s" "%{${fg_no_bold[green]}%}" ;;
+    violet) printf "%s" "%{${fg_no_bold[magenta]}%}" ;;
+    blue)   printf "%s" "%{${fg_no_bold[blue]}%}" ;;
+    white)  printf "%s" "%{${fg_no_bold[white]}%}" ;;
+    reset)  printf "%s" "%{${reset_color}%}" ;;
+  esac
 }
 
-#-------------------------------------------------------------
-# PROMPT WITH SHORT PWD, COLORIZED GIT INFO
-#-------------------------------------------------------------
-setopt prompt_subst       # enables command substitution
+# 10.2 Prompt Configuration
+setopt prompt_subst  # Enable substitution in prompt
 
 if [[ -f "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh" ]]; then
-    source "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh"
-    gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
-    autoload -Uz add-zsh-hook
-    add-zsh-hook precmd gitstatus_prompt
+  source "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh"
+  gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd gitstatus_prompt
 else
-  PS1=$'$(color blue)%c$(color reset) ' # basename of pwd after a newline
-  PS1+='$(git_branch)'      # current branch or commit name, with color
-  PS1+='$(color reset)%# '  # reset color, add %
+  # Fallback prompt without gitstatus
+  PS1=$'$(color blue)%c$(color reset) '  # Current directory basename
+  PS1+='$(git_branch)'                    # Git branch/commit with color
+  PS1+='$(color reset)%# '                # Reset and prompt symbol
   export PS1
 fi
 
-#-------------------------------------------------------------
-# Set terminal title dynamically (zellij displays in ribbon)
-#-------------------------------------------------------------
-function set_title() {
+# 10.3 Terminal Title
+# Set title to current dir and git branch (for terminals like zellij).
+set_title() {
   print -Pn "\e]0;%~$(git_branch)\a"
 }
-
-# Hook the title update to run before each prompt
 precmd_functions+=(set_title)
 
-#-------------------------------------------------------------
-# COMMAND COMPLETION
-#-------------------------------------------------------------
+# 11. Completions and Autocompletion
+# ----------------------------------
+# Set up completions, including git alias and FZF if available.
+
 # shellcheck disable=SC2206
 fpath=(
   ${BREW_PREFIX}/share/zsh/site-functions
@@ -461,28 +444,23 @@ fpath=(
 autoload -Uz compinit
 compinit
 
-compdef g=git
-setopt complete_aliases
-
-
-#-------------------------------------------------------------
-# AUTOCOMPLETION
-#-------------------------------------------------------------
+compdef g=git               # Complete 'g' as git
+setopt complete_aliases     # Complete aliased commands
 
 if [[ -d "${XDG_DATA_HOME}/fzf/shell" ]]; then
   . "${XDG_DATA_HOME}/fzf/shell/completion.zsh"
   . "${XDG_DATA_HOME}/fzf/shell/key-bindings.zsh"
 fi
 
-#-------------------------------------------------------------
-# SECURE / LOCALS
-#-------------------------------------------------------------
+# 12. Secure and Local Configurations
+# -----------------------------------
+# Source private or machine-specific configs last.
 
 [[ -f "${XDG_SECURE_DIR}/config/zsh/zshrc" ]] && \
-    . "${XDG_SECURE_DIR}/config/zsh/zshrc"
+  . "${XDG_SECURE_DIR}/config/zsh/zshrc"
 
 [[ -f "${XDG_LOCALS_DIR}/config/zsh/zshrc" ]] && \
-    . "${XDG_LOCALS_DIR}/config/zsh/zshrc"
+  . "${XDG_LOCALS_DIR}/config/zsh/zshrc"
 
 [[ -f "${XDG_LOCALS_DIR}/config/zsh/.iterm2_shell_integration.zsh" ]] && \
-    . "${XDG_LOCALS_DIR}/config/zsh/.iterm2_shell_integration.zsh"
+  . "${XDG_LOCALS_DIR}/config/zsh/.iterm2_shell_integration.zsh"
