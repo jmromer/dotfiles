@@ -16,9 +16,9 @@ source "${HOME}/.dotfiles/env/setup.sh"
 # |   ~/.zlogout (logout only) |         I         |                       |        |
 # | /etc/zlogout (logout only) |         J         |                       |        |
 
-# disable to prevent /etc/profile from overwriting
+# disable to prevent /etc/profile from overwriting PATH
 # possible replacement: https://github.com/yb66/path_helper
-# if [ -x /usr/libexec/path_helper ]; then
-#   function noop () { }
-#   alias '/usr/libexec/path_helper'=noop
-# fi
+if [ -x /usr/libexec/path_helper ]; then
+  function noop () { }
+  alias '/usr/libexec/path_helper'=noop
+fi
