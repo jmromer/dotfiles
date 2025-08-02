@@ -3,43 +3,6 @@
 #+property: header-args :elisp :tangle yes :comments link
 #+startup: org-startup-folded: fold
 
-* contents :TOC_1:
-- [[#general][+general]]
-- [[#utilities][+utilities]]
-- [[#aider][aider]]
-- [[#copilots][copilots]]
-- [[#completion][completion]]
-- [[#diff-hl][diff-hl]]
-- [[#dired][dired]]
-- [[#evil][evil]]
-- [[#exercism][exercism]]
-- [[#flycheck][flycheck]]
-- [[#folding][folding]]
-- [[#formatting][formatting]]
-- [[#gtags][gtags]]
-- [[#latex][latex]]
-- [[#lookup][lookup]]
-- [[#lsp][lsp]]
-- [[#magit][magit]]
-- [[#magit-time-tracking][magit: time tracking]]
-- [[#magit-tagged-commits][magit: tagged commits]]
-- [[#markdown][markdown]]
-- [[#org][org]]
-- [[#projectile][projectile]]
-- [[#python][python]]
-- [[#react--web][react & web]]
-- [[#ruby][ruby]]
-- [[#rust][rust]]
-- [[#smartparens][smartparens]]
-- [[#treesitter][treesitter]]
-- [[#typopunct][typopunct]]
-- [[#webkit][webkit]]
-- [[#word-chars][word chars]]
-- [[#workspaces][workspaces]]
-- [[#yankee][yankee]]
-- [[#yasnippet][yasnippet]]
-- [[#hacks][hacks]]
-
 * +general
 
 See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lisp/demos.org][API Demos]] for examples.
