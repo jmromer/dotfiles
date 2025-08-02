@@ -18,7 +18,7 @@ source "${HOME}/.dotfiles/env/setup.sh"
 
 # disable to prevent /etc/profile from overwriting
 # possible replacement: https://github.com/yb66/path_helper
-if [ -x /usr/libexec/path_helper ]; then
-  function noop () { }
-  alias '/usr/libexec/path_helper'=noop
-fi
+# if [ -x /usr/libexec/path_helper ]; then
+#   function noop () { }
+#   alias '/usr/libexec/path_helper'=noop
+# fi
