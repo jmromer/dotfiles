@@ -85,8 +85,8 @@ alias resign-xcode="sudo codesign -f -s ${USER} /Applications/Xcode.app"  # Re-s
 alias pp='pretty-print-path'  # Pretty-print PATH variable
 alias b='bundle'              # Shortcut for bundle (Ruby)
 
-alias vi='\vim -U $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'  # Vim with minimal config
-alias vin='\vim -U NONE'     # Vim with no config
+alias vi='vim -u $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'  # Vim with minimal config
+alias vin='vim -u NONE'      # Vim with no config
 alias vim='nvim'             # Alias vim to neovim
 
 # 3. Environment Variables
