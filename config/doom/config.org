@@ -131,7 +131,9 @@ Use base background for org-mode source blocks
   (add-hook! org-mode #'+config:fix-org-backgrounds))
 #+end_src
 
-Toggle light/dark theme based on the current OS setting.
+[emacs-plus] Toggle light/dark theme based on the current OS setting.
+https://github.com/d12frosted/homebrew-emacs-plus/blob/master/patches/emacs-28/system-appearance.patch
+
 #+begin_src elisp
 (defun +config:set-preferred-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
@@ -1362,7 +1364,7 @@ If in an evil visual state, wrap the current selection in math mode."
 
 (defun auto-revert-mode-pdf-view-refresh ()
   "Enable auto-revert-mode and refresh display for PDF buffers."
-  (add-hook 'auto-revert-hook 'refresh-pdf-buffer-display nil t))
+  (add-hook! auto-revert-mode 'refresh-pdf-buffer-display nil t))
 
 (setq auto-revert-interval 1)
 (setq auto-revert-verbose nil)
@@ -1864,7 +1866,7 @@ See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/
           :desc "toggle checkbox"            "x"  #'org-toggle-checkbox
           :desc "insert template"         :n "s" #'org-insert-structure-template))
 
-  (add-hook! 'org-mode-hook :append #'+config:keybindings:org-mode))
+  (add-hook! org-mode :append #'+config:keybindings:org-mode))
 #+end_src
 
 ** file paths
@@ -3077,7 +3079,7 @@ Open on main org todo doc.
 (defun +open-org-todos ()
   "Open the main Org mode file in the main workspace."
   (find-file (format "%s/%s" (getenv "ORG_HOME") +org-capture-todo-file)))
-(add-hook 'emacs-startup-hook #'+open-org-todos)
+(add-hook! emacs-startup #'+open-org-todos)
 #+end_src
 
 Open a new draft buffer.
