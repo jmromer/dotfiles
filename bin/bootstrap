@@ -25,13 +25,12 @@ setup :emacs_plus do
   ]
 end
 
-setup :emacs_mac do
+setup :emacs_mac, default: false do
   brew_tap "railwaycat/emacsmacport"
   brew_install :emacs_mac, options: %i[
     with_emacs_big_sur_icon
     with_imagemagick
     with_librsvg
-    with_mac_metal
     with_native_compilation
     with_no_title_bars
     with_starter
@@ -41,7 +40,6 @@ end
 
 setup :editors do
 
-  brew_install :macvim
   brew_install :neovim
   cask_install :marked
   cask_install :obsidian
