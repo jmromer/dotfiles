@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Script to clean up text and pipe to nvim with custom pager config
+# Usage: cat file.txt | vimless
+# Or: vimless < file.txt
+
+if [ -z "${XDG_CONFIG_HOME}" ]; then
+  echo "Error: ${XDG_CONFIG_HOME} not set in $0"
+  exit 1
+fi
+
+# Set the custom vimrc path
+VIMRC_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc.pager.vim"
+
+# Process stdin: strip leading line numbers, trailing whitespace, and final newlines
+sed -E 's/^[[:space:]]*[0-9]+[[:space:]]*//g' |\
+sed 's/[[:space:]]*$//' |\
+awk 'BEGIN{RS="\n"; ORS="\n"} /./ {lines[++n] = $0} END {for(i=1; i<=n; i++) print lines[i]}' |\
+nvim -u "$VIMRC_PATH" -
