@@ -76,6 +76,31 @@ Start Emacs maximized.
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
+The first number is the transparency when the frame is focused, the second when
+unfocused. Values range from 0 (completely transparent) to 100 (opaque).
+#+begin_src elisp
+(set-frame-parameter (selected-frame) 'alpha '(98 . 95))
+(add-to-list 'default-frame-alist '(alpha . (98 . 95)))
+#+end_src
+
+Use terminal background instead of theme background
+#+begin_src elisp
+(unless (display-graphic-p)
+  (custom-set-faces! '(default :background "unspecified-bg")))
+#+end_src
+
+Use base background for org-mode source blocks
+#+begin_src elisp
+(after! org
+    (set-face-background 'org-block "unspecified-bg")
+    (set-face-background 'org-block-begin-line "unspecified-bg")
+    (set-face-background 'org-block-end-line "unspecified-bg")
+    (set-face-background 'org-code "unspecified-bg")
+    (set-face-background 'org-verbatim "unspecified-bg")
+    (set-face-background 'org-quote "unspecified-bg")
+    (set-face-background 'org-verse "unspecified-bg"))
+#+end_src
+
 Toggle light/dark theme based on the current OS setting.
 #+begin_src elisp
 (defun +set-preferred-theme (appearance)
@@ -89,7 +114,6 @@ Toggle light/dark theme based on the current OS setting.
 #+end_src
 
 Tell =ispell= to shut up.
-
 #+begin_src elisp
 (advice-add 'ispell-lookup-words :around
             (lambda (orig &rest args)
