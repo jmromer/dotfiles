@@ -375,6 +375,10 @@ Allow remembering risky local variables.
   (add-to-list '+word-wrap-disabled-modes mode))
 
 (+global-word-wrap-mode)
+
+(defun +disable-word-wrap ()
+  (+word-wrap-mode -1))
+(add-hook! org-mode #'+disable-word-wrap)
 #+end_src
 
 * +utilities
