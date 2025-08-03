@@ -133,14 +133,14 @@ Use base background for org-mode source blocks
 
 Toggle light/dark theme based on the current OS setting.
 #+begin_src elisp
-(defun +set-preferred-theme (appearance)
+(defun +config:set-preferred-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme 'doom-one-light t))
     ('dark (load-theme 'doom-one t))))
 
-(add-hook 'ns-system-appearance-change-functions #'+set-preferred-theme)
+(add-hook 'ns-system-appearance-change-functions #'+config:set-preferred-theme)
 #+end_src
 
 Tell =ispell= to shut up.
@@ -362,13 +362,13 @@ Allow remembering risky local variables.
 #+end_src
 
 #+begin_src elisp
-(defun +enable-continuous-word-count ()
+(defun +config:enable-continuous-word-count ()
   (interactive)
   (if (member major-mode doom-modeline-continuous-word-count-modes)
       (setq doom-modeline-enable-word-count (not doom-modeline-enable-word-count))
     (error (format "`%s' not in `doom-modeline-continuous-word-count-modes'" major-mode))))
 
-(map! :leader :prefix "t" :desc "Word count" "W" #'+enable-continuous-word-count)
+(map! :leader :prefix "t" :desc "Word count" "W" #'+config:enable-continuous-word-count)
 #+end_src
 
 ** tmux-ish keybindings
@@ -406,9 +406,9 @@ Allow remembering risky local variables.
 
 (+global-word-wrap-mode)
 
-(defun +disable-word-wrap ()
+(defun +config:disable-word-wrap ()
   (+word-wrap-mode -1))
-(add-hook! org-mode #'+disable-word-wrap)
+(add-hook! org-mode #'+config:disable-word-wrap)
 #+end_src
 
 * +utilities
