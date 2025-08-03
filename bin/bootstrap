@@ -16,13 +16,28 @@ setup :homebrew do
   install_homebrew
 end
 
-# rubocop:disable Layout/ArgumentAlignment
-setup :emacs do
+setup :emacs_plus do
   brew_tap "d12frosted/emacs-plus"
-  brew_install :emacs_plus,
-    options: %i[with_dbus with_imagemagick with_compress_install with_xwidgets]
+  brew_install :emacs_plus, options: %i[
+    with_compress_install
+    with_imagemagick
+    with_xwidgets
+  ]
 end
-# rubocop:enable Layout/ArgumentAlignment
+
+setup :emacs_mac do
+  brew_tap "railwaycat/emacsmacport"
+  brew_install :emacs_mac, options: %i[
+    with_emacs_big_sur_icon
+    with_imagemagick
+    with_librsvg
+    with_mac_metal
+    with_native_compilation
+    with_no_title_bars
+    with_starter
+    with_xwidgets
+  ]
+end
 
 setup :editors do
 
