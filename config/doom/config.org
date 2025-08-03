@@ -15,6 +15,7 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
 
 ** select-enable-clipboard
 
+ TODO: Provide a command for this and set to nil
 #+begin_src elisp
 (setq select-enable-clipboard t)
 #+end_src
@@ -22,9 +23,11 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
 ** which-key
 
 #+begin_src elisp
-(setq which-key-idle-delay 1
-      which-key-idle-secondary-delay 0.5)
+(setq
+ which-key-idle-delay 0.15
+ which-key-idle-secondary-delay 0.1)
 #+end_src
+
 
 ** literate config
 
@@ -256,7 +259,7 @@ Disable line-numbering in org and markdown modes
 
 ** scrolling
 
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (defun scroll-other-window-up ()
   "Scroll the other window up."
   (interactive)
@@ -304,23 +307,21 @@ Some general purpose super-key keybindings.
 #+end_src
 
 Meta variants for terminal emacs:
-
 #+begin_src elisp
-(setq mac-right-option-modifier 'meta)
-(setq mac-option-modifier 'meta)
-#+end_src
+(unless (display-graphic-p)
+  (setq mac-right-option-modifier 'meta)
+  (setq mac-option-modifier 'meta)
 
-#+begin_src elisp
-   (map! :desc "pwd vterm"     "M-'"   #'vterm-other-window
-         :desc "project vterm" "M-\""  #'+vterm/toggle
-         :desc "full vterm"    "M-C-'" #'(lambda () (interactive) (+vterm/here t))
-         "M-K"   #'kill-current-buffer
-         "M-k"   #'bury-buffer
-         "M-f"   #'avy-goto-char-2
-         "M-F"   #'avy-goto-char-timer
-         "M-n"   #'org-capture
-         "M-N"   #'org-projectile-project-todo-completing-read
-  "<M-escape>"   #'evil-escape)
+  (map! :desc "pwd vterm"     "M-'"   #'vterm-other-window
+        :desc "project vterm" "M-\""  #'+vterm/toggle
+        :desc "full vterm"    "M-C-'" #'(lambda () (interactive) (+vterm/here t))
+        "M-K"   #'kill-current-buffer
+        "M-k"   #'bury-buffer
+        "M-f"   #'avy-goto-char-2
+        "M-F"   #'avy-goto-char-timer
+        "M-n"   #'org-capture
+        "M-N"   #'org-projectile-project-todo-completing-read
+        "<M-escape>"   #'evil-escape))
 #+end_src
 
 ** identity
