@@ -35,6 +35,8 @@ setup_ruby() {
   gem install \
     --update-sources \
     $(cat ${XDG_CONFIG_HOME}/mise/default-libraries-ruby | tr '\n' ' ')
+  ln -sf "${MISE_DIR}/shims/andyw8_seeing_is_believing" \
+    "${XDG_SECURE_DIR}/bin/seeing_is_believing"
 }
 
 setup_system_ruby() {
@@ -42,7 +44,9 @@ setup_system_ruby() {
     --user \
     --update-sources \
     $(cat ${XDG_CONFIG_HOME}/mise/default-libraries-ruby | tr '\n' ' ')
-  gem specific_install -l https://github.com/JoshCheek/seeing_is_believing
+  # gem specific_install -l https://github.com/JoshCheek/seeing_is_believing
+  ln -sf "${MISE_DIR}/shims/andyw8_seeing_is_believing" \
+    "${XDG_SECURE_DIR}/bin/seeing_is_believing"
 }
 
 setup_javascript() {
