@@ -72,7 +72,7 @@ Use `--with-no-title-bars` flag instead
 
 Start Emacs maximized.
 (Disabled to let window manager handle it.)
-#+begin_src elisp :tangle no
+#+begin_src elisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
