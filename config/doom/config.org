@@ -45,9 +45,9 @@ Provide a command to trigger tangling manually.
 ** display
 
 #+begin_src elisp
-(setq doom-font (font-spec :family "Fira Code" :size 18)
-      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 20)
-      doom-big-font (font-spec :family "Fira Code" :size 24)
+(setq doom-font (font-spec :family "Source Code Pro Ligaturized" :size 18)
+      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 24)
+      doom-big-font (font-spec :family "Source Code Pro Ligaturized" :size 24)
       doom-theme 'doom-one
       display-line-numbers-type 'relative
       fancy-splash-image nil
@@ -64,17 +64,18 @@ Use the project name for the frame title, if available, otherwise the buffer nam
 #+end_src
 
 Hide the title bar
-#+begin_src elisp
+(Disabled for emacs-mac: Rectangle Pro can't control it without the title bar.)
+#+begin_src elisp :tangle no
 (add-to-list 'default-frame-alist '(undecorated . t))
 #+end_src
 
+Start Emacs maximized.
+(Disabled to let window manager handle it.)
 #+begin_src elisp :tangle no
-;; Start Emacs maximized.
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
 Toggle light/dark theme based on the current OS setting.
-
 #+begin_src elisp
 (defun +set-preferred-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
