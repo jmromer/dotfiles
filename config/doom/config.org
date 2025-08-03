@@ -94,10 +94,10 @@ Darken the base background slightly.
 (when (display-graphic-p)
   (defun +config:darken-background ()
     (let* ((default-bg (face-background 'default))
-           (darker-bg (doom-darken default-bg 0.25))) ; 25% darker
+           (darker-bg (doom-darken default-bg 0.1)))
       (set-face-background 'default darker-bg)))
-  (+config:darken-background) ;; Apply immediately
-  (add-hook! doom-load-theme #'+config:darken-background) ;; Also apply after theme changes
+  (+config:darken-background)
+  (add-hook! doom-load-theme #'+config:darken-background)
 nil)
 #+end_src
 
