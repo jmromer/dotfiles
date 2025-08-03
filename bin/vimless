@@ -16,4 +16,4 @@ VIMRC_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc.pager.vim"
 sed -E 's/^[[:space:]]*[0-9]+[[:space:]]*//g' |\
 sed 's/[[:space:]]*$//' |\
 awk 'BEGIN{RS="\n"; ORS="\n"} /./ {lines[++n] = $0} END {for(i=1; i<=n; i++) print lines[i]}' |\
-nvim -u "$VIMRC_PATH" -
+nvim -u "$VIMRC_PATH" -c 'normal Gzz' -
