@@ -46,7 +46,7 @@ Provide a command to trigger tangling manually.
 
 #+begin_src elisp
 (setq doom-font (font-spec :family "Source Code Pro Ligaturized" :size 18)
-      doom-variable-pitch-font (font-spec :family "SF Pro Display" :size 24)
+      doom-variable-pitch-font (font-spec :family "SF Pro" :weight 'light :size 24)
       doom-big-font (font-spec :family "Source Code Pro Ligaturized" :size 24)
       doom-theme 'doom-one
       display-line-numbers-type 'relative
