@@ -31,6 +31,7 @@
  hl-todo
  indent-guides
  modeline
+ (ligatures +extra)
  ;; nav-flash
  ophints
  (popup +all +defaults)
