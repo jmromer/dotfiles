@@ -1821,13 +1821,19 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 
 #+begin_src elisp
 (after! org
-  (setq org-agenda-files (list org-directory)
-        org-archive-location (concat  org-directory "/archive/%s::")
-        org-default-notes-file (format "%s/notes.org" org-directory)
+  (setq org-agenda-files
+        (list
+         (concat org-directory "/inbox.org")
+         (concat org-directory "/todo.org")
+         (concat org-directory "/planning.org")
+         (concat org-directory "/projects/")
+         (concat org-directory "/notes/"))
+        org-archive-location (concat org-directory "/archive/%s::")
+        org-default-notes-file (concat org-directory "/inbox.org")
         ;; the following are relative to `org-directory', unless absolute.
         +org-capture-changelog-file "changelog.org"
         +org-capture-journal-file (format "%s/journal.org.gpg" org-directory)
-        +org-capture-notes-file "notes.org"
+        +org-capture-notes-file "inbox.org"
         +org-capture-projects-file "projects.org"
         +org-capture-todo-file "todo.org"))
 #+end_src
