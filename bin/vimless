@@ -12,6 +12,11 @@ fi
 # Set the custom vimrc path
 VIMRC_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc.pager.vim"
 
+if [ ! -f "${VIMRC_PATH}" ]; then
+  echo "Error: ${VIMRC_PATH} not found"
+  exit 1
+fi
+
 # Process stdin: strip leading line numbers, trailing whitespace, and final newlines
 sed -E 's/^[[:space:]]*[0-9]+[[:space:]]*//g' |\
 sed 's/[[:space:]]*$//' |\
