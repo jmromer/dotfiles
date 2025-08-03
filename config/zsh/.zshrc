@@ -64,7 +64,7 @@ alias lld='ls -al -d .*'    # Long listing of hidden files/directories
 alias lt='eza --tree --level=3'  # Tree view up to 3 levels
 
 # 2.2 Safeguards
-alias rm='rm -i'            # Prompt before deletion
+alias rm='trash'            # Move to trash instead of deleting
 alias mv='mv -i'            # Prompt before overwriting on move
 alias cp='cp -i'            # Prompt before overwriting on copy
 alias ln='ln -iv'           # Verbose linking with error if link exists
