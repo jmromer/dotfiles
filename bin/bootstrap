@@ -66,13 +66,16 @@ setup :core_cli_tools do
   brew_install :gnu_which
   brew_install :gnupg
   brew_install :gnutls
+  brew_install :graphviz
   brew_install :grep
   brew_install :jo
   brew_install :jq
   brew_install :less
   brew_install :mas
   brew_install :parallel
+  brew_install :pngpaste
   brew_install :ripgrep
+  brew_install :shfmt
   brew_install :watch
   brew_install :wdiff
   brew_install :wget
