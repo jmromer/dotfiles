@@ -89,16 +89,46 @@ Use terminal background instead of theme background
   (custom-set-faces! '(default :background "unspecified-bg")))
 #+end_src
 
+Darken the base background slightly.
+#+begin_src elisp
+(when (display-graphic-p)
+  (defun +config:darken-background ()
+    (let* ((default-bg (face-background 'default))
+           (darker-bg (doom-darken default-bg 0.25))) ; 25% darker
+      (set-face-background 'default darker-bg)))
+  (+config:darken-background) ;; Apply immediately
+  (add-hook! doom-load-theme #'+config:darken-background) ;; Also apply after theme changes
+nil)
+#+end_src
+
 Use base background for org-mode source blocks
 #+begin_src elisp
 (after! org
-    (set-face-background 'org-block "unspecified-bg")
-    (set-face-background 'org-block-begin-line "unspecified-bg")
-    (set-face-background 'org-block-end-line "unspecified-bg")
-    (set-face-background 'org-code "unspecified-bg")
-    (set-face-background 'org-verbatim "unspecified-bg")
-    (set-face-background 'org-quote "unspecified-bg")
-    (set-face-background 'org-verse "unspecified-bg"))
+  (defun +config:fix-org-backgrounds ()
+    (if (display-graphic-p)
+        ;; For GUI Emacs - use the default background
+        (let ((default-bg (face-background 'default)))
+          (set-face-background 'org-block default-bg)
+          (set-face-background 'org-block-begin-line (doom-darken default-bg 0.10))
+          (set-face-background 'org-block-end-line default-bg)
+          (set-face-background 'org-code default-bg)
+          (set-face-background 'org-verbatim default-bg)
+          (set-face-background 'org-quote default-bg)
+          (set-face-background 'org-verse default-bg))
+      ;; For terminal Emacs
+      (set-face-background 'org-block "unspecified-bg")
+      (set-face-background 'org-block-begin-line "unspecified-bg")
+      (set-face-attribute 'org-block-begin-line nil :underline "gray25")
+      (set-face-background 'org-block-end-line "unspecified-bg")
+      (set-face-attribute 'org-block-end-line nil :underline nil)
+      (set-face-background 'org-code "unspecified-bg")
+      (set-face-background 'org-verbatim "unspecified-bg")
+      (set-face-background 'org-quote "unspecified-bg")
+      (set-face-background 'org-verse "unspecified-bg")))
+  (+config:fix-org-backgrounds) ;; Apply immediately
+  ;; Also apply after theme changes
+  (add-hook! doom-load-theme #'+config:fix-org-backgrounds)
+  (add-hook! org-mode #'+config:fix-org-backgrounds))
 #+end_src
 
 Toggle light/dark theme based on the current OS setting.
