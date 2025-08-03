@@ -71,7 +71,6 @@ state
 
 share/CMakeTools/
 share/anaconda/
-share/mise/
 share/delta/
 share/direnv/
 share/doomemacs/
@@ -82,10 +81,13 @@ share/ghc/
 share/heroku/
 share/ipython/
 share/iterm2/
+share/mise/
 share/npm/
 share/pd/
 share/pry/
 share/pyenv/
+share/rust/cargo/
+share/rust/rustup/
 share/spacemacs/
 share/tilt-dev/
 share/tmux/
