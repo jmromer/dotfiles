@@ -3,10 +3,10 @@ if [[ -z "${DOTFILES_DIR}" ]]; then
 fi
 
 # user-specific data locations
-export XDG_DATA_HOME="${DOTFILES_DIR}/share"     # data files (submodules)
-export XDG_CONFIG_HOME="${DOTFILES_DIR}/config"  # configuration files (also set in LaunchAgent)
-export XDG_STATE_HOME="${DOTFILES_DIR}/state"    # state files (logs, history, recently used files, current app state, etc)
-export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"    # ephemeral data files
+export XDG_DATA_HOME="${DOTFILES_DIR}/share"    # data files (submodules)
+export XDG_CONFIG_HOME="${DOTFILES_DIR}/config" # configuration files (also set in LaunchAgent)
+export XDG_STATE_HOME="${DOTFILES_DIR}/state"   # state files (logs, history, recently used files, current app state, etc)
+export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"   # ephemeral data files
 
 export XDG_RUNTIME_DIR="${DOTFILES_DIR}/sockets" # ephemeral runtime files (sockets, named pipes, etc)
 export XDG_LOCALS_DIR="${DOTFILES_DIR}/locals"   # un-synced, un-tracked dotfiles (not spec)
@@ -24,10 +24,13 @@ export AWS_CONFIG_FILE="${XDG_SECURE_DIR}/config/aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_SECURE_DIR}/config/aws/credentials"
 export BUNDLE_DEFAULT_INSTALL_USES_PATH="${XDG_CACHE_HOME}/bundler"
 export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundler"
+export CARGO_HOME="${XDG_DATA_HOME}/rust/cargo"
+export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
 export CUPS_CACHEDIR="${XDG_CONFIG_HOME}/cups"
 export CURLOPT_NETRC_FILE="${XDG_SECURE_DIR}/config/netrc"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export DOOMDIR="${XDG_CONFIG_HOME}/doom"
+export DOTNET_CLI_HOME="${XDG_DATA_HOME}/dotnet"
 export GEMRC="${XDG_CONFIG_HOME}/gem/gemrc"
 export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 export GNUPGHOME="${XDG_SECURE_DIR}/gnupg"
