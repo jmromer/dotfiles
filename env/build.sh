@@ -150,7 +150,7 @@ build_flags_set() {
         shift
         ;;
       ruby)
-        RUBY_CONFIGURE_OPTS+=" --enable-shared"
+        RUBY_CONFIGURE_OPTS+=" --disable-shared"
         RUBY_CONFIGURE_OPTS+=" --disable-libedit"
         RUBY_GC_MALLOC_LIMIT=60000000
         RUBY_GC_HEAP_FREE_SLOTS=200000
