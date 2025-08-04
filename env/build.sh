@@ -61,7 +61,7 @@ build_flags_set() {
   while [ $# -gt -1 ]; do
     case "$1" in
       --all)
-        set -- bison bzip2 clang++ clang gettext icu4c imagemagick libffi libxml2 llvm ncurses no-warnings openssl optimize3 readline ruby xcrun zlib
+        set -- bison bzip2 clang++ clang gettext icu4c imagemagick libffi libxml2 llvm ncurses openssl optimize3 readline ruby xcrun zlib
         shift
         ;;
       bison)
@@ -162,12 +162,6 @@ build_flags_set() {
         ;;
       clang|gcc*)
         CC="$1"
-        shift
-        ;;
-      no-warnings)
-        unset WARNFLAGS
-        WARNFLAGS+=" -w"         # Inhibit warnings
-        WARNFLAGS+=" -Wno-error" # Don't turn warnings into errors (override)
         shift
         ;;
       optimize*)
