@@ -140,10 +140,12 @@ https://github.com/d12frosted/homebrew-emacs-plus/blob/master/patches/emacs-28/s
 #+begin_src elisp
 (defun +config:set-preferred-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
-  (mapc #'disable-theme custom-enabled-themes)
-  (pcase appearance
-    ('light (load-theme 'doom-one-light t))
-    ('dark (load-theme 'doom-one t))))
+  (when (display-graphic-p)
+    (progn
+      (mapc #'disable-theme custom-enabled-themes)
+      (pcase appearance
+        ('light (load-theme 'doom-one-light t))
+        ('dark (load-theme 'doom-one t))))))
 
 (add-hook 'ns-system-appearance-change-functions #'+config:set-preferred-theme)
 #+end_src
