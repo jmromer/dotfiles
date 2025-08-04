@@ -81,10 +81,11 @@ build_flags_set() {
         shift
         ;;
       icu4c)
-        LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/icu4c/lib"
-        CFLAGS+=" -I${HOMEBREW_PREFIX}/opt/icu4c/include"
-        CPPFLAGS+=" -I${HOMEBREW_PREFIX}/opt/icu4c/include"
-        PKG_CONFIG_PATH+=":${HOMEBREW_PREFIX}/opt/icu4c/lib/pkgconfig"
+        ICU4C_VERSION="77"
+        LDFLAGS+=" -L${HOMEBREW_PREFIX}/opt/icu4c@${ICU4C_VERSION}/lib"
+        CFLAGS+=" -I${HOMEBREW_PREFIX}/opt/icu4c@${ICU4C_VERSION}/include"
+        CPPFLAGS+=" -I${HOMEBREW_PREFIX}/opt/icu4c@${ICU4C_VERSION}/include"
+        PKG_CONFIG_PATH+=":${HOMEBREW_PREFIX}/opt/icu4c@${ICU4C_VERSION}/lib/pkgconfig"
         shift
         ;;
       libffi)
