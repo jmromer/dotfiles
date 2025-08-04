@@ -1,0 +1,15 @@
+#!/bin/bash
+
+BLUE="\x1b[0;34m"
+BOLDBLK="\x1b[1;30m"
+CYAN="\x1b[0;36m"
+GREEN="\x1b[0;32m"
+PURPLE="\x1b[0;35m"
+RED="\x1b[0;31m"
+RESET="\x1b[0m"
+YELLOW="\x1b[33m"
+
+# Run gem and pipe output through sed for colorization
+${MISE_DIR}/shims/gem "$@" 2>&1 |
+  sed "s/Generating ctags .*/${BLUE}&${RESET}/" |
+  sed "s/Successfully installed .*/${GREEN}&${RESET}/"
