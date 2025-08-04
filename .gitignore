@@ -84,6 +84,7 @@ share/iterm2/
 share/less/
 share/mise/
 share/npm/
+share/ollama/
 share/pd/
 share/pry/
 share/pyenv/
