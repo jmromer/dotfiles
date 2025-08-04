@@ -29,7 +29,7 @@
  modeline
  doom-dashboard
  hl-todo
- indent-guides
+ ;; indent-guides
  modeline
  (ligatures +extra)
  ;; nav-flash
