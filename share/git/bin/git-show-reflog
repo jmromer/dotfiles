@@ -34,7 +34,15 @@ if [[ -z "$commit_shas" ]]; then
     exit 0
 fi
 
-echo | pbcopy
+if [[ "${MACHINE}" == "Linux" ]]; then
+  COPY="wl-copy -o"
+  PASTE="wl-paste -n"
+else
+  COPY=pbcopy
+  PASTE=pbpaste
+fi
+
+echo | ${COPY}
 
 for sha in $commit_shas; do
     git show --pretty=fuller "$sha"
@@ -42,6 +50,6 @@ for sha in $commit_shas; do
     read -n1 copy
 
     if [[ "$copy" == "y" ]]; then
-       echo "$(pbpaste) $sha" | pbcopy
+       echo "$(${PASTE}) $sha" | ${COPY}
     fi
 done
