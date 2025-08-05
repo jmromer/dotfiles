@@ -90,10 +90,8 @@
 
 [pager]
 	diff   = delta
-	log    = delta
 	stash  = delta
 	reflog = delta
-	show   = delta
 
 [delta]
 	plus-style   = "syntax #012800"
