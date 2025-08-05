@@ -34,7 +34,7 @@ if [[ -z "$commit_shas" ]]; then
     exit 0
 fi
 
-if [[ "${MACHINE}" == "Linux" ]]; then
+if [[ "${MACHINE}" == "linux" ]]; then
   COPY="wl-copy -o"
   PASTE="wl-paste -n"
 else

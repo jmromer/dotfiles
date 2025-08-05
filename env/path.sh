@@ -5,10 +5,10 @@
 PATH="${XDG_LOCALS_DIR}/bin"
 PATH+=":${DOTFILES_DIR}/bin"
 PATH+=":${XDG_SECURE_DIR}/bin"
+PATH+=":${DOTFILES_DIR}/scripts/git"
 
 PATH+=":${XDG_DATA_HOME}/mise/shims"
 PATH+=":${XDG_DATA_HOME}/fzf/bin"
-PATH+=":${XDG_DATA_HOME}/git/bin"
 PATH+=":${XDG_DATA_HOME}/doomemacs/bin"
 PATH+=":${XDG_DATA_HOME}/npm/bin"
 
