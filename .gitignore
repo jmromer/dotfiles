@@ -69,35 +69,9 @@ state
 
 # xdg: data directories
 
-share/CMakeTools/
-share/anaconda/
-share/delta/
-share/direnv/
-share/doomemacs/
-share/fzf
-share/gem/
-share/gh/
-share/ghc/
-share/heroku/
-share/ipython/
-share/iterm2/
-share/less/
-share/mise/
-share/npm/
-share/ollama/
-share/pd/
-share/pry/
-share/pyenv/
-share/rust/cargo/
-share/rust/rustup/
-share/spacemacs/
-share/terminfo/
-share/tilt-dev/
-share/tmux/
-share/vim/
-share/vim/plugged/
-share/yarn/
-share/zsh/
+/share/*
+!share/git_diet/
+!share/karabiner/
 
 # high-churn config files,
 # state files miscategorized as config
