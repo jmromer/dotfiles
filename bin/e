@@ -24,3 +24,5 @@ emacsclient \
     --quiet \
     --suppress-output \
     ${@:-.}
+
+reset
