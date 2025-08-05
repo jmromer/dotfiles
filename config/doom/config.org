@@ -764,16 +764,29 @@ Small improvement to =diff-hl-show-hunk-copy-original-text=.
 
 * dired
 
-From the normal state, Enter dired in the CWD of the current buffer's file with =-=.
+From the normal state:
+- Enter dired in the CWD of the current buffer's file with =-=
 
 #+begin_src elisp
-(map! :n "-" #'dired-jump)
+(defun +config:keybindings:dired-jump ()
+  (map! :n "-" #'dired-jump))
+(add-hook! prog-mode #'+config:keybindings:dired-jump)
+(add-hook! text-mode #'+config:keybindings:dired-jump)
+#+end_src
+
+From the normal state in dired mode:
+- Ensure quit with ZQ works
+
+#+begin_src elisp
+(defun +config:keybindings:dired ()
+  (map! :map dired-mode-map
+        :n "Z q" #'evil-quit
+        :localleader
+        :n "," #'casual-dired-tmenu))
+(add-hook! dired-mode #'+config:keybindings:dired)
 #+end_src
 
 #+begin_src elisp
-(map! :map dired-mode-map
-      :localleader
-      :n "," #'casual-dired-tmenu)
 #+end_src
 
 * evil
