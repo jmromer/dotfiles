@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+#
+# e
+#
+# Usage:
+#
+#   e [ARGS]
+#
+# Available Options:
+#
+#   -h      -- Usage instructions
+#
+
+set -e
+
+usage() {
+  grep '^#' <"$0" | tail -n +2 | cut -c 3-
+}
+
+emacsclient \
+    --alternate-editor="" \
+    --no-window-system \
+    --quiet \
+    --suppress-output \
+    ${@:-.}
