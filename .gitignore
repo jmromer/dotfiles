@@ -91,6 +91,7 @@ share/pyenv/
 share/rust/cargo/
 share/rust/rustup/
 share/spacemacs/
+share/terminfo/
 share/tilt-dev/
 share/tmux/
 share/vim/
