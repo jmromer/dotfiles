@@ -110,6 +110,10 @@ end
 
 # Shell commands
 # --------------
+def install_system_zshenv
+  zshenv = File.expand_path("#{DOTFILES_DIR}/env/system_zsh.sh")
+  execho("sudo cp #{zshenv} /etc/zshenv")
+end
 
 def install_launchagent(filename)
   FileUtils.mkdir_p(File.expand_path("~/Library/LaunchAgents/"))
