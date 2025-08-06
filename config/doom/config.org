@@ -1463,9 +1463,9 @@ Otherwise, assume the current file is the main doc."
 
 ** web searches
 
-Use xwidgets to browse online search results online.
+Use xwidgets to browse online search results online. (disabled)
 
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 #+end_src
 
@@ -1678,7 +1678,7 @@ Interactively, URL defaults to the string looking like a url around point."
       (xwidget-webkit-goto-url url))))
 #+end_src
 
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (setq browse-url-browser-function #'xwwp-browse-url)
 #+end_src
 
