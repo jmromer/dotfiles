@@ -50,11 +50,11 @@ setup_system_ruby() {
 }
 
 setup_javascript() {
-  npm install --update --global npm
-
-  while read -r package; do
-    npm install --update --global "${package}"
-  done < "${XDG_CONFIG_HOME}/mise/default-libraries-nodejs"
+  # reshim manually
+  export MISE_SKIP_RESHIM=1
+  npm install --global npm \
+    $(cat "${XDG_CONFIG_HOME}/mise/default-libraries-nodejs" | tr '\n' ' ')
+  mise reshim node
 }
 
 setup_python() {
