@@ -12,6 +12,7 @@ prettier-standard
 react-native-cli
 react-scaffolder
 stylelint
+tldr
 typescript
 typescript-formatter
 typescript-language-server
