@@ -8,9 +8,9 @@
 .emacs-profile
 .kube
 .netrc
+.ollama
 .spacemacs
 .spacemacs.env
 .ssh
 .tldrc
-.tool-versions
 .vscode
