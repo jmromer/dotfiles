@@ -1907,6 +1907,7 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
         (list
          (concat org-directory "/inbox.org")
          (concat org-directory "/todo.org")
+         (concat org-directory "/grind.org")
          (concat org-directory "/planning.org")
          (concat org-directory "/projects/")
          (concat org-directory "/notes/"))
