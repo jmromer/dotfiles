@@ -26,7 +26,20 @@ setlocal undolevels=1     " only one undo allowed
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set runtimepath=$VIMRUNTIME     " turn off user scripts, https://github.com/igrigorik/vimgolf/issues/129
 
+runtime xdg.vim
+
 " " disable event bindings used by augroups for syntax highlighting, etc.
 " set eventignore+=FileType
 " set eventignore+=VimEnter
 " set eventignore+=Syntax
+
+" tl: toggle line wrapping
+function! ToggleLineWrap()
+  if &wrap
+    setlocal nowrap
+  else
+    setlocal wrap
+  endif
+endfunction
+
+nnoremap <silent><leader>tw :call ToggleLineWrap()<cr>
