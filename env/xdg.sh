@@ -4,7 +4,6 @@ fi
 
 # user-specific data locations
 export XDG_DATA_HOME="${DOTFILES_DIR}/share"    # data files (submodules)
-export XDG_CONFIG_HOME="${DOTFILES_DIR}/config" # configuration files (also set in LaunchAgent)
 export XDG_STATE_HOME="${DOTFILES_DIR}/state"   # state files (logs, history, recently used files, current app state, etc)
 export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"   # ephemeral data files
 
