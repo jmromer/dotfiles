@@ -423,9 +423,9 @@ else
 fi
 
 # 10.3 Terminal Title
-# Set title to current dir and git branch (for terminals like zellij).
+# Set title to current dir
 set_title() {
-  print -Pn "\e]0;%~$(git_branch)\a"
+  print -Pn "\e]0;%~\a"
 }
 precmd_functions+=(set_title)
 
