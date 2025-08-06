@@ -35,11 +35,12 @@ export MACHINE
 export MACHINE_CORES
 export HOMEBREW_PREFIX
 
+# TODO: Relocate
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # XDG setup
 # -----------------------------
-export DOTFILES_DIR="${HOME}/.dotfiles"
+source "${DOTFILES_DIR}/env/system_zsh.sh"
 source "${DOTFILES_DIR}/env/xdg.sh"
 
 # Environment setup
