@@ -12,17 +12,30 @@
 #   -h      -- Usage instructions
 #
 
-set -e
-
 usage() {
   grep '^#' <"$0" | tail -n +2 | cut -c 3-
 }
+
+if [[ $# == 0 ]]; then
+  ARGS="$(
+    fzf \
+      --multi \
+      --tiebreak=index \
+      --layout=reverse \
+      --preview-window='right,75%,~1' \
+      --preview="bat --color=always {}"
+    )"
+fi
+
+if [[ -z "$ARGS" ]]; then
+  ARGS="${@:-.}"
+fi
 
 emacsclient \
     --alternate-editor="" \
     --no-window-system \
     --quiet \
     --suppress-output \
-    ${@:-.}
+    $ARGS
 
 reset
