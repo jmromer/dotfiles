@@ -786,9 +786,6 @@ From the normal state in dired mode:
 (add-hook! dired-mode #'+config:keybindings:dired)
 #+end_src
 
-#+begin_src elisp
-#+end_src
-
 * evil
 
 ** cursor mode indicators
