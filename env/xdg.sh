@@ -2,21 +2,6 @@ if [[ -z "${DOTFILES_DIR}" ]]; then
   echo "WARNING: DOTFILES_DIR env var is not set in ${0}"
 fi
 
-# user-specific data locations
-export XDG_DATA_HOME="${DOTFILES_DIR}/share"    # data files (submodules)
-export XDG_STATE_HOME="${DOTFILES_DIR}/state"   # state files (logs, history, recently used files, current app state, etc)
-export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"   # ephemeral data files
-
-export XDG_RUNTIME_DIR="${DOTFILES_DIR}/sockets" # ephemeral runtime files (sockets, named pipes, etc)
-export XDG_LOCALS_DIR="${DOTFILES_DIR}/locals"   # un-synced, un-tracked dotfiles (not spec)
-export XDG_SECURE_DIR="${DOTFILES_DIR}/secure"   # synced, tracked sensitive dotfiles (not spec)
-
-# base directories to search for data files in addition to the $XDG_DATA_HOME base directory.
-export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
-
-# base directories to search for configuration files in addition to the $XDG_CONFIG_HOME base directory.
-export XDG_CONFIG_DIRS="/etc/xdg"
-
 # export GEM_HOME="${XDG_STATE_HOME}/gem"
 # export NETRC="${XDG_SECURE_DIR}/config/netrc"
 
@@ -26,8 +11,6 @@ export BUNDLE_DEFAULT_INSTALL_USES_PATH="${XDG_CACHE_HOME}/bundler"
 export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundler"
 export CARGO_HOME="${XDG_DATA_HOME}/rust/cargo"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
-export CUPS_CACHEDIR="${XDG_CACHE_HOME}/cups"
-export CUPS_DATADIR="${XDG_DATA_HOME}/cups"
 export CURLOPT_NETRC_FILE="${XDG_SECURE_DIR}/config/netrc"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export DOOMDIR="${XDG_CONFIG_HOME}/doom"
