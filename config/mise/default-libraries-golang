@@ -5,7 +5,6 @@ github.com/godoctor/godoctor@latest
 github.com/haya14busa/gopkgs/cmd/gopkgs@latest
 github.com/jessfraz/dockfmt@latest
 github.com/josharian/impl@latest
-github.com/logrusorgru/aurora/v4@latest
 github.com/mdempsky/gocode@latest
 github.com/nsf/gocode@latest
 github.com/rogpeppe/godef@latest
