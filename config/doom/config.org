@@ -86,10 +86,11 @@ unfocused. Values range from 0 (completely transparent) to 100 (opaque).
 (add-to-list 'default-frame-alist '(alpha . (99 . 98)))
 #+end_src
 
-Use terminal background instead of theme background
+Omit background coloring in terminal emacs
 #+begin_src elisp
 (unless (display-graphic-p)
-  (custom-set-faces! '(default :background "unspecified-bg")))
+  (custom-set-faces! '(default :background "unspecified-bg"))
+  (set-face-background 'default "unspecified-bg"))
 #+end_src
 
 Darken the base background slightly.
@@ -1195,7 +1196,7 @@ If the prefix arg ARG is passed, delete the tags at project root."
 #+end_src
 
 #+begin_src elisp
-(defun +LaTeX-math-mode (displaymode-p)
+(defun +make-LaTeX-math-mode (displaymode-p)
   "If in evil normal state, wrap the current WORD in math mode.
 If in an evil visual state, wrap the current selection in math mode."
   (interactive "P")
@@ -1211,12 +1212,7 @@ If in an evil visual state, wrap the current selection in math mode."
         (insert "\\(  \\)")
         (goto-char (- (point) 3))
         (evil-insert 1)))
-    (let* ((selected-text
-            (if (evil-visual-state-p)
-                (string-trim (buffer-substring (mark) (point)))
-              (progn
-                (select-around-point-to-whitespace-or-delimiters)
-                (string-trim (buffer-substring (mark) (point))))))
+    (let* ((selected-text (+selected-text))
            (wrapped-text
             (if displaymode-p
                 (format "\\[%s\\]" selected-text)
@@ -1227,23 +1223,11 @@ If in an evil visual state, wrap the current selection in math mode."
 #+end_src
 
 #+begin_src elisp
-(defun +LaTeX-make-bold ()
+(defun +make-LaTeX-boxed ()
   (interactive)
-  (+LaTeX-wrap-in-cmd "textbf"))
+  (+wrap-in-LaTeX-cmd "boxed"))
 
-(defun +LaTeX-make-italic ()
-  (interactive)
-  (+LaTeX-wrap-in-cmd "textit"))
-
-(defun +LaTeX-make-underlined ()
-  (interactive)
-  (+LaTeX-wrap-in-cmd "underline"))
-
-(defun +LaTeX-boxed ()
-  (interactive)
-  (+LaTeX-wrap-in-cmd "boxed"))
-
-(defun +LaTeX-in-SI-units ()
+(defun +make-LaTeX-in-SI-units ()
   "Format the selected text with SI units in the buffer."
   (interactive)
   (let* ((selection (buffer-substring-no-properties (region-beginning) (region-end)))
@@ -1290,71 +1274,15 @@ If in an evil visual state, wrap the current selection in math mode."
       (insert (format "%s" result)))))
 #+end_src
 
-*** point-on-empty-line-p
-
-#+begin_src elisp
-(defun point-on-empty-line-p ()
-  "Return t if the point is on an empty line, nil otherwise."
-  (interactive)
-  (save-excursion
-    (beginning-of-line)
-    (looking-at-p "^\\s-*$")))
-#+end_src
-
-*** make selection between whitespace/delimiters
-
-#+begin_src elisp
-(defun select-around-point-to-whitespace-or-delimiters ()
-  "Select characters around the current point up to whitespace in both directions."
-  (interactive)
-  (let ((start (point))
-        (end (point)))
-    ;; Move start backward to the first whitespace or beginning of the buffer
-    (while (and (not (bobp))
-                (not (looking-back "\\s-\\|\n"))
-                (not (looking-back "[,;=]")))
-      (backward-char))
-    (setq start (point))
-
-    ;; Move end forward to the first whitespace or end of the buffer
-    (goto-char end)
-    (while (and (not (eobp))
-                (not (looking-at "\\s-\\|\n"))
-                (not (looking-at "[,;.]")))
-      (forward-char))
-    (setq end (point))
-
-    ;; Select the region
-    (set-mark start)
-    (goto-char end)
-    (activate-mark)))
-#+end_src
-
-*** wrap in command
-
-#+begin_src elisp
-(defun +LaTeX-wrap-in-cmd (cmd)
-  (interactive "sCommand: ")
-  (let ((selected-text
-         (if (evil-visual-state-p)
-             (string-trim (buffer-substring (mark) (point)))
-           (progn
-             (select-around-point-to-whitespace-or-delimiters)
-             (string-trim (buffer-substring (mark) (point)))))))
-    (progn
-      (kill-region (mark) (point))
-      (insert (format "\\%s{%s}" cmd selected-text)))))
-#+end_src
-
 ** Keybindings
 
 #+begin_src elisp
 (map! :map (LaTeX-mode-map latex-mode-map)
-      :desc "make bold"           :nv  "s-b" #'+LaTeX-make-bold
-      :desc "make italic"         :nv  "s-i" #'+LaTeX-make-italic
-      :desc "make underlined"     :nv  "s-u" #'+LaTeX-make-underlined
-      :desc "make math (inline)"  :nvi "C-l" #'+LaTeX-math-mode
-      :desc "make math (display)" :nvi "C-S-l" #'(lambda () (interactive) (+LaTeX-math-mode t)))
+      :desc "make bold"           :nv  "s-b" #'+make-text-bold
+      :desc "make italic"         :nv  "s-i" #'+make-text-italic
+      :desc "make underlined"     :nv  "s-u" #'+make-text-underlined
+      :desc "make math (inline)"  :nvi "C-l" #'+make-LaTeX-math-mode
+      :desc "make math (display)" :nvi "C-S-l" #'(lambda () (interactive) (+make-LaTeX-math-mode t)))
 #+end_src
 
 #+begin_src elisp
@@ -1454,6 +1382,124 @@ Otherwise, assume the current file is the main doc."
 (defun +LaTeX-open-with-skim ()
   (interactive)
   (+LaTeX-open-doc t))
+#+end_src
+
+* text utilities
+
+*** point-on-empty-line-p
+
+#+begin_src elisp
+(defun point-on-empty-line-p ()
+  "Return t if the point is on an empty line, nil otherwise."
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (looking-at-p "^\\s-*$")))
+#+end_src
+
+*** make selection between whitespace/delimiters
+
+#+begin_src elisp
+(defun select-around-point-to-whitespace-or-delimiters ()
+  "Select characters around the current point up to whitespace in both directions."
+  (interactive)
+  (let ((start (point))
+        (end (point)))
+    ;; Move start backward to the first whitespace or beginning of the buffer
+    (while (and (not (bobp))
+                (not (looking-back "\\s-\\|\n"))
+                (not (looking-back "[,;=]")))
+      (backward-char))
+    (setq start (point))
+
+    ;; Move end forward to the first whitespace or end of the buffer
+    (goto-char end)
+    (while (and (not (eobp))
+                (not (looking-at "\\s-\\|\n"))
+                (not (looking-at "[,;.]")))
+      (forward-char))
+    (setq end (point))
+
+    ;; Select the region
+    (set-mark start)
+    (goto-char end)
+    (activate-mark)))
+#+end_src
+
+*** text selection and delimiters
+
+#+begin_src elisp
+(defun +selected-text ()
+  (if (evil-visual-state-p)
+      (string-trim (buffer-substring (mark) (point)))
+    (progn
+      (select-around-point-to-whitespace-or-delimiters)
+      (string-trim (buffer-substring (mark) (point))))))
+
+(defun +delimit-with (char)
+  (let ((selected-text (+selected-text)))
+    (progn
+      (kill-region (mark) (point))
+      (insert (format "%s%s%s" char selected-text char)))))
+
+(defun +wrap-in-LaTeX-cmd (cmd)
+  (interactive "sCommand: ")
+  (let ((selected-text (+selected-text)))
+    (progn
+      (kill-region (mark) (point))
+      (insert (format "\\%s{%s}" cmd selected-text)))))
+#+end_src
+
+*** text formatting: LaTeX, Markdown, Org
+
+#+begin_src elisp
+(defun +make-text-bold ()
+  (interactive)
+  (pcase major-mode
+    ((or 'latex-mode 'LaTeX-mode)
+     (+wrap-in-LaTeX-cmd "textbf"))
+    ('org-mode
+     (+delimit-with "*"))
+    ((or 'markdown-mode 'gfm-mode)
+     (+delimit-with "**"))
+    (_
+     (message "Unrecognized mode: %s" major-mode))))
+
+(defun +make-text-italic ()
+  (interactive)
+  (pcase major-mode
+    ((or 'latex-mode 'LaTeX-mode)
+     (+wrap-in-LaTeX-cmd "textit"))
+    ('org-mode
+     (+delimit-with "/"))
+    ((or 'markdown-mode 'gfm-mode)
+     (+delimit-with "*"))
+    (_
+     (message "Unrecognized mode: %s" major-mode))))
+
+(defun +make-text-underlined ()
+  (interactive)
+  (pcase major-mode
+    ((or 'latex-mode 'LaTeX-mode)
+     (+wrap-in-LaTeX-cmd "underline"))
+    ('org-mode
+     (+delimit-with "_"))
+    ((or 'markdown-mode 'gfm-mode)
+     (+delimit-with "_"))
+    (_
+     (message "Unrecognized mode: %s" major-mode))))
+
+(defun +make-text-strikethrough ()
+  (interactive)
+  (pcase major-mode
+    ((or 'latex-mode 'LaTeX-mode)
+     (+wrap-in-LaTeX-cmd "sout"))
+    ('org-mode
+     (+delimit-with "+"))
+    ((or 'markdown-mode 'gfm-mode)
+     (+delimit-with "~~"))
+    (_
+     (message "Unrecognized mode: %s" major-mode))))
 #+end_src
 
 * lookup
@@ -1605,7 +1651,10 @@ Clear pre-installed keymaps and set cleaned up keymaps.
 
   (map! :map markdown-mode-map
         :ni "C-j" #'markdown-next-visible-heading
-        :ni "C-k" #'markdown-previous-visible-heading)
+        :ni "C-k" #'markdown-previous-visible-heading
+        :nvi  "s-b" #'+make-text-bold
+        :nvi  "s-i" #'+make-text-italic
+        :nvi  "s-u" #'+make-text-underlined)
 
   (map! :map markdown-mode-map
         :localleader
@@ -1639,6 +1688,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "strikethrough"       :nv "s"  #'markdown-insert-strike-through
         :desc "table"               :nv "t"  #'markdown-insert-table
         :desc "table of contents"   :nv "T"  #'markdown-toc-generate-or-refresh-toc
+        :desc "underline"           :nv "i"  #'make-text-underlined
         :desc "wiki link"           :nv "w"  #'markdown-insert-wiki-link
         :desc "hr"                  :nv "-"  #'markdown-insert-hr
         :desc "checkbox (gfm)"      :nv "["  #'markdown-insert-gfm-checkbox)
@@ -1860,7 +1910,10 @@ See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/
           :ni "s-S-RET"      #'org-insert-heading-above
           :ni "s-S-<return>" #'org-insert-heading-above
           :ni "s-C-RET"      #'org-insert-subheading-below
-          :ni "s-C-<return>" #'org-insert-subheading-below)
+          :ni "s-C-<return>" #'org-insert-subheading-below
+          :desc "make bold"           :nvi  "s-b" #'+make-text-bold
+          :desc "make italic"         :nvi  "s-i" #'+make-text-italic
+          :desc "make underlined"     :nvi  "s-u" #'+make-text-underlined)
 
     (map! :map org-mode-map
           :localleader
