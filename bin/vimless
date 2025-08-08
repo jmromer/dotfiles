@@ -17,8 +17,48 @@ if [ ! -f "${VIMRC_PATH}" ]; then
   exit 1
 fi
 
-# Process stdin: strip leading line numbers, trailing whitespace, and final newlines
-sed -E 's/^[[:space:]]*[0-9]+[[:space:]]*//g' |\
-sed 's/[[:space:]]*$//' |\
-awk 'BEGIN{RS="\n"; ORS="\n"} /./ {lines[++n] = $0} END {for(i=1; i<=n; i++) print lines[i]}' |\
-nvim -u "$VIMRC_PATH" -c 'normal Gzz' -
+strip_trailing_empty_lines() {
+  awk -v debug=0 -v pattern="" '
+    BEGIN {
+      if (debug) print "DEBUG: Starting processing" > "/dev/stderr"
+    }
+    {
+      # Store all lines in an array
+      lines[NR] = $0
+      if (debug) print "DEBUG: Line " NR ": \"" $0 "\"" > "/dev/stderr"
+    }
+    END {
+      if (NR == 0) {
+        if (debug) print "DEBUG: Input is empty, exiting" > "/dev/stderr"
+        exit
+      }
+      # Find the last non-empty line (considering whitespace-only as empty)
+      for (i = NR; i > 0; i--) {
+        if (lines[i] ~ /^[[:space:]]*$/) {
+          if (debug) print "DEBUG: Line " i " is empty or whitespace-only, skipping" > "/dev/stderr"
+          continue
+        }
+        last = i
+        if (debug) print "DEBUG: Found last non-empty line at " i > "/dev/stderr"
+        break
+      }
+      if (last == 0) {
+        if (debug) print "DEBUG: No non-empty lines found" > "/dev/stderr"
+        exit
+      }
+      # Print lines up to the last non-empty, optionally filtering by pattern
+      for (i = 1; i <= last; i++) {
+        if (pattern == "" || lines[i] ~ pattern) {
+          print lines[i]
+          if (debug) print "DEBUG: Printed line " i ": \"" lines[i] "\"" > "/dev/stderr"
+        } else if (debug) {
+          print "DEBUG: Line " i " skipped due to pattern mismatch" > "/dev/stderr"
+        }
+      }
+    }'
+}
+
+sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//g' | # strip leading line numbers
+  sed 's/[[:space:]]*$//' |                       # strip trailing whitespace
+  strip_trailing_empty_lines |
+  nvim -u "$VIMRC_PATH" -c 'normal Gzz' -
