@@ -1,16 +1,13 @@
 .aws
 .cache
-.config
 .continue
 .cpan
 .cpanm
-.cups
 .docker
 .emacs.d
 .gem
 .hex
 .lesshst
-.local
 .matplotlib
 .openjfx
 .parallel
