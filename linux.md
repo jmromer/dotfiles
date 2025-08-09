@@ -1,0 +1,81 @@
+## Apt
+
+```
+sudo apt install nvidia-cuda-toolkit wget kitty tmux vim gh
+```
+
+## Homebrew
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install gcc zsh cmake libtool delta usage
+```
+
+## xdg config
+
+```
+# /etc/zsh/zshenv: system-wide .zshenv file for zsh(1).
+```
+
+# keyboard delay and repeat interval
+# ----------------------------------
+gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 15
+
+## input-remapper-2
+
+https://github.com/sezanzeb/input-remapper
+```
+wget https://github.com/sezanzeb/input-remapper/releases/download/2.1.1/input-remapper-2.1.1.deb
+sudo apt install -f ./input-remapper-2.1.1.deb
+```
+
+## Ulauncher
+
+https://ulauncher.io
+
+```
+sudo add-apt-repository universe -y
+sudo add-apt-repository ppa:agornostal/ulauncher -y
+sudo apt update
+sudo apt install ulauncher
+```
+
+## Emacs
+
+```
+sudo add-apt-repository ppa:ubuntuhandbook1/emacs
+sudo apt update
+sudo apt install emacs emacs-gtk emacs-common
+```
+
+## Toshy [disable]
+
+Interferes with input remapper, might be causing instability.
+
+https://github.com/RedBearAK/toshy
+
+```
+bash -c "$(curl -L https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh || wget -O - https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh)"
+```
+
+## Flatpak
+
+```
+flatpak install extensionmanager
+```
+
+## Extensions
+
+Most not very useful:
+
+- Hide Top Bar
+- Just Perfection
+- Logo Menu
+- Open Bar
+- Space Bar
+- Tactile
+- TopHat
+- Undecorate Window
+- User Themes
+
