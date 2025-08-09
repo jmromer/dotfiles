@@ -17,48 +17,6 @@ setup :homebrew do
   install_homebrew
 end
 
-setup :emacs_plus do
-  brew_tap "d12frosted/emacs-plus"
-  brew_install :emacs_plus, options: %i[
-    with_compress_install
-    with_imagemagick
-    with_xwidgets
-  ]
-end
-
-setup :emacs_mac, default: false do
-  brew_tap "railwaycat/emacsmacport"
-  brew_install :emacs_mac, options: %i[
-    with_emacs_big_sur_icon
-    with_imagemagick
-    with_librsvg
-    with_native_compilation
-    with_no_title_bars
-    with_starter
-    with_xwidgets
-  ]
-end
-
-setup :editors do
-
-  brew_install :vim
-  cask_install :marked
-  cask_install :obsidian
-  cask_install :visual_studio_code
-  cask_install :zed
-
-end
-
-setup :mac_tools do
-
-  brew_install :osxutils
-  brew_install :pinentry_mac
-  brew_install :reattach_to_user_namespace
-  brew_install :trash
-  cask_install :karabiner_elements
-
-end
-
 setup :core_cli_tools do
 
   brew_install :binutils
@@ -117,58 +75,6 @@ setup :build_tools do
 
 end
 
-setup :gui_apps do
-
-  cask_install :alacritty
-  cask_install :appcleaner
-  cask_install :betterdisplay
-  cask_install :bettertouchtool
-  cask_install :brave_browser
-  cask_install :coderunner
-  cask_install :dash, version: 6
-  cask_install :google_chrome
-  cask_install :google_drive
-  cask_install :httpie
-  cask_install :keycastr
-  cask_install :kitty
-  cask_install :latexit
-  cask_install :launchbar
-  cask_install :launchcontrol
-  cask_install :launchpad_manager
-  cask_install :licecap
-  cask_install :lm_studio
-  cask_install :name_mangler
-  cask_install :onedrive
-  cask_install :pdfsam_basic
-  cask_install :rectangle_pro
-  cask_install :responsively
-  cask_install :screenflow
-  cask_install :skim
-  cask_install :tex_live_utility
-  cask_install :transmission
-  cask_install :vlc
-  cask_install :zoom
-  cask_install :zotero
-
-end
-
-setup :quick_look_viewers do
-
-  cask_install :jupyter_notebook_viewer, options: :no_quarantine
-  cask_install :qlmarkdown, options: :no_quarantine
-  cask_install :qlprettypatch, options: :no_quarantine
-  cask_install :qlstephen, options: :no_quarantine
-  cask_install :qlvideo, options: :no_quarantine
-  cask_install :quicklook_csv, options: :no_quarantine
-  cask_install :quicklook_json, options: :no_quarantine
-  cask_install :quicklookase, options: :no_quarantine
-  cask_install :suspicious_package, options: :no_quarantine
-  cask_install :syntax_highlight, options: :no_quarantine
-  cask_install :webpquicklook, options: :no_quarantine
-
-  reset_quicklookd
-end
-
 setup :development_tools do
 
   brew_install "extract_url"
@@ -193,9 +99,6 @@ setup :development_tools do
   brew_install :zsh
   brew_install :zsh_completions
 
-  brew_tap "heroku/brew"
-  brew_install :heroku
-
   brew_tap "romkatv/gitstatus"
   brew_install :gitstatus
 end
@@ -215,15 +118,104 @@ setup :text_editing_cli_tools do
 
 end
 
-setup :miscellaneous_cli_tools do
+if machine_is?(:apple)
+  setup :emacs_plus do
+    brew_tap "d12frosted/emacs-plus"
+    brew_install :emacs_plus, options: %i[
+      with_compress_install
+      with_imagemagick
+      with_xwidgets
+    ]
+  end
 
-  brew_install :defaultbrowser
-  brew_install :exercism
-  brew_install :llm
-  cask_install :ollama
+  setup :emacs_mac, default: false do
+    brew_tap "railwaycat/emacsmacport"
+    brew_install :emacs_mac, options: %i[
+      with_emacs_big_sur_icon
+      with_imagemagick
+      with_librsvg
+      with_native_compilation
+      with_no_title_bars
+      with_starter
+      with_xwidgets
+    ]
+  end
 
-  brew_tap "yt-dlp/taps"
-  brew_install :yt_dlp
+  setup :mac_tools do
+    brew_install :osxutils
+    brew_install :pinentry_mac
+    brew_install :reattach_to_user_namespace
+    brew_install :trash
+    brew_install :vim
+    cask_install :karabiner_elements
+    cask_install :marked
+    cask_install :obsidian
+    cask_install :visual_studio_code
+    cask_install :zed
+  end
+
+  setup :gui_apps do
+
+    cask_install :alacritty
+    cask_install :appcleaner
+    cask_install :betterdisplay
+    cask_install :bettertouchtool
+    cask_install :brave_browser
+    cask_install :coderunner
+    cask_install :dash, version: 6
+    cask_install :google_chrome
+    cask_install :google_drive
+    cask_install :httpie
+    cask_install :keycastr
+    cask_install :kitty
+    cask_install :latexit
+    cask_install :launchbar
+    cask_install :launchcontrol
+    cask_install :launchpad_manager
+    cask_install :licecap
+    cask_install :lm_studio
+    cask_install :name_mangler
+    cask_install :onedrive
+    cask_install :pdfsam_basic
+    cask_install :rectangle_pro
+    cask_install :responsively
+    cask_install :screenflow
+    cask_install :skim
+    cask_install :tex_live_utility
+    cask_install :transmission
+    cask_install :vlc
+    cask_install :zoom
+    cask_install :zotero
+
+  end
+
+  setup :miscellaneous_cli_tools do
+
+    brew_install :defaultbrowser
+    brew_install :exercism
+    brew_install :llm
+    cask_install :ollama
+
+    brew_tap "yt-dlp/taps"
+    brew_install :yt_dlp
+  end
+
+  setup :quick_look_viewers do
+
+    cask_install :jupyter_notebook_viewer, options: :no_quarantine
+    cask_install :qlmarkdown, options: :no_quarantine
+    cask_install :qlprettypatch, options: :no_quarantine
+    cask_install :qlstephen, options: :no_quarantine
+    cask_install :qlvideo, options: :no_quarantine
+    cask_install :quicklook_csv, options: :no_quarantine
+    cask_install :quicklook_json, options: :no_quarantine
+    cask_install :quicklookase, options: :no_quarantine
+    cask_install :suspicious_package, options: :no_quarantine
+    cask_install :syntax_highlight, options: :no_quarantine
+    cask_install :webpquicklook, options: :no_quarantine
+
+    reset_quicklookd
+  end
 end
 
 setup :doom_config do

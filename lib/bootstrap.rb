@@ -75,8 +75,7 @@ end
 def machine_is?(machine_type)
   arch = `uname -ps`
   case machine_type
-  when :apple_silicon then arch.match?(/^Darwin arm/)
-  when :mac, :intel_silicon then arch.match?(/^Darwin/)
+  when :apple then arch.match?(/^Darwin/)
   when :linux then arch.match?(/^Linux/)
   end
 end
@@ -85,6 +84,8 @@ end
 # -------------
 
 def ensure_xcode_is_set_up
+  return unless machine_is?(:apple)
+
   unless xcode_installed?
     puts "Please install Xcode before running this script."
     abort
@@ -111,11 +112,14 @@ end
 # Shell commands
 # --------------
 def install_system_zshenv
-  zshenv = File.expand_path("#{DOTFILES_DIR}/env/system_zsh.sh")
-  execho("sudo cp #{zshenv} /etc/zshenv")
+  zshenv = File.expand_path("#{DOTFILES_DIR}/env/xdg.core.sh")
+  target = machine_is?(:apple) ? "/etc/zshenv" : "/etc/zsh/zshenv"
+  execho("sudo cp #{zshenv} #{target}")
 end
 
 def install_launchagent(filename)
+  return unless machine_is?(:apple)
+
   FileUtils.mkdir_p(File.expand_path("~/Library/LaunchAgents/"))
   execho("ln -sfv ${DOTFILES_DIR}/launch_agents/#{filename}.plist ~/Library/LaunchAgents/#{filename}.plist")
   execho("launchctl unload ~/Library/LaunchAgents/#{filename}.plist 2>/dev/null")
@@ -123,7 +127,7 @@ def install_launchagent(filename)
 end
 
 def reset_quicklookd
-  execho("qlmanage -r")
+  execho("qlmanage -r") if machine_is?(:apple)
 end
 
 def script_install(name)
@@ -141,16 +145,14 @@ def command_exists?(command)
 end
 
 def ensure_gpg_permissions_are_set_correctly
-  system(ENVIRONMENT, "chmod 600 ${XDG_SECURE_DIR}/gnupg/*")
-  system(ENVIRONMENT, "chmod 700 ${XDG_SECURE_DIR}/gnupg")
+  system(ENVIRONMENT, "chmod 600 ${GNUPGHOME}/gnupg/*")
+  system(ENVIRONMENT, "chmod 700 ${GNUPGHOME}/gnupg")
 end
 
 def ensure_locals_are_created
   system(ENVIRONMENT, "mkdir -p ${XDG_LOCALS_DIR}/bin")
   system(ENVIRONMENT, "mkdir -p ${XDG_LOCALS_DIR}/config")
-  return unless machine_is?(:mac)
-
-  system(ENVIRONMENT, "ln -sf ${HOMEBREW_PREFIX}/bin/pinentry-mac ${XDG_LOCALS_DIR}/bin/")
+  system(ENVIRONMENT, "sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
 end
 
 # Homebrew-related commands
@@ -187,6 +189,7 @@ def brew_install(package, version: nil, options: [])
 end
 
 def cask_install(package_name, version: nil, options: [])
+  return unless machine_is?(:apple)
   brew_install(package_name, version: version, options: [:cask, *options])
 end
 
@@ -218,10 +221,31 @@ end
 
 # Debug mode
 # ----------
+DARK_GRAY = "\e[90m"
+RESET     = "\e[0m"
+DEBUG_ENV = ENV["DEBUG_ENV"]
+
 if (IN_DEBUG_MODE = ARGV.delete("--debug").to_s.eql?("--debug"))
   puts "-*- Running in debug mode -*-"
-  def execho(*args); system(ENVIRONMENT, *args); end
-  def system(*args); puts(*args); true; end
+
+  def env_debug(env_hash)
+    [DARK_GRAY, env_hash.map { |k, v| "#{k}=#{v}" }.join("\n"), RESET].join
+  end
+
+  def execho(*args)
+    system(ENVIRONMENT, *args)
+  end
+
+  def system(*args)
+    if args.first.is_a?(Hash) and DEBUG_ENV
+      puts(env_debug(args.first), *args[1..])
+    elsif args.first.is_a?(Hash)
+      puts(*args[1..])
+    else
+      puts(*args)
+    end
+    true
+  end
 end
 
 # Constants
@@ -231,7 +255,7 @@ DOTFILES_DIR = File.dirname(File.dirname(__FILE__))
 HOMEBREW_PREFIX = '/opt/homebrew'
 
 ENVIRONMENT =
-  `zsh -c ". #{DOTFILES_DIR}/config/zsh/.zshenv && env | grep -E '^(XDG_|MISE_|PATH)'"`
+  `zsh -c ". #{DOTFILES_DIR}/config/zsh/zshenv && env | grep -E '^(XDG_|MISE_|PATH)'"`
   .strip
   .split("\n")
   .map { |line| line.split("=") }
@@ -241,7 +265,7 @@ ENVIRONMENT =
   .sort_by(&:first)
   .to_h
   .freeze
-  .tap { |env| puts "-" * 60, env.map { |e| e.join("=") }, "-" * 60 if IN_DEBUG_MODE }
+  .tap { |env| puts "-" * 60, env_debug(env), "-" * 60 if IN_DEBUG_MODE }
 
 BREW_INSTALLED_FORMULAS =
   `brew list -1 --formula 2>/dev/null`.strip.split("\n").to_set.freeze
