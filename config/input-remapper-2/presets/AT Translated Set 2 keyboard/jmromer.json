@@ -1,0 +1,75 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 56,
+                "origin_hash": "18ab2ccaa82365e4b599de26f5f8fce3"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Super_L",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 125,
+                "origin_hash": "18ab2ccaa82365e4b599de26f5f8fce3"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Alt_L",
+        "name": "",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 58,
+                "origin_hash": "18ab2ccaa82365e4b599de26f5f8fce3"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Control_L",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 100,
+                "origin_hash": "18ab2ccaa82365e4b599de26f5f8fce3"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Escape",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 97,
+                "origin_hash": "18ab2ccaa82365e4b599de26f5f8fce3"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Alt_R",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 29,
+                "origin_hash": "18ab2ccaa82365e4b599de26f5f8fce3"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Caps_Lock",
+        "mapping_type": "key_macro"
+    }
+]
