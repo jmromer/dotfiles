@@ -16,10 +16,11 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export CUPS_CACHEDIR="${XDG_CACHE_HOME}/cups"
 export CUPS_DATADIR="${XDG_DATA_HOME}/cups"
 
+XDG_DATA_DIRS="/usr/local/share:/usr/share/"
+
 if [[ "${MACHINE}" == "linux" ]]; then
-  XDG_DATA_DIRS="/var/lib/flatpak/exports/share:${XDG_DATA_HOME}/flatpak/exports/share"
-else
-  XDG_DATA_DIRS="/usr/local/share:/usr/share/"
+  XDG_DATA_DIRS+=":/var/lib/flatpak/exports/share"
+  XDG_DATA_DIRS+=":${XDG_DATA_HOME}/flatpak/exports/share"
 fi
 
 export XDG_DATA_DIRS
