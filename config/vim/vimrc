@@ -347,15 +347,18 @@ nnoremap <C-c><C-k> :q!<CR>
 nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>bD :bdelete!<CR>
 
+"--------------------------------------------------------------
+" TODO: Branch here
+"--------------------------------------------------------------
 " c: copy visual selection to system clipboard
-vnoremap <leader>c "*y
+vnoremap <leader>c "+y
 
 " x: cut visual selection to system clipboard
-vnoremap <leader>x "*d
+vnoremap <leader>x "+d
 
 " v: paste from system clipboard
-nnoremap <leader>v :set paste<CR>i<ESC>"*p:set nopaste<CR>
-vnoremap <leader>v d:set paste<CR>i<ESC>"*p:set nopaste<CR>
+nnoremap <leader>v :set paste<CR>i<ESC>"+p:set nopaste<CR>
+vnoremap <leader>v d:set paste<CR>i<ESC>"+p:set nopaste<CR>
 
 
 "--------------------------------------------------------------
@@ -585,4 +588,3 @@ let g:fzf_colors =
 if filereadable(expand('$DOTFILES_DIR/local/config/vim/vimrc'))
   source $DOTFILES_DIR/local/config/vim/vimrc
 endif
-
