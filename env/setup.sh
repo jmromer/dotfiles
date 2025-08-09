@@ -35,8 +35,8 @@ export HOMEBREW_PREFIX
 
 # XDG setup
 # -----------------------------
-source "${DOTFILES_DIR}/env/system_zsh.sh"
-source "${DOTFILES_DIR}/env/xdg.sh"
+source "${DOTFILES_DIR}/env/xdg.core.sh"
+source "${DOTFILES_DIR}/env/xdg.apps.sh"
 
 # Environment setup
 # -----------------------------

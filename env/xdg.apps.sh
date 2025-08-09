@@ -1,9 +1,9 @@
-if [[ -z "${DOTFILES_DIR}" ]]; then
-  echo "WARNING: DOTFILES_DIR env var is not set in ${0}"
-fi
-
-# export GEM_HOME="${XDG_STATE_HOME}/gem"
-# export NETRC="${XDG_SECURE_DIR}/config/netrc"
+[[ -z "${DOTFILES_DIR}" ]]    && echo "WARNING: DOTFILES_DIR env var is not set in ${0}"
+[[ -z "${XDG_CACHE_HOME}" ]]  && echo "WARNING: XDG_CACHE_HOME is not set in ${0}"
+[[ -z "${XDG_CONFIG_HOME}" ]] && echo "WARNING: XDG_CONFIG_HOME is not set in ${0}"
+[[ -z "${XDG_DATA_HOME}" ]]   && echo "WARNING: XDG_DATA_HOME is not set in ${0}"
+[[ -z "${XDG_SECURE_DIR}" ]]  && echo "WARNING: XDG_SECURE_DIR is not set in ${0}"
+[[ -z "${XDG_STATE_HOME}" ]]  && echo "WARNING: XDG_STATE_HOME is not set in ${0}"
 
 export AWS_CONFIG_FILE="${XDG_SECURE_DIR}/config/aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_SECURE_DIR}/config/aws/credentials"
