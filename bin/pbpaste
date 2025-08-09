@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case "${MACHINE}" in
+  linux)
+    xclip -selection clipboard -out
+  ;;
+  apple|intel-mac)
+    /usr/bin/pbcopy
+  ;;
+esac
