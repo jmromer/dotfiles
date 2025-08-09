@@ -3,6 +3,7 @@ set nocompatible
 filetype plugin indent on
 scriptencoding utf-8
 set fileencodings=utf-8
+set encoding=utf-8
 
 " Suppress 'Pattern not found' messages
 set shortmess+=c

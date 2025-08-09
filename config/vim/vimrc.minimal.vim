@@ -1,6 +1,7 @@
 filetype plugin indent on
 scriptencoding utf-8
 set fileencodings=utf-8
+set encoding=utf-8
 
 set scrolloff=3         " keep 3 lines when scrolling
 set autoindent          " set auto-indenting on for programming
