@@ -41,7 +41,7 @@ end
 
 setup :editors do
 
-  brew_install :neovim
+  brew_install :vim
   cask_install :marked
   cask_install :obsidian
   cask_install :visual_studio_code

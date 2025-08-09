@@ -87,15 +87,14 @@ alias b='bundle'              # Shortcut for bundle (Ruby)
 
 alias vi='vim -u $XDG_CONFIG_HOME/vim/vimrc.minimal.vim'  # Vim with minimal config
 alias vin='vim -u NONE'      # Vim with no config
-alias vim='nvim'             # Alias vim to neovim
 
 # 3. Environment Variables
 # ------------------------
 # Set defaults for editor, pager, and less behavior.
 
 # 3.1 Editor and Pager
-export EDITOR="nvim"         # Default editor
-export PAGER="less"          # Default pager
+export EDITOR="vim"
+export PAGER="less"
 export LESSOPEN="| src-hilite-lesspipe.sh %s"  # Syntax highlighting for less
 export LESS=' --no-init --RAW-CONTROL-CHARS --quit-if-one-screen '  # Less options: no init, raw chars, quit if one screen
 
