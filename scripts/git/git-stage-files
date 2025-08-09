@@ -16,7 +16,7 @@ fi
 
 files="$(
   git status --porcelain            |
-    grep -E '^.[MD\?]'              |
+    grep -E '^.[MDT\?]'             |
     sed -E 's/.{2}\s\"?(.+)\"?/\1/' |
     tr -d '"'                       |
     sed -E 's/[\s[]]/\\ /g'
