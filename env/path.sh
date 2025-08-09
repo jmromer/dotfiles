@@ -30,11 +30,15 @@ PATH+=":${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight"
 PATH+=":${HOMEBREW_PREFIX}/bin"
 PATH+=":${HOMEBREW_PREFIX}/sbin"
 
-PATH+=":/usr/bin"
-PATH+=":/bin"
+PATH+=":${HOME}/.local/bin"
+PATH+=":/usr/local/sbin"
+PATH+=":/usr/local/bin"
 PATH+=":/usr/sbin"
+PATH+=":/usr/bin"
 PATH+=":/sbin"
+PATH+=":/bin"
 PATH+=":/Library/TeX/texbin"
+PATH+=":/snap/bin"
 
 export PATH
 
@@ -46,7 +50,6 @@ done
 # PATH+=":./node_modules/.bin"
 # PATH+=":${HOMEBREW_PREFIX}/opt/${OPENSSL:-openssl@1.1}/bin"
 # PATH+=":${HOMEBREW_PREFIX}/opt/libpq/bin"
-# PATH+=":/usr/local/bin" # some binaries use /usr/local/bin on Apple silicon
 # PATH+=":${HOME}/.docker/bin"
 #
 # Prefer BSD uname, becuase it reports m1 arch as 'arm'
@@ -54,3 +57,5 @@ done
 # if [[ -d "${HOMEBREW_PREFIX}/bin" ]]; then
 #   ln -sf /usr/bin/uname "${HOMEBREW_PREFIX}/bin/uname"
 # fi
+
+# eval "$(brew shellenv)"
