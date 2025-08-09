@@ -3469,6 +3469,13 @@ Add some yankee motions for evil mode.
 
 * hacks
 
+Workaround for an upstream bug. Linux emacs build with harfbuzz doesn't need ligature.el, so a
+=(void-function global-ligature-mode)= error ensues.
+#+begin_src elisp
+(if (string= (getenv "MACHINE") "linux")
+    (remove-hook 'doom-init-ui-hook #'global-ligature-mode))
+#+end_src
+
 TEMP: Restore missing org-eldoc function invoked when evaluating region
 
 #+begin_src elisp
