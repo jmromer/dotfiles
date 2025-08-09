@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Homebrew setup
 # -----------------------------
@@ -17,26 +17,21 @@ case "$(uname -ps)" in
   ;;
 esac
 
-if command -v /usr/sbin/sysctl >/dev/null; then
-  # n-1: http://archlever.blogspot.com/2013/09/lies-damned-lies-and-truths-backed-by.html
-  MACHINE_CORES=$(echo "$(/usr/sbin/sysctl -n hw.ncpu) - 1" | bc)
-
-  IN_ROSETTA="$(/usr/sbin/sysctl -in sysctl.proc_translated)"
-  if [ "${IN_ROSETTA:-0}" -eq "1" ]; then
-    MACHINE="apple"
-    HOMEBREW_PREFIX="/opt/homebrew"
+num_cores() {
+  if [[ "${MACHINE}" == "linux" ]]; then
+    nproc
+  elif command -v /usr/sbin/sysctl >/dev/null; then
+    /usr/sbin/sysctl -n hw.ncpu
+  else
+    echo 8
   fi
-else
-  MACHINE_CORES=8
-  echo "Warning: MACHINE_CORES set to default value of ${MACHINE_CORES}."
-fi
+}
+
+MACHINE_CORES=$(echo "$(num_cores) - 1" | bc)
 
 export MACHINE
 export MACHINE_CORES
 export HOMEBREW_PREFIX
-
-# TODO: Relocate
-[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # XDG setup
 # -----------------------------
@@ -46,7 +41,10 @@ source "${DOTFILES_DIR}/env/xdg.sh"
 # Environment setup
 # -----------------------------
 
-source "${DOTFILES_DIR}/env/build.sh"
+if [[ "${MACHINE}" == "apple" ]]; then
+  source "${DOTFILES_DIR}/env/build.sh"
+fi
+
 source "${DOTFILES_DIR}/env/bundler.sh"
 source "${DOTFILES_DIR}/env/docker.sh"
 source "${DOTFILES_DIR}/env/emacs.sh"
