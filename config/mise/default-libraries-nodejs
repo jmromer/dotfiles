@@ -6,7 +6,6 @@ dockerfile-language-server-nodejs
 js-beautify
 live-server
 marked
-neovim
 npm
 prettier-standard
 react-native-cli

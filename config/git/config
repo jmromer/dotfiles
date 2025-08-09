@@ -12,7 +12,7 @@
 
 [core]
 	autocrlf = input
-	editor   = nvim
+	editor   = vim
 	excludesfile = ~/.dotfiles/config/git/ignore
 
 [color "diff"]

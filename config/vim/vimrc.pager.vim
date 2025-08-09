@@ -50,7 +50,7 @@ let @/ = ''       " clear the search register
 set nowrap
 
 " Rebind 'q' in normal mode to quit fast (like ZQ / less)
-nnoremap q :q!<CR>
+nnoremap q :q!  " intentional CR literal
 
 " Rebind 'y' to copy to system clipboard
 nnoremap y "+y

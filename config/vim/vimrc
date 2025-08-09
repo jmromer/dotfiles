@@ -14,16 +14,7 @@ set runtimepath+=$VIM,$VIMRUNTIME
 
 runtime xdg.vim
 
-"--------------------------------------------------------------
-" NeoVim
-"--------------------------------------------------------------
-let g:perl_host_prog = '/Users/jmromer/.dotfiles/share/mise/shims/perl'
-
-if !has('nvim')
-  set viminfofile=~/.dotfiles/cache/vim/viminfo
-else
-  set viminfofile=~/.dotfiles/cache/vim/nviminfo
-endif
+set viminfofile=~/.dotfiles/cache/vim/viminfo
 
 "--------------------------------------------------------------
 " Load Plugins
@@ -347,9 +338,6 @@ nnoremap <C-c><C-k> :q!<CR>
 nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>bD :bdelete!<CR>
 
-"--------------------------------------------------------------
-" TODO: Branch here
-"--------------------------------------------------------------
 " c: copy visual selection to system clipboard
 vnoremap <leader>c "+y
 
