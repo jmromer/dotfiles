@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+set -e
+
+if [[ "${MACHINE}" != "linux" ]]; then
+  echo "ERROR: MACHINE expected to be linux"
+  exit 1
+fi
+
+PARENT_DIR="${HOME}/.var/app/com.brave.Browser/config/BraveSoftware"
+APP_DIR="${PARENT_DIR}/Brave-Browser"
+
+if [[ ! -d "${APP_DIR}" ]]; then
+  echo "ERROR: ${APP_DIR} not found."
+  exit 1
+fi
+
+BACKUP_DIR="${HOME}/Dropbox/backups"
+BACKUP_FILE="brave_profiles_$(date +%Y-%m-%d_%H%M%S).zip"
+
+mkdir -p "${BACKUP_DIR}"
+
+printf "Backing up to: ${BACKUP_DIR}/${BACKUP_FILE} ..."
+
+cd "${PARENT_DIR}"
+
+zip -rq "${BACKUP_DIR}/${BACKUP_FILE}" "./Brave-Browser"
+
+printf "done.\n"
