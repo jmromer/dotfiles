@@ -58,6 +58,23 @@ https://github.com/RedBearAK/toshy
 ```
 bash -c "$(curl -L https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh || wget -O - https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh)"
 ```
+## Vim
+
+To build with clipboard support + GUI
+
+```
+sudo apt-get install libx11-dev libxt-dev libxpm-dev libgtk2.0-dev
+brew install --build-from-source ~/.dotfiles/scripts/vim.rb
+```
+
+Relevant flags for reference:
+```rb
+# . . .
+"--enable-gui=auto",
+"--with-x",
+"--with-feautures=huge",
+# . . .
+```
 
 ## Flatpak
 
