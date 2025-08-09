@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# TODO: Make idempotent
+
+if [[ "$MACHINE" != "linux" ]]; then
+  echo "This is intended to be run on a linux machine. For macOS, install using Homebrew Cask."
+  exit 0
+fi
+
+echo "Downloading Kitty installer ..."
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+echo "Linking kitty and kitten to ~/.local/bin ..."
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+
+echo "Copying the kitty.desktop file to ~/.local/share/applications ..."
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+
+echo "Setting up to open text and image files ..."
+# If you want to open text files and images in kitty via your file manager also
+# add the kitty-open.desktop file
+cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+
+# Update the paths to the kitty and its icon in the kitty desktop file(s)
+sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" \
+  ~/.local/share/applications/kitty*.desktop
+
+sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" \
+  ~/.local/share/applications/kitty*.desktop
+
+echo "Making kitty accessible as default terminal ..."
+# Make xdg-terminal-exec use kitty
+echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+
+echo 'Done! To bind a keyboard shortcut to launch kitty, use the full path: ~/.local/bin/kitty'
+
