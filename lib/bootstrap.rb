@@ -114,11 +114,23 @@ end
 def install_system_zshenv
   zshenv = File.expand_path("#{DOTFILES_DIR}/env/xdg.core.sh")
   target = machine_is?(:apple) ? "/etc/zshenv" : "/etc/zsh/zshenv"
+
+  if File.exist?("#{target}.pre_bootstrap")
+    return puts("System zshenv already set. Skipping.")
+  end
+
+  if File.exist?(target)
+    execho("sudo cp #{target} #{target}.pre_bootstrap")
+  else
+    execho("sudo touch #{target}.pre_bootstrap")
+  end
+
   execho("sudo cp #{zshenv} #{target}")
 end
 
 def install_launchagent(filename)
   return unless machine_is?(:apple)
+  return if File.exist?(File.expand_path("~/Library/LaunchAgents/#{filename}.plist"))
 
   FileUtils.mkdir_p(File.expand_path("~/Library/LaunchAgents/"))
   execho("ln -sfv ${DOTFILES_DIR}/launch_agents/#{filename}.plist ~/Library/LaunchAgents/#{filename}.plist")
@@ -145,14 +157,34 @@ def command_exists?(command)
 end
 
 def ensure_gpg_permissions_are_set_correctly
-  system(ENVIRONMENT, "chmod 600 ${GNUPGHOME}/gnupg/*")
-  system(ENVIRONMENT, "chmod 700 ${GNUPGHOME}/gnupg")
+  system(ENVIRONMENT, "chmod 600 ${GNUPGHOME}/*")
+  system(ENVIRONMENT, "chmod 700 ${GNUPGHOME}/")
 end
 
 def ensure_locals_are_created
-  system(ENVIRONMENT, "mkdir -p ${XDG_LOCALS_DIR}/bin")
-  system(ENVIRONMENT, "mkdir -p ${XDG_LOCALS_DIR}/config")
-  system(ENVIRONMENT, "sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
+  execho("mkdir -p ${XDG_LOCALS_DIR}/bin")
+  execho("mkdir -p ${XDG_LOCALS_DIR}/config")
+
+  unless File.exist?("/usr/local/bin/pinentry-jmr")
+    execho("sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
+  end
+
+  return unless machine_is?(:apple)
+
+  system("mkdir -p ${HOME}/.local/")
+
+  unless File.exist?(File.expand_path "~/.local/share")
+    execho("ln -s ${XDG_DATA_HOME} ${HOME}/.local/share")
+  end
+  unless File.exist?(File.expand_path "~/.cups")
+    execho("ln -s ${XDG_DATA_HOME}/cups ${HOME}/.cups")
+  end
+  unless File.exist?(File.expand_path "~/Dropbox")
+    execho("ln -s ${HOME}/Library/CloudStorage/Dropbox/ ${HOME}/Dropbox")
+  end
+  unless File.exist?(File.expand_path "~/.config")
+    execho("ln -s ${XDG_CONFIG_HOME} ${HOME}/.config")
+  end
 end
 
 # Homebrew-related commands
