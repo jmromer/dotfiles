@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case "${MACHINE}" in
+  linux)
+    "${HOMEBREW_PREFIX}/bin/pinentry"
+  ;;
+  apple|intel-mac)
+    "${HOMEBREW_PREFIX}/bin/pinentry-mac"
+  ;;
+esac
