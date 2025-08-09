@@ -49,6 +49,11 @@ sudo apt update
 sudo apt install emacs emacs-gtk emacs-common
 ```
 
+For vterm:
+``` rb
+sudo apt install libvterm-dev
+```
+
 ## Toshy [disable]
 
 Interferes with input remapper, might be causing instability.
