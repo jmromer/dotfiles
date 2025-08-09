@@ -1,20 +1,9 @@
+Steps to add to the bootstrap:
+
 ## Apt
 
 ```
-sudo apt install nvidia-cuda-toolkit wget kitty tmux vim gh
-```
-
-## Homebrew
-
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install gcc zsh cmake libtool delta usage
-```
-
-## xdg config
-
-```
-# /etc/zsh/zshenv: system-wide .zshenv file for zsh(1).
+sudo apt install nvidia-cuda-toolkit wget tmux vim gh
 ```
 
 # keyboard delay and repeat interval
@@ -79,6 +68,12 @@ Relevant flags for reference:
 "--with-x",
 "--with-feautures=huge",
 # . . .
+```
+
+## Kitty
+
+```
+./lib/install-kitty
 ```
 
 ## Flatpak
