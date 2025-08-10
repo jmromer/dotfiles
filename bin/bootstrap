@@ -222,16 +222,15 @@ setup :doom_config do
   script_install :doom
 end
 
-# setup :pd_tool do
-#   install_launchagent "com.tensorconclave.pd"
-#   script_install :pd
-# end
+setup :pd_tool do
+  install_launchagent "com.tensorconclave.pd"
+  script_install :pd
+end
 
-# setup :writing_projects, default: false do
-#   setup(:org) { setup_writing(:org) }
-#   setup(:logos) { setup_writing(:logos) }
-#   setup(:conclave) { setup_writing(:conclave) }
-# end
+setup :writing_projects, default: false do
+  setup(:logos_ex_machina) { setup_writing(:logos_ex_machina) }
+  setup(:conclave) { setup_writing(:conclave) }
+end
 
 perform :cleanups do
   brew_cleanup
