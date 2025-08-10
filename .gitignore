@@ -115,7 +115,7 @@ state
 /config/pop-system-updater/
 /config/pulse/
 /config/systemd/
-/config/toshy/
+/config/toshy/*
 /config/touchegg/
 /config/ulauncher/
 /config/user-dirs.dirs
@@ -133,5 +133,5 @@ bin/pd
 # keep
 
 !**/*/.keep
-
+!/config/toshy/toshy_config.py
 # ---------------------------------------
