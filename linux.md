@@ -8,10 +8,10 @@ sudo apt install nvidia-cuda-toolkit wget tmux vim gh
 
 # keyboard delay and repeat interval
 # ----------------------------------
-gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+gsettings set org.gnome.desktop.peripherals.keyboard delay 50
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 15
 
-## input-remapper-2
+## input-remapper-2 [prefer Toshy]
 
 https://github.com/sezanzeb/input-remapper
 ```
@@ -32,6 +32,8 @@ sudo apt install ulauncher
 
 ## Emacs
 
+Need to build with sqlite3 support (install with brew).
+
 ```
 sudo add-apt-repository ppa:ubuntuhandbook1/emacs
 sudo apt update
@@ -43,15 +45,17 @@ For vterm:
 sudo apt install libvterm-dev
 ```
 
-## Toshy [disable]
+## Toshy
 
 Interferes with input remapper, might be causing instability.
 
 https://github.com/RedBearAK/toshy
 
 ```
-bash -c "$(curl -L https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh || wget -O - https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh)"
+bash -c "$(curl -L https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh ||
+ wget -O - https://raw.githubusercontent.com/RedBearAK/toshy/main/scripts/bootstrap.sh)"
 ```
+
 ## Vim
 
 To build with clipboard support + GUI
