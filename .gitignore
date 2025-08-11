@@ -101,6 +101,7 @@ state
 /config/zsh/.zsh_sessions
 
 /config/.gsd-keyboard.settings-ported
+/config/monitors.xml
 /config/autostart/
 /config/dconf/
 /config/evolution/
