@@ -71,7 +71,6 @@ state
 
 /share/*
 !share/git_diet/
-!share/karabiner/
 
 # high-churn config files,
 # state files miscategorized as config
