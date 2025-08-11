@@ -20,7 +20,6 @@ end
 setup :core_cli_tools do
 
   brew_install :binutils
-  brew_install :colima
   brew_install :coreutils
   brew_install :cpdf
   brew_install :curl
@@ -140,6 +139,7 @@ if machine_is?(:apple)
   end
 
   setup :mac_tools do
+    brew_install :colima
     brew_install :osxutils
     brew_install :pinentry_mac
     brew_install :reattach_to_user_namespace
