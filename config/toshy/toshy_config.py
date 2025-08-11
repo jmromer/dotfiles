@@ -710,6 +710,8 @@ modmap("Customizations - Caps to Ctrl", {
     Key.CAPSLOCK: Key.LEFT_CTRL
 })
 
+# ------------------ Windows Keyboard ------------------
+
 modmap("Cond modmap - GUI - Win kbd - multi_lang OFF", {
     # - Default Mac/Win
     # - Default Win
@@ -765,6 +767,54 @@ modmap("Cond modmap - Terms - Win kbd", {
     isKBtype('Windows', map='mmap terms Win')(ctx) and
     matchProps(clas=termStr)(ctx)
 )
+
+# ------------------ Apple Keyboard ------------------
+
+modmap("Cond modmap - GUI - Mac kbd - multi_lang OFF", {
+    # - Mac Only
+    Key.RIGHT_META:             Key.ESC,                 # Mac - Multi-language (Remove)
+    Key.RIGHT_CTRL:             Key.RIGHT_META,                 # Mac - Multi-language (Remove)
+}, when = lambda ctx:
+    not cnfg.multi_lang and
+    cnfg.screen_has_focus and
+    isKBtype('Apple', map='mmap GUI Apple ML-OFF')(ctx) and
+    matchProps(not_clas=terms_and_remotes_Str)(ctx)
+)
+modmap("Cond modmap - GUI - Mac kbd", {
+    # - Mac Only
+    Key.LEFT_CTRL:              Key.CAPSLOCK,                  # Mac
+    Key.LEFT_META:              Key.LEFT_META,                 # Mac
+}, when = lambda ctx:
+    cnfg.screen_has_focus and
+    isKBtype('Apple', map='mmap GUI Apple')(ctx) and
+    matchProps(not_clas=terms_and_remotes_Str)(ctx)
+)
+
+modmap("Cond modmap - Terms - Mac kbd - multi_lang OFF", {
+    # - Mac Only
+    # Left Ctrl Stays Left Ctrl
+    Key.RIGHT_META:             Key.ESC,                 # Mac - Multi-language (Remove)
+    Key.RIGHT_CTRL:             Key.LEFT_CTRL,                  # Mac - Multi-language (Remove)
+}, when = lambda ctx:
+    not cnfg.multi_lang and
+    cnfg.screen_has_focus and
+    isKBtype('Apple', map='mmap terms Apple ML-OFF')(ctx) and
+    matchProps(clas=termStr)(ctx)
+)
+modmap("Cond modmap - Terms - Mac kbd", {
+    # - Mac Only
+    # Left Ctrl Stays Left Ctrl
+    Key.LEFT_CTRL:              Key.LEFT_CTRL,                  # Mac (self-modmap)
+    Key.LEFT_ALT:               Key.LEFT_ALT,                   # Mac (self-modmap)
+    Key.LEFT_META:              Key.LEFT_META,                 # Mac
+    Key.RIGHT_ALT:              Key.RIGHT_ALT,                  # Mac (self-modmap)
+}, when = lambda ctx:
+    cnfg.screen_has_focus and
+    isKBtype('Apple', map='mmap terms Apple')(ctx) and
+    matchProps(clas=termStr)(ctx)
+)
+
+# ------------------ Readline Bindings ------------------
 
 keymap("General GUI", {
     # emacs style
