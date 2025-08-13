@@ -2,11 +2,13 @@
 .Trash
 .astro
 .cloud66
+.config
 .cups
 .dotfiles
 .dropbox
 .emacs-profile
 .kube
+.local
 .netrc
 .ollama
 .spacemacs
