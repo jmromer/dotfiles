@@ -20,9 +20,9 @@
 
  :completion
  (company +childframe)
- ;; (corfu +dabbrev +icons +orderless)
- ;; ivy
- (vertico +icons)
+ (corfu +dabbrev +icons +orderless)
+ ;; (ivy + childframe +fuzzy)
+ (vertico +childframe +icons)
 
  :ui
  doom
