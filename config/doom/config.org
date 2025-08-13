@@ -51,7 +51,7 @@ Provide a command to trigger tangling manually.
 (setq doom-font (font-spec :family "Source Code Pro Ligaturized" :size 18)
       doom-variable-pitch-font (font-spec :family "SF Pro" :weight 'light :size 24)
       doom-big-font (font-spec :family "Source Code Pro Ligaturized" :size 24)
-      doom-theme 'doom-one
+      doom-theme 'doom-opera
       display-line-numbers-type 'relative
       fancy-splash-image nil
       +doom-dashboard-ascii-banner-fn nil)
@@ -94,7 +94,7 @@ Omit background coloring in terminal emacs
 #+end_src
 
 Darken the base background slightly.
-#+begin_src elisp
+#+begin_src elisp :tangle no
 (when (display-graphic-p)
   (defun +config:darken-background ()
     (let* ((default-bg (face-background 'default))
@@ -145,8 +145,8 @@ https://github.com/d12frosted/homebrew-emacs-plus/blob/master/patches/emacs-28/s
     (progn
       (mapc #'disable-theme custom-enabled-themes)
       (pcase appearance
-        ('light (load-theme 'doom-one-light t))
-        ('dark (load-theme 'doom-one t))))))
+        ('light (load-theme 'doom-solarized-light t))
+        ('dark (load-theme 'doom-opera t))))))
 
 (add-hook 'ns-system-appearance-change-functions #'+config:set-preferred-theme)
 #+end_src
