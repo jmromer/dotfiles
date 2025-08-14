@@ -147,7 +147,6 @@ if machine_is?(:apple)
     brew_install :vim
     cask_install :karabiner_elements
     cask_install :marked
-    cask_install :obsidian
     cask_install :visual_studio_code
     cask_install :zed
   end
