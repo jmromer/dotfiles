@@ -17,12 +17,17 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 CLEAR='\033[0m'
 
+# Flag to skip reviewing and go directly to new problem entry
+SKIP_REVIEW=''
+
 # Usage string to be printed whenever user enters an unrecognized option or
 # enters the 'help' option.
 USAGE=$(cat <<-END
 	Usage: $(basename $0) [${BLUE}options${CLEAR}]
 	Run \`$(basename $0)\` without any arguments to start your review session.
-	Options:
+
+	Subcommands:
+	    ${BLUE}new${CLEAR}     Skip review, go directly to new problem entry
 	    ${BLUE}status${CLEAR}  Print total number of problems and number of due problems.
 	    ${BLUE}help${CLEAR}    Prints this help message.
 END
@@ -53,7 +58,7 @@ if ! [ -f "$GRIND_DATA" ]; then
 	touch $GRIND_DATA
 fi
 
-# Checking for options which may cause program to run differently: status,
+# Checking for options which may cause program to run differently: status, new,
 # help, and unrecognized options.
 if [ "$1" == "status" ]; then # The user ran `grind status`
 
@@ -65,10 +70,15 @@ if [ "$1" == "status" ]; then # The user ran `grind status`
 	echo -e "There are ${BLUE}$TOTAL${CLEAR} problems in the system, of which ${RED}$TODO${CLEAR} are due."
 	exit 0
 
+elif [ "$1" == "new" ]; then
+
+	SKIP_REVIEW=true
+
 elif [ "$1" == "help" ]; then # The user ran `grind help`
 
 	echo -e "$USAGE"
 	exit 0
+
 
 elif [ -n "$1" ]; then # The user ran something invalid, like `grind asdf`
 
@@ -95,12 +105,21 @@ do
 	# Sort the problems by due date
 	sort -nk4 $GRIND_DATA -o $GRIND_DATA
 
+	# Only read current data if not skipping review
+	if [ -z "$SKIP_REVIEW" ]; then
+		EARLIEST_DUE=$(awk 'FNR == 1 {print $4; exit}' $GRIND_DATA)
+	else
+		EARLIEST_DUE=''
+	fi
+
 	# If the earliest due problem is not due yet, then nothing's due;
 	# start asking the user for more problems
-	EARLIEST_DUE=$(awk 'FNR == 1 {print $4; exit}' $GRIND_DATA)
 	if [ -z "$EARLIEST_DUE" ] || [ "$EARLIEST_DUE" -gt "$NOW" ]; then
 		# Nothing to do
-		echo -ne "There are currently no problems due for a review.\nChoose a new problem and paste the URL below:\n> ${BLUE}"
+		if [ -z "$SKIP_REVIEW" ]; then
+			echo -ne "There are currently no problems due for a review.\n"
+		fi
+		echo -ne "Choose a new problem and paste the URL below:\n> ${BLUE}"
 
 		# Read URL in by user input. If empty (e.g. user hit ctrl-D), exit
 		read URL
