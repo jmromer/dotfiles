@@ -1955,20 +1955,16 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 (after! org
   (setq org-agenda-files
         (list
-         (concat org-directory "/inbox.org")
-         (concat org-directory "/todo.org")
-         (concat org-directory "/grind.org")
-         (concat org-directory "/planning.org")
-         (concat org-directory "/projects/")
-         (concat org-directory "/notes/"))
+         (concat org-directory "/tasks.org")
+         (concat org-directory "/grind.org"))
         org-archive-location (concat org-directory "/archive/%s::")
         org-default-notes-file (concat org-directory "/inbox.org")
         ;; the following are relative to `org-directory', unless absolute.
         +org-capture-changelog-file "changelog.org"
         +org-capture-journal-file (format "%s/journal.org.gpg" org-directory)
         +org-capture-notes-file "inbox.org"
-        +org-capture-projects-file "projects.org"
-        +org-capture-todo-file "todo.org"))
+        +org-capture-projects-file "inbox.org"
+        +org-capture-todo-file "inbox.org"))
 #+end_src
 
 ** capture templates
@@ -2042,6 +2038,9 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
       org-catch-invisible-edits 'show-and-error
       org-confirm-babel-evaluate nil
       org-cycle-separator-lines 2
+      org-done-keywords '("DONE" "CANCELED")
+      org-todo-keywords '((sequence "TODO(t)" "SCOPING(s)" "QUESTION(q)" "|" "DONE(d)" "CANCELED(k)")
+                          (sequence "[ ](T)" "[-](S)" "[?](Q)" "|" "[X](D)" "[~](K)"))
       org-edit-src-content-indentation 0
       ;; org-ellipsis " ▾"
       org-fontify-done-headline t
