@@ -1125,12 +1125,6 @@ Disable LSP formatting
 (setq +format-with-lsp nil)
 #+end_src
 
-Enable prettier-js
-
-#+begin_src elisp
-(require 'prettier-js)
-#+end_src
-
 * gtags
 
 ** gxref
