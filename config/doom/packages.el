@@ -1,14 +1,7 @@
 ;; -*- no-byte-compile: t; -*-
 
-;; (package! aider :recipe (:host github :repo "tninja/aider.el" :files ("aider*.el")))
-(package! casual)
-(package! centered-window)
-(package! command-log-mode)
-(package! company-box)
-(package! company-lsp)
-(package! copilot :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
-(package! copilot-chat :recipe (:host github :repo "chep/copilot-chat.el" :files ("*.el")))
-(package! dash-at-point)
+;; evil
+
 (package! evil-cleverparens)
 (package! evil-iedit-state)
 (package! evil-lion)
@@ -19,30 +12,36 @@
 (package! evil-string-inflection)
 (package! evil-tex)
 (package! evil-unimpaired :recipe (:host github :repo "zmaas/evil-unimpaired"))
-(package! exercism)
-(package! ggtags :recipe (:host github :repo "leoliu/ggtags"))
-(package! gxref :recipe (:host github :repo "dedi/gxref"))
-(package! impatient-mode :recipe (:host github :repo "skeeto/impatient-mode"))
-(package! jest)
+
+;; org
+
+(package! anki-connect)
+(package! anki-editor)
 (package! ob-mermaid)
 (package! org-appear :recipe (:host github :repo "awth13/org-appear"))
 (package! org-fancy-priorities)
 (package! org-projectile)
 (package! org-superstar)
 (package! ox-gfm)
-(package! posframe)
-(package! prettier-js)
-(package! ruby-refactor)
-(package! ruby-test-mode)
-(package! seeing-is-believing)
-(package! typopunct)
-(package! vimrc-mode)
-(package! xenops)
-(package! xwwp :recipe (:host github :repo "canatella/xwwp"))
+
+;; text editing
+
+;; (package! aider :recipe (:host github :repo "tninja/aider.el" :files ("aider*.el")))
+(package! copilot :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+(package! copilot-chat :recipe (:host github :repo "chep/copilot-chat.el" :files ("*.el")))
+(package! seeing-is-believing) ;; evaluate expressions as a comment
+(package! typopunct) ;; insert en/em dashes, curly quotes
 (package! yankee :recipe (:host github :repo "jmromer/yankee.el" :files ("yankee.el")))
 
-(disable-packages! minitest)
-(disable-packages! company-gtags)
-(disable-packages! evil-snipe)
-(disable-packages! git-gutter)
-(disable-packages! git-gutter-fringe)
+;; ui enhancements
+
+(package! casual) ;; magit-like menus
+(package! centered-window) ;; what it says on the tin
+(package! command-log-mode) ;; log commands to a buffer
+(package! dash-at-point) ;; look up in dash
+(package! exercism) ;; download exercises
+(package! xwwp :recipe (:host github :repo "canatella/xwwp")) ;; browser enhancements
+
+;; Probationary
+
+(package! xenops) ;; latex environment with auto-rendering of math. Needs single-file documents.
