@@ -125,6 +125,7 @@ state
 # symlinks to secure
 
 config/gem/credentials
+/secure
 
 # binaries
 
