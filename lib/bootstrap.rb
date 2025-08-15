@@ -169,6 +169,16 @@ def ensure_locals_are_created
     execho("sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
   end
 
+  unless File.exist?(ENV.fetch("XDG_SECURE_DIR"))
+    target =
+      if machine_is?(:apple)
+        "~/Library/Mobile\\ Documents/com~apple~CloudDocs"
+      else
+        "~/Dropbox"
+      end
+    execho("ln -s #{target}/dotfiles ${XDG_SECURE_DIR}")
+  end
+
   return unless machine_is?(:apple)
 
   system("mkdir -p ${HOME}/.local/")
