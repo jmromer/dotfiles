@@ -170,7 +170,6 @@ if machine_is?(:apple)
     cask_install :launchcontrol
     cask_install :launchpad_manager
     cask_install :licecap
-    cask_install :lm_studio
     cask_install :name_mangler
     cask_install :onedrive
     cask_install :pdfsam_basic
