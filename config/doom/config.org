@@ -3468,3 +3468,9 @@ Workaround for an upstream bug. Linux emacs build with harfbuzz doesn't need lig
 (if (string= (getenv "MACHINE") "linux")
     (remove-hook 'doom-init-ui-hook #'global-ligature-mode))
 #+end_src
+
+* local overrides
+#+begin_src elisp
+(load-file (format "%s/config/emacs/config.el" (getenv "XDG_SECURE_DIR")))
+(load-file (format "%s/config/emacs/config.el" (getenv "XDG_LOCALS_DIR")))
+#+end_src

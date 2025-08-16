@@ -163,7 +163,8 @@ end
 
 def ensure_locals_are_created
   execho("mkdir -p ${XDG_LOCALS_DIR}/bin")
-  execho("mkdir -p ${XDG_LOCALS_DIR}/config")
+  execho("mkdir -p ${XDG_LOCALS_DIR}/config/emacs")
+  execho("touch ${XDG_LOCALS_DIR}/config/emacs/config.el")
 
   unless File.exist?("/usr/local/bin/pinentry-jmr")
     execho("sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
