@@ -33,6 +33,11 @@ export MACHINE
 export MACHINE_CORES
 export HOMEBREW_PREFIX
 
+if [ -z "${DOTFILES_DIR}" ]; then
+  echo "ERROR: DOTFILES_DIR not set in $0"
+  exit 1
+fi
+
 # XDG setup
 # -----------------------------
 source "${DOTFILES_DIR}/env/xdg.core.sh"

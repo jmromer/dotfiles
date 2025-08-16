@@ -42,9 +42,11 @@ PATH+=":/snap/bin"
 
 export PATH
 
-for mandir in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do
-  export MANPATH="$mandir:$MANPATH"
-done
+if [[ -d "${HOMEBREW_PREFIX}" ]]; then
+  for mandir in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do
+    export MANPATH="$mandir:$MANPATH"
+  done
+fi
 
 # TEMP: Let's see what breaks
 # PATH+=":./node_modules/.bin"

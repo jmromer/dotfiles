@@ -169,7 +169,7 @@ def ensure_locals_are_created
     execho("sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
   end
 
-  unless File.exist?(ENV.fetch("XDG_SECURE_DIR"))
+  unless File.exist?(ENVIRONMENT.fetch("XDG_SECURE_DIR"))
     target =
       if machine_is?(:apple)
         "~/Library/Mobile\\ Documents/com~apple~CloudDocs"
@@ -295,9 +295,10 @@ end
 
 DOTFILES_DIR = File.dirname(File.dirname(__FILE__))
 HOMEBREW_PREFIX = '/opt/homebrew'
+ENV["DOTFILES_DIR"] = DOTFILES_DIR
 
 ENVIRONMENT =
-  `zsh -c ". #{DOTFILES_DIR}/config/zsh/zshenv && env | grep -E '^(XDG_|MISE_|PATH)'"`
+  `zsh -c ". #{DOTFILES_DIR}/config/zsh/zshenv && env | grep -E '^(XDG_|MISE_|PATH|GNUPG)'"`
   .strip
   .split("\n")
   .map { |line| line.split("=") }

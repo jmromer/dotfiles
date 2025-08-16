@@ -5,25 +5,26 @@
 
 set -e
 
-eval "$(mise activate bash)"
-
-if [[ -z "$(command -v go)" ]]; then
-  echo "Warning: go executable not found. Skipping p/d installation."
-  exit 1
-elif [[ -z "${XDG_DATA_HOME}" ]]; then
-  echo "Warning: XDG_DATA_HOME env var not set. Skipping p/d installation."
+if [[ -z "${XDG_DATA_HOME}" ]]; then
+  echo "Error: XDG_DATA_HOME env var not set. Skipping p/d installation."
   exit 1
 elif [[ -z "${DOTFILES_DIR}" ]]; then
-  echo "Warning: DOTFILES_DIR env var not set. Skipping p/d installation."
+  echo "Error: DOTFILES_DIR env var not set. Skipping p/d installation."
+  exit 1
+elif [[ -z "$(command -v mise)" ]]; then
+  echo "Error: mise executable not found. Skipping p/d installation."
   exit 1
 fi
 
-builtin cd ${XDG_DATA_HOME}/pd
-
+builtin cd "${XDG_DATA_HOME}/pd"
+eval "$(mise activate bash)"
 mise use go
 
+if [[ -z "$(command -v go)" ]]; then
+  echo "Error: go executable not found. Skipping p/d installation."
+  exit 1
+fi
+
 go get
-
 go build -o ${DOTFILES_DIR}/bin/pd main.go
-
 pd --pd-refresh &
