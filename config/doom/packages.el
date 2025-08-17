@@ -45,3 +45,9 @@
 ;; Probationary
 
 (package! xenops) ;; latex environment with auto-rendering of math. Needs single-file documents.
+
+(disable-packages! minitest)
+(disable-packages! company-gtags)
+(disable-packages! evil-snipe)
+(disable-packages! git-gutter)
+(disable-packages! git-gutter-fringe)
