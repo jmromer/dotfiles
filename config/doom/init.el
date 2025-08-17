@@ -20,7 +20,7 @@
 
  :completion
  (company +childframe)
- (corfu +dabbrev +icons +orderless)
+ ;; (corfu +dabbrev +icons +orderless)
  ;; (ivy + childframe +fuzzy)
  (vertico +childframe +icons)
 
