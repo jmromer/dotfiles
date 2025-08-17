@@ -70,7 +70,7 @@ devices_api(
 # holding any key down, especially while holding a key combo
 # that is getting remapped onto something else in the config.
 ###########################################################
-# ignore_repeating_keys(False)
+ignore_repeating_keys(False)
 
 
 ###  SLICE_MARK_END: keymapper_api  ###  EDITS OUTSIDE THESE MARKS WILL BE LOST ON UPGRADE
