@@ -46,19 +46,15 @@ ln -s $XDG_DATA_HOME ~/.local/share
 
 ## Set keyboard delay and repeat interval
 
-macOS defaults:
-```
-gsettings set org.gnome.desktop.peripherals.keyboard delay 525
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 60
-```
+|                            | `delay` | `repeat-interval` |
+|---------------------------:|:-------:|:-----------------:|
+|              macOS default |   525   |       60          |
+|            Pop! OS default |   500   |       30          |
+| macOS UI-limited "fastest" |   225   |       30          |
+|      macOS Typical Setting |   350   |       30          |
 
-macOS "fastest" settings via UI:
-```
-gsettings set org.gnome.desktop.peripherals.keyboard delay 225
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
-```
 
-macOS typical setting (?):
+Configure:
 ```
 gsettings set org.gnome.desktop.peripherals.keyboard delay 350
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
