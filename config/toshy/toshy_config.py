@@ -832,6 +832,23 @@ keymap("General GUI", {
     matchProps(not_clas=terms_and_remotes_Str)(ctx)
 )
 
+# ------------------ Chromium-based Browsers ------------------
+
+keymap("Chrome Browsers Overrides", {
+    C("Super-comma"):          [C("C-t"), sleep(0.2),
+                                ST("chrome://settings"),
+                                sleep(0.2), C("Enter")],        # Open preferences (Settings)
+    C("RC-q"):                  C("Alt-F4"),                    # Quit Chrome(s) browsers with Cmd+Q
+    C("RC-Left_Brace"):         C("Alt-Left"),                  # Page nav: Back to prior page in history
+    C("RC-Right_Brace"):        C("Alt-Right"),                 # Page nav: Forward to next page in history
+
+    C("RC-y"):                  C("C-H"),                       # Browser History
+    C("Alt-RC-u"):              C("C-U"),                       # View Page Source
+    C("Shift-RC-j"):            C("C-J"),                       # Show Downloads view
+}, when = lambda ctx:
+    cnfg.screen_has_focus and
+    matchProps(clas=browsers_chromeStr)(ctx) )
+
 # ----------------- [Reference] -----------------
 #
 # multipurpose_modmap("Customizations - Right Alt to ESC / Right Alt", {
