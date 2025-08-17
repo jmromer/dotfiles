@@ -46,10 +46,22 @@ ln -s $XDG_DATA_HOME ~/.local/share
 
 ## Set keyboard delay and repeat interval
 
-These may need tweaking:
+macOS defaults:
 ```
-gsettings set org.gnome.desktop.peripherals.keyboard delay 200
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
+gsettings set org.gnome.desktop.peripherals.keyboard delay 525
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 60
+```
+
+macOS "fastest" settings via UI:
+```
+gsettings set org.gnome.desktop.peripherals.keyboard delay 225
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
+```
+
+macOS typical setting (?):
+```
+gsettings set org.gnome.desktop.peripherals.keyboard delay 350
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
 ```
 
 Load keybinding configuration:
@@ -62,6 +74,21 @@ cat keybindings.conf | dconf load /
 - Toshy: https://github.com/RedBearAK/toshy
 - Emacs: Built with sqlite3 support for magit
 - Vim: Built with clipboard support (`--with-x` build flag)
+
+## TeX
+
+May take several hours to complete:
+https://www.tug.org/texlive/quickinstall.html
+
+```
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+
+zcat < install-tl-unx.tar.gz | tar xf -
+
+perl ./install-tl --no-interaction --paper=letter --no-doc-install --no-src-install to install-tl
+
+sudo ln -s /usr/local/texlive/[YYYY] /usr/local/texlive/current
+```
 
 ## Deprecated Installs
 
