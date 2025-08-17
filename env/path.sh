@@ -38,6 +38,7 @@ PATH+=":/usr/bin"
 PATH+=":/sbin"
 PATH+=":/bin"
 PATH+=":/Library/TeX/texbin"
+PATH+=":/usr/local/texlive/current/bin/x86_64-linux"
 PATH+=":/snap/bin"
 
 export PATH
