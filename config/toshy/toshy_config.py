@@ -425,6 +425,7 @@ terminals = [
     "cutefish-terminal",
     "deepin-terminal",
     "dev.warp.Warp",
+    "emacs",
     "eterm",
     "ghostty",
     "ghostty-debug",
