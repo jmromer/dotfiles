@@ -51,7 +51,7 @@ Provide a command to trigger tangling manually.
 (setq doom-font (font-spec :family "Source Code Pro Ligaturized" :size 18)
       doom-variable-pitch-font (font-spec :family "SF Pro" :weight 'light :size 24)
       doom-big-font (font-spec :family "Source Code Pro Ligaturized" :size 24)
-      doom-theme 'doom-opera
+      doom-theme 'doom-one
       display-line-numbers-type 'relative
       fancy-splash-image nil
       +doom-dashboard-ascii-banner-fn nil)
@@ -146,7 +146,7 @@ https://github.com/d12frosted/homebrew-emacs-plus/blob/master/patches/emacs-28/s
       (mapc #'disable-theme custom-enabled-themes)
       (pcase appearance
         ('light (load-theme 'doom-solarized-light t))
-        ('dark (load-theme 'doom-opera t))))))
+        ('dark (load-theme 'doom-one t))))))
 
 (add-hook 'ns-system-appearance-change-functions #'+config:set-preferred-theme)
 #+end_src
