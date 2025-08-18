@@ -5537,15 +5537,15 @@ keymap("General GUI", {
     # Fn to Alt style remaps
     C("RAlt-Enter"):            C("insert"),                    # Insert
 
-    # emacs style
-    C("Super-a"):               C("Home"),                      # Beginning of Line
-    C("Super-e"):               C("End"),                       # End of Line
-    C("Super-b"):               C("Left"),
-    C("Super-f"):               C("Right"),
-    C("Super-n"):               C("Down"),
-    C("Super-p"):               C("Up"),
-    C("Super-k"):              [C("Shift-End"), C("Backspace")],
-    C("Super-d"):               C("Delete"),
+    # emacs style [customize: disabled]
+    # C("Super-a"):               C("Home"),                      # Beginning of Line
+    # C("Super-e"):               C("End"),                       # End of Line
+    # C("Super-b"):               C("Left"),
+    # C("Super-f"):               C("Right"),
+    # C("Super-n"):               C("Down"),
+    # C("Super-p"):               C("Up"),
+    # C("Super-k"):              [C("Shift-End"), C("Backspace")],
+    # C("Super-d"):               C("Delete"),
 
     # This is better done with a native custom shortcut in each DE
     # C("Alt-RC-Space"):          C(""),                          # Open Finder - Placeholder not-deepin
