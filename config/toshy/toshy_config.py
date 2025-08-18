@@ -425,7 +425,7 @@ terminals = [
     "cutefish-terminal",
     "deepin-terminal",
     "dev.warp.Warp",
-    "emacs",
+    "emacs",  # [Custom]
     "eterm",
     "ghostty",
     "ghostty-debug",
@@ -709,7 +709,7 @@ keyboards_UserCustom_dct = {
     'AT Translated Set 2 keyboard': 'Windows'
 }
 
-modmap("Customizations - Caps to Ctrl", {
+modmap("[Custom] Customizations - Caps to Ctrl", {
     Key.CAPSLOCK: Key.LEFT_CTRL
 })
 
@@ -727,26 +727,26 @@ LHS_KEYMAPS_WIN = {
     Key.LEFT_ALT:  Key.LEFT_META,
 }
 
-modmap("Cond modmap - GUI - Win kbd - multi_lang OFF", RHS_KEYMAPS_WIN,
+modmap("[Custom] Cond modmap - GUI - Win kbd - multi_lang OFF", RHS_KEYMAPS_WIN,
     when = lambda ctx: not cnfg.multi_lang and cnfg.screen_has_focus and
     isKBtype('Windows', map='mmap GUI Win ML-OFF')(ctx) and
     matchProps(not_clas=terms_and_remotes_Str)(ctx)
 )
 
-modmap("Cond modmap - GUI - Win kbd", LHS_KEYMAPS_WIN,
+modmap("[Custom] Cond modmap - GUI - Win kbd", LHS_KEYMAPS_WIN,
        when = lambda ctx: cnfg.screen_has_focus and
        isKBtype('Windows', map='mmap GUI Win')(ctx) and
        matchProps(not_clas=terms_and_remotes_Str)(ctx)
 )
 
-modmap("Cond modmap - Terms - Win kbd - multi_lang OFF", RHS_KEYMAPS_WIN,
+modmap("[Custom] Cond modmap - Terms - Win kbd - multi_lang OFF", RHS_KEYMAPS_WIN,
        when = lambda ctx: not cnfg.multi_lang and
        cnfg.screen_has_focus and
        isKBtype('Windows', map='mmap terms Win ML-OFF')(ctx) and
        matchProps(clas=termStr)(ctx)
 )
 
-modmap("Cond modmap - Terms - Win kbd", LHS_KEYMAPS_WIN,
+modmap("[Custom] Cond modmap - Terms - Win kbd", LHS_KEYMAPS_WIN,
        when = lambda ctx: cnfg.screen_has_focus and
        isKBtype('Windows', map='mmap terms Win')(ctx) and
        matchProps(clas=termStr)(ctx)
@@ -766,26 +766,26 @@ LHS_KEYMAPS_MAC = {
     Key.LEFT_META: Key.LEFT_META,
 }
 
-modmap("Cond modmap - GUI - Mac kbd - multi_lang OFF", RHS_KEYMAPS_MAC,
+modmap("[Custom] Cond modmap - GUI - Mac kbd - multi_lang OFF", RHS_KEYMAPS_MAC,
        when = lambda ctx:
        not cnfg.multi_lang and
        cnfg.screen_has_focus and
        isKBtype('Apple', map='mmap GUI Apple ML-OFF')(ctx) and
        matchProps(not_clas=terms_and_remotes_Str)(ctx)
 )
-modmap("Cond modmap - GUI - Mac kbd", LHS_KEYMAPS_MAC, when = lambda ctx:
+modmap("[Custom] Cond modmap - GUI - Mac kbd", LHS_KEYMAPS_MAC, when = lambda ctx:
     cnfg.screen_has_focus and
     isKBtype('Apple', map='mmap GUI Apple')(ctx) and
     matchProps(not_clas=terms_and_remotes_Str)(ctx)
 )
-modmap("Cond modmap - Terms - Mac kbd - multi_lang OFF", RHS_KEYMAPS_MAC,
+modmap("[Custom] Cond modmap - Terms - Mac kbd - multi_lang OFF", RHS_KEYMAPS_MAC,
        when = lambda ctx:
        not cnfg.multi_lang and
        cnfg.screen_has_focus and
        isKBtype('Apple', map='mmap terms Apple ML-OFF')(ctx) and
        matchProps(clas=termStr)(ctx)
 )
-modmap("Cond modmap - Terms - Mac kbd", LHS_KEYMAPS_MAC,
+modmap("[Custom] Cond modmap - Terms - Mac kbd", LHS_KEYMAPS_MAC,
        when = lambda ctx:
        cnfg.screen_has_focus and
        isKBtype('Apple', map='mmap terms Apple')(ctx) and
@@ -794,7 +794,7 @@ modmap("Cond modmap - Terms - Mac kbd", LHS_KEYMAPS_MAC,
 
 # ------------------ Readline Bindings ------------------
 
-keymap("General GUI", {
+keymap("[Custom] GUI: Readline Bindings", {
     # emacs style
     C("LC-a"):               C("Home"),                      # Beginning of Line
     C("LC-e"):               C("End"),                       # End of Line
@@ -812,7 +812,7 @@ keymap("General GUI", {
 
 # ------------------ Chromium-based Browsers ------------------
 
-keymap("Chrome Browsers Overrides", {
+keymap("[Custom] Chromium-based Browsers", {
     C("Super-comma"):          [C("C-t"), sleep(0.2),
                                 ST("chrome://settings"),
                                 sleep(0.2), C("Enter")],        # Open preferences (Settings)
