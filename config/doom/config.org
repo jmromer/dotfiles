@@ -2026,38 +2026,39 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
 ** variables
 
 #+begin_src elisp
-(setq org-adapt-indentation t
-      org-agenda-block-separator ""
-      org-agenda-start-with-log-mode t
-      org-agenda-window-setup 'current-window
-      org-blank-before-new-entry '((heading . auto) (plain-list-item . auto))
-      org-catch-invisible-edits 'show-and-error
-      org-confirm-babel-evaluate nil
-      org-cycle-separator-lines 2
-      org-done-keywords '("DONE" "CANCELED")
-      org-todo-keywords '((sequence "TODO(t)" "SCOPING(s)" "QUESTION(q)" "|" "DONE(d)" "CANCELED(k)")
-                          (sequence "[ ](T)" "[-](S)" "[?](Q)" "|" "[X](D)" "[~](K)"))
-      org-edit-src-content-indentation 0
-      ;; org-ellipsis " ▾"
-      org-fontify-done-headline t
-      org-fontify-quote-and-verse-blocks t
-      org-fontify-whole-heading-line t
-      org-hide-emphasis-markers t
-      org-image-actual-width 500
-      org-list-use-circular-motion t
-      org-log-done 'time
-      org-log-into-drawer t
-      org-outline-path-complete-in-steps nil
-      org-pretty-entities nil
-      org-refile-allow-creating-parent-nodes 'confirm
-      org-refile-use-outline-path 'file
-      org-src-ask-before-returning-to-edit-buffer nil
-      org-src-tab-acts-natively t
-      org-src-window-setup 'current-window
-      org-startup-folded 'overview
-      org-startup-indented t
-      org-startup-with-inline-images t
-      org-tags-column 0)
+(after! org
+  (setq org-adapt-indentation t
+        org-agenda-block-separator ""
+        org-agenda-start-with-log-mode t
+        org-agenda-window-setup 'current-window
+        org-blank-before-new-entry '((heading . auto) (plain-list-item . auto))
+        org-catch-invisible-edits 'show-and-error
+        org-confirm-babel-evaluate nil
+        org-cycle-separator-lines 2
+        org-done-keywords '("DONE" "CANCELED")
+        org-todo-keywords '((sequence "TODO(t)" "SCOPING(s)" "QUESTION(q)" "|" "DONE(d)" "CANCELED(k)")
+                            (sequence "[ ](T)" "[-](S)" "[?](Q)" "|" "[X](D)" "[~](K)"))
+        org-edit-src-content-indentation 0
+        ;; org-ellipsis " ▾"
+        org-fontify-done-headline t
+        org-fontify-quote-and-verse-blocks t
+        org-fontify-whole-heading-line t
+        org-hide-emphasis-markers t
+        org-image-actual-width 500
+        org-list-use-circular-motion t
+        org-log-done 'time
+        org-log-into-drawer t
+        org-outline-path-complete-in-steps nil
+        org-pretty-entities nil
+        org-refile-allow-creating-parent-nodes 'confirm
+        org-refile-use-outline-path 'file
+        org-src-ask-before-returning-to-edit-buffer nil
+        org-src-tab-acts-natively t
+        org-src-window-setup 'current-window
+        org-startup-folded 'overview
+        org-startup-indented t
+        org-startup-with-inline-images t
+        org-tags-column 0))
 #+end_src
 
 ** agenda files
