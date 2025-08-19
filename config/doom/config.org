@@ -1634,6 +1634,11 @@ Default to github-flavored markdown
 #+begin_src elisp
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 #+end_src
+
+Don't use electric quotes
+#+begin_src elisp
+(setq markdown-gfm-use-electric-backquote nil)
+#+end_src
 ** keybindings
 
 Clear pre-installed keymaps and set cleaned up keymaps.
@@ -1698,7 +1703,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "column insert"       :n  "c"  #'markdown-table-insert-column))
   nil)
 
-(after! markdown-mode
+(after! markdown
   (remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
   (add-hook! markdown-mode :append #'+config:keybindings:markdown))
 #+end_src
