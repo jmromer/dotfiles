@@ -51,6 +51,7 @@ if [[ "${MACHINE}" == "apple" ]]; then
 fi
 
 source "${DOTFILES_DIR}/env/bundler.sh"
+source "${DOTFILES_DIR}/env/cellar.sh"
 source "${DOTFILES_DIR}/env/docker.sh"
 source "${DOTFILES_DIR}/env/emacs.sh"
 source "${DOTFILES_DIR}/env/erlang.sh"
