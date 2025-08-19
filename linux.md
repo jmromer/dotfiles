@@ -46,23 +46,29 @@ ln -s $XDG_DATA_HOME ~/.local/share
 
 ## Set keyboard delay and repeat interval
 
-|                            | `delay` | `repeat-interval` |
-|---------------------------:|:-------:|:-----------------:|
-|              macOS default |   525   |       60          |
-|            Pop! OS default |   500   |       30          |
-| macOS UI-limited "fastest" |   225   |       30          |
-|      macOS Typical Setting |   350   |       30          |
+Accessibility > Keyboard
 
+## Keybinding config
 
-Configure:
-```
-gsettings set org.gnome.desktop.peripherals.keyboard delay 350
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
-```
-
-Load keybinding configuration:
 ```
 cat keybindings.conf | dconf load /
+```
+
+### Disable standalone super key
+
+Locate and edit the COSMIC extension's main JavaScript file, often named
+`extension.js`.
+
+The path is likely
+
+```
+/usr/share/gnome-shell/extensions/pop-cosmic@system76.com/extension.js 
+```
+
+Search for this line and comment it out:
+
+``` javascript
+overview_toggle(overlay_key_action);
 ```
 
 ## Apps
