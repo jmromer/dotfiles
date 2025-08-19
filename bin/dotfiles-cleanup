@@ -31,7 +31,7 @@ to_delete, to_confirm =
 def delete_and_record_files(files, deletions = [])
   files
     .map { |f| "#{Dir.home}/#{f}" }
-    .select { |f| File.file?(f) && !File.symlink?(dir) }
+    .select { |f| File.file?(f) && !File.symlink?(f) }
     .select { |f| block_given? ? yield(f) : true }
     .each { |f| deletions.push(f) }
     .each { |f| FileUtils.rm_rf(f) }
