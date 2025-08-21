@@ -41,19 +41,48 @@ function generateDownloadCommand(e) {
 
   const videoDownloadsCSS = 'a[data-track-page="focused_lex_video_item"]';
   const links = Array.from(document.querySelectorAll(videoDownloadsCSS));
-  const mp4 = links.filter((e) => /mp4/i.test(e.innerText))[1];
+  const mp4 = links.filter((e) => /mp4/i.test(e.innerText))[1] || ({ href: document.querySelector("video").src });
   const pdf = links.filter((e) => /pdf/i.test(e.innerText))[0];
   const vtt = links.filter((e) => /vtt/i.test(e.innerText))[0];
   const txt = links.filter((e) => /txt/i.test(e.innerText))[0];
 
   let command = [];
   const filename = title.replace(/\//g, "-").replace(/:/g, " -");
-  mp4 && command.push('wget -qO "module' + WEEKNUM + '/' + filename + '.mp4" "' + mp4.href + '" &');
-  pdf && command.push('wget -qO "module' + WEEKNUM + '/' + filename + '.pdf" "' + pdf.href + '" &');
-  vtt && command.push('wget -qO "module' + WEEKNUM + '/' + filename + '.vtt" "' + vtt.href + '" &');
-  txt && command.push('wget -qO "module' + WEEKNUM + '/' + filename + '.txt" "' + txt.href + '" &');
+  const saveToBasename = `module${WEEKNUM}/${filename}`
+  mp4 && command.push('wget -qO "' + saveToBasename + '.mp4" "' + mp4.href + '" &');
+  pdf && command.push('wget -qO "' + saveToBasename + '.pdf" "' + pdf.href + '" &');
+  vtt && command.push('wget -qO "' + saveToBasename + '.vtt" "' + vtt.href + '" &');
+  txt && command.push('wget -qO "' + saveToBasename + '.txt" "' + txt.href + '" &');
+
+  // transcript fallbacks
+  if (!txt) {
+    const transcriptTXT = document.querySelector(".rc-TranscriptHighlighter").textContent;
+    saveTextAsDownload(`${saveToBasename}.txt`, transcriptTXT)
+  }
+  if (!vtt) {
+    const transcriptVTT =
+          [...document.querySelectorAll("[data-track-component=interactive_transcript] > div")]
+          .map(e => [e.querySelector('button').childNodes[1].textContent, e.querySelector('.phrases').textContent].join('\n'))
+          .join("\n\n")
+    saveTextAsDownload(`${saveToBasename}.vtt`, transcriptVTT)
+  }
 
   return command.join("\n");
+}
+
+function saveTextAsDownload(filename, text) {
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;        // e.g., "note.txt"
+  a.style.display = "none";
+  document.body.appendChild(a);
+
+  a.click();                    // triggers download to default folder
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 function handleClick(e) {
