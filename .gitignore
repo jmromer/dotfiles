@@ -100,7 +100,6 @@ state
 /config/zsh/.zsh_sessions
 
 /config/.gsd-keyboard.settings-ported
-/config/monitors.xml
 /config/autostart/
 /config/dconf/
 /config/evolution/
@@ -110,10 +109,12 @@ state
 /config/gtk-3.0/
 /config/ibus/
 /config/mimeapps.list
+/config/monitors.xml
 /config/nautilus/
 /config/pop-shell/
 /config/pop-system-updater/
 /config/pulse/
+/config/qalculate/qalc.history
 /config/systemd/
 /config/toshy/*
 /config/touchegg/
