@@ -1703,7 +1703,7 @@ Clear pre-installed keymaps and set cleaned up keymaps.
         :desc "column insert"       :n  "c"  #'markdown-table-insert-column))
   nil)
 
-(after! markdown
+(after! markdown-mode
   (remove-hook! markdown-mode #'doom--enable-+javascript-npm-mode-in-markdown-mode-h)
   (add-hook! markdown-mode :append #'+config:keybindings:markdown))
 #+end_src
