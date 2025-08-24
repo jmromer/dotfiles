@@ -242,11 +242,35 @@ setopt SHARE_HISTORY          # Share history across sessions
 # To avoid conflicts, these plugins should be loaded in the given order:
 # - zsh-autosuggestions
 # - zsh-syntax-highlighting
-# - zsh-vim-mode
-source "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# - zsh-vim-mode (unless in emacs)
+# - kitty shell integration (if in kitty)
+
+if [[ -d "${XDG_DATA_HOME}/zsh/zsh-autosuggestions" ]]; then
+  source "${XDG_DATA_HOME}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+else
+  echo "Warning: zsh-autosuggestions not found"
+fi
+
+if [[ -f "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  . "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+else
+  echo "Warning: zsh-syntax-highlighting not found"
+fi
 
 if [[ -z "${INSIDE_EMACS}" ]]; then
-  source "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+  if [[ -f "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh" ]]; then
+    . "${XDG_DATA_HOME}/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+  else
+    echo "Warning: zsh-vim-mode not found"
+  fi
+fi
+
+if [[ -n "${KITTY_INSTALLATION_DIR}" ]]; then
+  if [[ -f "${KITTY_INSTALLATION_DIR}/shell-integration/zsh/kitty.zsh" ]]; then
+    . "${KITTY_INSTALLATION_DIR}/shell-integration/zsh/kitty.zsh"
+  else
+    echo "Warning: kitty shell integration not found"
+  fi
 fi
 
 # 7. Cursor and Mode Configurations
@@ -409,7 +433,7 @@ color() {
 setopt prompt_subst  # Enable substitution in prompt
 
 if [[ -f "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh" ]]; then
-  source "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh"
+  . "${HOMEBREW_PREFIX}/opt/gitstatus/gitstatus.plugin.zsh"
   gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd gitstatus_prompt
@@ -449,6 +473,8 @@ setopt complete_aliases     # Complete aliased commands
 if [[ -d "${XDG_DATA_HOME}/fzf/shell" ]]; then
   . "${XDG_DATA_HOME}/fzf/shell/completion.zsh"
   . "${XDG_DATA_HOME}/fzf/shell/key-bindings.zsh"
+else
+  echo "Warning: fzf shell completions and keybindings not found"
 fi
 
 # 12. Secure and Local Configurations
