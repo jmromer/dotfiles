@@ -69,3 +69,6 @@
 [submodule "share/tmux/tmux-urlview"]
 	path = share/tmux/tmux-urlview
 	url = https://github.com/tmux-plugins/tmux-urlview
+[submodule "share/zsh/zsh-autosuggestions"]
+	path = share/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
