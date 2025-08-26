@@ -1,9 +1,14 @@
 set nocompatible
 
+syntax on
 filetype plugin indent on
 scriptencoding utf-8
 set fileencodings=utf-8
 set encoding=utf-8
+
+function! RunningAsRoot()
+  return $EUID ==# '0' || exists('$SUDO_USER')
+endfunction
 
 " Suppress 'Pattern not found' messages
 set shortmess+=c
@@ -387,15 +392,6 @@ augroup rainbow_parentheses
   autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
-" YankRing
-" YankRing: location of history file
-let g:yankring_history_dir = '$XDG_STATE_HOME/vim'
-
-" YankRing: Cycle through the yank register
-let g:yankring_replace_n_pkey = '<C-p>'
-let g:yankring_replace_n_nkey = '<C-n>'
-nnoremap <silent><leader>p :YRShow<CR>
-
 " AutoPairs: disable closed-pair jumping instead of inserting
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<C-b>'
@@ -432,17 +428,6 @@ inoremap <expr> } SkipDelim('}')
 inoremap <expr> ' SkipDelim("'")
 inoremap <expr> " SkipDelim('"')
 inoremap <expr> ` SkipDelim('`')
-
-" Disable by default
-let g:user_emmet_install_global = 0
-
-"enable for html, css, erb, scss
-augroup emmetVim
-  autocmd!
-  autocmd FileType html,css,eruby,scss EmmetInstall
-augroup END
-
-let g:user_emmet_leader_key='<C-y>'
 
 " Use bars for indents
 let g:indentLine_char = '│'
