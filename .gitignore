@@ -122,6 +122,7 @@ state
 /config/user-dirs.dirs
 /config/user-dirs.locale
 /config/vlc/
+/config/zed/prompts/*
 
 # symlinks to secure
 
