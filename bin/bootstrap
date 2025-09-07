@@ -58,7 +58,7 @@ setup :build_tools do
   brew_install :gcc
   brew_install :gettext
   brew_install :glslang
-  brew_install :icu4c
+  brew_install :icu4c, version: 77
   brew_install :imagemagick
   brew_install :libffi
   brew_install :libgccjit
@@ -146,7 +146,7 @@ if machine_is?(:apple)
     brew_install :trash
     brew_install :vim
     cask_install :karabiner_elements
-    cask_install :marked
+    cask_install :marked_app
     cask_install :visual_studio_code
     cask_install :zed
   end
@@ -162,7 +162,7 @@ if machine_is?(:apple)
     cask_install :dash, version: 6
     cask_install :google_chrome
     cask_install :google_drive
-    cask_install :httpie
+    cask_install :httpie_desktop
     cask_install :iterm2
     cask_install :itermai
     cask_install :keycastr
@@ -192,7 +192,7 @@ if machine_is?(:apple)
     brew_install :defaultbrowser
     brew_install :exercism
     brew_install :llm
-    cask_install :ollama
+    cask_install :ollama_app
 
     brew_tap "yt-dlp/taps"
     brew_install :yt_dlp
