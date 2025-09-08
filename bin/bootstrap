@@ -160,6 +160,7 @@ if machine_is?(:apple)
     cask_install :brave_browser
     cask_install :coderunner
     cask_install :dash, version: 6
+    cask_install :finbar
     cask_install :google_chrome
     cask_install :google_drive
     cask_install :httpie_desktop
@@ -178,6 +179,7 @@ if machine_is?(:apple)
     cask_install :rectangle_pro
     cask_install :responsively
     cask_install :screenflow
+    cask_install :shottr
     cask_install :skim
     cask_install :tex_live_utility
     cask_install :transmission
