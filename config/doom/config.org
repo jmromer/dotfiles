@@ -1887,6 +1887,26 @@ https://orgmode.org/manual
     (evil-insert 1)))
 #+end_src
 
+#+begin_src elisp
+(defun org-schedule-subtree-items-on-successive-days (start-date target-level)
+  "Set scheduled dates for all headings of the TARGET-LEVEL in subtree, starting from START-DATE."
+  (interactive
+   (list
+    (read-string "Start date (YYYY-MM-DD): " (format-time-string "%Y-%m-%d"))
+    (read-string "Target heading level (1-?): " "4")))
+  (let ((current-date start-date))
+    (org-map-entries
+     (lambda ()
+       (message (format "target-level %s" target-level))
+       (when (= (org-current-level) (string-to-number target-level))
+         (org-schedule nil current-date)
+         (setq current-date
+               (format-time-string "%Y-%m-%d"
+                 (time-add (date-to-time current-date)
+                           (days-to-time 1))))))
+     nil 'tree)))
+#+end_src
+
 ** keybindings
 
 See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/org/config.el::1127][evil-org-mode]] and [[/Users/jmromer/.dotfiles/share/emacs/modules/lang/org/config.el::765][org-mode]] keybindings.
