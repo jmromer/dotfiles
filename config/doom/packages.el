@@ -19,6 +19,7 @@
 (package! anki-editor)
 (package! ob-mermaid)
 (package! org-appear :recipe (:host github :repo "awth13/org-appear"))
+(package! org-bullets)
 (package! org-fancy-priorities)
 (package! org-projectile)
 (package! org-superstar)
