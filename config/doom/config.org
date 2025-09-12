@@ -416,6 +416,7 @@ Allow remembering risky local variables.
 (defun +config:disable-word-wrap ()
   (+word-wrap-mode -1))
 (add-hook! org-mode #'+config:disable-word-wrap)
+(add-hook! org-agenda-mode #'+config:disable-word-wrap)
 #+end_src
 
 * +utilities
