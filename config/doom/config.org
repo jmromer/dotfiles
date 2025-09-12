@@ -1901,10 +1901,11 @@ https://orgmode.org/manual
 
 Save all Org buffers after any agenda action
 #+begin_src elisp
-(defun +save-org-agenda-files (_change)
+(defun +save-org-agenda-files (&rest _)
   (interactive)
   (org-save-all-org-buffers))
 
+;; Save after any agenda action
 (after! org
   (add-hook! org-trigger #'+save-org-agenda-files))
 #+end_src
