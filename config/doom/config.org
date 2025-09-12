@@ -285,6 +285,14 @@ Use comma for the local leader key.
 
 ** super keys
 
+#+begin_src elisp
+(defun +new-emacs-instance ()
+  (interactive)
+  (start-process
+   "emacs" nil
+   "/bin/zsh" "-c" "open ~/.dotfiles/scripts/Emacs.app"))
+#+end_src
+
 Some general purpose super-key keybindings.
 
 #+begin_src elisp
@@ -297,11 +305,13 @@ Some general purpose super-key keybindings.
          "s-F"   #'avy-goto-char-timer
          "s-k"   #'bury-buffer
          "s-K"   #'kill-current-buffer
-         "s-n"   #'+org-capture/open-frame
-         "s-N"   #'org-projectile-capture-for-current-project
+         "s-n"   #'+new-emacs-instance
+         "s-C-n" #'+org-capture/open-frame
          "s-s"   #'save-buffer
          "s-v"   #'evil-paste-after
          "s-w"   #'+workspace/close-window-or-workspace
+         "s-W"   #'+workspace/kill
+         "s-q"   #'save-buffers-kill-terminal
          "s-,"   #'+open-dotfiles
          "<s-escape>"   #'evil-escape)
 #+end_src
