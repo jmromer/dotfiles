@@ -291,7 +291,7 @@ Some general purpose super-key keybindings.
 (map! :desc "pwd vterm"     "s-'"   #'vterm-other-window
       :desc "project vterm" "s-\""  #'+vterm/toggle
       :desc "full vterm"    "s-C-'" #'(lambda () (interactive) (+vterm/here t))
-         "s-a"   #'org-agenda-list
+         "s-a"   #'org-agenda-today-by-priority
          "s-c"   #'evil-yank
          "s-f"   #'avy-goto-char-2
          "s-F"   #'avy-goto-char-timer
