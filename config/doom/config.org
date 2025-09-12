@@ -28,11 +28,9 @@ See [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/emacs-lis
  which-key-idle-secondary-delay 0.1)
 #+end_src
 
-
 ** literate config
 
 #+begin_src elisp :tangle no
-;; Don't tangle on save.
 (remove-hook 'org-mode-hook #'+literate-enable-recompile-h)
 #+end_src
 
@@ -1847,16 +1845,63 @@ renderMarkdown();
 
 https://orgmode.org/manual
 
-** configuration
+** priorities
+
+#+begin_src elisp
+(after! org
+  (setq org-priority-lowest ?F
+        org-priority-highest ?A
+        org-priority-default ?D
+        org-priority-faces nil))
+#+end_src
+
+** org-agenda
+
+#+begin_src elisp
+(map! "C-s-," #'consult-org-agenda)
+(map! :map org-mode-map "C-'" nil)
+#+end_src
+
+#+begin_src elisp
+(defun org-agenda-today-by-priority ()
+  (interactive)
+  (org-agenda nil "d"))
+
+(defun +org-agenda-skip-not-todo-or-wip-or-not-today ()
+  "Skip entries whose TODO state is not TODO/WIP, or that aren't scheduled for today."
+  (let* ((state     (org-get-todo-state))
+         (scheduled (org-get-scheduled-time (point)))
+         (is-today  (and scheduled (= (org-today) (time-to-days scheduled)))))
+    (if (and (member state '("TODO" "WIP")) is-today)
+        nil
+      (or (outline-next-heading) (goto-char (point-max))))))
+
+
+(after! org
+  (setq org-agenda-block-separator ?⎯)
+  (setq org-agenda-custom-commands
+        `(("d" "Today (by priority)"
+           ,(mapcar (lambda (p)
+                      `(tags-todo ,(format "PRIORITY=\"%c\"" p)
+                        ((org-agenda-overriding-header ,(format "Priority %c:" p))
+                         (org-agenda-skip-function '+org-agenda-skip-not-todo-or-wip-or-not-today))))
+                    (number-sequence org-priority-highest org-priority-lowest)))))
+  nil)
+#+end_src
+
+** bullets
+
+#+begin_src elisp
+(defun +config:display:org-bullets ()
+  (org-bullets-mode +1))
+
+(add-hook! org-mode #'+config:display:org-bullets)
+#+end_src
+
+** display
 
 #+begin_src elisp
 (add-hook! org-mode #'mixed-pitch-mode)
-#+end_src
-
-*** Org-LaTeX
-
-#+begin_src elisp
-(setq org-latex-packages-alist '(("" "tikz") ("" "amssymb") ("" "amssymb")))
 #+end_src
 
 ** commands
@@ -2084,13 +2129,6 @@ File paths for Org documents, Deft notes, and etc. Note that modifying
         org-tags-column 0))
 #+end_src
 
-** agenda files
-
-#+begin_src elisp
-(map! "C-s-," #'consult-org-agenda)
-(map! :map org-mode-map "C-'" nil)
-#+end_src
-
 ** structure templates
 
 #+begin_src elisp
@@ -2180,6 +2218,12 @@ https://github.com/bastibe/org-journal
       (scheme . t)
       (dot . t)
       (emacs-lisp . t)))
+#+end_src
+
+** org-latex
+
+#+begin_src elisp
+(setq org-latex-packages-alist '(("" "tikz") ("" "amssymb") ("" "amssymb")))
 #+end_src
 
 ** ob-mermaid
