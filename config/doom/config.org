@@ -192,20 +192,46 @@ If RETURN-P, return the message as a string instead of displaying it."
            doom-init-time))
 #+end_src
 
-Add items to the dashboard menu.
 #+begin_src elisp
-(add-to-list '+doom-dashboard-menu-sections
-             '("Open terminal emulator"
-               :icon (nerd-icons-octicon "nf-oct-terminal" :face 'doom-dashboard-menu-title)
-               :action +vterm/here))
-(add-to-list '+doom-dashboard-menu-sections
-             '("Switch to scratch buffer"
-               :icon (nerd-icons-octicon "nf-oct-pencil" :face 'doom-dashboard-menu-title)
-               :action doom/switch-to-scratch-buffer))
-(add-to-list '+doom-dashboard-menu-sections
-             '("Open empty buffer"
-               :icon (nerd-icons-octicon "nf-oct-file" :face 'doom-dashboard-menu-title)
-               :action evil-buffer-new))
+(setq +doom-dashboard-menu-sections
+      '(
+        ("Open org-agenda"
+         :icon (nerd-icons-octicon "nf-oct-calendar" :face 'doom-dashboard-menu-title)
+         :when (fboundp 'org-agenda-today-by-priority)
+         :action org-agenda)
+        ("Open empty buffer"
+         :icon (nerd-icons-octicon "nf-oct-file" :face 'doom-dashboard-menu-title)
+         :action evil-buffer-new)
+        ("Switch to scratch buffer"
+         :icon (nerd-icons-octicon "nf-oct-pencil" :face 'doom-dashboard-menu-title)
+         :action doom/switch-to-scratch-buffer)
+        ("Open terminal emulator"
+         :icon (nerd-icons-octicon "nf-oct-terminal" :face 'doom-dashboard-menu-title)
+         :action +vterm/here)
+        ("Recently opened files"
+         :icon (nerd-icons-faicon "nf-fa-file_text" :face 'doom-dashboard-menu-title)
+         :action recentf-open-files)
+        ("Reload last session"
+         :icon (nerd-icons-octicon "nf-oct-history" :face 'doom-dashboard-menu-title)
+         :when (cond
+                ((modulep! :ui workspaces)
+                 (file-exists-p (expand-file-name persp-auto-save-fname persp-save-dir)))
+                ((require 'desktop nil t) (file-exists-p (desktop-full-file-name))))
+         :action doom/quickload-session)
+        ("Open project"
+         :icon (nerd-icons-octicon "nf-oct-briefcase" :face 'doom-dashboard-menu-title)
+         :action projectile-switch-project)
+        ("Jump to bookmark"
+         :icon (nerd-icons-octicon "nf-oct-bookmark" :face 'doom-dashboard-menu-title)
+         :action bookmark-jump)
+        ("Open private configuration"
+         :icon (nerd-icons-octicon "nf-oct-tools" :face 'doom-dashboard-menu-title)
+         :when (file-directory-p doom-user-dir)
+         :action doom/open-private-config)
+        ("Open documentation"
+         :icon (nerd-icons-octicon "nf-oct-book" :face 'doom-dashboard-menu-title)
+         :action doom/help)
+        ))
 #+end_src
 
 ** display: hl-todo
