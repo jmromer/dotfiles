@@ -1919,7 +1919,7 @@ Save all Org buffers after any agenda action
   "Skip entries whose TODO state is not TODO/WIP, or that aren't scheduled for today."
   (let* ((state     (org-get-todo-state))
          (scheduled (org-get-scheduled-time (point)))
-         (is-today  (and scheduled (= (org-today) (time-to-days scheduled)))))
+         (is-today  (and scheduled (>= (org-today) (time-to-days scheduled)))))
     (if (and (member state '("TODO" "WIP")) is-today)
         nil
       (or (outline-next-heading) (goto-char (point-max))))))
