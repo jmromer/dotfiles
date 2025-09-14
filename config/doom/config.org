@@ -357,6 +357,12 @@ Some general purpose super-key keybindings, with meta-variants for terminal emac
         "<M-escape>"   #'evil-escape))
 #+end_src
 
+#+begin_src elisp
+(defun +config:keybindings:overrides ()
+  (define-key help-quick-use-map (kbd "s-`") nil)
+  (global-set-key (kbd "s-`") #'other-frame))
+(add-hook 'emacs-startup-hook #'+config:keybindings:overrides)
+#+end_src
 
 #+begin_src elisp
 (map! :ni "s-<return>" #'+make/run)
