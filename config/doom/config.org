@@ -1910,8 +1910,18 @@ Save all Org buffers after any agenda action
   (org-save-all-org-buffers))
 
 ;; Save after any agenda action
-(after! org
-  (add-hook! org-trigger #'+save-org-agenda-files))
+(defun +org--save-agenda-buffers (&rest _)
+  "Save all Org agenda buffers after an agenda command."
+  (org-save-all-org-buffers))
+
+(after! org-agenda
+  (dolist (cmd '(org-agenda-todo
+                 org-agenda-priority
+                 org-agenda-schedule
+                 org-agenda-deadline
+                 org-agenda-set-tags
+                 org-agenda-set-property))
+    (advice-add cmd :after #'+org--save-agenda-buffers)))
 #+end_src
 
 #+begin_src elisp
