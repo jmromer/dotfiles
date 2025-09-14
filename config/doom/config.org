@@ -338,6 +338,7 @@ Some general purpose super-key keybindings.
          "s-v"   #'evil-paste-after
          "s-w"   #'+workspace/close-window-or-workspace
          "s-W"   #'+workspace/kill
+         "s-C-w" #'(lambda () (interactive) (delete-frame nil t))
          "s-q"   #'save-buffers-kill-terminal
          "s-,"   #'+open-dotfiles
          "<s-escape>"   #'evil-escape)
