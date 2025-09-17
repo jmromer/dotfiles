@@ -1941,7 +1941,8 @@ Save all Org buffers after any agenda action
 (after! org
   (setq org-agenda-block-separator ?⎯
         org-agenda-start-with-log-mode t
-        org-agenda-window-setup 'other-frame)
+        org-agenda-window-setup 'only-window
+        org-agenda-restore-windows-after-quit t)
 
   (setq org-agenda-custom-commands
         `(("d" "Today (by priority)"
