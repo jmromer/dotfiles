@@ -1,5 +1,5 @@
 #+title: Emacs Config
-#+author: Jacob Römer (jmromer)
+#+author: Jacob Romer
 #+property: header-args :elisp :tangle yes :comments link
 #+startup: org-startup-folded: fold
 
@@ -2019,8 +2019,6 @@ Save all Org buffers after any agenda action
 #+end_src
 
 ** keybindings
-
-See =lang/org/config.el= for doom's [[file:~/.dotfiles/share/emacs/modules/lang/org/config.el::1127][evil-org-mode]] and [[/Users/jmromer/.dotfiles/share/emacs/modules/lang/org/config.el::765][org-mode]] keybindings.
 
 #+begin_src elisp
 (after! org
