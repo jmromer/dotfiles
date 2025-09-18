@@ -4,7 +4,7 @@ dotfiles
 Installation
 ------------
 
-1. Install Xcode
+1. Install Xcode & Dropbox
 
 2. Clone this repo
 

@@ -118,11 +118,8 @@ end
 if machine_is?(:apple)
   setup :emacs_plus do
     brew_tap "d12frosted/emacs-plus"
-    brew_install :emacs_plus, options: %i[
-      with_compress_install
-      with_imagemagick
-      with_xwidgets
-    ]
+    brew_install :emacs_plus, options: %i[with_compress_install with_imagemagick with_xwidgets]
+    post_install_emacs_plus
   end
 
   setup :emacs_mac, default: false do

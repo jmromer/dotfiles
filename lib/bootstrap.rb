@@ -157,14 +157,27 @@ def command_exists?(command)
 end
 
 def ensure_gpg_permissions_are_set_correctly
-  system(ENVIRONMENT, "chmod 600 ${GNUPGHOME}/*")
-  system(ENVIRONMENT, "chmod 700 ${GNUPGHOME}/")
+  if File.exist?(ENVIRONMENT.fetch("GNUPGHOME"))
+    system(ENVIRONMENT, "chmod 600 ${GNUPGHOME}/*")
+    system(ENVIRONMENT, "chmod 700 ${GNUPGHOME}/")
+  else
+    puts "Error: Ensure Dropbox is installed and synced."
+    exit 1
+  end
 end
 
 def ensure_locals_are_created
   execho("mkdir -p ${XDG_LOCALS_DIR}/bin")
   execho("mkdir -p ${XDG_LOCALS_DIR}/config/emacs")
   execho("touch ${XDG_LOCALS_DIR}/config/emacs/config.el")
+
+  unless File.exist?(ENVIRONMENT.fetch("ORG_HOME"))
+    execho("ln -s ${HOME}/Dropbox/org ${ORG_HOME}")
+  end
+
+  unless File.exist?("/usr/local/bin/")
+    execho("sudo mkdir -p /usr/local/bin")
+  end
 
   unless File.exist?("/usr/local/bin/pinentry-jmr")
     execho("sudo ln -sf ${DOTFILES_DIR}/bin/pinentry-jmr /usr/local/bin/")
@@ -196,6 +209,12 @@ def ensure_locals_are_created
   unless File.exist?(File.expand_path "~/.config")
     execho("ln -s ${XDG_CONFIG_HOME} ${HOME}/.config")
   end
+end
+
+def post_install_emacs_plus(version: 30)
+  execho <<~SH
+    osascript -e 'tell application "Finder" to make alias file to posix file "/opt/homebrew/opt/emacs-plus@#{version}/Emacs.app" at posix file "/Applications" with properties {name:"Emacs.app"}'
+  SH
 end
 
 # Homebrew-related commands
@@ -299,7 +318,7 @@ HOMEBREW_PREFIX = '/opt/homebrew'
 ENV["DOTFILES_DIR"] = DOTFILES_DIR
 
 ENVIRONMENT =
-  `zsh -c ". #{DOTFILES_DIR}/config/zsh/zshenv && env | grep -E '^(XDG_|MISE_|PATH|GNUPG)'"`
+  `zsh -c ". #{DOTFILES_DIR}/config/zsh/zshenv && env | grep -E '^(XDG_|MISE_|PATH|GNUPG|ORG_)'"`
   .strip
   .split("\n")
   .map { |line| line.split("=") }
