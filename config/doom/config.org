@@ -331,8 +331,7 @@ Some general purpose super-key keybindings, with meta-variants for terminal emac
       "s-F"   #'avy-goto-char-timer
       "s-k"   #'bury-buffer
       "s-K"   #'kill-current-buffer
-      "s-n"   #'+new-emacs-instance
-      "s-C-n" #'+org-capture/open-frame
+      "s-n"   #'+org-capture/open-frame
       "s-s"   #'save-buffer
       "s-v"   #'evil-paste-after
       "s-w"   #'+workspace/close-window-or-workspace
